@@ -1,0 +1,384 @@
+
+#define LT_POINTLIGHT 0
+#define LT_DIRLIGHT 1
+
+#define RENDER_USAGE_UI 1
+#define RENDER_USAGE_GENERAL 2
+#define RENDER_USAGE_REFLECT 4
+#define RENDER_USAGE_SHADOWMAPGEN 8
+#define RENDER_USAGE_GLOW 16
+#define RENDER_USAGE_DISTORT 32
+#define RENDER_USAGE_SHADOWCUBEMAPGEN 64
+#define RENDER_USAGE_REFRACT 128
+
+struct SED_Light
+{
+    float4 color;
+    float4 position;
+};
+
+float3 g_EyePos            : EYE_POS;
+float3 g_EyePosModel       : EYE_POS_MODEL;
+
+texture   g_depthtexture	   : DEPTH_MAP;
+float4x4  g_depthproj		   : DEPTH_PROJ;
+float	 g_fTime			   : TIME;
+float	g_shadowdensity		   : SHADOW_DENSITY = 1.0f;
+float4 g_ShadowCenter : SHADOW_CENTER;
+
+texture g_ShadowCubeMap		   : SHADOWCUBEMAP;
+float3 g_LightSCMPos		   : SHADOWCUBEMAP_POS;
+
+/*
+NUM_LIGHTS
+LIGHT0_TYPE, LIGHT1_TYPE, ... LIGHT4_TYPE
+LIGHT0_SHADOW, LIGHT1_SHADOW, ..., LIGHT4_SHADOW
+LIGHT0_SPECULAR, LIGHT1_SPECULAR, ..., LIGHT4_SPECULAR
+*/
+
+/*
+#define NUM_LIGHTS 2
+#define LIGHT0_TYPE 0
+#define LIGHT1_TYPE 1
+#define LIGHT0_SHADOW 0
+#define LIGHT1_SHADOW 0
+#define LIGHT0_SPECULAR 0
+#define LIGHT1_SPECULAR 1
+*/
+
+#if NUM_LIGHTS > 0
+SED_Light g_Lights[NUM_LIGHTS] : LIGHT_DATA;
+
+#if LIGHT0_SPECULAR>0 || LIGHT1_SPECULAR>0 || LIGHT2_SPECULAR>0 || LIGHT3_SPECULAR>0
+#define LIGHT_SPECULAR
+float4 g_SpecularColor : SPECULAR_COLOR;
+#endif
+
+#if (LIGHT0_SHADOW>0) || (LIGHT1_SHADOW>0) || (LIGHT2_SHADOW>0) || (LIGHT3_SHADOW>0)
+#define LIGHT_SHADOW
+texture g_ShadowMap : SHADOWMAP;
+float4x4 g_ShadowMapProj : SHADOWMAP_MATRIX;
+#endif
+
+float3 DoDiffuseLight_Point(SED_Light light, float3 pos, float3 normal)
+{
+	float3 l = light.position.xyz - pos;
+	float r2 = dot(l, l);
+	l = normalize(l);
+	return light.color.xyz * max(0, dot(normal, l)) * max( 0, (1.0 - r2 / light.position.w / light.position.w) );
+}
+
+float3 DoDiffuseLight_Dir(SED_Light light, float3 pos, float3 normal)
+{
+	float3 dir = normalize(light.position.xyz);
+	return light.color.xyz * max(0, dot(normal, dir));
+//	float3 diffuse = (dot(normal,dir)*0.5 + 0.5) * light.color.xyz;
+//	float ldn = dot(normal, dir);
+//	float subLamb = smoothstep(-1.0f,1.0,ldn) - smoothstep(0.0,1.0,ldn);
+//	subLamb = max(0.0,subLamb);
+//	float4 subContrib = subLamb * light.color;
+//	return light.color.xyz * max(0, dot(normal, dir)) + subContrib.xyz;
+//	return diffuse*diffuse;
+}
+
+#ifdef LIGHT_SPECULAR
+float DoSpecularLight_Point(SED_Light light, float3 pos, float3 normal)
+{
+    float3 viewdir = normalize(g_EyePosModel - pos);
+    viewdir = -reflect(viewdir, normal);
+    
+    float3 l = light.position.xyz - pos;
+    float spec = max(dot(viewdir, normalize(l)), 0);
+    spec = pow(spec, 4.0);
+
+    float r2 = dot(l, l);
+    return spec * max(0, (1.0 - r2/light.position.w/light.position.w));
+}
+
+float DoSpecularLight_Dir(SED_Light light, float3 pos, float3 normal)
+{
+    float3 viewdir = normalize(g_EyePosModel - pos);
+    viewdir = reflect(viewdir, normal);
+
+    float spec = max(dot(-viewdir, light.position.xyz),0.0f);
+    spec = pow(spec,4.0);
+    return spec;
+}
+#endif
+
+float4 DoOneLighting(SED_Light light, float3 pos, float3 normal, uniform int lighttype, uniform int dospecular)
+{
+	float4 color = float4(0,0,0,0);
+	if(lighttype == LT_POINTLIGHT)
+	{
+		color.xyz = DoDiffuseLight_Point(light, pos, normal);
+#ifdef LIGHT_SPECULAR
+		if(dospecular) color.w = DoSpecularLight_Point(light, pos, normal);
+		else color.w = 0;
+#endif
+		
+	}
+	else if(lighttype == LT_DIRLIGHT)
+	{
+		color.xyz = DoDiffuseLight_Dir(light, pos, normal);
+#ifdef LIGHT_SPECULAR
+		if(dospecular) color.w = DoSpecularLight_Dir(light, pos, normal);
+		else color.w = 0;
+#endif		
+	}
+	return color;
+}
+#endif //NUM_LIGHTS > 0
+
+float4 g_AmbientLight : AMBIENT_LIGHT;
+float4 DoLighting(float3 pos, float3 normal, uniform int doshadow)
+{
+	float4 color;
+	color = doshadow>0?float4(0.0f,0.0f,0.0f,0.0f):g_AmbientLight;
+/*
+	if(doshadow > 0) color = float4(0.0f,0.0f,0.0f,0.0f);
+	else
+	{
+		color = lerp(g_AmbientLight*0.5, g_AmbientLight, saturate(normal.y*0.5+0.5));
+	}
+	*/
+	
+#if NUM_LIGHTS > 0
+	if(doshadow == LIGHT0_SHADOW) color += DoOneLighting(g_Lights[0], pos, normal, LIGHT0_TYPE, LIGHT0_SPECULAR);
+#if NUM_LIGHTS > 1
+	if(doshadow == LIGHT1_SHADOW) color += DoOneLighting(g_Lights[1], pos, normal, LIGHT1_TYPE, LIGHT1_SPECULAR);
+#if	NUM_LIGHTS > 2
+	if(doshadow == LIGHT2_SHADOW) color += DoOneLighting(g_Lights[2], pos, normal, LIGHT2_TYPE, LIGHT2_SPECULAR);
+#if	NUM_LIGHTS > 3
+	if(doshadow == LIGHT3_SHADOW) color += DoOneLighting(g_Lights[3], pos, normal, LIGHT3_TYPE, LIGHT3_SPECULAR);
+#endif //NUM_LIGHTS > 3
+#endif //NUM_LIGHTS > 2
+#endif //NUM_LIGHTS > 1
+#endif //NUM_LIGHTS > 0
+
+	return color;
+}
+
+#if FOG_DISTANCE>0 || FOG_HEIGHT>0
+#if FOG_DISTANCE > 0
+float4 g_DistFogColor : DIST_FOG_COLOR;
+#endif
+#if FOG_HEIGHT > 0
+float4 g_HeightFogColor : HEIGHT_FOG_COLOR;
+#endif
+float4 g_FogParam : FOG_PARAM;
+#endif
+
+#if SKIN_MAXINFL > 0
+float4 g_BoneTM[210]    :BONE_MATRIX;
+#endif
+
+float4x4 g_World            : WORLD;
+float4x4 g_WorldView        : WORLDVIEW;
+
+float g_ModelTransparent : MODEL_XPARENT;
+
+texture    g_LightMap  : LIGHTMAP;
+texture g_ReflectMap    :    REFLECTMAP;
+texture g_FracMap        :    FRACMAP;
+
+sampler  s_DepthMapSampler = sampler_state{
+    Texture = <g_depthtexture>;
+    MipFilter = NONE;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    AddressU = BORDER ;
+    AddressV = BORDER ;
+    BORDERCOLOR		= 0x00ffffff;
+};
+
+
+sampler s_SCMSampler  = sampler_state{
+    Texture = <g_ShadowCubeMap>;
+    MipFilter = NONE;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+};
+
+#if MORPH_POS > 0  || MORPH_UV0 > 0
+    #if MORPH_POS > 0
+    float4 g_MorphRangePos[2] : MORPH_RANGE_POS;
+    #endif
+    
+    #if MORPH_UV0 > 0
+    float4 g_MorphRangeUV : MORPH_RANGE_UV;
+    #endif
+#endif
+
+
+#if MORPH_POS > 0
+float4 DoPosMorph(float4 pos0, float4 pos1)
+{
+    float4 inputpos = pos0*(1.0-g_fTime) + pos1*g_fTime;
+    inputpos = g_MorphRangePos[0] + g_MorphRangePos[1]*inputpos.zyxw;
+    return inputpos;
+}
+
+float3 DoNormalMorph(float3 normal0, float3 normal1)
+{
+    float3 inputnorm = normal0*(1.0-g_fTime) + normal1*g_fTime;
+    return inputnorm;
+}
+#endif
+
+#if MORPH_UV0 > 0
+float2 DoUVMorph(float2 uv0, float2 uv1)
+{
+    float2 uv = uv0*(1.0-g_fTime) + uv1*g_fTime;
+    uv = g_MorphRangeUV.xy + g_MorphRangeUV.zw*uv;
+    return uv;
+}
+#endif
+
+float2 DoSphereEnvMapping(float3 normal)
+{
+    float3 tmpnormal = mul(float4(normal, 0), g_WorldView);
+    return     tmpnormal.xy*float2(0.5, -0.5) + float2(0.5, 0.5);
+}
+
+#if SKIN_MAXINFL > 0
+#if SKIN_MAXINFL == 5
+void DoSkinVertex(float4 blendindices, float4 blendweights, float4 inputpos, float3 inputnorm, out float3 pos, out float3 normal)
+{
+    pos = float3(dot(inputpos,g_BoneTM[0]),dot(inputpos,g_BoneTM[1]),dot(inputpos,g_BoneTM[2]));
+    normal = float3(dot(inputnorm,g_BoneTM[0]),dot(inputnorm,g_BoneTM[1]),dot(inputnorm,g_BoneTM[2]));
+    normal = normalize(normal);
+}
+#else
+void DoSkinVertex(float4 blendindices, float4 blendweights, float4 inputpos, float3 inputnorm, out float3 pos, out float3 normal)
+{
+    int indices[4] = (int[4])D3DCOLORtoUBYTE4(blendindices);
+    float weights[4] = (float[4])(blendweights.zyxw);
+    
+    pos = float3(0, 0, 0);
+    normal = float3(0, 0, 0);
+    for(int i=0; i<SKIN_MAXINFL; i++)
+    {
+        int offset = indices[i]*3;
+        pos += float3(dot(inputpos,g_BoneTM[offset]),dot(inputpos,g_BoneTM[offset+1]),dot(inputpos,g_BoneTM[offset+2])) * weights[i];
+        normal += float3(dot(inputnorm,g_BoneTM[offset]),dot(inputnorm,g_BoneTM[offset+1]),dot(inputnorm,g_BoneTM[offset+2])) * weights[i];
+    }
+    normal = normalize(normal);
+}
+#endif
+#endif
+
+
+float DoSCMShadow(sampler s_SCMSampler, float3 pos )
+{
+	float linearZ = dot(pos,pos) - 5000.0f - 100000000.0f;
+    
+    float shadow;
+    
+    float CubeZ = texCUBE(s_SCMSampler,pos).r;
+    
+	shadow = ( (linearZ - CubeZ ) > 0.0f )?0.0f:1.0f;
+	
+	return shadow;
+} 
+
+#define SHADOWMAP_SIZE  1024.0
+
+#if ATI_NV == 0
+float DoSoftShadow(sampler s_DepthMapSampler,float4 uv,float z)
+{
+    float shadow = 0.0f; 
+    for(int i=-1;i<2;i++)
+        for(int j=-1;j<2;j++)
+        {
+            float2 texuv = uv.w * float2(i/SHADOWMAP_SIZE,j/SHADOWMAP_SIZE);
+            shadow += tex2Dproj( s_DepthMapSampler, uv + float4(texuv,0.0f,0.0f) ).x;//
+        }
+    return shadow*0.1111f;
+}
+
+float DoHardShadow(sampler s_DepthMapSampler,float4 uv,float z )
+{
+    float shadow = 0.0f; 
+    for(int i=0;i<1;i++)
+        for(int j=0;j<1;j++)
+        {
+            float2 texuv = uv.w * float2(i/SHADOWMAP_SIZE,j/SHADOWMAP_SIZE);
+            shadow += tex2Dproj( s_DepthMapSampler, uv + float4(texuv,0.0f,0.0f) ).x;//
+        }
+//    return shadow*0.25f;
+//    return shadow*0.1111;
+return shadow;
+}
+
+#elif ATI_NV == 1
+/*
+float TexShadow(sampler s_DepthMapSampler,float4 uv,float z)
+{
+    float2 Tex = uv.xy/uv.w;
+    
+    float4 color = tex2D(s_DepthMapSampler,Tex);
+    z *= 256.0f;
+    float depth = color.x*255.0f + color.y;
+    
+    return (  depth < z)?0.0f:1.0f;
+}
+
+float DoSoftShadow(sampler s_DepthMapSampler,float4 uv,float z )
+{
+    float shadow = 0.0f; ; 
+    for(int i=-1;i<2;i++)
+        for(int j=-1;j<2;j++)
+        {
+            float2 texuv = uv.w * float2(i/2048.0f,j/2048.0f);
+            shadow += TexShadow( s_DepthMapSampler, uv + float4(texuv,0.0f,0.0f),z );//
+        }
+    return shadow*0.1111f;
+}
+
+float DoHardShadow(sampler s_DepthMapSampler,float4 uv,float z )
+{
+    return TexShadow(s_DepthMapSampler, uv,z);
+}*/
+#endif    //ATI_NV
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+float2 DoFog(float3 pos)
+{
+	float fogc_d = 1.0;
+	float fogc_h = 1.0f;
+
+#if FOG_DISTANCE > 0
+    float dist = distance(pos, g_EyePos);
+    fogc_d = (g_FogParam.y - dist)/(g_FogParam.y - g_FogParam.x);
+#endif
+
+#if FOG_HEIGHT > 0
+    fogc_h = (g_FogParam.w + pos.y)/(g_FogParam.w - g_FogParam.z);
+#endif
+
+
+    return clamp(float2(fogc_d, fogc_h), 0, 1.0);
+}
+#endif
+
+float4 CalShadowProjUV(float4 pos)
+{
+	float4 projpos = mul(pos, g_depthproj);
+
+#ifdef LOG_SHADOWMAP
+	float2 diff = projpos.xy - g_ShadowCenter.xy;
+	float t = length(diff);
+	float nt = g_ShadowCenter.w * log(g_ShadowCenter.z*t + 1)/t;
+
+	float4 uv;
+	uv.xy = (g_ShadowCenter.xy + diff*nt)*float2(0.5, -0.5) + float2(0.5, 0.5)*projpos.w;
+	uv.zw = projpos.zw;
+#else
+	float4 uv;
+	uv.xy = projpos.xy*float2(0.5, -0.5) + float2(0.5, 0.5)*projpos.w;
+	uv.zw = projpos.zw;
+#endif
+	return uv;
+}

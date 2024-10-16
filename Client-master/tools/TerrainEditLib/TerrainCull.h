@@ -1,0 +1,29 @@
+
+#pragma once
+
+#include "Terrain.h"
+#include "TerrainTile.h"
+
+#include <map>
+
+namespace TE
+{
+#define CHUNK_SHOW_SIZE_MAX 1024
+#define SHOW_MODEL_SIZE_MAX (1024*200)
+
+	class TerrainCull
+	{
+	public:
+		TerrainCull(void);
+		~TerrainCull(void);
+
+		void  Cull(Terrain* pTreeain);
+
+	public:
+		EditorTerrainBlock*                                 m_ShowChunk[CHUNK_SHOW_SIZE_MAX];
+		unsigned int                            m_ShowChunkNum ;
+
+		TerrModel*                            m_ShowModel[SHOW_MODEL_SIZE_MAX];
+		unsigned int                            m_ShowModelNum ;
+	};
+}

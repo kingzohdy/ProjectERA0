@@ -1,0 +1,373 @@
+
+
+#include "header.fx"
+
+#define SELFILLUM_NONE 0  //无自发光
+#define SELFILLUM_TEX  1  //只使用自发光贴图
+#define SELFILLUM_COLOR 2 //只使用自发光颜色
+#define SELFILLUM_ALPHA 3 //只使用diffuse贴图alpha通道作为自发光
+#define SELFILLUM_ALL 4   //使用所有
+
+float4x4 g_WorldViewProj : WORLDVIEWPROJ;
+
+float3	g_SelfPower = float3(0.0f,0.0f,0.0f);
+float	g_SpecPower;
+float	g_SpecShiness;
+
+texture g_DiffuseTex;
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = POINT;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+};
+
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX||USE_SELFILLUM_TEX==SELFILLUM_ALL
+texture g_SpecSelfTex;
+sampler s_SpecSelfSampler = sampler_state{
+    Texture = <g_SpecSelfTex>;
+    MipFilter = linear;
+    MinFilter = linear;
+    MagFilter = linear;
+};
+
+float g_TransU = 0.0f;
+float g_TransV = 0.0f;
+float g_ScaleU = 1.0f;
+float g_ScaleV = 1.0f;
+float g_RotUV = 0.0f;
+#endif
+
+struct VS_INPUT
+{
+    float4 pos        : POSITION;
+    float3 normal        : NORMAL;
+    float4 color        :COLOR;
+    
+#if SKIN_MAXINFL > 0
+    float4 blendweights : BLENDWEIGHT;
+    float4 blendindices : BLENDINDICES;
+#endif
+
+    float2 uv0            : TEXCOORD0;
+#if USE_SELFILLUM_TEX==SELFILLUM_ALL
+	float2 uv1 : TEXCOORD1;
+#endif
+};
+
+struct VS_OUTPUT
+{
+    float4 pos            : POSITION;
+    float4 color0        : COLOR0; //color0.xyz=ambient lighting,  color0.w=specular lighting
+    float2 uv0            : TEXCOORD0;
+
+#ifdef LIGHT_SHADOW
+    float4 color1        : COLOR1; //color1.xyz=shadowed_lighting,  color1.w=specular lighting
+    float4 uv1            : TEXCOORD1;    
+#endif
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD2;
+#endif
+
+#if USE_SELFILLUM_TEX==SELFILLUM_ALL
+	float2 uv2 : TEXCOORD3;
+#endif 
+};
+
+VS_OUTPUT VSMain(VS_INPUT input)
+{
+    VS_OUTPUT output;
+    
+    float3 pos;
+    float3 normal;
+
+#if SKIN_MAXINFL > 0
+	DoSkinVertex(input.blendindices, input.blendweights, input.pos, input.normal, pos, normal);
+#else
+    pos        = input.pos;
+    normal    = input.normal;
+#endif
+
+	normal		= normalize(normal);
+
+    output.pos = mul(float4(pos,1.0), g_WorldViewProj);
+    output.color0 = DoLighting(pos, normal, 0);
+#if USE_SELFILLUM_TEX==SELFILLUM_COLOR
+    output.color0.rgb += g_SelfPower.rgb;
+#endif
+
+//    output.color0.rgb += input.color.rgb;
+    output.color0.a *= g_SpecPower;
+    output.uv0 = input.uv0;
+
+#ifdef LIGHT_SHADOW
+    output.color1 = DoLighting(pos, normal, 1);
+    output.color1.a *= g_SpecPower;
+   
+	float4 wpos2 = mul(float4(pos,1.0), g_World);
+	output.uv1 = CalShadowProjUV(wpos2);
+#endif
+
+//    float3 viewdir = normalize(g_EyePosModel - pos);
+//	output.color0.a += 1.0 - dot(normal, viewdir);
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float3 wpos = mul(float4(pos,1.0), g_World);
+	output.fogc = DoFog(wpos);
+#endif
+
+#if USE_SELFILLUM_TEX==SELFILLUM_ALL
+	float angle = radians(g_RotUV);
+	float2 uv = (input.uv1 - float2(0.5,0.5))*float2(g_ScaleU, g_ScaleV);
+	float u = uv.x*cos(angle) + uv.y*sin(angle);
+	float v = -uv.x*sin(angle) + uv.y*cos(angle);
+
+	output.uv2 = float2(u,v) + float2(0.5,0.5) + float2(g_TransU, g_TransV);
+#endif 
+    return output;
+}
+
+float4 PSMain(VS_OUTPUT input):COLOR0
+{
+	float4 color  = tex2D(s_DiffuseSampler,input.uv0);
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX
+	float4 selfspec = tex2D(s_SpecSelfSampler, input.uv0);
+#elif USE_SELFILLUM_TEX==SELFILLUM_ALL
+	float4 selfspec = tex2D(s_SpecSelfSampler, input.uv2);
+#endif
+
+     float4 lighting = input.color0;
+#ifdef LIGHT_SHADOW
+	float shadow = DoHardShadow(s_DepthMapSampler, input.uv1, input.uv1.z/input.uv1.w); 
+	shadow = 1.0f - (1.0f - shadow)*g_shadowdensity;
+	lighting += shadow*input.color1;
+#endif
+
+#if USE_SELFILLUM_TEX==SELFILLUM_ALPHA||USE_SELFILLUM_TEX==SELFILLUM_ALL
+	lighting.rgb = lerp(lighting.rgb, 1.2, color.a); 
+#else
+	lighting = clamp(lighting, 0, 1.2);
+#endif
+	
+#ifdef LIGHT_SPECULAR
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX||USE_SELFILLUM_TEX==SELFILLUM_ALL
+	color.rgb = lighting.rgb*color.rgb + g_SpecularColor*lighting.a*selfspec.a + selfspec.rgb*g_SelfPower;
+#else
+	color.rgb = lighting.rgb*color.rgb + g_SpecularColor*lighting.a;
+#endif//USE_SELFILLUM_TEX
+
+#else
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX||USE_SELFILLUM_TEX==SELFILLUM_ALL
+	color.rgb = lighting.rgb*color.rgb + selfspec.rgb*g_SelfPower;
+#else
+	color.rgb = lighting.rgb*color.rgb;
+#endif//USE_SELFILLUM_TEX
+#endif //LIGHT_SPECULAR
+
+#ifdef MODEL_TRANSPARENT
+	color.a *= g_ModelTransparent;
+#endif
+	
+#if FOG_DISTANCE>0
+	color.rgb = lerp(g_DistFogColor, color.rgb, input.fogc.x);
+#endif
+#if FOG_HEIGHT > 0
+	color.rgb = lerp(g_HeightFogColor, color.rgb, input.fogc.y);
+#endif
+    
+	return color;
+}
+
+struct VS_OUTPUT_ShadowGen
+{
+    float4 pos            : POSITION;
+    float2 uv0            : TEXCOORD0;
+};
+
+VS_OUTPUT_ShadowGen VSMain_ShadowGen(VS_INPUT input)
+{
+    VS_OUTPUT_ShadowGen output;
+    
+    float3 pos;
+    float3 normal;
+
+#if SKIN_MAXINFL > 0
+	DoSkinVertex(input.blendindices, input.blendweights, input.pos, input.normal, pos, normal);
+#else
+    pos        = input.pos;
+    normal    = input.normal;
+#endif
+
+#ifdef LIGHT_RAWSHADOW
+    output.pos = mul(float4(pos,1.0), g_WorldViewProj);
+#else
+    float4 wpos = mul(float4(pos,1.0), g_WorldViewProj);
+    float2 diff = wpos.xy - g_ShadowCenter.xy;
+    float t = length(diff);
+    float nt = g_ShadowCenter.w * log(g_ShadowCenter.z*t + 1)/t;
+
+    output.pos.xy = g_ShadowCenter.xy + diff*nt;
+    output.pos.zw = wpos.zw;
+#endif
+
+    output.uv0 = input.uv0;
+
+    return output;
+}
+
+float4 PSShadowmapTest(VS_OUTPUT_ShadowGen input) : COLOR0
+{
+	float4 color  = tex2D(s_DiffuseSampler,input.uv0);
+#ifdef MODEL_TRANSPARENT
+	color.a *= g_ModelTransparent;
+#endif
+	return float4(0, 0, 0, color.a);
+}
+
+#ifdef MODEL_TRANSPARENT
+#if BLEND_MODE <= 1
+#undef BLEND_MODE
+#define BLEND_MODE 2
+#define ORIGIN_BLEND_OPAQUE
+#endif
+#endif
+
+stateblock blend_state = stateblock_state
+{
+#if BLEND_MODE == 0
+        AlphaBlendEnable = FALSE;
+	AlphaTestEnable = FALSE;
+#elif BLEND_MODE == 1
+	AlphaBlendEnable = FALSE;
+	AlphaTestEnable = TRUE;
+	#if USE_SELFILLUM_TEX==SELFILLUM_ALPHA||USE_SELFILLUM_TEX==SELFILLUM_ALL
+		AlphaRef = 0;
+		AlphaFunc = GREATER;
+	#else
+		AlphaRef = 85;
+		AlphaFunc = GREATEREQUAL;
+	#endif
+#elif BLEND_MODE == 2
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = TRUE;
+	AlphaRef = 0;
+	AlphaFunc = GREATER;
+	SrcBlend = SRCALPHA;
+	DestBlend = INVSRCALPHA;
+#elif BLEND_MODE == 3
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = FALSE;
+	SrcBlend = ONE;
+	DestBlend = INVSRCALPHA;
+#elif BLEND_MODE == 4
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = FALSE;
+	SrcBlend = ONE;
+	DestBlend = ONE;
+#endif
+};
+
+technique GeneralTech
+<
+	int usage = RENDER_USAGE_UI|RENDER_USAGE_GENERAL|RENDER_USAGE_REFLECT|RENDER_USAGE_REFRACT;
+	int lod = 0;
+>
+{
+#ifdef ORIGIN_BLEND_OPAQUE
+    pass P0
+    {
+        AlphaBlendEnable = FALSE;
+	AlphaTestEnable = TRUE;
+	AlphaRef = 0;
+	AlphaFunc = GREATER;
+
+	ZWriteEnable = TRUE;
+	ZEnable = TRUE;
+#if DOUBLE_SIDE==1
+	CullMode = NONE;
+#else
+	CullMode = CCW;
+#endif
+	COLORWRITEENABLE = 0;
+
+        VertexShader = compile vs_2_0 VSMain();
+        PixelShader     = compile ps_2_0 PSMain();   
+    }
+#endif
+
+    pass P1
+    {
+	stateblock = (blend_state);
+#ifdef ORIGIN_BLEND_OPAQUE
+	COLORWRITEENABLE = 0x0000000F;
+	ZFunc = LESSEQUAL;
+#else
+	ZFunc = LESS;
+#endif
+
+#if BLEND_MODE==0 || BLEND_MODE==1
+	ZWriteEnable = TRUE;
+#else
+	ZWriteEnable = FALSE;
+#endif
+
+	ZEnable = TRUE;
+
+#if DOUBLE_SIDE==1
+	CullMode = NONE;
+#else
+	CullMode = CCW;
+#endif
+
+        VertexShader = compile vs_2_0 VSMain();
+        PixelShader     = compile ps_2_0 PSMain();   
+    }
+}
+
+technique ShadowmapGenTech
+<
+    int usage = RENDER_USAGE_SHADOWMAPGEN;
+    int lod = 0;
+>
+{
+    pass P1
+    {
+		colorwriteenable = 0;
+		zwriteenable	 = true;    
+        AlphaBlendEnable = FALSE;
+		AlphaTestEnable = TRUE;
+		ALPHAREF = 85;
+		ALPHAFUNC = GREATER;
+		depthbias	=	0.0005;
+        cullmode		=	none;
+        VertexShader =    compile vs_2_0 VSMain_ShadowGen();  
+        PixelShader     =    compile ps_2_0 PSShadowmapTest();   
+        
+    }
+}
+
+/*
+float4 PSShadowcubemapTest(VS_OUTPUT input) : COLOR0
+{
+	return float4(dot(g_EyePos - input.wpos.xyz,g_EyePos - input.wpos.xyz)-100000000.0f,0.0f,0.0f,tex2D(s_DiffuseSampler,input.uv0).a);
+}
+technique ShadowcubemapGenTech
+<
+    int usage = RENDER_USAGE_SHADOWCUBEMAPGEN;
+    int lod = 0;
+>
+{
+    pass P1
+    {
+		zwriteenable	 = true;    
+        AlphaBlendEnable = FALSE;
+		AlphaTestEnable = TRUE;
+		ALPHAREF = 85;
+		ALPHAFUNC = GREATER;
+        cullmode	=	none;
+        VertexShader	=    compile vs_2_0 VSMain();  
+        PixelShader     =    compile ps_2_0 PSShadowcubemapTest();   
+        
+    }
+}*/

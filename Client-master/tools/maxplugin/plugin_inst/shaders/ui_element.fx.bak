@@ -1,0 +1,56 @@
+
+#include "header.fx"
+
+texture g_DiffuseTex;
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+};
+
+#if MASK_TEXTURE == 1
+texture g_MaskTex;
+sampler s_MaskSampler = sampler_state{
+    Texture = <g_MaskTex>;
+    MipFilter = POINT;
+    MinFilter = linear;
+    MagFilter = linear;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+#endif
+
+technique Basic
+<
+	int usage = RENDER_USAGE_UI|RENDER_USAGE_GENERAL;
+	int lod = 0;
+>
+{
+	pass P0
+	{
+#if BLEND_MODE==0
+		AlphaBlendEnable = FALSE;
+#else
+		AlphaBlendEnable = TRUE;
+		SrcBlend = SRCALPHA;
+		DestBlend = INVSRCALPHA;
+#endif
+
+		CullMode = None;
+		ZEnable = FALSE; 
+	
+		Sampler[0] = (s_DiffuseSampler);
+		ColorOp[0] = MODULATE;
+		AlphaOp[0] = MODULATE;
+
+#if MASK_TEXTURE == 1
+		Sampler[1] = (s_MaskSampler);
+		ColorOp[1] = MODULATE;
+		AlphaOp[1] = MODULATE;
+		ColorOp[2] = DISABLE;
+#else
+		ColorOp[1] = DISABLE;
+#endif
+	}
+}

@@ -1,0 +1,87 @@
+#include "header.fx"
+
+texture g_DiffuseTex;
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = linear;
+    MinFilter = linear;
+    MagFilter = linear;
+	AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+
+float4x4 g_WorldViewProj : WORLDVIEWPROJ;
+
+struct VS_OUTPUT
+{
+    float4 pos      : POSITION;
+    float4 color0   : COLOR0;
+    float2 uv0      : TEXCOORD0;
+};
+
+VS_OUTPUT VSMain0( float4 pos : POSITION,
+                   float4 color0 : COLOR,
+		   float2 uv0 : TEXCOORD0
+                          )
+{
+	VS_OUTPUT output;
+    
+	output.pos = mul(pos, g_WorldViewProj);
+	output.color0 = color0;
+	output.uv0 = uv0;
+
+	return output;
+}
+
+float4 PSMain(VS_OUTPUT	input):COLOR0
+{
+	float4 color = tex2D(s_DiffuseSampler, input.uv0);
+	color.xyz = lerp(float3(1.0,1.0,1.0), color.xyz, input.color0.a);
+	return color;
+}
+
+technique Basic
+<
+	int usage = RENDER_USAGE_UI|RENDER_USAGE_GENERAL|RENDER_USAGE_REFLECT|RENDER_USAGE_REFRACT;
+	int lod = 0;
+>
+{
+	pass P0
+	{
+		AlphaBlendEnable = TRUE;
+		SrcBlend = DESTCOLOR;
+		DestBlend = ZERO;
+
+		CullMode = None;
+		ZWriteEnable = FALSE;
+		ZEnable = TRUE;
+
+		VertexShader = compile vs_2_0 VSMain0();
+		PixelShader = compile ps_2_0 PSMain();
+	}
+}
+/*
+technique Basic1
+<
+	int usage = RENDER_USAGE_UI|RENDER_USAGE_GENERAL|RENDER_USAGE_REFLECT|RENDER_USAGE_REFRACT;
+	int lod = 1;
+>
+{
+	pass P0
+	{
+		AlphaBlendEnable = TRUE;
+		SrcBlend = DESTCOLOR;
+		DestBlend = ZERO;
+
+		CullMode = None;
+		ZWriteEnable = FALSE;
+		ZEnable = TRUE;
+
+		VertexShader = compile vs_2_0 VSMain0();
+		Sampler[0] = (s_DiffuseSampler);
+		ColorOp[0] = MODULATE;
+		AlphaOp[0] = MODULATE;
+		ColorOp[1] = DISABLE;
+	}
+}
+*/
