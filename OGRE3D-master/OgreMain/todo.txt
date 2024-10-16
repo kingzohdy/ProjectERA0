@@ -1,0 +1,14 @@
+
+1. 物件修改VertexData, IndexData, TextureData数据， 必须释放原来的对象， 新创建一个对象
+
+多线程方案：
+1。MT生成Texture, VertexBuffer, IndexBuffer对象， 提交给shadercontext pool， 并addRef()
+2。RT通过Texture, VB, IB对象， 得到HardwarePixelBuffer, HardwareBuffer对象， 并使用硬件丢象进行渲染
+3。如果MT需要释放Texture, VB, IB等对象， 调用release()
+4。如果发生devicelost， MT会重新创建HardwarePixelBuffer, HardwareBuffer的内部对象， 此时RT暂停
+5。shadercontext pool渲染完后， MT会在doframe里面释放pool里面的Texture, VB, IB对象
+6。如果MT需要修改Texture, VertexBuffer, IndexBuffer数据， 必须release原来的对象， 新创建一个对象
+7。MT在释放Texture, VB, IB时， 可能会释放这些对象内部的Hardware对象， 而在RT里面，会创建这些对象， 目前通过在HardwareBufferPool里面设置mutex来互斥
+
+
+{,,msvcr80d.dll}_crtBreakAlloc
