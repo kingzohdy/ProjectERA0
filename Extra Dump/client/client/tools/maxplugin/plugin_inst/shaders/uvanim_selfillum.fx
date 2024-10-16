@@ -1,0 +1,126 @@
+
+#include "header.fx"
+
+float4x4 g_WorldViewProj : WORLDVIEWPROJ;
+
+texture g_DiffuseTex;
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+texture g_MaskTex;
+sampler s_MaskSampler = sampler_state{
+    Texture = <g_MaskTex>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+float g_TransU = 0.0f;
+float g_TransV = 0.0f;
+float g_ScaleU = 1.0f;
+float g_ScaleV = 1.0f;
+float g_RotUV = 0.0f;
+
+struct VS_INPUT
+{
+    float4 pos        : POSITION;
+    float3 normal     : NORMAL;
+    float2 uv0            : TEXCOORD0;
+    float2 uv1            : TEXCOORD1;
+#if SKIN_MAXINFL > 0
+    float4 blendweights : BLENDWEIGHT;
+    float4 blendindices : BLENDINDICES;
+#endif
+};
+
+struct VS_OUTPUT
+{
+    float4 pos            : POSITION;
+    float2 uv0            : TEXCOORD0;
+    float2 uv1            : TEXCOORD1;
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD3;
+#endif
+};
+
+VS_OUTPUT VSMain(VS_INPUT input)
+{
+	VS_OUTPUT output;
+    
+    float3 pos;
+    float3 normal;
+
+#if SKIN_MAXINFL > 0
+	DoSkinVertex(input.blendindices, input.blendweights, input.pos, input.normal, pos, normal);
+#else
+    pos        = input.pos;
+    normal    = input.normal;
+#endif
+
+	output.pos = mul(float4(pos,1.0), g_WorldViewProj);
+
+	float angle = radians(g_RotUV);
+	float2 uv = (input.uv0 - float2(0.5,0.5))*float2(g_ScaleU, g_ScaleV);
+	float u = uv.x*cos(angle) + uv.y*sin(angle);
+	float v = -uv.x*sin(angle) + uv.y*cos(angle);
+
+	output.uv0 = float2(u,v) + float2(0.5,0.5) + float2(g_TransU, g_TransV);
+	output.uv1 = input.uv1;
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float3 wpos = mul(input.pos, g_World);
+	output.fogc = DoFog(wpos);
+#endif
+	return output;
+}
+
+float4 PSMain(VS_OUTPUT input):COLOR0
+{
+	float4 color0  = tex2D(s_DiffuseSampler,input.uv0);
+	float4 color1 = tex2D(s_MaskSampler, input.uv1);
+
+	float4 color = color0*color1;
+#ifdef MODEL_TRANSPARENT
+	color *= g_ModelTransparent;
+#endif
+
+#if FOG_DISTANCE>0
+	color *= input.fogc.x;
+#endif
+#if FOG_HEIGHT > 0
+	color *= input.fogc.y;
+#endif
+
+	return color;
+}
+
+technique GeneralTech
+<
+	int usage = RENDER_USAGE_UI|RENDER_USAGE_GENERAL|RENDER_USAGE_REFLECT|RENDER_USAGE_REFRACT;
+	int lod = 0;
+>
+{
+    pass P1
+    {    
+	AlphaBlendEnable = TRUE;
+	SrcBlend = ONE;
+	DestBlend = INVSRCALPHA;
+	ZWriteEnable = FALSE;
+	ZEnable = TRUE;
+
+	CullMode = None;
+        VertexShader =    compile vs_2_0 VSMain();
+        PixelShader  =    compile ps_2_0 PSMain();   
+    }
+}

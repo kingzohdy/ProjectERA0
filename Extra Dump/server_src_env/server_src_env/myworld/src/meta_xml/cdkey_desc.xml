@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="cdkey" version="10" >
+	<macro name="CDKEY_URL_LEN"      value="32" />
+	<macro name="CDKEY_MAX"      value="12" />
+	<struct name="key" version ="10" >
+	 	<entry name="Type" type="string" size="10" desc="cdkey类型"/>
+		<entry name="Len" type="int" desc="除了类型，一共多少字符数"/>
+		<entry name="MakeNum" type="int" desc="这种类型cdkey产生多少个"/>
+	</struct>
+	
+        <struct name="cdkey_conf" version ="10" >
+                <entry name="MetaFile" type="string" size="128" defaultvalue="./role_db_meta.tdr" />
+                <entry name="DBName" type="string" size="CDKEY_URL_LEN" />
+                <entry name="DBConnect" type="string" size="CDKEY_URL_LEN"   />
+                <entry name="DBUser" type="string" size="CDKEY_URL_LEN"   />
+                <entry name="DBPasswd" type="string" size="CDKEY_URL_LEN"  />
+
+		<entry name="CdkeyNum" type="int"  />
+		<entry name="MakeCdkey" type="key" count="CDKEY_MAX" refer="CdkeyNum" />
+        </struct>
+</metalib>

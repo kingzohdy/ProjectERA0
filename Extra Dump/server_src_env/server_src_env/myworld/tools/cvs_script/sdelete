@@ -1,0 +1,36 @@
+#!/bin/ksh
+
+# CVS program sdelete
+# Program to delete the file from CVS
+
+cmdname=`basename $0`
+
+if [ $# -lt 1 ]; then
+        print "\nUsage: $cmdname <filename> \n"
+        exit
+fi
+
+# Check if file does not exist....
+if [ ! -f $1 ]; then
+        # Try to get the file from CVS
+        sget $1
+        if [ ! -f $1 ]; then
+                print "\nError: $1 does NOT exist in CVS repository. Aborting $cmdname ......"
+                exit
+        fi
+fi
+
+bkextn=cvs_sdelete_safety_backup
+\mv -f $1 $1.$bkextn
+
+cvs remove $1
+
+print "\nsdelete command removes the file from CVS repository"
+print "and archives the file in CVS Attic directory. In case"
+print "you need this file in future than contact your CVS administrator"
+print " "
+
+print "\nDone $cmdname. $cmdname successful"
+#print "\nTip (Usage): $cmdname <filename>\n"
+\mv -f $1.$bkextn $1
+

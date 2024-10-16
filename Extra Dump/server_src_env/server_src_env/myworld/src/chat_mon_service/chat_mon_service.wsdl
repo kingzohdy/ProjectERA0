@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="gb2312"?>
+<definitions	xmlns="http://schemas.xmlsoap.org/wsdl/" 
+		xmlns:s="http://www.w3.org/2001/XMLSchema" 
+		xmlns:s0="http://www.ljy0.com/ChatMonService/" 
+		xmlns:whttp="http://www.w3.org/ns/wsdl/http" 
+		xmlns:wsoap="http://schemas.xmlsoap.org/wsdl/soap/" 
+		xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+		targetNamespace="http://www.ljy0.com/ChatMonService/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.ljy0.com/ChatMonService/">
+			<!--错误信息-->
+			<s:complexType name="ErrorResponse">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--
+ErrorCode 对应宏
+	<macrosgroup name="CHAT_MON_ERR">
+		<macro name="CHAT_MON_ERR_SUCCEEDED" value="0" desc="操作成功" />
+		<macro name="CHAT_MON_ERR_SYS" value="-1" desc="系统错误" />
+		<macro name="CHAT_MON_ERR_NET" value="-2" desc="网络错误" />
+		<macro name="CHAT_MON_ERR_TDR" value="-3" desc="TDR错误" />
+		<macro name="CHAT_MON_ERR_ARGS" value="-4" desc="参数错误" />
+		<macro name="CHAT_MON_ERR_ONLINE" value="-5" desc="操作必须角色不在线" />
+		<macro name="CHAT_MON_ERR_NOT_FOUND" value="-6" desc="查找不到指定的信息" />
+		<macro name="CHAT_MON_ERR_OUTLINE" value="-7" desc="操作必须角色在线" />
+		<macro name="CHAT_MON_ERR_DUP" value="-8" desc="重名" />
+		<macro name="CHAT_MON_ERR_XML" value="-9" desc="输出xml时出错" />
+	</macrosgroup>-->
+			
+			<!--获得脏话关键字列表-->
+			<s:complexType name="GetDirtyWordListReq">
+				<s:sequence>
+
+					<!--占位-->
+					<s:element minOccurs="0" maxOccurs="1" name="Res" type="s:int" />
+
+				</s:sequence>
+			</s:complexType>
+
+			<s:complexType name="GetDirtyWordListRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+
+					<!--xml结构信息|DirtyWordList-->
+					<!--
+mate name:DirtyWordList
+
+	<macro name="MAX_DIRTY_WORD_CONTENT_LEN" value="40960" desc="脏话关键字内容长度" />
+
+	<struct name="DirtyWordList"  desc="脏话关键字列表" version="-last-">
+		<entry name="ModifyTime" type="int" desc="文件修改时间"   />
+		<entry name="Content" type="string" size="MAX_DIRTY_WORD_CONTENT_LEN" desc="脏话关键字"   />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string" />
+
+				</s:sequence>
+			</s:complexType>
+			<!--设置脏话关键字列表-->
+			<s:complexType name="SetDirtyWordListReq">
+				<s:sequence>
+
+					<!--文件修改时间|通过GetDirtyWordList获得用于防止写文件冲突-->
+					<s:element minOccurs="0" maxOccurs="1" name="ModifyTime" type="s:int" />
+
+					<!--脏话关键字内容-->
+					<s:element minOccurs="0" maxOccurs="1" name="Content" type="s:string" />
+
+				</s:sequence>
+			</s:complexType>
+
+			<s:complexType name="SetDirtyWordListRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+
+				</s:sequence>
+			</s:complexType>
+			<!--获取聊天日志信息-->
+			<s:complexType name="GetChatMonLogReq">
+				<s:sequence>
+
+					<!--日志流水号|0表示获取最新的(只在第一次查询时赋值0) 其他值表示以此为基点向前或向后查询-->
+					<s:element minOccurs="0" maxOccurs="1" name="Seq" type="s:int" />
+
+					<!--获取类型|0向后(日志流水号在Seq之后的)查询最新的 1向前查询一个page -->
+					<s:element minOccurs="0" maxOccurs="1" name="Type" type="s:int" />
+
+				</s:sequence>
+			</s:complexType>
+
+			<s:complexType name="GetChatMonLogRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+
+					<!--xml结构信息|LogRoleChatMon-->
+					<!--
+mate name:LogRoleChatMon
+  <macro name="ROLE_NAME_LEN_SAVE"  value="24" />
+	<struct name="RoleMember" version="13">
+		<entry name="RoleID" type="biguint"  desc="角色ID"/>
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN_SAVE"  desc="角色名"/>
+	</struct>
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="NAME_LEN" value="32" />
+	<macro name="OPLOG_CLT_MSG_LEN" value="256" />
+	<struct name="OpRoleChat" version="92" >
+		<entry name="Uin" type="int"  version="157"/>
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="178" />
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息"  extendtotable="true"/>
+		<entry name="ChatType" type="tinyuint" desc="聊天类型" />
+		<entry name="ToName" type="string" size="NAME_LEN" desc="发送给谁" />
+		<entry name="Content" type="string" size="OPLOG_CLT_MSG_LEN" desc="内容" />
+	</struct>
+
+	<struct name="LogRoleChatMon" primarykey="Seq" version="1764" >
+		<entry name="Seq" type="int" autoincrement="true"  desc="记录流水号"/>
+		<entry name="RegionID" type="int" desc="区ID"/>
+		<entry name="WorldID" type="int" desc="服ID"/>
+		<entry name="DirtyLevel" type="int" desc="脏话级别"/>
+		<entry name="OpRoleChat" type="OpRoleChat" desc="LogRoleChat信息"  extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string" />
+
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	
+	<!--获得脏话关键字列表-->
+	<message name="GetDirtyWordListIn">
+		<part name="GetDirtyWordListReq" type="s0:GetDirtyWordListReq"/>
+	</message>
+	<message name="GetDirtyWordListOut">
+		<part name="GetDirtyWordListRes" type="s0:GetDirtyWordListRes"/>
+	</message>
+	<!--设置脏话关键字列表-->
+	<message name="SetDirtyWordListIn">
+		<part name="SetDirtyWordListReq" type="s0:SetDirtyWordListReq"/>
+	</message>
+	<message name="SetDirtyWordListOut">
+		<part name="SetDirtyWordListRes" type="s0:SetDirtyWordListRes"/>
+	</message>
+	<!--获取聊天日志信息-->
+	<message name="GetChatMonLogIn">
+		<part name="GetChatMonLogReq" type="s0:GetChatMonLogReq"/>
+	</message>
+	<message name="GetChatMonLogOut">
+		<part name="GetChatMonLogRes" type="s0:GetChatMonLogRes"/>
+	</message>
+	<portType name="ChatMonServiceSoap">
+		
+		<!--获得脏话关键字列表-->
+		<operation name="GetDirtyWordList">
+			<input message="s0:GetDirtyWordListIn"/>
+			<output message="s0:GetDirtyWordListOut"/>
+		</operation>
+		<!--设置脏话关键字列表-->
+		<operation name="SetDirtyWordList">
+			<input message="s0:SetDirtyWordListIn"/>
+			<output message="s0:SetDirtyWordListOut"/>
+		</operation>
+		<!--获取聊天日志信息-->
+		<operation name="GetChatMonLog">
+			<input message="s0:GetChatMonLogIn"/>
+			<output message="s0:GetChatMonLogOut"/>
+		</operation>
+	</portType>
+	<binding name="ChatMonServiceSoap" type="s0:ChatMonServiceSoap">
+		<wsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		
+		<!--获得脏话关键字列表-->
+		<operation name="GetDirtyWordList">
+			<wsoap:operation soapAction="http://www.ljy0.com/chat_mon_service/GetDirtyWordList" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--设置脏话关键字列表-->
+		<operation name="SetDirtyWordList">
+			<wsoap:operation soapAction="http://www.ljy0.com/chat_mon_service/SetDirtyWordList" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取聊天日志信息-->
+		<operation name="GetChatMonLog">
+			<wsoap:operation soapAction="http://www.ljy0.com/chat_mon_service/GetChatMonLog" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ChatMonService">
+		<documentation>LJY chat_mon_service </documentation>
+		<port name="ChatMonService" binding="s0:ChatMonServiceSoap">
+			<wsoap:address location="http://192.168.0.57:800/cgi-bin/chat_mon_service"/>
+		</port>
+	</service>
+</definitions>
+

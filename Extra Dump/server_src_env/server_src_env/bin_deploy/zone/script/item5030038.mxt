@@ -1,0 +1,79 @@
+;技能宝盒A
+
+proc 1
+	strvar Rac Ret Num
+	GET_PACK_SPACE 0 Num
+	
+	if Num < 3
+		add_sys_msg_start
+		add_sys_msg 背包空间不足，无法开启！
+		set_sys_msg_mode 1 0 0
+		msg_info
+		return
+		
+	else
+		GET_ID_PLAYER_INFO 0 7 Rac
+			
+		dec_item_num_inpak 5030038 1 30
+		if 30 = 0
+			if Rac = 17
+			;刀战守护着
+				ADD_ITEM_NUM_INPAK 5030022 1 1 0
+			;	ADD_ITEM_NUM_INPAK 1013060 1 1 0
+				ADD_ITEM_NUM_INPAK 1017007 1 1 0
+				ADD_ITEM_NUM_INPAK 1067007 1 1 0
+				ADD_ITEM_NUM_INPAK 5030043 1 1 0
+			endif
+			if Rac = 33
+			;剑战征服者
+				ADD_ITEM_NUM_INPAK 5030024 1 1 0
+				ADD_ITEM_NUM_INPAK 1037007 1 1 0
+				ADD_ITEM_NUM_INPAK 1047007 1 1 0
+				ADD_ITEM_NUM_INPAK 5030047 1 1 0
+			endif
+			if Rac = 18
+			;冰法师
+				ADD_ITEM_NUM_INPAK 5030053 1 1 0
+				ADD_ITEM_NUM_INPAK 1107007 1 1 0
+				ADD_ITEM_NUM_INPAK 1187007 1 1 0
+				ADD_ITEM_NUM_INPAK 5030029 1 1 0
+			endif
+			if Rac = 34
+			;火法
+				ADD_ITEM_NUM_INPAK 5030049 1 1 0
+				ADD_ITEM_NUM_INPAK 1117007 1 1 0
+				ADD_ITEM_NUM_INPAK 1187027 1 1 0
+				ADD_ITEM_NUM_INPAK 5030026 1 1 0
+			endif
+			if Rac = 19
+			;单手枪猎杀者
+				ADD_ITEM_NUM_INPAK 5030067 1 1 0
+				ADD_ITEM_NUM_INPAK 1207007 1 1 0
+				ADD_ITEM_NUM_INPAK 1287007 1 1 0
+				ADD_ITEM_NUM_INPAK 5030030 1 1 0
+			endif
+			if Rac = 35
+			;机枪
+				ADD_ITEM_NUM_INPAK 5030032 1 1 0
+				ADD_ITEM_NUM_INPAK 1257007 1 1 0
+				ADD_ITEM_NUM_INPAK 1267007 1 1 0
+				ADD_ITEM_NUM_INPAK 5030058 1 1 0
+			endif
+			if Rac = 20
+			;圣
+				ADD_ITEM_NUM_INPAK 5030062 1 1 0
+				ADD_ITEM_NUM_INPAK 1517007 1 1 0
+				ADD_ITEM_NUM_INPAK 1587007 1 1 0
+				ADD_ITEM_NUM_INPAK 5030034 1 1 0
+			endif
+			if Rac = 36
+			;雷
+				ADD_ITEM_NUM_INPAK 5030036 1 1 0
+				ADD_ITEM_NUM_INPAK 1507007 1 1 0
+				ADD_ITEM_NUM_INPAK 1587027 1 1 0
+				ADD_ITEM_NUM_INPAK 5030037 1 1 0
+			endif
+		endif
+	endif
+	
+endproc 

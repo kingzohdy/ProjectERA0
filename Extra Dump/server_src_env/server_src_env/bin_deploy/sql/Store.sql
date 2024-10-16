@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS Store (
+ StoreID INT UNSIGNED  NOT NULL AUTO_INCREMENT ,
+ RoleID BIGINT UNSIGNED    ,
+ Name VARCHAR(32)    ,
+ StoreInfo BLOB    ,
+ KEY(StoreID),
+PRIMARY KEY(StoreID),
+UNIQUE (RoleID))  ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+create index Store_Idx_0 on Store ( RoleID);

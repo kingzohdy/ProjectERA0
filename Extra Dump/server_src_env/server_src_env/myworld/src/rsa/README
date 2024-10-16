@@ -1,0 +1,29 @@
+文件清单:
+grav_rsa.c        : OpenSSL RSA算法的封装
+grav_rsa.h        : RSA算法头文件
+grav_rsa_keygen.c : RSA密钥生成器源文件
+grav_rsa_types.h  : RSA密钥所用的一些结构
+id_rsa.c          : 生成的RSA私钥的.c源文件表示
+id_rsa_pub.c      : 生成的RSA公钥的.c源文件表示
+KeyGen.mk         : RSA密钥生成器的Makefile, $ make -f KeyGen.mk 可编译一个密钥生成器
+main.c            : Demo的源文件
+Makefile          : Demo的Makefile
+
+密钥生成器的用法:
+$ make -f KeyGen.mk # 编译密钥生成器
+$ genkey 2048       # 生成2048位的密钥对
+$ genkey            # 生成1024位的密钥对
+
+密钥生成器最多能生成65535位的密钥对,但是由于此生成算法复杂度为O(n^2),生成10240位密钥对
+的时候已经非常慢了,请尽量使用10240位以内的密钥.
+
+密钥生成器每次生成的密钥对皆不同,且会覆盖以前生成的.请注意备份.
+
+密钥生成器生成的是两个.c源文件:
+	id_rsa.c          : 生成的RSA私钥的.c源文件表示
+	id_rsa_pub.c      : 生成的RSA公钥的.c源文件表示
+
+
+
+
+

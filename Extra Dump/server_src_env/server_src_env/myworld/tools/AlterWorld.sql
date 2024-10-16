@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS RoleDrop (
+ Uin INT    ,
+ RoleID BIGINT UNSIGNED  NOT NULL  ,
+ RoleName VARCHAR(32)    ,
+ DropData BLOB    ,
+PRIMARY KEY(RoleID),
+UNIQUE (RoleName))  ENGINE=InnoDB DEFAULT CHARSET=latin1;

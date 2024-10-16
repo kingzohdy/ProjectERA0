@@ -1,0 +1,74 @@
+#!/bin/ksh
+
+# test
+# CVS program sadd
+# Program to add the file to CVS
+
+cmdname=`basename $0`
+if [ $# -lt 1 ]; then
+        print "\nUsage: $cmdname <filename/directory> \n"
+        exit
+fi
+
+# Check if file exists ....
+if [ -f $1 ]; then
+        cvs add $1
+        chmod -w $1
+	cvs commit $1
+        exit
+fi
+
+if [ ! -d $1 ]; then
+        print "\nArgument $1 is not a file and not a directory!"
+        print "Usage: $cmdname <filename/directory> \n"
+        exit
+fi
+
+# Argument is a directory name .....
+hme=` echo $HOME | cut -f1 -d' '  `
+if [ "$hme" = "" ]; then
+        print "\nError: \$HOME is not set!!\n"
+        exit
+fi
+
+cur_dir=`pwd`
+len=${#hme}
+len=$(($len + 2))
+subdir=` echo $cur_dir | cut -b $len-2000 `
+
+if [ "$subdir" = "" ]; then
+        if [ -d $CVSROOT/$1 ]; then
+                print "\nDirectory $1 already exists in CVSROOT"
+                exit
+        else
+                # You are adding at root directory $CVSROOT
+                if [ "$2" = "" -o "$3" = "" ]; then
+                        print "\nUsage: $cmdname <directory> <vendor tag> <release tag>"
+                        print "For example - "
+                        print " $cmdname foo_directory V_1_0 R_1_0"
+                        exit
+                else
+                        (
+                        cd $1;
+                        cvs import $1 $2 $3
+                        cvs commit
+                        find ./ -type f|xargs chmod -w
+                        )
+                fi
+        fi
+else
+        # If current directory exists in CVS...
+        if [ -d $CVSROOT/$subdir ]; then
+                if [ -d $CVSROOT/$subdir/$1 ]; then
+                        print "\nDirectory $1 already in CVS repository!"
+                else
+                        cvs add $1
+                fi
+        else
+                print "\nSub-directory $subdir does not exist in CVS"
+                print "You need to first add $subdir to CVS"
+                exit
+        fi
+fi
+
+

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tcmcenter CenterdAddr="0.0.22.1" TconndAddr="0.0.20.1" BussinessID="66"
+           AddrTemple="region:6.world:10.function:8.instance:8"
+		   ConfigSoName="../cfg/myworld_config.so"
+		   ConfigBaseDir="../cfg/confcreated"
+		   TbusConfOutputDir="../cfg/tbusconf">
+  
+	<!--进程层次描述树-->
+	<cluster WorkPath="/usr/local/mmog" AutoTimeGap="5" OpTimeout="30">
+		<Proc FuncName="version_svr" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="80" Seq="900"/>
+		<Proc FuncName="version_bak" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="81" Seq="901"/>
+		<Proc FuncName="version_slave" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="82" Seq="902"/>
+		<Proc FuncName="version_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="83" Seq="903"/>
+		<Proc FuncName="version_bak_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="84" Seq="904"/>
+		<Proc FuncName="version_slave_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="85" Seq="905"/>
+		<Proc FuncName="account_db" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="95" Seq="909"/>
+		<Proc FuncName="auth_svr" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="70" Seq="910"/>
+		<Proc FuncName="auth_bak" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="71" Seq="911"/>
+		<Proc FuncName="auth_slave" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="72" Seq="912"/>
+		<Proc FuncName="auth_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="73" Seq="913"/>
+		<Proc FuncName="auth_bak_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="74" Seq="914"/>
+		<Proc FuncName="auth_slave_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="75" Seq="915"/>
+		<Proc FuncName="informer_svr" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="94" Seq="911"/>
+		<Proc FuncName="dir_svr" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="1" Seq="1001"/>
+		<Proc FuncName="dir_bak" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="2" Seq="1002"/>
+		<Proc FuncName="dir_slave" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="3" Seq="1003"/>
+		<Proc FuncName="dir_svr_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="4" Seq="1004"/>
+		<Proc FuncName="dir_bak_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="5" Seq="1005"/>
+		<Proc FuncName="dir_slave_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="6" Seq="1006"/>
+		<Proc FuncName="dir_slave1" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="9" Seq="1007"/>
+		<Proc FuncName="dir_slave1_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="10" Seq="1008"/>
+		<Proc FuncName="account_cs_svr" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="91" Seq="1100"/>
+		<Proc FuncName="account_cs_conn" WorkPath="cluster/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="90" Seq="1101"/>
+		
+		<region Isolated="1" >	
+			<Proc FuncName="region_gate" WorkPath="region/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="101" Seq="1500"/>		
+		  	<Proc FuncName="aas_svr" WorkPath="region/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="102" Seq="1501"/>
+		  	<Proc FuncName="bill_svr" WorkPath="region/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="103" Seq="1502"/>
+		  	<Proc FuncName="bill_db" WorkPath="region/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2" FuncID="104" Seq="1503"/>
+		  	<world Isolated="1" >
+				<Proc FuncName="clear_mails.sh" WorkPath="world/db/bin" FuncID="39" ConfigPath="../cfg" Flag="stop" Seq="2000" StopCmd="./clear_mails.sh -d clear_mail.history" />
+				<Proc FuncName="role_db" WorkPath="world/db/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="30" Seq="2001"/>
+				<Proc FuncName="misc_db" WorkPath="world/db/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="32" Seq="2002"/>	
+				<Proc FuncName="zone_svr" WorkPath="world/zone/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="3"  FuncID="61" Seq="2011"/>
+				<Proc FuncName="zone_ctrl" WorkPath="world/zone/bin" ConfigPath="../cfg" Flag="start" Agrs="--cmd=test:0" StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="62" Seq="2021"/>
+				<Proc FuncName="zone_conn" WorkPath="world/zone/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=400 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="60" Seq="2031"/>
+				<Proc FuncName="tlog_db" WorkPath="world/logsvr/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="33" Seq="2041"/>
+				<Proc FuncName="tlogd" WorkPath="world/logsvr/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="31" Seq="2042"/>
+				<Proc FuncName="cs_conn" WorkPath="world/cs_svr/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="7" Seq="2051"/>
+				<Proc FuncName="cs_svr" WorkPath="world/cs_svr/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="8" Seq="2061"/>
+				<Proc FuncName="mud_svr" WorkPath="world/mud_svr/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=600 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="63" Seq="2071"/>
+				<Proc FuncName="mud_conn" WorkPath="world/mud_svr/bin" ConfigPath="../cfg" Flag="start|stop|check|auto|reload" Agrs="--log-level=400 --log-path=../log --conf-path=../cfg " StartCheckBeginTime="1" StartCheckEndTime="2"  FuncID="64" Seq="2081"/>
+			</world>
+		</region>	
+	</cluster>
+
+	<!--进程组-->
+	<ProcGroup Name="dir_svr_group" Layer="cluster" >
+		<Proc FuncName="dir_svr"  />
+		<Proc FuncName="dir_svr_conn"  />
+	</ProcGroup>
+	
+	<ProcGroup Name="dir_bak_group" Layer="cluster" >
+		<Proc FuncName="dir_bak" />
+		<Proc FuncName="dir_bak_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="dir_slave_group" Layer="cluster" >
+		<Proc FuncName="dir_slave" />
+		<Proc FuncName="dir_slave_conn" />
+	</ProcGroup>
+
+	<ProcGroup Name="dir_slave1_group" Layer="cluster" >
+                <Proc FuncName="dir_slave1" />
+                <Proc FuncName="dir_slave1_conn" />
+        </ProcGroup>
+	
+	<ProcGroup Name="version_group" Layer="cluster" >
+		<Proc FuncName="version_svr" />
+		<Proc FuncName="version_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="version_bak_group" Layer="cluster" >
+		<Proc FuncName="version_bak" />
+		<Proc FuncName="version_bak_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="version_slave_group" Layer="cluster" >
+		<Proc FuncName="version_slave" />
+		<Proc FuncName="version_slave_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="auth_group" Layer="cluster" >
+		<Proc FuncName="auth_svr" />
+		<Proc FuncName="auth_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="auth_bak_group" Layer="cluster" >
+		<Proc FuncName="auth_bak" />
+		<Proc FuncName="auth_bak_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="auth_slave_group" Layer="cluster" >
+		<Proc FuncName="auth_slave" />
+		<Proc FuncName="auth_slave_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="account_group" Layer="cluster" >
+		<Proc FuncName="account_db" />
+	</ProcGroup>
+	
+	<ProcGroup Name="account_cs_group" Layer="cluster" >
+		<Proc FuncName="account_cs_svr" />
+		<Proc FuncName="account_cs_conn" />
+	</ProcGroup>
+	
+	<ProcGroup Name="informer_group" Layer="cluster" >
+		<Proc FuncName="informer_svr" />
+	</ProcGroup>
+	
+	<ProcGroup Name="region_group" Layer="region" >
+		<Proc FuncName="region_gate" />
+		<Proc FuncName="aas_svr" />
+		<Proc FuncName="bill_svr" />
+		<Proc FuncName="bill_db" />
+	</ProcGroup>
+	
+	<ProcGroup Name="world_group" Layer="world" >
+		<Proc FuncName="zone_svr" />
+		<Proc FuncName="zone_conn" />
+		<Proc FuncName="zone_ctrl" />
+		<Proc FuncName="clear_mails.sh" />
+		<Proc FuncName="role_db" />
+		<Proc FuncName="misc_db" />
+		<Proc FuncName="tlogd" />
+		<Proc FuncName="cs_svr" />
+		<Proc FuncName="cs_conn" />
+		<Proc FuncName="tlog_db" />
+		<Proc FuncName="mud_svr" />
+		<Proc FuncName="mud_conn" />
+	</ProcGroup>
+		
+	<!--主机信息表-->
+	<HostTab >
+	    <Host Name="Host77" InnerIP="192.168.0.77" >
+	    	<OuterIP>192.168.0.77</OuterIP>
+	    </Host>
+	</HostTab>
+  
+	<!--进程部署树-->
+	<ClusterDeploy>
+	    <DeloyGroup CustomAttr="udpport:8500,conn_port:6721,blackwhite:0,report:192.168.0.77:8567" Group="dir_svr_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="udpport:8600,conn_port:6722,blackwhite:0,report:192.168.0.77:8567" Group="dir_bak_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="udpport:8700,conn_port:6723,blackwhite:0,report:192.168.0.77:8567" Group="dir_slave_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="udpport:8750,conn_port:6731,blackwhite:0,report:192.168.0.77:8567" Group="dir_slave1_group" Host="Host77" />
+	    <DeloyGroup CustomAttr="conn_port:6724" Group="version_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="conn_port:6725" Group="version_bak_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="conn_port:6726" Group="version_slave_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="conn_port:6727" Group="auth_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="conn_port:6728" Group="auth_bak_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="conn_port:6729" Group="auth_slave_group" Host="Host77" /> 
+	    <DeloyGroup CustomAttr="accountdbip:192.168.0.77" Group="account_group" Host="Host77" />
+	    <DeloyGroup Group="informer_group" Host="Host77" />
+	    <DeloyGroup CustomAttr="conn_port:6730" Group="account_cs_group" Host="Host77" />
+	    
+	    <region ID="1" >
+	    	<DeloyGroup CustomAttr="billdbip:192.168.0.77" Group="region_group" Host="Host77" />
+		<world ID="1" CustomAttr="conn_port:9002,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9111,cs_conn_port:9211,tlog_db_port:9311" >
+			<DeloyGroup Group="world_group" Host="Host77" />
+	    	</world>
+              </region>		
+
+	    <region ID="2" >
+                <DeloyGroup CustomAttr="billdbip:192.168.0.77" Group="region_group" Host="Host77" />
+                <world ID="2" CustomAttr="conn_port:9003,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9112,cs_conn_port:9212,tlog_db_port:9312" >
+                        <DeloyGroup Group="world_group" Host="Host77" />
+                </world>
+
+                <world ID="3" CustomAttr="conn_port:9004,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9113,cs_conn_port:9213,tlog_db_port:9313" >
+                        <DeloyGroup Group="world_group" Host="Host77" />
+                </world>
+
+                <world ID="4" CustomAttr="conn_port:9005,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9114,cs_conn_port:9214,tlog_db_port:9314" >
+                        <DeloyGroup Group="world_group" Host="Host77" />
+                </world>
+            </region>
+
+	 <region ID="3" >
+                <DeloyGroup CustomAttr="billdbip:192.168.0.77" Group="region_group" Host="Host77" />
+
+                <world ID="5" CustomAttr="conn_port:9006,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9115,cs_conn_port:9215,tlog_db_port:9315" >
+                        <DeloyGroup Group="world_group" Host="Host77" />
+                </world>
+
+                <world ID="6" CustomAttr="conn_port:9007,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9116,cs_conn_port:9216,tlog_db_port:9316" >
+                        <DeloyGroup Group="world_group" Host="Host77" />
+                </world>
+
+                <world ID="7" CustomAttr="conn_port:9008,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9117,cs_conn_port:9217,tlog_db_port:9317" >
+                        <DeloyGroup Group="world_group" Host="Host77" />
+                </world>
+		
+                <world ID="8" CustomAttr="conn_port:9009,minver:0,maxver:0,blackwhite:0,dbip:192.168.0.77,tlogd_port:9118,cs_conn_port:9218,tlog_db_port:9318" >
+                        <DeloyGroup Group="world_group" Host="Host77" />
+                </world>
+            </region>
+
+	    
+	</ClusterDeploy>
+
+	 <!--tbus相关配置-->
+	 <TbusConf GCIMShmKey="7381" GRMShmKey="7382" TbusdServicePort="8670" TbusdConfPath="/usr/local/mmog/tools" ChannelSize="204800" >
+	      <Channel ProcSet1="dir_svr" ProcSet2="dir_svr_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />  
+	      <Channel ProcSet1="dir_bak" ProcSet2="dir_bak_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />  
+	      <Channel ProcSet1="dir_slave" ProcSet2="dir_slave_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="dir_slave1" ProcSet2="dir_slave1_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_svr" ProcSet2="auth_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_bak" ProcSet2="auth_bak_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_slave" ProcSet2="auth_slave_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_svr" ProcSet2="account_db" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_bak" ProcSet2="account_db" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_slave" ProcSet2="account_db" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="version_svr" ProcSet2="version_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="version_bak" ProcSet2="version_bak_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="version_slave" ProcSet2="version_slave_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="account_cs_svr" ProcSet2="account_cs_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_svr" ProcSet2="account_cs_svr" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_slave" ProcSet2="account_cs_svr" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_bak" ProcSet2="account_cs_svr" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="account_cs_svr" ProcSet2="account_db" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="region_gate" ProcSet2="bill_svr" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="region_gate" ProcSet2="aas_svr" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="region_gate" ProcSet2="informer_svr" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_svr" ProcSet2="informer_svr" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_slave" ProcSet2="informer_svr" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="auth_bak" ProcSet2="informer_svr" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="informer_svr" ProcSet2="account_db" Mask="0.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="region_gate" ProcSet2="zone_svr" Mask="63.0.0.0" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="bill_svr" ProcSet2="bill_db" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="zone_svr" ProcSet2="zone_conn" Mask="63.1023.0.255" SendQueSize="4096000" RecvQueSize="4096000" />
+	      <Channel ProcSet1="zone_svr" ProcSet2="zone_ctrl" Mask="63.1023.0.255" SendQueSize="204800" RecvQueSize="204800" />
+	      <Channel ProcSet1="zone_svr" ProcSet2="role_db" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="zone_svr" ProcSet2="misc_db" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	      <Channel ProcSet1="cs_svr" ProcSet2="cs_conn" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+              <Channel ProcSet1="cs_svr" ProcSet2="role_db" Mask="63.1023.0.255" SendQueSize="2048000" RecvQueSize="2048000" />
+	       <Channel ProcSet1="zone_svr" ProcSet2="account_db" Mask="0.0.0.0" SendQueSize="204800" RecvQueSize="204800" />
+              <Channel ProcSet1="zone_svr" ProcSet2="cs_svr" Mask="0.0.0.0" SendQueSize="204800" RecvQueSize="204800" />
+	      <Channel ProcSet1="region_gate" ProcSet2="mud_svr" Mask="63.0.0.0" SendQueSize="204800" RecvQueSize="204800" /> 
+	      <Channel ProcSet1="mud_svr" ProcSet2="mud_conn" Mask="63.1023.0.255" SendQueSize="4096000" RecvQueSize="4096000" />
+	</TbusConf>
+
+</tcmcenter>

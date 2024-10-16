@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="gamestat" version="10" >
+	<macro name="GAMESTAT_URL_LEN"      value="32" />
+	<macro name="MAX_WORLD"      value="128" />
+	<macro name="MAX_REGION"      value="64" />
+	
+	<struct name="ZoneInfo" version ="10" >
+		<entry name="Worldid" type="int" desc="服ID"/>
+	</struct>
+	 
+	<struct name="RegionInfo" version ="10" >
+		<entry name="Regionid" type="int" desc="区ID"/>
+		<entry name="WorldNum" type="int" desc="有多服"/>
+		<entry name="World" type="ZoneInfo" count="MAX_WORLD" refer="WorldNum" desc="服id列表"/>
+        </struct>
+        
+        <struct name="gamestat_conf" version ="10" >
+                <entry name="MetaFile" type="string" size="128" defaultvalue="./role_db_meta.tdr" />
+                <entry name="DBConnect" type="string" size="GAMESTAT_URL_LEN"   />
+                <entry name="DBUser" type="string" size="GAMESTAT_URL_LEN"   />
+                <entry name="Passwd" type="string" size="GAMESTAT_URL_LEN"  />
+                <entry name="LogDBConnect" type="string" size="GAMESTAT_URL_LEN"   />
+                <entry name="LogDBUser" type="string" size="GAMESTAT_URL_LEN"   />
+                <entry name="LogPasswd" type="string" size="GAMESTAT_URL_LEN"  />
+                <entry name="RegionNum" type="int" desc="有多区"/>
+                <entry name="Region" type="RegionInfo" count="MAX_REGION" refer="RegionNum" desc="区id列表"/>
+        </struct>
+</metalib>

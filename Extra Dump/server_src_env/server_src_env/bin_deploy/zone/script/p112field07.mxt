@@ -1,0 +1,17 @@
+;30¸±±¾  Âß¼­ÇøÓò7
+
+
+PROC 1
+
+	GET_PWORLD_VAR 44 32 1 107
+	If 107 = 1
+
+
+		NEW_MON 206335 1 19800 14999 0 0 0 1 2
+		NEW_MON 206333 4 19800 14999 100 0 0 1 2
+
+		var 107 2
+		set_pworld_var 44 32 @107 1
+	endif	
+
+ENDPROC

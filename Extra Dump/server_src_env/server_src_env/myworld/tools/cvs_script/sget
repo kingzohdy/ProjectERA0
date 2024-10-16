@@ -1,0 +1,103 @@
+#!/bin/ksh
+
+# CVS program sget
+# Program to check out the file from CVS read-only
+
+cmdname=`basename $0`
+
+Usage()
+{
+        print "\nUsage: $cmdname [-r revision_number/symbolic_tag_name] <file/directory name> "
+        print "The options -r are optional "
+        print "For example - "
+        print " $cmdname -r 1.1 foo.cpp"
+        print " $cmdname foo.cpp "
+        print " $cmdname some_directory "
+        print "Extract by symbolic revision tag like - "
+        print " $cmdname -r REVISION_1 some_directory "
+        print " "
+        exit
+}
+
+# Command getopt will not supported in next major release. 
+# Use getopts instead. 
+while getopts r: ii
+do
+        case $ii in
+        r) FLAG1=$ii; OARG1="$OPTARG";;
+        ?) Usage; exit 2;;
+        esac
+done
+shift ` expr $OPTIND - 1 `
+
+#echo FLAG1 = $FLAG1 , OARG1 = $OARG1
+
+if [ $# -lt 1 ]; then
+        Usage
+fi
+
+bkextn=sget_bak
+
+hme=` echo $HOME | cut -f1 -d' '  `
+if [ "$hme" = "" ]; then
+        print "\nError: \$HOME is not set!!\n"
+        exit
+fi
+
+# Check if file already exists....
+if [ -f $1 ]; then
+        user_perms=" "
+        group_perms=" "
+        other_perms=" "
+        user_perms=`ls -l $1 | awk '{print $1 }' | cut -b3-3 `
+        group_perms=`ls -l $1 | awk '{print $1 }' | cut -b6-6 `
+        other_perms=`ls -l $1 | awk '{print $1 }' | cut -b9-9 `
+        if [ "$user_perms" = "w" -o "$group_perms" = "w"  \
+                -o "$other_perms" = "w" ]; then
+                print "\nError: The file is writable. Aborting $cmdname ......"
+                print "       You should either backup, scommit or delete the file and"
+                print "       try $cmdname again\n"
+                exit
+        fi
+fi
+
+cur_dir=`pwd`
+#echo $cur_dir
+
+len=${#hme}
+len=$(($len + 2))
+#echo $len
+
+subdir=` echo $cur_dir | cut -b $len-2000 `
+#echo $subdir
+
+if [ "$subdir" = "" ]; then
+        fdname=$1
+else
+        fdname=$subdir"/"$1
+fi
+
+# Move the file
+touch $1 2>/dev/null
+\mv -f $1 $1.$bkextn
+
+# Create subshell
+(
+cd $hme
+#echo $fdname
+
+# Use -A option to clear all sticky flags
+if [ "$FLAG1" = "" ]; then
+        cvs -r checkout -A $fdname
+else
+        cvs -r checkout -A -$FLAG1 $OARG1 $fdname
+fi
+)
+#pwd
+
+if [ -f $1 ]; then
+        print "\nREAD-ONLY copy of the file $fdname obtained."
+        print "Done $cmdname"
+        #print "\nTip (Usage): $cmdname <file/directory name> \n"
+fi
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="tormsvr" version="11" >
+	
+	<macro name="TORMSVR_STRING_LEN" value="256" />
+	<macro name="TORM_MAX_CHANNEL" value="256" />
+	<macro name="TORM_MAX_DBCONN" value="32" />
+	<macro name="TORM_MAX_TABLE" value="128" />
+	<macro name="TORM_MAX_DBMETALIB" value="128" />
+	<macro name="TORM_MAX_CACHEMETA" value="128" />
+  <macro name="TORM_MAX_RECORDS_NUM_PERSELECT" value="100" desc="单个select查询能检索出的记录行最大数目" />
+  <macro name="TORM_MAX_CACHE_PERCENT_SYN_SCTMSLCT_RES" value="80" 
+         desc="当将自定义查询条件中的记录添加的cache中时，如果cache使用比例超过此值时停止添加记录到cache中" />
+
+	<struct name="TORMConnectDBInfo" version="10" desc="dbms server  info">
+		<entry name="IDX" type="int" defaultvalue="1" />
+		<entry name="MajorVersion" type="int" />
+		<entry name="MinVersion" type="int" />
+		<entry name="DBMSName" type="string" size="TORMSVR_STRING_LEN" defaultvalue="mysql" />
+		<entry name="DBMSConnectionInfo" type="string" size="TORMSVR_STRING_LEN" defaultvalue="localhost" />
+		<entry name="DBMSCurDatabaseName" type="string" size="TORMSVR_STRING_LEN" defaultvalue="testdb" />
+		<entry name="DBMSUser" type="string" size="TORMSVR_STRING_LEN" defaultvalue="user" />
+		<entry name="DBMSPassword" type="string" size="TORMSVR_STRING_LEN" defaultvalue="passwd" />
+		<entry name="DBMSSock" type="string" size="TORMSVR_STRING_LEN" defaultvalue="/tmp/mysql.sock" />
+	</struct>
+	
+	<struct name="TORMShmConf" version ="10" >
+		<entry name="Key" type="string" size="TORMSVR_STRING_LEN" defaultvalue="0" />
+		<entry name="Size" type="int" defaultvalue="0" />
+	</struct>
+	
+	<struct name="TORMMetaLibInfo" version ="10" >
+		<entry name="MetaLibPath" type="string" size="TORMSVR_STRING_LEN" />
+	</struct>
+	
+	<struct name="TORMChannelConf" version ="10" >
+		<entry name="ChannelKey" type="string" size="TORMSVR_STRING_LEN" defaultvalue="3005201" />
+		<entry name="UpSize" type="int" defaultvalue="1048576" />
+		<entry name="DownSize" type="int" defaultvalue="1048576" />
+	</struct>
+	
+	<struct name="TORMTableConf" version ="10" >
+		<entry name="TableName" type="string" size="TORMSVR_STRING_LEN" defaultvalue="testtab" />
+		<entry name="TableDBConnIdx" type="int" defaultvalue="1" />
+	</struct>
+	
+	<struct name="TORMCacheVar" version ="10" >
+		<entry name="TableMetaName" type="string" size="TORMSVR_STRING_LEN" />
+		<entry name="CacheNum" type="int" defaultvalue="1000" desc="number of the cached records " />
+		<entry name="ScanNum" type="int" defaultvalue="10" />
+		<entry name="SyncNum" type="int" defaultvalue="5" />
+		<entry name="EliminateNum" type="int" defaultvalue="10" />
+	</struct>
+	
+	<struct name="TORMCacheConf" version ="10" >
+		<entry name="CacheShm" type="TORMShmConf" />
+		<entry name="CacheVarNum" type="int" defaultvalue="0" />
+		<entry name="CacheVar" type="TORMCacheVar" count="TORM_MAX_CACHEMETA" refer="CacheVarNum" />
+	</struct>
+		
+	<struct name="tormsvrconf" version ="10" >
+		<entry name="MaxProcessTime" type="int" defaultvalue="0" />
+		<entry name="MetaLibInfo" type="TORMMetaLibInfo" />
+		<entry name="DispFuncSOFile" type="string" size="TORMSVR_STRING_LEN" defaultvalue="torm_disp_so.so" />
+		<entry name="DispFunc" type="string" size="TORMSVR_STRING_LEN" defaultvalue="torm_dispchannel" />
+		<entry name="ProtoVerHashShm" type="TORMShmConf" />
+		<entry name="ChannelNum" type="int" defaultvalue="1" />
+		<entry name="ChannelConf" type="TORMChannelConf" count="TORM_MAX_CHANNEL" refer="ChannelNum" />
+		<entry name="ConnectDBNum" type="int" defaultvalue="1" />
+		<entry name="ConnectDBInfo" type="TORMConnectDBInfo" count="TORM_MAX_DBCONN" refer="ConnectDBNum" />
+		<entry name="TableNum" type="int" defaultvalue="1" />
+		<entry name="TableConf" type="TORMTableConf" count="TORM_MAX_TABLE" refer="TableNum" />
+		<entry name="CacheConf" type="TORMCacheConf" />
+		<entry name="SynCstmSlctRes2Cache" type="int" defaultvalue="0" version="11" 
+			desc="是否将自定义查询条件检索出的记录同步到cache中，缺省不同步" />
+    <entry name="SynCstmSlctResMaxPercent" type="int" defaultvalue="TORM_MAX_CACHE_PERCENT_SYN_SCTMSLCT_RES" version="11"
+			desc="当将自定义查询条件中的记录添加的cache中时，如果cache使用比例超过此值时停止添加记录到cache中" />
+    <entry name="MaxRowsNumPerSelect" type="int" defaultvalue="TORM_MAX_RECORDS_NUM_PERSELECT" version="11" 
+           desc="配置单个select查询能检索出的记录行最大数目" />
+	</struct>
+	
+	<struct name="tormsvrrun_cumulate" version ="10" >
+		<entry name="RecvMsg" type="bigint" />
+		<entry name="RecvByte" type="bigint" />
+		<entry name="RecvBadMsg" type="bigint" />
+		<entry name="RecvInsertMsg" type="bigint" />
+		<entry name="RecvUpdateMsg" type="bigint" />
+		<entry name="RecvUpdateHitCache" type="bigint" />
+		<entry name="RecvDeleteMsg" type="bigint" />
+		<entry name="RecvSelectMsg" type="bigint" />
+		<entry name="RecvSelectHitCache" type="bigint" />
+		<entry name="SendMsg" type="bigint" />
+		<entry name="SendByte" type="bigint" />
+	</struct>
+	
+</metalib>

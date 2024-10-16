@@ -1,0 +1,21 @@
+;
+;script filename: npc1
+;
+PROC    1
+	DIALOG 1
+	ADD_TALK	您好，我是保管员
+	ADD_TALK	请选择一种服务：
+	OPTION 21 打开基本保管箱
+	OPTION 22 打开扩展保管箱
+   TALK
+ENDPROC
+
+PROC 21
+	OPEN_STASH 1
+	FINISH
+ENDPROC
+
+PROC 22
+	OPEN_STASH 2
+	FINISH
+ENDPROC

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="informer_svr" version="11" >
+
+	<macro name="INFORMER_SVR_PATH_LEN"      value="1024" />
+	<macro name="IFM_SERVICE_NAME_LEN"      value="256" />
+	<macrosgroup name="IFM_MODE_TYPE">
+		<macro name="IFM_MODE_PRODUCE"  value="0" desc="运营模式" />
+		<!--macro name="IFM_MODE_PERMISSION"  value="1" desc="放号模式" /-->
+		<macro name="IFM_MODE_DEVELOP"  value="2" desc="开发模式" />
+	</macrosgroup>
+	
+	<struct name="informer_svrconf" version ="11" >
+		<entry name="AuthMode" type="int" bindmacrosgroup="IFM_MODE_TYPE" defaultvalue="IMF_MODE_DEVELOP" />
+  		<entry name="DBMetaDir" type="string" size="INFORMER_SVR_PATH_LEN" defaultvalue="../cfg/db_meta" />
+  		<entry name="ChannelKeyStart" type="int" default="0" />
+		<entry name="MutiThreadNum" type="int" default="3" />
+		<entry name="FileLock" type="string" size="IFM_SERVICE_NAME_LEN" default="../bin/informer_svr.lck" />
+		<entry name="ProcessExitKey" type="int" default="8888" />
+		<entry name="ClientServiceChdir" type="string" size="IFM_SERVICE_NAME_LEN" defaultvalue="/usr/local/mmog/region/cfg/conf/active_config.ini" desc="反向激活当前目录"/>
+		<entry name="ServerServiceChdir" type="string" size="IFM_SERVICE_NAME_LEN" defaultvalue="/usr/local/mmog/region/cfg/conf/member_config.ini" desc="正向激活当前目录"/>
+		<entry name="ChargeServiceChdir" type="string" size="IFM_SERVICE_NAME_LEN" defaultvalue="/usr/local/mmog/region/cfg/conf/charge_config.ini" desc="正向冲值当前目录"/>
+		<entry name="ClientServiceName" type="string" size="IFM_SERVICE_NAME_LEN" defaultvalue="IFM_ACTIVE_SERVICE_WYYL_I001" desc="反向激活"/>
+		<entry name="ServerServiceName" type="string" size="IFM_SERVICE_NAME_LEN" defaultvalue="IFM_MEMBER_WYYL_I001" desc="正向激活"/>
+		<entry name="ChargeServiceName" type="string" size="IFM_SERVICE_NAME_LEN" defaultvalue="IFM_CHARGE_WYYL_I001" desc="正向冲值"/>
+	</struct>
+	
+	<struct name="informer_svrrun_status" version ="10" >
+		<entry name="Res" type="int" />
+	</struct>
+	
+</metalib>
+

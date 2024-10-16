@@ -1,0 +1,200 @@
+
+#include "header.fx"
+
+#define MAX_SAMPLES 16
+
+texture g_BaseTexture;              // Color texture for mesh
+texture g_BloomTexture;
+
+float g_avSampleOffsets[MAX_SAMPLES];
+float g_avSampleWeights[MAX_SAMPLES];
+float g_HighScene = 1.0f; //(0.1-1.0)
+float g_GrayValue = 0.9f; //(0.5-1.5)
+float g_lum		=	0.3f;	 
+
+//--------------------------------------------------------------------------------------
+// Texture samplers
+//--------------------------------------------------------------------------------------
+sampler MeshTextureSampler = 
+sampler_state
+{
+    Texture = <g_BaseTexture>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    addressu	=	clamp;
+    addressv	=	clamp;
+};
+
+sampler BloomSampler = 
+sampler_state
+{
+    Texture = <g_BloomTexture>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    addressu	=	clamp;
+    addressv	=	clamp;
+};
+
+sampler BlurSampler = 
+sampler_state
+{
+    Texture = <g_BaseTexture>;
+    MipFilter = LINEAR;
+    MinFilter = POINT;
+    MagFilter = POINT;
+    
+    addressu	=	clamp;
+    addressv	=	clamp;
+
+};
+
+struct VS_OUTPUT
+{
+    float4 Position   : POSITION;   // vertex position 
+    float3 TextureUV  : TEXCOORD0;  // vertex texture coords 
+};
+
+struct PS_OUTPUT
+{
+    float4 RGBColor : COLOR0;  // Pixel color    
+};
+
+
+//--------------------------------------------------------------------------------------
+// This shader outputs the pixel's color by modulating the texture's
+// color with diffuse material color
+//--------------------------------------------------------------------------------------
+PS_OUTPUT DownScenePS( VS_OUTPUT In ) 
+{ 
+    PS_OUTPUT Output;
+
+    // Lookup mesh texture and modulate it with diffuse
+    
+    Output.RGBColor = tex2D(MeshTextureSampler, In.TextureUV.xy);
+
+    return Output;
+}
+
+PS_OUTPUT BrightPS( VS_OUTPUT In ) 
+{ 
+    PS_OUTPUT Output;
+    
+    float4 vSample = tex2D( MeshTextureSampler, In.TextureUV.xy );
+        	
+    // Subtract out dark pixels
+    vSample.rgb -= g_GrayValue*normalize(vSample.rgb)*g_lum;
+    // Clamp to 0
+    vSample = max(vSample, 0.0f);
+    
+    vSample.rgb = vSample.rgb * vSample.rgb;
+	
+    
+    Output.RGBColor = vSample;
+
+    return Output;
+}
+
+PS_OUTPUT BloomPS1(VS_OUTPUT In)
+{
+    PS_OUTPUT Output;
+    float4 vSample = 0.0f;
+    float4 vColor = 0.0f;
+        
+    float2 vSamplePosition;    
+    // Perform a one-directional gaussian blur
+    for(int iSample = 0; iSample < 15; iSample++)
+    {
+        vSamplePosition =  In.TextureUV.xy + float2(g_avSampleOffsets[iSample], 0);
+        vColor = tex2D(BlurSampler, vSamplePosition);
+        vSample += g_avSampleWeights[iSample]*vColor;
+    }
+    Output.RGBColor = vSample;
+
+    return Output;
+}
+
+PS_OUTPUT BloomPS2(VS_OUTPUT In)
+{
+    PS_OUTPUT Output;
+    float4 vSample = 0.0f;
+    float4 vColor = 0.0f;
+        
+    float2 vSamplePosition;    
+    // Perform a one-directional gaussian blur
+    for(int iSample = 0; iSample < 15; iSample++)
+    {
+        vSamplePosition =  In.TextureUV.xy + float2(0, g_avSampleOffsets[iSample]);
+        vColor = tex2D(BlurSampler, vSamplePosition);
+        vSample += g_avSampleWeights[iSample]*vColor;
+    }
+    Output.RGBColor = vSample;
+
+    return Output;
+}
+
+PS_OUTPUT FinalPSBloom(VS_OUTPUT In)
+{
+	PS_OUTPUT Output;
+    	float4 vSample		=	tex2D(MeshTextureSampler, In.TextureUV.xy);
+    	float4 vBloom		=	tex2D(BloomSampler, In.TextureUV.xy);	
+    	vSample				+=	g_HighScene * vBloom;
+		Output.RGBColor = vSample;	
+    	return Output;
+   
+}
+
+
+technique Bloom
+<
+	int usage = RENDER_USAGE_GENERAL;
+	int lod = 0;
+>
+{
+#if BLOOM_PASS == 0
+    pass downscenepass
+    {          
+        VertexShader 	 = NULL;
+        PixelShader  	 = compile ps_2_0 DownScenePS();
+        cullmode		 = none;
+        zenable			 = false; 
+    }
+#elif BLOOM_PASS == 1
+    pass brightpass
+    {          
+        VertexShader 	 = NULL;
+        PixelShader  	 = compile ps_2_0 BrightPS();
+        cullmode		 = none;
+        zenable			 = false; 
+    }
+#elif BLOOM_PASS == 2
+    pass Hblurpass
+    {          
+        VertexShader 	 = NULL;
+        PixelShader  	 = compile ps_2_0 BloomPS1();
+        cullmode	 = none;
+        zenable		 = false; 
+    }
+#elif BLOOM_PASS == 3
+    pass Vblurpass
+    {          
+        VertexShader 	 = NULL;
+        PixelShader  	 = compile ps_2_0 BloomPS2();
+        cullmode	 = none;
+        zenable		 = false; 
+    }
+#elif BLOOM_PASS == 4
+    pass CombinePass
+    {          
+        VertexShader 	 = NULL;
+        PixelShader  	 = compile ps_2_0 FinalPSBloom();
+        cullmode		 = none;
+        zenable			 = false; 
+    }
+#endif
+}
+
+

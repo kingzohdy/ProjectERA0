@@ -1,0 +1,5 @@
+;รินฌดซหอรล 333033 รินฌ
+
+PROC 1
+	ENTER_PWORLD  310 0 0
+ENDPROC

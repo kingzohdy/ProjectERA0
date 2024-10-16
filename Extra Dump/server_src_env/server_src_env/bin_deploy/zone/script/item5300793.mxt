@@ -1,0 +1,22 @@
+;塞得港的药膏
+
+
+
+proc 1
+	get_player_mapinfo 0 1 2 3 4
+	if 2 = 3303
+;			effect 0 0 playEffct(4942,14841,"effect\\entity\\9513_16.ent")
+;			dec_item_num_inpak 5300285 1 0			
+;			add_item_num_inpak 5300339 1 1 0
+;			task_fini 1547 1
+		del_mon 1
+	  else
+			add_sys_msg_start
+			add_sys_msg 此物品需要在阿努比斯废墟使用！
+			set_sys_msg_mode 3 0 0
+			msg_info
+	  endif
+
+endproc
+
+

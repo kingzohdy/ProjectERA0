@@ -1,0 +1,2328 @@
+<?xml version="1.0" encoding="gb2312"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://www.ljy0.com/CsService/" xmlns:whttp="http://www.w3.org/ns/wsdl/http" xmlns:wsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.ljy0.com/CsService/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.ljy0.com/CsService/">
+			<!--错误信息-->
+			<s:complexType name="ErrorResponse">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--
+ErrorCode 对应宏
+	<macrosgroup name="CS_ERR">
+		<macro name="CS_ERR_SUCCEEDED" value="0" desc="操作成功" />
+		<macro name="CS_ERR_SYS" value="-1" desc="系统错误" />
+		<macro name="CS_ERR_NET" value="-2" desc="网络错误" />
+		<macro name="CS_ERR_TDR" value="-3" desc="TDR错误" />
+		<macro name="CS_ERR_ARGS" value="-4" desc="参数错误" />
+		<macro name="CS_ERR_ONLINE" value="-5" desc="操作必须角色不在线" />
+		<macro name="CS_ERR_NOT_FOUND" value="-6" desc="查找不到指定的信息" />
+		<macro name="CS_ERR_OUTLINE" value="-7" desc="操作必须角色在线" />
+		<macro name="CS_ERR_DUP" value="-8" desc="重名" />
+		<macro name="CS_ERR_XML" value="-9" desc="输出xml时出错" />
+		<macro name="CS_ERR_TIME_OUT" value="-10" desc="操作超时" />
+	</macrosgroup>-->
+			<!--通过帐号名查询帐号|第一次调用-->
+			<s:complexType name="FindAccountByNameFirstReq">
+				<s:sequence>
+					<!--帐号名 支持mysql通配符-->
+					<s:element minOccurs="1" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindAccountByNameFirstRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--查询句柄ID|后续查询FindAccountByNameNext时使用-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--xml结构返回信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--通过帐号名查询帐号|后续调用-->
+			<s:complexType name="FindAccountByNameNextReq">
+				<s:sequence>
+					<!--查询句柄ID|通过FindAccountByNameFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindAccountByNameNextRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息|AccFindRes-->
+					<!--
+
+mate name:AccFindRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="FREEZE_REASON_LEN"    value="32" version="120" desc="冻结,封停原因"/>
+	<struct name="SSAccLiteInfo" version="169" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" />
+		<entry name="AccCreateTime" type="int" version="265" desc="账号创建时间" />
+		<entry name="Uin" type="int" version="1704" desc="账号Uin" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="1704" />
+	</struct>
+
+	<macro name="ACC_MAX_RES" value="64" />
+
+	<struct name="AccFindRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="ReginID" type="tinyint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountLiteArray" type="SSAccLiteInfo" count="ACC_MAX_RES" refer="ResNum" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--通过帐号名查询帐号|关闭句柄-->
+			<s:complexType name="FindHandleCloseReq">
+				<s:sequence>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindHandleCloseRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--通过帐号名查询帐号|第一次调用-->
+			<s:complexType name="FindAccountByRoleFirstReq">
+				<s:sequence>
+					<!--角色名 支持mysql通配符-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindAccountByRoleFirstRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--查询句柄ID|后续查询xxNext时使用-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--xml结构返回信息| AccFindRes-->
+					<!--
+
+mate name:AccFindRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="FREEZE_REASON_LEN"    value="32" version="120" desc="冻结,封停原因"/>
+	<struct name="SSAccLiteInfo" version="169" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" />
+		<entry name="AccCreateTime" type="int" version="265" desc="账号创建时间" />
+		<entry name="Uin" type="int" version="1704" desc="账号Uin" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="1704" />
+	</struct>
+
+	<macro name="ACC_MAX_RES" value="64" />
+
+	<struct name="AccFindRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="ReginID" type="tinyint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountLiteArray" type="SSAccLiteInfo" count="ACC_MAX_RES" refer="ResNum" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--通过帐号名查询帐号|后续调用-->
+			<s:complexType name="FindAccountByRoleNextReq">
+				<s:sequence>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindAccountByRoleNextRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息|AccFindRes-->
+					<!--
+
+mate name:AccFindRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="FREEZE_REASON_LEN"    value="32" version="120" desc="冻结,封停原因"/>
+	<struct name="SSAccLiteInfo" version="169" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" />
+		<entry name="AccCreateTime" type="int" version="265" desc="账号创建时间" />
+		<entry name="Uin" type="int" version="1704" desc="账号Uin" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="1704" />
+	</struct>
+
+	<macro name="ACC_MAX_RES" value="64" />
+
+	<struct name="AccFindRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="ReginID" type="tinyint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountLiteArray" type="SSAccLiteInfo" count="ACC_MAX_RES" refer="ResNum" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获取大区各服务器信息-->
+			<s:complexType name="GetRegionWorldInfoReq">
+				<s:sequence>
+					<!--占位|无实际意义-->
+					<s:element minOccurs="0" maxOccurs="1" name="Res" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetRegionWorldInfoRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息|REGIONWORLDINFO-->
+					<!--
+mate name:RegionWorldInfo
+  <macro name="MAX_IP_LEN"      value="20" />
+  <macro name="WORLD_NAME_LEN" value="20" />
+	<struct name="WORLDINFO" version ="10">
+		<entry name="WorldID" type="uint" desc="服ID" />
+		<entry name="RegionID" type="uint" desc="大区ID" />
+		<entry name="Ip" type="string" size="MAX_IP_LEN" desc="该服cs_svr的前端接入ip" />
+		<entry name="Port" type="uint" desc="该服cs_svr的前端接入端口" />
+		<entry name="WorldName" type="string" size="WORLD_NAME_LEN" version="169" desc="服名字" />
+	</struct>
+  <macro name="MAX_IP_LEN"      value="20" />
+  <macro name="WORLD_NAME_LEN" value="20" />
+	<struct name="ACCOUNTCONNINFO" version ="10">
+		<entry name="RegionID" type="uint" desc="大区ID" />
+		<entry name="Ip" type="string" size="MAX_IP_LEN" desc="该大区account_cs_svr的前端接入ip" />
+		<entry name="Port" type="uint" desc="该大区account_cs_svr的前端接入端口" />
+		<entry name="RegionName" type="string" size="WORLD_NAME_LEN" version="169" desc="大区名字" />
+	</struct>
+  <macro name="MAX_WORLDNUM"      value="600" />
+  <macro name="MAX_REGIONNUM"      value="60" />
+	<struct name="RegionWorldInfo" version ="10" >
+		<entry name="WorldCount" type="int" />
+		<entry name="WorldInfos" type="WORLDINFO" count="MAX_WORLDNUM" refer="WorldCount" />
+		<entry name="AccountCount" type="int" />
+		<entry name="AccountInfos" type="ACCOUNTCONNINFO" count="MAX_REGIONNUM" refer="AccountCount" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--通过大区和帐号名查询帐号|第一次调用-->
+			<s:complexType name="FindRegionAccountByNameRoleFirstReq">
+				<s:sequence>
+					<!--大区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名 支持mysql通配符-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindRegionAccountByNameRoleFirstRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--查询句柄ID|后续查询xxNext时使用-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--xml结构返回信息|AccFindRes-->
+					<!--
+
+mate name:AccFindRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="FREEZE_REASON_LEN"    value="32" version="120" desc="冻结,封停原因"/>
+	<struct name="SSAccLiteInfo" version="169" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" />
+		<entry name="AccCreateTime" type="int" version="265" desc="账号创建时间" />
+		<entry name="Uin" type="int" version="1704" desc="账号Uin" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="1704" />
+	</struct>
+
+	<macro name="ACC_MAX_RES" value="64" />
+
+	<struct name="AccFindRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="ReginID" type="tinyint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountLiteArray" type="SSAccLiteInfo" count="ACC_MAX_RES" refer="ResNum" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--通过大区和帐号名查询帐号|后续调用-->
+			<s:complexType name="FindRegionAccountByNameRoleNextReq">
+				<s:sequence>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindRegionAccountByNameRoleNextRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息|AccFindRes-->
+					<!--
+
+mate name:AccFindRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="FREEZE_REASON_LEN"    value="32" version="120" desc="冻结,封停原因"/>
+	<struct name="SSAccLiteInfo" version="169" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" />
+		<entry name="AccCreateTime" type="int" version="265" desc="账号创建时间" />
+		<entry name="Uin" type="int" version="1704" desc="账号Uin" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="1704" />
+	</struct>
+
+	<macro name="ACC_MAX_RES" value="64" />
+
+	<struct name="AccFindRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="ReginID" type="tinyint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountLiteArray" type="SSAccLiteInfo" count="ACC_MAX_RES" refer="ResNum" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--通过帐号名踢角色-->
+			<s:complexType name="KickOffByLoginNameReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="KickOffByLoginNameRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--封/解封帐号-->
+			<s:complexType name="SetAccountFreezeReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--是否解封|0否 1是-->
+					<s:element minOccurs="0" maxOccurs="1" name="Enable" type="s:int"/>
+					<!--封号时间|单位秒-->
+					<s:element minOccurs="0" maxOccurs="1" name="Time" type="s:int"/>
+					<!--封号原因-->
+					<s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="SetAccountFreezeRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--禁言/解禁帐号-->
+			<s:complexType name="SetAccountSilenceReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--是否解禁|0否 1是-->
+					<s:element minOccurs="0" maxOccurs="1" name="Enable" type="s:int"/>
+					<!--时间|单位秒-->
+					<s:element minOccurs="0" maxOccurs="1" name="Time" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="SetAccountSilenceRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--设置帐号安全锁-->
+			<s:complexType name="SetAccSafelockReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--新的安全码-->
+					<s:element minOccurs="0" maxOccurs="1" name="SafePwd" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="SetAccSafelockRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| SETACCSAFELOCKRES-->
+					<!--
+mate name:SetAccSafeLockRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+	<struct name="SetAccSafeLockRes" version="848" >
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" desc="账号"/>
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获取角色列表-->
+			<s:complexType name="GetRoleListReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--帐号Uin-->
+					<s:element minOccurs="0" maxOccurs="1" name="Uin" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetRoleListRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEROLELISTRES-->
+					<!--
+mate name:ZoneRoleListRes
+	<macro name="MAXROLENAME" value="32" />
+	<struct name="SSRoleList" version="94" >
+		<entry name="RoleID" type="biguint" desc="角色唯一id" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="IsDelete" type="tinyuint" desc="是否逻辑删除 0-否 1-是"/>
+	</struct>
+	<macro name="CS_ROLE_LIST_NUM" value="100" />
+	<struct name="ZoneRoleListRes" version="31" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleNum" type="uint" />
+		<entry name="RoleList" type="SSRoleList" count="CS_ROLE_LIST_NUM" refer="RoleNum" version="94" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--查询角色-->
+			<s:complexType name="FindFirstRoleByRolenameReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名支持mysql通配符-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindFirstRoleByRolenameRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--xml结构帐号信息| ACCFINDROLELISTRES-->
+					<!--
+mate name:AccFindRoleListRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="ROLE_NAME_LEN" value="32" />
+	<struct name="SSAccountRole" version="169" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="Uin" type="int" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" desc="角色名，索引" />
+		<entry name="DelTime" type="int" desc="删除标记" />
+		<entry name="RegionID" type="tinyuint" desc="区ID" />
+		<entry name="Res1" type="tinyint" count="3" io="3" />
+		<entry name="ServerID" type="smalluint" desc="服ID" />
+		<entry name="Res2" type="tinyint" count="2" io="2" />
+		<entry name="CreateTime" type="int" desc="删除标记" />
+		<entry name="OnlineFlag" type="int" desc="在线标记" />
+	</struct>
+	<macro name="ROLE_MAX_RES" value="60" />
+	<struct name="AccFindRoleListRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="RoleArray" type="SSAccountRole" count="ROLE_MAX_RES" refer="ResNum" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--查询角色-->
+			<s:complexType name="FindNextRoleReq">
+				<s:sequence>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindNextRoleRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--xml结构帐号信息| ACCFINDROLELISTRES-->
+					<!--
+mate name:AccFindRoleListRes
+  <macro name="ACCOUNT_LOGIN_NAME_LEN"    value="51" />
+  <macro name="ROLE_NAME_LEN" value="32" />
+	<struct name="SSAccountRole" version="169" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="Uin" type="int" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" desc="角色名，索引" />
+		<entry name="DelTime" type="int" desc="删除标记" />
+		<entry name="RegionID" type="tinyuint" desc="区ID" />
+		<entry name="Res1" type="tinyint" count="3" io="3" />
+		<entry name="ServerID" type="smalluint" desc="服ID" />
+		<entry name="Res2" type="tinyint" count="2" io="2" />
+		<entry name="CreateTime" type="int" desc="删除标记" />
+		<entry name="OnlineFlag" type="int" desc="在线标记" />
+	</struct>
+	<macro name="ROLE_MAX_RES" value="60" />
+	<struct name="AccFindRoleListRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="RoleArray" type="SSAccountRole" count="ROLE_MAX_RES" refer="ResNum" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获取角色信息-->
+			<s:complexType name="GetRoleInfoReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetRoleInfoRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEGETROLEDETAILRES-->
+					<!--
+mate name:ZoneGetRoleDetailRes
+  <struct name="RoleDetail" version="1">
+  	<entry name="HPCurr" type="uint" desc="当前血" />
+	<entry name="MPCurr" type="uint" desc="当前魔" />
+	<entry name="AttrPoint" type="smalluint" desc="可分配属性点" />
+	<entry name="NLCurr" type="smalluint" desc="念力" />
+	<entry name="VIMCurr" type="smalluint" desc="活力" />
+	<entry name="SpeMovePower" type="smalluint" desc="运动力" />
+	<entry name="Exp" type="bigint" desc="经验值" />
+	<entry name="DayExp" type="uint"  desc="当日已获得经验值" />
+	<entry name="SkillPoint" type="uint" desc="技能点" />
+	<entry name="Money" type="uint" desc="金钱" />
+	<entry name="StashMoney" type="uint" version="6" desc="仓库金钱" />
+	<entry name="Bull" type="uint" desc="布尔" />
+	<entry name="BlueJade" type="uint" desc="青玉" />
+	<entry name="GreenJade" type="uint" desc="当前活力值" />
+	<entry name="RedJade" type="uint" desc="赤玉" />
+	<entry name="WhiteJade" type="uint" desc="雪玉" />
+	<entry name="BlackJade" type="uint" desc="墨玉" />
+	<entry name="BlueGem" type="smalluint" desc="蓝宝石" />
+	<entry name="GreenGem" type="smalluint" desc="绿宝石" />
+	<entry name="RedGem" type="smalluint" desc="红宝石" />
+	<entry name="WhiteGem" type="smalluint" desc="白宝石" />
+	<entry name="BlackGem" type="smalluint" desc="黑宝石" />
+	<entry name="VigorCurr" type="smalluint" version="82"  desc="精力" />
+	<entry name="GodCoin" type="uint" version="88" desc="天元" />
+	<entry name="BindGodCoin" type="uint" version="88" desc="绑定天元" />
+	<entry name="VipPoint" type="uint" version="88" desc="Vip 赠送点" />
+	<entry name="XP" type="uint" version="92"  desc="XP值" />
+    </struct>
+	<macrosgroup name="AttrValID">
+		<macro name="ATTR_ID_HP"  value="0" /> 
+		<macro name="ATTR_ID_HPMAX"  value="1" />
+		<macro name="ATTR_ID_MP"  value="2" />
+		<macro name="ATTR_ID_MPMAX"  value="3" />
+		<macro name="ATTR_ID_LILIANG"  value="4" />
+		<macro name="ATTR_ID_VIM"  value="5" />
+		<macro name="ATTR_ID_BAOJI"  value="6" />
+		<macro name="ATTR_ID_EXP"  value="7" />
+		<macro name="ATTR_ID_ZHILI"  value="8" />
+		<macro name="ATTR_ID_MINJIE"  value="9" />
+		<macro name="ATTR_ID_FANGYU"  value="10" />
+		<macro name="ATTR_ID_MINGZHONG"  value="11" />
+		<macro name="ATTR_ID_TILI"  value="12" />
+		<macro name="ATTR_ID_JINGSHEN"  value="13" />
+		<macro name="ATTR_ID_LEVEL"  value="14" />
+		<macro name="ATTR_ID_COLLECTNUM"  value="15" />
+		<macro name="ATTR_ID_NLMAX"  value="16" />
+		<macro name="ATTR_ID_VIMMAX"  value="17" />
+		<macro name="ATTR_ID_SPEMOVEMAX"  value="18" />
+		<macro name="ATTR_ID_SKILLPOINT"  value="19" />
+		<macro name="ATTR_ID_MONEY"  value="20" />
+		<macro name="ATTR_ID_BULL"   value="21" />
+		<macro name="ATTR_ID_WATER_DEF"   value="22" />
+		<macro name="ATTR_ID_WATER_ATK"   value="23" />
+		<macro name="ATTR_ID_FIRE_ATK"   value="24" />
+		<macro name="ATTR_ID_THUNDER_ATK"   value="25" />
+		<macro name="ATTR_ID_LIGHT_ATK"   value="26" />
+		<macro name="ATTR_ID_NIGHT_ATK"   value="27" />
+		<macro name="ATTR_ID_HIT_RATE"   value="28" desc="命中率"  />
+		<macro name="ATTR_ID_FLEE_RATE"   value="29" desc="闪避率"  />
+		<macro name="ATTR_ID_MSPD"   value="30" desc="移动速度" />
+		<macro name="ATTR_ID_PHSIC_HURT"   value="31" />
+		<macro name="ATTR_ID_STASHMONEY"   value="32" />
+		<macro name="ATTR_ID_FIGHT"   value="33" desc="战斗力" />
+		<macro name="ATTR_ID_TMPENERGE"   value="34" desc="临时能量" />
+		<macro name="ATTR_ID_PHSIC_ATK"   value="35" desc="物理攻击力" />
+		<macro name="ATTR_ID_ICE_ATK"   value="36" desc="冰元素攻击力" />
+		<macro name="ATTR_ID_DAMAGE"   value="37" desc="破坏力" />
+		<macro name="ATTR_ID_NOFIGHT_HPADD"   value="38" desc="非战斗状态HP恢复" />
+		<macro name="ATTR_ID_NOFIGHT_MPADD"   value="39" desc="非战斗状态MP恢复" />
+		<macro name="ATTR_ID_BADSTATUS_DEF"   value="40" desc="不良状态抗性" />
+		<macro name="ATTR_ID_PHSIC_DEF"   value="41" desc="物理防御力" />
+		<macro name="ATTR_ID_ICE_DEF"   value="42" desc="冰元素防御力" />
+		<macro name="ATTR_ID_FIRE_DEF"   value="43" desc="火元素防御力" />
+		<macro name="ATTR_ID_THUNDER_DEF"   value="44" desc="雷元素防御力" />
+		<macro name="ATTR_ID_LIGHT_DEF"   value="45" desc="光元素防御力" />
+		<macro name="ATTR_ID_NIGHT_DEF"   value="46" desc="暗元素防御力" />
+		<macro name="ATTR_ID_DEF_PHSIC_HURT"   value="47" desc="物理抵抗力" />
+		<macro name="ATTR_ID_DEF_ICE_HURT"   value="48" desc="冰元素抵抗力" />
+		<macro name="ATTR_ID_DEF_FIRE_HURT"   value="49" desc="火元素抵抗力" />
+		<macro name="ATTR_ID_DEF_THUNDER_HURT"   value="50" desc="雷元素抵抗力" />
+		<macro name="ATTR_ID_DEF_LIGHT_HURT"   value="51" desc="光元素抵抗力" />
+		<macro name="ATTR_ID_DEF_NIGHT_HURT"   value="52" desc="暗元素抵抗力" />
+		<macro name="ATTR_ID_HEAVY"   value="53" desc="爆击率" />
+		<macro name="ATTR_ID_HIT"   value="54" desc="命中" />
+		<macro name="ATTR_ID_FLEE"   value="55" desc="闪避" />
+		<macro name="ATTR_ID_HPADD"   value="56" desc="生命回复" />
+		<macro name="ATTR_ID_MPADD"   value="57" desc="魔法回复" />
+		<macro name="ATTR_ID_VIGOR"   value="58"  />
+		<macro name="ATTR_ID_VIGORMAX"   value="59"  />
+		<macro name="ATTR_ID_GODCOIN"   value="60"  />
+		<macro name="ATTR_ID_BINDGODCOIN"   value="61"  />
+		<macro name="ATTR_ID_VIPPOINT"   value="62"  />
+		<macro name="ATTR_ID_XP"   value="63"  />
+		<macro name="ATTR_ID_XPMAX"   value="64"  />
+		<macro name="ATTR_ID_STASHBULL"   value="65"  desc="仓库布尔"/>
+		<macro name="ATTR_ID_CONTRI"   value="66"  desc="工会贡献度"/>
+		<macro name="ATTR_ID_COLLECTSKILLUSE"   value="67"  desc="积累数技能消耗"/>
+		<macro name="ATTR_ID_ICE_HURT"   value="68"  desc="魔法伤害"/>
+		<macro name="ATTR_ID_HEAL_HP_ADD"   value="69"  desc="治疗加修正"/>
+		<macro name="ATTR_ID_HEAL_HP_MUL"   value="70"  desc="治疗乘修正"/>
+		<macro name="ATTR_ID_ATKEE_HEAL_HP_ADD"   value="71"  desc="被治疗加修正"/>
+		<macro name="ATTR_ID_ATKEE_HEAL_HP_MUL"   value="72"  desc="被治疗乘修正"/>
+		<macro name="ATTR_ID_BASE_ATTR_HEAVY"   value="73" desc="爆击力" />
+		<macro name="ATTR_ID_BASE_ATTR_DEFHEAVY"   value="74" desc="暴击抵抗" />
+		<macro name="ATTR_ID_HEAVY_VAL"   value="75" desc="爆击伤害数值修正(增加的百分比)" />
+		<macro name="ATTR_ID_BATTLE_GLORY"   value="76" desc="战场荣誉" />
+		<macro name="ATTR_ID_AOSHAN_BRAND"   value="77" desc="绿洲牌子" />
+		<macro name="ATTR_ID_LIFT_BRAND"   value="78" desc="狂沙牌子" />
+		<macro name="ATTR_ID_REFLECTION_HP"   value="79" desc="反伤等级" />
+		<macro name="ATTR_ID_IGNORE_DEF"   value="80" desc="抵抗等级" />
+		<macro name="ATTR_ID_DEF_HP"   value="81" desc="破防等级" />
+		<macro name="ATTR_ID_PHSIC_MAX_ATK"   value="82" desc="物理上限攻击力" />
+		<macro name="ATTR_ID_MAGIC_MAX_ATK"   value="83" desc="魔法上限攻击力" />
+	</macrosgroup>
+	<struct name="CSAttrVal" version="1" >
+		<entry name="AttrID" type="smallint"  bindmacrosgroup="AttrValID" />
+		<entry name="Value" type="CSAttrIDVal" select="AttrID" />
+	</struct>
+  <macro name="MAX_ATTR_VAL"  value="84" />
+	<struct name="CSPlayerAttrVal" version="1" >
+		<entry name="AttrNum" type="tinyuint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AttrList" type="CSAttrVal" count="MAX_ATTR_VAL" refer="AttrNum" />
+	</struct>
+	<macro name="MAXROLENAME" value="32" />
+  <macro name="NAME_LEN" value="32" />
+	<struct name="ZoneGetRoleDetailRes" version="44" >
+		<entry name="RoleDetailInfo" type="RoleDetail "/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" version="93"/>
+		<entry name="MapID" type="uint"  version="93"/>
+		<entry name="X" type="uint"  version="93"/>
+		<entry name="Y" type="uint"  version="93"/>
+		<entry name="IsOnline" type="tinyuint"  version="93" desc="0-不在线 非0在线"/>
+		<entry name="Silence" type="int"  version="93" desc="禁言剩下的时间, 0表示没有禁言        单位:秒"/>
+		<entry name="Block" type="int"  version="93" desc="冻结角色剩下的时间, 0表示没有冻结单位:秒"/>
+		<entry name="SilenceStart" type="uint"  version="181" desc="啥时候开始禁言的"/>
+		<entry name="BlockStart" type="uint"  version="181" desc="啥时候开始冻结的"/>
+		<entry name="Perm" type="uint"  version="168" desc="GM权限"/>
+		<entry name="CreateTime" type="uint"  version="168" desc=""/>		
+		<entry name="DelTime" type="uint"  version="168" desc=""/>
+		<entry name="Uin" type="int"  version="168" />
+		<entry name="RoleID" type="biguint"  version="168" />
+		<entry name="Level" type="tinyuint"  version="169" desc="等级"/>
+		<entry name="Gender" type="tinyuint"  version="169" desc="性别"/>
+		<entry name="Career" type="tinyuint"  version="169" desc="职业"/>
+		<entry name="ClanName" type="string"  size="NAME_LEN" desc="所在公会   名" version="169"/>
+		<entry name="ClanID" type="uint"   desc="所在公会   ID" version="169"/>
+		<entry name="PreLoginTime" type="int"   desc="上次登陆时间" version="181"/>
+		<entry name="LastLogoutTime" type="int"   desc="最后下线时间" version="181"/>
+		<entry name="StashMoney" type="int"   desc="仓库银卷" version="303"/>
+		<entry name="StashBull" type="int"   desc="仓库银币" version="303"/>
+		<entry name="AttrVal" type="CSPlayerAttrVal"   version="573" desc="角色属性"/>
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获取物品信息-->
+			<s:complexType name="GetItemInfoReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetItemInfoRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEGETROLEITEMLISTRES-->
+					<!--
+mate name:ZoneGetRoleItemListRes
+  	<struct name="ItemMapInfo"  version="1424" >
+		<entry name="MapID" type="int" desc="地图ID"/>
+		<entry name="X" type="int" desc="坐标X"/>
+		<entry name="Y" type="int" desc="坐标Y"/>
+	</struct>
+  	<macro name="MAX_SAVE_MAP_NUM" value="5" desc="物品保存的最大坐标数量"/>
+  	<struct name="RoleItem"  version="6" >
+		<entry name="DefID" type="int" desc="物品ID"/>
+		<entry name="DefPos" type="int" io="3" desc="服务器加快查找用的索引"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="GridIdx" type="smallint" desc="背包格子索引,从0开始"/>
+		<entry name="InstFlag" type="int" desc="实例绑定, 安全锁等标志" version="81" />
+		<entry name="ValidEnd" type="int" version="50" desc="消耗道具有效结束时间" />
+		<entry name="WID" type="biguint" desc="物品唯一标识, 请保证此字段和之前的字段与RoleArm完全相同" />
+		<entry name="Flag" type="int" version="52" desc="用于存储需要放在道具中的数据，具体试道具而定" />
+		<entry name="InstVal1" type="int" version="108" desc="存储实例信息,视道具而定,可多次使用的道具UseMaxDur >0 ，则InstVal1为当前剩余使用次数" />
+		<entry name="InstVal2" type="int" version="108" desc="存储实例信息,视道具而定" />
+		<entry name="InstVal3" type="int" version="173" desc="存储实例信息,视道具而定" />
+		<entry name="ItemMapNum" type="tinyint" version="1424" desc="保存的地图位置信息数量" />
+		<entry name="ItemMapInfo" type="ItemMapInfo" version="1424" desc="保存的位置信息" count="MAX_SAVE_MAP_NUM" refer="ItemMapNum" />
+	</struct>
+  	<macro name="MAX_AMM_PACKAGE"       value="1" />
+	<struct name="AmmPackage"  version="6" >
+		<entry name="MaxNum" type="smalluint" />
+		<entry name="Num" type="smalluint" />
+		<entry name="RoleItems" type="RoleItem" count="MAX_AMM_PACKAGE" refer="Num" />
+	</struct>
+  	<struct name="ItemMapInfo"  version="1424" >
+		<entry name="MapID" type="int" desc="地图ID"/>
+		<entry name="X" type="int" desc="坐标X"/>
+		<entry name="Y" type="int" desc="坐标Y"/>
+	</struct>
+  	<macro name="MAX_SAVE_MAP_NUM" value="5" desc="物品保存的最大坐标数量"/>
+  	<struct name="RoleItem"  version="6" >
+		<entry name="DefID" type="int" desc="物品ID"/>
+		<entry name="DefPos" type="int" io="3" desc="服务器加快查找用的索引"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="GridIdx" type="smallint" desc="背包格子索引,从0开始"/>
+		<entry name="InstFlag" type="int" desc="实例绑定, 安全锁等标志" version="81" />
+		<entry name="ValidEnd" type="int" version="50" desc="消耗道具有效结束时间" />
+		<entry name="WID" type="biguint" desc="物品唯一标识, 请保证此字段和之前的字段与RoleArm完全相同" />
+		<entry name="Flag" type="int" version="52" desc="用于存储需要放在道具中的数据，具体试道具而定" />
+		<entry name="InstVal1" type="int" version="108" desc="存储实例信息,视道具而定,可多次使用的道具UseMaxDur >0 ，则InstVal1为当前剩余使用次数" />
+		<entry name="InstVal2" type="int" version="108" desc="存储实例信息,视道具而定" />
+		<entry name="InstVal3" type="int" version="173" desc="存储实例信息,视道具而定" />
+		<entry name="ItemMapNum" type="tinyint" version="1424" desc="保存的地图位置信息数量" />
+		<entry name="ItemMapInfo" type="ItemMapInfo" version="1424" desc="保存的位置信息" count="MAX_SAVE_MAP_NUM" refer="ItemMapNum" />
+	</struct>
+  	<macro name="MAX_STUFF_PACKAGE"     value="1" />
+	<struct name="StuffPackage"  version="6" >
+		<entry name="MaxNum" type="smalluint" desc="当前最大格子数"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="RoleItems" type="RoleItem" count="MAX_STUFF_PACKAGE" refer="Num" desc="物品数组"/>
+		<entry name="BaseNum" type="smalluint" desc="基础格子数" version="401"/>
+	</struct>
+  	<struct name="ItemMapInfo"  version="1424" >
+		<entry name="MapID" type="int" desc="地图ID"/>
+		<entry name="X" type="int" desc="坐标X"/>
+		<entry name="Y" type="int" desc="坐标Y"/>
+	</struct>
+  	<macro name="MAX_SAVE_MAP_NUM" value="5" desc="物品保存的最大坐标数量"/>
+  	<struct name="RoleItem"  version="6" >
+		<entry name="DefID" type="int" desc="物品ID"/>
+		<entry name="DefPos" type="int" io="3" desc="服务器加快查找用的索引"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="GridIdx" type="smallint" desc="背包格子索引,从0开始"/>
+		<entry name="InstFlag" type="int" desc="实例绑定, 安全锁等标志" version="81" />
+		<entry name="ValidEnd" type="int" version="50" desc="消耗道具有效结束时间" />
+		<entry name="WID" type="biguint" desc="物品唯一标识, 请保证此字段和之前的字段与RoleArm完全相同" />
+		<entry name="Flag" type="int" version="52" desc="用于存储需要放在道具中的数据，具体试道具而定" />
+		<entry name="InstVal1" type="int" version="108" desc="存储实例信息,视道具而定,可多次使用的道具UseMaxDur >0 ，则InstVal1为当前剩余使用次数" />
+		<entry name="InstVal2" type="int" version="108" desc="存储实例信息,视道具而定" />
+		<entry name="InstVal3" type="int" version="173" desc="存储实例信息,视道具而定" />
+		<entry name="ItemMapNum" type="tinyint" version="1424" desc="保存的地图位置信息数量" />
+		<entry name="ItemMapInfo" type="ItemMapInfo" version="1424" desc="保存的位置信息" count="MAX_SAVE_MAP_NUM" refer="ItemMapNum" />
+	</struct>
+  	<macro name="MAX_TASK_PACKAGE"      value="32" />
+	<struct name="TaskPackage"  version="6" >
+		<entry name="MaxNum" type="smalluint" />
+		<entry name="Num" type="smalluint" />
+		<entry name="RoleItems" type="RoleItem" count="MAX_TASK_PACKAGE" refer="Num" />
+	</struct>
+	<macrosgroup name="GRID_ITEM_TYPE" >
+  		<macro name="GRID_ITEM_ITEM"            value="0" />
+  		<macro name="GRID_ITEM_ARM"             value="1" />
+  	</macrosgroup>
+  	<struct name="RoleGrid"  version="6" >
+		<entry name="Type" type="tinyint" bindmacrosgroup="GRID_ITEM_TYPE" desc="物品类型"/>
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="GridData" type="RoleGridData" select="Type" />
+	</struct>
+  	<macro name="MAX_SUNDRIES_PACKAGE"  value="128" />
+	<struct name="SundriesPackage"  version="6" >
+		<entry name="MaxNum" type="smalluint" desc="当前最大格子数"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="RoleGrids" type="RoleGrid" count="MAX_SUNDRIES_PACKAGE" refer="Num" desc="物品数组"/>
+		<entry name="BaseNum" type="smalluint" desc="基础格子数" version="401"/>
+	</struct>
+	<macrosgroup name="GRID_ITEM_TYPE" >
+  		<macro name="GRID_ITEM_ITEM"            value="0" />
+  		<macro name="GRID_ITEM_ARM"             value="1" />
+  	</macrosgroup>
+  	<struct name="RoleGrid"  version="6" >
+		<entry name="Type" type="tinyint" bindmacrosgroup="GRID_ITEM_TYPE" desc="物品类型"/>
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="GridData" type="RoleGridData" select="Type" />
+	</struct>
+  	<macro name="MAX_STASH_PACKAGE"     value="100" />
+	<struct name="StashPackage"  version="6" >
+		<entry name="MaxNum" type="smalluint" />
+		<entry name="Num" type="smalluint" />
+		<entry name="RoleGrids" type="RoleGrid" count="MAX_STASH_PACKAGE" refer="Num" />
+		<entry name="Money" type="uint" />
+		<entry name="Bull" type="uint" version="117" />
+		<entry name="BaseNum" type="smalluint" version="401" />
+	</struct>
+	<struct name="PetSkillGrid" version="52">
+		<entry name="SkillID" type="smalluint" desc="技能ID" />
+		<entry name="SkillLevel" type="smalluint" desc="技能等级" />
+		<entry name="GridType" type="smalluint" desc="格子类型" />
+	</struct>
+	<macro name="MAX_PET_SKILL_GRID"        value="5" desc="宠物最大技能栏位" />
+	<struct name="PetSkill" version="52" uniqueentryname="false" >
+		<entry name="SkillGridNum" type="tinyuint" desc="技能格子数量" />
+		<entry name="AddSkillGridNum" type="tinyuint" desc="记录使用道具增加的技能格子" />
+		<entry name="Res" type="tinyint" count="2" io="3" />
+		<entry name="SkillGrid" type="PetSkillGrid" refer="SkillGridNum" count="MAX_PET_SKILL_GRID" extendtotable="true" />
+	</struct>
+	<struct name="PetFightAttr" version="148" >
+		<entry name="PhsicAtk" type="smalluint" desc="物理攻击" />
+		<entry name="IceAtk" type="smalluint" desc="魔法攻击" />
+		<entry name="PhsicDef" type="smalluint" desc="物理防御" />
+		<entry name="IceDef" type="smalluint" desc="魔法防御" />
+		<entry name="HitRate" type="smalluint" desc="命中" />
+		<entry name="Flee" type="smalluint" desc="闪避" />
+		<entry name="HeavyHitRate" type="smallint" desc="暴击率" />
+		<entry name="YongQi" type="smallint" desc="勇气值" version="163" />
+		<entry name="DecHurtMul" type="smallint" desc="减伤比率" version="1614" />
+	</struct>
+	<struct name="PetSkillGrid" version="52">
+		<entry name="SkillID" type="smalluint" desc="技能ID" />
+		<entry name="SkillLevel" type="smalluint" desc="技能等级" />
+		<entry name="GridType" type="smalluint" desc="格子类型" />
+	</struct>
+  <macro name="PET_NAME_LEN_CLT"  value="24" />
+	<macrosgroup name="PET_GENIUS_TYPE" >
+			<macro name="PET_GENIUS_D"        value="0" desc="普通资质" />
+			<macro name="PET_GENIUS_C"        value="1" desc="良好资质" />
+			<macro name="PET_GENIUS_B"        value="2" desc="优秀资质" />
+			<macro name="PET_GENIUS_A"        value="3" desc="杰出资质" />
+			<macro name="PET_GENIUS_S"        value="4" desc="完美资质" />
+	</macrosgroup>
+	<macro name="MAX_PET_STRENGTHEN_LEVEL"        value="12" desc="最大强化等级" />
+  <macrosgroup name="GENDER_TYPE" >
+  	<macro name="GENDER_NO"      value="0" />
+  	<macro name="GENDER_MAN"      value="1" />
+  	<macro name="GENDER_WOMAN"      value="2" />
+  </macrosgroup>
+	<macro name="MAX_LOCK_SKILL_GRID" value="3" />
+	<struct name="RolePet"  version="52" uniqueentryname="false" >
+			<entry name="PetID" type="smalluint" />
+			<entry name="TraitID" type="smalluint" version="141" desc="宠物性格" />
+			<entry name="Name" type="string" size="PET_NAME_LEN_CLT" version="141" />
+			<entry name="WID" type="biguint" version="141" desc="宠物唯一标识" />
+			<entry name="Exp" type="uint" version="141" desc="宠物经验值" />
+			<entry name="MaxHP" type="uint" version="141" desc="最大HP" />
+			<entry name="HP" type="uint" version="141" desc="HP" />
+			<entry name="PetDefIdx" type="int" version="141" desc="定义表格索引" />
+			<entry name="LoveVal" type="smalluint"  version="141" desc="忠诚度" />
+			<entry name="Level" type="tinyuint" />
+			<entry name="PetGenius" type="tinyuint" bindmacrosgroup="PET_GENIUS_TYPE"  version="141" desc="资质" />
+			<entry name="BreedNum" type="tinyuint" version="141" desc="繁殖的次数" />
+			<entry name="Hierarchy" type="tinyuint" version="141" desc="第几代" />
+			<entry name="StrengthenLevel" type="tinyuint" version="141" desc="强化等级" />
+			<entry name="PhsicAtkGenius" type="smalluint" version="141" desc="物理攻击资质上限" />
+			<entry name="IceAtkGenius" type="smalluint" version="141" desc="魔法攻击资质上限" />
+	   		<entry name="HPGenius" type="smalluint" version="141" desc="气血资质上限" />
+			<entry name="DefGenius" type="smalluint" version="141" desc="防御资质上限" />
+			<entry name="HitRateGenius" type="smalluint" version="141" desc="命中资质上限" />
+			<entry name="FleeGenius" type="smalluint" version="141" desc="闪避资质上限" />
+			<entry name="StrengthenInfo" type="tinyint" count="MAX_PET_STRENGTHEN_LEVEL" version="141" desc="强化信息" />
+			<entry name="NextStrenLvl" type="smalluint" version="141" desc="下一次能强化的等级|0-不能强化了" />
+			<entry name="PetSkills" type="PetSkill" extendtotable="true" version="141" />
+			<entry name="StatFlag" type="tinyuint" version="141" desc="状态" />
+			<entry name="Gender" type="tinyuint" bindmacrosgroup="GENDER_TYPE" version="141" desc="性别" />
+			<entry name="Res" type="tinyint" count="1" io="3" version="141" />
+			<entry name="FightAttr" type="PetFightAttr" extendtotable="true" version="148" />
+			<entry name="HeavyHitRateMul" type="smallint" version="157" desc="暴击率修正"  />
+			<entry name="Passive" type="tinyint" version="247" desc="模式：0：主动模式；1：被动模式" />
+			<entry name="NativeSkill" type="PetSkillGrid" version="557" extendtotable="true" />
+			<entry name="IceDefGenius" type="smalluint" version="560" desc="魔法防御资质上限" />
+			<entry name="MiscFlag" type="int" version="1156" desc="宠物杂项标记|使用PET_MISC_FLAG宏" />
+			<entry name="LockNum" type="tinyuint" version="1156" desc="锁住技能格子数"/>
+			<entry name="LockIdxs" type="tinyint" count="MAX_LOCK_SKILL_GRID" refer="LockNum" version="1156" desc="锁住技能格子数组"/>
+	</struct>
+	<macro name="MAX_PET_PACKAGE"        value="8" desc="可携带宠物数量上限" />
+	<struct name="PetPackage"  version="52" >
+		<entry name="MaxNum" type="tinyuint" desc="当前最大宠物栏位数"/>
+		<entry name="Num" type="tinyuint" desc="宠物数量"/>
+		<entry name="RolePets" type="RolePet" count="MAX_PET_PACKAGE" refer="Num" desc="宠物数组"/>
+	</struct>
+	<struct name="RoleFairy"  version="132" >
+		<entry name="FairyID" type="smalluint" desc="精灵ID"/>
+		<entry name="FairyLevel" type="smalluint" desc="精灵等级"/>
+		<entry name="WID" type="biguint" desc="全局唯一ID"/>
+		<entry name="Stat" type="tinyint" desc="精灵状态|出征,炼化收回等"/>
+		<entry name="EvolveLeftTM" type="uint" desc="炼化需要的时间"/>
+		<entry name="GridIdx" type="tinyint" version="136" desc="背包格子索引"/>
+		<entry name="Flag" type="uint" version="150" desc="标志位|暂时只用来标示临时精灵等"/>
+		<entry name="Exp" type="int" version="191" desc="精灵已经注入的经验值"/>
+		<entry name="StarLvl" type="int" version="539" desc="精灵星级"/>
+		<entry name="TraitID" type="int" version="539" desc="精灵性格ID"/>
+		<entry name="IsKeyin" type="int" version="539" desc="今天是否产出过卷轴 1是 0否"/>
+	</struct>
+	<macro name="FAIRY_MAX_NUM"         value="10" />
+	<struct name="FairyPackage"  version="134" >
+		<entry name="FairyNum" type="tinyuint" desc="精灵数量"/>
+		<entry name="FairyMaxNum" type="tinyuint" desc="当前精灵最大栏位数"/>
+		<entry name="RoleFairys" type="RoleFairy" count="FAIRY_MAX_NUM" refer="FairyNum"/>
+	</struct>
+  <macro name="QIYUE_MAX_NUM" value="1" desc="单个用户拥有的最大契约数" />
+	<struct name="QiYueInfo" version="134" >
+		<entry name="CurrQiYueID" type="uint" desc="当前使用的契约" />
+		<entry name="QiYueNum" type="uint" desc="已经学过的契约" />
+		<entry name="QiYueMax" type="uint" desc="最大契约个数" />
+		<entry name="QiYueList" type="uint" count="QIYUE_MAX_NUM" desc="已学契约的列表" />
+	</struct>
+	<macrosgroup name="GRID_ITEM_TYPE" >
+  		<macro name="GRID_ITEM_ITEM"            value="0" />
+  		<macro name="GRID_ITEM_ARM"             value="1" />
+  	</macrosgroup>
+  	<struct name="RoleGrid"  version="6" >
+		<entry name="Type" type="tinyint" bindmacrosgroup="GRID_ITEM_TYPE" desc="物品类型"/>
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="GridData" type="RoleGridData" select="Type" />
+	</struct>
+  	<macro name="MAX_SHOPPING_PACKAGE"  value="10" desc="商品的背包,单向存物品"/>
+	<struct name="ShoppingPackage"  version="6" >
+		<entry name="MaxNum" type="smalluint" desc="当前最大格子数"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="RoleGrids" type="RoleGrid" count="MAX_SHOPPING_PACKAGE" refer="Num" desc="物品数组"/>
+	</struct>
+  	<struct name="ItemMapInfo"  version="1424" >
+		<entry name="MapID" type="int" desc="地图ID"/>
+		<entry name="X" type="int" desc="坐标X"/>
+		<entry name="Y" type="int" desc="坐标Y"/>
+	</struct>
+  	<macro name="MAX_SAVE_MAP_NUM" value="5" desc="物品保存的最大坐标数量"/>
+  	<struct name="RoleItem"  version="6" >
+		<entry name="DefID" type="int" desc="物品ID"/>
+		<entry name="DefPos" type="int" io="3" desc="服务器加快查找用的索引"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="GridIdx" type="smallint" desc="背包格子索引,从0开始"/>
+		<entry name="InstFlag" type="int" desc="实例绑定, 安全锁等标志" version="81" />
+		<entry name="ValidEnd" type="int" version="50" desc="消耗道具有效结束时间" />
+		<entry name="WID" type="biguint" desc="物品唯一标识, 请保证此字段和之前的字段与RoleArm完全相同" />
+		<entry name="Flag" type="int" version="52" desc="用于存储需要放在道具中的数据，具体试道具而定" />
+		<entry name="InstVal1" type="int" version="108" desc="存储实例信息,视道具而定,可多次使用的道具UseMaxDur >0 ，则InstVal1为当前剩余使用次数" />
+		<entry name="InstVal2" type="int" version="108" desc="存储实例信息,视道具而定" />
+		<entry name="InstVal3" type="int" version="173" desc="存储实例信息,视道具而定" />
+		<entry name="ItemMapNum" type="tinyint" version="1424" desc="保存的地图位置信息数量" />
+		<entry name="ItemMapInfo" type="ItemMapInfo" version="1424" desc="保存的位置信息" count="MAX_SAVE_MAP_NUM" refer="ItemMapNum" />
+	</struct>
+	<macro name="MAX_EXTEND_STASH_PKG"            value="4" />
+	<struct name="ExtendStashPkg"  version="398" desc="扩充仓库背包" >
+		<entry name="MaxNum" type="smalluint" desc="当前最大格子数"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="RoleItems" type="RoleItem" count="MAX_EXTEND_STASH_PKG" refer="Num" desc="物品数组"/>
+	</struct>
+  	<struct name="ItemMapInfo"  version="1424" >
+		<entry name="MapID" type="int" desc="地图ID"/>
+		<entry name="X" type="int" desc="坐标X"/>
+		<entry name="Y" type="int" desc="坐标Y"/>
+	</struct>
+  	<macro name="MAX_SAVE_MAP_NUM" value="5" desc="物品保存的最大坐标数量"/>
+  	<struct name="RoleItem"  version="6" >
+		<entry name="DefID" type="int" desc="物品ID"/>
+		<entry name="DefPos" type="int" io="3" desc="服务器加快查找用的索引"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="GridIdx" type="smallint" desc="背包格子索引,从0开始"/>
+		<entry name="InstFlag" type="int" desc="实例绑定, 安全锁等标志" version="81" />
+		<entry name="ValidEnd" type="int" version="50" desc="消耗道具有效结束时间" />
+		<entry name="WID" type="biguint" desc="物品唯一标识, 请保证此字段和之前的字段与RoleArm完全相同" />
+		<entry name="Flag" type="int" version="52" desc="用于存储需要放在道具中的数据，具体试道具而定" />
+		<entry name="InstVal1" type="int" version="108" desc="存储实例信息,视道具而定,可多次使用的道具UseMaxDur >0 ，则InstVal1为当前剩余使用次数" />
+		<entry name="InstVal2" type="int" version="108" desc="存储实例信息,视道具而定" />
+		<entry name="InstVal3" type="int" version="173" desc="存储实例信息,视道具而定" />
+		<entry name="ItemMapNum" type="tinyint" version="1424" desc="保存的地图位置信息数量" />
+		<entry name="ItemMapInfo" type="ItemMapInfo" version="1424" desc="保存的位置信息" count="MAX_SAVE_MAP_NUM" refer="ItemMapNum" />
+	</struct>
+	<macro name="MAX_EXTEND_SUND_PKG"            value="6" />
+	<struct name="ExtendSundPkg"  version="398" desc="扩充杂物和材料背包" >
+		<entry name="MaxNum" type="smalluint" desc="当前最大格子数"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="RoleItems" type="RoleItem" count="MAX_EXTEND_SUND_PKG" refer="Num" desc="物品数组"/>
+		<entry name="StuffNum" type="smalluint" desc="用来扩充材料包数量 最多一个" version="401"/>
+	</struct>
+  	<struct name="ItemMapInfo"  version="1424" >
+		<entry name="MapID" type="int" desc="地图ID"/>
+		<entry name="X" type="int" desc="坐标X"/>
+		<entry name="Y" type="int" desc="坐标Y"/>
+	</struct>
+  	<macro name="MAX_SAVE_MAP_NUM" value="5" desc="物品保存的最大坐标数量"/>
+  	<struct name="RoleItem"  version="6" >
+		<entry name="DefID" type="int" desc="物品ID"/>
+		<entry name="DefPos" type="int" io="3" desc="服务器加快查找用的索引"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="GridIdx" type="smallint" desc="背包格子索引,从0开始"/>
+		<entry name="InstFlag" type="int" desc="实例绑定, 安全锁等标志" version="81" />
+		<entry name="ValidEnd" type="int" version="50" desc="消耗道具有效结束时间" />
+		<entry name="WID" type="biguint" desc="物品唯一标识, 请保证此字段和之前的字段与RoleArm完全相同" />
+		<entry name="Flag" type="int" version="52" desc="用于存储需要放在道具中的数据，具体试道具而定" />
+		<entry name="InstVal1" type="int" version="108" desc="存储实例信息,视道具而定,可多次使用的道具UseMaxDur >0 ，则InstVal1为当前剩余使用次数" />
+		<entry name="InstVal2" type="int" version="108" desc="存储实例信息,视道具而定" />
+		<entry name="InstVal3" type="int" version="173" desc="存储实例信息,视道具而定" />
+		<entry name="ItemMapNum" type="tinyint" version="1424" desc="保存的地图位置信息数量" />
+		<entry name="ItemMapInfo" type="ItemMapInfo" version="1424" desc="保存的位置信息" count="MAX_SAVE_MAP_NUM" refer="ItemMapNum" />
+	</struct>
+	<macro name="MAX_SPAR_PKG"            value="8" />
+	<struct name="SparPkg"  version="1232" desc="晶石背包" >
+		<entry name="MaxNum" type="smalluint" desc="当前最大格子数"/>
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="RoleItems" type="RoleItem" count="MAX_SPAR_PKG" refer="Num" desc="物品数组"/>
+	</struct>
+	<struct name="RolePackage"  version="6" >
+		<entry name="AmmPackage" type="AmmPackage" desc="弹药包,已废除"/>
+		<entry name="StuffPackage" type="StuffPackage" desc="材料包"/>
+		<entry name="TaskPackage" type="TaskPackage" desc="任务包"/>
+		<entry name="SundriesPackage" type="SundriesPackage" desc="杂物包"/>
+		<entry name="StashPackage" type="StashPackage" desc="仓库"/>
+		<entry name="PetPackage" type="PetPackage" version="52" desc="宠物背包" />
+		<entry name="FairyPackage" type="FairyPackage" version="134" />
+		<entry name="QiYueInfo" type="QiYueInfo" version="134" />
+		<entry name="ShoppingPackage" type="ShoppingPackage" version="156" desc="商品的背包"/>
+		<entry name="EtStashPkg" type="ExtendStashPkg" version="398" desc="扩充仓库的背包"/>
+		<entry name="EtSundPkg" type="ExtendSundPkg" version="398" desc="扩充杂物的背包"/>
+		<entry name="SparPkg" type="SparPkg" version="1232" desc="晶石背包"/>
+	</struct>
+	<struct name="HoleGem"  version="138">
+		<entry name="HoleColor" type="tinyint"  />
+		<entry name="HoleGemResultIndex" type="tinyuint"  version="441" desc="数值索引"/>
+		<entry name="GemAttrIdx" type="tinyuint" desc="属性ID索引"  version="1130" />
+		<entry name="GemStar" type="tinyuint" desc="星级" version="1130"  />
+		<entry name="HoleGemID" type="uint" />
+		<entry name="GemPower" type="uint" desc="能量点" version="1130" />
+	</struct>
+  	<struct name="AddAttrInst"  version="137" >
+		<entry name="AddAttrID" type="smalluint" desc="关键字定义ID" />
+		<entry name="Val" type="smalluint"  />
+	</struct>
+   	<struct name="ExtendedResult"  version="321">
+		<entry name="ResultID" type="smalluint" />
+		<entry name="Res1" type="tinyint" count="2" io="2" />
+		<entry name="ResultVal1" type="smallint" />
+		<entry name="Res2" type="tinyint" count="2" io="2" />
+		<entry name="ResultVal2" type="int" />
+		<entry name="ResultVal3" type="int" />
+		<entry name="ResultVal4" type="int" />
+	</struct>
+  	<struct name="AddAttrInst"  version="137" >
+		<entry name="AddAttrID" type="smalluint" desc="关键字定义ID" />
+		<entry name="Val" type="smalluint"  />
+	</struct>
+	<struct name="BaseAttrInfo"  version="1143">
+		<entry name="ResultID" type="smalluint" />
+		<entry name="Mul" type="smallint" />
+	</struct>
+	<struct name="ArmStarInfo" version="1183">
+		<entry name="ValIdx" type="tinyuint" desc="强化比率值在表格中的索引"/>
+	</struct>
+  	<struct name="AddAttrInst"  version="137" >
+		<entry name="AddAttrID" type="smalluint" desc="关键字定义ID" />
+		<entry name="Val" type="smalluint"  />
+	</struct>
+	<macro name="MAX_ARM_HOLE"     value="4"  desc="装备最大孔数" />
+  	<macro name="MAX_ARM_ADD_ATTR"     value="5"  desc="装备最大关键字数" />
+	<macro name="MAX_ARM_BASE_ATTR"     value="2"  desc="装备基础浮动数值数量" />
+	<macro name="MAX_ARM_STAR_LEVEL"     value="12" desc="最高装备星级" />
+  	<macro name="MAX_ARM_WASH_ADD_ATTR"     value="4"  desc="装备最大洗练关键字数" />
+	<struct name="RoleArm"  version="6" >
+		<entry name="DefID" type="int" desc="物品ID"/>
+		<entry name="DefPos" type="int" io="3" />
+		<entry name="Num" type="smalluint" desc="物品数量"/>
+		<entry name="GridIdx" type="smallint" desc="背包格子索引,从0开始"/>
+		<entry name="InstFlag" type="int" desc="实例绑定, 安全锁等标志" />
+		<entry name="ValidEnd" type="int" version="8" desc="有效结束时间，用于罩装" />
+		<entry name="WID" type="biguint" desc="物品唯一标识, 请保证此字段和之前的字段与RoleItem完全相同" />
+		<entry name="Dur" type="uint" version="8" desc="装备损耗度" />
+		<entry name="StarLv" type="tinyuint" version="74" desc="品质(星)级别上限: MAX_ARM_STAR_LEVEL" />
+		<entry name="FightLv" type="tinyuint" version="74" desc="战斗力级别上限: MAX_ARM_FIGHT_LEVEL" />
+		<entry name="HoleNum" type="tinyuint" version="74" desc="孔个数上限: MAX_ARM_HOLE" />
+		<entry name="HoleGem" type="HoleGem" count="MAX_ARM_HOLE" refer="HoleNum" version="138" desc="孔中宝石"  />
+		<entry name="AddAttrNum" type="tinyuint" version="137" desc="关键字的个数上限: MAX_ARM_ADD_ATTR" />
+		<entry name="AddAttr" type="AddAttrInst" count="MAX_ARM_ADD_ATTR" refer="AddAttrNum" version="137" desc="装备的关键字"  />
+		<entry name="ExtendedResult" type="ExtendedResult" version="321" desc="附魔效果属性" />
+		<entry name="ExtendedFromDefID" type="int" version="324" desc="被什么道具附魔" />
+		<entry name="KeYinAddAttr" type="AddAttrInst" version="546" desc="精灵刻印属性"  />
+		<entry name="KeYinEnd" type="int" version="546" desc="精灵刻印到期时间" />
+		<entry name="FengYinID" type="biguint" version="942" desc="被谁封印" />
+		<entry name="BaseAttrNum" type="tinyuint" version="1143" desc="基础浮动属性的个数上限: MAX_ARM_BASE_ATTR" />
+		<entry name="BaseAttr" type="BaseAttrInfo" count="MAX_ARM_BASE_ATTR" refer="BaseAttrNum" version="1143" desc="基础属性浮动值"  />
+		<entry name="StarInfo" type="ArmStarInfo" count="MAX_ARM_STAR_LEVEL" refer="StarLv" version="1183" desc="强化数值"  />
+		<entry name="WashAttrNum" type="tinyuint" version="1226" desc="关键字的个数上限: MAX_ARM_ADD_ATTR" />
+		<entry name="WashAddAttr" type="AddAttrInst" count="MAX_ARM_WASH_ADD_ATTR" refer="WashAttrNum" version="1226" desc="洗练关键字"  />
+	</struct>
+	<struct name="AmmMap"  version="8" >
+		<entry name="AmmLeft" type="uint" />
+		<entry name="AmmRight" type="uint" />
+		<entry name="AmmShoulder" type="uint" />
+	</struct>
+	<struct name="RoleWear"  version="8" >
+		<entry name="ArmNum" type="tinyuint" desc="装备数量"/>
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="RoleArms" type="RoleArm" count="MAX_WEAR" refer="ArmNum" desc="装备数组"/>
+		<entry name="AmmMap" type="AmmMap" />
+	</struct>
+
+	<struct name="ZoneGetRoleItemListRes" version="31" >
+		<entry name="ZoneRolePackage" type="RolePackage" desc="角色背包" />
+		<entry name="ZoneRoleWear" type="RoleWear" desc="角色已穿戴的装备" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获得技能信息-->
+			<s:complexType name="GetSkillInfoReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetSkillInfoRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEGETROLESKILLINFORES-->
+					<!--
+mate name:ZoneGetRoleSkillInfoRes
+	<struct name="RuneInfo"  version="1188">
+		<entry name="SkillID" type="int" desc="技能ID"/>
+		<entry name="RuneItemID" type="int" desc="符文物品ID" />
+	</struct>
+	<macrosgroup name="RUNE_TYPE">
+		<macro name="RUNE_EMPTY"  value="0" />
+		<macro name="RUNE_RED"  value="1" desc="猩红" />
+		<macro name="RUNE_BLUE"  value="2" desc="海洋" />
+		<macro name="RUNE_YELLOW"  value="3" desc="翡翠" />
+		<macro name="RUNE_TYPE_NUM"  value="4" desc="符文颜色数量" />
+	</macrosgroup>
+	<struct name="SkillData"  version="1">
+		<entry name="SkillID" type="smalluint" />
+		<entry name="SkillLevel" type="tinyuint" />
+		<entry name="Res" type="tinyuint" io="3" />
+		<entry name="CollectNum" type="int" desc="积累数" />
+		<entry name="CoolLeft" type="int" desc="冷却剩余时间" version="28" />
+		<entry name="RuneSlotEnabled" type="tinyint" version="555" desc="符文槽是否可用" />
+		<entry name="RuneSlot" type="tinyint" bindmacrosgroup="RUNE_TYPE" version="555" desc="当前符文颜色类型" />
+		<entry name="RuneItemID" type="int" version="555" desc="当前符文物品ID" />
+		<entry name="RuneNum" type="int" version="1188" desc="符文镶嵌数" />
+		<entry name="RuneInfo" type="RuneInfo" version="1188" count="RUNE_TYPE_NUM" refer="RuneNum" desc="符文技能ID和等级,包括未镶嵌" />
+	</struct>
+  <macro name="MAX_ROLE_SKILL"  value="48" />
+	<struct name="SkillInfo"  version="1" >
+		<entry name="SkillNum" type="tinyuint" />
+		<entry name="SkillList" type="SkillData" count="MAX_ROLE_SKILL" refer="SkillNum" />  
+	</struct>
+
+	<struct name="ZoneGetRoleSkillInfoRes" version="31" >
+		<entry name="RoleSkillInfo" type="SkillInfo "/>
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--封角色-->
+			<s:complexType name="BlockRoleReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--时间-->
+					<s:element minOccurs="0" maxOccurs="1" name="Time" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="BlockRoleRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEBLOCKPLAYERRES-->
+					<!--
+mate name:ZoneBlockPlayerRes
+	<macro name="MAXROLENAME" value="32" />
+	<struct name="ZoneBlockPlayerRes" version="31" >
+		<entry name="Type" type="tinyint" desc="0 封锁角色,1 解封锁角色"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--禁言角色-->
+			<s:complexType name="SilenceRoleReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--时间-->
+					<s:element minOccurs="0" maxOccurs="1" name="Time" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="SilenceRoleRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONESILENCEROLERES-->
+					<!--
+mate name:ZoneSilenceRoleRes
+	<macro name="MAXROLENAME" value="32" />
+	<struct name="ZoneSilenceRoleRes" version="31" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--改变角色地图和坐标-->
+			<s:complexType name="ChgRolePosReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--地图ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="MapID" type="s:int"/>
+					<!--坐标x-->
+					<s:element minOccurs="0" maxOccurs="1" name="X" type="s:int"/>
+					<!--坐标Y-->
+					<s:element minOccurs="0" maxOccurs="1" name="Y" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ChgRolePosRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONECHGROLEPOSRES-->
+					<!--
+mate name:ZoneChgRolePosRes
+	<macro name="MAXROLENAME" value="32" />
+	<struct name="ZoneChgRolePosRes" version="112" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--查找邮件-->
+			<s:complexType name="FindFirstMaillistReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindFirstMaillistRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--xml结构帐号信息| ZONEGETMAILLISTRES-->
+					<!--
+mate name:ZoneGetMailListRes
+  <macro name="ROLE_NAME_LEN_SAVE"  value="24" />
+  <macro name="ROLE_NAME_LEN_SAVE"  value="24" />
+  <macro name="NAME_LEN" value="32" />
+	<struct name="MailHead"  version="63" >
+		<entry name="WID" type="biguint" desc="邮件全局唯一ID" />
+		<entry name="Recv" type="string" size="ROLE_NAME_LEN_SAVE" desc="收件人" />
+		<entry name="Send" type="string" size="ROLE_NAME_LEN_SAVE" desc="发件人" />
+		<entry name="Time" type="int" desc="发件时间" />
+		<entry name="Title" type="string" size="NAME_LEN" desc="标题" />
+		<entry name="Flags" type="int" desc="按位取值的标志，请见MAIL_FLAG宏定义" />
+	</struct>
+	<macro name="MAIL_MAX_NUM"	value="70" desc="最多的邮件数量" />
+	<struct name="ZoneGetMailListRes" version="94" >
+		<entry name="ResNum" type="int" />
+		<entry name="MailHeads" type="MailHead" count="MAIL_MAX_NUM" refer="ResNum" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--查找邮件-->
+			<s:complexType name="FindNextMaillistReq">
+				<s:sequence>
+					<!--查询句柄ID|通过xxFirst获得-->
+					<s:element minOccurs="0" maxOccurs="1" name="FindHandleID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="FindNextMaillistRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEGETMAILLISTRES-->
+					<!--
+mate name:ZoneGetMailListRes
+  <macro name="ROLE_NAME_LEN_SAVE"  value="24" />
+  <macro name="ROLE_NAME_LEN_SAVE"  value="24" />
+  <macro name="NAME_LEN" value="32" />
+	<struct name="MailHead"  version="63" >
+		<entry name="WID" type="biguint" desc="邮件全局唯一ID" />
+		<entry name="Recv" type="string" size="ROLE_NAME_LEN_SAVE" desc="收件人" />
+		<entry name="Send" type="string" size="ROLE_NAME_LEN_SAVE" desc="发件人" />
+		<entry name="Time" type="int" desc="发件时间" />
+		<entry name="Title" type="string" size="NAME_LEN" desc="标题" />
+		<entry name="Flags" type="int" desc="按位取值的标志，请见MAIL_FLAG宏定义" />
+	</struct>
+	<macro name="MAIL_MAX_NUM"	value="70" desc="最多的邮件数量" />
+	<struct name="ZoneGetMailListRes" version="94" >
+		<entry name="ResNum" type="int" />
+		<entry name="MailHeads" type="MailHead" count="MAIL_MAX_NUM" refer="ResNum" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获取坐骑信息-->
+			<s:complexType name="GetRideInfoReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--角色名-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleName" type="s:string"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetRideInfoRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEGETROLERIDEINFORES-->
+					<!--
+mate name:ZoneGetRoleRideInfoRes
+        <struct name="RideGrid"  version="49" >
+		<entry name="ItemID" type="uint" />
+		<entry name="Endtime" type="int"  />
+		<entry name="Level" version="131" type="tinyuint"  />
+		<entry name="Res" type="tinyuint"  version="131"  count="3" io="3" />
+	</struct>
+  	<macro name="MAX_RIDE_GRID"       value="12" />
+	<struct name="RoleRideList"  version="49" >
+		<entry name="Num" type="smalluint" />
+		<entry name="MaxNum" type="smalluint" />
+		<entry name="RideGrids" type="RideGrid" count="MAX_RIDE_GRID" refer="Num" />
+	</struct>
+
+	<struct name="ZoneGetRoleRideInfoRes" version="128" >
+		<entry name="RoleRideInfo" type="RoleRideList "/>
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获取公告信息-->
+			<s:complexType name="GetBulletinListReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetBulletinListRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息| ZONEGETBULLETINLISTRES-->
+					<!--
+mate name:ZoneGetBulletinListRes
+	<macro name="BULLETIN_MSG_LEN"  value="512" desc="一条公告的长度" />
+	<struct name="BulletinEntry"  version="112" >
+		<entry name="ID" type="int" desc="公告唯一ID" />
+		<entry name="Text" type="string" size="BULLETIN_MSG_LEN" desc="公告文本内容" />
+		<entry name="RollInterval" type="int" desc="滚动显示间隔，单位：秒" />
+		<entry name="IconID" type="int" desc="Type为2时有效" version="1124" />
+		<entry name="Type" type="int" desc="0-正常公告 1-强制消息框 2-强制图标" version="1124" />
+		<entry name="TStart" type="uint" desc="开始时间" version="1135" />
+	</struct>	
+	<struct name="SSBulletin" version="112" >
+		<entry name="Core" type="BulletinEntry" />
+		<entry name="ActiveTime" type="int" />
+		<entry name="ActiveTimeStart" type="int" version="639"/>
+	</struct>
+	<macro name="MAX_BULLETIN_NUM"  value="20" desc="一个服务器中公告的最大数量" />
+	<struct name="ZoneGetBulletinListRes" version="112" >
+		<entry name="Num" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="BulletinArray" type="SSBulletin" count="MAX_BULLETIN_NUM" refer="Num" />
+	</struct>
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--添加一条公告信息到一个服务器-->
+			<s:complexType name="AddBulletinReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--公告文本-->
+					<s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string"/>
+					<!--滚动间隔时间-->
+					<s:element minOccurs="0" maxOccurs="1" name="RollInterval" type="s:int"/>
+					<!--活跃时间-->
+					<s:element minOccurs="0" maxOccurs="1" name="ActiveTime" type="s:int"/>
+					<!--0表示服务器收到消息后马上显示公告-->
+					<s:element minOccurs="0" maxOccurs="1" name="ActiveTimeStart" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="AddBulletinRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--公告ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="ID" type="s:int"/>
+				</s:sequence>
+			</s:complexType>
+			<!--添加一条公告信息到所有服务器-->
+			<s:complexType name="AddBulletinToAllReq">
+				<s:sequence>
+					<!--公告文本-->
+					<s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string"/>
+					<!--滚动间隔时间-->
+					<s:element minOccurs="0" maxOccurs="1" name="RollInterval" type="s:int"/>
+					<!--活跃时间-->
+					<s:element minOccurs="0" maxOccurs="1" name="ActiveTime" type="s:int"/>
+					<!--0表示服务器收到消息后马上显示公告-->
+					<s:element minOccurs="0" maxOccurs="1" name="ActiveTimeStart" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="AddBulletinToAllRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--删除一条公告信息从一个服务器-->
+			<s:complexType name="DelBulletinReq">
+				<s:sequence>
+					<!--大区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int"/>
+					<!--被删除的公告ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="ID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="DelBulletinRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--删除一条公告信息从所有的服务器-->
+			<s:complexType name="DelBulletinFromAllReq">
+				<s:sequence>
+					<!--被删除的公告ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="ID" type="s:int"/>
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="DelBulletinFromAllRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--服务器reload-->
+			<s:complexType name="ReloadServerReq">
+				<s:sequence>
+
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int" />
+
+					<!--服ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="WorldID" type="s:int" />
+
+					<!--超时-->
+					<s:element minOccurs="1" maxOccurs="1" name="TimeOut" type="s:int" default="0"/>
+				</s:sequence>
+			</s:complexType>
+
+			<s:complexType name="ReloadServerRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+
+					<!--xml结构信息|ZoneReLoadRes-->
+					<!--
+
+mate name:ZoneReloadServerRes
+
+
+	<struct name="ZoneReloadServerRes" version="1707" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string" />
+
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	<message name="FindAccountByNameFirstIn">
+		<part name="FindAccountByNameFirstReq" type="s0:FindAccountByNameFirstReq"/>
+	</message>
+	<message name="FindAccountByNameFirstOut">
+		<part name="FindAccountByNameFirstRes" type="s0:FindAccountByNameFirstRes"/>
+	</message>
+	<message name="FindAccountByNameNextIn">
+		<part name="FindAccountByNameNextReq" type="s0:FindAccountByNameNextReq"/>
+	</message>
+	<message name="FindAccountByNameNextOut">
+		<part name="FindAccountByNameNextRes" type="s0:FindAccountByNameNextRes"/>
+	</message>
+	<message name="FindHandleCloseIn">
+		<part name="FindHandleCloseReq" type="s0:FindHandleCloseReq"/>
+	</message>
+	<message name="FindHandleCloseOut">
+		<part name="FindHandleCloseRes" type="s0:FindHandleCloseRes"/>
+	</message>
+	<message name="FindAccountByRoleFirstIn">
+		<part name="FindAccountByRoleFirstReq" type="s0:FindAccountByRoleFirstReq"/>
+	</message>
+	<message name="FindAccountByRoleFirstOut">
+		<part name="FindAccountByRoleFirstRes" type="s0:FindAccountByRoleFirstRes"/>
+	</message>
+	<message name="FindAccountByRoleNextIn">
+		<part name="FindAccountByRoleNextReq" type="s0:FindAccountByRoleNextReq"/>
+	</message>
+	<message name="FindAccountByRoleNextOut">
+		<part name="FindAccountByRoleNextRes" type="s0:FindAccountByRoleNextRes"/>
+	</message>
+	<message name="GetRegionWorldInfoIn">
+		<part name="GetRegionWorldInfoReq" type="s0:GetRegionWorldInfoReq"/>
+	</message>
+	<message name="GetRegionWorldInfoOut">
+		<part name="GetRegionWorldInfoRes" type="s0:GetRegionWorldInfoRes"/>
+	</message>
+	<message name="FindRegionAccountByNameRoleFirstIn">
+		<part name="FindRegionAccountByNameRoleFirstReq" type="s0:FindRegionAccountByNameRoleFirstReq"/>
+	</message>
+	<message name="FindRegionAccountByNameRoleFirstOut">
+		<part name="FindRegionAccountByNameRoleFirstRes" type="s0:FindRegionAccountByNameRoleFirstRes"/>
+	</message>
+	<message name="FindRegionAccountByNameRoleNextIn">
+		<part name="FindRegionAccountByNameRoleNextReq" type="s0:FindRegionAccountByNameRoleNextReq"/>
+	</message>
+	<message name="FindRegionAccountByNameRoleNextOut">
+		<part name="FindRegionAccountByNameRoleNextRes" type="s0:FindRegionAccountByNameRoleNextRes"/>
+	</message>
+	<message name="KickOffByLoginNameIn">
+		<part name="KickOffByLoginNameReq" type="s0:KickOffByLoginNameReq"/>
+	</message>
+	<message name="KickOffByLoginNameOut">
+		<part name="KickOffByLoginNameRes" type="s0:KickOffByLoginNameRes"/>
+	</message>
+	<message name="SetAccountFreezeIn">
+		<part name="SetAccountFreezeReq" type="s0:SetAccountFreezeReq"/>
+	</message>
+	<message name="SetAccountFreezeOut">
+		<part name="SetAccountFreezeRes" type="s0:SetAccountFreezeRes"/>
+	</message>
+	<message name="SetAccountSilenceIn">
+		<part name="SetAccountSilenceReq" type="s0:SetAccountSilenceReq"/>
+	</message>
+	<message name="SetAccountSilenceOut">
+		<part name="SetAccountSilenceRes" type="s0:SetAccountSilenceRes"/>
+	</message>
+	<message name="SetAccSafelockIn">
+		<part name="SetAccSafelockReq" type="s0:SetAccSafelockReq"/>
+	</message>
+	<message name="SetAccSafelockOut">
+		<part name="SetAccSafelockRes" type="s0:SetAccSafelockRes"/>
+	</message>
+	<message name="GetRoleListIn">
+		<part name="GetRoleListReq" type="s0:GetRoleListReq"/>
+	</message>
+	<message name="GetRoleListOut">
+		<part name="GetRoleListRes" type="s0:GetRoleListRes"/>
+	</message>
+	<message name="FindFirstRoleByRolenameIn">
+		<part name="FindFirstRoleByRolenameReq" type="s0:FindFirstRoleByRolenameReq"/>
+	</message>
+	<message name="FindFirstRoleByRolenameOut">
+		<part name="FindFirstRoleByRolenameRes" type="s0:FindFirstRoleByRolenameRes"/>
+	</message>
+	<message name="FindNextRoleIn">
+		<part name="FindNextRoleReq" type="s0:FindNextRoleReq"/>
+	</message>
+	<message name="FindNextRoleOut">
+		<part name="FindNextRoleRes" type="s0:FindNextRoleRes"/>
+	</message>
+	<message name="GetRoleInfoIn">
+		<part name="GetRoleInfoReq" type="s0:GetRoleInfoReq"/>
+	</message>
+	<message name="GetRoleInfoOut">
+		<part name="GetRoleInfoRes" type="s0:GetRoleInfoRes"/>
+	</message>
+	<message name="GetItemInfoIn">
+		<part name="GetItemInfoReq" type="s0:GetItemInfoReq"/>
+	</message>
+	<message name="GetItemInfoOut">
+		<part name="GetItemInfoRes" type="s0:GetItemInfoRes"/>
+	</message>
+	<message name="GetSkillInfoIn">
+		<part name="GetSkillInfoReq" type="s0:GetSkillInfoReq"/>
+	</message>
+	<message name="GetSkillInfoOut">
+		<part name="GetSkillInfoRes" type="s0:GetSkillInfoRes"/>
+	</message>
+	<message name="BlockRoleIn">
+		<part name="BlockRoleReq" type="s0:BlockRoleReq"/>
+	</message>
+	<message name="BlockRoleOut">
+		<part name="BlockRoleRes" type="s0:BlockRoleRes"/>
+	</message>
+	<message name="SilenceRoleIn">
+		<part name="SilenceRoleReq" type="s0:SilenceRoleReq"/>
+	</message>
+	<message name="SilenceRoleOut">
+		<part name="SilenceRoleRes" type="s0:SilenceRoleRes"/>
+	</message>
+	<message name="ChgRolePosIn">
+		<part name="ChgRolePosReq" type="s0:ChgRolePosReq"/>
+	</message>
+	<message name="ChgRolePosOut">
+		<part name="ChgRolePosRes" type="s0:ChgRolePosRes"/>
+	</message>
+	<message name="FindFirstMaillistIn">
+		<part name="FindFirstMaillistReq" type="s0:FindFirstMaillistReq"/>
+	</message>
+	<message name="FindFirstMaillistOut">
+		<part name="FindFirstMaillistRes" type="s0:FindFirstMaillistRes"/>
+	</message>
+	<message name="FindNextMaillistIn">
+		<part name="FindNextMaillistReq" type="s0:FindNextMaillistReq"/>
+	</message>
+	<message name="FindNextMaillistOut">
+		<part name="FindNextMaillistRes" type="s0:FindNextMaillistRes"/>
+	</message>
+	<message name="GetRideInfoIn">
+		<part name="GetRideInfoReq" type="s0:GetRideInfoReq"/>
+	</message>
+	<message name="GetRideInfoOut">
+		<part name="GetRideInfoRes" type="s0:GetRideInfoRes"/>
+	</message>
+	<message name="GetBulletinListIn">
+		<part name="GetBulletinListReq" type="s0:GetBulletinListReq"/>
+	</message>
+	<message name="GetBulletinListOut">
+		<part name="GetBulletinListRes" type="s0:GetBulletinListRes"/>
+	</message>
+	<message name="AddBulletinIn">
+		<part name="AddBulletinReq" type="s0:AddBulletinReq"/>
+	</message>
+	<message name="AddBulletinOut">
+		<part name="AddBulletinRes" type="s0:AddBulletinRes"/>
+	</message>
+	<message name="AddBulletinToAllIn">
+		<part name="AddBulletinToAllReq" type="s0:AddBulletinToAllReq"/>
+	</message>
+	<message name="AddBulletinToAllOut">
+		<part name="AddBulletinToAllRes" type="s0:AddBulletinToAllRes"/>
+	</message>
+	<message name="DelBulletinIn">
+		<part name="DelBulletinReq" type="s0:DelBulletinReq"/>
+	</message>
+	<message name="DelBulletinOut">
+		<part name="DelBulletinRes" type="s0:DelBulletinRes"/>
+	</message>
+	<message name="DelBulletinFromAllIn">
+		<part name="DelBulletinFromAllReq" type="s0:DelBulletinFromAllReq"/>
+	</message>
+	<message name="DelBulletinFromAllOut">
+		<part name="DelBulletinFromAllRes" type="s0:DelBulletinFromAllRes"/>	
+	</message>
+	<!--服务器reload-->
+	<message name="ReloadServerIn">
+		<part name="ReloadServerReq" type="s0:ReloadServerReq"/>
+	</message>
+	<message name="ReloadServerOut">
+		<part name="ReloadServerRes" type="s0:ReloadServerRes"/>
+	</message>
+	<portType name="CsServiceSoap">
+		<!--通过帐号名查询帐号|第一次调用-->
+		<operation name="FindAccountByNameFirst">
+			<input message="s0:FindAccountByNameFirstIn"/>
+			<output message="s0:FindAccountByNameFirstOut"/>
+		</operation>
+		<!--服务器reload-->
+		<operation name="ReloadServer">
+			<input message="s0:ReloadServerIn"/>
+			<output message="s0:ReloadServerOut"/>
+		</operation>
+		<!--通过帐号名查询帐号|后续调用-->
+		<operation name="FindAccountByNameNext">
+			<input message="s0:FindAccountByNameNextIn"/>
+			<output message="s0:FindAccountByNameNextOut"/>
+		</operation>
+		<!--通过帐号名查询帐号|关闭句柄-->
+		<operation name="FindHandleClose">
+			<input message="s0:FindHandleCloseIn"/>
+			<output message="s0:FindHandleCloseOut"/>
+		</operation>
+		<!--通过帐号名查询帐号|第一次调用-->
+		<operation name="FindAccountByRoleFirst">
+			<input message="s0:FindAccountByRoleFirstIn"/>
+			<output message="s0:FindAccountByRoleFirstOut"/>
+		</operation>
+		<!--通过帐号名查询帐号|后续调用-->
+		<operation name="FindAccountByRoleNext">
+			<input message="s0:FindAccountByRoleNextIn"/>
+			<output message="s0:FindAccountByRoleNextOut"/>
+		</operation>
+		<!--获取大区各服务器信息-->
+		<operation name="GetRegionWorldInfo">
+			<input message="s0:GetRegionWorldInfoIn"/>
+			<output message="s0:GetRegionWorldInfoOut"/>
+		</operation>
+		<!--通过大区和帐号名查询帐号|第一次调用-->
+		<operation name="FindRegionAccountByNameRoleFirst">
+			<input message="s0:FindRegionAccountByNameRoleFirstIn"/>
+			<output message="s0:FindRegionAccountByNameRoleFirstOut"/>
+		</operation>
+		<!--通过大区和帐号名查询帐号|后续调用-->
+		<operation name="FindRegionAccountByNameRoleNext">
+			<input message="s0:FindRegionAccountByNameRoleNextIn"/>
+			<output message="s0:FindRegionAccountByNameRoleNextOut"/>
+		</operation>
+		<!--通过帐号名踢角色-->
+		<operation name="KickOffByLoginName">
+			<input message="s0:KickOffByLoginNameIn"/>
+			<output message="s0:KickOffByLoginNameOut"/>
+		</operation>
+		<!--封/解封帐号-->
+		<operation name="SetAccountFreeze">
+			<input message="s0:SetAccountFreezeIn"/>
+			<output message="s0:SetAccountFreezeOut"/>
+		</operation>
+		<!--禁言/解禁帐号-->
+		<operation name="SetAccountSilence">
+			<input message="s0:SetAccountSilenceIn"/>
+			<output message="s0:SetAccountSilenceOut"/>
+		</operation>
+		<!--设置帐号安全锁-->
+		<operation name="SetAccSafelock">
+			<input message="s0:SetAccSafelockIn"/>
+			<output message="s0:SetAccSafelockOut"/>
+		</operation>
+		<!--获取角色列表-->
+		<operation name="GetRoleList">
+			<input message="s0:GetRoleListIn"/>
+			<output message="s0:GetRoleListOut"/>
+		</operation>
+		<!--查询角色-->
+		<operation name="FindFirstRoleByRolename">
+			<input message="s0:FindFirstRoleByRolenameIn"/>
+			<output message="s0:FindFirstRoleByRolenameOut"/>
+		</operation>
+		<!--查询角色-->
+		<operation name="FindNextRole">
+			<input message="s0:FindNextRoleIn"/>
+			<output message="s0:FindNextRoleOut"/>
+		</operation>
+		<!--获取角色信息-->
+		<operation name="GetRoleInfo">
+			<input message="s0:GetRoleInfoIn"/>
+			<output message="s0:GetRoleInfoOut"/>
+		</operation>
+		<!--获取物品信息-->
+		<operation name="GetItemInfo">
+			<input message="s0:GetItemInfoIn"/>
+			<output message="s0:GetItemInfoOut"/>
+		</operation>
+		<!--获得技能信息-->
+		<operation name="GetSkillInfo">
+			<input message="s0:GetSkillInfoIn"/>
+			<output message="s0:GetSkillInfoOut"/>
+		</operation>
+		<!--封角色-->
+		<operation name="BlockRole">
+			<input message="s0:BlockRoleIn"/>
+			<output message="s0:BlockRoleOut"/>
+		</operation>
+		<!--禁言角色-->
+		<operation name="SilenceRole">
+			<input message="s0:SilenceRoleIn"/>
+			<output message="s0:SilenceRoleOut"/>
+		</operation>
+		<!--改变角色地图和坐标-->
+		<operation name="ChgRolePos">
+			<input message="s0:ChgRolePosIn"/>
+			<output message="s0:ChgRolePosOut"/>
+		</operation>
+		<!--查找邮件-->
+		<operation name="FindFirstMaillist">
+			<input message="s0:FindFirstMaillistIn"/>
+			<output message="s0:FindFirstMaillistOut"/>
+		</operation>
+		<!--查找邮件-->
+		<operation name="FindNextMaillist">
+			<input message="s0:FindNextMaillistIn"/>
+			<output message="s0:FindNextMaillistOut"/>
+		</operation>
+		<!--获取坐骑信息-->
+		<operation name="GetRideInfo">
+			<input message="s0:GetRideInfoIn"/>
+			<output message="s0:GetRideInfoOut"/>
+		</operation>
+		<!--获取公告信息-->
+		<operation name="GetBulletinList">
+			<input message="s0:GetBulletinListIn"/>
+			<output message="s0:GetBulletinListOut"/>
+		</operation>
+		<!--添加一条公告信息到一个服务器-->
+		<operation name="AddBulletin">
+			<input message="s0:AddBulletinIn"/>
+			<output message="s0:AddBulletinOut"/>
+		</operation>
+		<!--添加一条公告信息到所有服务器-->
+		<operation name="AddBulletinToAll">
+			<input message="s0:AddBulletinToAllIn"/>
+			<output message="s0:AddBulletinToAllOut"/>
+		</operation>
+		<!--删除一条公告信息从一个服务器-->
+		<operation name="DelBulletin">
+			<input message="s0:DelBulletinIn"/>
+			<output message="s0:DelBulletinOut"/>
+		</operation>
+		<!--删除一条公告信息从所有的服务器-->
+		<operation name="DelBulletinFromAll">
+			<input message="s0:DelBulletinFromAllIn"/>
+			<output message="s0:DelBulletinFromAllOut"/>
+		</operation>
+	</portType>
+	<binding name="CsServiceSoap" type="s0:CsServiceSoap">
+		<wsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!--通过帐号名查询帐号|第一次调用-->
+		<operation name="FindAccountByNameFirst">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindAccountByNameFirst" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--通过帐号名查询帐号|后续调用-->
+		<operation name="FindAccountByNameNext">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindAccountByNameNext" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--通过帐号名查询帐号|关闭句柄-->
+		<operation name="FindHandleClose">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindHandleClose" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--通过帐号名查询帐号|第一次调用-->
+		<operation name="FindAccountByRoleFirst">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindAccountByRoleFirst" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--通过帐号名查询帐号|后续调用-->
+		<operation name="FindAccountByRoleNext">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindAccountByRoleNext" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取大区各服务器信息-->
+		<operation name="GetRegionWorldInfo">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/GetRegionWorldInfo" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--通过大区和帐号名查询帐号|第一次调用-->
+		<operation name="FindRegionAccountByNameRoleFirst">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindRegionAccountByNameRoleFirst" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--通过大区和帐号名查询帐号|后续调用-->
+		<operation name="FindRegionAccountByNameRoleNext">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindRegionAccountByNameRoleNext" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--通过帐号名踢角色-->
+		<operation name="KickOffByLoginName">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/KickOffByLoginName" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--封/解封帐号-->
+		<operation name="SetAccountFreeze">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/SetAccountFreeze" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--禁言/解禁帐号-->
+		<operation name="SetAccountSilence">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/SetAccountSilence" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--设置帐号安全锁-->
+		<operation name="SetAccSafelock">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/SetAccSafelock" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取角色列表-->
+		<operation name="GetRoleList">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/GetRoleList" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--查询角色-->
+		<operation name="FindFirstRoleByRolename">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindFirstRoleByRolename" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--查询角色-->
+		<operation name="FindNextRole">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindNextRole" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取角色信息-->
+		<operation name="GetRoleInfo">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/GetRoleInfo" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取物品信息-->
+		<operation name="GetItemInfo">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/GetItemInfo" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获得技能信息-->
+		<operation name="GetSkillInfo">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/GetSkillInfo" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--封角色-->
+		<operation name="BlockRole">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/BlockRole" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--禁言角色-->
+		<operation name="SilenceRole">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/SilenceRole" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--改变角色地图和坐标-->
+		<operation name="ChgRolePos">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/ChgRolePos" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--查找邮件-->
+		<operation name="FindFirstMaillist">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindFirstMaillist" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--查找邮件-->
+		<operation name="FindNextMaillist">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/FindNextMaillist" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取坐骑信息-->
+		<operation name="GetRideInfo">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/GetRideInfo" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取公告信息-->
+		<operation name="GetBulletinList">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/GetBulletinList" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--添加一条公告信息到一个服务器-->
+		<operation name="AddBulletin">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/AddBulletin" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--添加一条公告信息到所有服务器-->
+		<operation name="AddBulletinToAll">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/AddBulletinToAll" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--删除一条公告信息从一个服务器-->
+		<operation name="DelBulletin">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/DelBulletin" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--删除一条公告信息从所有的服务器-->
+		<operation name="DelBulletinFromAll">
+			<wsoap:operation soapAction="http://www.ljy0.com/CsService/DelBulletinFromAll" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--服务器reload-->
+		<operation name="ReloadServer">
+			<wsoap:operation soapAction="http://www.ljy0.com/cs_service/ReloadServer" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="CsService">
+		<documentation>LJY CS Service </documentation>
+		<port name="CsService" binding="s0:CsServiceSoap">
+			<wsoap:address location="http://192.168.0.57:800/cgi-bin/cs_service"/>
+		</port>
+	</service>
+	<!--通过帐号名查询帐号|关闭句柄-->
+	<!--通过帐号名查询帐号|第一次调用-->
+	<!--通过帐号名查询帐号|后续调用-->
+	<!--获取大区各服务器信息-->
+	<!--通过大区和帐号名查询帐号|第一次调用-->
+	<!--通过大区和帐号名查询帐号|后续调用-->
+	<!--通过帐号名踢角色-->
+	<!--封/解封帐号-->
+	<!--禁言/解禁帐号-->
+	<!--设置帐号安全锁-->
+	<!--获取角色列表-->
+	<!--查询角色-->
+	<!--查询角色-->
+	<!--获取角色信息-->
+	<!--获取物品信息-->
+	<!--获得技能信息-->
+	<!--封角色-->
+	<!--禁言角色-->
+	<!--改变角色地图和坐标-->
+	<!--查找邮件-->
+	<!--查找邮件-->
+	<!--获取坐骑信息-->
+	<!--获取公告信息-->
+	<!--添加一条公告信息到一个服务器-->
+	<!--添加一条公告信息到所有服务器-->
+	<!--删除一条公告信息从一个服务器-->
+	<!--删除一条公告信息从所有的服务器-->
+</definitions>

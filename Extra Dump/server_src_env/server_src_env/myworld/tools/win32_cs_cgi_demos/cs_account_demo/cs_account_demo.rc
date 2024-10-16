@@ -1,0 +1,207 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ACCOUNT_QUERY DIALOGEX 0, 0, 270, 319
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "帐号查询"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_LOOKUP_INPUT,8,11,152,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "全局查询",IDC_LOOKUP,166,10,46,14,BS_FLAT
+    CONTROL         "",IDC_ACCOUNT_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,1,49,268,256
+    CONTROL         "",IDC_STATUS_BAR,"msctls_statusbar32",0x0,1,306,268,12,WS_EX_NOPARENTNOTIFY | WS_EX_TRANSPARENT | WS_EX_MDICHILD
+    GROUPBOX        "查询：",IDC_STATIC,1,0,268,46
+    LTEXT           "说明：查询字符串支持MySQL通配符，`%`表示0～多个任意字符；`_`表示一个任意字符。",IDC_STATIC,8,28,253,16
+    PUSHBUTTON      "分区查询",IDC_LIMITED_LOOKUP,216,10,46,14,BS_FLAT
+END
+
+IDD_INPUT_BOX DIALOGEX 0, 0, 194, 15
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "%s"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,113,1,37,13,BS_FLAT
+    PUSHBUTTON      "取消",IDCANCEL,153,1,40,13,BS_FLAT
+    EDITTEXT        IDC_INPUT,1,1,107,13,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+END
+
+IDD_DEMOE_SHOW DIALOGEX 0, 0, 228, 237
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | DS_CENTERMOUSE | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "CS CGI 接口演示"
+MENU IDR_DEMO_SHOW_MENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_REGION_ID,28,5,21,12,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_WORLD_ID,91,4,20,12,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_ROLE_NAME,152,4,73,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEMO_SHOW_OUTPUT,0,25,228,212,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
+    LTEXT           "大区：",IDC_STATIC,1,7,25,8
+    LTEXT           "角色名：",IDC_STATIC,118,7,33,8
+    LTEXT           "服务器：",IDC_STATIC,57,7,33,8
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,0,0,227,1,WS_EX_STATICEDGE
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,0,21,227,1,WS_EX_STATICEDGE
+END
+
+IDD_PERFORMANCE_TEST DIALOGEX 0, 0, 178, 289
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "多线程性能测试"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_REGION_ID,40,11,25,12,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_ACCOUNT_NAME,105,11,67,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_THREAD_NUM,40,29,62,12,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_LOOP_NUM,40,44,62,12,ES_CENTER | ES_AUTOHSCROLL | ES_NUMBER
+    DEFPUSHBUTTON   "测试开始",IDC_START,123,43,50,14,BS_FLAT
+    CONTROL         "",IDC_THREAD_SHOW,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,0,68,178,189
+    EDITTEXT        IDC_TOTAL_TIME,60,262,118,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    EDITTEXT        IDC_AVGE_TIME,60,275,118,12,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
+    LTEXT           "线程数：",IDC_STATIC,6,31,32,8
+    LTEXT           "帐号名：",IDC_STATIC,69,14,32,8
+    LTEXT           "大区：",IDC_STATIC,6,14,25,8
+    GROUPBOX        "cs_get_account_info",IDC_STATIC,0,0,178,61
+    LTEXT           "总体时间：",IDC_STATIC,4,262,41,8
+    LTEXT           "平均时间：",IDC_STATIC,4,275,41,8
+    LTEXT           "循环数：",IDC_STATIC,5,48,32,8
+END
+
+IDD_MAIN_SWITCHER DIALOGEX 0, 0, 201, 21
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "CS CGI Demo 深圳万游引力 (C) 2010 2011"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "退出程序",IDCANCEL,148,3,50,16,BS_FLAT
+    PUSHBUTTON      "接口示例",IDC_SHOW_DEMOS,4,3,46,16,BS_FLAT
+    PUSHBUTTON      "性能测试",IDC_SHOW_PERFORMANCE_TEST,52,3,46,16,BS_FLAT
+    PUSHBUTTON      "帐号查询",IDC_SHOW_ACCOUNT_QUERY,100,3,46,16,BS_FLAT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_INPUT_BOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        RIGHTMARGIN, 193
+        TOPMARGIN, 1
+        BOTTOMMARGIN, 14
+    END
+
+    IDD_PERFORMANCE_TEST, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 247
+    END
+
+    IDD_MAIN_SWITCHER, DIALOG
+    BEGIN
+        LEFTMARGIN, 1
+        TOPMARGIN, 1
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_RIGHT_MENU MENU 
+BEGIN
+    POPUP "__popup__"
+    BEGIN
+        MENUITEM "冻结帐号",                        ID_FREEZE_ACCOUNT
+        MENUITEM "解冻帐号",                        ID_THAW_ACCOUNT
+        MENUITEM "禁言帐号",                        ID_SILENCE_ACCOUNT
+        MENUITEM "解禁帐号",                        ID_UNSILENCE_ACCOUNT
+    END
+END
+
+IDR_DEMO_SHOW_MENU MENU 
+BEGIN
+    POPUP "接口演示"
+    BEGIN
+        MENUITEM "使用：cs_get_ride_info",         ID_RUN_DEMO_1
+        MENUITEM "使用：cs_get_role_info",         ID_RUN_DEMO_2
+        MENUITEM "使用：cs_respact_list",          ID_RUN_DEMO_3
+        MENUITEM "使用：cs_find_first_maillist",   ID_RUN_DEMO_4
+        MENUITEM "使用：cs_get_item_info",         ID_RUN_DEMO_5
+        MENUITEM "使用：cs_del_fairy_by_id",       ID_RUN_DEMO_6
+        MENUITEM "使用：cs_get_role_drop_info",    ID_RUN_DEMO_7
+        MENUITEM "使用：cs_role_kick_off",         ID_RUN_DEMO_8
+        MENUITEM "退出",                          ID_EXIT
+    END
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

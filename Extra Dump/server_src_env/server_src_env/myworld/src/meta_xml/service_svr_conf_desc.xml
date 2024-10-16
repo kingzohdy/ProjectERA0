@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="service_svr" version="10" >
+
+	<macrosgroup name="SERVICE_MODE_TYPE">
+		<macro name="SERVICE_MODE_PRODUCE"  value="0" desc="运营模式" />
+		<macro name="SERVICE_MODE_DEVELOP"  value="1" desc="开发模式" />
+	</macrosgroup>
+
+	<macro name="MAX_BATCH_SMS_NUM" value="5" desc="批量短信批次数量" />
+	<macro name="MAX_DEBUG_MOBILE_NUM" value="30" desc="调试手机号数量" />
+
+	<struct name="BatchSmsOne"  desc="单个批量发短信配置" version="10">
+		<entry name="SmsSendTime" type="int" desc="短信息发送时间|19700101后的秒数" defaultvalue="0" />
+		<entry name="InvalidTime" type="int" desc="失效时间|单位秒默认半天" defaultvalue="43200" />
+		<entry name="SmsText" type="string" size="256" desc="短信息内容|" defaultvalue="零纪元批量短信系统测试" />
+	</struct>
+
+	<struct name="BatchSmsCfg"  desc="批量发信息配置" version="10">
+		<entry name="MobileNumPerSend" type="int" desc="每次发送手机数量|最大100默认100" defaultvalue="100" />
+		<entry name="SendTimesPerMinute" type="int" desc="每分钟发送次数|默认30" defaultvalue="30"/>
+		<entry name="BatchSmsNum" type="int" desc="批量发短信单元数量" defaultvalue="0"/>
+		<entry name="BatchSms" type="BatchSmsOne" count="MAX_BATCH_SMS_NUM" desc="单个配置" refer="BatchSmsNum" />
+		<entry name="DebugMode" type="int" desc="调式模式|非0为调试模式 0为运营模式" defaultvalue="0" />
+		<entry name="DebugMobileNum" type="int" desc="调式手机号数量" defaultvalue="1" />
+		<entry name="DebugMobile" type="string" size="16" count="MAX_DEBUG_MOBILE_NUM" desc="调试用手机号|逗号分隔最多30"  defaultvalue="18923885815" refer="DebugMobileNum" />
+	</struct>
+	
+	<struct name="service_svrconf" version ="10" >
+		<entry name="ChannelKeyStart" type="int" default="0" />
+		<entry name="MutiThreadNum" type="int" default="32" desc="帐号认证线程数量"/>
+		
+		<entry name="WebServiceUrl" type="string" size="256" defaultvalue="http://192.168.0.2" />
+		<entry name="ServiceMode" type="int" bindmacrosgroup="SERVICE_MODE_TYPE" defaultvalue="SERVICE_MODE_PRODUCE" />
+		<entry name="MysqlIP" type="string" size="32" desc="mysql 数据库ip地址" defaultvalue="localhost" />
+		<entry name="MysqlPort" type="int" desc="端口" defaultvalue="3306" />
+		<entry name="MysqlUser" type="string" size="64" desc="用户名" defaultvalue="mmog" />
+		<entry name="MysqlPwd" type="string" size="64" desc="密码" defaultvalue="mmog" />
+		<entry name="BBSDB" type="string" size="64" desc="论坛用户中心数据库名" defaultvalue="ucenter" />
+		<entry name="ACCDB" type="string" size="64" desc="帐号数据库名" defaultvalue="wanyou" />
+		<entry name="ActiveKeyDB" type="string" size="64" desc="激活码数据库名" defaultvalue="activecode" />
+		<entry name="WebAuthUrl" type="string" size="256" defaultvalue="http://ez.noxgame.kr/ClientAuthProcess/UserAuthProcess.nox" desc="web验证请求的url" />
+		<entry name="WebAuthPost" type="string" size="256" defaultvalue="appkey=ezeoqkr2013nox:action=userauth_batch:auth=%s:pwd=%s" desc="web验证请求的内容" />
+		<entry name="WebAuthTimeoutMS" type="int" desc="超时毫秒" defaultvalue="2000" />
+		<entry name="SmsThreadNum" type="int" defaultvalue="5" desc="SMS短信线程数量"/>
+		<entry name="SmsUrl" type="string" size="256" defaultvalue="http://61.145.116.228:8088/SendSmsApi/smsapi.do?send" desc="短信请求的url" />
+		<entry name="SmsPost" type="string" size="256" defaultvalue="suser=wanyouyl:spass=%s:telnum=%s:nr=%s" desc="短信请求的内容" />
+		<entry name="SmsSign" type="string" size="256" defaultvalue="[零纪元运营团队]" desc="短信签名" />
+		<entry name="SmsTimeoutMS" type="int" desc="超时毫秒" defaultvalue="2000" />
+		<entry name="BatchSmsCfg" type="BatchSmsCfg" desc="批量短信配置"  />
+	</struct>
+	
+	<struct name="service_svrrun_status" version ="10" >
+		<entry name="Res" type="int" />
+	</struct>
+	
+</metalib>

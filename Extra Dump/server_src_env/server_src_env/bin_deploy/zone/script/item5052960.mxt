@@ -1,0 +1,13 @@
+;500½ð¾í
+
+proc 1
+
+	strvar ret pmid
+	DEC_ITEM_NUM_INPAK 5052960 1 ret
+	
+	if ret = 0
+		GET_PLAYER_ID 1 pmid
+		add_money @pmid 500 61 1
+	endif
+	
+endproc

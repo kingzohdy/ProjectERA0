@@ -1,0 +1,41 @@
+#  @file $RCSfile: Makefile.real,v $
+#  general description of this module
+#  $Id: Makefile.real,v 1.1 2010/05/14 03:59:23 kent Exp $
+#  @author $Author: kent $
+#  @date $Date: 2010/05/14 03:59:23 $
+#  @version $Revision: 1.1 $
+#  @note Editor: Vim 6.1, Gcc 4.0.1, tab=4
+#  @note Platform: Linux
+#
+
+include ../../../src/mmog.mk 
+
+APP_NAME=TEMPLE_ORI
+
+APP_FLAGS=$(CFLAGS) $(MMOG_INC)
+APP_CFILE=$(wildcard *.c)
+APP_OBJ=$(APP_CFILE:.c=.o)
+APP_EXE=$(APP_NAME)
+
+APP_IMPORT_LIBS=$(LDPATH) $(GAME_COMM_LIB)/libgamecomm.a -Wl,-Bstatic -lscew -lexpat -Wl,-Bdynamic  -lpthread 
+
+.PHONY: all clean
+
+all: $(APP_EXE)
+
+-include $(APP_CFILE:.c=.d)
+
+%.d: %.c
+	$(CC) -MM $(APP_FLAGS) $< -o $@
+
+%.o: %.c %.d
+	$(CC) -c $(APP_FLAGS) $<
+
+$(APP_EXE): $(APP_OBJ)
+	$(CC)  -o $(APP_EXE) $(APP_FLAGS)  $^ $(APP_IMPORT_LIBS) 
+	
+clean:
+	$(RM) *.o  *.d
+	$(RM) $(APP_EXE)
+	$(RM) gmon.out
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<TLOGConf version="1">
+    <PriorityHigh>NULL </PriorityHigh>
+    <PriorityLow>NOTSET </PriorityLow>
+    <DelayInit>0 </DelayInit>
+    <SuppressError>1 </SuppressError>
+    <Count>1   </Count>
+    <CategoryList type="TLOGCategory">
+        <Name>tlog.tagent</Name>
+        <PriorityHigh>NULL </PriorityHigh>
+        <PriorityLow>TRACE </PriorityLow>
+        <LevelDispatch>0 </LevelDispatch>
+        <MustSucc>0 </MustSucc>
+        <MaxMsgSize>0 </MaxMsgSize>
+        <Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+        <ForwardCat>texterr</ForwardCat>
+        <Device type="TLOGDevAny">
+            <Type>FILE </Type>
+            <Device type="TLOGDevSelector">
+                <File type="TLOGDevFile">
+                    <Pattern>../log/tagent.log</Pattern>
+                    <BuffSize>0 </BuffSize>
+                    <SizeLimit>20971520 </SizeLimit>
+                    <Precision>1 </Precision>
+                    <MaxRotate>3 </MaxRotate>
+                    <SyncTime>0 </SyncTime>
+                    <NoFindLatest>0 </NoFindLatest>
+                    <RotateStick>0 </RotateStick>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+</TLOGConf>

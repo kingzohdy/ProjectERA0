@@ -1,0 +1,32 @@
+;复本中间传送员
+
+PROC 1 
+	
+	DIALOG 1
+
+	ADD_TALK $_npc$：
+	ADD_TALK 我这里有翅膀哦，想要的话就拿东西给我换吧！
+	
+    TASK_ADD_OPTION 1105 1 101 
+	OPTION 102 #因为暂时没做翅膀，你点这飞过去吧
+	OPTION 104 #离开
+    TALK               
+ENDPROC
+
+PROC 101
+	TASK_DO_OPTION 1105 1
+ENDPROC  
+
+PROC 102
+	TRANSMIT 12200 25472 7315 1
+		IF 1 = -1
+			ADD_SYS_MSG_START
+			ADD_SYS_MSG #B飞不动啊
+			SET_SYS_MSG_MODE 1 0 0
+			MAP_MSG_INFO	
+			RETURN
+		ENDIF	
+ENDPROC
+PROC 104
+	RETURN
+ENDPROC

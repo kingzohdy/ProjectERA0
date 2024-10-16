@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS IPBlock (
+ IP INT    ,
+ Mask INT    ,
+ BlockEnd INT    )  ENGINE=InnoDB DEFAULT CHARSET=latin1;

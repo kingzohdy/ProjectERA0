@@ -1,0 +1,254 @@
+/**
+*
+* @file     tdr_error.h 
+* @brief    TDR错误处理函数
+* 
+* @author steve jackyai  
+* @version 1.0
+* @date 2007-03-28 
+*
+*
+* Copyright (c)  2007, 腾讯科技有限公司互动娱乐研发部
+* All rights reserved.
+*
+*/
+
+
+#ifndef TDR_ERROR_H
+#define TDR_ERROR_H
+
+#include "comm/tmodid.h"
+#include "comm/terr.h"
+#include "tdr/tdr_define.h"
+#include "tdr/tdr_external.h"
+
+/** @defgroup TDR_ERR TDR_错误处理
+* @{
+*@note TDR错误处理的基本思想:
+ *  - 使用一个整数来存储错误代码信息，此整数值的含义如下:
+ *      -# <0 表示发生错误，其值为具体错误的代码
+ *      -# 0 表示成功
+ *      -# >0 表示成功，但发生了某些特殊事情
+ *  - 错误代码存储在4字节的整数中，由三部分组成:
+ *      -# 错误级别: 1个字节，具体为高位的第1个字节
+ *      -# 模块ID:  1字节，具体为高位的第2个字节
+ *      -# 错误号:  2字节，0-1023号表示通用错误，各模块定义错误从1024开始
+ * 
+*/
+
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
+
+#define TDR_SUCCESS				0
+#define TDR_ERR_ERROR				-1
+
+
+#define TDR_ERR_MAKE_DEBUG(errno)		TERR_MAKE_DEBUG(TMODID_DR, errno)
+#define TDR_ERR_MAKE_WARN(errno)		TERR_MAKE_WARN(TMODID_DR, errno)
+#define TDR_ERR_MAKE_ERROR(errno)		TERR_MAKE_ERROR(TMODID_DR, errno)
+#define TDR_ERR_MAKE_SEVERE(errno)		TERR_MAKE_SEVERE(TMODID_DR, errno)
+
+
+#define TDR_ERR_IS_ERROR(error)			TERR_IS_ERROR(error)
+    
+
+#define TDR_SUCCEESS_WARNING(warningno)         ((TMODID_DR<<16) | (warningno))
+
+
+#define TDR_ERR_GET_ERROR_CODE(err)       (TERR_GET_CODE(err) - TERR_SYS_ERRNO)
+
+
+
+
+/**
+ *TDR错误代码定义 
+ */
+typedef enum
+{
+    TDR_ERROR_NONE = 0,                    /**< 没有错误*/
+	TDR_ERROR_INVALID_CUTOFF_VERSION,		/**<指定剪裁版本无效，其取值不能比元数据基准版本小*/
+	TDR_ERR_NET_NO_NETBUFF_SPACE,			/**<网络编码信息缓冲区剩余空间不够*/
+	TDR_ERROR_INVALID_REFER_VALUE,		/**<此元素的refer属性值不正确，其值不能为负数且必须比count属性值小*/
+	TDR_ERROR_TOO_COMPLIEX_META,		/**<元数据描述复合数据类型嵌套层次超过32层*/
+	TDR_ERROR_NET_UNSUPPORTED_TYPE,			/**<不支持的元数据类型*/
+	TDR_ERROR_NET_INVALID_STRING_LEN,		/**<string类型的元素其字符串长度超过了预定最大长度*/
+	TDR_ERROR_NO_HOSTBUFF_SPACE,			/**<本地存储缓冲区剩余空间不够*/
+	TDR_ERROR_NET_INVALID_VERSIONINDICATOR,	/**<元素数版本指示器的值不正确*/
+    TDR_ERROR_NO_MEMORY,                   /**< 分配存储空间失败*/
+    TDR_ERROR_XML_PARSE,                /**< XML文件解析错误 */
+    TDR_ERROR_NO_XML_ROOT,              /**< XML元素树中没有根元素*/
+    TDR_ERROR_INVAILD_XML_ROOT,         /**< 无效的元数据根元素*/
+    TDR_ERROR_NAMESPACE_CONFLICT,       /**< 元数据描述名字空间冲突，即不能将根元素name属性值不同的信息加到同一个库中*/
+    TDR_ERROR_MACRO_NO_NAME_ATTR,             /**< 宏定义元素必须指定name属性*/
+    TDR_ERROR_NO_VERSION,       /**< 没有指定version属性*/
+    TDR_ERROR_ROOT_ID_CONFLICT,         /**< 根元素ID冲突，即不能将根元素ID属性值不同的信息加到同一个库中*/
+    TDR_ERROR_INVALID_TAGSET_VERSION,    /**< 不支持的元数据描述XML标签集版本*/
+    TDR_ERROR_INVALID_METALIB_PARAM,    /**< 元数据库参数不正确*/
+    TDR_ERROR_TOO_MUCH_MACROS,          /**< 需加到元数据描述库中的宏定义数比预定义的要多 */
+    TDR_ERROR_MACRO_NO_VALUE,           /**< 宏定义元素没有值属性*/
+    TDR_ERROR_UNSUPPORTED_TYPE,           /**< 不支持的数据类型 */
+    TDR_ERROR_METALIB_ROOT_NO_NAME,         /**< 元数据描述库根元素必须指定name属性*/
+    TDR_ERROR_NO_SPACE_FOR_MATA,            /**< 没有足够的空间存储自定义数据类型*/
+    TDR_ERROR_NO_SPACE_FOR_STRBUF,          /**< 字符串缓冲区空间不够*/
+    TDR_ERROR_META_NO_NAME,                 /**< union和stuct元素必须包含name属性*/
+    TDR_ERROR_META_NAME_CONFLICT,           /**< 同类型的union和stuct元素不容许同名*/
+    TDR_ERROR_UNDEFINED_MACRO_NAME,         /**< 该宏名没有定义*/
+    TDR_ERROR_META_ID_CONFLICT,          /**< 同一父元素下不能出现ID相同的子元素*/
+    TDR_ERROR_ENTRY_NO_TYPE,             /**< entry元素必须包含type属性且不能为空串*/
+    TDR_ERROR_ENTRY_INVALID_TYPE_VALUE,     /**< entry的type属性值无效*/
+    TDR_ERROR_ENTRY_INVALID_IO_VALUE,       /**< entry的io属性值无效*/
+    TDR_ERROR_ENTRY_INVALID_UNIQUE_VALUE,   /**< entry的unique属性不正确，正确取值为false,true*/
+    TDR_ERROR_ENTRY_INVALID_NOTNULL_VALUE,  /**< entry的notnull属性不正确，正确取值为false,true*/
+    TDR_ERROR_ENTRY_INVALID_SIZE_VALUE,  /**< entry的size属性值不正确*/
+    TDR_ERROR_ENTRY_IVALID_SORTKEY_VALUE,    /**<entry的sortkey属性值不正确*/
+    TDR_ERROR_ENTRY_INVALID_SELECT_VALUE,    /**< entry的select属性值不正确*/
+    TDR_ERROR_ENTRY_INVALID_MAXID_VALUE,     /**< entry的maxid属性不正确*/
+    TDR_ERROR_ENTRY_INVALID_MINID_VALUE,     /**< entry的minid属性不正确*/
+    TDR_ERROR_ENTRY_INVALID_MAXMINID_VALUE,     /**< entry的minid和maxid属性值不正确*/
+    TDR_ERROR_ENTRY_INVALID_COUNT_VALUE,     /**<entry的count属性值不正确*/
+	TDR_ERROR_ENTRY_INVALID_ID_VALUE,		/**<entry的id属性值不正确*/
+	TDR_ERROR_ENTRY_INVALID_DEFAULT_VALUE,  /**<entry的default属性值不正确*/
+	TDR_ERROR_ENTRY_INVALID_SORTMETHOD_VALUE, /**<entry的sortmethod属性值不正确*/
+	TDR_ERROR_ENTRY_INVALID_DATETIME_VALUE,		/**<entry的datetime属性值不正确*/
+	TDR_ERROR_ENTRY_INVAILD_DATE_VALUE,			/**<entry的date属性值不正确*/
+	TDR_ERROR_ENTRY_INVALID_TIME_VALUE,			/**<entry的time属性值不正确*/
+	TDR_ERROR_ENTRY_INVALID_IP_VALUE,			/**<entry的ip属性值不正确*/
+	TDR_ERROR_ENTRY_INVALID_EXTENDTOTABLE_VALUE,	/**<entry的extendtotable属性不正确*/
+    TDR_ERROR_META_INVALID_SIZE_VALUE,      /**<struct元素的size属性不正确*/
+    TDR_ERROR_META_INVALID_ALIGN_VALUE,     /**<struct元素的align属性值不正确*/
+    TDR_ERROR_META_INVALID_VERSIONINDICATOR_VALUE,      /**<struct元素的versionindicator属性不正确*/
+    TDR_ERROR_META_INVALID_SIZETYPE_VALUE,      /**< 元素的sizetype/sizeof属性值不正确*/
+	TDR_ERROR_META_INVALID_SPLITTABLEFACTOR,	/**< struct元素的splittablefactor属性值不正确*/
+	TDR_ERROR_META_INVALID_PRIMARYKEY,			/**< struct元素的primarykey属性值不正确*/
+	TDR_ERROR_META_INVALID_SPLITTABLEKEY,	/**< struct元素的splittablekey属性值不正确*/
+	TDR_ERROR_META_INVALID_SPLITTABLERULE,	/**< struct元素的splittablerule属性值不正确*/
+	TDR_ERROR_META_INVALID_STRICTINPUT,		/**<struct元素的strictinput属性值不正确*/
+	TDR_ERROR_META_INVALID_DEPENDONSTRUCT,		/**<struct元素的dependonstruct属性值不正确*/
+    TDR_ERROR_INVALID_PATH_VALUE,               /**<元素的path不正确，不能正确匹配meta中的元素*/
+    TDR_ERROR_INVALID_OFFSET,                   /**<元素的偏移值不对*/
+    TDR_ERROR_NO_SPACE_TO_WRITE,                /**<将信息写到缓冲区时空间不够*/
+    TDR_ERROR_META_NO_ENTRY,                    /**< 自定义数据类型没有包含任何子成员*/
+    TDR_ERROR_ENTRY_INVALID_REFER_VALUE,        /**<entry元素的refer属性值不正确*/
+    TDR_ERROR_ENTRY_INVALID_SIZEINFO_VALUE,     /**<entry元素的sizeinfo属性值不正确*/
+	TDR_ERROR_UNSPORTED_IOSTREAM,				/**<不支持的IO流*/
+	TDR_ERROR_FAILED_TO_WRITE_FILE,				/**<写文件失败*/
+	TDR_ERROR_FAILED_OPEN_FILE_TO_WRITE,					/**<打开文件写失败*/
+	TDR_ERROR_INVALID_METALIB_FILE,				/**<保存元数据库的二进制文件无效*/
+	TDR_ERROR_FAILED_OPEN_FILE_TO_READ,			/**<打开文件读失败*/
+    TDR_ERROR_VARIABLE_ARRAY_NO_REFER,          /**<可变数组必须指定refer属性*/
+    TDR_ERROR_VARIABLE_BEFOR_SIZEINFO,          /**<元数据中sizeinfo成员前的成员的存储空间必须是固定的*/
+	TDR_ERROR_FAILED_CONVERT_CHINESE_TO_UNICODE,	/**<中文字符串转换成unicode字符串失败*/
+	TDR_ERROR_BREACH_KEY_RESTRICTION,			/**<entry元素的值不满足键约束*/
+	TDR_ERROR_DB_UNSUPPORTED_DBMS,				/**<不支持的数据库管理系统DBMS*/
+	TDR_ERROR_DB_UNSUPPORTED_COMPOSITE_ARRAY,	/**<不支持为复合数据类型数组成员生成建表语句*/
+	TDR_ERROR_DB_FAILD_TO_CONNECT_SERVER,       /**<连接数据库服务器失败*/
+	TDR_ERROR_DB_UNSUPPORTED_OPER,				/**<不支持的数据操作*/
+	TDR_ERROR_DB_NO_PRIMARYKEY,					/**<该剪裁版本无法生成有效的主键信息*/
+	TDR_ERROR_DB_FAILED_TO_QUERY,					/**<执行数据库SQL语句失败*/
+	TDR_ERROR_DB_FAILED_TO_GET_QUERY_RESULT,		/**<取SQL查询结果失败*/
+	TDR_ERROR_DB_NO_RESULT_SET,			/**<SQL查询结果集为空*/
+	TDR_ERROR_DB_NO_RECORD_IN_RESULTSET, /**<结果集中没有更多的数据记录或出现了错误*/
+	TDR_ERROR_DB_NO_EXPECTED_FIELD,			/**<当前数据行中不存在指定的数据域*/
+	TDR_ERROR_DB_UNSUPPORTED_VARIABLE_META,	/**<不支持为存储空间不固定的结构生成建表语句*/
+	TDR_ERROR_BUILD_VERSION_CONFLICT,		/**<TDR生成元数据库文件的工具的构建版本和加载工具不一致*/
+	TDR_ERROR_DIFF_METALIB_HASH,			/**<元数据库的散列值和期望的散列值不一致*/
+	TDR_ERROR_CONFICT_INDEX_NUM,			/**<结构体成员的实际索引数与预计的不一致*/
+	TDR_ERROR_INVALID_VERSION,					/**<成员的vesion属性值不正确*/
+	TDR_ERROR_DB_NOSPLITTABLE_KEY,				/**<数据所在的数据库表是分表存储的,但此数据的元数据描述没有指定分表关键字*/
+    TDR_ERROR_COUNT                     /**< 错误代码结束标志*/ 
+} TDRERROR;
+
+
+/**处理成功但出现特殊情况时的警告信息
+*/
+typedef enum 
+{
+    TDR_SUCWARN_NONE = 0,                    /**< 没有错误*/
+    TDR_SUCWARN_MACRO_NAME_CONFLICT,        /**<出现同名的宏定义*/
+    TDR_SUCWARN_CNAME_BE_TRANCATED,         /**<cname属性值超过预定最大长度，被截断*/
+    TDR_SUCWARN_DESC_VALUE_BE_TRANCATED,    /**<desc属性值超过预定最大长度，被截断*/
+    TDR_SUCWARN_NO_ID,                      /**<元素没有指定id属性*/
+    TDR_SUCWARN_NO_NAME,                    /**<元素没有指定name属性*/
+    TDR_SUCWARN_NO_VERSION,                 /**<元素没有指定version属性*/
+	TDR_SUCWARN_TRUNCATE_DATE,				/**<保存数据时进行了数据截断*/
+}TDRSUCWARNINGNO;
+
+
+/*定义组合错误代码*/
+#define TDR_ERRIMPLE_MAKE_ERROR(err)    TDR_ERR_MAKE_ERROR(TERR_MAX_ERRNO + err)
+#define TDR_ERRIMPLE_FAILED_EXPACT_XML	 TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_XML_PARSE)
+#define TDR_ERRIMPLE_NO_XML_ROOT        TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_NO_XML_ROOT)      
+#define TDR_ERRIMPLE_INVALID_XML_ROOT   TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_INVAILD_XML_ROOT)
+#define TDR_ERRIMPLE_NAMESPACE_CONFLICT TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_NAMESPACE_CONFLICT)
+#define TDR_ERRIMPLE_MACRO_NO_NAME_ATTR       TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_MACRO_NO_NAME_ATTR)
+#define TDR_ERRIMPLE_NO_ROOT_VERSION    TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_NO_ROOT_VERSION)
+#define TDR_ERRIMPLE_ROOT_ID_CONFLICT   TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ROOT_ID_CONFLICT)
+#define TDR_ERRIMPLE_INVALID_TAGSET_VERSION TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_INVALID_TAGSET_VERSION)
+#define TDR_ERRIMPLE_INVALID_METALIB_PARAM      TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_INVALID_METALIB_PARAM)
+#define TDR_ERRIMPLE_NO_MEMORY          TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_NO_MEMORY)
+#define TDR_ERRIMPLE_TO_MUCH_MACROS     TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_TOO_MUCH_MACROS)
+#define TDR_ERRIMPLE_MACRO_NO_VALUE     TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_MACRO_NO_VALUE)
+/*#define TDR_ERRIMPLE_MACRO_NAME_CONFLICT    TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_MACRO_NAME_CONFLICT)*/
+#define TDR_ERRIMPLE_UNSUPPORTED_TYPE       TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_UNSUPPORTED_TYPE)
+#define TDR_ERRIMPLE_METALIB_ROOT_NO_NAME   TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_METALIB_ROOT_NO_NAME)
+#define TDR_ERRIMPLE_NO_SPACE_FOR_MATA      TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_NO_SPACE_FOR_MATA)
+#define TDR_ERRIMPLE_NO_SPACE_FOR_STRBUF    TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_NO_SPACE_FOR_STRBUF)
+#define TDR_ERRIMPLE_META_NO_NAME           TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_NO_NAME)
+#define TDR_ERRIMPLE_META_NAME_CONFLICT     TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_NAME_CONFLICT)
+#define TDR_ERRIMPLE_UNDEFINED_MACRO_NAME   TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_UNDEFINED_MACRO_NAME)
+#define TDR_ERRIMPLE_META_ID_CONFLICT       TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_ID_CONFLICT)
+#define TDR_ERRIMPLE_ENTRY_NO_TYPE          TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_NO_TYPE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_TYPE_VALUE   TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_TYPE_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_IO_VALUE     TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_IO_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_UNIQUE_VALUE TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_UNIQUE_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_NOTNULL_VALUE    TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_NOTNULL_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_SIZE_VALUE       TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_SIZE_VALUE)
+#define TDR_ERRIMPLE_ENTRY_IVALID_SORTKEY_VALUE     TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_IVALID_SORTKEY_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_SELECT_VALUE     TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_SELECT_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_MAXID_VALUE      TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_MAXID_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_MINID_VALUE      TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_MINID_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_MAXMINID_VALUE      TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_MAXMINID_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_COUNT_VALUE          TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_COUNT_VALUE)
+#define TDR_ERRIMPLE_META_INVALID_SIZE_VALUE            TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_INVALID_SIZE_VALUE)
+#define TDR_ERRIMPLE_META_INVALID_ALIGN_VALUE           TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_INVALID_ALIGN_VALUE)
+#define TDR_ERRIMPLE_META_INVALID_VERSIONINDICATOR_VALUE    TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_INVALID_VERSIONINDICATOR_VALUE)
+#define TDR_ERRIMPLE_META_INVALID_SIZETYPE_VALUE            TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_INVALID_SIZETYPE_VALUE)
+#define TDR_ERRIMPLE_INVALID_PATH_VALUE                 TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_INVALID_PATH_VALUE)
+#define TDR_ERRIMPLE_INVALID_OFFSET                 TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_INVALID_OFFSET)
+
+#define TDR_ERRIMPLE_META_NO_ENTRY                  TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_META_NO_ENTRY)
+#define TDR_ERRIMPLE_ENTRY_INVALID_REFER_VALUE      TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_REFER_VALUE)
+#define TDR_ERRIMPLE_ENTRY_INVALID_SIZEINFO_VALUE   TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_SIZEINFO_VALUE)
+#define TDR_ERRIMPLE_UNSPORTED_IOSTREAM				TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_UNSPORTED_IOSTREAM)
+#define TDR_ERRIMPLE_FAILED_TO_WRITE_FILE			TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_FAILED_TO_WRITE_FILE)
+#define TDR_ERRIMPLE_FAILED_OPEN_FILE_TO_WRITE				TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_FAILED_OPEN_FILE_TO_WRITE)
+#define TDR_ERRIMPLE_INVALID_METALIB_FILE			TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_INVALID_METALIB_FILE)
+#define TDR_ERRIMPLE_FAILED_OPEN_FILE_TO_READ		TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_FAILED_OPEN_FILE_TO_READ)
+#define TDR_ERRIMPLE_ENTRY_INVALID_ID_VALUE			TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_ENTRY_INVALID_ID_VALUE)
+#define TDR_ERRIMPLE_NET_INVALID_CUTOFF_VERSION		TDR_ERRIMPLE_MAKE_ERROR(TDR_ERROR_INVALID_CUTOFF_VERSION);
+
+
+
+/**
+ * 根据错误代码获取错误信息
+ * @param[in] iErrorCode 错误代码
+ *
+ * @return  错误信息串的指针
+ */
+TDR_API  char const*
+tdr_error_string(IN int iErrorCode);
+
+/** @} */ // TDR_ERR TDR错误处理
+
+#ifdef __cplusplus
+}
+#endif
+
+
+
+
+#endif /* TDR_ERROR_H */

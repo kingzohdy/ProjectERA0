@@ -1,0 +1,6 @@
+;副本3传送员
+
+PROC 1 
+	TRANSMIT 50200 17780 43234 1           
+ENDPROC
+

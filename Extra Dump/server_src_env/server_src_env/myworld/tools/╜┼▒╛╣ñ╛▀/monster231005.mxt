@@ -1,0 +1,22 @@
+; 测试怪物脚本
+;
+PROC 1 
+	MAP_MSG_INFO 怪物出生
+	MON_SKILL 2100 1
+ENDPROC
+
+PROC 2
+	MAP_MSG_INFO 怪物死亡
+	GET_MON_NUM 1 2
+	IF 1 = -1
+		RETURN
+	ENDIF
+
+	IF 2 = 0
+		MAP_MSG_INFO 最后一个怪物被清除
+	ENDIF	
+ENDPROC
+
+
+  
+

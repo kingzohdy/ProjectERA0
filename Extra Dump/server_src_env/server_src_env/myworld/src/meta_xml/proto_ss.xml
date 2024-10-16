@@ -1,0 +1,3908 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib name="proto_ss" tagsetversion="1" version="2558">
+
+        <!-- zone_conn and zone_svr -->
+	<macro name="TFRAMEHEAD_CMD_START" value="0" />
+	<macro name="TFRAMEHEAD_CMD_STOP" value="1" />
+	<macro name="TFRAMEHEAD_CMD_INPROC" value="2" />
+	<macro name="TFRAMEHEAD_CMD_RELAY" value="3" />
+	<macro name="TFRAMEHEAD_CMD_NOTIFY" value="4" />
+	<macro name="TFRAMEHEAD_CMD_SETROUTING" value="5" />
+	<macro name="TFRAMEHEAD_CMD_SETLIMITS" value="6" />
+   
+  	<macro name="TFRAMEHEAD_MAX_BATCH_IDENT" value="512" />
+  	<macro name="TFRAMEHEAD_EXTRA_IP" value="1" />
+	<macro name="TFRAMEHEAD_TIMESTAMP_TIMEVAL" value="1" />
+        <macro name="SERLIZER_NAME_LEN" value="32" />
+	<macro name="TFRAMEHEAD_SET_ROUTING" value="1" />
+	<macro name="TFRAMEHEAD_CONNECTKEY_LEN" value="16" />
+
+	<macro name="MAXROLENAME" value="32" />
+
+	<macro name="REPORT_MAX_WORLD" value="500" />
+	<macro name="MAX_DATA_NUM" value="24" />
+	<macro name="MAX_DEC_TIANYUAN_PKG_EXTRA_LEN" value="512" />
+
+	<macro name="MAX_PROXY_BUF_LEN" value="4096" desc="代理转发数据的长度" />
+	<macro name="MAX_PROXY_PLAYER_ONLINE_BUF_LEN" value="9250" desc="代理转发角色online部分数据的长度" />
+	
+	<macrosgroup name="BROADCAST_FLAG" >
+	  	<macro name="BROADCAST_FLAG_NO" value="0" />
+		<macro name="BROADCAST_FLAG_GROUP"   value="1" />
+		<macro name="BROADCAST_FLAG_ALL"   value="2" />
+	</macrosgroup>
+	
+	<struct name="TIPInfo" version="1" >
+		<entry name="family" type="smallint" />
+		<entry name="port" type="smalluint" />
+		<entry name="ip" type="ip" />
+	</struct>
+
+	<union name="TFrameHeadData" version="1" >
+		<entry name="IPInfo" type="TIPInfo" id="TFRAMEHEAD_EXTRA_IP" />
+	</union>
+	
+	<struct name="TFrameAuthJC" version="1" >
+		<entry name="Uin" type="int" />
+		<entry name="UinFlag" type="int" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" />
+		<entry name="AccSilenceEnd" type="int" version="111" />
+	</struct>
+
+	<union name="TFrameAuthData" version="1" >
+		<entry name="AuthJC"      type="TFrameAuthJC" id="AUTH_JC" />
+	</union>
+	
+	<struct name="TFrameCmdStart" version="1" >
+		<entry name="AuthType" type="int" bindmacrosgroup="AUTH" />
+		<entry name="AuthData" type="TFrameAuthData" select="AuthType" />
+	</struct>
+	
+	<struct name="TFrameCmdStop" version="1" >
+		<entry name="Reason" type="int" />
+	</struct>
+
+	<struct name="TFrameIdent" version="1" >
+		<entry name="ID" type="int" />
+		<entry name="ConnIdx" type="int" />
+	</struct>
+
+	<struct name="TFrameCmdInProc" version="1" >
+		<entry name="Flag" type="tinyint" bindmacrosgroup="BROADCAST_FLAG" />
+		<entry name="NoEnc" type="tinyint" />
+		<entry name="Count" type="smallint" />
+		<entry name="Idents" type="TFrameIdent" count="TFRAMEHEAD_MAX_BATCH_IDENT" refer="Count" />
+	</struct>
+	
+	<struct name="TFrameCmdRelay" version="1" >
+	  	<entry name="Uin" type="int" />
+	  	<entry name="RelayType" type="int" />
+		<entry name="Old" type="TFrameIdent" />
+		<entry name="New" type="TFrameIdent" />
+	</struct>
+	
+	<macro name="MAX_TFEXTRA_LEN" value="4096" />
+	
+	<struct name="TFrameCmdSetRouting" version="1" >
+	     <!--entry name="SerializerName" type="string" size="SERLIZER_NAME_LEN"  /-->
+	     <entry name="ID" type="int" defaultvalue="-1" desc="连接在逻辑服务端上的索引,含义同head字段" />
+	     <entry name="BusID" type="int" defaultvalue="0" version="259" desc="原来的BUS ID" />
+	</struct>
+
+	<struct name="TFrameCmdSetLimits" version="1" >
+	     <entry name="Enabled" type="int" defaultvalue="0" desc="是否开启连接限制" />
+	     <entry name="Param" type="int" defaultvalue="0" desc="连接限制的参数" />
+	</struct>
+	
+	<union name="TRoutingOption" version="1" >
+		 <entry name="CmdRouting" type="TFrameCmdSetRouting"  id="TFRAMEHEAD_SET_ROUTING" />	 
+	</union>
+	
+	<struct name="TFrameCmdNotify" version="1" >
+	        <entry name="Uin"            type="int" />
+		<entry name="ConnKey"   type="tinyint" count="TFRAMEHEAD_CONNECTKEY_LEN" />
+		<entry name="Identity"     type="tinyint" count="IDENT_LEN" />
+		<entry name="SetRouting" type="tinyuint" defaultvalue="0"/>
+		<entry name ="Routing"     type="TRoutingOption" select="SetRouting"/> 
+	</struct>
+	
+	<union name="TFrameCmdData" version="1" >
+		<entry name="Start" type="TFrameCmdStart" id="TFRAMEHEAD_CMD_START" />
+		<entry name="Relay" type="TFrameCmdRelay" id="TFRAMEHEAD_CMD_RELAY" />
+		<entry name="Stop" type="TFrameCmdStop" id="TFRAMEHEAD_CMD_STOP" />
+		<entry name="Notify" type="TFrameCmdNotify" id="TFRAMEHEAD_CMD_NOTIFY" />
+		<entry name="InProc" type="TFrameCmdInProc" id="TFRAMEHEAD_CMD_INPROC" />
+		<entry name="SetRouting" type="TFrameCmdSetRouting" id="TFRAMEHEAD_CMD_SETROUTING" />
+		<entry name="SetLimits" type="TFrameCmdSetLimits" id="TFRAMEHEAD_CMD_SETLIMITS" />
+	</union>
+
+	<struct name="TTimeVal" version="1" >
+		<entry name="sec" type="int" />
+		<entry name="usec" type="int" />
+	</struct>
+
+	<union name="TTimeStampData" version="1" >
+		<entry name="TimeVal" type="TTimeVal" id="TFRAMEHEAD_TIMESTAMP_TIMEVAL" />
+	</union>
+
+	<struct name="tframehead" version="1" >
+		<entry name="Ver" type="tinyint" defaultvalue="0" desc="版本信息,默认为零" />
+		<entry name="Cmd" type="tinyint" />
+		<entry name="ExtraType" type="tinyint" />
+		<entry name="TimeStampType" type="tinyint" />
+		<entry name="ID" type="int" />
+		<entry name="ConnIdx" type="int" />
+		<entry name="PkgHeadCmd" type="smalluint" version="839"/>
+		<entry name="ExtraInfo" type="TFrameHeadData" select="ExtraType" />
+		<entry name="TimeStamp" type="TTimeStampData" select="TimeStampType" />
+		<entry name="CmdData" type="TFrameCmdData" select="Cmd" />
+	</struct>
+	
+	
+	<!-- comm ss proto  -->
+	
+	<macrosgroup name="SSCmd">
+		<macro name="DIR_REPORT"  value="0x0000" /> 
+		<macro name="ZONE_CTRL"  value="0x0001" /> 
+		<macro name="CS_CTRL" value="0x0002"/>
+		<macro name="RECORD_DIR_INFO" value="0x0003"/>
+		<macro name="DIR_INFO_HOUR" value="0x0004"/>
+		<macro name="DIR_INFO_DB" value="0x0005"/>
+		<macro name="AAS_GAME_REQ" value="0x0006"/>
+		<macro name="AAS_GAME_RES" value="0x0007"/>
+		<macro name="INFORMER_GET_ACCOUNT_REQ" value="0x0008"/>
+		<macro name="INFORMER_GET_ACCOUNT_RES" value="0x0009"/>
+		<macro name="UPDATE_ACCOUNT_REP" value="0x000A" />
+		<macro name="CASH_BILL_REQ" value="0x000B" />
+		<macro name="CASH_BILL_RES" value="0x000C" />
+		<macro name="QUERY_BILL_REQ" value="0x000D" />
+		<macro name="QUERY_BILL_RES" value="0x000E" />
+		<macro name="DEC_BILL_REQ" value="0x000F" />
+		<macro name="DEC_BILL_RES" value="0x0010" />		
+		<macro name="USER_QUERY_BILL_REQ" value="0x0011" />
+		<macro name="USER_QUERY_BILL_RES" value="0x0012" />
+		<macro name="KICK_OFF_ACC" value="0x0013" />	
+		<macro name="MUD_HEARTBEAT" value="0x0014" />
+		<macro name="ZONE_HEARTBEAT" value="0x0015" />
+		<macro name="ROLE_ONLINE" value="0x0016" />
+		<macro name="RELATION_ONLINE_REQ" value="0x0017" />
+		<macro name="RELATION_ONLINE_RES" value="0x0018" />
+		<macro name="BILL_FREEZE_REQ" value="0x0019" />
+		<macro name="BILL_FREEZE_RES" value="0x001A" />
+		<macro name="SS_CHAT" value="0x001B" />
+		<macro name="MUD_DIR_REPORT" value="0x001C" />
+		
+		<macro name="BATTLE_QUEUE_INFO" value="0x001D" desc="zone_svr上报排队信息"/>
+		<macro name="BATTLE_REPORT_INFO" value="0x001E" desc="battle_svr上报战场信息"/>
+		<macro name="BATTLE_CREATE_PWORLD_REQ" value="0x001F" />
+		<macro name="BATTLE_CREATE_PWORLD_RES" value="0x0020" />
+		<macro name="BATTLE_ENTER_REQ" value="0x0021" />
+		<macro name="BATTLE_ENTER_RES" value="0x0022" />
+		<macro name="BATTLE_ENTER_PWORLD" value="0x0023" />
+		<macro name="BATTLE_UPDATE_ROLEDATA_REQ" value="0x0024" />
+		<macro name="BATTLE_UPDATE_ROLEDATA_RES" value="0x0025" />
+		<macro name="REGION_CREATE_PWORLD_INFO" value="0x0026" />
+		<macro name="ZONE_UNLOCK_NOTIFY" value="0x0027" />
+		<macro name="BATTLE_PLAYER_HELLO_REQ" value="0x0028" />
+		<macro name="BATTLE_PROXY_ROUTINE" value="0x0029" />
+		<macro name="BATTLE_MIRROR_SYNC" value="0x002A" />
+		<macro name="BILL_QUERY_PROPSDEF_REQ" value="0x002B" />
+		<macro name="BILL_QUERY_PROPSDEF_RES" value="0x002C" />		
+		<macro name="BILL_QUERY_PROPSGIFT_REQ" value="0x002D" />
+		<macro name="BILL_QUERY_PROPSGIFT_RES" value="0x002E" />	
+		<macro name="BILL_SET_PROPSGIFT_REQ" value="0x002F" />
+		<macro name="BILL_SET_PROPSGIFT_RES" value="0x0030" />		
+		<macro name="BILL_CASH_PROPSGIFT_REQ" value="0x0031" desc="9c冲值送礼cs接口" />
+		<macro name="BILL_CASH_PROPSGIFT_RES" value="0x0032" desc="9c冲值送礼cs接口" />		
+		<macro name="SS_PKG_TRANS" value="0x0033" desc="SVR间包转发"  />
+		<macro name="SS_CMD_REQ" value="0x0034" desc="发送的svr请求接受的svr给本服务器的clt发cmd"  />
+		<macro name="ACC_GIFT_LIST_REQ" value="0x0035" />
+		<macro name="ACC_GIFT_LIST_RES" value="0x0036" />
+		<macro name="SS_INFO_GET_REQ" value="0x0037" desc="SVR间拉取信息"  />
+		<macro name="SS_INFO_GET_RES" value="0x0038"/>
+		<macro name="PROP_GIFT_REQ" value="0x0039" />
+		<macro name="PROP_GIFT_RES" value="0x003A" />
+		<macro name="PROP_GIFT_BILL_RES" value="0x003B" desc="bill_svr 主动发给zone_svr"/>
+		<macro name="BATTLE_EXIT_REQ" value="0x003C" />
+		<macro name="BATTLE_EXIT_RES" value="0x003D" />
+		<macro name="SS_CDKEY_REQ" value="0x003E" />
+		<macro name="SS_CDKEY_RES" value="0x003F" />
+		<macro name="TEAM_SHADOW_EXIT_REQ" value="0x0040" />
+		<macro name="TEAM_SHADOW_EXIT_RES" value="0x0041" />
+		<macro name="ZONE_PROXY_ROUTINE" value="0x0042" />
+		<macro name="TEAM_SHADOW_SYNC_RES" value="0x0043" />
+		<macro name="SET_BATTLE_ROUTING_REQ" value="0x0044" />
+		<macro name="SET_BATTLE_ROUTING_RES" value="0x0045" />
+		<macro name="BATTLE_STATUSASSISTANT_REQ" value="0x0046" />
+		<macro name="BATTLE_STATUSASSISTANT_RES" value="0x0047" />
+		<macro name="GODCOIN_CONSUME_LOG_REQ" value="0x0048" />
+		<macro name="GODCOIN_CONSUME_LOG_RES" value="0x0049" />
+		<macro name="BATTLE_SHOPPING_REQ" value="0x004A" />
+		<macro name="BATTLE_SHOPPING_RES" value="0x004B" />
+		<macro name="BATTLE_TEAM_SUCC_REQ" value="0x004C" />
+		<macro name="BATTLE_TEAM_SUCC_RES" value="0x004D" />
+		<macro name="BATTLE_APPLY_QUEUE" value="0x004E" />
+		<macro name="FLUSH_BATTLE_QUEUE" value="0x004F" />
+		<macro name="FLUSH_BATTLE_QUEUE_TEAM_INFO" value="0x0050" />
+		<macro name="BATTLE_TEAM_MEMBER_SYNC"  value="0x0051" />
+		<macro name="SS_FILL_ID_CARD_REQ" value="0x0052"/>
+		<macro name="SS_FILL_ID_CARD_RES" value="0x0053"/>
+		<macro name="SPAN_ROLE_APPLY_REQ" value="0x0054" />
+		<macro name="SPAN_ROLE_APPLY_RES" value="0x0055" />
+		<macro name="SPAN_ROLE_HOLD_REQ" value="0x0056" />
+		<macro name="SPAN_ROLE_HOLD_RES" value="0x0057" />
+		<macro name="SPAN_ROLE_UPDATE_REQ" value="0x0058" />
+		<macro name="SPAN_ROLE_UPDATE_RES" value="0x0059" />
+		<macro name="SPAN_CHG_SVR" value="0x005a" />
+		<macro name="SPAN_ROLE_LOGIN_REQ" value="0x005b" />
+		<macro name="SS_TEAM_SYNC" value="0x005c" />
+		<macro name="SS_HEARTBEAT_REQ" value="0x005d" />
+		<macro name="SS_PROTECT_DATA_SYNC" value="0x005e" />
+		<macro name="SS_TEAM_DESTROY" value="0x005f" />
+		<macro name="SS_EXIT_PWORLD_QUEUE" value="0x0060" />
+		<macro name="SS_SPAN_CLEAN_LOGOUT" value="0x0061" />
+		<macro name="SS_SPAN_SAFELOCK" value="0x0062" />
+		<macro name="SS_APEX" value="0x0063" />
+		<macro name="SPAN_SPARTA_APPLY_REQ" value="0x0064" />
+		<macro name="SS_KICK_ACCNAME" value="0x0065" />
+		<macro name="SPAN_SPARTA_INVITE" value="0x0066" />
+		<macro name="SS_COROUTINE_RPC" value="0x0067"/>
+		<macro name="SS_SMS_REQ" value="0x0068"/>
+		<macro name="SS_SMS_RES" value="0x0069"/>
+		<macro name="ACC_GIFT_INSERT_REQ" value="0x006a" />
+		<macro name="ACC_GIFT_INSERT_RES" value="0x006b" />		
+
+		<macro name="SS_MSG_TRANS" value="0x006c" />	
+
+		<macro name="SPAN_STRONG_REQ" value="0x006d" />
+		<macro name="SPAN_STRONG_RES" value="0x006e" />		
+		<macro name="SPAN_MAP_CAMP_REQ" value="0x006f" />    
+		<macro name="SPAN_MAP_CAMP_RES" value="0x0070" />
+
+		<macro name="SS_WORLD_BOSS_DATA_SYNC" value="0x0071" />
+
+	</macrosgroup>
+
+	<struct name="SSMsgTrans" version="2287" >
+		<entry name="CSPkg" type="CSPkg" />
+	</struct>
+	
+	<!-- Pkg head -->
+	<struct name="SSPkgHead" version="1" sizeinfo="HeadLen" >
+		<entry name="Magic" type="smalluint" defaultvalue="PROTOCOL_MAGIC" />
+		<entry name="Cmd" type="smalluint" bindmacrosgroup="SSCmd" />
+		<entry name="HeadLen" type="smalluint" />
+		<entry name="BodyLen" type="smalluint" />
+		<entry name="Ver" type="smalluint" />
+		<entry name="Res" type="smalluint" />
+	</struct>
+
+	
+	<struct name="SSDirReport" version="1" >
+		<entry name="WorldID" type="smalluint" />
+		<entry name="PlayerNum" type="smalluint" />
+		<entry name="PlayerMaxNum" type="smalluint" />
+		<entry name="WeiHuFlag" type="smalluint" version="475" desc="服务器维护标记 1表示维护"/>
+		<entry name="Port" type="smalluint" />
+		<entry name="IP" type="string" size="48" desc="可能是url" />
+		<entry name="IP_Bak1" type="int" desc="一定是ip" version="1595" />
+		<entry name="IP_Bak2" type="int" desc="一定是ip" version="1595" />
+		<entry name="RegionID" type="int" version="161" />
+		<entry name="MapInfo" type="string" size="MAX_MAP_INFO" desc="地图人数信息" version="371"/>
+	</struct>
+
+
+	<struct name="HourData" version="1" >
+		<entry name="PlayerNum" type="smalluint" />
+		<entry name="Hour" type="smalluint" />
+	</struct>
+
+	<struct name="RePortData" version="1" >
+		<entry name="WorldID" type="smalluint" />
+		<entry name="RegionID" type="tinyuint" />
+		<entry name="DataNum" type="tinyuint" />
+		<entry name="DirHourData" type="HourData"  count="MAX_DATA_NUM" refer="DataNum" />
+	</struct>
+
+	<struct name="SSRePortDataAll" version="1" >
+		<entry name="time" type="int" />
+		<entry name="WorldNum" type="int" />
+		<entry name="RePort" type="RePortData"  count="REPORT_MAX_WORLD" refer="WorldNum" />
+	</struct>
+
+
+	<struct name="SSWorldInfoHour" version="1" >
+		<entry name="RegionID" type="tinyuint" />
+		<entry name="WorldID" type="smalluint" />
+		<entry name="OnLineNum" type="smalluint" />
+	</struct>
+	
+	<struct name="SSDirInfoHour" version="1" >
+		<entry name="Time" type="int" />
+		<entry name="Hour" type="int" />
+		<entry name="WorldNum" type="int" />
+		<entry name="WorldInfoHour" type="SSWorldInfoHour"  count="MAX_WORLD_NUM" refer="WorldNum" />
+	</struct>
+
+	<struct name="DirInfoDB" version="1" >
+		<entry name="WorldID" type="int" />
+		<entry name="RegionID" type="int" version="188"/>
+		<entry name="OnlineNum" type="int" />
+		<entry name="MudOnlineNum" type="int" version="639"/>
+		<entry name="Time" type="uint" />
+		<entry name="MapInfo" type="string" size="MAX_MAP_INFO" desc="地图人数信息" version="371"/>
+	</struct>
+	
+	<macro name="MAX_DIR_INFO"  value="24" />
+
+	<struct name="SSDirInfoDB" version="1" >
+		<entry name="WorldNum" type="int" />
+		<entry name="DirInfo" type="DirInfoDB"  count="MAX_DIR_INFO" refer="WorldNum" />
+	</struct>
+	
+	<macrosgroup name="CtrlCmd">
+		<macro name="TEST_REQ"  value="0x0000" /> 
+		<macro name="TEST_RES"  value="0x0001" /> 
+		<macro name="SHUTDOWN_REQ"  value="0x0002" /> 
+		<macro name="SHUTDOWN_RES"  value="0x0003" /> 
+		<macro name="LOADSCRIPT_REQ"  value="0x0004" /> 
+		<macro name="LOADSCRIPT_RES"  value="0x0005" /> 
+		<macro name="RELOAD_REQ"  value="0x0006" /> 
+		<macro name="RELOAD_RES"  value="0x0007" /> 
+	</macrosgroup>
+
+	<macrosgroup name="SCsCmd">
+		<!-- 跟cs_svr通信的消息 -->
+		<macro name="BLOCKPLAYER_REQ"  value="0x0000" /> 
+		<macro name="BLOCKPLAYER_RES"  value="0x0001" /> 
+		<macro name="ROLE_LIST_REQ"  value="0x0002" /> 
+		<macro name="ROLE_LIST_RES"  value="0x0003" /> 
+		<macro name="SILENCE_ROLE_REQ"  value="0x0004" /> 
+		<macro name="SILENCE_ROLE_RES"  value="0x0005" /> 
+		<macro name="ZONE_REQ"  value="0x0006" /> 
+		<macro name="ZONE_RES"  value="0x0007" /> 
+	
+		<macro name="GET_ROLE_DETAIL_REQ"  value="0x000C" /> 
+		<macro name="GET_ROLE_DETAIL_RES"  value="0x000D" /> 
+		<macro name="SET_ROLE_DETAIL_REQ"  value="0x000E" /> 
+		<macro name="SET_ROLE_DETAIL_RES"  value="0x000F" /> 
+		<macro name="GET_ROLE_SKILLINFO_REQ"  value="0x0010" /> 
+		<macro name="GET_ROLE_SKILLINFO_RES"  value="0x0011" /> 
+		<macro name="SET_ROLE_SKILLINFO_REQ"  value="0x0012" /> 
+		<macro name="SET_ROLE_SKILLINFO_RES"  value="0x0013" /> 
+		<!--macro name="GET_ROLE_FITTING_REQ"  value="0x0014" /--> 
+		<!--macro name="GET_ROLE_FITTING_RES"  value="0x0015" /--> 
+		<!--macro name="SET_ROLE_FITTING_REQ"  value="0x0016" /--> 
+		<!--macro name="SET_ROLE_FITTING_RES"  value="0x0017" /--> 
+		<macro name="GET_ROLE_ITEMLIST_REQ"  value="0x0018" /> 
+		<macro name="GET_ROLE_ITEMLIST_RES"  value="0x0019" /> 
+		<macro name="SET_ROLE_ITEMLIST_REQ"  value="0x001A" /> 
+		<macro name="SET_ROLE_ITEMLIST_RES"  value="0x001B" /> 
+		<macro name="GET_ROLE_DIATHESIS_REQ"  value="0x001C" /> 
+		<macro name="GET_ROLE_DIATHESIS_RES"  value="0x001D" /> 
+		<macro name="SET_ROLE_DIATHESIS_REQ"  value="0x001E" /> 
+		<macro name="SET_ROLE_DIATHESIS_RES"  value="0x001F" />
+		<macro name="GET_ROLE_TASK_REQ"  value="0x0020" /> 
+		<macro name="GET_ROLE_TASK_RES"  value="0x0021" />
+		<macro name="GET_ROLE_MAIL_LIST_REQ"  value="0x0022" />
+		<macro name="GET_ROLE_MAIL_LIST_RES"  value="0x0023" />
+		<macro name="GET_ROLE_MAIL_REQ"  value="0x0024" />
+		<macro name="GET_ROLE_MAIL_RES"  value="0x0025" />
+		<macro name="RESTORE_ROLE_REQ"  value="0x0026" />
+		<macro name="RESTORE_ROLE_RES"  value="0x0027" />
+		<macro name="DEL_ROLE_MAIL_REQ"  value="0x0028" />
+		<macro name="DEL_ROLE_MAIL_RES"  value="0x0029" />
+		<macro name="SEND_MAIL_REQ"  value="0x002A" />
+		<macro name="SEND_MAIL_RES"  value="0x002B" />
+		<!--macro name="SET_ROLE_TASK_REQ"  value="0x002C" /--> 
+		<!--macro name="SET_ROLE_TASK_RES"  value="0x002D" /-->
+		<macro name="GET_ACCOUNT_INFO_REQ" value="0x002E" />
+		<!--macro name="GET_ACCOUNT_ID_FROM_ROLENAME_EX_REQ" value="0x002F" /-->
+		<!--macro name="GET_ACCOUNT_ID_FROM_LOGINNAME_EX_REQ" value="0x0030" /-->
+		<macro name="GET_ACCOUNT_INFO_RES" value="0x0031" />
+		<macro name="GET_ACCOUNT_ID_RES" value="0x0032" />
+		<!--macro name="GET_ACCOUNT_ROLELIST_REQ" value="0x0033" /-->
+		<!--macro name="GET_ACCOUNT_ROLELIST_RES" value="0x0034" /-->
+		<macro name="SET_ACCOUNT_SILENCE_REQ" value="0x0035" />
+		<macro name="SET_ACCOUNT_SILENCE_RES" value="0x0036" />
+		<macro name="SET_ACCOUNT_FREEZE_REQ" value="0x0037" />
+		<macro name="SET_ACCOUNT_FREEZE_RES" value="0x0038" />
+		<macro name="DEL_ROLE_TASK_REQ"  value="0x0039" /> 
+		<macro name="DEL_ROLE_TASK_RES"  value="0x003A" />
+		<macro name="CTL_DEL_ROLE_MAIL_REQ"  value="0x003B" />
+		<macro name="CTL_DEL_ROLE_MAIL_RES"  value="0x003C" />
+		<macro name="CTL_SEND_MAIL_REQ"  value="0x003D" />
+		<macro name="CTL_SEND_MAIL_RES"  value="0x003E" />
+
+		<macro name="CHG_ROLE_NAME_REQ"  value="0x003F" />
+		<macro name="CHG_ROLE_NAME_RES"  value="0x0040" />
+		
+		<macro name="BLOCK_ACCOUNT_REQ"  value="0x0041" />
+		<macro name="BLOCK_ACCOUNT_RES"  value="0x0042" />
+		<macro name="SILENCE_ACCOUNT_REQ"  value="0x0043" />
+		<macro name="SILENCE_ACCOUNT_RES"  value="0x0044" />
+		<macro name="CTL_BLOCK_ACCOUNT_REQ"  value="0x0045" />
+		<macro name="CTL_BLOCK_ACCOUNT_RES"  value="0x0046" />
+		<macro name="CTL_SILENCE_ACCOUNT_REQ"  value="0x0047" />
+		<macro name="CTL_SILENCE_ACCOUNT_RES"  value="0x0048" />
+		<macro name="COPY_ROLE_REQ"  value="0x0049" />
+		<macro name="COPY_ROLE_RES"  value="0x004A" />
+		
+		<macro name="GET_BULLETIN_LIST_REQ"  value="0x004B" />
+		<macro name="GET_BULLETIN_LIST_RES"  value="0x004C" />
+		<macro name="ADD_BULLETIN_REQ"  value="0x004D" />
+		<macro name="ADD_BULLETIN_RES"  value="0x004E" />
+		<macro name="DEL_BULLETIN_REQ"  value="0x004F" />
+		<macro name="DEL_BULLETIN_RES"  value="0x0050" />
+		<macro name="CTL_GET_BULLETIN_LIST_REQ"  value="0x0051" />
+		<macro name="CTL_GET_BULLETIN_LIST_RES"  value="0x0052" />
+		<macro name="CTL_ADD_BULLETIN_REQ"  value="0x0053" />
+		<macro name="CTL_ADD_BULLETIN_RES"  value="0x0054" />
+		<macro name="CTL_DEL_BULLETIN_REQ"  value="0x0055" />
+		<macro name="CTL_DEL_BULLETIN_RES"  value="0x0056" />
+		
+		<macro name="SET_ACCOUNT_ROLENAME_REQ"  value="0x0057" />
+		<macro name="SET_ACCOUNT_ROLENAME_RES"  value="0x0058" />
+		
+		<macro name="CREATE_ITEM_REQ"  value="0x0059" />
+		<macro name="CREATE_ITEM_RES"  value="0x005A" />
+		
+		<macro name="UPDATE_ROLELIST_CACHE_REQ"  value="0x005B" />
+		<macro name="UPDATE_ROLELIST_CACHE_RES"  value="0x005C" />
+
+		<macro name="CHG_ROLE_POS_REQ"  value="0x005D" />
+		<macro name="CHG_ROLE_POS_RES"  value="0x005E" />
+		<macro name="GET_ROLE_RIDE_REQ"  value="0x005F" /> 
+		<macro name="GET_ROLE_RIDE_RES"  value="0x0060" /> 
+		<macro name="SET_ROLE_RIDE_REQ"  value="0x0061" /> 
+		<macro name="SET_ROLE_RIDE_RES"  value="0x0062" /> 
+		<macro name="GET_ROLE_QIYUELIST_REQ"  value="0x0063" />
+		<macro name="GET_ROLE_QIYUELIST_RES"  value="0x0064" /> 
+		<macro name="SET_ROLE_QIYUE_REQ"  value="0x0065" />
+		<macro name="SET_ROLE_QIYUE_RES"  value="0x0066" />		
+		<macro name="ADD_ROLE_QIYUE_REQ"  value="0x0067" />
+		<macro name="ADD_ROLE_QIYUE_RES"  value="0x0068" />
+		<macro name="DEL_ROLE_QIYUE_REQ"  value="0x0069" />
+		<macro name="DEL_ROLE_QIYUE_RES"  value="0x006A" />	
+		<macro name="MODIFY_ROLE_FAIRY_REQ"  value="0x006B" />
+		<macro name="MODIFY_ROLE_FAIRY_RES"  value="0x006C" />
+
+		<macro name="GET_ROLE_PET_REQ"  value="0x006D" /> 
+		<macro name="GET_ROLE_PET_RES"  value="0x006E" /> 
+		<macro name="SET_ROLE_PET_REQ"  value="0x006F" /> 
+		<macro name="SET_ROLE_PET_RES"  value="0x0070" /> 
+
+		<macro name="OUTLINE_RES"  value="0x0071" />
+		
+		<macro name="ADD_ROLE_DESIGNATION_REQ"  value="0x0072" />
+		<macro name="ADD_ROLE_DESIGNATION_RES"  value="0x0073" />
+		<macro name="DEL_ROLE_DESIGNATION_REQ"  value="0x0074" />
+		<macro name="DEL_ROLE_DESIGNATION_RES"  value="0x0075" />
+		<macro name="GET_ROLE_DESIGNATION_LIST_REQ"  value="0x0076" />
+		<macro name="GET_ROLE_DESIGNATION_LIST_RES"  value="0x0077" />
+		
+		<macro name="SET_ROLE_RESPACT_REQ"  value="0x0078" />
+		<macro name="SET_ROLE_RESPACT_RES"  value="0x0079" />
+		<macro name="DEL_ROLE_RESPACT_REQ"  value="0x0080" />
+		<macro name="DEL_ROLE_RESPACT_RES"  value="0x0081" />
+		<macro name="GET_ROLE_RESPACT_LIST_REQ"  value="0x0082" />
+		<macro name="GET_ROLE_RESPACT_LIST_RES"  value="0x0083" />
+
+		<macro name="SET_ROLE_LOGOUT_REQ"  value="0x0084" />
+		<macro name="SET_ROLE_LOGOUT_RES"  value="0x0085" />
+
+		<macro name="DEL_ROLE_REQ"  value="0x0086" />
+		<macro name="DEL_ROLE_RES"  value="0x0087" />
+
+		<macro name="SET_ROLE_PERM_REQ"  value="0x0088" />
+		<macro name="SET_ROLE_PERM_RES"  value="0x0089" />
+		
+		<macro name="SET_ACCOUNT_UIN_FLAG_REQ"  value="0x008A" />
+		<macro name="SET_ACCOUNT_UIN_FLAG_RES"  value="0x008B" />
+
+		<macro name="GET_CLAN_INFO_REQ"  value="0x008C" />
+		<macro name="GET_CLAN_INFO_RES"  value="0x008D" />
+
+		<macro name="GET_ROLE_FRIEND_REQ"  value="0x008E" />
+		<macro name="GET_ROLE_FRIEND_RES"  value="0x008F" />
+
+		<macro name="GET_ROLE_BLACK_REQ"  value="0x0090" />
+		<macro name="GET_ROLE_BLACK_RES"  value="0x0091" />
+
+		<macro name="IP_LIMIT_REQ"  value="0x0092" />
+		<macro name="IP_LIMIT_RES"  value="0x0093" />
+
+		<macro name="GET_IP_LIMIT_REQ"  value="0x0094" />
+		<macro name="GET_IP_LIMIT_RES"  value="0x0095" />
+		
+		<macro name="FIND_ACCOUNT_ROLELIST_REQ"  value="0x0096" />
+		<macro name="FIND_ACCOUNT_ROLELIST_RES"  value="0x0097" />
+		
+		<macro name="FIND_ACCOUNT_REQ" value="0x0098" />
+		<macro name="FIND_ACCOUNT_RES" value="0x0099" />
+		<macro name="CS_QUERY_BILL_REQ" value="0x009A" />
+		<macro name="CS_QUERY_BILL_RES" value="0x009B" />
+
+		<macro name="ERR_RES"  value="0x009C" />
+
+		<macro name="GET_CLAN_ALL_INFO_REQ" value="0x009d" />
+		<macro name="GET_CLAN_ALL_INFO_RES" value="0x009e" />
+		<macro name="CTL_GET_CLAN_ALL_INFO_REQ" value="0x009f" />
+		<macro name="CTL_GET_CLAN_ALL_INFO_RES" value="0x00a0" />
+
+		<macro name="DEL_CLAN_MEMBER_REQ" value="0x00a1" />
+		<macro name="DEL_CLAN_MEMBER_RES" value="0x00a2" />
+		<macro name="CTL_DEL_CLAN_MEMBER_REQ" value="0x00a3" />
+		<macro name="CTL_DEL_CLAN_MEMBER_RES" value="0x00a4" />
+
+		<macro name="DISBAND_CLAN_REQ" value="0x00a5" />
+		<macro name="DISBAND_CLAN_RES" value="0x00a6" />
+		<macro name="CTL_DISBAND_CLAN_REQ" value="0x00a7" />
+		<macro name="CTL_DISBAND_CLAN_RES" value="0x00a8" />
+
+		<macro name="CLEAR_CLAN_DIPLOMATISM_REQ" value="0x00a9" />
+		<macro name="CLEAR_CLAN_DIPLOMATISM_RES" value="0x00b0" />
+		<macro name="CTL_CLEAR_CLAN_DIPLOMATISM_REQ" value="0x00b1" />
+		<macro name="CTL_CLEAR_CLAN_DIPLOMATISM_RES" value="0x00b2" />
+		<macro name="GET_ROLE_PACKAGE_REQ"  value="0x00b3" />
+		<macro name="GET_ROLE_PACKAGE_RES"  value="0x00b4" />
+		<macro name="SET_ROLE_PACKAGE_REQ"  value="0x00b5" />
+		<macro name="SET_ROLE_PACKAGE_RES"  value="0x00b6" />
+		<macro name="GET_ROLE_PACKAGE_ITEM_REQ"  value="0x00b7" />
+		<macro name="GET_ROLE_PACKAGE_ITEM_RES"  value="0x00b8" />
+
+		<macro name="FIND_CLAN_REQ" value="0x00b9" />
+		<macro name="FIND_CLAN_RES" value="0x00ba" />
+
+		<macro name="DEL_CLAN_DIPLOMATISM_REQ" value="0x00bb" />
+		<macro name="DEL_CLAN_DIPLOMATISM_RES" value="0x00bc" />
+		<macro name="CTL_DEL_CLAN_DIPLOMATISM_REQ" value="0x00bd" />
+		<macro name="CTL_DEL_CLAN_DIPLOMATISM_RES" value="0x00be" />
+
+		<macro name="EXCHANGE_CLAN_LEADER_REQ" value="0x00bf" />
+		<macro name="EXCHANGE_CLAN_LEADER_RES" value="0x00c0" />
+		<macro name="CTL_EXCHANGE_CLAN_LEADER_REQ" value="0x00c1" />
+		<macro name="CTL_EXCHANGE_CLAN_LEADER_RES" value="0x00c2" />
+		<macro name="GET_ROLE_DROP_REQ"  value="0x00c3" />
+		<macro name="GET_ROLE_DROP_RES"  value="0x00c4" />
+		<macro name="CS_CASH_PROPS_BILL_REQ" value="0x00C5" desc="冲值积分送礼"/>
+		<macro name="CS_CASH_PROPS_BILL_RES" value="0x00C6" desc="冲值积分送礼"/>
+		<macro name="ROLE_DROP_RESTORE_REQ"  value="0x00c7" />
+		<macro name="ROLE_DROP_RESTORE_RES"  value="0x00c8" />
+
+		<macro name="ROLE_BACK_RECORD_REQ"  value="0x00c9" />
+		<macro name="ROLE_BACK_RECORD_RES"  value="0x00ca" />
+		<macro name="ROLE_HATCH_PET_REQ"  value="0x00cb" />
+		<macro name="ROLE_HATCH_PET_RES"  value="0x00cc" />
+
+		<macro name="GET_SAFELOCK_REQ"  value="0x00cd" />
+		<macro name="GET_SAFELOCK_RES"  value="0x00ce" />
+
+		<macro name="SET_SAFELOCK_REQ"  value="0x00cf" />
+		<macro name="SET_SAFELOCK_RES"  value="0x00d0" />
+
+		<macro name="CHG_POS_UP_CACHE_REQ"  value="0x00d1" />
+
+		<macro name="SET_CLAN_BASE_ATTR_REQ"  value="0x00d2" />
+		<macro name="SET_CLAN_BASE_ATTR_RES"  value="0x00d3" />
+		<macro name="CTL_SET_CLAN_BASE_ATTR_REQ"  value="0x00d4" />
+		<macro name="CTL_SET_CLAN_BASE_ATTR_RES"  value="0x00d5" />
+
+		<macro name="GET_LIFT_SKILL_REQ"  value="0x00d6" />
+		<macro name="GET_LIFT_SKILL_RES"  value="0x00d7" />
+
+		<macro name="SET_LIFT_SKILL_REQ"  value="0x00d8" />
+		<macro name="SET_LIFT_SKILL_RES"  value="0x00d9" />
+
+		<macro name="GET_ACC_SAFELOCK_REQ"  value="0x00da" />
+		<macro name="GET_ACC_SAFELOCK_RES"  value="0x00db" />
+		<macro name="SET_ACC_SAFELOCK_REQ"  value="0x00dd" />
+		<macro name="SET_ACC_SAFELOCK_RES"  value="0x00de" />
+		<macro name="FORCE_MSG_REQ"  value="0x00df" desc="强制消息请求" />
+		<macro name="FORCE_MSG_RES"  value="0x00e0" desc="强制消息请求" />
+		<macro name="RELOAD_SERVER_REQ"  value="0x00e1" />
+		<macro name="RELOAD_SERVER_RES"  value="0x00e2" />
+		<macro name="CTL_RELOAD_SERVER_REQ"  value="0x00e3" />
+		<macro name="CTL_RELOAD_SERVER_RES"  value="0x00e4" />
+
+		<macro name="CTL_SHOP_CGI_REQ"  value="0x00e5" />
+		<macro name="CTL_SHOP_CGI_RES"  value="0x00e6" />
+
+		<macro name="SET_SECOND_PWD_REQ" value="0x00e7" />
+		<macro name="SET_SECOND_PWD_RES" value="0x00e8" />
+	</macrosgroup>
+
+	<macro name="SS_MSG_LEN"  value="256" /> 
+	<macro name="SS_TIME_LEN"  value="32" /> 
+	<struct name="ForceMsgReq" version="1122" >
+		<entry name="Type" type="int" desc="0-强制消息框 1-强制活动" />
+		<entry name="IconID" type="int" desc="0-没有图标  |非0图标ID" />
+		<entry name="Msg" type="string" size="SS_MSG_LEN" desc="Type为0时此字段为消息内容 |1时为URL" />
+		<entry name="TStart" type="string" size="SS_TIME_LEN"  desc="开始时间|格式为2012-12-12 18:30:30" />
+		<entry name="TLife" type="int"   desc="	单位:秒持续时间" />
+		<entry name="Interval" type="int" desc="单位:秒|间隔-多久弹出一次" />
+	</struct>
+
+	<struct name="ForceMsgRes" version="1122" >
+		<entry name="Succ" type="int" desc="0-成功 |非0失败" />
+
+	</struct>
+
+	<struct name="ZoneConnCtx" version="94" >
+		<entry name="ConnIdx" type="int" />
+		<entry name="IPInfo" type="TIPInfo" />
+	</struct>
+
+	<macrosgroup name="SHOP_CGI_OP" >
+		<macro name="SHOP_CGI_OP_SELL_GOLD" value="0"  desc="出售金币" />
+		<macro name="SHOP_CGI_OP_BUY_GOLD" value="1"  desc="购买金币" />
+		<macro name="SHOP_CGI_OP_SELL_MONEY" value="2"  desc="出售银币" />
+		<macro name="SHOP_CGI_OP_BUY_MONEY" value="3"  desc="购买银币" />
+		
+		<macro name="SHOP_CGI_OP_SELECT" value="4" desc="查询系统交易信息" />
+		<macro name="SHOP_CGI_OP_REMOVE" value="5" desc="撤销某一次操作" />
+		<macro name="SHOP_CGI_OP_BUY_ONE" value="6" desc="购买某一条玩家挂单"/>
+		<macro name="SHOP_CGI_OP_REMOVE_ONE" value="7" desc="撤销某一条系统挂单"/>
+	</macrosgroup>
+	
+	<struct name="ShopCgiReq" version="2028" >
+		<entry name="Type" type="tinyint" bindmacrosgroup="SHOP_CGI_OP" />
+		
+		<entry name="Num" type="int" desc="出售或购买的数量" />
+		<entry name="Price" type="int" desc="价格" />
+		<entry name="ExchgNum" type="int" desc="每天总单数" />
+		<entry name="StartTime" type="uint" desc="开始时间" />
+		<entry name="EndTime" type="uint" desc="结束时间" />
+		<entry name="InterVal" type="int" desc="发布间隔时间|秒" />
+		
+		<entry name="TradeID" type="biguint" desc="撤销或购买需要传入ID" />
+		<entry name="TradeFlag" type="tinyint" desc="撤销或购买需要传入Flag :0-金币 非0表示银币" />
+
+		<entry name="ReMoveType" type="tinyint" desc="撤销某次操作0-出售金币1-购买金币 2-出售银币 3-购买银币" />
+	</struct>
+
+	<struct name="ShopCgiRes" version="2028" >
+		<entry name="Type" type="tinyint" bindmacrosgroup="SHOP_CGI_OP" />
+		<entry name="Succ" type="tinyint" desc="0-成功" />
+		<entry name="SysShopInfo" type="SysShopInfo" desc="服务器保存的系统交易信息"/>
+	</struct>
+
+	<macrosgroup name="SetLiftSkillOp">
+		<macro name="SETLIFTSKILL_OP_DEL"  value="0" /> 
+		<macro name="SETLIFTSKILL_OP_MOD"  value="1" /> 
+	</macrosgroup>
+
+	<macrosgroup name="RecipeOp">
+		<macro name="RECIPE_OP_NO"  value="0" /> 
+		<macro name="RECIPE_OP_DEL"  value="1" /> 
+		<macro name="RECIPE_OP_ADD"  value="2" /> 
+	</macrosgroup>
+	
+	<struct name="SetLiftSkillReq" version="746" >
+		<entry name="SkillOpType" type="int" bindmacrosgroup="SetLiftSkillOp"/>
+		<entry name="SkillType" type="int" />
+		<entry name="SkillVal" type="int" />
+		<entry name="SkillLvl" type="int" />
+		<entry name="RecipeOpType" type="int" bindmacrosgroup="RecipeOp"/>
+		<entry name="RecipeID" type="int"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="SetLiftSkillRes" version="746" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="GetLiftSkillReq" version="746" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+	
+	<struct name="GetLiftSkillRes" version="746" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="LiftSkillInfo" type="SecondarySkillMiscInfo" />
+	</struct>
+
+	<struct name="ChgPosUpCacheReq" version="475" >
+		<entry name="Uin" type="int" />
+		<entry name="Map" type="int" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneReloadServerReq" version="1707" >
+		<entry name="Res" type="int" />
+	</struct>
+
+	<struct name="ZoneReloadServerRes" version="1707" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	
+
+	<!--获取安全锁密码-->
+	<struct name="GetSafeLockReq" version="385" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="GetSafeLockRes" version="385" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="SafeLockPassWd" type="string" size="MAXROLENAME" />
+	</struct>
+
+	<!--设置安全锁密码-->
+	<struct name="SetSafeLockReq" version="385" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="SafeLockPassWd" type="string" size="MAXROLENAME" />
+	</struct>
+
+	<struct name="SetSafeLockRes" version="385" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<!--获取acc安全锁密码-->
+	<struct name="GetAccSafeLockReq" version="848" >
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" desc="账号"/>
+	</struct>
+	<struct name="GetAccSafeLockRes" version="848" >
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" desc="账号"/>
+		<entry name="SafeLockPassWd" type="string" size="MAXROLENAME" />
+	</struct>
+
+	<!--设置acc安全锁密码-->
+	<struct name="SetAccSafeLockReq" version="848" >
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" desc="账号"/>
+		<entry name="SafeLockPassWd" type="string" size="MAXROLENAME" />
+	</struct>
+	<struct name="SetAccSafeLockRes" version="848" >
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" desc="账号"/>
+	</struct>
+
+	<!--错误原因-->
+	<macrosgroup name="ERR_RESON">
+		<macro name="ERR_NO"  value="0x0000" desc="无错误" /> 
+		<macro name="ERR_SYS"  value="0x0001" desc="系统错误" /> 
+		<macro name="ERR_ONLINE"  value="0x0002" desc="在线错误" /> 
+		<macro name="ERR_TDR"  value="0x0003" desc="TDR错误|打包 解包失败   发送失败之类的错误" /> 
+		<macro name="ERR_OUTLINE"  value="0x0004" desc="不在线错误|例如踢角色一定要求角色在线" /> 
+		<macro name="ERR_DUP"  value="0x0005" desc="重名" /> 
+		<macro name="ERR_ARGS"  value="0x0006" desc="参数错误" /> 
+	</macrosgroup>
+
+	<!--错误回复-->
+	<struct name="ErrRes" version="181" >
+		<entry name="ErrReason" type="int" />
+		<entry name="ErrCmd" type="int" />
+	</struct>
+	
+	<!--获取限制IP列表-->
+	<struct name="ZoneGetIPLimitReq" version="169" >
+		<entry name="Res" type="uint" />
+	</struct>
+
+	<macro name="SS_IP_LEN" value="32" />
+	
+	<struct name="SSIPLimit" version="169" >
+		<entry name="IP" type="string"  size="SS_IP_LEN" />
+		<entry name="MASK" type="string"  size="SS_IP_LEN" />
+		<entry name="BlockEnd" type="int"  desc="结束时间"/>
+	</struct>
+	
+	<struct name="ZoneGetIPLimitRes" version="169" >
+		<entry name="iNum" type="int" />
+		<entry name="SSIPLimit" type="SSIPLimit" count="MAX_IP_LIMIT" refer="iNum"/>
+	</struct>
+
+	
+
+	<!--根据IP冻结账号-->
+	<macrosgroup name="IPLimitOp">
+		<macro name="OP_ADD"  value="0" /> 
+		<macro name="OP_DEL"  value="1" /> 
+		<macro name="OP_MODIFY"  value="2" /> 
+		
+	</macrosgroup>
+	
+	<struct name="ZoneIPLimitReq" version="169" >
+		<entry name="Op" type="int" bindmacrosgroup="IPLimitOp"/>
+		<entry name="IP" type="int"   />
+		<entry name="Mask" type="int" />
+		<entry name="Sec" type="int" desc="单位秒  -1表示永久冻结  0表示解冻"/>
+	</struct>
+
+	<struct name="ZoneIPLimitRes" version="169" >
+		<entry name="Res" type="uint" />
+	</struct>
+
+	
+
+	<!--获取公会信息-->
+	<struct name="ZoneGetClanInfoReq" version="169" >
+		<entry name="ClanID" type="uint"   desc="所在公会   ID" version="169"/>
+		<entry name="ClanName" type="string"  size="NAME_LEN" desc="所在公会   名" version="169"/>
+    
+	</struct>
+
+	<struct name="ZoneGetClanInfoRes" version="169" >
+    		<entry name="ClanProf" type="ClanProf"  desc="概要" />
+		
+	</struct>
+
+	<!--角色回档-->
+	<macro name="ROLE_BACK_DATA_LEN"  value="32" /> 
+	<struct name="ZoneRoleBackReq" version="384" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="BackData" type="string"  size="ROLE_BACK_DATA_LEN" desc="回档时间" />
+	</struct>
+
+	<struct name="ZoneRoleBackRes" version="384" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<!--获取Friend-->
+	<struct name="ZoneGetFirendReq" version="169" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneGetFirendRes" version="169" >
+		<entry name="RoleBuddy" type="RoleBuddy" />
+	</struct>
+
+	<!--获取BLACK-->
+	<struct name="ZoneGetBlackReq" version="169" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneGetBlackRes" version="169" >
+		<entry name="BlackNum" type="tinyuint" />
+		<entry name="EnemyNum" type="tinyuint" />
+		<entry name="Blacks" type="RoleEnemyMember" count="MAX_BLACK_NUM" refer="BlackNum"/>
+		<entry name="Enemys" type="RoleEnemyMember" count="MAX_ENEMY" refer="EnemyNum"/>	
+	</struct>
+
+	<!--设置GM权限-->
+	<struct name="ZoneSetRolePermReq" version="168" >
+		<entry name="Perm" type="int" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneSetRolePermRes" version="168" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<!--删除角色-->
+	<struct name="ZoneDelRoleReq" version="168" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" desc="角色ID" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneDelRoleRes" version="168" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	
+
+	<!--踢角色下线-->
+	<struct name="ZoneRoleLogOutReq" version="168" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneRoleLogOutRes" version="168" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	
+
+	<struct name="ZoneChgRoleNameReq" version="94" >
+		<entry name="OldRoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="ChgRoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID" />
+		<entry name="Uin" type="int" />
+	</struct>
+
+	<struct name="ZoneChgRoleNameRes" version="94" >
+		<!--entry name="OldRoleName" type="string" size="MAXROLENAME" desc="角色名"/-->
+		<entry name="ChgRoleName" type="string" size="MAXROLENAME" desc="更改后的角色名"/>
+		<!--entry name="RoleID" type="biguint" desc="角色ID" /-->
+	</struct>
+	
+	<struct name="ZoneTestReq" version="1" >
+		<entry name="Res" type="uint" />
+	</struct>
+
+	<struct name="ZoneOutLineRes" version="137" >
+		<entry name="Res" type="uint" />
+	</struct>
+	
+	<struct name="ZoneTestRes" version="1" >
+		<entry name="Result" type="uint" />
+	</struct>
+	
+	<struct name="ZoneShutDownReq" version="1" >
+		<entry name="Time" type="uint" />
+	</struct>
+	
+	<struct name="ZoneShutDownRes" version="1" >
+		<entry name="Result" type="uint" />
+	</struct>
+
+	<struct name="ZoneBlockPlayerReq" version="31" >
+		<entry name="Type" type="tinyint" desc="0 封锁角色,1 解封锁角色" />
+		<entry name="Time" type="int" desc="封锁住的时间,以秒为单位" />
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名" />
+		<entry name="RoleID" type="biguint" desc="角色ID" />
+		<entry name="IsTemp" type="tinyint" desc="是否只是临时临时踢下线" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<struct name="ZoneBlockPlayerRes" version="31" >
+		<entry name="Type" type="tinyint" desc="0 封锁角色,1 解封锁角色"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+
+	<struct name="ZoneRoleInfo" version="31" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="Gender" type="tinyint" />
+		<entry name="Career" type="tinyint" />
+		<entry name="Head" type="tinyuint" />
+		<entry name="Level" type="tinyuint" />
+		<entry name="AvatarProf"    type="RoleAvatarProf"  />
+		<entry name="Face" type="tinyuint" />
+	</struct>
+
+	<struct name="ZoneRoleBaseInfo" version="31" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="BlockEnd" type="int" />
+		<entry name="SilenceEnd" type="int" />
+		<entry name="CreateTime" type="uint" />
+		<entry name="LastLogin" type="uint"  />
+		<entry name="LastLogout" type="uint"/>
+		<entry name="Map" type="int"  />
+		<entry name="Pos" type="ResPos"/>
+		<entry name="Gender" type="tinyint" />
+		<entry name="Career" type="tinyint" />
+		<entry name="Level" type="tinyuint" />
+		<entry name="Head" type="tinyuint" />
+		<entry name="Face" type="tinyuint" />
+		<entry name="Hair" type="tinyuint"/>
+	</struct>
+	
+	<struct name="ZoneRoleListReq" version="31" >
+		<entry name="Uin" type="int" />
+		<entry name="RegionID" type="int" version="94"/>
+		<entry name="WorldID" type="int" version="94"/>
+	</struct>
+
+	<struct name="SSRoleList" version="94" >
+		<entry name="RoleID" type="biguint" desc="角色唯一id" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="IsDelete" type="tinyuint" desc="是否逻辑删除 0--否 1--是"/>
+	</struct>
+
+	<macro name="CS_ROLE_LIST_NUM" value="100" />
+	
+	<struct name="ZoneRoleListRes" version="31" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleNum" type="uint" />
+		<entry name="RoleList" type="SSRoleList" count="CS_ROLE_LIST_NUM" refer="RoleNum" version="94" />
+	</struct>
+
+	<struct name="ZoneSilenceRoleReq" version="31" >
+		<entry name="Time" type="int" desc="禁言的时间,以秒为单位"/>
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="IsTemp" type="tinyint" desc="是否只是临时禁言（帐号禁言）" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<struct name="ZoneSilenceRoleRes" version="31" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneGetRoleBaseInfoReq" version="31" >
+		<entry name="Uin" type="int" desc="角色登录账号"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	<struct name="ZoneGetRoleBaseInfoRes" version="31" >
+		<entry name="Result" type="int" desc="0 成功  其他 异常"/>
+		<entry name="RoleBaseInfo" type="ZoneRoleBaseInfo"/>
+	</struct>
+
+	<struct name="ZoneSetRoleBaseInfoReq" version="31" >
+		<entry name="RoleBaseInfo" type="ZoneRoleBaseInfo"/>
+	</struct>
+
+	<struct name="ZoneSetRoleBaseInfoRes" version="31" >
+		<entry name="Result" type="int" desc="0 成功  其他 异常"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneGetRoleDetailReq" version="44" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	
+
+	<struct name="ZoneGetRoleDetailRes" version="44" >
+		<entry name="RoleDetailInfo" type="RoleDetail "/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" version="93"/>
+		<entry name="MapID" type="uint"  version="93"/>
+		<entry name="X" type="uint"  version="93"/>
+		<entry name="Y" type="uint"  version="93"/>
+		<entry name="IsOnline" type="tinyuint"  version="93" desc="0--不在线 非0在线"/>
+		<entry name="Silence" type="int"  version="93" desc="禁言剩下的时间, 0表示没有禁言        单位:秒"/>
+		<entry name="Block" type="int"  version="93" desc="冻结角色剩下的时间, 0表示没有冻结单位:秒"/>
+
+		<entry name="SilenceStart" type="uint"  version="181" desc="啥时候开始禁言的"/>
+		<entry name="BlockStart" type="uint"  version="181" desc="啥时候开始冻结的"/>
+		
+		<entry name="Perm" type="uint"  version="168" desc="GM权限"/>
+		<entry name="CreateTime" type="uint"  version="168" desc=""/>		
+		<entry name="DelTime" type="uint"  version="168" desc=""/>
+		<entry name="Uin" type="int"  version="168" />
+		<entry name="RoleID" type="biguint"  version="168" />
+		<entry name="Level" type="tinyuint"  version="169" desc="等级"/>
+		<entry name="Gender" type="tinyuint"  version="169" desc="性别"/>
+		<entry name="Career" type="tinyuint"  version="169" desc="职业"/>
+		<entry name="ClanName" type="string"  size="NAME_LEN" desc="所在公会   名" version="169"/>
+		<entry name="ClanID" type="uint"   desc="所在公会   ID" version="169"/>
+		<entry name="PreLoginTime" type="int"   desc="上次登陆时间" version="181"/>
+		<entry name="LastLogoutTime" type="int"   desc="最后下线时间" version="181"/>
+
+		<entry name="StashMoney" type="int"   desc="仓库银卷" version="303"/>
+		<entry name="StashBull" type="int"   desc="仓库银币" version="303"/>
+		<entry name="AttrVal" type="CSPlayerAttrVal"   version="573" desc="角色属性"/>
+		<entry name="GeniusInfo" type="GeniusInfo"   version="1789" desc="天赋信息"/>
+	</struct>
+
+	<struct name="ZoneSetRoleDetailReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		
+		<entry name="RoleDetailInfo" type="RoleDetail "/>
+		<entry name="MapID" type="uint"  version="93"/>
+		<entry name="X" type="uint"  version="93"/>
+		<entry name="Y" type="uint"  version="93"/>
+		<entry name="SilenceTime" type="uint" version="169"/>
+		<entry name="BolckTime" type="uint" version="169"/>
+		<entry name="Perm" type="int" version="169"/>
+		<entry name="Level" type="tinyuint"  version="169" desc="等级"/>
+	</struct>
+
+	<struct name="ZoneSetRoleDetailRes" version="31" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneGetRoleSkillInfoReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	<struct name="ZoneGetRoleSkillInfoRes" version="31" >
+		<entry name="RoleSkillInfo" type="SkillInfo "/>
+	</struct>
+
+	<!--struct name="ZoneGetRoleFittingsReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct-->
+
+	<!--struct name="ZoneGetRoleFittingsRes" version="31" -->
+		<!--entry name="RoleFittingsInfo" type="FittingsInfo "/-->
+	<!--/struct-->
+
+	<macrosgroup name="RoleFittingOp">
+		<macro name="ROLE_FITTING_DEL"  value="0x0000" /> 
+		<macro name="ROLE_FITTING_MODIFY"  value="0x0001" /> 
+		<macro name="ROLE_FITTING_ADD" value="0x0002"/>
+	</macrosgroup>
+
+	<macrosgroup name="RoleFairyOp">
+		<macro name="ROLE_FAIRY_DEL"  value="0x0000" /> 
+		<macro name="ROLE_FAIRY_MODIFY"  value="0x0001" /> 
+		<macro name="ROLE_FAIRY_ADD" value="0x0002"/>
+	</macrosgroup>
+
+	<struct name="ZoneSetRoleFairyReq" version="135" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="OpType" type="int" bindmacrosgroup="RoleFairyOp"/>
+		<entry name="FairyID" type="uint" />
+		<entry name="FairyLV" type="uint" />
+	</struct>
+
+	<struct name="ZoneSetRoleFairyRes" version="135" >
+		<entry name="OpType" type="int" bindmacrosgroup="RoleFairyOp"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+	
+	<!--struct name="ZoneSetRoleFittingsReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="Type" type="int" bindmacrosgroup="RoleFittingOp"/>
+		<entry name="ZoneFittingData" type="FittingsData"/>
+	</struct-->
+
+	<!--struct name="ZoneSetRoleFittingsRes" version="31" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct-->
+
+	<macrosgroup name="RoleSkillOp">
+		<macro name="ROLE_SKILL_DEL"  value="0x0000" /> 
+		<macro name="ROLE_SKILL_MODIFY"  value="0x0001" /> 
+		<macro name="ROLE_SKILL_ADD" value="0x0002"/>
+	</macrosgroup>
+
+	<macrosgroup name="RoleDiathesisOp">
+		<macro name="ROLE_DIATHESIS_DEL"  value="0x0000" />
+		<macro name="ROLE_DIATHESIS_MODIFY"  value="0x0001" /> 
+		<macro name="ROLE_DIATHESIS_ADD" value="0x0002"/>
+	</macrosgroup>
+
+	<macrosgroup name="RoleItemOp">
+		<macro name="ROLE_ITEM_DEL"  value="0x0000" /> 
+		<macro name="ROLE_ITEM_MODIFY"  value="0x0001" /> 
+		<macro name="ROLE_ITEM_ADD" value="0x0002"/>
+	</macrosgroup>
+
+	<struct name="ZoneSetRoleSkillInfoReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="Type" type="int" bindmacrosgroup="RoleSkillOp"/>
+		<entry name="ZoneSkillData" type="SkillData"/>
+	</struct>
+
+	<struct name="ZoneSetRoleSkillInfoRes" version="31" >
+		<!--entry name="Result" type="int" desc="0 成功  其他 异常"/-->
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneSetRoleDiathesisReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="OpType" type="int" bindmacrosgroup="RoleDiathesisOp"/>
+		<entry name="ZoneDiathesisData" type="DiathesisData"/>
+	</struct>
+
+	<struct name="ZoneSetRoleDiathesisRes" version="31" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneGetRoleDiathesisReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	<struct name="ZoneGetRoleDiathesisRes" version="31" >
+		<entry name="ZoneDiathesisInfo" type="DiathesisInfo"/>
+	</struct>
+	
+	<struct name="ZoneGetRoleItemListReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	<struct name="ZoneGetRoleItemListRes" version="31" >
+		<entry name="ZoneRolePackage" type="RolePackage" desc="角色背包" />
+		<entry name="ZoneRoleWear" type="RoleWear" desc="角色已穿戴的装备" />
+	</struct>
+
+	<struct name="ZoneGetRoleTaskReq" version="94" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	<struct name="ZoneGetRoleTaskRes" version="94" >
+		<entry name="TaskInfo" type="TaskInfo" />
+	</struct>
+
+	<struct name="ZoneDelRoleTaskReq" version="94" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="TaskID" type="uint" />
+	</struct>
+
+	<struct name="ZoneDelRoleTaskRes" version="94" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="ZoneSetRoleItemListReq" version="31" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="PackType" type="int" bindmacrosgroup="LIST_TYPE" desc="背包类型"/>
+		<entry name="OPType" type="int" bindmacrosgroup="RoleItemOp" desc="操作方式"/>
+		<entry name="ZoneRoleGrid" type="RoleGrid"/>
+	</struct>
+
+	<struct name="ZoneSetRoleItemListRes" version="31" >
+		<!--entry name="Result" type="int" desc="0 成功  其他 异常"/-->
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<macro name="MAX_SCRIPT_NAME" value="128"/>
+	<macrosgroup name="LOADSCRIPT_TYPE" >
+	  	<macro name="LOADSCRIPT_ONE" value="0" />
+		<macro name="LOADSCRIPT_ALL"   value="1" />
+	</macrosgroup>
+	
+	<struct name="ZoneLoadScriptReq" version="44" >
+		<entry name="Type" type="int" bindmacrosgroup="LOADSCRIPT_TYPE"/>
+		<entry name="Name" type="string" size="MAX_SCRIPT_NAME"/>
+	</struct>
+
+	<struct name="ZoneReLoadReq" version="44" >
+		<entry name="Res" type="uint" />
+	</struct>
+
+	<struct name="ZoneLoadScriptRes" version="44" >
+		<entry name="Result" type="int" />
+	</struct>
+
+	<struct name="ZoneReLoadRes" version="44" >
+		<entry name="Result" type="int" />
+	</struct>
+
+	<union name="SSCtrlCmd" version="44" >
+		<entry name="TestReq" type="ZoneTestReq" id="TEST_REQ" />
+		<entry name="TestRes" type="ZoneTestRes" id="TEST_RES" />
+		<entry name="ShutDownReq" type="ZoneShutDownReq" id="SHUTDOWN_REQ" />
+		<entry name="ShutDownRes" type="ZoneShutDownRes" id="SHUTDOWN_RES" />
+		<entry name="LoadScriptReq" type="ZoneLoadScriptReq" id="LOADSCRIPT_REQ" />
+		<entry name="LoadScriptRes" type="ZoneLoadScriptRes" id="LOADSCRIPT_RES" />
+		<entry name="ReLoadReq" type="ZoneReLoadReq" id="RELOAD_REQ" />
+		<entry name="ReLoadRes" type="ZoneReLoadRes" id="RELOAD_RES" />
+	</union>
+
+	<macro name="CS_ASYN_DATA" value="70000"/>
+	<struct name="AsynReq" version="1" >
+		<entry name="Cmd" type="int" />
+		<entry name="ConnIdx" type="int" />
+		<entry name="IPInfo" type="TIPInfo" />
+		<entry name="DataLen" type="int" />
+		<entry name="Data" type="tinyuint" count="CS_ASYN_DATA" refer="DataLen" />
+	</struct>
+
+	<struct name="AsynRes" version="1" >
+		<entry name="AsynReq" type="AsynReq" />
+		<entry name="Result" type="int" />
+	</struct>
+
+	<!-- Informer的account信息 -->	
+	<macro name="INFORMER_BIRTHDAY_LEN" value="9" />
+
+	<struct name="InformerAccount" version="92" >
+		<entry name="UinFlag" type="int" desc="帐号标记，例如vip用户等" />
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="PasswdHash" type="tinyint" count="16" desc="用户密码的二次hash" />
+		<entry name="BirthDay" type="string" size="INFORMER_BIRTHDAY_LEN" desc="生日" />
+		<entry name="Gender" type="tinyint" desc="性别" version="125" />
+		<entry name="RegisterTs" type="string" size="REGISTER_TIME_LEN" desc="注册时间 e.g. 201008181302" version="125" />
+		<entry name="PasswdCard" type="PasswdCard" desc="密保卡" version="1792"   />
+		<entry name="WebUin" type="int" desc="帐号对应网站的Uid" version="2147" />
+	</struct>
+	
+	<!-- 发送到informer获取account信息的请求 -->
+	<struct name="SSGetAccountReq"  version="92" >
+		<entry name="LoginName" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="ExtraDataLen" type="smalluint"  />
+		<entry name="Res" type="tinyuint" count="2" io="2"  />
+		<entry name="ExtraData" type="tinyuint" count="4096" refer="ExtraDataLen"  />
+	</struct>
+	
+	<!-- 获取account信息的结果 -->
+	<struct name="SSGetAccountRes"  version="92" >
+		<entry name="Found" type="tinyuint" />
+		<entry name="Res1" type="tinyuint" count="3" io="3"  />
+		<entry name="Account" type="InformerAccount" />
+		<entry name="ExtraDataLen" type="smalluint"  />
+		<entry name="Res2" type="tinyuint" count="2" io="2"  />
+		<entry name="ExtraData" type="tinyuint" count="4096" refer="ExtraDataLen"  />
+	</struct>	
+
+	
+	<!-- Account 查询相关数据结构 begin -->
+	<macro name="ACC_PATTERN_LEN" value="256" />
+	<macro name="ACC_MAX_RES" value="64" />
+	<macro name="ROLE_MAX_RES" value="60" />
+	
+	<struct name="AccIDInfo" version="94" >
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" desc="帐号登录名" />
+	</struct>
+	
+	<struct name="AccGetInfoReq" version="94" >
+		<entry name="AccIDInfo" type="AccIDInfo" />
+	</struct>
+	
+	<macrosgroup name="FIND_ACCOUNT_BY_WHAT">
+		<macro name="FIND_ACCOUNT_BY_LOGINNAME"  value="0" />
+		<macro name="FIND_ACCOUNT_BY_ROLENAME"  value="1" />
+	</macrosgroup>
+
+	<union name="SSFindAccountKey" version="169" >
+		<entry name="LoginNamePattern" type="string" size="ACCOUNT_LOGIN_NAME_LEN" id="FIND_ACCOUNT_BY_LOGINNAME" />
+		<entry name="RoleNamePattern" type="string" size="ROLE_NAME_LEN" id="FIND_ACCOUNT_BY_ROLENAME"/>
+	</union>
+	
+	<struct name="AccFindReq" version="169" >
+		<entry name="ByWhat" type="tinyint" bindmacrosgroup="FIND_ACCOUNT_BY_WHAT" />
+		<entry name="Res1" type="tinyint" count="3" io="3" />
+		<entry name="Index" type="int" />
+		<entry name="Key" type="SSFindAccountKey" select="ByWhat" />
+	</struct>
+	
+	<!--struct name="AccGetIDFromRoleNameExReq" version="94" >
+		<entry name="Index" type="int" />
+		<entry name="RoleNamePattern" type="string" size="ACC_PATTERN_LEN" />
+	</struct>
+	
+	<struct name="AccGetIDFromLoginNameExReq" version="94" >
+		<entry name="Index" type="int" />
+		<entry name="LoginNamePattern" type="string" size="ACC_PATTERN_LEN" />
+	</struct-->
+	
+	<struct name="SSAccInfo" version="169" >
+		<entry name="Uin" type="int" />
+		<entry name="UinFlag" type="int" desc="帐号标记，例如vip用户等" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" desc="生日" />
+		<entry name="Gender" type="tinyint" desc="性别" />
+		<entry name="RegisterTs" type="string" size="REGISTER_TIME_LEN" desc="注册时间 e.g. 201008181302" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="SilenceStartTime" type="int" desc="啥时候被禁言的" version="181"/>
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" />
+		<entry name="AccCreateTime" type="int" version="265" desc="账号创建时间" />
+		<entry name="LastLoginWorldID" type="int" version="385" desc="最后登录服务器ID" />
+	</struct>
+	
+	<struct name="SSAccLiteInfo" version="169" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" />
+		<entry name="AccCreateTime" type="int" version="265" desc="账号创建时间" />
+		<entry name="Uin" type="int" version="1704" desc="账号Uin" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="1704" />
+	</struct>
+	
+	<struct name="AccGetInfoRes" version="94" >
+		<entry name="Found" type="tinyuint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountInfo" type="SSAccInfo" version="169" />
+	</struct>
+
+	<!--struct name="AccGetIDRes" version="94" >
+		<entry name="ResNum" type="int" />
+		<entry name="ReginID" type="tinyint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountLiteArray" type="SSAccLiteInfo" count="ACC_MAX_RES" refer="ResNum" />
+	</struct-->
+	<struct name="AccFindRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="ReginID" type="tinyint" />
+		<entry name="Res" type="tinyuint" count="3" io="3" />
+		<entry name="AccountLiteArray" type="SSAccLiteInfo" count="ACC_MAX_RES" refer="ResNum" />
+	</struct>
+	
+	<struct name="AccSetSilenceReq" version="94" >
+		<entry name="AccIDInfo" type="AccIDInfo" />
+		<entry name="Enable" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="SilenceTime" type="int" />
+	</struct>
+	
+	<struct name="AccSetSilenceRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="AccSetFreezeReq" version="94" >
+		<entry name="AccIDInfo" type="AccIDInfo" />
+		<entry name="Enable" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="FreezeTime" type="int" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="1704" />
+	</struct>
+	
+	<struct name="AccSetFreezeRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="AccSetRoleNameReq" version="112" >
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+	</struct>
+	
+	<struct name="AccSetRoleNameRes" version="112" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<macrosgroup name="ACC_SET_UIN_FLAG_TYPE">
+		<macro name="ACC_SET_UIN_FLAG_TYPE_ASSIGN"  value="0" desc="赋值"/>
+		<macro name="ACC_SET_UIN_FLAG_TYPE_ADD"  value="1" desc="增加" />
+		<macro name="ACC_SET_UIN_FLAG_TYPE_REMOVE"  value="2" desc="移除" />
+		<macro name="ACC_SET_UIN_FLAG_TYPE_NOTICE"  value="3" desc="通知" />
+	</macrosgroup>
+	
+	<struct name="AccSetUinFlagReq" version="169" >
+		<entry name="AccIDInfo" type="AccIDInfo" />
+		<entry name="UinFlag" type="uint" />
+		<entry name="Type" type="int" bindmacrosgroup="ACC_SET_UIN_FLAG_TYPE" version="1842"/>
+	</struct>
+	
+	<struct name="AccSetUinFlagRes" version="169" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	<!-- Account 查询相关数据结构 end -->
+	
+	<!-- Account Role List 查询相关数据结构 begin -->	
+	<struct name="SSAccountRole" version="169" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="Uin" type="int" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" desc="角色名，索引" />
+		<entry name="DelTime" type="int" desc="删除标记" />
+		<entry name="RegionID" type="tinyuint" desc="区ID" />
+		<entry name="Res1" type="tinyint" count="3" io="3" />
+		<entry name="ServerID" type="smalluint" desc="服ID" />
+		<entry name="Res2" type="tinyint" count="2" io="2" />
+		<entry name="CreateTime" type="int" desc="删除标记" />
+		<entry name="OnlineFlag" type="int" desc="在线标记" />
+		<entry name="MacAddr" type="string" size="MAC_ADDR_LEN" desc="Mac地址" version="1639" />
+	</struct>
+	
+	<macrosgroup name="FIND_ACCOUNT_ROLELIST_BY_WHAT">
+		<macro name="FIND_ACCOUNT_ROLELIST_BY_LOGINNAME"  value="0" />
+		<macro name="FIND_ACCOUNT_ROLELIST_BY_ROLENAME"  value="1" />
+	</macrosgroup>
+
+	<union name="SSFindAccountRoleListKey" version="169" >
+		<entry name="LoginNamePattern" type="string" size="ACCOUNT_LOGIN_NAME_LEN" id="FIND_ACCOUNT_ROLELIST_BY_LOGINNAME" />
+		<entry name="RoleNamePattern" type="string" size="ROLE_NAME_LEN" id="FIND_ACCOUNT_ROLELIST_BY_ROLENAME"/>
+	</union>
+	
+	<struct name="AccFindRoleListReq" version="169" >
+		<entry name="ByWhat" type="tinyint" bindmacrosgroup="FIND_ACCOUNT_ROLELIST_BY_WHAT" />
+		<entry name="Res1" type="tinyint" count="3" io="3" />
+		<entry name="ServerID" type="int" />
+		<entry name="Index" type="int" />
+		<entry name="Key" type="SSFindAccountRoleListKey" select="ByWhat" />
+	</struct>
+	
+	<struct name="AccFindRoleListRes" version="169" >
+		<entry name="ResNum" type="int" />
+		<entry name="RoleArray" type="SSAccountRole" count="ROLE_MAX_RES" refer="ResNum" />
+	</struct>
+	<!-- Account Role List 查询相关数据结构 end -->
+	
+	<!-- 邮件相关数据结构 begin -->
+	
+
+	<struct name="ZoneGetMailListReq" version="94" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="Index" type="int" />
+	</struct>
+	
+	<struct name="ZoneGetMailListRes" version="94" >
+		<entry name="ResNum" type="int" />
+		<entry name="MailHeads" type="MailHead" count="MAIL_MAX_NUM" refer="ResNum" />
+	</struct>
+	
+	<struct name="ZoneGetMailReq" version="94" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="MailID" type="biguint" />
+	</struct>
+	
+	<struct name="ZoneGetMailRes" version="94" >
+		<entry name="Found" type="tinyuint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="MailData" type="Mail" />
+	</struct>
+	
+	<struct name="ZoneDelMailReq" version="94" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="MailID" type="biguint" />
+	</struct>
+	
+	<struct name="ZoneDelMailRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneCtlDelMailReq" version="94" >
+		<entry name="Core" type="ZoneDelMailReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlDelMailRes" version="94" >
+		<entry name="Core" type="ZoneDelMailRes" />
+		<entry name="ReqCopy" type="ZoneDelMailReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneSendMailReq" version="94" >
+		<entry name="To" type="string" size="ROLE_NAME_LEN_SAVE" desc="收件人" />
+		<entry name="Send" type="string" size="ROLE_NAME_LEN_SAVE" desc="发件人" />
+		<entry name="Title" type="string" size="NAME_LEN" desc="标题" />
+		<entry name="Text" type="string" size="SHORT_DESC_LEN" desc="正文" />
+		<entry name="ItemNum" type="tinyuint" desc="邮寄的物品数量" />
+		<entry name="Res" type="tinyuint" io="3" />
+		<entry name="Items" type="RoleGrid" count="MAIL_MAX_ITEM" refer="ItemNum" desc="邮寄的物品ID" />
+		<entry name="Money" type="uint" desc="邮寄的钱" />
+	</struct>
+	
+	<struct name="ZoneSendMailRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="MailID" type="biguint" />
+	</struct>
+	
+	<struct name="ZoneCtlSendMailReq" version="94" >
+		<entry name="Core" type="ZoneSendMailReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlSendMailRes" version="94" >
+		<entry name="Core" type="ZoneSendMailRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	
+	<!-- 邮件相关数据结构 end -->
+	
+	<!-- 冻结禁言帐号相关 begin -->
+	<struct name="ZoneBlockAccountReq" version="94" >
+		<entry name="LoginName" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" desc="帐号登录名" />
+		<entry name="BlockTime" type="int" />
+	</struct>
+	
+	<struct name="ZoneBlockAccountRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneSilenceAccountReq" version="94" >
+		<entry name="LoginName" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" desc="帐号登录名" />
+		<entry name="Enable" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="SilenceTime" type="int" />
+	</struct>
+	
+	<struct name="ZoneSilenceAccountRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneCtlBlockAccountReq" version="94" >
+		<entry name="Core" type="ZoneBlockAccountReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlBlockAccountRes" version="94" >
+		<entry name="Core" type="ZoneBlockAccountRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlSilenceAccountReq" version="94" >
+		<entry name="Core" type="ZoneSilenceAccountReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlSilenceAccountRes" version="94" >
+		<entry name="Core" type="ZoneSilenceAccountRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<!-- 冻结禁言帐号相关 end -->
+	
+	<!-- 恢复已经被删除的角色 begin -->
+	<struct name="SSRestoreRoleReq" version="94" >
+		<entry name="RoleID" type="biguint" />
+	</struct>
+	
+	<struct name="SSRestoreRoleRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	<!-- 恢复已经被删除的角色 end -->
+	
+	<!-- 角色存储路径 begin -->
+	<struct name="SSRoleStoragePath" version="94" >
+		<entry name="RegionID" type="tinyint" />
+		<entry name="Res1" type="tinyint" count="3" io="3" />
+		<entry name="WorldID" type="smallint" />
+		<entry name="Res2" type="tinyint" count="2" io="2" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+	</struct>
+	<!-- 角色存储路径 end -->
+	
+	<!-- 复制角色 begin -->
+	<struct name="ZoneCopyRoleReq" version="94" >
+		<entry name="SrcRoleID" type="biguint" />
+		<entry name="SrcRoleName" type="string" size="ROLE_NAME_LEN" version="137" />
+		<entry name="DstRoleID" type="biguint" />
+		<entry name="DstRoleName" type="string" size="ROLE_NAME_LEN" />
+	</struct>
+	
+	<struct name="ZoneCopyRoleRes" version="94" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	<!-- 复制角色 end -->
+	
+	<!-- 公告管理 begin -->
+	<struct name="ZoneGetBulletinListReq" version="112" >
+		<entry name="Res" type="int" />
+	</struct>
+	
+	<struct name="SSBulletin" version="112" >
+		<entry name="Core" type="BulletinEntry" />
+		<entry name="ActiveTime" type="int" />
+		<entry name="ActiveTimeStart" type="int" version="639"/>
+	</struct>
+	
+	<struct name="ZoneGetBulletinListRes" version="112" >
+		<entry name="Num" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="BulletinArray" type="SSBulletin" count="MAX_BULLETIN_NUM" refer="Num" />
+	</struct>
+	
+	<struct name="ZoneAddBulletinReq" version="112" >
+		<entry name="Bulletin" type="SSBulletin" />
+	</struct>
+	
+	<struct name="ZoneAddBulletinRes" version="112" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneDelBulletinReq" version="112" >
+		<entry name="ID" type="int" />
+	</struct>
+	
+	<struct name="ZoneDelBulletinRes" version="112" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneCtlGetBulletinListReq" version="112" >
+		<entry name="Core" type="ZoneGetBulletinListReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlGetBulletinListRes" version="112" >
+		<entry name="Core" type="ZoneGetBulletinListRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlAddBulletinReq" version="112" >
+		<entry name="Core" type="ZoneAddBulletinReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlAddBulletinRes" version="112" >
+		<entry name="Core" type="ZoneAddBulletinRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlDelBulletinReq" version="112" >
+		<entry name="Core" type="ZoneDelBulletinReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	
+	<struct name="ZoneCtlDelBulletinRes" version="112" >
+		<entry name="Core" type="ZoneDelBulletinRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+	<!-- 公告管理 end -->
+	
+	<!-- 创建物品 begin -->
+	<macro name="ROLE_GRID_MAX_RES" value="64" />
+	
+	<struct name="SSItemIdent" version="112" >
+		<entry name="DefID" type="int" />
+		<entry name="Num" type="smalluint" />
+	</struct>
+
+	<struct name="ZoneCreateItemReq" version="112" >
+		<entry name="Num" type="tinyuint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="ItemIdents" type="SSItemIdent" count="ROLE_GRID_MAX_RES" refer="Num" />
+	</struct>
+	
+	<struct name="ZoneCreateItemRes" version="112" >
+		<entry name="Num" type="tinyuint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="RoleGrids" type="RoleGrid" count="ROLE_GRID_MAX_RES" refer="Num" />
+	</struct>
+	<!-- 创建物品 end -->
+	
+	<!-- 通知zone_svr更新RoleList Cache begin -->
+	<struct name="ZoneUpdateRoleListCacheReq" version="112" >
+		<entry name="Uin" type="int" />
+	</struct>	
+	<!-- 通知zone_svr更新RoleList Cache end -->
+	
+	<!-- 角色称号相关 begin -->
+	<struct name="ZoneAddRoleDesignationReq" version="137" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<!--entry name="RoleID" type="biguint" /-->
+		<!--entry name="Uin" type="int" /-->
+		<entry name="DesignationID" type="int" />
+	</struct>
+	
+	<struct name="ZoneAddRoleDesignationRes" version="137" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneDelRoleDesignationReq" version="137" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<!--entry name="RoleID" type="biguint" /-->
+		<!--entry name="Uin" type="int" /-->
+		<entry name="DesignationID" type="int" />
+	</struct>
+	
+	<struct name="ZoneDelRoleDesignationRes" version="137" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneGetRoleDesignationListReq" version="137" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<!--entry name="RoleID" type="biguint" /-->
+		<!--entry name="Uin" type="int" /-->
+	</struct>
+	
+	<struct name="ZoneGetRoleDesignationListRes" version="137" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="Designations" type="RoleDesignations" />
+	</struct>
+	<!-- 角色称号相关 end -->
+	
+	
+	<!-- 角色声望相关 begin -->
+	<struct name="ZoneSetRoleRespactReq" version="137" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<!--entry name="RoleID" type="biguint" /-->
+		<!--entry name="Uin" type="int" /-->
+		<entry name="RespactPartyID" type="int" />
+		<entry name="RespactValue" type="int" />
+	</struct>
+	
+	<struct name="ZoneSetRoleRespactRes" version="137" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneDelRoleRespactReq" version="137" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<!--entry name="RoleID" type="biguint" /-->
+		<!--entry name="Uin" type="int" /-->
+		<entry name="RespactPartyID" type="int" />
+	</struct>
+	
+	<struct name="ZoneDelRoleRespactRes" version="137" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+	
+	<struct name="ZoneGetRoleRespactListReq" version="137" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<!--entry name="RoleID" type="biguint" /-->
+		<!--entry name="Uin" type="int" /-->
+	</struct>
+	
+	<struct name="ZoneGetRoleRespactListRes" version="137" >
+		<entry name="Succeeded" type="tinyint" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+		<entry name="RespactInfo" type="RespactInfo" />
+	</struct>
+	<!-- 角色声望相关 end -->
+
+	<!-- 公会相关 begin -->
+	<struct name="ZoneGetClanAllInfoReq" version="290" >
+		<entry name="ClanName" type="string" size="NAME_LEN" desc="公会名,依据这个名字查找公会" />
+	</struct>
+
+	<struct name="ZoneGetClanAllInfoRes" version="290" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+    	<entry name="ClanProf" type="ClanProf" desc="公会概要信息" />
+    	<entry name="ClanBrief" type="ClanBrief" desc="公会简要信息,公会内外人员可见" />
+    	<entry name="ClanInner" type="ClanInner" desc="公会内部信息,公会内人员可见" />
+    	<entry name="ClanCity" type="ClanCity" desc="公会城市信息" />
+    	<entry name="ClanCore" type="ClanCore" desc="公会核心数据" />
+    	<entry name="ClanDestroyTime" type="int" desc="强制解散时间点(UTC)到了这个时间公会就会被强制解散" />
+    	<entry name="ClanActiveTime" type="int" desc="最近的一次公会成员登录时间(UTC)" />
+	</struct>
+
+	<struct name="ZoneCtlGetClanAllInfoReq" version="290" >
+		<entry name="Core" type="ZoneGetClanAllInfoReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlGetClanAllInfoRes" version="290" >
+		<entry name="Core" type="ZoneGetClanAllInfoRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<!-- -->
+
+	<struct name="ZoneDelClanMemberReq" version="290" >
+		<entry name="ClanName" type="string" size="NAME_LEN" desc="公会名,依据这个名字查找公会" />
+		<entry name="RoleName" type="string" size="NAME_LEN" desc="被从公会删除的角色名" />
+	</struct>
+
+	<struct name="ZoneDelClanMemberRes" version="290" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<struct name="ZoneCtlDelClanMemberReq" version="290" >
+		<entry name="Core" type="ZoneDelClanMemberReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlDelClanMemberRes" version="290" >
+		<entry name="Core" type="ZoneDelClanMemberRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<!-- -->
+
+	<struct name="ZoneDisbandClanReq" version="290" >
+		<entry name="ClanName" type="string" size="NAME_LEN" desc="公会名,依据这个名字查找公会" />
+	</struct>
+
+	<struct name="ZoneDisbandClanRes" version="290" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<struct name="ZoneCtlDisbandClanReq" version="290" >
+		<entry name="Core" type="ZoneDisbandClanReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlDisbandClanRes" version="290" >
+		<entry name="Core" type="ZoneDisbandClanRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<!-- DIPLOMATISM -->
+
+	<struct name="ZoneClearClanDiplomatismReq" version="290" >
+		<entry name="ClanName" type="string" size="NAME_LEN" desc="公会名,依据这个名字查找公会" />
+	</struct>
+
+	<struct name="ZoneClearClanDiplomatismRes" version="290" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<struct name="ZoneCtlClearClanDiplomatismReq" version="290" >
+		<entry name="Core" type="ZoneClearClanDiplomatismReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlClearClanDiplomatismRes" version="290" >
+		<entry name="Core" type="ZoneClearClanDiplomatismRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneFindClanReq" version="378" >
+		<entry name="Pattern" type="string" size="NAME_LEN" />
+		<entry name="Index" type="int" />
+	</struct>
+
+	<struct name="ZoneClanProfile" version="378" >
+		<entry name="Name" type="string" size="NAME_LEN" />
+	</struct>
+
+	<macro name="CLAN_MAX_RES" value="60" />
+
+	<struct name="ZoneFindClanRes" version="378" >
+		<entry name="ResNum" type="int" />
+		<entry name="ClanArray" type="ZoneClanProfile" count="CLAN_MAX_RES" refer="ResNum" />
+	</struct>
+
+	<struct name="ZoneDelClanDiplomatismReq" version="378" >
+		<entry name="ClanName" type="string" size="NAME_LEN" desc="公会名,依据这个名字查找公会" />
+		<entry name="TargetName" type="string" size="NAME_LEN" desc="被清除的公会名字" />
+	</struct>
+
+	<struct name="ZoneDelClanDiplomatismRes" version="378" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<struct name="ZoneCtlDelClanDiplomatismReq" version="378" >
+		<entry name="Core" type="ZoneDelClanDiplomatismReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlDelClanDiplomatismRes" version="378" >
+		<entry name="Core" type="ZoneDelClanDiplomatismRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneExchangeClanLeaderReq" version="378" >
+		<entry name="ClanName" type="string" size="NAME_LEN" desc="公会名,依据这个名字查找公会" />
+		<entry name="NewLeaderRoleName" type="string" size="NAME_LEN" desc="新会长的角色名" />
+	</struct>
+
+	<struct name="ZoneExchangeClanLeaderRes" version="378" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+	<struct name="ZoneCtlExchangeClanLeaderReq" version="378" >
+		<entry name="Core" type="ZoneExchangeClanLeaderReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlExchangeClanLeaderRes" version="378" >
+		<entry name="Core" type="ZoneExchangeClanLeaderRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<!-- 公会相关 end -->
+
+	<!-- CS错误代码 begin -->
+	<macrosgroup name="CS_ERR">
+		<macro name="CS_ERR_SUCCEEDED" value="0" desc="操作成功" />
+		<macro name="CS_ERR_SYS" value="-1" desc="系统错误" />
+		<macro name="CS_ERR_NET" value="-2" desc="网络错误" />
+		<macro name="CS_ERR_TDR" value="-3" desc="TDR错误" />
+		<macro name="CS_ERR_ARGS" value="-4" desc="参数错误" />
+		<macro name="CS_ERR_ONLINE" value="-5" desc="操作必须角色不在线" />
+		<macro name="CS_ERR_NOT_FOUND" value="-6" desc="查找不到指定的信息" />
+		<macro name="CS_ERR_OUTLINE" value="-7" desc="操作必须角色在线" />
+		<macro name="CS_ERR_DUP" value="-8" desc="重名" />
+		<macro name="CS_ERR_XML" value="-9" desc="输出xml时出错" />
+		<macro name="CS_ERR_TIME_OUT" value="-10" desc="操作超时" />
+		<macro name="CS_ERR_RESTRICT_OP" value="-11" desc="受限的操作" />
+	</macrosgroup>
+	<!-- CS错误代码 end -->
+
+	<!-- 角色跳转 -->
+	<struct name="ZoneChgRolePosReq" version="112" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="Map" type="int" desc="地图ID"/>
+		<entry name="X" type="int" desc="坐标"/>
+		<entry name="Y" type="int" desc=""/>
+	</struct>
+	
+	<struct name="ZoneChgRolePosRes" version="112" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+	<!-- 角色跳转 -->
+
+	<!-- 获得角色宠物列表信息-->
+	<struct name="ZoneGetRolePetInfoReq" version="136" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	<struct name="ZoneGetRolePetInfoRes" version="136" >
+		<entry name="RolePetInfo" type="PetPackage "/>
+	</struct>
+	<!--  获得角色宠物列表信息-->
+
+	<!-- 设置角色宠物信息-->
+	<macrosgroup name="RolePetOp">
+		<macro name="ROLE_PET_DEL"  value="0x0000" desc="删除" /> 
+		<macro name="ROLE_PET_MODIFY"  value="0x0001" desc="修改" /> 
+		<macro name="ROLE_PET_ADD" value="0x0002" desc="增加" />
+	</macrosgroup>
+
+	<struct name="ZoneSetRolePetInfoReq" version="136" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="Type" type="int" bindmacrosgroup="RolePetOp"/>
+		<entry name="ZoneRolePetData" type="RolePet"/>
+	</struct>
+
+	<struct name="ZoneSetRolePetInfoRes" version="136" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>	
+	<!-- 设置角色宠物信息-->
+
+	<!-- 制造宠物-->
+	<struct name="ZoneHatchPetInfo" version="385" >
+		<entry name="PetID" type="int" 	desc="宠物ID" />
+		<entry name="PetLevel" type="int" desc="宠物等级上限MAX_PET_LEVEL" />
+		<entry name="PetGenius" type="int"  bindmacrosgroup="PET_GENIUS_TYPE"  desc="宠物资质" />
+		<entry name="StrengthenLevel" type="int" desc="强化等级上限MAX_PET_STRENGTHEN_LEVEL" />
+	</struct>
+	
+	<struct name="ZoneRoleHatchPetReq" version="385" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="PetInfo" type="ZoneHatchPetInfo" />
+	</struct>
+
+	<struct name="ZoneRoleHatchPetRes" version="385" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>	
+	<!-- 制造宠物end-->
+
+	<!-- 获得角色骑乘列表信息-->
+	<struct name="ZoneGetRoleRideInfoReq" version="128" >
+		<entry name="Uin" type="int" desc="角色Uin" />
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+
+	<struct name="ZoneGetRoleRideInfoRes" version="128" >
+		<entry name="RoleRideInfo" type="RoleRideList "/>
+	</struct>
+	<!--  获得角色骑乘列表信息-->
+
+	<!-- 设置角色骑乘信息-->
+	<macrosgroup name="RoleRideOp">
+		<macro name="ROLE_RIDE_DEL"  value="0x0000" desc="删除" /> 
+		<macro name="ROLE_RIDE_MODIFY"  value="0x0001" desc="修改" /> 
+		<macro name="ROLE_RIDE_ADD" value="0x0002" desc="增加" />
+	</macrosgroup>
+
+	<struct name="ZoneSetRoleRideInfoReq" version="128" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="Type" type="int" bindmacrosgroup="RoleRideOp"/>
+		<entry name="ZoneRoleRideData" type="RideGrid"/>
+	</struct>
+
+	<struct name="ZoneSetRoleRideInfoRes" version="128" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>	
+	<!-- 设置角色骑乘信息-->
+
+	<!-- 角色背包栏位-->
+	<struct name="PackageInfo" version="359" >
+		<entry name="ListType" type="int" desc="背包类型" bindmacrosgroup="LIST_TYPE" />
+		<entry name="MaxNum" type="int" desc="背包解锁的栏位数量"/>
+	</struct>
+
+	<struct name="ZoneGetRolePackageReq" version="359" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="ListType" type="int" bindmacrosgroup="LIST_TYPE" />
+	</struct>
+
+	<struct name="ZoneGetRolePackageRes" version="359" >
+		<entry name="ZoneRolePackageData" type="PackageInfo"/>
+	</struct>	
+
+	<struct name="ZoneSetRolePackageReq" version="359" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名" />
+		<entry name="ListType" type="int" bindmacrosgroup="LIST_TYPE" />
+		<entry name="Num" type="int" desc="增加的数量" />
+	</struct>
+
+	<struct name="ZoneSetRolePackageRes" version="359" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+	<!-- 角色背包栏位-->
+
+	<!-- 角色丢弃的重要物品等信息-->	
+	<struct name="ZoneGetRoleDropReq" version="379" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名" />
+	</struct>
+
+	<struct name="ZoneGetRoleDropRes" version="379" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="DropData" type="RoleDropData" desc="丢弃的重要物品、宠物"/>
+	</struct>
+	<!-- 角色背包栏位-->
+
+	<!-- 恢复角色丢弃的重要物品-->	
+	<union name="RoleDropRestoreInfo" version="379" >
+		<entry name="Grid" type="RoleGrid" id="ROLE_DROP_GRID" desc="物品"/>
+		<entry name="Pet" type="RolePet" id="ROLE_DROP_PET"  desc="宠物"/>	
+	</union>
+	
+	<struct name="RoleDropRestoreReq" version="381" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名" />
+		<entry name="Type" type="int" bindmacrosgroup="ROLE_DROP_TYPE" desc="恢复类型:物品、宠物" />
+		<entry name="RestoreInfo" type="RoleDropRestoreInfo" select="Type" desc="恢复的数据"/>
+	</struct>
+
+	<struct name="RoleDropRestoreRes" version="381" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+	<!-- 恢复角色丢弃的重要物品end -->
+	
+    <!-- 契约相关 start -->
+	<struct name="GetRoleQiYueListReq" version="134" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+	</struct>
+	
+	<struct name="GetRoleQiYueListRes" version="134" >
+		<entry name="QiYueInfo" type="QiYueInfo" desc="契约列表"/>
+	</struct>
+
+	<struct name="SetRoleQiYueReq" version="134" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="QiYueID" type="uint" desc="增加的契约id"/>
+	</struct>
+	
+	<struct name="SetRoleQiYueRes" version="134" >
+		<entry name="Result" type="uint" desc="0成功 非0失败"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+	
+	<struct name="AddRoleQiYueReq" version="134" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="QiYueID" type="uint" desc="增加的契约id"/>
+	</struct>
+	
+	<struct name="AddRoleQiYueRes" version="134" >
+		<entry name="Result" type="uint" desc="0成功 非0失败"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>
+
+	<struct name="DelRoleQiYueReq" version="134" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+		<entry name="RoleID" type="biguint" desc="角色ID"/>
+		<entry name="QiYueID" type="uint" desc="增加的契约id"/>
+	</struct>
+	
+	<struct name="DelRoleQiYueRes" version="134" >
+		<entry name="Result" type="uint" desc="0成功 非0失败"/>
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名"/>
+	</struct>	
+
+	<struct name="BillRecord" version="138" >
+		<entry name="Uin" type="int" desc="角色Uin"/>
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="ServerID" type="biguint" desc="大区id" />
+		<entry name="Amount" type="biguint" desc="充值金额,以分为单位" />
+		<entry name="Points" type="biguint" desc="充值点数" />
+		<entry name="Bonus" type="biguint" desc="奖励点数" />
+		<entry name="FreezePoint" type="biguint" desc="冻结的点券" version="167"/>
+		<entry name="FreezeLastTime" type="int" desc="冻结的最后修改时间,MAX_TRADE_SHOE_TIME小时后自动解冻" version="167"/>		
+	</struct>
+
+
+	<struct name="ZoneGetPackageItemInfoReq" version="369" >
+		<entry name="RoleName" type="string" size="MAXROLENAME" desc="角色名" />
+		<entry name="ListType" type="int" bindmacrosgroup="LIST_TYPE" />
+	</struct>
+	<union name="SSGetPackageItemInfo" version="369" >
+		<entry name="StuffPackage" type="StuffPackage" id="LIST_TYPE_STUFF" desc="材料包"/>
+		<entry name="TaskPackage" type="TaskPackage" id="LIST_TYPE_TASK"  desc="任务包"/>
+		<entry name="SundriesPackage" type="SundriesPackage" id="LIST_TYPE_SUNDRIES" desc="杂物包"/>
+		<entry name="StashPackage" type="StashPackage" id="LIST_TYPE_STASH" desc="仓库"/>
+		<entry name="ShoppingPackage" type="ShoppingPackage" id="LIST_TYPE_SHOPPING" desc="商品的背包"/>		
+	</union>
+
+	<struct name="ZoneGetPackageItemInfoRes" version="369" >
+		<entry name="ListType" type="int" bindmacrosgroup="LIST_TYPE" desc="背包类型"/>
+		<entry name="GetPackageItemInfo" type="SSGetPackageItemInfo" select="ListType" desc="返回的数据"/>
+	</struct>
+
+
+	<struct name="CashPropsGiftInfoReq" version="381" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="uint" desc="帐号Uin"/>
+		<entry name="GroupID" type="int" desc="组ID"/>
+		<entry name="AddCash" type="uint" desc="CashNow的增量"/>
+	</struct>
+	
+	<struct name="CashPropsGiftInfoRes" version="381" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="uint" desc="帐号Uin"/>
+		<entry name="Result" type="smallint" desc="0成功,非0失败"/>
+	</struct>
+
+	<struct name="ZoneSetClanBaseAttrReq" version="701" >
+		<entry name="ClanName" type="string" size="NAME_LEN" />
+		<entry name="Money" type="int" />
+		<entry name="Stable" type="int" />
+		<entry name="Active" type="int" />
+		<entry name="Tech" type="int" />
+	</struct>
+	
+	<struct name="ZoneSetClanBaseAttrRes" version="701" >
+		<entry name="Succeeded" type="tinyint" desc="是否成功:0失败,否则成功" />
+		<entry name="Res" type="tinyint" count="3" io="3" />
+	</struct>
+
+
+
+	<struct name="ZoneCtlSetClanBaseAttrReq" version="701" >
+		<entry name="Core" type="ZoneSetClanBaseAttrReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlSetClanBaseAttrRes" version="701" >
+		<entry name="Core" type="ZoneSetClanBaseAttrRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlReloadServerReq" version="1707" >
+		<entry name="Core" type="ZoneReloadServerReq" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	<struct name="ZoneCtlReloadServerRes" version="1707" >
+		<entry name="Core" type="ZoneReloadServerRes" />
+		<entry name="Extra" type="ZoneConnCtx" />
+	</struct>
+
+	
+	<!--lzk-->
+	<struct name="SetSecondPwdReq" version="2087" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" desc="角色名"/>
+		<entry name="SecondPassWd" type="string" size="SECOND_PWD_LEN" />
+	</struct>
+
+	<struct name="SetSecondPwdRes" version="2087" >
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" desc="角色名"/>
+	</struct>
+
+	
+	<!-- 契约相关 end -->
+
+	<union name="SSCsCmd" version="44" >
+		<entry name="BlockPlayerReq" type="ZoneBlockPlayerReq" id="BLOCKPLAYER_REQ" />
+		<entry name="BlockPlayerRes" type="ZoneBlockPlayerRes" id="BLOCKPLAYER_RES" />
+		<entry name="RoleListReq" type="ZoneRoleListReq" id="ROLE_LIST_REQ" />
+		<entry name="RoleListRes" type="ZoneRoleListRes" id="ROLE_LIST_RES" />
+		<entry name="SilenceRoleReq" type="ZoneSilenceRoleReq" id="SILENCE_ROLE_REQ" />
+		<entry name="SilenceRoleRes" type="ZoneSilenceRoleRes"  id="SILENCE_ROLE_RES" />
+		<entry name="ZoneReq" type="AsynReq"  id="ZONE_REQ" />
+		<entry name="ZoneRes" type="AsynRes"  id="ZONE_RES" />
+		<!--entry name="GetRoleBaseInfoReq" type="ZoneGetRoleBaseInfoReq"  id="GET_ROLE_BASEINFO_REQ" /-->
+		<!--entry name="GetRoleBaseInfoRes" type="ZoneGetRoleBaseInfoRes"  id="GET_ROLE_BASEINFO_RES" /-->
+		<!--entry name="SetRoleBaseInfoReq" type="ZoneSetRoleBaseInfoReq"  id="SET_ROLE_BASEINFO_REQ" /-->
+		<!--entry name="SetRoleBaseInfoRes" type="ZoneSetRoleBaseInfoRes"  id="SET_ROLE_BASEINFO_RES" /-->
+		<entry name="GetRoleDetailReq" type="ZoneGetRoleDetailReq"  id="GET_ROLE_DETAIL_REQ" />
+		<entry name="GetRoleDetailRes" type="ZoneGetRoleDetailRes"  id="GET_ROLE_DETAIL_RES" />
+		<entry name="SetRoleDetailReq" type="ZoneSetRoleDetailReq"  id="SET_ROLE_DETAIL_REQ" />
+		<entry name="SetRoleDetailRes" type="ZoneSetRoleDetailRes"  id="SET_ROLE_DETAIL_RES" />
+		<entry name="GetRoleSkillInfoReq" type="ZoneGetRoleSkillInfoReq"  id="GET_ROLE_SKILLINFO_REQ" />
+		<entry name="GetRoleSkillInfoRes" type="ZoneGetRoleSkillInfoRes"  id="GET_ROLE_SKILLINFO_RES" />
+		<entry name="SetRoleSkillInfoReq" type="ZoneSetRoleSkillInfoReq"  id="SET_ROLE_SKILLINFO_REQ" />
+		<entry name="SetRoleSkillInfoRes" type="ZoneSetRoleSkillInfoRes"  id="SET_ROLE_SKILLINFO_RES" />
+		<!--entry name="GetRoleFittingsReq" type="ZoneGetRoleFittingsReq"  id="GET_ROLE_FITTING_REQ" /-->
+		<!--entry name="GetRoleFittingsRes" type="ZoneGetRoleFittingsRes"  id="GET_ROLE_FITTING_RES" /-->
+		<!--entry name="SetRoleFittingsReq" type="ZoneSetRoleFittingsReq"  id="SET_ROLE_FITTING_REQ" /-->
+		<!--entry name="SetRoleFittingsRes" type="ZoneSetRoleFittingsRes"  id="SET_ROLE_FITTING_RES" /-->
+		<entry name="GetRoleItemListReq" type="ZoneGetRoleItemListReq"  id="GET_ROLE_ITEMLIST_REQ" />
+		<entry name="GetRoleItemListRes" type="ZoneGetRoleItemListRes"  id="GET_ROLE_ITEMLIST_RES" />
+		<entry name="SetRoleItemListReq" type="ZoneSetRoleItemListReq"  id="SET_ROLE_ITEMLIST_REQ" />
+		<entry name="SetRoleItemListRes" type="ZoneSetRoleItemListRes"  id="SET_ROLE_ITEMLIST_RES" />
+		<entry name="GetRoleDiathesisReq" type="ZoneGetRoleDiathesisReq"  id="GET_ROLE_DIATHESIS_REQ" />
+		<entry name="GetRoleDiathesisRes" type="ZoneGetRoleDiathesisRes"  id="GET_ROLE_DIATHESIS_RES" />
+		<entry name="SetRoleDiathesisReq" type="ZoneSetRoleDiathesisReq"  id="SET_ROLE_DIATHESIS_REQ" />
+		<entry name="SetRoleDiathesisRes" type="ZoneSetRoleDiathesisRes"  id="SET_ROLE_DIATHESIS_RES" />
+
+		<entry name="GetRoleTaskReq" type="ZoneGetRoleTaskReq"  id="GET_ROLE_TASK_REQ" version="94" />
+		<entry name="GetRoleTaskRes" type="ZoneGetRoleTaskRes"  id="GET_ROLE_TASK_RES" version="94"/>
+
+		<entry name="GetAccInfoReq" type="AccGetInfoReq"  id="GET_ACCOUNT_INFO_REQ" version="94" />
+		<!--entry name="GetAccIDFromRoleNameExReq" type="AccGetIDFromRoleNameExReq"  id="GET_ACCOUNT_ID_FROM_ROLENAME_EX_REQ" version="94" /-->
+		<!--entry name="GetAccIDFromLoginNameExReq" type="AccGetIDFromLoginNameExReq"  id="GET_ACCOUNT_ID_FROM_LOGINNAME_EX_REQ" version="94" /-->
+		<entry name="GetAccInfoRes" type="AccGetInfoRes"  id="GET_ACCOUNT_INFO_RES" version="94" />
+		<!--entry name="GetAccIDRes" type="AccGetIDRes"  id="GET_ACCOUNT_ID_RES" version="94" /-->
+		<entry name="GetRoleMailListReq" type="ZoneGetMailListReq"  id="GET_ROLE_MAIL_LIST_REQ" version="94" />
+		<entry name="GetRoleMailListRes" type="ZoneGetMailListRes"  id="GET_ROLE_MAIL_LIST_RES" version="94" />
+		<entry name="GetRoleMailReq" type="ZoneGetMailReq"  id="GET_ROLE_MAIL_REQ" version="94" />
+		<entry name="GetRoleMailRes" type="ZoneGetMailRes"  id="GET_ROLE_MAIL_RES" version="94" />
+		<entry name="RestoreRoleReq" type="SSRestoreRoleReq"  id="RESTORE_ROLE_REQ" version="94" />
+		<entry name="RestoreRoleRes" type="SSRestoreRoleRes"  id="RESTORE_ROLE_RES" version="94" />
+		<entry name="DelMailReq" type="ZoneDelMailReq"  id="DEL_ROLE_MAIL_REQ" version="94" />
+		<entry name="DelMailRes" type="ZoneDelMailRes"  id="DEL_ROLE_MAIL_RES" version="94" />
+		<entry name="SendMailReq" type="ZoneSendMailReq"  id="SEND_MAIL_REQ" version="94" />
+		<entry name="SendMailRes" type="ZoneSendMailRes"  id="SEND_MAIL_RES" version="94" />
+		<entry name="SetAccSilenceReq" type="AccSetSilenceReq"  id="SET_ACCOUNT_SILENCE_REQ" version="94" />
+		<entry name="SetAccSilenceRes" type="AccSetSilenceRes"  id="SET_ACCOUNT_SILENCE_RES" version="94" />
+		<entry name="SetAccFreezeReq" type="AccSetFreezeReq"  id="SET_ACCOUNT_FREEZE_REQ" version="94" />
+		<entry name="SetAccFreezeRes" type="AccSetFreezeRes"  id="SET_ACCOUNT_FREEZE_RES" version="94" />
+		<entry name="DelRoleTaskReq" type="ZoneDelRoleTaskReq"  id="DEL_ROLE_TASK_REQ" version="94" />
+		<entry name="DelRoleTaskRes" type="ZoneDelRoleTaskRes"  id="DEL_ROLE_TASK_RES" version="94" />
+		<entry name="CtlDelMailReq" type="ZoneCtlDelMailReq"  id="CTL_DEL_ROLE_MAIL_REQ" version="94" />
+		<entry name="CtlDelMailRes" type="ZoneCtlDelMailRes"  id="CTL_DEL_ROLE_MAIL_RES" version="94" />
+		<entry name="CtlSendMailReq" type="ZoneCtlSendMailReq"  id="CTL_SEND_MAIL_REQ" version="94" />
+		<entry name="CtlSendMailRes" type="ZoneCtlSendMailRes"  id="CTL_SEND_MAIL_RES" version="94" />
+
+		<entry name="ChgRoleNameReq" type="ZoneChgRoleNameReq"  id="CHG_ROLE_NAME_REQ" version="94" />
+		<entry name="ChgRoleNameRes" type="ZoneChgRoleNameRes"  id="CHG_ROLE_NAME_RES" version="94" />
+		
+		<entry name="BlockAccountReq" type="ZoneBlockAccountReq"  id="BLOCK_ACCOUNT_REQ" version="94" />
+		<entry name="BlockAccountRes" type="ZoneBlockAccountRes"  id="BLOCK_ACCOUNT_RES" version="94" />
+		<entry name="SilenceAccountReq" type="ZoneSilenceAccountReq"  id="SILENCE_ACCOUNT_REQ" version="94" />
+		<entry name="SilenceAccountRes" type="ZoneSilenceAccountRes"  id="SILENCE_ACCOUNT_RES" version="94" />
+		<entry name="CtlBlockAccountReq" type="ZoneCtlBlockAccountReq"  id="CTL_BLOCK_ACCOUNT_REQ" version="94" />
+		<entry name="CtlBlockAccountRes" type="ZoneCtlBlockAccountRes"  id="CTL_BLOCK_ACCOUNT_RES" version="94" />
+		<entry name="CtlSilenceAccountReq" type="ZoneCtlSilenceAccountReq"  id="CTL_SILENCE_ACCOUNT_REQ" version="94" />
+		<entry name="CtlSilenceAccountRes" type="ZoneCtlSilenceAccountRes"  id="CTL_SILENCE_ACCOUNT_RES" version="94" />
+		<entry name="CopyRoleReq" type="ZoneCopyRoleReq"  id="COPY_ROLE_REQ" version="94" />
+		<entry name="CopyRoleRes" type="ZoneCopyRoleRes"  id="COPY_ROLE_RES" version="94" />
+		
+		<entry name="GetBulletinListReq" type="ZoneGetBulletinListReq"  id="GET_BULLETIN_LIST_REQ" version="112" />
+		<entry name="GetBulletinListRes" type="ZoneGetBulletinListRes"  id="GET_BULLETIN_LIST_RES" version="112" />
+		<entry name="AddBulletinReq" type="ZoneAddBulletinReq"  id="ADD_BULLETIN_REQ" version="112" />
+		<entry name="AddBulletinRes" type="ZoneAddBulletinRes"  id="ADD_BULLETIN_RES" version="112" />
+		<entry name="DelBulletinReq" type="ZoneDelBulletinReq"  id="DEL_BULLETIN_REQ" version="112" />
+		<entry name="DelBulletinRes" type="ZoneDelBulletinRes"  id="DEL_BULLETIN_RES" version="112" />
+		
+		<entry name="CtlGetBulletinListReq" type="ZoneCtlGetBulletinListReq"  id="CTL_GET_BULLETIN_LIST_REQ" version="112" />
+		<entry name="CtlGetBulletinListRes" type="ZoneCtlGetBulletinListRes"  id="CTL_GET_BULLETIN_LIST_RES" version="112" />
+		<entry name="CtlAddBulletinReq" type="ZoneCtlAddBulletinReq"  id="CTL_ADD_BULLETIN_REQ" version="112" />
+		<entry name="CtlAddBulletinRes" type="ZoneCtlAddBulletinRes"  id="CTL_ADD_BULLETIN_RES" version="112" />
+		<entry name="CtlDelBulletinReq" type="ZoneCtlDelBulletinReq"  id="CTL_DEL_BULLETIN_REQ" version="112" />
+		<entry name="CtlDelBulletinRes" type="ZoneCtlDelBulletinRes"  id="CTL_DEL_BULLETIN_RES" version="112" />
+		
+		<entry name="SetAccRoleNameReq" type="AccSetRoleNameReq"  id="SET_ACCOUNT_ROLENAME_REQ" version="112" />
+		<entry name="SetAccRoleNameRes" type="AccSetRoleNameRes"  id="SET_ACCOUNT_ROLENAME_RES" version="112" />
+		
+		<entry name="CreateRoleItemReq" type="ZoneCreateItemReq"  id="CREATE_ITEM_REQ" version="112" />
+		<entry name="CreateRoleItemRes" type="ZoneCreateItemRes"  id="CREATE_ITEM_RES" version="112" />
+
+		<entry name="ChgRolePosReq" type="ZoneChgRolePosReq"  id="CHG_ROLE_POS_REQ" version="112" />
+		<entry name="ChgRolePosRes" type="ZoneChgRolePosRes"  id="CHG_ROLE_POS_RES" version="112" />
+		
+		<entry name="UpdateRoleListCacheReq" type="ZoneUpdateRoleListCacheReq"  id="UPDATE_ROLELIST_CACHE_REQ" version="112" />
+		<entry name="GetRoleRideInfoReq" type="ZoneGetRoleRideInfoReq"  id="GET_ROLE_RIDE_REQ" version="128" />
+		<entry name="GetRoleRideInfoRes" type="ZoneGetRoleRideInfoRes"  id="GET_ROLE_RIDE_RES" version="128" />
+		<entry name="SetRoleRideInfoReq" type="ZoneSetRoleRideInfoReq"  id="SET_ROLE_RIDE_REQ" version="128" />
+		<entry name="SetRoleRideInfoRes" type="ZoneSetRoleRideInfoRes"  id="SET_ROLE_RIDE_RES" version="128" />
+		<entry name="GetRoleQiYueListReq" type="GetRoleQiYueListReq"  id="GET_ROLE_QIYUELIST_REQ" version="134" />
+		<entry name="GetRoleQiYueListRes" type="GetRoleQiYueListRes"  id="GET_ROLE_QIYUELIST_RES" version="134" />
+		<entry name="SetRoleQiYueReq" type="SetRoleQiYueReq"  id="SET_ROLE_QIYUE_REQ" version="134" />
+		<entry name="SetRoleQiYueRes" type="SetRoleQiYueRes"  id="SET_ROLE_QIYUE_RES" version="134" />
+		<entry name="AddRoleQiYueReq" type="AddRoleQiYueReq"  id="ADD_ROLE_QIYUE_REQ" version="134" />
+		<entry name="AddRoleQiYueRes" type="AddRoleQiYueRes"  id="ADD_ROLE_QIYUE_RES" version="134" />
+		<entry name="DelRoleQiYueReq" type="DelRoleQiYueReq"  id="DEL_ROLE_QIYUE_REQ" version="134" />
+		<entry name="DelRoleQiYueRes" type="DelRoleQiYueRes"  id="DEL_ROLE_QIYUE_RES" version="134" />		
+
+		<entry name="SetRoleFairyReq" type="ZoneSetRoleFairyReq"  id="MODIFY_ROLE_FAIRY_REQ" version="135" />
+		<entry name="SetRoleFairyRes" type="ZoneSetRoleFairyRes"  id="MODIFY_ROLE_FAIRY_RES" version="135" />
+
+		<entry name="GetRolePetInfoReq" type="ZoneGetRolePetInfoReq"  id="GET_ROLE_PET_REQ" version="136" />
+		<entry name="GetRolePetInfoRes" type="ZoneGetRolePetInfoRes"  id="GET_ROLE_PET_RES" version="136" />
+		<entry name="SetRolePetInfoReq" type="ZoneSetRolePetInfoReq"  id="SET_ROLE_PET_REQ" version="136" />
+		<entry name="SetRolePetInfoRes" type="ZoneSetRolePetInfoRes"  id="SET_ROLE_PET_RES" version="136" />
+
+		<entry name="ZoneOutLineRes" type="ZoneOutLineRes"  id="OUTLINE_RES" version="137" />
+
+		<entry name="AddRoleDesignationReq" type="ZoneAddRoleDesignationReq" id="ADD_ROLE_DESIGNATION_REQ" version="137" />
+		<entry name="AddRoleDesignationRes" type="ZoneAddRoleDesignationRes" id="ADD_ROLE_DESIGNATION_RES" version="137" />
+		<entry name="DelRoleDesignationReq" type="ZoneDelRoleDesignationReq" id="DEL_ROLE_DESIGNATION_REQ" version="137" />
+		<entry name="DelRoleDesignationRes" type="ZoneDelRoleDesignationRes" id="DEL_ROLE_DESIGNATION_RES" version="137" />
+		<entry name="GetRoleDesignationListReq" type="ZoneGetRoleDesignationListReq" id="GET_ROLE_DESIGNATION_LIST_REQ" version="137" />
+		<entry name="GetRoleDesignationListRes" type="ZoneGetRoleDesignationListRes" id="GET_ROLE_DESIGNATION_LIST_RES" version="137" />
+		
+		<entry name="SetRoleRespactReq" type="ZoneSetRoleRespactReq" id="SET_ROLE_RESPACT_REQ" version="137" />
+		<entry name="SetRoleRespactRes" type="ZoneSetRoleRespactRes" id="SET_ROLE_RESPACT_RES" version="137" />
+		<entry name="DelRoleRespactReq" type="ZoneDelRoleRespactReq" id="DEL_ROLE_RESPACT_REQ" version="137" />
+		<entry name="DelRoleRespactRes" type="ZoneDelRoleRespactRes" id="DEL_ROLE_RESPACT_RES" version="137" />
+		<entry name="GetRoleRespactListReq" type="ZoneGetRoleRespactListReq" id="GET_ROLE_RESPACT_LIST_REQ" version="137" />
+		<entry name="GetRoleRespactListRes" type="ZoneGetRoleRespactListRes" id="GET_ROLE_RESPACT_LIST_RES" version="137" />
+
+		<entry name="KickOffRoleReq" type="ZoneRoleLogOutReq" id="SET_ROLE_LOGOUT_REQ" version="168" />
+		<entry name="KickOffRoleRes" type="ZoneRoleLogOutRes" id="SET_ROLE_LOGOUT_RES" version="168" />
+
+		<entry name="DelRoleReq" type="ZoneDelRoleReq" id="DEL_ROLE_REQ" version="168" />
+		<entry name="DelRoleRes" type="ZoneDelRoleRes" id="DEL_ROLE_RES" version="168" />
+
+		<entry name="SetPermReq" type="ZoneSetRolePermReq" id="SET_ROLE_PERM_REQ" version="168" />
+		<entry name="SetPermRes" type="ZoneSetRolePermRes" id="SET_ROLE_PERM_RES" version="168" />
+
+		<entry name="SetAccountUinFlagReq" type="AccSetUinFlagReq" id="SET_ACCOUNT_UIN_FLAG_REQ" version="169" />
+		<entry name="SetAccountUinFlagRes" type="AccSetUinFlagRes" id="SET_ACCOUNT_UIN_FLAG_RES" version="169" />		
+
+		<entry name="GetClanInfoReq" type="ZoneGetClanInfoReq" id="GET_CLAN_INFO_REQ" version="169" />
+		<entry name="GetClanInfoRes" type="ZoneGetClanInfoRes" id="GET_CLAN_INFO_RES" version="169" />	
+
+		<entry name="FriendReq" type="ZoneGetFirendReq" id="GET_ROLE_FRIEND_REQ" version="169" />
+		<entry name="FirendRes" type="ZoneGetFirendRes" id="GET_ROLE_FRIEND_RES" version="169" />		
+
+		<entry name="BlackReq" type="ZoneGetBlackReq" id="GET_ROLE_BLACK_REQ" version="169" />
+		<entry name="BlackRes" type="ZoneGetBlackRes" id="GET_ROLE_BLACK_RES" version="169" />	
+
+		<entry name="IPLimitReq" type="ZoneIPLimitReq" id="IP_LIMIT_REQ" version="169" />
+		<entry name="IPLimitRes" type="ZoneIPLimitRes" id="IP_LIMIT_RES" version="169" />	
+
+		<entry name="GetIPLimitReq" type="ZoneGetIPLimitReq" id="GET_IP_LIMIT_REQ" version="169" />
+		<entry name="GetIPLimitRes" type="ZoneGetIPLimitRes" id="GET_IP_LIMIT_RES" version="169" />
+		
+		<entry name="FindAccountRoleListReq" type="AccFindRoleListReq" id="FIND_ACCOUNT_ROLELIST_REQ" version="169" />
+		<entry name="FindAccountRoleListRes" type="AccFindRoleListRes" id="FIND_ACCOUNT_ROLELIST_RES" version="169" />
+		
+		<entry name="FindAccountReq" type="AccFindReq" id="FIND_ACCOUNT_REQ" version="169" />
+		<entry name="FindAccountRes" type="AccFindRes" id="FIND_ACCOUNT_RES" version="169" />
+		<entry name="QeuryBillRecordReq" type="BillRecord" id="CS_QUERY_BILL_REQ" version="170" />
+		<entry name="QeuryBillRecordRes" type="BillRecord" id="CS_QUERY_BILL_RES" version="170" />		
+
+		<entry name="ErrRes" type="ErrRes" id="ERR_RES" version="181" />
+
+		<entry name="GetClanAllInfoReq" type="ZoneGetClanAllInfoReq" id="GET_CLAN_ALL_INFO_REQ" version="290" />
+		<entry name="GetClanAllInfoRes" type="ZoneGetClanAllInfoRes" id="GET_CLAN_ALL_INFO_RES" version="290" />
+		<entry name="CtlGetClanAllInfoReq" type="ZoneCtlGetClanAllInfoReq" id="CTL_GET_CLAN_ALL_INFO_REQ" version="290" />
+		<entry name="CtlGetClanAllInfoRes" type="ZoneCtlGetClanAllInfoRes" id="CTL_GET_CLAN_ALL_INFO_RES" version="290" />
+
+		<entry name="DelClanMemberReq" type="ZoneDelClanMemberReq" id="DEL_CLAN_MEMBER_REQ" version="290" />
+		<entry name="DelClanMemberRes" type="ZoneDelClanMemberRes" id="DEL_CLAN_MEMBER_RES" version="290" />
+		<entry name="CtlDelClanMemberReq" type="ZoneCtlDelClanMemberReq" id="CTL_DEL_CLAN_MEMBER_REQ" version="290" />
+		<entry name="CtlDelClanMemberRes" type="ZoneCtlDelClanMemberRes" id="CTL_DEL_CLAN_MEMBER_RES" version="290" />
+
+		<entry name="DisbandClanReq" type="ZoneDisbandClanReq" id="DISBAND_CLAN_REQ" version="290" />
+		<entry name="DisbandClanRes" type="ZoneDisbandClanRes" id="DISBAND_CLAN_RES" version="290" />
+		<entry name="CtlDisbandClanReq" type="ZoneCtlDisbandClanReq" id="CTL_DISBAND_CLAN_REQ" version="290" />
+		<entry name="CtlDisbandClanRes" type="ZoneCtlDisbandClanRes" id="CTL_DISBAND_CLAN_RES" version="290" />
+
+		<entry name="ClearClanDiplomatismReq" type="ZoneClearClanDiplomatismReq" id="CLEAR_CLAN_DIPLOMATISM_REQ" version="290" />
+		<entry name="ClearClanDiplomatismRes" type="ZoneClearClanDiplomatismRes" id="CLEAR_CLAN_DIPLOMATISM_RES" version="290" />
+		<entry name="CtlClearClanDiplomatismReq" type="ZoneCtlClearClanDiplomatismReq" id="CTL_CLEAR_CLAN_DIPLOMATISM_REQ" version="290" />
+		<entry name="CtlClearClanDiplomatismRes" type="ZoneCtlClearClanDiplomatismRes" id="CTL_CLEAR_CLAN_DIPLOMATISM_RES" version="290" />
+		<entry name="GetRolePackageReq" type="ZoneGetRolePackageReq" id="GET_ROLE_PACKAGE_REQ" version="359" />
+		<entry name="GetRolePackageRes" type="ZoneGetRolePackageRes" id="GET_ROLE_PACKAGE_RES" version="359" />
+		<entry name="SetRolePackageReq" type="ZoneSetRolePackageReq" id="SET_ROLE_PACKAGE_REQ" version="359" />
+		<entry name="SetRolePackageRes" type="ZoneSetRolePackageRes" id="SET_ROLE_PACKAGE_RES" version="359" />
+		
+		<entry name="GetPackageItemInfoReq" type="ZoneGetPackageItemInfoReq" id="GET_ROLE_PACKAGE_ITEM_REQ" version="369" />
+		<entry name="GetPackageItemInfoRes" type="ZoneGetPackageItemInfoRes" id="GET_ROLE_PACKAGE_ITEM_RES" version="369" />
+
+		<entry name="FindClanReq" type="ZoneFindClanReq" id="FIND_CLAN_REQ" version="378" />
+		<entry name="FindClanRes" type="ZoneFindClanRes" id="FIND_CLAN_RES" version="378" />
+		<entry name="DelClanDiplomatismReq" type="ZoneDelClanDiplomatismReq" id="DEL_CLAN_DIPLOMATISM_REQ" version="378" />
+		<entry name="DelClanDiplomatismRes" type="ZoneDelClanDiplomatismRes" id="DEL_CLAN_DIPLOMATISM_RES" version="378" />
+		<entry name="CltDelClanDiplomatismReq" type="ZoneCtlDelClanDiplomatismReq" id="CTL_DEL_CLAN_DIPLOMATISM_REQ" version="378" />
+		<entry name="CltDelClanDiplomatismRes" type="ZoneCtlDelClanDiplomatismRes" id="CTL_DEL_CLAN_DIPLOMATISM_RES" version="378" />
+		<entry name="ExchangeClanLeaderReq" type="ZoneExchangeClanLeaderReq" id="EXCHANGE_CLAN_LEADER_REQ" version="378" />
+		<entry name="ExchangeClanLeaderRes" type="ZoneExchangeClanLeaderRes" id="EXCHANGE_CLAN_LEADER_RES" version="378" />
+		<entry name="CltExchangeClanLeaderReq" type="ZoneCtlExchangeClanLeaderReq" id="CTL_EXCHANGE_CLAN_LEADER_REQ" version="378" />
+		<entry name="CltExchangeClanLeaderRes" type="ZoneCtlExchangeClanLeaderRes" id="CTL_EXCHANGE_CLAN_LEADER_RES" version="378" />
+		<entry name="GetRoleDropReq" type="ZoneGetRoleDropReq" id="GET_ROLE_DROP_REQ" version="379" />
+		<entry name="GetRoleDropRes" type="ZoneGetRoleDropRes" id="GET_ROLE_DROP_RES" version="379" />
+		<entry name="CashPropsGiftInfoReq" type="CashPropsGiftInfoReq" id="CS_CASH_PROPS_BILL_REQ" version="381" />
+		<entry name="CashPropsGiftInfoRes" type="CashPropsGiftInfoRes" id="CS_CASH_PROPS_BILL_RES" version="381" />		
+		<entry name="RoleDropRestoreReq" type="RoleDropRestoreReq" id="ROLE_DROP_RESTORE_REQ" version="381" />
+		<entry name="RoleDropRestoreRes" type="RoleDropRestoreRes" id="ROLE_DROP_RESTORE_RES" version="381" />
+
+		<entry name="RoleBackReq" type="ZoneRoleBackReq" id="ROLE_BACK_RECORD_REQ" version="384" />
+		<entry name="RoleBackRes" type="ZoneRoleBackRes" id="ROLE_BACK_RECORD_RES" version="384" />
+		<entry name="RoleHatchPetReq" type="ZoneRoleHatchPetReq" id="ROLE_HATCH_PET_REQ" version="385" />
+		<entry name="RoleHatchPetRes" type="ZoneRoleHatchPetRes" id="ROLE_HATCH_PET_RES" version="385" />
+
+		<entry name="GetSafeLockReq" type="GetSafeLockReq" id="GET_SAFELOCK_REQ" version="385" />
+		<entry name="GetSafeLockRes" type="GetSafeLockRes" id="GET_SAFELOCK_RES" version="385" />
+		<entry name="SetSafeLockReq" type="SetSafeLockReq" id="SET_SAFELOCK_REQ" version="385" />
+		<entry name="SetSafeLockRes" type="SetSafeLockRes" id="SET_SAFELOCK_RES" version="385" />
+
+		<entry name="ChgPosUpCacheReq" type="ChgPosUpCacheReq" id="CHG_POS_UP_CACHE_REQ" version="475" />
+		<entry name="SetClanBaseAttrReq" type="ZoneSetClanBaseAttrReq" id="SET_CLAN_BASE_ATTR_REQ" version="701" />
+		<entry name="SetClanBaseAttrRes" type="ZoneSetClanBaseAttrRes" id="SET_CLAN_BASE_ATTR_RES" version="701" />
+		<entry name="CtlSetClanBaseAttrReq" type="ZoneCtlSetClanBaseAttrReq" id="CTL_SET_CLAN_BASE_ATTR_REQ" version="701" />;
+		<entry name="CtlSetClanBaseAttrRes" type="ZoneCtlSetClanBaseAttrRes" id="CTL_SET_CLAN_BASE_ATTR_RES" version="701" />;
+
+		<entry name="GetLiftSkillReq" type="GetLiftSkillReq" id="GET_LIFT_SKILL_REQ" version="746" />
+		<entry name="GetLiftSkillRes" type="GetLiftSkillRes" id="GET_LIFT_SKILL_RES" version="746" />
+
+		<entry name="SetLiftSkillReq" type="SetLiftSkillReq" id="SET_LIFT_SKILL_REQ" version="746" />
+		<entry name="SetLiftSkillRes" type="SetLiftSkillRes" id="SET_LIFT_SKILL_RES" version="746" />
+
+		<entry name="GetAccSafeLockReq" type="GetAccSafeLockReq" id="GET_ACC_SAFELOCK_REQ" version="848" />
+		<entry name="GetAccSafeLockRes" type="GetAccSafeLockRes" id="GET_ACC_SAFELOCK_RES" version="848" />
+
+		<entry name="SetAccSafeLockReq" type="SetAccSafeLockReq" id="SET_ACC_SAFELOCK_REQ" version="848" />
+		<entry name="SetAccSafeLockRes" type="SetAccSafeLockRes" id="SET_ACC_SAFELOCK_RES" version="848" />
+
+		<entry name="ForceMsgReq" type="ForceMsgReq" id="FORCE_MSG_REQ" version="1122" />
+		<entry name="ForceMsgRes" type="ForceMsgRes" id="FORCE_MSG_RES" version="1122" />
+		<entry name="ReloadServerReq" type="ZoneReloadServerReq" id="RELOAD_SERVER_REQ" version="1707" />
+		<entry name="ReloadServerRes" type="ZoneReloadServerRes" id="RELOAD_SERVER_RES" version="1707" />
+		<entry name="CtlReloadServerReq" type="ZoneCtlReloadServerReq" id="CTL_RELOAD_SERVER_REQ" version="1707" />
+		<entry name="CtlReloadServerRes" type="ZoneCtlReloadServerRes" id="CTL_RELOAD_SERVER_RES" version="1707" />
+
+		<entry name="ShopCgiReq" type="ShopCgiReq" id="CTL_SHOP_CGI_REQ" version="2028" />
+		<entry name="ShopCgiRes" type="ShopCgiRes" id="CTL_SHOP_CGI_RES" version="2028" />
+
+		<entry name="SetSecondPwdReq" type="SetSecondPwdReq" id="SET_SECOND_PWD_REQ" version="2087" />
+		<entry name="SetSecondPwdRes" type="SetSecondPwdRes" id="SET_SECOND_PWD_RES" version="2087" />
+	</union>
+
+	<struct name="SSZoneCtrl" version="44" >
+		<entry name="Cmd" type="uint" bindmacrosgroup="CtrlCmd"  />
+		<entry name="CtrlCmd" type="SSCtrlCmd" select="Cmd" />
+	</struct>
+
+	<struct name="SSCsCtrl" version="44" >
+		<entry name="Cmd" type="uint" bindmacrosgroup="SCsCmd"  />
+		<entry name="CsCmd" type="SSCsCmd" select="Cmd" />
+	</struct>
+
+	<macrosgroup name="AAS_ACT_TYPE">
+		<macro name="AAS_GAME_START" value="0" desc="开始游戏" />
+		<macro name="AAS_GAME_ACTIVE" value="1" desc="心跳包" />
+		<macro name="AAS_GAME_END" value="2" desc="退出游戏" />
+		<macro name="AAS_TIME_SET" value="3" desc="设置防沉迷时间" />
+	</macrosgroup>
+
+	<struct name="SSAasReq"  version="91" >
+		<entry name="Uin" type="int"  />
+		<entry name="SvrID" type="int"  />
+		<entry name="tOnline" type="int" version="120" />
+		<entry name="tOffline" type="int" version="120" />
+		<entry name="ActType" type="tinyuint" bindmacrosgroup="AAS_ACT_TYPE"  />
+	</struct>
+
+	<struct name="SSAasRes"  version="91" >
+		<entry name="Uin" type="int" />
+		<entry name="tOnline" type="int"  />
+		<entry name="tOffline" type="int"  />
+	</struct>
+
+	<struct name="SSKickOffAccount"  version="164" >
+		<entry name="Uin" type="int" />
+	</struct>
+
+	<struct name="SSMudHeartBeat"  version="164" >
+		<entry name="Uin" type="int" />
+	</struct>
+
+	<struct name="SSZoneHeartBeat"  version="164" >
+		<entry name="Uin" type="int" />
+	</struct>
+
+	<struct name="SSRoleOnline" version="164" >
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="Online" type="tinyuint" bindmacrosgroup="ONLINE_TYPE" />
+		<entry name="AccUin" type="int"/>
+		<entry name="IP" type="uint"/>
+	</struct>
+
+	<struct name="SSBuddyOnlineReq" version="164" >
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="RelationType" type="int"  version="215" />
+	</struct>
+
+	<struct name="SSRelationOnlineReq" version="164" >
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="BuddyNum" type="int" />
+		<entry name="BuddyInfo" type="SSBuddyOnlineReq" refer="BuddyNum" count="MAX_BUDDY" />
+	</struct>
+
+	<struct name="SSBuddyOnlineRes" version="164" >
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="RelationType" type="int" version="215" />
+	</struct>
+
+	<struct name="SSRelationOnlineRes" version="164" >
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="BuddyNum" type="int" />
+		<entry name="BuddyInfo" type="SSBuddyOnlineRes" refer="BuddyNum" count="MAX_BUDDY" />
+	</struct>
+	
+	<struct name="SSUpdateAccountRep"  version="94" >
+		<entry name="LoginName" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+	</struct>
+
+	<struct name="SSCashBillReq"  version="127" >
+		<entry name="MessageId" type="uint" 	 desc="消息类型" />
+		<entry name="Sequence" type="biguint"  desc="交易流水号" />
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" desc="登录名" />
+		<entry name="ServerID" type="uint" desc="充值到的大区编号" />
+		<entry name="Amount" type="biguint"  desc="充值金额" />
+		<entry name="Points" type="biguint"  desc="充值点数" />
+		<entry name="Bonus" type="biguint"  desc="奖励点数" />
+		<entry name="PropsID" type="biguint"  desc="赠送的道具包编号" />
+		<entry name="PropsName" type="string" size="200"  desc="道具包名称" />
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+	</struct>
+	
+	<struct name="SSCashBillRes"  version="127" >
+		<entry name="Result" type="int" desc="0冲值成功,非0失败"/>
+		<entry name="CashBillReq" type="SSCashBillReq" desc="返回请求包"/>
+	</struct>	
+	
+	<struct name="SSQueryBillReq"  version="127" >
+		<entry name="MessageId" type="uint" 	 desc="消息类型" />
+		<entry name="Sequence" type="biguint"  desc="交易流水号" />
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" desc="登录名" />
+		<entry name="ServerID" type="uint" desc="充值到的大区编号" />
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+	</struct>
+	
+	<struct name="SSQueryBillRes"  version="127" >
+		<entry name="MessageId" type="uint" 	 desc="消息类型" />
+		<entry name="Sequence" type="biguint"  desc="流水号" />
+		<entry name="Result" type="uint" 	 desc="错误码" />
+		<entry name="QueryTs" type="uint" desc="查询时间" />
+		<entry name="Points" type="biguint"  desc="充值点数" />
+		<entry name="Bonus" type="biguint"  desc="奖励点数" />
+		<entry name="Amount" type="biguint"  desc="充值金额" />
+	</struct>	
+
+	<struct name="SSExtraData"  version="138" >
+		<entry name="DataType" type="tinyuint" desc="表示里面的数据类型" />
+		<entry name="ExtraDataLen" type="smalluint"  />
+		<entry name="Res" type="tinyuint" count="2" io="2"  />
+		<entry name="ExtraData" type="tinyuint" count="MAX_DEC_TIANYUAN_PKG_EXTRA_LEN" refer="ExtraDataLen"  />
+	</struct>
+	
+	<struct name="SSDecTianYuanReq"  version="138" >
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" desc="点券记录操作key"/>
+		<entry name="Uin" type="int" desc="谁的请求" />
+		<entry name="OperType" type="uint" desc="操作的类型 0加点券,1扣点券" />
+		<entry name="TianYuan" type="biguint" desc="操作的点券数"/>
+		<entry name="ExtraData" type="SSExtraData" desc="协议的扩展数据"/>
+		<entry name="WorldID" type="int" />
+	</struct>
+
+	<macrosgroup name="GODCOIN_OPER_FLAG" >
+	  	<macro name="GODCOIN_OPER_FLAG_NO"   		value="0" />
+		<macro name="GODCOIN_OPER_FLAG_SHOPPING"   	value="1" desc="购买商城商品"/>
+		<macro name="GODCOIN_OPER_FLAG_TRADE"   	value="2" desc="寄售交易产生的金券税收"/>
+		<macro name="GODCOIN_OPER_FLAG_UNBIND"   	value="3" desc="装备解绑"/>
+		<macro name="GODCOIN_OPER_FLAG_UNFENGYIN"       value="4" desc="装备解封印"/>
+		<macro name="GODCOIN_OPER_FLAG_ARMRESET"        value="5" desc="宝石重置"/>
+		<macro name="GODCOIN_OPER_FLAG_ARMPOWER"        value="6" desc="宝石重能"/>
+		<macro name="GODCOIN_OPER_FLAG_ARMRECAST"       value="7" desc="装备重铸"/>
+		<macro name="GODCOIN_OPER_FLAG_PETSKILL"        value="8" desc="宠物重置技能"/>
+		<macro name="GODCOIN_OPER_FLAG_PETWASH"         value="9" desc="宠物幻化"/>
+		<macro name="GODCOIN_OPER_FLAG_RUNE"            value="10" desc="符文属性重置"/>
+		<macro name="GODCOIN_OPER_FLAG_STAR"            value="11" desc="开通砖石贵族"/>
+		<macro name="GODCOIN_OPER_FLAG_SYSGOLD"            value="12" desc="系统卖金币产出或系统买金币消耗"/>
+		<macro name="GODCOIN_OPER_FLAG_SYSMONEY"            value="13" desc="系统卖银币消耗"/>
+		<macro name="GODCOIN_OPER_FLAG_SHANGJI"            value="14" desc="赏金"/>
+		<macro name="GODCOIN_OPER_FLAG_BUSY"            value="15" desc="我很忙"/>
+		<macro name="GODCOIN_OPER_FLAG_ARM_HIGH_WASH"            value="16" desc="高级洗练"/>
+		<macro name="GODCOIN_OPER_FLAG_SCRIPT"            value="17" desc="脚本"/>
+		<macro name="GODCOIN_OPER_FLAG_PETMOVESTAR"            value="18" desc="宠物移星"/>
+		<macro name="GODCOIN_OPER_FLAG_PETEAT"            value="19" desc="宠物吞噬"/>
+		<macro name="GODCOIN_OPER_FLAG_ARM_ACTIVE"            value="20" desc="装备属性激活"/>
+		<macro name="GODCOIN_OPER_FLAG_FENJIE"            value="21" desc="分解"/>
+		<macro name="GODCOIN_OPER_FLAG_ARM_LEVELUP"            value="22" desc="装备升级"/>
+		<macro name="GODCOIN_OPER_FLAG_CARDBOX"            value="23" desc="卡牌宝箱"/>
+		<macro name="GODCOIN_OPER_FLAG_MT_GIFT"            value="24" desc="成长基金"/>
+		<macro name="GODCOIN_OPER_FLAG_SONGHUA"            value="25" desc="送花"/>
+		<macro name="GODCOIN_OPER_FLAG_GEM_LEVEL_UP"       value="26" desc="宝石合成"/>
+		<macro name="GODCOIN_OPER_FLAG_REVIVE"       value="27" desc="完美复活"/>
+		<macro name="GODCOIN_OPER_FLAG_HOME_KAIKEN"       value="28" desc="家园开垦土地"/>
+	</macrosgroup>	
+	
+	<struct name="SSGodCoinConsumeLogReq"  version="975" >
+		<entry name="Uin" type="int" desc="谁的请求" />
+		<entry name="RoleID" type="biguint" desc="操作的角色id" />
+		<entry name="RoleLevel" type="int" />
+		<entry name="WorldID" type="int" desc="操作的服id" />
+		<entry name="OperType" type="int" bindmacrosgroup="GODCOIN_OPER_FLAG" desc="参考GODCOIN_OPER_FLAG" />
+		<entry name="OperSubType" type="int" />
+		<entry name="GodCoin" type="biguint" desc="金券数"/>
+		<entry name="ShopID" type="uint" desc="商品的id,没有就填0" />
+		<entry name="ShopNum" type="uint"  desc="商品的个数,没有就填0" />
+		<entry name="OperDesc" type="string" size="512" />
+	</struct>		
+	
+	<struct name="SSDecTianYuanRes"  version="138" >
+		<entry name="Result" type="smallint" desc="bill的操作结果" />
+		<entry name="Uin" type="int" desc="谁的请求" />
+		<entry name="OperType" type="tinyint" desc="操作的类型 0加点券,1扣点券" />
+		<entry name="TianYuan" type="biguint" desc="扣的天元数"/>
+		<entry name="BillRecord" type="BillRecord" desc="返回用户的帐户数据" />
+		<entry name="ExtraData" type="SSExtraData" desc="协议的扩展数据" />
+		<entry name="WorldID" type="int" />
+	</struct>	
+
+	<struct name="SSQueryTianYuanReq"  version="159" >
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="int" />
+		<entry name="OperType" type="uint" desc="操作的来源"/>
+		<entry name="ExtraData" type="SSExtraData" desc="协议的扩展数据" />
+	</struct>
+	
+	<struct name="SSQueryTianYuanRes"  version="159" >
+		<entry name="Result" type="smallint" desc="bill的操作结果" />
+		<entry name="Uin" type="int" />
+		<entry name="BillRecord" type="BillRecord" desc="返回用户的帐户数据" />
+		<entry name="OperType" type="uint" desc="操作的来源"/>
+		<entry name="ExtraData" type="SSExtraData" desc="协议的扩展数据" />		
+	</struct>	
+
+	<struct name="SSBillFreezePointReq" version="167" desc="冻结点券">
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="int" />
+		<entry name="OperType" type="tinyint" desc="0 冻结,1解冻"/>
+		<entry name="Point" type="biguint" desc="冻结或解冻的点数"/>
+		<entry name="ExtraData" type="SSExtraData" desc="协议的扩展数据" />
+	</struct>
+	
+	<struct name="SSBillFreezePointRes" version="167" >
+		<entry name="Result" type="smallint" desc="bill的操作结果" />
+		<entry name="Uin" type="int" />
+		<entry name="OperType" type="tinyint" desc="0 冻结,1解冻"/>
+		<entry name="BillRecord" type="BillRecord" desc="返回用户的帐户数据" />
+		<entry name="ExtraData" type="SSExtraData" desc="协议的扩展数据" />
+	</struct>
+
+	 <macrosgroup name="SS_CHAT_TYPE" >
+		<macro name="SS_CHAT_FRIEND"		value="0" />
+		<macro name="SS_CHAT_CLAN"		value="1" />
+		<macro name="SS_CHAT_PRIVATE"		value="2" />
+		<macro name="SS_CHAT_SPAN"		value="3" />
+  	</macrosgroup>	
+
+  	<union name="SSChatToData" version="169" >
+		<entry name="ToFriend" type="string" size="ROLE_NAME_LEN_CLT" id="SS_CHAT_FRIEND" />
+		<entry name="ClanInfo" type="ClanId" desc=" 公会聊天" id="SS_CHAT_CLAN"  />
+		<entry name="ToName" type="string" size="ROLE_NAME_LEN_CLT" id="SS_CHAT_PRIVATE" />
+  	</union>
+
+	<struct name="SSChat" version="169" >
+		<entry name="ChatType" type="int" bindmacrosgroup="SS_CHAT_TYPE" />
+		<entry name="ToData" type="SSChatToData" select="ChatType" />
+		<entry name="From" type="string" size="NAME_LEN"  />
+		<entry name="Content" type="string" size="CLT_MSG_LEN"  />
+		<entry name="LinkLen" type="int" />
+		<entry name="LinkContent" type="tinyuint" count="MAX_LINK" refer="LinkLen" />
+		<entry name="WorldID" type="int" version="1884"/>
+	</struct>
+
+	<union name="SSPkgTransBody" version="574" >
+		<entry name="SysMsg" type="CSSysMsg" id="SYS_MSG"/>
+		<entry name="BulletinSvr" type="CSBulletinSvr" id="BULLETIN_SVR" />
+		<entry name="ChatRes" type="CSChatRes" id="CHAT_RES" />
+		<entry name="OnlineInfo" type="CSOnlineSvr" id="ONLINE_INFO" />
+		<entry name="RelationClt" type="CSRelationClt" version="575" id="RELATION_CLT" />
+		<entry name="RelationSvr" type="CSRelationSvr" version="575" id="RELATION_SVR" />
+		<entry name="AuthClt" type="CSAuthClt" version="1223" id="AUTH_CLT" />
+  	</union>
+
+  	
+	<macrosgroup name="PKG_TRANS_TYPE" >
+		<macro name="PKG_TRANS_ALL"		value="0" desc="转发给所有在线的玩家" />
+		<macro name="PKG_TRANS_FRIEND"		value="1" desc="转发给好友" />
+		<macro name="PKG_TRANS_CLAN"		value="2" desc="转发给公会" />
+		<macro name="PKG_TRANS_PLAYER"		value="3" desc="转发给玩家" />
+		<macro name="PKG_TRANS_SVR"		value="4" desc="把CLT的协议转发给另一个SVR来处理" />
+  	</macrosgroup>	
+
+	<struct name="SSPkgTrans" version="574" >
+		<entry name="Cmd" type="smalluint" bindmacrosgroup="CSCmd" desc="转发的CSCmd" />
+		<entry name="szName" type="string" size="NAME_LEN" desc="发送者或接受者名字" version="575"/>
+		<entry name="ClanID" type="uint" desc="公会本地ID" version="616"/>
+		<entry name="Type" type="int" bindmacrosgroup="PKG_TRANS_TYPE" desc="转发类型" version="575"/>
+		<entry name="Body" type="CSPkgBody" select="Cmd" />
+  	</struct>
+
+  	<macrosgroup name="SS_CMD_TYPE" >
+		<macro name="SS_CMD_FRIEND_DETAIL"		value="0" desc="让对方SVR发指定玩家的好友信息" />
+		<macro name="SS_CMD_FRIEND_ADD"		value="1" desc="让对方SVR加玩家为好友" />
+		<macro name="SS_CMD_CLAN_ONLINE_MEMBER"		value="2" desc="发送对方SVR上的公会成员给玩家" />
+		<macro name="SS_CMD_SYNC_TIME"		value="3" desc="同步服务器的时间" />
+		<macro name="SS_CMD_ACC_NOTICE"		value="4" desc="通知目标svr某帐号已登录本svr" />
+		<macro name="SS_CMD_OPLOG_PROXY"		value="5" desc="代理发送运营日志" />
+		<macro name="SS_CMD_KICK_OFF"		value="6" desc="踢某帐号下线" />
+		<macro name="SS_CMD_MAIL_PROXY"		value="7" desc="跨服中发送系统邮件" />
+		<macro name="SS_CMD_RANGE_PROXY"	value="8" desc="跨服中发送排行榜信息" />
+		<macro name="SS_CMD_WATCH_PROXY"	value="9" desc="跨服中发送观察信息" />
+		<macro name="SS_CMD_SYNC_VIP_BAR_INFO"	value="10" desc="同步vipbar信息" />
+		<macro name="SS_CMD_BATTLE_MEMID_NOTICE"	value="11" desc="跨服后MemID通知给本服" />
+		<macro name="SS_CMD_RANGE_WATCH_PROXY"	value="12" desc="跨服中发送排行榜观察角色信息" />
+		<macro name="SS_CMD_UIN_FLAG_CHANGE"	value="13" desc="UinFlag改变后通知各zone_svr" />
+		<macro name="SS_CMD_BATLLE_HEART_BEAT"	value="14" desc="公会队列同步心跳" />
+  	</macrosgroup>	
+
+  	<struct name="SSInfoGetBuddyMemberRes" version="601" >
+		<entry name="BuddyMember" type="RoleBuddyMember" />
+		<entry name="BuddyInfo" type="BuddyInfo" />	
+  	</struct>
+  	
+  	<struct name="MailProxy" version="1103" >
+  		<entry name="MailReq" type="ZoneCtlSendMailReq" />
+  		<entry name="Flags" type="int" />
+  	</struct>
+  	
+  	<struct name="WatchProxy" version="1103" >
+  		<entry name="Res" type="int" />
+  	</struct>
+
+  	<struct name="SyncVipBarInfo" version="1202" >
+		<entry name="VipBarInfo" type="VipBarInfo" />
+	</struct>
+
+	<struct name="BattleMemidNotice" version="1203" >
+		<entry name="BattleMemID" type="int" />
+	</struct>
+	
+	<struct name="UinFlagChange" version="1843" >
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" desc="帐号名"   />
+		<entry name="Uin" type="int" desc="帐号Uin"   />
+		<entry name="UinFlag" type="int" desc="帐号标记"   />
+		<entry name="Type" type="int" desc="变化类型|0直接赋值 1加标记 2去除标记 3只通知(已修改) ACC_SET_UIN_FLAG_TYPE"   />
+	</struct>
+
+	<struct name="BatlleHeartBeat" version="2179" >
+		<entry name="ClanID" type="ClanId" />
+		<entry name="BattleID" type="int" />
+	</struct>
+
+
+  	<union name="SSCmdData" version="616" >
+		<entry name="Res" type="tinyint" id="SS_CMD_FRIEND_DETAIL"  />	
+		<entry name="FriendAdd" type="SSInfoGetBuddyMemberRes" id="SS_CMD_FRIEND_ADD"  />	
+		<entry name="ClanID" type="ClanId" id="SS_CMD_CLAN_ONLINE_MEMBER"  />	
+		<entry name="SyncTime" type="uint" id="SS_CMD_SYNC_TIME" version="727" />
+		<entry name="AccUin" type="uint" id="SS_CMD_ACC_NOTICE" version="746" />
+		<entry name="OplogProxy" type="op_log_meta" id="SS_CMD_OPLOG_PROXY"  version="792" />
+		<entry name="KickOffAccUin" type="int" id="SS_CMD_KICK_OFF" version="898" />
+		<entry name="MailProxy" type="MailProxy" id="SS_CMD_MAIL_PROXY" version="1103" />
+		<entry name="RangeProxy" type="TopRange" id="SS_CMD_RANGE_PROXY" version="1103" />
+		<entry name="WatchProxy" type="WatchProxy" id="SS_CMD_WATCH_PROXY" version="1103" />
+		<entry name="SyncVipBarInfo" type="SyncVipBarInfo" id="SS_CMD_SYNC_VIP_BAR_INFO" version="1202" />
+		<entry name="BattleMemidNotice" type="BattleMemidNotice" id="SS_CMD_BATTLE_MEMID_NOTICE" version="1203" />
+		<entry name="RangeWatchProxy" type="WatchProxy" id="SS_CMD_RANGE_WATCH_PROXY" version="1366" />
+		<entry name="UinFlagChange" type="UinFlagChange" id="SS_CMD_UIN_FLAG_CHANGE" version="1843" />
+		<entry name="BatlleHeartBeat" type="BatlleHeartBeat" id="SS_CMD_BATLLE_HEART_BEAT" version="2179" />
+  	</union>
+	
+  	<struct name="SSCmdReq" version="575" >
+		<entry name="Cmd" type="smalluint" bindmacrosgroup="SS_CMD_TYPE" desc="发送的Cmd "/>
+		<entry name="szReceiver" type="string" size="NAME_LEN" desc="SVR A 上接受者名字" />
+		<entry name="szName" type="string" size="NAME_LEN" desc="SVR B 上发送者名字" />
+		<entry name="Data" type="SSCmdData" version="616" select="Cmd" desc="对方SVR执行cmd需要的信息"/>
+  	</struct>
+
+	<macrosgroup name="INFO_GET_TYPE" >
+		<macro name="INFO_GET_GM"		value="0" desc="获取zone的gm权限信息" />
+		<macro name="INFO_GET_BUDDY_MEMBER"		value="1" desc="转发给好友" />
+  	</macrosgroup>	
+
+  	<struct name="SSInfoGetBuddyMemberReq" version="601" >
+		<entry name="Name" type="string" size="NAME_LEN" desc="角色名"/>
+		<entry name="AddFriendRes" type="CSAddFriendRes" id="INFO_GET_BUDDY_MEMBER"  />	
+  	</struct>
+
+  	<union name="SSInfoGetReqBody" version="601" >
+		<entry name="BuddyMember" type="SSInfoGetBuddyMemberReq" id="INFO_GET_BUDDY_MEMBER"  />	
+		<entry name="ChatRes" type="CSChatRes" id="INFO_GET_GM"  />	
+  	</union>
+	
+  	<union name="SSInfoGetResBody" version="601" >
+		<entry name="BuddyMemberRes" type="SSInfoGetBuddyMemberRes" id="INFO_GET_BUDDY_MEMBER"  />	
+		<entry name="GM" type="int" id="INFO_GET_GM"  desc="zone是否开放的gm权限1是,0否"/>	
+  	</union>
+  	
+  	<struct name="SSInfoGetReq" version="601" >
+		<entry name="Type" type="smalluint" bindmacrosgroup="INFO_GET_TYPE" desc="拉取类型"/>
+		<entry name="ReqBody" type="SSInfoGetReqBody" select="Type"  />	
+  	</struct>
+
+  	<struct name="SSInfoGetRes" version="601" >
+  		<entry name="Result" type="smalluint" desc="0成功,-1失败"/>
+		<entry name="Type" type="smalluint" bindmacrosgroup="INFO_GET_TYPE" desc="拉取类型"/>
+		<entry name="ReqBody" type="SSInfoGetReqBody" select="Type" />
+		<entry name="ResBody" type="SSInfoGetResBody" select="Type" />
+  	</struct>
+
+
+	<macro name="MAX_PWORLD_CAMP" value="2" desc="副本最大的阵营个数"/>
+	<macro name="MAX_BATTLE_PWORLD_NUM" value="50" desc="战场最大的副本数"/>
+	<macro name="BATTLE_HEARTBEAT_INTERVAL" value="120" desc="battle_svr心跳包间隔时间" />
+	
+	<!-- 1. Zone_svr上报给Region的排队人数协议 -->
+	<struct name="SSPworldQueueInfoReq"  version="255" >
+		<entry name="PworldDefID" type="int" desc="副本定义ID" />
+		<entry name="PworldNum" type="int" desc="单台机器允许创建的个数,最大不要超过MAX_BATTLE_PWORLD_NUM"  />
+		<entry name="CampNum" type="tinyint" desc="副本定义的阵营数" />
+		<entry name="PworldPlayerNum" type="int" desc="副本定义的配置总人数"  />
+		<entry name="QueuerNum" type="int" desc="报名人数"  />
+		<entry name="ZoneBusID" type="int" desc="哪个world的,存BusID" />
+	</struct>
+
+	<!-- 2.battle_svr上报给region的在线人数协议 -->
+	<struct name="SSBattleCampInfo"  version="255" desc="阵营的信息">
+		<entry name="PworldDefID" type="int" desc="副本定义ID" />
+		<entry name="PworldInstID" type="int" desc="副本的实例ID" />
+		<entry name="PworldWID" type="biguint" desc="副本的实例ID" />
+		<!--entry name="ZoneBusID" type="int" desc="此阵营的人是哪个world的,存BusID" /-->
+		<!--entry name="BattleBusID" type="int" desc="这个busid要记下来" /-->
+		<!--entry name="PworldCampID" type="tinyint" desc="副本的阵营id,campnum分配过来的"  /--> 
+		<!--entry name="ZoneConnID" type="int" desc="该玩家的所在world的conn的busid" version="266" /--> 
+		<!--entry name="MapID" type="int" desc="副本定义ID" version="1360" /-->
+	</struct>
+
+	<!-- zone_svr维护的战场副本表 -->
+	<struct name="BattleInfo"  version="255" >
+		<entry name="PlayerNum" type="int" desc="本服当前人数"  />
+		<entry name="PlayerMax" type="int" desc="本服最大人数"  />
+		<entry name="WaitQueueIdx" type="int" desc="等待队列索引"  />
+		<entry name="CreateTime" type="int" desc="创建时间"  />
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="副本的阵营信息" />
+	</struct>
+	
+	<struct name="SSBattlePworldInfo"  version="255" desc="战场中每个副本的信息">
+		<entry name="PlayerNum" type="int" desc="副本的当前人数"  />
+		<entry name="CampNum" type="tinyint" desc="阵营个数"  />
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" count="MAX_PWORLD_CAMP" refer="CampNum" desc="副本的阵营信息" />
+	</struct>
+
+	<!-- 3. battle_svr通知region人数的协议-->
+	<struct name="SSBattleInfoReq"  version="255" desc="刚启动的时候,regin收到该数据包后要记录该战场服务器可用">
+		<entry name="PworldInstNum" type="int" desc="创建的副本数量" />
+		<entry name="BattlePworldInfo" type="SSBattlePworldInfo" count="MAX_BATTLE_PWORLD_NUM" refer="PworldInstNum"  />
+	</struct>
+
+	<!-- 3. battle_svr通知region人数的协议-->
+	<struct name="SSBattleInfoSimpleReq"  version="255" desc="刚启动的时候,regin收到该数据包后要记录该战场服务器可用">
+		<entry name="PlayerNum" type="int" desc="战场的当前人数"  />
+		<entry name="PworldInstNum" type="int" desc="创建的副本数量" />
+	</struct>
+
+	<!-- 5. region通知battle_svr建立副本的协议-->
+	<struct name="SSBattleCreateZoneInfo"  version="255" desc="战场状态副本时的zone_svr的相关信息">
+		<entry name="ZoneBusID" type="int" desc="此阵营的人是哪个world的,存BusID" />
+	</struct>
+	<struct name="SSBattleCreatePworldReq"  version="255" desc="请求创建副本">
+		<entry name="PworldDefID" type="int" desc="副本定义ID" />
+		<entry name="CampNum" type="tinyint" desc="有3个阵营的话,就要把三个zone_busid锁定了" />
+		<entry name="BattleCreateZoneInfo" type="SSBattleCreateZoneInfo" count="MAX_PWORLD_CAMP" refer="CampNum" desc="相关的worldbusid"  />
+	</struct>
+	<!-- 6. battle_svr创建副本成功返回协议-->
+	<struct name="SSBattleCreatePworldRes"  version="255" desc="创建副本成功">
+		<entry name="Result" type="int" bindmacrosgroup="BATTLE_ERROR_DEF" desc="0成功,非0失败" />
+		<entry name="BattlePworldInfo" type="SSBattlePworldInfo" desc="这个副本没人了,速度叫人过来"  />
+	</struct>
+
+	<!-- 7. region到zone通知这部分人进入该战场的协议 -->
+	<struct name="SSBattleEnterReq" version="255" >
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="通知进入战场的协议" />
+	</struct>
+
+	<struct name="SSBattleEnterRes" version="255" desc="这个确认协议可以用来解类似锁的逻辑">
+		<entry name="Result" type="int" bindmacrosgroup="BATTLE_ERROR_DEF" desc="0成功,非0失败 BATTLE_ERROR_DEF" />
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="把数据包原封不动的带回去给region" />
+	</struct>
+
+	<struct name="AasInfo" version="274" >
+		<entry name="AasFlag" type="int"  />
+		<entry name="OnlineTime" type="int" desc="在线时间" />
+		<entry name="OffTime" type="int" desc="离线时间" />
+	</struct>
+
+	<!-- 10.zone_svr到battle_svr登陆战场的协议.(带roledata),要设置下内存态 -->
+	<struct name="SSBattlePlayerEnterPworldReq"  version="255" >
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="带上阵营的信息" />
+		<entry name="RoleData" type="RoleData" />
+		<entry name="AccountLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="CltProtoVer" type="smalluint" />
+		<entry name="Framehead" type="tframehead" />
+		<entry name="MiscFlag" type="int" desc="一些杂项标记MISC_FLAG_PACKAGE_ALL,商城要特殊处理"/>
+		<entry name="AasInfo" type="AasInfo" version="274" desc="防沉迷"/>
+		<entry name="eStatusAssistant" type="int" desc="跨服的状态" version="787"/>
+		<entry name="ConnectID" type="int" desc="zone的playeridx" version="800"/>
+		<entry name="ZoneMemID" type="int" version="865"/>
+		<entry name="GMLimitPerm" type="int" version="1103"/>
+		<entry name="ExtLen" type="int" version="821"/>
+		<entry name="ExtData" type="tinyuint" count="MAX_PROXY_PLAYER_ONLINE_BUF_LEN" refer="ExtLen" version="821"/>
+		<entry name="VipBarInfo" type="VipBarInfo" version="1202"/>
+		<entry name="AccSilenceEnd" type="int" version="1363"/>
+	</struct>
+
+	<!--11.battle_svr告知zone_svr登陆成功的协议-->
+	<struct name="SSBattlePlayerEnterPworldRes"  version="255" >
+		<entry name="Result" type="int" bindmacrosgroup="BATTLE_ERROR_DEF" desc="0成功,非0失败" />
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+	</struct>
+
+	<struct name="SSBattleBuyReq"  version="985" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="ExtLen" type="int" version="987"/>
+		<entry name="ExtData" type="tinyuint" count="MAX_PROXY_BUF_LEN" refer="ExtLen" version="987"/>
+	</struct>
+
+	<!--11.battle_svr告知zone_svr登陆成功的协议-->
+	<struct name="SSBattleBuyRes"  version="985" >
+		<entry name="Result" type="int" desc="0成功,非0失败" />
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="ExtLen" type="int" version="987"/>
+		<entry name="ExtData" type="tinyuint" count="MAX_PROXY_BUF_LEN" refer="ExtLen" version="987"/>
+	</struct>
+
+	<!--12.zone_svr到zone_conn告知登陆战场态 这两个协议niko处理 -->
+	<!--struct name="SSBattleUpdateStateReq"  version="255" >
+		<entry name="Uin" type="int" />
+		<entry name="SendToBusID" type="int" desc="这个busid要记下来" />
+	</struct-->
+
+	<!--13.zone_conn再通知zone_svr改变战场态成功返回协议-->
+	<!--struct name="SSBattleUpdateStateRes"  version="255" >
+		<entry name="Result" type="int" desc="0成功，非0失败" />
+		<entry name="Uin" type="int" />
+		<entry name="SendToBusID" type="int" desc="这个busid要记下来" />
+	</struct-->
+
+	<!--14.zone_svr通知battle_svr可以enter_pworld协议了 -->
+	<struct name="SSBattleEnterPworldMapReq"  version="255" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+	</struct>
+
+	
+	<!-- 15.定时battle_svr到zone_svr的回写协议 -->
+	<struct name="SSBattleUpdateRoleDataReq"  version="255" >
+		<entry name="OperType" type="int" bindmacrosgroup="BATTLE_OPERATE_DEF"  desc="操作的方法,宏定义待定" />
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="带上阵营的信息" />
+		<entry name="RoleData" type="RoleData" />
+		<entry name="ExtLen" type="int" version="1288"/>
+		<entry name="ExtData" type="tinyuint" count="MAX_PROXY_PLAYER_ONLINE_BUF_LEN" refer="ExtLen" version="1288"/>
+	</struct>
+
+	<!-- 16.zone_svr返回确认收到battle_svr协议 ，并返回玩家状态协 -->
+	<struct name="SSBattleUpdateRoleDataRes"  version="255" >
+		<entry name="OperType" type="int" bindmacrosgroup="BATTLE_OPERATE_DEF" desc="battle_svr可以根据这个状态是否删除*pstPlayer"/>
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="带上阵营的信息" />
+	</struct>
+
+	<struct name="SSBattlePlayerHelloReq"  version="255" desc="战场玩家的hello包,30秒一个,返回包为,SSBattleUpdateRoleDataRes">
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="带上阵营的信息" />
+	</struct>
+
+	<!-- 转发协议 -->
+	<!-- 目前用于battle向zone转发CS协议 -->
+	<struct name="SSBattleProxy"  version="279" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="DataLen" type="int" />
+		<entry name="Data" type="tinyint" count="MAX_PROXY_BUF_LEN" refer="DataLen" />
+	</struct>
+
+		
+	<struct name="SSBattleExitReq"  version="788" >
+		<entry name="BattleCampInfo" type="SSBattleCampInfo" desc="带上阵营的信息" />
+		<entry name="AccountLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="int" version="833"/>
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+	</struct>
+
+	<struct name="SSBattleExitRes"  version="788" >
+		<entry name="Result" type="int" bindmacrosgroup="BATTLE_ERROR_DEF" desc="0成功,非0失败" />
+		<entry name="Uin" type="int" version="832"/>
+		<entry name="RoleID" type="biguint" />
+		<entry name="DataLen" type="int" />
+		<entry name="Data" type="tinyint" count="MAX_PROXY_BUF_LEN" refer="DataLen" />
+	</struct>
+
+	<struct name="SSPlayerStatusassitantSync"  version="890" >
+		<entry name="Uin" type="int"/>
+		<entry name="RoleID" type="biguint" />
+		<entry name="OperType" type="int" desc="0表示同步,1表示获取" version="891"/>
+		<entry name="eStatusAssistant" type="int" />
+		<entry name="DataLen" type="int" />
+		<entry name="Data" type="tinyint" count="MAX_PROXY_BUF_LEN" refer="DataLen" />
+	</struct>
+
+
+	<struct name="SSTeamShadowExitReq"  version="790" >
+		<entry name="TeamID" type="biguint" desc="队伍唯一标识" />
+		<entry name="TeamIdx" type="int" desc="队伍索引" />
+	</struct>
+
+	<struct name="SSTeamShadowExitRes"  version="790" >
+		<entry name="Result" type="int" bindmacrosgroup="BATTLE_ERROR_DEF" desc="0成功,非0失败" />
+		<entry name="TeamID" type="biguint" desc="队伍唯一标识" />
+		<entry name="TeamIdx" type="int" desc="队伍索引" />
+	</struct>
+
+	<struct name="SSSetBattleRoutinReq"  version="808" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="Opertype" type="int" desc="0表示获取connid,1表示设置connid" version="879"/>
+		<entry name="ConnID" type="uint" />
+	</struct>
+
+	<struct name="SSSetBattleRoutinRes"  version="808" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="Opertype" type="int" desc="0表示获取connid,1表示设置connid" version="879"/>
+		<entry name="ConnID" type="uint" />
+	</struct>
+	
+
+	<struct name="SSTeamShadowSyncRes"  version="795" >
+		<entry name="Result" type="int" bindmacrosgroup="BATTLE_ERROR_DEF" desc="0成功,非0失败" />
+		<entry name="TeamID" type="biguint" desc="队伍唯一标识" />
+		<entry name="TeamIdx" type="int" desc="队伍索引" />
+		<entry name="eStatusAssistant" type="int" desc="跨服的状态" version="849"/>
+	</struct>
+	
+	<!-- battle与zone之间的镜像同步 -->
+	<macrosgroup name="MIRROR_SYNC_CMD">
+		<macro name="MIRROR_SYNC_CMD_IDLE" value="0" />
+		<macro name="MIRROR_SYNC_CMD_TEAM" value="1" />
+		<macro name="MIRROR_SYNC_CMD_TEAM_DESTROY" value="2" />
+		<macro name="MIRROR_SYNC_CMD_ACTION_RES" value="3" />
+	</macrosgroup>
+
+	<struct name="SSBattleMirrorSync"  version="280" >
+		<entry name="Cmd" type="tinyint" bindmacrosgroup="MIRROR_SYNC_CMD" />
+		<entry name="DataLen" type="int" />
+		<entry name="Data" type="tinyint" count="MAX_PROXY_BUF_LEN" refer="DataLen" />
+	</struct>
+
+	<struct name="SSBillQueryPropsDefReq" version="361" desc="查询积分送礼品定义">
+		<entry name="OperType" type="tinyint" desc="0 服务器查询,1表示用户查询"/>
+	</struct>
+	
+	<struct name="SSBillQueryPropsDefRes" version="361" desc="查询积分送礼品定义">
+		<entry name="PropsDef" type="PropsDef" count="NEW_PROPSDEF_RECORD_MAX" desc="0 服务器查询,1表示用户查询"/>
+	</struct>
+
+	<struct name="SSBillQueryPropsGiftReq" version="361" desc="查询自己的积分礼包情况">
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="int" />
+	</struct>
+	
+	<struct name="SSBillQueryPropsGiftRes" version="361" desc="查询自己的积分礼包情况">
+		<entry name="Uin" type="int" />
+		<entry name="PropsGift" type="PropsGift" />
+	</struct>	
+
+	<struct name="SSBillSetPropsGiftReq" version="361" desc="领取积分">
+		<entry name="Uin" type="int" />
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="GetType" type="smallint" version="377" desc="领取的类型,1表示定义的冲值礼包,2表示9c那边的积分礼包"/>
+		<entry name="Index" type="smallint" version="377" desc="领取的哪个冲值礼包索引,定义索引或9c礼包的索引"/>
+		<entry name="PropsID" type="uint" version="377" desc="领取的哪个冲值礼包id,如果是领取9c礼包,这个是0"/>
+		<entry name="GiftItem" type="GiftItem" version="377" desc="如果领取的是9c的积分礼包,请把这个项的物品id,物品个数传上来"/>
+	</struct>	
+	
+	<struct name="SSBillSetPropsGiftRes" version="361" desc="领取积分">
+	    <entry name="Uin" type="uint" />
+		<entry name="Result" type="int" desc="0成功,非0失败" />
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="PropsID" type="uint" desc="领取的哪个冲值礼包id"/>
+		<entry name="PropsGift" type="PropsGift" />
+		<entry name="BillSetPropsGiftReq" type="SSBillSetPropsGiftReq" version="380" />
+	</struct>	
+	
+	<struct name="SSCashPropsGiftInfoReq" version="381" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="CsConnCtx" type="ZoneConnCtx"/>
+		<entry name="Uin" type="uint" />
+		<entry name="GroupID" type="int" />
+		<entry name="AddCash" type="uint" desc="CashNow的增量"/>
+	</struct>
+	
+	<struct name="SSCashPropsGiftInfoRes" version="381" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="uint" />
+		<entry name="GroupID" type="int" />
+		<entry name="Result" type="smallint" desc="0成功,非0失败"/>
+		<entry name="CsConnCtx" type="ZoneConnCtx"/>
+	</struct>
+
+	<struct name="SSAccGiftListReq" version="600" >
+		<entry name="Uin" type="uint" />
+		<entry name="ID" type="int" desc="0-全部信息     非0-对应ID的礼包" version="606"/>
+		<entry name="RoleID" type="biguint"  version="606"/>
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="NAME_LEN" version="606"/>
+	</struct>
+
+	<struct name="SSAccGiftListRes" version="600" >
+		<entry name="Uin" type="uint" />
+		<entry name="ID" type="int" desc="0-全部信息     非0-对应ID的礼包" version="606"/>
+		<entry name="RoleID" type="biguint"  version="606"/>
+		<entry name="RoleName" type="string" size="NAME_LEN" version="606"/>
+		<entry name="Count" type="int" />
+		<entry name="AccGifts" type="AccGift" count="MAX_ACC_GIFT" refer="Count"/>
+	</struct>
+
+	<struct name="SSAccGiftInsertReq" version="2228" >
+		<entry name="Uin" type="uint" />
+		<entry name="ID" type="int" desc="0-全部信息     非0-对应ID的礼包" />
+		<entry name="RoleID" type="biguint"  />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="AccGift" type="AccGift" desc="插入的礼包信息" />
+	</struct>
+
+	<struct name="SSAccGiftInsertRes" version="2228" >
+		<entry name="Uin" type="uint" />
+		<entry name="ID" type="int" desc="0-全部信息     非0-对应ID的礼包" />
+		<entry name="RoleID" type="biguint"  />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="AccGift" type="AccGift" />
+	</struct>
+
+	<struct name="SSPropGiftListReq" version="624" >
+		<entry name="Uin" type="int" />
+		<entry name="ID" type="int" desc="0-全部信息     非0-对应GroupID的礼包"/>
+		<entry name="CashUp" type="biguint" desc="PropsDef里面定义的CashUp|领取礼包时赋值"/>
+		<entry name="RoleID" type="biguint"  />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+	</struct>
+
+	<struct name="SSPropGiftListRes" version="624" >
+		<entry name="RetCode" type="int" bindmacrogroup="PROPS_GIFT_LIST_RET_CODE" desc="返回的错误码"/>
+		<entry name="Uin" type="int" />
+		<entry name="ID" type="int" desc="0-全部信息     非0-对应GroupID的礼包"/>
+		<entry name="RoleID" type="biguint"  />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="PropGiftInfo" type="PropGiftInfo" desc="id为0-全部信息(带PropsDef) id非0-对应GroupID的礼包信息"/>		
+	</struct>
+
+	<macrosgroup name="PROPS_GIFT_BILL_INFO_TYPE">
+		<macro name="PROPS_GIFT_BILL_INFO_TYPE_CASH" value="0" />
+		<macro name="PROPS_GIFT_BILL_INFO_TYPE_GIFT" value="1" />
+	</macrosgroup>
+
+	<struct name="CashInfo" version="624" >
+		<entry name="GroupID" type="int" desc="礼包组ID"/>
+		<entry name="AddCash" type="int" desc="增加的充值点数"/>
+	</struct>
+
+	<union name="PropGiftBillInfo" version="624" >
+		<entry name="CashInfo" type="CashInfo" id="PROPS_GIFT_BILL_INFO_TYPE_CASH" desc="礼包组充值点数变化通知"/>
+		<entry name="PropsGift" type="PropsGift" id="PROPS_GIFT_BILL_INFO_TYPE_GIFT" desc=""/>
+	</union>
+
+	<struct name="SSPropGiftBillRes" version="624" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="PropsInfoType" type="int" bindmacrogroup="PROPS_GIFT_BILL_INFO_TYPE"/>
+		<entry name="PropsGiftBillInfo" type="PropGiftBillInfo" select="PropsInfoType" />
+	</struct>
+
+	<struct name="SSCDKeyReq" version="788" >
+		<entry name="CDKey" type="string" size="CDKEY_LEN" />
+		<entry name="RoleID" type="biguint"  />
+		<entry name="SvrID" type="int"  />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="Pass9Account" type="string" notnull="true" size="ACCOUNT_LOGIN_NAME_LEN" version="1263"/>
+		<entry name="IP" type="uint" desc="IP地址" version="1263"/>
+		<entry name="RoleLvl" type="int" desc="" version="2287" />
+	</struct>
+
+	<struct name="SSCDKeyRes" version="788" >
+		<entry name="Succ" type="int"  />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="CDKey" type="string" size="CDKEY_LEN" />
+		<entry name="Items" type="GiftItem" count="CDKEY_ITEM_NUM" desc="奖励道具数组" />
+	</struct>
+	<struct name="SSBattleTeamSuccReq"  version="1125" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="TeamID" type="biguint" desc="队伍唯一标识" />
+		<entry name="TeamIdx" type="int" desc="队伍索引" />
+	</struct>
+
+	<struct name="SSBattleTeamSuccRes"  version="1125" >
+		<entry name="Result" type="int" desc="0成功,非0失败" />
+	</struct>
+
+	<struct name="SSBattleApplyQueueRoleInfo"  version="1323" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+	</struct>
+
+	<struct name="SSBattleApplyQueue"  version="1323" >
+		<entry name="PworldID" type="int" />
+		<entry name="TeamJoin" type="int" version="2173" bindmacrosgroup="TEAM_JOIN_TYPE"/>
+		<entry name="SrcMaxLevel" type="int" version="2213" desc="源服务器的最大封印等级"/>
+		<entry name="RoleNum" type="int" />
+		<entry name="RoleInfo" type="SSBattleApplyQueueRoleInfo" count="MAX_TEAM_MEMBER" refer="RoleNum" />
+	</struct>
+
+	<struct name="SSFlushBattleQueueRoleInfo"  version="1348" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+	</struct>
+
+	<struct name="SSFlushBattleQueue"  version="1348" >
+		<entry name="Member" type="SSFlushBattleQueueRoleInfo" />
+		<entry name="Captain" type="SSFlushBattleQueueRoleInfo" />
+	</struct>
+
+	<struct name="SSFlushBattleQueueTeamInfo"  version="1348" >
+		<entry name="Member" type="SSFlushBattleQueueRoleInfo" />
+		<entry name="TeamID" type="biguint" />
+		<entry name="TeamIdx" type="int" />
+		<entry name="Flag" type="int" />
+	</struct>
+
+	<struct name="SSBattleMemberInfo"  version="1361" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="Member" type="TeamMember" />
+	</struct>
+
+	<struct name="SSFillIdCardReq"  version="1475" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN"  desc="帐号名"/>
+		<entry name="Uin" type="int" />
+		<entry name="Name" type="string" size="NAME_LEN" desc="姓名" />
+		<entry name="IDCard" type="string" size="AAS_ID_CARD_LEN" desc="身份证" />
+		<entry name="eMail" type="string" size="ACCOUNT_REGIST_EMAIL_LEN" desc="邮箱" />
+	</struct>
+
+	<struct name="SSFillIdCardRes"  version="1475" >		
+		<entry name="Result" type="tinyuint" />
+		<entry name="Uin" type="int" />
+		<entry name="Account" type="InformerAccount" />
+	</struct>
+
+	<!-- Span -->
+	<struct name="RoleConnInfo" version="1398" >
+		<entry name="Ver" type="tinyint" defaultvalue="0" desc="版本信息,默认为零" />
+		<entry name="ExtraType" type="tinyint" />
+		<entry name="TimeStampType" type="tinyint" />
+		<entry name="ConnIdx" type="int" />
+		<entry name="ExtraInfo" type="TFrameHeadData" select="ExtraType" />
+		<entry name="TimeStamp" type="TTimeStampData" select="TimeStampType" />
+	</struct>
+	
+	<struct name="SSSpanRoleData"  version="1398" >
+		<entry name="RoleData" type="RoleData" />
+		<entry name="ConnInfo" type="RoleConnInfo" />
+		<entry name="AccountLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="CltProtoVer" type="smalluint" />
+		<entry name="AccSilenceEnd" type="int" />
+		<entry name="GMLimitPerm" type="int" />
+	</struct>
+
+	<!--报名，放一个player过去处理报名逻辑，自动组队 战场等-->
+	<struct name="SSSpanRoleApplyReq"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="SpanData" type="SSSpanRoleData" />
+	</struct>
+
+	<macrosgroup name="SPAN_ROLE_APPLY_RESULT">
+		<macro name="ROLE_APPLY_SUCC"  value="0x0000" desc="无错误" /> 
+		<macro name="ROLE_APPLY_ERR_SYS"  value="0x0001" desc="系统错误" /> 
+		<macro name="ROLE_APPLY_ERR_FULL"  value="0x0002" desc="满员错误" /> 
+		<macro name="ROLE_APPLY_ERR_SAME"  value="0x0003" desc="账号重复 " /> 
+	</macrosgroup>
+
+	<struct name="SSSpanRoleApplyRes"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="Result" type="int" bindmacrosgroup="SPAN_ROLE_APPLY_RESULT" desc="0成功,非0失败"  />
+	</struct>
+
+	<macrosgroup name="ROLE_SPAN_DST_TYPE">
+		<macro name="SPAN_DST_TYPE_SPARTA"  value="1" desc="自动组队" /> 
+		<macro name="SPAN_DST_TYPE_BATTLE"  value="2" desc="战场" /> 
+		<macro name="SPAN_DST_TYPE_MAP"  value="3" desc="跨服野外" /> 
+	</macrosgroup>
+
+	<struct name="SSSpanPworldInfo"  version="1398" >		
+		<entry name="PworldID" type="int" />
+	</struct>
+
+	<struct name="SSSpanSpartaInfo"  version="1398" >		
+		<entry name="TeamID" type="biguint" />
+		<entry name="PworldWID" type="biguint" />
+		<entry name="PworldInstID" type="int" />
+	</struct>
+
+	<struct name="SSSpanMapInfo"  version="1398" >		
+		<entry name="MapID" type="int" />
+		<entry name="Pos" type="ResPos"/>
+	</struct>
+
+	<union name="SSSpanDstInfo" version="1398" >
+		<entry name="Sparta" type="SSSpanSpartaInfo" id="SPAN_DST_TYPE_SPARTA"  />	
+		<entry name="Battle" type="SSSpanPworldInfo" id="SPAN_DST_TYPE_BATTLE"  />	
+		<entry name="Map" type="SSSpanMapInfo" id="SPAN_DST_TYPE_MAP"  />	
+  	</union>
+
+  	<struct name="SSSpanDstData"  version="1398" >		
+		<entry name="DstType" type="int" bindmacrosgroup="ROLE_SPAN_DST_TYPE" />
+		<entry name="Data" type="SSSpanDstInfo" select="DstType"  />	
+	</struct>
+
+	<!--跨进程前预占位，对于报名类跨进程，这里只相当于验证之前的报名-->
+	<struct name="SSSpanRoleHoldReq"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="DstData" type="SSSpanDstData" />
+		<entry name="SpanData" type="SSSpanRoleData" />
+	</struct>
+
+	<!--ROLE_PRE_HOLD 错误原因-->
+	<macrosgroup name="SPAN_ROLE_HOLD_RESULT">
+		<macro name="ROLE_HOLD_SUCC"  value="0x0000" desc="无错误" /> 
+		<macro name="ROLE_HOLD_ERR_SYS"  value="0x0001" desc="系统错误" /> 
+		<macro name="ROLE_HOLD_ERR_FULL"  value="0x0002" desc="满员错误" /> 
+		<macro name="ROLE_HOLD_ERR_SAME"  value="0x0003" desc="账号重复 " /> 
+	</macrosgroup>
+
+	<struct name="SSSpanRoleHoldRes"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="Result" type="int" bindmacrosgroup="SPAN_ROLE_HOLD_RESULT" desc="0成功,非0失败"  />
+	</struct>
+
+	<macrosgroup name="SPAN_ROLE_UPDATE_REQ_TYPE">
+		<macro name="SPAN_UPDATE_REQ_NONE"  value="0x0000" desc="正常更新请求" /> 
+		<macro name="SPAN_UPDATE_REQ_CHG_SVR"  value="0x0001" desc="切线通知更新" /> 
+		<macro name="SPAN_UPDATE_REQ_KICK"  value="0x0002" desc="KICK 流程，更新角色信息" /> 
+	</macrosgroup>
+	
+	<struct name="SSSpanRoleUpdateReq"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="Type" type="int"  bindmacrosgroup="SPAN_ROLE_UPDATE_REQ_TYPE" />
+		<entry name="Reason" type="int" />
+		<entry name="Uin" type="int" />
+		<entry name="DataDirty" type="int" desc="是否要立即回写" />
+		<entry name="RoleData" type="RoleData" />
+		<entry name="ExtLen" type="int" />
+		<entry name="ExtData" type="tinyuint" count="MAX_PROXY_PLAYER_ONLINE_BUF_LEN" refer="ExtLen" />
+	</struct>
+
+	<macrosgroup name="SPAN_ROLE_UPDATE_RESULT">
+		<macro name="SPAN_ROLE_UPDATE_RES_SUCC"  value="0x0000" desc="正常的定时更新成功" /> 
+		<macro name="SPAN_ROLE_UPDATE_RES_CHG_SVR"  value="0x0001" desc="切线清理用户" /> 
+		<macro name="SPAN_ROLE_UPDATE_RES_KICK"  value="0x0002" desc="T分线角色下线" /> 
+		<macro name="SPAN_ROLE_UPDATE_RES_CLEAN"  value="0x0003" desc="清理角色" /> 
+	</macrosgroup>
+
+	<struct name="SSSpanRoleUpdateRes"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="Result" type="int" bindmacrosgroup="SPAN_ROLE_UPDATE_RESULT" desc="返回标记"  />
+	</struct>
+
+	<struct name="SSSpanChgSvr"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="DstID" type="int" />
+		<entry name="DstData" type="SSSpanDstData" />
+	</struct>
+		
+	<struct name="SSSpanRoleLoginReq"  version="1398" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="DstData" type="SSSpanDstData" />
+		<entry name="RoleData" type="RoleData" />
+		<entry name="VipBarInfo" type="VipBarInfo" />
+		<entry name="AasInfo" type="AasInfo" desc="防沉迷"/>
+		<entry name="ExtLen" type="int" />
+		<entry name="ExtData" type="tinyuint" count="MAX_PROXY_PLAYER_ONLINE_BUF_LEN" refer="ExtLen" />
+	</struct>
+
+	<struct name="SSTeamSyncMember" version="1398" >
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="RoleID" type="biguint"  />
+		<entry name="Position" type="tinyuint" bindmacrosgroup="TEAM_POSITION" />
+  	</struct>
+
+  	<struct name="SSTeamSync" version="1398" >
+  		<entry name="MsgSrcID" type="int" />
+		<entry name="MsgDstID" type="int" />
+		<entry name="TeamID" type="biguint" desc="队伍唯一标识" />
+		<entry name="TeamBootyMode" type="int" />
+		<entry name="MemberNum" type="tinyuint" />
+		<entry name="Res" type="tinyuint" io="3" />
+		<entry name="TeamMember" type="SSTeamSyncMember" count="MAX_TEAM_MEMBER" refer="MemberNum" />
+  	</struct>
+
+  	<struct name="SSHeartBeatReq" version="1728" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+	</struct>
+
+	<struct name="SSProtectData" version="1744" >
+  		<entry name="TeamID" type="biguint" desc="队伍唯一标识" />
+		<entry name="TeamIdx" type="int" desc="队伍索引" />
+  	</struct>
+
+	<struct name="SSProtectDataSync" version="1744" >
+  		<entry name="MsgDstID" type="int" />
+  		<entry name="RoleID" type="biguint"  />
+  		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="ProtectData" type="SSProtectData" />
+  	</struct>
+
+  	<struct name="SSTeamDestroy" version="1744" >
+		<entry name="MsgDstID" type="int" />
+		<entry name="TeamID" type="biguint" desc="队伍唯一标识" />
+  	</struct>
+
+  	<struct name="SSExitPworldQueue" version="1744" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+	</struct>
+
+	<struct name="SSSpanCleanLogout" version="1744" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+	</struct>
+	
+	<struct name="SSSpanSafeLock" version="1744" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="SafeLockFalg" type="tinyint" />
+	</struct>
+
+	<struct name="SSSpanSpartaMem" version="1846" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="Val" type="int" />
+	</struct>
+
+	<struct name="SSSpanSpartaApplyReq" version="1846" >
+		<entry name="TeamID" type="biguint" />
+		<entry name="FightVal" type="int" />
+		<entry name="SpartaMem" type="SSSpanSpartaMem" count="MAX_SPARTA_TEAM_MEM" />
+	</struct>
+
+	<struct name="SSSpanSpartaInvite" version="1846" >
+		<entry name="Uin" type="int" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+		<entry name="PworldInstID" type="int" />
+		<entry name="PworldWID" type="biguint" />
+	</struct>
+	
+	<!-- Span end-->
+	
+	<macrosgroup name="APEX_MSG_TYPE" >
+		<macro name="APEX_MSG_DATA" value="0" />
+		<macro name="APEX_MSG_KICK" value="1" />
+	</macrosgroup>
+	
+	<struct name="ApexKickInfo" version="1834" >
+		<entry name="ApexData" type="ApexData" />
+	</struct>
+	
+	<union name="SSApexMsg" version="1834" >
+		<entry name="ApexData" type="ApexData" id="APEX_MSG_DATA" />
+		<entry name="KickInfo"  type="ApexKickInfo"  id="APEX_MSG_KICK" />
+	</union>
+	
+	<struct name="SSApex" version="1834" >
+		<entry name="Uin" type="int" />
+		<entry name="ApexMsgType" type="int" />
+		<entry name="ApexMsg" type="SSApexMsg" select="ApexMsgType" />
+	</struct>
+	
+	<struct name="SSKickAccName" version="1861" >
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+	</struct>
+
+	<struct name="SSSmsReq"  version="2227" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN"  desc="帐号名"/>
+		<entry name="Uin" type="int" />
+		<entry name="Mobile" type="string" size="NAME_LEN" desc="手机号码" />
+		<entry name="Text" type="string" size="SHORT_DESC_LEN" desc="短信内容" />
+	</struct>
+
+	<struct name="SSSmsRes"  version="2227" >
+		<entry name="Result" type="tinyuint" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN"  desc="帐号名"/>
+		<entry name="Uin" type="int" />
+	</struct>
+
+	
+
+	<!--SpanStrong req-->
+	<macrosgroup name="SS_SPAN_STRONG_REQ" >
+		<macro name="SS_SPAN_STRONG_REQ_ALLINFO" value="0" />
+		<macro name="SS_SPAN_STRONG_REQ_SALE" value="1" />
+		<macro name="SS_SPAN_STRONG_REQ_CLEAR" value="2" />
+		<macro name="SS_SPAN_STRONG_REQ_TIP" value="3" />
+		<macro name="SS_SPAN_STRONG_REQ_MAIL" value="4" />
+		<macro name="SS_SPAN_STRONG_REQ_CHGNAME" value="5" />
+		<macro name="SS_SPAN_STRONG_CLAN_DESTORY" value="6" />
+		<macro name="SS_SPAN_STRONG_OCC" value="7" />
+	</macrosgroup>
+
+	<struct name="SSStrongOcc" version="2457" >
+		<entry name="StrongID" type="int" />
+		<entry name="MsgSrcID" type="int" />
+		<entry name="ClanID" type="int" />
+		<entry name="ClanName" type="string" size="NAME_LEN"/>
+	</struct>
+	
+	<struct name="SSStrongInfoReq" version="2409" >
+		<entry name="MsgSrcID" type="int" />
+	</struct>
+
+	<struct name="SSStrongClanDestoryReq" version="2442" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="ClanName" type="string" size="NAME_LEN"/>
+	</struct>
+
+	<struct name="SSStrongChgNameReq" version="2424" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="Type" type="int" desc="0-rolename 1-clanname" />
+		<entry name="NewName" type="string" size="NAME_LEN"/>
+		<entry name="OldName" type="string" size="NAME_LEN"/>
+	</struct>
+
+	<struct name="SSStrongClear" version="2409" >
+		<entry name="MsgSrcID" type="int" />
+	</struct>
+
+	<struct name="SSStrongTip" version="2409" >
+		<entry name="MsgSrcID" type="int" />
+		<entry name="ClanID" type="int" />
+	</struct>
+
+	<struct name="SSStrongMail" version="2409" >
+		<entry name="Name" type="string" size="NAME_LEN"/>
+		<entry name="SvrID" type="int" />
+	</struct>
+
+	<struct name="SSStrongSaleReq" version="2409" >
+		<entry name="SvrID" type="int" />
+		<entry name="ClanID" type="int" />
+		<entry name="Money" type="int" />
+		<entry name="StrongID" type="int" />
+		<entry name="ClanName" type="string" size="NAME_LEN" />
+		<entry name="RoleName" type="string" size="NAME_LEN" />
+	</struct>
+
+	<union name="SSSpanStrongMsgReq" version="2409" >
+		<entry name="StrongInfoReq" type="SSStrongInfoReq" id="SS_SPAN_STRONG_REQ_ALLINFO" />
+		<entry name="StrongSaleReq"  type="SSStrongSaleReq"  id="SS_SPAN_STRONG_REQ_SALE" />
+		<entry name="StrongClear"  type="SSStrongClear"  id="SS_SPAN_STRONG_REQ_CLEAR" />
+		<entry name="StrongTip"  type="SSStrongTip"  id="SS_SPAN_STRONG_REQ_TIP" />
+		<entry name="StrongMail"  type="SSStrongMail"  id="SS_SPAN_STRONG_REQ_MAIL" />
+		<entry name="ChgName"  type="SSStrongChgNameReq"  id="SS_SPAN_STRONG_REQ_CHGNAME" version="2424" />
+		<entry name="Destory"  type="SSStrongClanDestoryReq"  id="SS_SPAN_STRONG_CLAN_DESTORY" version="2442" />
+		<entry name="Occ"  type="SSStrongOcc"  id="SS_SPAN_STRONG_OCC" version="2457" />
+	</union>
+	
+	<struct name="SSSpanStrongReq" version="2409" >
+		<entry name="OpType" type="int" bindmacrosgroup="SS_SPAN_STRONG_REQ" />
+		<entry name="Data" type="SSSpanStrongMsgReq" select="OpType"  />	
+	</struct>
+
+	<!--SpanStrong Res-->
+	<macrosgroup name="SS_SPAN_STRONG_RES" >
+		<macro name="SS_SPAN_STRONG_RES_ALLINFO" value="0" />
+		<macro name="SS_SPAN_STRONG_RES_ONE" value="1" />
+		<macro name="SS_SPAN_STRONG_RES_SALE" value="2" />
+		<macro name="SS_SPAN_STRONG_RES_MAIL" value="3" />
+	</macrosgroup>
+
+	<struct name="SSStrongInfoAll" version="2409" >
+		<entry name="AllInfo" type="RStrongInfo" />
+	</struct>
+
+	<struct name="SSStrongSale" version="2409" >
+		<entry name="Succ" type="int" />
+	</struct>
+
+
+	<struct name="SSStrongMailRes" version="2409" >
+		<entry name="Title" type="string" size="NAME_LEN" />
+		<entry name="Text" type="string" size="SHORT_DESC_LEN" />
+		<entry name="Money" type="int"  />
+		<entry name="IsGold" type="int"  />
+		<entry name="ClanID" type="int"  />
+	</struct>
+
+	<struct name="SSStrongInfoOne" version="2409" >
+		<entry name="OneInfo" type="RStrongOne" />
+	</struct>
+
+	<union name="SSSpanStrongMsgRes" version="2409" >
+		<entry name="All" type="SSStrongInfoAll" id="SS_SPAN_STRONG_RES_ALLINFO" />
+		<entry name="One"  type="SSStrongInfoOne"  id="SS_SPAN_STRONG_RES_ONE" />
+		<entry name="Sale"  type="SSStrongSale"  id="SS_SPAN_STRONG_RES_SALE" />
+		<entry name="Mail"  type="SSStrongMailRes"  id="SS_SPAN_STRONG_RES_MAIL" />
+	</union>
+
+	<struct name="SSSpanStrongRes" version="2409" >
+		<entry name="OpType" type="int" bindmacrosgroup="SS_SPAN_STRONG_RES" />
+		<entry name="Data" type="SSSpanStrongMsgRes" select="OpType"  />	
+	</struct>
+		
+	<struct name="SSSpanMapCampReq" version="2476" >
+		<entry name="req" type="int" />
+	</struct>
+
+	<struct name="SSSpanMapCampRes" version="2476" >
+		<entry name="iCamp" type="int" />
+	</struct>
+
+	<struct name="SSWorldBossDataSync" version="2558" >
+		<entry name="iID"        type="int" desc="monid" />
+		<entry name="iFreshTime" type="int" desc="本次刷新时间" />
+ 		<entry name="iNextTime"  type="int" desc="下次刷新时间"/>
+ 		<entry name="iDayNum"    type="int" desc="今天刷了几次" />
+		<entry name="iStat"      type="int" desc="1-活着0-死亡"/>
+		<entry name="iTip"       type="int" />
+	</struct>
+	
+	<union name="SSPkgBody" version="1" >
+		<entry name="DirReport" type="SSDirReport" id="DIR_REPORT"/>
+		<entry name="ZoneCtrl" type="SSZoneCtrl" id="ZONE_CTRL" version="44" />
+		<entry name="CsCtrL" type="SSCsCtrl" id="CS_CTRL" version="44" />
+		<entry name="RePortDataAll" type="SSRePortDataAll" id="RECORD_DIR_INFO"/>
+		<entry name="DirInfoHour" type="SSDirInfoHour" id="DIR_INFO_HOUR"/>
+		<entry name="DirInfoDB" type="SSDirInfoDB" id="DIR_INFO_DB" version="45" />
+		<entry name="AasReq" type="SSAasReq" id="AAS_GAME_REQ" version="91" />
+		<entry name="AasRes" type="SSAasRes" id="AAS_GAME_RES" version="91" />
+		<entry name="GetAccountReq" type="SSGetAccountReq" id="INFORMER_GET_ACCOUNT_REQ" version="92" />
+		<entry name="GetAccountRes" type="SSGetAccountRes" id="INFORMER_GET_ACCOUNT_RES" version="92" />
+		<entry name="UpdateAccountRep" type="SSUpdateAccountRep" id="UPDATE_ACCOUNT_REP" version="94" />
+		<entry name="CashBillReq" type="SSCashBillReq" id="CASH_BILL_REQ" version="127" />
+		<entry name="CashBillRes" type="SSCashBillRes" id="CASH_BILL_RES" version="127" />
+		<entry name="QueryBillReq" type="SSQueryBillReq" id="QUERY_BILL_REQ" version="127" />
+		<entry name="QueryBillRes" type="SSQueryBillRes" id="QUERY_BILL_RES" version="127" />
+		<entry name="DecTianYuanReq" type="SSDecTianYuanReq" id="DEC_BILL_REQ" version="138" />
+		<entry name="DecTianYuanRes" type="SSDecTianYuanRes" id="DEC_BILL_RES" version="138" />	
+		<entry name="QueryTianYuanReq" type="SSQueryTianYuanReq" id="USER_QUERY_BILL_REQ" version="159" />
+		<entry name="QueryTianYuanRes" type="SSQueryTianYuanRes" id="USER_QUERY_BILL_RES" version="159" />	
+		<entry name="KickOffAccount" type="SSKickOffAccount" id="KICK_OFF_ACC" version="164" />
+		<entry name="MudHeartBeat" type="SSMudHeartBeat" id="MUD_HEARTBEAT" version="164" />
+		<entry name="ZoneHeartBeat" type="SSZoneHeartBeat" id="ZONE_HEARTBEAT" version="164" />
+		<entry name="RoleOnline" type="SSRoleOnline" id="ROLE_ONLINE" version="164" />
+		<entry name="RelationOnlineReq" type="SSRelationOnlineReq" id="RELATION_ONLINE_REQ" version="164" />
+		<entry name="RelationOnlineRes" type="SSRelationOnlineRes" id="RELATION_ONLINE_RES" version="164" />
+		<entry name="BillFreezePointReq" type="SSBillFreezePointReq" id="BILL_FREEZE_REQ" version="167" />
+		<entry name="BillFreezePointRes" type="SSBillFreezePointRes" id="BILL_FREEZE_RES" version="167" />	
+		<entry name="MudDirReport" type="SSDirReport" id="MUD_DIR_REPORT" version="208" />
+		<entry name="BattleCreatePworldReq" type="SSBattleCreatePworldReq" id="BATTLE_CREATE_PWORLD_REQ" version="258" />
+		<entry name="BattleCreatePworldRes" type="SSBattleCreatePworldRes" id="BATTLE_CREATE_PWORLD_RES" version="258" />
+		<entry name="BattlePlayerEnterPworldReq" type="SSBattlePlayerEnterPworldReq" id="BATTLE_ENTER_REQ" version="259" />
+		<entry name="BattlePlayerEnterPworldRes" type="SSBattlePlayerEnterPworldRes" id="BATTLE_ENTER_RES" version="259" />
+		<entry name="BattleEnterPworldMapReq" type="SSBattleEnterPworldMapReq" id="BATTLE_ENTER_PWORLD" version="259" />
+		<entry name="BattleUpdateRoleDataReq" type="SSBattleUpdateRoleDataReq" id="BATTLE_UPDATE_ROLEDATA_REQ" version="259" />
+		<entry name="BattleUpdateRoleDataRes" type="SSBattleUpdateRoleDataRes" id="BATTLE_UPDATE_ROLEDATA_RES" version="259" />
+		<entry name="BattleInfoSimpleReq" type="SSBattleInfoSimpleReq" id="BATTLE_REPORT_INFO" version="259" />
+		<entry name="BattlePlayerHelloReq" type="SSBattlePlayerHelloReq" id="BATTLE_PLAYER_HELLO_REQ" version="259" />
+		<entry name="ZoneQueueInfo" type="SSPworldQueueInfoReq" id="BATTLE_QUEUE_INFO" version="259" />
+		<entry name="CreatePworldInfo" type="SSBattleEnterReq" id="REGION_CREATE_PWORLD_INFO" version="259" />
+		<entry name="UnLock" type="SSBattleEnterRes" id="ZONE_UNLOCK_NOTIFY" version="259" />
+		<entry name="BattleProxy" type="SSBattleProxy" id="BATTLE_PROXY_ROUTINE" version="279" />
+		<entry name="BattleMirrorSync" type="SSBattleMirrorSync" id="BATTLE_MIRROR_SYNC" version="280" />
+		<entry name="BillQueryPropsDefReq" type="SSBillQueryPropsDefReq" id="BILL_QUERY_PROPSDEF_REQ" version="361" />
+		<entry name="BillQueryPropsDefRes" type="SSBillQueryPropsDefRes" id="BILL_QUERY_PROPSDEF_RES" version="361" />
+		<entry name="BillQueryPropsGiftReq" type="SSBillQueryPropsGiftReq" id="BILL_QUERY_PROPSGIFT_REQ" version="361" />
+		<entry name="BillQueryPropsGiftRes" type="SSBillQueryPropsGiftRes" id="BILL_QUERY_PROPSGIFT_RES" version="361" />
+		<entry name="BillSetPropsGiftReq" type="SSBillSetPropsGiftReq" id="BILL_SET_PROPSGIFT_REQ" version="361" />
+		<entry name="BillSetPropsGiftRes" type="SSBillSetPropsGiftRes" id="BILL_SET_PROPSGIFT_RES" version="361" />	
+		<entry name="CashPropsGiftInfoReq" type="SSCashPropsGiftInfoReq" id="BILL_CASH_PROPSGIFT_REQ" version="382" />
+		<entry name="CashPropsGiftInfoRes" type="SSCashPropsGiftInfoRes" id="BILL_CASH_PROPSGIFT_RES" version="382" />
+		<!-- 聊天转发 -->
+		<entry name="ChatInfo" type="SSChat" id="SS_CHAT" version="169" />
+		<entry name="PkgTansInfo" type="SSPkgTrans" id="SS_PKG_TRANS" version="574" />
+		<entry name="CmdReq" type="SSCmdReq" id="SS_CMD_REQ" version="575" />
+		<entry name="AccGiftListReq" type="SSAccGiftListReq" id="ACC_GIFT_LIST_REQ" version="600" />
+		<entry name="AccGiftListRes" type="SSAccGiftListRes" id="ACC_GIFT_LIST_RES" version="600" />
+		<entry name="InfoGetReq" type="SSInfoGetReq" id="SS_INFO_GET_REQ" version="601" />
+		<entry name="InfoGetRes" type="SSInfoGetRes" id="SS_INFO_GET_RES" version="601" />
+		<entry name="PropGiftListReq" type="SSPropGiftListReq" id="PROP_GIFT_REQ" version="624" />
+		<entry name="PropGiftListRes" type="SSPropGiftListRes" id="PROP_GIFT_RES" version="624" />
+		<entry name="PropGiftBillRes" type="SSPropGiftBillRes" id="PROP_GIFT_BILL_RES" version="624" />
+		<entry name="BattleExitReq" type="SSBattleExitReq" id="BATTLE_EXIT_REQ" version="788" />
+		<entry name="BattleExitRes" type="SSBattleExitRes" id="BATTLE_EXIT_RES" version="788" />
+		<entry name="SSCDKeyReq" type="SSCDKeyReq" id="SS_CDKEY_REQ" version="788" />
+		<entry name="SSCDKeyRes" type="SSCDKeyRes" id="SS_CDKEY_RES" version="788" />
+		<entry name="TeamShadowExitReq" type="SSTeamShadowExitReq" id="TEAM_SHADOW_EXIT_REQ" version="790" />
+		<entry name="TeamShadowExitRes" type="SSTeamShadowExitRes" id="TEAM_SHADOW_EXIT_RES" version="790" />
+		<entry name="BattleProxy" type="SSBattleProxy" id="ZONE_PROXY_ROUTINE" version="791" />
+		<entry name="TeamShadowSyncRes" type="SSTeamShadowSyncRes" id="TEAM_SHADOW_SYNC_RES" version="795" />
+		<entry name="SetBattleRoutinReq" type="SSSetBattleRoutinReq" id="SET_BATTLE_ROUTING_REQ" version="808" />
+		<entry name="SetBattleRoutinRes" type="SSSetBattleRoutinRes" id="SET_BATTLE_ROUTING_RES" version="808" />
+		<entry name="SSPlayerStatusassitantReq" type="SSPlayerStatusassitantSync" id="BATTLE_STATUSASSISTANT_REQ" version="890" />
+		<entry name="SSPlayerStatusassitantRes" type="SSPlayerStatusassitantSync" id="BATTLE_STATUSASSISTANT_RES" version="890" />
+		<entry name="GodCoinConsumeLogReq" type="SSGodCoinConsumeLogReq" id="GODCOIN_CONSUME_LOG_REQ" version="975" />
+		<entry name="BattleBuyReq" type="SSBattleBuyReq" id="BATTLE_SHOPPING_REQ" version="985" />
+		<entry name="BattleBuyRes" type="SSBattleBuyRes" id="BATTLE_SHOPPING_RES" version="985" />
+		<entry name="BattleTeamSuccReq" type="SSBattleTeamSuccReq" id="BATTLE_TEAM_SUCC_REQ" version="1125" />
+		<entry name="BattleTeamSuccRes" type="SSBattleTeamSuccRes" id="BATTLE_TEAM_SUCC_RES" version="1125" />
+		<entry name="BattleApplyQueue" type="SSBattleApplyQueue" id="BATTLE_APPLY_QUEUE" version="1323" />
+		<entry name="FlushBattleQueue" type="SSFlushBattleQueue" id="FLUSH_BATTLE_QUEUE" version="1348" />
+		<entry name="FlushBattleQueueTeamInfo" type="SSFlushBattleQueueTeamInfo" id="FLUSH_BATTLE_QUEUE_TEAM_INFO" version="1348" />
+		<entry name="BattleMemberInfo" type="SSBattleMemberInfo" id="BATTLE_TEAM_MEMBER_SYNC" version="1361" />
+		<entry name="FillIdCardReq" type="SSFillIdCardReq" id="SS_FILL_ID_CARD_REQ" version="1475" />
+		<entry name="FillIdCardRes" type="SSFillIdCardRes" id="SS_FILL_ID_CARD_RES" version="1475" />
+		<entry name="SpanRoleApplyReq" type="SSSpanRoleApplyReq" id="SPAN_ROLE_APPLY_REQ" version="1398" />
+		<entry name="SpanRoleApplyRes" type="SSSpanRoleApplyRes" id="SPAN_ROLE_APPLY_RES" version="1398" />
+		<entry name="SpanRoleHoldReq" type="SSSpanRoleHoldReq" id="SPAN_ROLE_HOLD_REQ" version="1398" />
+		<entry name="SpanRoleHoldRes" type="SSSpanRoleHoldRes" id="SPAN_ROLE_HOLD_RES" version="1398" />
+		<entry name="SpanRoleUpdateReq" type="SSSpanRoleUpdateReq" id="SPAN_ROLE_UPDATE_REQ" version="1398" />
+		<entry name="SpanRoleUpdateRes" type="SSSpanRoleUpdateRes" id="SPAN_ROLE_UPDATE_RES" version="1398" />
+		<entry name="SpanChgSvr" type="SSSpanChgSvr" id="SPAN_CHG_SVR" version="1398" />
+		<entry name="SpanRoleLoginReq" type="SSSpanRoleLoginReq" id="SPAN_ROLE_LOGIN_REQ" version="1398" />
+		<entry name="TeamSync" type="SSTeamSync" id="SS_TEAM_SYNC" version="1398" />
+		<entry name="HeartBeatReq" type="SSHeartBeatReq" id="SS_HEARTBEAT_REQ" version="1728" />
+		<entry name="ProtectDataSync" type="SSProtectDataSync" id="SS_PROTECT_DATA_SYNC" version="1744" />
+		<entry name="TeamDestroy" type="SSTeamDestroy" id="SS_TEAM_DESTROY" version="1744" />
+		<entry name="ExitPworldQueue" type="SSExitPworldQueue" id="SS_EXIT_PWORLD_QUEUE" version="1744" />
+		<entry name="SpanCleanLogout" type="SSSpanCleanLogout" id="SS_SPAN_CLEAN_LOGOUT" version="1744" />
+		<entry name="SpanSafeLock" type="SSSpanSafeLock" id="SS_SPAN_SAFELOCK" version="1744" />
+		<entry name="Apex" type="SSApex" id="SS_APEX" version="1834" />
+		<entry name="SpanSpartaApplyReq" type="SSSpanSpartaApplyReq" id="SPAN_SPARTA_APPLY_REQ" version="1846" />
+		<entry name="SSKickAccName" type="SSKickAccName" id="SS_KICK_ACCNAME" version="1861" />
+		<entry name="SpanSpartaInvite" type="SSSpanSpartaInvite" id="SPAN_SPARTA_INVITE" version="1846" />
+		<entry name="CoroutineRpc" type="CoroutineRpc" id="SS_COROUTINE_RPC" version="2163" />
+		<entry name="SmsReq" type="SSSmsReq" id="SS_SMS_REQ" version="2227" />
+		<entry name="SmsRes" type="SSSmsRes" id="SS_SMS_RES" version="2227" />
+		<entry name="AccGiftInsertReq" type="SSAccGiftInsertReq" id="ACC_GIFT_INSERT_REQ" version="2228" />
+		<entry name="AccGiftInsertRes" type="SSAccGiftInsertRes" id="ACC_GIFT_INSERT_RES" version="2228" />		
+
+		<entry name="SSMsgTrans" type="SSMsgTrans" id="SS_MSG_TRANS" version="2287" />	
+
+		<entry name="SpanStrongReq" type="SSSpanStrongReq" id="SPAN_STRONG_REQ" version="2409" />
+		<entry name="SpanStrongRes" type="SSSpanStrongRes" id="SPAN_STRONG_RES" version="2409" />	
+		<entry name="SpanMapCampReq" type="SSSpanMapCampReq" id="SPAN_MAP_CAMP_REQ" version="2476" />
+		<entry name="SpanMapCampRes" type="SSSpanMapCampRes" id="SPAN_MAP_CAMP_RES" version="2476" />	
+		<entry name="WorldBossDataSync" type="SSWorldBossDataSync" id="SS_WORLD_BOSS_DATA_SYNC" version="2558" />	
+		
+	</union>
+	
+	<struct name="SSPkg" versionindicator="Head.Ver" version="44" >
+		<entry name="Head" type="SSPkgHead"  />
+		<entry name="Body" type="SSPkgBody" select="Head.Cmd" sizeinfo="Head.BodyLen" />
+	</struct>
+</metalib>

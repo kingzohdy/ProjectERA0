@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="sign_service" version="10" >
+
+	<macro name="TORMSVR_STRING_LEN" value="256" />
+	<macro name="TORM_MAX_CHANNEL" value="256" />
+	<macro name="TORM_MAX_DBCONN" value="32" />
+	<macro name="TORM_MAX_TABLE" value="128" />
+	<macro name="TORM_MAX_DBMETALIB" value="128" />
+	<macro name="TORM_MAX_CACHEMETA" value="128" />
+  <macro name="TORM_MAX_RECORDS_NUM_PERSELECT" value="100" desc="单个select查询能检索出的记录行最大数目" />
+  <macro name="TORM_MAX_CACHE_PERCENT_SYN_SCTMSLCT_RES" value="80" 
+         desc="当将自定义查询条件中的记录添加的cache中时，如果cache使用比例超过此值时停止添加记录到cache中" />
+
+	<struct name="TORMConnectDBInfo" version="10" desc="dbms server  info">
+		<entry name="IDX" type="int" defaultvalue="1" />
+		<entry name="MajorVersion" type="int" />
+		<entry name="MinVersion" type="int" />
+		<entry name="DBMSName" type="string" size="TORMSVR_STRING_LEN" defaultvalue="mysql" />
+		<entry name="DBMSConnectionInfo" type="string" size="TORMSVR_STRING_LEN" defaultvalue="localhost" />
+		<entry name="DBMSCurDatabaseName" type="string" size="TORMSVR_STRING_LEN" defaultvalue="testdb" />
+		<entry name="DBMSUser" type="string" size="TORMSVR_STRING_LEN" defaultvalue="user" />
+		<entry name="DBMSPassword" type="string" size="TORMSVR_STRING_LEN" defaultvalue="passwd" />
+		<entry name="DBMSSock" type="string" size="TORMSVR_STRING_LEN" defaultvalue="/tmp/mysql.sock" />
+	</struct>
+
+	<struct name="RegionDBInfo" version="10" desc="RegionDBInfo">
+		<entry name="RegionID" type="int" defaultvalue="1" />	
+		<entry name="DBConnectInfo" type="TORMConnectDBInfo" />
+	</struct>
+
+	<struct name="RegionAuthInfo" version="10" desc="RegionDBInfo">
+		<entry name="RegionID" type="int" defaultvalue="1" />	
+		<entry name="AuthIP" type="string" size="24" desc="auth_svr的IP地址" defaultvalue="192.168.0.58" />  
+		<entry name="AuthPort" type="int" desc="auth_svr绑定的端口" defaultvalue="6727" />  
+	</struct>
+
+	<macro name="SIGN_MAX_REGION_NUM" value="16" />
+
+	<macrosgroup name="SOAP_ENCODING_TYPE">
+		<macro name="SOAP_ENCODING_TYPE_UTF8" value="0" desc="UTF8"/>
+		<macro name="SOAP_ENCODING_TYPE_GBK" value="1" desc="GBK"/>
+	</macrosgroup>
+
+	
+	<struct name="sign_serviceconf" version="10" >
+		<entry name="SpawnIP" type="string" size="24" desc="spawn-fcgi绑定的IP地址" defaultvalue="0.0.0.0" />  
+		<entry name="SpawnPort" type="int" desc="spawn-fcgi绑定的端口" defaultvalue="8010" />  
+		<entry name="SpawnNum" type="int" desc="spawn-fcgi数量,绑定的端口为SpawnPort递增1" defaultvalue="5" /> 		
+		<!--
+		<entry name="CsServiceUrl" type="string" size="256" desc="cs_service的url地址" defaultvalue="http://192.168.0.57:800/cgi-bin/cs_service" />  
+		<entry name="HttpBaseUserID" type="string" size="64" desc="http base 验证用户名" defaultvalue="soapuser" />  
+		<entry name="HttpBaseUserPasswd" type="string" size="64" desc="http base 验证密码" defaultvalue="soapuser#1234" />
+		<entry name="RegionDBNum" type="int" defaultvalue="1" desc="soap输入输出编码格式"/>
+		<entry name="RegionDBInfo" type="RegionDBInfo" count="SIGN_MAX_REGION_NUM" refer="RegionDBNum" desc="soap输入输出编码格式"/>
+		-->
+		<entry name="RegionAuthNum" type="int" defaultvalue="1" desc="大区验证服务器数量"/>
+		<entry name="RegionAuthInfo" type="RegionAuthInfo" count="SIGN_MAX_REGION_NUM" refer="RegionAuthNum" desc="大区验证服务器信息"/>
+		<entry name="ChannelKeyStart" type="int" defaultvalue="0" />
+		<entry name="FcgiWebServerIPList" type="string" size="512" desc="配置Fastcgi Web服务器的ip地址列表以逗号(,)分割,不在列表内的ip地址将被禁止访问,未设置则全部允许访问|FCGI_WEB_SERVER_ADDRS" defaultvalue="" />  
+		<entry name="SoapEncoding" type="int" desc="soap输入输出编码格式" defaultvalue="SOAP_ENCODING_TYPE_UTF8" bindmacrosgroup="SOAP_ENCODING_TYPE" /> 
+		<entry name="RoleDBMetaFile" type="string" size="128" desc="role_db_meta.tdr 路径" defaultvalue="../cfg/role_db_meta.tdr" /> 
+		<entry name="ServiceDBInfo" type="TORMConnectDBInfo" desc="操作失败日志数据库"/>
+	</struct>
+	
+	<struct name="sign_servicerun_status" version="10" >
+		<entry name="Res" type="int" />
+	</struct>
+	
+</metalib>
+
+

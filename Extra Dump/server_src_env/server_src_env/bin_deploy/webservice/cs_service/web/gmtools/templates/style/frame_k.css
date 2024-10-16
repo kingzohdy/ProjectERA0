@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+/*
+**************************
+(C)2010-2012 phpMyWind.com
+update: 2011-9-8 13:43:32
+person: Feng
+**************************
+*/
+
+
+/*全局设置*/
+*{padding:0px;margin:0px;font-family:"宋体";}
+html,body{width:100%;height:100%;}
+body{font-size:12px;overflow:hidden;z-index:1;}
+ul,li{list-style:none;}img{border:0;}
+
+
+/*隐藏菜单*/
+body.showmenu{}
+body.showmenu .left{display:block;}
+body.showmenu .right{left:207px;}
+body.showmenu .togglemenu{background:url(../images/dir_bg.gif) no-repeat;}
+body.hidemenu .togglemenu{background:url(../images/dir_bg.gif) no-repeat 0 -18px;}
+body.showmenu .togglemenu,body.hidemenu .togglemenu{margin-left:10px;padding-left:20px;color:#749fc5;text-decoration:none;}
+/*
+body.hidemenu .left{display:none;}
+body.hidemenu .right{left:0px;}
+body.hidemenu{background:none;}
+*/
+
+/*布局样式*/
+.left{position:absolute;top:62px;width:207px;left:0px;bottom:0px;z-index:7;}
+.left{*height:100%;*top:0;*bottom:0;*border-top:112px solid #fff;*border-bottom:0px solid #fff;*z-index:1;}
+.menu{height:100%;}
+.menu iframe{height:100%;width:99.99%;z-index:20;}
+.right{position:absolute;right:0;top:62px;bottom:0px;z-index:7;}
+.right{*height:100%;*top:0;*bottom:0;*border-top:112px solid #fff;*border-bottom:0px solid #fff;*z-index:1;}
+.main{height:100%;}
+.main iframe{height:100%;width:99.99%;z-index:20;}
+
+
+/*头部样式*/
+.header{height:62px;position:relative;z-index:8;}
+
+.header_bottom{height:17px!important;padding-top:3px!important;height:22px;padding-top:4px;background:#f3f8f9;border-top:1px solid #1a282e;border-bottom:1px solid #d8e3e7;overflow:hidden;color:#fff;}
+
+
+/*锁屏样式*/
+#lockscreen_bg{position:absolute;top:0px;left:0px;width:100%;height:100%;background:#f1fbff;display:none;z-index:998;}
+#lockscreen_bg{*height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');*width:expression(document.body.scrollWidth > document.body.offsetWidth ? document.body.scrollWidth : document.body.offsetWidth + 'px');}
+#lockscreen_win{display:none;width:339px;height:144px;background:url(../images/lockscreen_bg.png) no-repeat;position:absolute;top:50%;left:50%;margin:-72px 0 0 -170px;z-index:999;}
+#lockscreen_pwd{margin:80px 0 0 32px;font-size:14px;position:relative;}
+#password{width:175px;height:24px;line-height:20px;background:url(../images/input_gray_bg.png) repeat-x;border:1px solid #d0d0d0;text-indent:2px;position:absolute;left:42px;}
+#lockscreen_pwd label{position:absolute;top:5px;}
+#lockscreen_btn{position:absolute;left:225px;}
+#lockscreen_note{position:absolute;top:32px;left:42px;font-size:12px;color:red;}
+#lockscreen_copy{position:absolute;bottom:100px;width:100%;text-align:center;display:none;z-index:999;font-family:Verdana;font-size:14px;color:#C4C4C4;}
+
+
+/*功能地图*/
+.funcmap{width:100%;height:100%;position:absolute;top:0;left:0;z-index:999;display:none;}
+.funcmap .bg{width:100%;height:100%;position:absolute;top:0;left:0;background:#000;filter:alpha(opacity=35);-moz-opacity:0.35;opacity:0.35;}
+.funcmap .warp{width:550px;height:396px;position:absolute;background:white;border:1px solid #8E8E8E;top:50%;left:50%;margin:-195px 0 0 -278px;}
+.funcmap .warp:after{content:' ';position:absolute;display:block;left:-5px;top:-5px;z-index:-1;width:100%;height:100%;border:5px solid transparent;border-color:rgba(51, 51, 51, 0.1);border-radius:3px;-moz-border-radius:3px;-webkit-border-radius:3px;}
+.funcmap .Cont{padding:6px;}
+
+.funcmap .Title{overflow:hidden;}
+.funcmap .MainTit{padding:0 15px;height:35px;line-height:37px;overflow:hidden;font-size:14px;font-weight:bold;color:#000;border-bottom:1px solid #C8DDE9;background:#E7F2F9;background:-webkit-gradient(linear,0 0,0 100%,from(#F3F8FC),to(#E7F2F9));background:-moz-linear-gradient(top,#F3F8FC,#E7F2F9);filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,startColorStr=#FFF3F8FC,endColorStr=#FFE7F2F9);}
+.funcmap .Close{width:16px;height:16px;position:absolute;top:10px;right:10px;background:url(../images/close_div.gif) no-repeat;}
+.funcmap .Close:hover{background:url(../images/close_div.gif) no-repeat right top;}
+
+.funcmap .mapitem{float:left;width:127px;width:135px\9;margin-right:-1px;padding:3px;line-height:22px;border:1px solid #eee;border-bottom:none;overflow:hidden;}
+.funcmap .mapitem dl dt{margin:3px 0;line-height:20px;background:#f0f0f0;text-indent:5px;font-weight:bold;color:#333;}
+.funcmap .mapitem dl dd{line-height:20px;}
+.funcmap .mapitem dl dd a{padding-left:5px;text-decoration:none;color:#000;}
+.funcmap .mapitem dl dd a:hover{color:#F90;}
+.funcmap .mapitem dl dd a.bom{font-family:Verdana;}
+.funcmap .mapitem strong{display:block;margin-bottom:3px;padding:2px;background:#a4adaf;line-height:18px;text-indent:3px;color:white;}

@@ -1,0 +1,44 @@
+<!--This is IE DTD patch , Don't delete this line.-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Page-Enter" content="blendTrans(Duration=0.3)" />
+<meta http-equiv="Page-Exit" content="blendTrans(Duration=0.3)" />
+<title><?php echo $cfg_webname; ?> - PHPMyWind 后台管理系统</title>
+<link href="templates/style/frame.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="templates/js/jquery.min.js"></script>
+<script type="text/javascript" src="templates/js/frame.js"></script>
+</head>
+<body class="showmenu">
+<div class="header">
+	<div class="header_logo">
+		<div class="header_info">欢迎您：<span class="loginuser_info" title="登陆于：<?php echo GetDateTime($_SESSION['logintime']); ?>"><?php echo '<span>'.$_SESSION['admin'].'</span>';switch($_SESSION['adminlevel']){case 0:$leveltitle = '[超级管理员]';break;case 10:$leveltitle = '[超级管理员]';break;case 1:$leveltitle = '[管理员]';break;case 2:$leveltitle = '[文章发布员]';break;default:$leveltitle = '没有获取到权限';}echo ' '.$leveltitle; ?></span>
+			<?php if($_SESSION['adminlevel'] == 0 or $_SESSION['adminlevel'] == 10){?>
+			[<a href="default.php" title="方便您快速的切换后台权限">切换</a>]
+			<?php }?>
+			[<a href="logout.php" title="快捷键Esc">退出</a>]<span class="line">&nbsp;</span><a href="../" target="_blank">网站首页</a><span class="line">&nbsp;</span><a href="javascript:;" onclick="lockscreen()" id="lockscreen" class="lockscreen">锁屏</a><span class="line">&nbsp;</span><a href="http://phpmywind.com/" target="_blank">官方网站</a><span class="line">&nbsp;</span><a href="http://phpmywind.com/bbs/" target="_blank" class="help">帮助</a></div>
+	</div>
+	<div class="quick"> <a href="javascript:;" id="btn" class="btn">快捷方式</a> <a href="javascript:;" class="add_btn"></a>
+		<div class="qucikmenu" id="qucikmenu">
+			<ul>
+				<li><a href="home_user.php" target="main">后台首页</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="header_bottom"> <a href="javascript:;" class="togglemenu">隐藏菜单</a> </div>
+</div>
+<div class="left">
+	<div class="menu" id="menu">
+		<iframe src="left_menu_user.php" frameborder="0"></iframe>
+	</div>
+</div>
+<div class="right">
+	<div class="main">
+		<div class="main">
+			<iframe id="main" name="main" frameborder="0" src="home_user.php" <?php if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')) echo 'scrolling="yes"'; ?>></iframe>
+		</div>
+	</div>
+</div>
+</body>
+</html>

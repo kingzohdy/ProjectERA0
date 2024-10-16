@@ -1,0 +1,56 @@
+#  @file $RCSfile: Makefile_release,v $
+#  general description of this module
+#  $Id: Makefile_release,v 1.1 2012/04/07 02:55:05 kent Exp $
+#  @author $Author: kent $
+#  @date $Date: 2012/04/07 02:55:05 $
+#  @version $Revision: 1.1 $
+#  @note Editor: Vim 6.1, Gcc 4.0.1, tab=4
+#  @note Platform: Linux
+#
+
+GAME_COMM_INC  = ./include
+GAME_COMM_LIB  = ./
+
+MMOG_INC = -I$(GAME_COMM_INC) -I./ 
+MMOG_LIB = $(MMOG_SRC)/lib
+
+LDPATH = -L$(GAME_COMM_LIB)/ -L$(MMOG_LIB)/ -L/usr/local/mysql/lib/mysql/
+
+#C compiler flags
+SHARED = -shared -z defs
+CFLAGS= -g  
+CFLAGS+= -W -Wextra -Wall
+CFLAGS+= -pipe -D_NEW_LIC -D_GNU_SOURCE -D_REENTRANT -fPIC
+
+CC=gcc
+CXX=g++
+
+APP_NAME=example
+
+APP_CFILE=$(wildcard *.c)
+APP_OBJ=$(APP_CFILE:.c=.o)
+APP_INC=$(MMOG_INC) 
+
+APP_CFLAGS = $(CFLAGS) $(APP_INC)
+APP_LIB = $(LDPATH) $(GAME_COMM_LIB)/libgamecomm.a   \
+		-Wl,-Bstatic -lscew -lexpat -lgd  -Wl,-Bdynamic -lmysqlclient -ldl
+.PHONY: all clean 
+
+all: $(APP_NAME)
+
+-include $(APP_CFILE:.c=.d)
+
+%.d: %.c
+	$(CC) -MM $(APP_CFLAGS) $< -o $@
+
+%.o: %.c %.d
+	$(CC) -c $(APP_CFLAGS) $(DEBUG) $<
+	
+$(APP_NAME): $(APP_OBJ)
+	$(CC) -o $(APP_NAME) $(APP_CFLAGS)  $^ $(APP_LIB) -lpthread
+
+clean:
+	$(RM) *.o  *.d
+	$(RM) $(APP_NAME)
+
+

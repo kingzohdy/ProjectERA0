@@ -1,0 +1,10 @@
+;阀门  机械打手
+
+
+
+proc 2
+	strvar X Y
+	GET_MON_INFO 1 1 1 1 1 1 X Y
+	NEW_MON 261025 1 @X @Y 0 0 0 0 0
+
+endproc 

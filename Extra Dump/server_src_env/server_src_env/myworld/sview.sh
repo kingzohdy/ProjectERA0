@@ -1,0 +1,57 @@
+#!/bin/ksh
+ss="/data/cvs/cvsroot/myworld"
+usrname=${HOME##*/}
+#echo $usrname
+forlocks(){
+for file in $1/*
+do
+        if test -d $file
+        then
+                cmplock=${file##*/}
+                if [ "$cmplock" = "Locks" ]
+                then
+                        #echo $file
+                        for lckfile in $file/*
+                        do
+                               if test -f $lckfile
+                        
+			       then
+			       #echo $lckfile
+			       fname=${lckfile##*/}
+			       #echo $fname
+			       aa=`ls -l $lckfile| awk '{print $3}' `
+				if [ "$2" = "all" ]
+				then
+					#print "file =\t"$fname"\t Locked by "$aa
+					echo $fname $aa |awk ' {printf ("file = %-40s Locked by %s \n",$1,$2)} '
+				else
+					if [ "$2" = "" ]
+					then
+						findusr=$usrname
+					else
+						findusr=$2
+					fi
+					if [ "$aa" = $findusr ]
+					then
+					
+	                       #aa=`ls -l $lckfile| awk '{print $3}' `
+					echo $fname $aa |awk ' {printf ("file = %-40s Locked by %s \n",$1,$2)} '
+					#echo | awk 'BEGIN { printf "file = %s Locked by %s\n",$fname,$aa) }'
+					fi
+				fi
+                      	       fi
+                        #print "\n"
+                        done
+                fi
+                #echo $file
+		forlocks $file $2
+	fi
+
+done
+}
+if  [ "x$1" = "x" ]
+then
+	forlocks $ss
+else
+	forlocks $ss $1
+fi

@@ -1,0 +1,104 @@
+;利刃迷宫
+
+PROC 1
+
+	new_npc 1 333003 1802 6915 0 zhu30out.mac
+	new_npc 1 333025 4416 8500 0 zhu30out.mac
+	NEW_MON 290008 1 4100 10600 0 80 0 1 2
+	NEW_MON 290008 1 4700 10000 0 81 0 1 2
+	NEW_MON 290008 1 4400 10900 0 82 0 1 2
+	NEW_MON 290008 1 4021 11065 0 83 0 1 2
+	NEW_MON 290008 1 4736 11650 0 84 0 1 2
+	NEW_MON 290008 1 1555 11174 0 85 0 1 2
+	NEW_MON 290008 1 2148 11038 0 86 0 1 2
+	NEW_MON 290008 1 2463 11786 0 87 0 1 2
+	NEW_MON 290008 1 2700 11786 0 88 0 1 2
+	NEW_MON 290008 1 3100 11031 0 89 0 1 2
+	NEW_MON 290008 1 3400 11786 0 90 0 1 2
+	NEW_MON 290008 1 3700 11786 0 91 0 1 2
+	NEW_MON 290008 1 2100 10417 0 92 0 1 2
+	NEW_MON 290008 1 1500 10000 0 93 0 1 2
+	NEW_MON 290008 1 2100 9500 0 94 0 1 2
+	NEW_MON 290008 1 1500 9000 0 95 0 1 2
+	NEW_MON 290008 1 2100 8651 0 96 0 1 2
+		GET_PLAYER_BASE_ATT 0 40 41 42
+		if @41 >= 20 and @41 < 30
+		CALL_MON_TEAM_ALL 293121 100 600 4381 9009
+		endif
+		if @41 >= 30 and @41 < 40
+		CALL_MON_TEAM_ALL 293122 100 600 4381 9009
+		endif
+		if @41 >= 40 and @41 < 50
+		CALL_MON_TEAM_ALL 293131 100 600 4381 9009
+		endif
+		if @41 >= 50 and @41 < 60
+		CALL_MON_TEAM_ALL 293132 100 600 4381 9009
+		endif
+		if @41 >= 60 and @41 < 70
+		CALL_MON_TEAM_ALL 293133 100 600 4381 9009
+		endif
+		if @41 >= 70 and @41 < 80
+		CALL_MON_TEAM_ALL 293134 100 600 4381 9009
+		endif
+		if @41 >= 80 and @41 < 90
+		CALL_MON_TEAM_ALL 293135 100 600 4381 9009
+		endif
+		if @41 >= 90 and @41 < 100
+		CALL_MON_TEAM_ALL 293136 100 600 4381 9009
+		endif
+		if @41 >= 100 and @41 < 110
+		CALL_MON_TEAM_ALL 293137 100 600 4381 9009
+		endif
+		if @41 >= 110 and @41 <= 120
+		CALL_MON_TEAM_ALL 293138 100 600 4381 9009
+		endif
+	var 10 0
+	set_pworld_var 28 32 @10 1
+	var 11 0
+	set_pworld_var 32 32 @11 1
+
+
+ENDPROC
+
+PROC 3
+	get_pworld_var 28 32 1 10
+	
+	;add_sys_msg_start
+	;add_sys_msg 10=$@10$
+	;set_sys_msg_mode 4 0 0
+	;map_msg_info
+	if @10 = 1
+	;del_id_mon 290008 1
+	DESTROY_MON_BY_DEFID 1 290008
+	var 10 2
+	set_pworld_var 28 32 @10 1
+	endif
+
+
+ENDPROC
+
+
+PROC 4
+
+	
+
+	
+ENDPROC
+
+proc 5
+	effect 2 0 playEffct(1822,8058,"effect\\entity\\9598_16.ent")
+	ADD_SYS_MSG_START
+	ADD_SYS_MSG 宝藏应该就在通道的终点处，唯有躲开路上移动的电锯方可到达
+	;冲过利刃漩涡，终点有惊喜等着你
+	SET_SYS_MSG_MODE 7 0 0
+	MSG_INFO
+endproc
+
+
+proc 6
+	ADD_SYS_MSG_START
+	ADD_SYS_MSG $_player$葬身电锯
+	;失败了
+	SET_SYS_MSG_MODE 4 0 0
+	MAP_MSG_INFO
+endproc

@@ -1,0 +1,133 @@
+#!/bin/ksh
+# CVS program scommit
+# Program to commit the changes and check in the file into CVS
+
+cmdname=`basename $0`
+
+Usage()
+{
+        print "\nUsage: $cmdname [-r revision_number] <filename>"
+        print "The options -r are optional "
+        print "For example - "
+        print " $cmdname -r 1.1 foo.cpp"
+        print " $cmdname foo.cpp "
+        print " "
+}
+
+# Command getopt will not supported in next major release. 
+# Use getopts instead. 
+while getopts r: ii
+do
+        case $ii in
+        r) FLAG1=$ii; OARG1="$OPTARG";;
+        ?) Usage; exit 2;;
+        esac
+done
+shift ` expr $OPTIND - 1 `
+
+#echo FLAG1 = $FLAG1 , OARG1 = $OARG1
+
+if [ $# -lt 1 ]; then
+        Usage
+        exit 2
+fi
+
+if [ -d $1 ]; then
+        Usage
+        exit 2
+fi
+
+hme=` echo $HOME | cut -f1 -d' '  `
+if [ "$hme" = "" ]; then
+        print "\nError: \$HOME is not set!!\n"
+        exit
+fi
+
+# Find sub-directory
+cur_dir=`pwd`
+#echo $cur_dir
+len=${#hme}
+len=$(($len + 2))
+#echo $len
+subdir=` echo $cur_dir | cut -b $len-2000 `
+#echo $subdir
+if [ "$subdir" = "" ]; then
+        fdname=$1
+else
+        fdname=$subdir"/"$1
+fi
+
+# If file is already checked out by another user....
+cvs_root=` echo $CVSROOT | cut -f1 -d' '  `
+if [ "$cvs_root" = "" ]; then
+        print "\nError: \$CVSROOT is not set!!\n"
+        exit
+fi
+cldir=$CVSROOT/$subdir/Locks
+mkdir $cldir 2>/dev/null
+
+# Get the working revision number of the file....
+# Use tmpfile as the arg cannot be set inside the sub-shell
+tmpfile=$hme/sedit-lock.tmp
+\rm -f $tmpfile 2>/dev/null
+if [ "$FLAG1" = "" ]; then
+        (
+        cd $hme
+        
+	#revison 1.1.1.1 , head:1.1 Error	
+	#cvs status $fdname 2>/dev/null | grep "Working revision:" | awk '{print $3}' >$tmpfile
+        cvs log $fdname >$tmpfile
+        )
+        OARG1=`head -6 $tmpfile | grep head: | awk '{print $2}'`
+        \rm -f $tmpfile 2>/dev/null
+fi
+
+if [ "$OARG1" = "" ]; then
+        print "The file $fdname is NEW, it is not in the CVS repository"
+else
+        lockfile=$cldir/$1-$OARG1
+        if [ -e $lockfile ]; then
+                # Check if this revision is owned by you...
+                aa=` ls -l $lockfile | awk '{print $3}' `
+                userid=`id | cut -d'(' -f2 | cut -d')' -f1 `
+                if [ "$aa" != "$userid" ]; then
+                        print " "
+                        print "The file $fdname is NOT locked by you!!"
+                        print "It is locked by unix user name $aa and your login name is $userid"
+#                       print "If you are working concurrently with other developer"
+#                       print "and you used -F option with sedit."
+                        print "You need to wait untill other developer does scommit"
+                        print "or sunlock"
+                        print "Aborting the $cmdname ...."
+                        print " "
+                        exit 2
+                fi
+        else
+                if [ -f $CVSROOT/$subdir/$1,v ]; then
+                        print "You did not lock the file $fdname with sedit!!"
+                        print "Aborting the $cmdname ...."
+                        exit 2 
+                else
+                        print "\nThe file $fdname does not exist in CVS repository yet!!"
+                        print "You should have done sadd on $fdname ...."
+                fi
+        fi
+fi
+
+if [ -d $1 ]; then
+        Usage
+        exit 2
+        # Do not allow directory commits for now ...
+        #cvs commit
+else
+        cvs commit $1
+        exit_status=$?
+fi
+
+if [ $exit_status -eq 0 ]; then
+        print "\nDone $cmdname. $cmdname successful"
+        #print "\nTip (Usage): $cmdname <filename/directory name>\n"
+        chmod -w $1
+        rm -f $lockfile 2>/dev/null
+fi
+

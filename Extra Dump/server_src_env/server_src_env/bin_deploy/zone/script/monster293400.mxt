@@ -1,0 +1,175 @@
+;白色
+
+proc 2
+
+	RONGLU_GET_TASKID 1 20
+	GET_PLAYER_BASE_ATT 1 1 1 30	
+
+	if 20 = 3250
+		;40级
+		if 30 = 1
+			MON_DROP_BOOTYGROUP 30001 30011 0 0 10
+		endif
+		if 30 = 2
+			MON_DROP_BOOTYGROUP 30002 30012 0 0 0
+		endif
+		if 30 = 3
+			MON_DROP_BOOTYGROUP 30003 30013 0 0 0
+		endif
+		if 30 = 4
+			MON_DROP_BOOTYGROUP 30004 30014 0 0 0
+		endif
+		if 30 = 17
+			MON_DROP_BOOTYGROUP 32001 32011 0 0 0
+		endif
+		if 30 = 18
+			MON_DROP_BOOTYGROUP 32002 32012 0 0 0
+		endif
+		if 30 = 19
+			MON_DROP_BOOTYGROUP 32003 32013 0 0 0
+		endif
+		if 30 = 20
+			MON_DROP_BOOTYGROUP 32004 32014 0 0 0
+		endif
+		if 30 = 33
+			MON_DROP_BOOTYGROUP 32005 32015 0 0 0
+		endif
+		if 30 = 34
+			MON_DROP_BOOTYGROUP 32006 32016 0 0 0
+		endif
+		if 30 = 35
+			MON_DROP_BOOTYGROUP 32007 32017 0 0 0
+		endif
+		if 30 = 36
+			MON_DROP_BOOTYGROUP 32008 32018 0 0 0
+		endif
+		task_fini 3250 1 
+
+	endif
+	if 20 = 3251
+		;50级
+		if 30 = 1
+			MON_DROP_BOOTYGROUP 31001 31011 0 0 0
+		endif
+		if 30 = 2
+			MON_DROP_BOOTYGROUP 31002 31012 0 0 0
+		endif
+		if 30 = 3
+			MON_DROP_BOOTYGROUP 31003 31013 0 0 0
+		endif
+		if 30 = 4
+			MON_DROP_BOOTYGROUP 31004 31014 0 0 0
+		endif
+		if 30 = 17
+			MON_DROP_BOOTYGROUP 32001 32011 0 0 0
+		endif
+		if 30 = 18
+			MON_DROP_BOOTYGROUP 32002 32012 0 0 0
+		endif
+		if 30 = 19
+			MON_DROP_BOOTYGROUP 32003 32013 0 0 0
+		endif
+		if 30 = 20
+			MON_DROP_BOOTYGROUP 32004 32014 0 0 0
+		endif
+		if 30 = 33
+			MON_DROP_BOOTYGROUP 32005 32015 0 0 0
+		endif
+		if 30 = 34
+			MON_DROP_BOOTYGROUP 32006 32016 0 0 0
+		endif
+		if 30 = 35
+			MON_DROP_BOOTYGROUP 32007 32017 0 0 0
+		endif
+		if 30 = 36
+			MON_DROP_BOOTYGROUP 32008 32018 0 0 0
+		endif
+		task_fini 3251 1 
+	endif
+	if 20 = 3252
+		;60级
+		if 30 = 17
+			MON_DROP_BOOTYGROUP 32001 32011 0 0 0
+		endif
+		if 30 = 18
+			MON_DROP_BOOTYGROUP 32002 32012 0 0 0
+		endif
+		if 30 = 19
+			MON_DROP_BOOTYGROUP 32003 32013 0 0 0
+		endif
+		if 30 = 20
+			MON_DROP_BOOTYGROUP 32004 32014 0 0 0
+		endif
+		if 30 = 33
+			MON_DROP_BOOTYGROUP 32005 32015 0 0 0
+		endif
+		if 30 = 34
+			MON_DROP_BOOTYGROUP 32006 32016 0 0 0
+		endif
+		if 30 = 35
+			MON_DROP_BOOTYGROUP 32007 32017 0 0 0
+		endif
+		if 30 = 36
+			MON_DROP_BOOTYGROUP 32008 32018 0 0 0
+		endif
+		task_fini 3252 1 
+	endif
+	if 20 = 3253
+		;70级
+		if 30 = 17
+			MON_DROP_BOOTYGROUP 33001 33011 0 0 0
+		endif
+		if 30 = 18
+			MON_DROP_BOOTYGROUP 33002 33012 0 0 0
+		endif
+		if 30 = 19
+			MON_DROP_BOOTYGROUP 33003 33013 0 0 0
+		endif
+		if 30 = 20
+			MON_DROP_BOOTYGROUP 33004 33014 0 0 0
+		endif
+		if 30 = 33
+			MON_DROP_BOOTYGROUP 33005 33015 0 0 0
+		endif
+		if 30 = 34
+			MON_DROP_BOOTYGROUP 33006 33016 0 0 0
+		endif
+		if 30 = 35
+			MON_DROP_BOOTYGROUP 33007 33017 0 0 0
+		endif
+		if 30 = 36
+			MON_DROP_BOOTYGROUP 33008 33018 0 0 0
+		endif
+		task_fini 3253 1 
+	endif
+	if 20 = 3254
+		;80级
+		if 30 = 17
+			MON_DROP_BOOTYGROUP 34001 34011 0 0 0
+		endif
+		if 30 = 18
+			MON_DROP_BOOTYGROUP 34002 34012 0 0 0
+		endif
+		if 30 = 19
+			MON_DROP_BOOTYGROUP 34003 34013 0 0 0
+		endif
+		if 30 = 20
+			MON_DROP_BOOTYGROUP 34004 34014 0 0 0
+		endif
+		if 30 = 33
+			MON_DROP_BOOTYGROUP 34005 34015 0 0 0
+		endif
+		if 30 = 34
+			MON_DROP_BOOTYGROUP 34006 34016 0 0 0
+		endif
+		if 30 = 35
+			MON_DROP_BOOTYGROUP 34007 34017 0 0 0
+		endif
+		if 30 = 36
+			MON_DROP_BOOTYGROUP 34008 34018 0 0 0
+		endif
+		task_fini 3254 1 
+	endif
+	
+;	RONGLU_GET_ITEMID 1 30
+endproc 

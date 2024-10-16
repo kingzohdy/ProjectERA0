@@ -1,0 +1,21 @@
+PROC 1
+	;SET_EVENT_PWORLD_QUEUE 201 0
+	ADD_SYS_MSG_START
+	SET_SYS_MSG_MODE 6 0 0
+	ADD_SYS_MSG 欢乐嘉年华活动开始啦，参加活动就有机会获得各种奖励哦，50级之后到时间城找奈皮尔加入狂欢吧~
+	SVR_MSG_INFO
+
+
+;	SET_EVENT_BULLETIN 1 3589 30 欢乐嘉年华活动进行中！
+	SET_EVENT_PWORLD 1 201
+ENDPROC
+
+PROC 2 
+    ADD_SYS_MSG_START
+    SET_SYS_MSG_MODE 4 0 0	
+    ADD_SYS_MSG 欢乐嘉年华活动结束了，等待下次吧
+    SVR_MSG_INFO
+
+ENDPROC
+
+

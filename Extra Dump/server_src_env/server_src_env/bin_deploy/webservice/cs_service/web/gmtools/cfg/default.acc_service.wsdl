@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="gb2312"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://www.ljy0.com/AccService/" xmlns:whttp="http://www.w3.org/ns/wsdl/http" xmlns:wsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.ljy0.com/AccService/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.ljy0.com/AccService/">
+			<!--错误信息-->
+			<s:complexType name="ErrorResponse">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--
+ErrorCode 对应宏
+	<macrosgroup name="ACC_ERR">
+		<macro name="ACC_ERR_SUCCEEDED" value="0" desc="操作成功" />
+		<macro name="ACC_ERR_SYS" value="-1" desc="系统错误" />
+		<macro name="ACC_ERR_NET" value="-2" desc="网络错误" />
+		<macro name="ACC_ERR_TDR" value="-3" desc="TDR错误" />
+		<macro name="ACC_ERR_ARGS" value="-4" desc="参数错误" />
+		<macro name="ACC_ERR_ONLINE" value="-5" desc="操作必须角色不在线" />
+		<macro name="ACC_ERR_NOT_FOUND" value="-6" desc="查找不到指定的信息" />
+		<macro name="ACC_ERR_OUTLINE" value="-7" desc="操作必须角色在线" />
+		<macro name="ACC_ERR_DUP" value="-8" desc="重名" />
+		<macro name="ACC_ERR_XML" value="-9" desc="输出xml时出错" />
+	</macrosgroup>-->
+			<!--网站注册成功后向大区数据库插入帐号-->
+			<s:complexType name="InsertAccountReq">
+				<s:sequence>
+					<!--区ID|0表示acc_service配置的所有区-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--按游戏算法加密后的密码|Hex格式-->
+					<s:element minOccurs="0" maxOccurs="1" name="PasswordHex" type="s:string"/>
+					<!--生日|格式19710101-->
+					<s:element minOccurs="0" maxOccurs="1" name="Birthday" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="InsertAccountRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--网站修改密码后调用修改大区密码|调用前请写日志-->
+			<s:complexType name="UpdateAccountPasswdReq">
+				<s:sequence>
+					<!--区ID|0表示acc_service配置的所有区-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--按游戏算法加密后的密码|Hex格式-->
+					<s:element minOccurs="0" maxOccurs="1" name="PasswordHex" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="UpdateAccountPasswdRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--网站修改身份证后调用|修改帐号生日信息-->
+			<s:complexType name="UpdateAccountBirthdayReq">
+				<s:sequence>
+					<!--区ID|0表示acc_service配置的所有区-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--生日|19001010格式-->
+					<s:element minOccurs="0" maxOccurs="1" name="Birthday" type="s:string"/>
+					<!--性别|0无 1男 2女-->
+					<s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:int"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="UpdateAccountBirthdayRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+				</s:sequence>
+			</s:complexType>
+			<!--网站获取大区帐号密码信息-->
+			<s:complexType name="GetAccountPasswdReq">
+				<s:sequence>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetAccountPasswdRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构帐号信息|AccPasswdRes-->
+					<!--
+mate name:AccPasswdRes
+	<struct name="UpdatePasswd" dependonstruct="Account"  version="120" >
+		<entry name="Uin" type="int" />
+		<entry name="PasswdHash" type="tinyint" count="16" desc="用户密码的二次hash:md5(md5(pwd))" />
+	</struct>
+
+	<macro name="MAX_ACC_PASSWD_NUM" value="16" desc="帐号密码返回的数量" />
+
+	<struct name="AccPasswdRes" desc="帐号密码获取返回" version="1674">
+		<entry name="Num" type="int" desc="数量"   />
+		<entry name="RegionID" type="int" count="MAX_ACC_PASSWD_NUM" refer="Num" desc="区ID"   />
+		<entry name="AccPasswd" type="UpdatePasswd" count="MAX_ACC_PASSWD_NUM" refer="Num" desc="帐号密码信息" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--更新帐号的密保卡信息|调用前请写日志-->
+			<s:complexType name="UpdateAccountPasswdCardReq">
+				<s:sequence>
+
+					<!--区ID|0表示acc_service配置的所有区-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int" />
+
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string" />
+
+					<!--绑定类型| 0解绑 1绑定-->
+					<s:element minOccurs="0" maxOccurs="1" name="BindType" type="s:int" />
+
+					<!--行数-->
+					<s:element minOccurs="0" maxOccurs="1" name="RowNum" type="s:int" />
+
+					<!--列数-->
+					<s:element minOccurs="0" maxOccurs="1" name="ColumnNum" type="s:int" />
+
+					<!--逗号分隔的密保卡内容-->
+					<s:element minOccurs="0" maxOccurs="1" name="PasswdCard" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+
+			<s:complexType name="UpdateAccountPasswdCardRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	<message name="InsertAccountIn">
+		<part name="InsertAccountReq" type="s0:InsertAccountReq"/>
+	</message>
+	<message name="InsertAccountOut">
+		<part name="InsertAccountRes" type="s0:InsertAccountRes"/>
+	</message>
+	<message name="UpdateAccountPasswdIn">
+		<part name="UpdateAccountPasswdReq" type="s0:UpdateAccountPasswdReq"/>
+	</message>
+	<message name="UpdateAccountPasswdOut">
+		<part name="UpdateAccountPasswdRes" type="s0:UpdateAccountPasswdRes"/>
+	</message>
+	<message name="UpdateAccountBirthdayIn">
+		<part name="UpdateAccountBirthdayReq" type="s0:UpdateAccountBirthdayReq"/>
+	</message>
+	<message name="UpdateAccountBirthdayOut">
+		<part name="UpdateAccountBirthdayRes" type="s0:UpdateAccountBirthdayRes"/>
+	</message>
+	<message name="GetAccountPasswdIn">
+		<part name="GetAccountPasswdReq" type="s0:GetAccountPasswdReq"/>
+	</message>
+	<message name="GetAccountPasswdOut">
+		<part name="GetAccountPasswdRes" type="s0:GetAccountPasswdRes"/>
+	</message>
+	<!--更新帐号的密保卡信息|调用前请写日志-->
+	<message name="UpdateAccountPasswdCardIn">
+		<part name="UpdateAccountPasswdCardReq" type="s0:UpdateAccountPasswdCardReq"/>
+	</message>
+	<message name="UpdateAccountPasswdCardOut">
+		<part name="UpdateAccountPasswdCardRes" type="s0:UpdateAccountPasswdCardRes"/>
+	</message>
+	<portType name="AccServiceSoap">
+		<!--网站注册成功后向大区数据库插入帐号-->
+		<operation name="InsertAccount">
+			<input message="s0:InsertAccountIn"/>
+			<output message="s0:InsertAccountOut"/>
+		</operation>
+		<!--网站修改密码后调用修改大区密码|调用前请写日志-->
+		<operation name="UpdateAccountPasswd">
+			<input message="s0:UpdateAccountPasswdIn"/>
+			<output message="s0:UpdateAccountPasswdOut"/>
+		</operation>
+		<!--网站修改身份证后调用|修改帐号生日信息-->
+		<operation name="UpdateAccountBirthday">
+			<input message="s0:UpdateAccountBirthdayIn"/>
+			<output message="s0:UpdateAccountBirthdayOut"/>
+		</operation>
+		<!--网站获取大区帐号密码信息-->
+		<operation name="GetAccountPasswd">
+			<input message="s0:GetAccountPasswdIn"/>
+			<output message="s0:GetAccountPasswdOut"/>
+		</operation>
+		<!--更新帐号的密保卡信息|调用前请写日志-->
+		<operation name="UpdateAccountPasswdCard">
+			<input message="s0:UpdateAccountPasswdCardIn"/>
+			<output message="s0:UpdateAccountPasswdCardOut"/>
+		</operation>
+	</portType>
+	<binding name="AccServiceSoap" type="s0:AccServiceSoap">
+		<!--更新帐号的密保卡信息|调用前请写日志-->
+		<operation name="UpdateAccountPasswdCard">
+			<wsoap:operation soapAction="http://www.ljy0.com/acc_service/UpdateAccountPasswdCard" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<wsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!--网站注册成功后向大区数据库插入帐号-->
+		<operation name="InsertAccount">
+			<wsoap:operation soapAction="http://www.ljy0.com/acc_service/InsertAccount" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--网站修改密码后调用修改大区密码|调用前请写日志-->
+		<operation name="UpdateAccountPasswd">
+			<wsoap:operation soapAction="http://www.ljy0.com/acc_service/UpdateAccountPasswd" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--网站修改身份证后调用|修改帐号生日信息-->
+		<operation name="UpdateAccountBirthday">
+			<wsoap:operation soapAction="http://www.ljy0.com/acc_service/UpdateAccountBirthday" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--网站获取大区帐号密码信息-->
+		<operation name="GetAccountPasswd">
+			<wsoap:operation soapAction="http://www.ljy0.com/acc_service/GetAccountPasswd" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="AccService">
+		<documentation>LJY acc_service </documentation>
+		<port name="AccService" binding="s0:AccServiceSoap">
+			<wsoap:address location="http://192.168.0.57:800/cgi-bin/acc_service"/>
+		</port>
+	</service>
+	<!--网站注册成功后向大区数据库插入帐号-->
+	<!--网站修改密码后调用修改大区密码|调用前请写日志-->
+	<!--网站修改身份证后调用|修改帐号生日信息-->
+	<!--网站获取大区帐号密码信息-->
+</definitions>

@@ -1,0 +1,39 @@
+;;;;金钻礼包
+
+proc 1
+
+	strvar ret
+	GET_PACK_SPACE 0 ret
+	if ret >= 8
+		DEC_ITEM_NUM_INPAK 5052910 1 10
+		if 10 = 0
+			GET_PLAYER_BASE_ATT 1 30 1 1
+			if 30 = 1
+				ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5600227 1 1 0
+			else
+				ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5600226 1 1 0
+			endif
+			ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5052892 1 1 0
+			ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5251001 10 1 0
+			ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5251016 1 1 0
+			ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5234000 1 1 0
+			ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5052310 5 1 0
+			ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5041003 1 1 0
+			ADD_BIND_ITEM_NUM_INPAK_NOLIMIT 5060023 10 1 0
+		
+		endif
+	else
+		add_sys_msg_start
+		add_sys_msg 背包空间不足，请预留8个空格再开启道具！
+		set_sys_msg_mode 4 0 0
+		msg_info
+	endif
+
+endproc  
+
+
+
+
+
+
+

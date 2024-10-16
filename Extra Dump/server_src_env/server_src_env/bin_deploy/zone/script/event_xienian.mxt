@@ -1,0 +1,428 @@
+
+
+proc 100
+;	
+	rand 20 2
+	if 20 = 0
+		NEW_MAP_MON 200029 1 2200 10900 7100 10000 0 0 0 300 0 0
+	endif
+	if 20 = 1
+		NEW_MAP_MON 200029 1 2200 9100 16700 10000 0 0 0 300 0 0
+	endif
+	
+	rand 30 2
+	if 30 = 0
+		NEW_MAP_MON 200029 1 2300 8400 14700 10000 0 0 0 300 0 0
+	endif
+	if 30 = 1
+		NEW_MAP_MON 200029 1 2300 10400 7500 10000 0 0 0 300 0 0
+	endif
+	
+	rand 40 3
+	if 40 = 0
+		NEW_MAP_MON 200029 1 2400 15700 10400 10000 0 0 0 300 0 0
+	endif
+	if 40 = 1
+		NEW_MAP_MON 200029 1 2400 16300 15400 10000 0 0 0 300 0 0
+	endif
+	if 40 = 2
+		NEW_MAP_MON 200029 1 2400 10200 16400 10000 0 0 0 300 0 0
+	endif
+	
+	
+	rand 50 3
+	if 50 = 0
+		NEW_MAP_MON 200029 1 2500 20900 19900 10000 0 0 0 300 0 0
+	endif
+	if 50 = 1
+		NEW_MAP_MON 200029 1 2500 12600 21000 10000 0 0 0 300 0 0
+	endif 
+	if 50 = 2
+		NEW_MAP_MON 200029 1 2500 21200 31600 10000 0 0 0 300 0 0
+	endif
+	
+	
+	rand 60 3
+	if 60 = 0
+		NEW_MAP_MON 200029 1 2104 8600 16800 10000 0 0 0 300 0 0
+	endif
+	if 60 = 1
+		NEW_MAP_MON 200029 1 2104 16400 8800 10000 0 0 0 300 0 0
+	endif
+	if 60 = 2
+		NEW_MAP_MON 200029 1 2104 14700 13900 10000 0 0 0 300 0 0
+	endif
+	
+	
+	; rand 70 3
+	; if 70 = 0
+		; NEW_MAP_MON 200029 1 2201 20400 21400 10000 0 0 0 300 20 0
+	; endif
+	; if 70 = 1
+		; NEW_MAP_MON 200029 1 2201 10500 9000 10000 0 0 0 300 0 0
+	; endif
+	; if 70 = 2
+		; NEW_MAP_MON 200029 1 2201 5700 21100 10000 0 0 0 300 0 0
+	; endif
+
+	
+	rand 80 5
+	if 80 = 0
+		NEW_MAP_MON 200029 1 2202 25800 42500 10000 0 0 0 300 0 0
+	endif
+	if 80 = 1
+		NEW_MAP_MON 200029 1 2202 36100 37100 10000 0 0 0 300 0 0
+	endif
+	if 80 = 2
+		NEW_MAP_MON 200029 1 2202 28300 9900 10000 0 0 0 300 0 0
+	endif
+	if 80 = 3
+		NEW_MAP_MON 200029 1 2202 39800 16800 10000 0 0 0 300 0 0
+	endif
+	if 80 = 4
+		NEW_MAP_MON 200029 1 2202 11000 10800 10000 0 0 0 300 0 0
+	endif
+	
+	; rand 85 2
+	; if 85 = 0
+		; NEW_MAP_MON 200029 1 3404 23000 9500 10000 0 0 0 300 0 0
+	; endif
+	; if 85 = 1
+		; NEW_MAP_MON 200029 1 3404 27400 23800 10000 0 0 0 300 0 0
+	; endif
+	
+
+		rand 96 16
+	if 96 = 0 
+		NEW_MAP_MON 200029 1 3110 8400 17700 800 0 0 0 300 0 0
+	endif
+	if 96 = 1 
+		NEW_MAP_MON 200029 1 3110 10700 17700 800 0 0 0 300 0 0
+	endif
+	if 96 = 2 
+		NEW_MAP_MON 200029 1 3110 4300 14200 800 0 0 0 300 0 0
+	endif
+	if 96 = 3 
+		NEW_MAP_MON 200029 1 3110 5600 12000 800 0 0 0 300 0 0
+	endif
+	if 96 = 4 
+		NEW_MAP_MON 200029 1 3110 9600 13000 800 0 0 0 300 0 0
+	endif
+	if 96 = 5
+		NEW_MAP_MON 200029 1 3110 13100 14300 800 0 0 0 300 0 0
+	endif
+	if 96 = 6 
+		NEW_MAP_MON 200029 1 3110 14400 14200 800 0 0 0 300 0 0
+	endif
+	if 96 = 7 
+		NEW_MAP_MON 200029 1 3110 13800 9100 800 0 0 0 300 0 0
+	endif
+	if 96 = 8 
+		NEW_MAP_MON 200029 1 3110 12800 6000 800 0 0 0 300 0 0
+	endif
+	if 96 = 9 
+		NEW_MAP_MON 200029 1 3110 14800 4600 800 0 0 0 300 0 0
+	endif
+	if 96 = 10 
+		NEW_MAP_MON 200029 1 3110 9600 5500 800 0 0 0 300 0 0
+	endif
+	if 96 = 11 
+		NEW_MAP_MON 200029 1 3110 10700 1600 800 0 0 0 300 0 0
+	endif
+	if 96 = 12 
+		NEW_MAP_MON 200029 1 3110 8400 1600 800 0 0 0 300 0 0
+	endif
+	if 96 = 13 
+		NEW_MAP_MON 200029 1 3110 4200 6300 800 0 0 0 300 0 0
+	endif
+	if 96 = 14 
+		NEW_MAP_MON 200029 1 3110 6700 4700 800 0 0 0 300 0 0
+	endif
+	if 96 = 15 
+		NEW_MAP_MON 200029 1 3110 5000 8900 800 0 0 0 300 0 0
+	endif
+
+	
+	rand 97 10
+	if 97 = 0
+		NEW_MAP_MON 200029 1 3210 5700 17200 800 0 0 0 300 0 0
+	endif
+	if 97 = 1
+		NEW_MAP_MON 200029 1 3210 3800 17500 800 0 0 0 300 0 0
+	endif
+	if 97 = 2
+		NEW_MAP_MON 200029 1 3210 6000 9600 800 0 0 0 300 0 0
+	endif
+	if 97 = 3
+		NEW_MAP_MON 200029 1 3210 8000 9400 800 0 0 0 300 0 0
+	endif
+	if 97 = 4
+		NEW_MAP_MON 200029 1 3210 11900 8200 800 0 0 0 300 0 0
+	endif
+	if 97 = 5
+		NEW_MAP_MON 200029 1 3210 13700 7000 800 0 0 0 300 0 0
+	endif
+	if 97 = 6
+		NEW_MAP_MON 200029 1 3210 18900 11000 800 0 0 0 300 0 0
+	endif
+	if 97 = 7
+		NEW_MAP_MON 200029 1 3210 19000 12600 800 0 0 0 300 0 0
+	endif
+	if 97 = 8
+		NEW_MAP_MON 200029 1 3210 18600 17300 800 0 0 0 300 0 0
+	endif
+	if 97 = 9
+		NEW_MAP_MON 200029 1 3210 18800 18400 800 0 0 0 300 0 0
+	endif
+	
+endproc  
+
+
+proc 110
+	
+	rand 91 10
+	if 91 = 0
+		NEW_MAP_MON 200029 1 3303 1692 10729 2500 0 0 0 300 0 0
+	endif
+	if 91 = 1
+		NEW_MAP_MON 200029 1 3303 6588 10529 2500 0 0 0 300 0 0
+	endif
+	if 91 = 2
+		NEW_MAP_MON 200029 1 3303 3733 8216 2500 0 0 0 300 0 0
+	endif
+	if 91 = 3
+		NEW_MAP_MON 200029 1 3303 9457 8402 2500 0 0 0 300 0 0
+	endif
+	if 91 = 4
+		NEW_MAP_MON 200029 1 3303 1649 7174 2500 0 0 0 300 0 0
+	endif
+	if 91 = 5
+		NEW_MAP_MON 200029 1 3303 8387 5347 2500 0 0 0 300 0 0
+	endif
+	if 91 = 6
+		NEW_MAP_MON 200029 1 3303 11513 7588 2500 0 0 0 300 0 0
+	endif
+	if 91 = 7
+		NEW_MAP_MON 200029 1 3303 10942 9772 2500 0 0 0 300 0 0
+	endif
+	if 91 = 8
+		NEW_MAP_MON 200029 1 3303 2135 2426 2500 0 0 0 300 0 0
+	endif
+	if 91 = 9
+		NEW_MAP_MON 200029 1 3303 6389 1726 2500 0 0 0 300 0 0
+	endif
+	
+	
+	rand 92 10
+	if 92 = 0
+		NEW_MAP_MON 200029 1 3300 1416 3040 2500 0 0 0 300 0 0
+	endif
+	if 92 = 1
+		NEW_MAP_MON 200029 1 3300 2466 1777 2500 0 0 0 300 0 0
+	endif
+	if 92 = 2
+		NEW_MAP_MON 200029 1 3300 2252 5086 2500 0 0 0 300 0 0
+	endif
+	if 92 = 3
+		NEW_MAP_MON 200029 1 3300 4383 3876 2500 0 0 0 300 0 0
+	endif
+	if 92 = 4
+		NEW_MAP_MON 200029 1 3300 6654 3105 2500 0 0 0 300 0 0
+	endif
+	if 92 = 5
+		NEW_MAP_MON 200029 1 3300 9813 3276 2500 0 0 0 300 0 0
+	endif
+	if 92 = 6
+		NEW_MAP_MON 200029 1 3300 10981 1819 2500 0 0 0 300 0 0
+	endif
+	if 92 = 7
+		NEW_MAP_MON 200029 1 3300 11054 8854 2500 0 0 0 300 0 0
+	endif
+	if 92 = 8
+		NEW_MAP_MON 200029 1 3300 9897 10589 2500 0 0 0 300 0 0
+	endif
+	if 92 = 9
+		NEW_MAP_MON 200029 1 3300 6833 10720 2500 0 0 0 300 0 0
+	endif
+	;;;;;;;;;;;;;
+	rand 93 10
+	if 93 = 0
+		NEW_MAP_MON 200029 1 3302 11244 2220 2500 0 0 0 300 0 0
+	endif
+	if 93 = 1
+		NEW_MAP_MON 200029 1 3302 9948 1312 2500 0 0 0 300 0 0
+	endif
+	if 93 = 2
+		NEW_MAP_MON 200029 1 3302 5829 1322 2500 0 0 0 300 0 0
+	endif
+	if 93 = 3
+		NEW_MAP_MON 200029 1 3302 3844 1352 2500 0 0 0 300 0 0
+	endif
+	if 93 = 4
+		NEW_MAP_MON 200029 1 3302 1909 1701 2500 0 0 0 300 0 0
+	endif
+	if 93 = 5
+		NEW_MAP_MON 200029 1 3302 1600 3506 2500 0 0 0 300 0 0
+	endif
+	if 93 = 6
+		NEW_MAP_MON 200029 1 3302 1600 6079 2500 0 0 0 300 0 0
+	endif
+	if 93 = 7
+		NEW_MAP_MON 200029 1 3302 11482 4348 2500 0 0 0 300 0 0
+	endif
+	if 93 = 8
+		NEW_MAP_MON 200029 1 3302 11612 7080 2500 0 0 0 300 0 0
+	endif
+	if 93 = 9
+		NEW_MAP_MON 200029 1 3302 11741 9262 2500 0 0 0 300 0 0
+	endif
+	
+	;;;;;;;;
+	rand 94 10
+	if 94 = 0
+		NEW_MAP_MON 200029 1 3400 9842 11811 2500 0 0 0 300 0 0
+	endif
+	if 94 = 1
+		NEW_MAP_MON 200029 1 3400 10884 3659 2500 0 0 0 300 0 0
+	endif
+	if 94 = 2
+		NEW_MAP_MON 200029 1 3400 12937 3508 2500 0 0 0 300 0 0
+	endif
+	if 94 = 3
+		NEW_MAP_MON 200029 1 3400 9601 7116 2500 0 0 0 300 0 0
+	endif
+	if 94 = 4
+		NEW_MAP_MON 200029 1 3400 15065 10482 2500 0 0 0 300 0 0
+	endif
+	if 94 = 5
+		NEW_MAP_MON 200029 1 3400 13737 15857 2500 0 0 0 300 0 0
+	endif
+	if 94 = 6
+		NEW_MAP_MON 200029 1 3400 7231 16999 2500 0 0 0 300 0 0
+	endif
+	if 94 = 7
+		NEW_MAP_MON 200029 1 3400 4620 14765 2500 0 0 0 300 0 0
+	endif
+	if 94 = 8
+		NEW_MAP_MON 200029 1 3400 4332 8989 2500 0 0 0 300 0 0
+	endif
+	if 94 = 9
+		NEW_MAP_MON 200029 1 3400 3557 11877 2500 0 0 0 300 0 0
+	endif
+	;;;;;;;;;;;;;;;
+	rand 95 10
+	if 95 = 0
+		NEW_MAP_MON 200029 1 3500 7641 7432 2500 0 0 0 300 0 0
+	endif
+	if 95 = 1
+		NEW_MAP_MON 200029 1 3500 12489 7150 2500 0 0 0 300 0 0
+	endif
+	if 95 = 2
+		NEW_MAP_MON 200029 1 3500 13618 10321 2500 0 0 0 300 0 0
+	endif
+	if 95 = 3
+		NEW_MAP_MON 200029 1 3500 13434 14779 2500 0 0 0 300 0 0
+	endif
+	if 95 = 4
+		NEW_MAP_MON 200029 1 3500 7598 17869 2500 0 0 0 300 0 0
+	endif
+	if 95 = 5
+		NEW_MAP_MON 200029 1 3500 12999 18368 2500 0 0 0 300 0 0
+	endif
+	if 95 = 6
+		NEW_MAP_MON 200029 1 3500 16557 14615 2500 0 0 0 300 0 0
+	endif
+	if 95 = 7
+		NEW_MAP_MON 200029 1 3500 16568 10951 2500 0 0 0 300 0 0
+	endif
+	if 95 = 8
+		NEW_MAP_MON 200029 1 3500 9542 10647 2500 0 0 0 300 0 0
+	endif
+	if 95 = 9
+		NEW_MAP_MON 200029 1 3500 9512 15190 2500 0 0 0 300 0 0
+	endif
+
+
+	
+endproc 
+
+
+proc 1
+
+	strvar Tim1 Tim2 Mid3
+	var Tim1 0
+	set_event_var 0 32 @Tim1 1
+	var Tim2 0
+	set_event_var 4 32 @Tim2 1
+	var Mid3 0
+	set_event_var 8 32 @Mid3 1
+	
+	
+	strvar Tim1_ 
+	var Tim1_ 0
+	set_event_var 12 32 @Tim1_ 1
+	
+;事件ID 41
+endproc
+
+proc 3
+;10秒一次
+	strvar Tim1 Tim2 Rad 
+	
+	get_event_var 0 32 1 Tim1
+	
+	add Tim1 1
+	set_event_var 0 32 @Tim1 1
+	
+	if Tim1 = 360
+		rand Rad 1800
+		add Tim1 @Rad	
+	endif
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;	
+;	var linshi @Tim1
+;	mul linshi 10
+;	
+;	var linshi1 600
+;	sub linshi1 @linshi
+;	add_sys_msg_start
+;	add_sys_msg $@linshi1$秒后刷黑暗物质
+;	set_sys_msg_mode 1 0 0
+;	SVR_MSG_INFO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	if Tim1 = 540
+	
+		call 100
+		var Tim1 0
+		set_event_var 0 32 @Tim1 1
+		
+		;测试用
+;		strvar Mid3 map X Y
+;		get_event_var 8 32 1 Mid3
+;		GET_ID_MON_INFO @Mid3 1 1 1 map 1 X Y
+;		add_sys_msg_start
+;		add_sys_msg 某个黑暗物质刷新在地图$@map$-坐标为：$@X$--$@Y$
+;		set_sys_msg_mode 1 0 0
+;		SVR_MSG_INFO
+
+	endif
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;以下地宫刷怪;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;	strvar Tim1_ Rad_ 
+;	
+;	get_event_var 12 32 1 Tim1_
+;	if Tim1_ = 0
+;		rand Rad_ 120
+;		add Tim1_ @Rad_	
+;	endif
+;	add Tim1_ 1
+;	set_event_var 12 32 @Tim1_ 1
+;
+;	if Tim1_ = 180
+;	
+;		call 110
+;		var Tim1_ 0
+;		set_event_var 12 32 @Tim1_ 1
+;	endif
+;
+
+endproc

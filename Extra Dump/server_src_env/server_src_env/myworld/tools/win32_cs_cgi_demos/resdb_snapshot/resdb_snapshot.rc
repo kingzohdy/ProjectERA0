@@ -1,0 +1,201 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_CONNECT DIALOGEX 0, 0, 244, 79
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "连接数据库"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_CONNECTION_STRING,52,7,72,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DB_NAME,163,7,74,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_USER,52,23,72,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PASSWD,163,23,74,12,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_TDR_FILE,52,39,168,12,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "...",IDC_CHANGE_TDR_FILE,224,38,13,13
+    DEFPUSHBUTTON   "连接",IDOK,41,58,50,14
+    PUSHBUTTON      "取消",IDCANCEL,152,58,50,14
+    LTEXT           "数据库地址:",IDC_STATIC,7,9,44,8
+    LTEXT           "数据库名:",IDC_STATIC,126,10,36,8
+    LTEXT           "用户名:",IDC_STATIC,7,27,28,8
+    LTEXT           "密码:",IDC_STATIC,126,25,20,8
+    LTEXT           "TDR文件:",IDC_STATIC,7,42,33,8
+END
+
+IDD_MAIN DIALOGEX 0, 0, 393, 239
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "数据库快照生成器"
+MENU IDR_MAIN_MENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TABLES,"SysListView32",LVS_LIST | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,0,0,393,238
+END
+
+IDD_MAKING DIALOGEX 0, 0, 272, 145
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "快照保存"
+FONT 9, "新宋体", 400, 0, 0x86
+BEGIN
+    EDITTEXT        IDC_OUTPUT,50,8,197,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_CHANGE_OUPUT,249,7,16,14
+    EDITTEXT        IDC_INCOMING_TABLES,7,30,258,88,ES_MULTILINE | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
+    PUSHBUTTON      "开始",IDC_START,156,124,50,14
+    PUSHBUTTON      "退出",IDCANCEL,215,124,50,14
+    LTEXT           "保存目录:",IDC_STATIC,10,9,36,8
+END
+
+IDD_RESTORE DIALOGEX 0, 0, 272, 153
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "恢复数据"
+FONT 9, "新宋体", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "退出",IDCANCEL,215,132,50,14
+    EDITTEXT        IDC_INCOMING_TABLES,7,36,258,88,ES_MULTILINE | ES_READONLY | ES_WANTRETURN | WS_VSCROLL
+    PUSHBUTTON      "开始",IDC_START,153,132,50,14
+    LTEXT           "警告:\n    本操作将会导致数据库中指定表的数据全部被删除, 再重写你所选定XML中的数据, 原先未保存的数据将丢失, 在按下""开始""按钮前, 请三思.",IDC_STATIC,7,7,258,27
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_CONNECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 237
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 72
+    END
+
+    IDD_MAIN, DIALOG
+    BEGIN
+        RIGHTMARGIN, 360
+    END
+
+    IDD_MAKING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 265
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 138
+    END
+
+    IDD_RESTORE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 265
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 146
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN                ICON                    "main.ico"
+IDI_TABLE               ICON                    "table.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAIN_MENU MENU 
+BEGIN
+    POPUP "导出(&E)"
+    BEGIN
+        MENUITEM "导出数据(&C)...",                 ID_MAKE_EXPORT
+        MENUITEM "导出全部数据(&A)...",               ID_MAKE_ALL_EXPORT
+    END
+    POPUP "快照(&S)"
+    BEGIN
+        MENUITEM "生成快照(&M)",                    ID_MAKE_SNAPSHOT
+        MENUITEM "生成全部快照(&A)",                  ID_MAKE_ALL_SNAPSHOT
+    END
+    POPUP "恢复(&R)"
+    BEGIN
+        MENUITEM "恢复数据(&S)",                    ID_RESTORE
+        MENUITEM "全部恢复(&A)",                    ID_ALL_RESTORE
+    END
+    POPUP "其他(&O)"
+    BEGIN
+        MENUITEM "退出(&X)",                      ID_EXIT
+    END
+END
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

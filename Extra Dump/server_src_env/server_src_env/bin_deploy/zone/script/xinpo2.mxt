@@ -1,0 +1,29 @@
+;离开副本3的传送员
+
+PROC 1 
+	
+	DIALOG 1
+
+	ADD_TALK 我可以让你离开副本2
+
+	OPTION 101 离开副本2
+	OPTION 102 #离开
+    TALK               
+ENDPROC
+PROC 101
+	DIALOG 1
+
+	ADD_TALK $_npc$：
+	ADD_TALK 你确定要离开副本吗
+
+	OPTION 201 #我要离开
+    TALK 
+ENDPROC
+PROC 201
+	OUT_PWORLD_BY_SINGLE
+ENDPROC  
+
+PROC 102
+	RETURN
+ENDPROC
+

@@ -1,0 +1,57 @@
+<tconnd version="2147483647">
+    <MaxFD> 10240</MaxFD>
+    
+    <TDRList type="TDRList">
+        <Count> 1</Count>
+        <TDRs type="TDR">
+            <Name>cusprotocol</Name>
+            <Path>../conf/cusprotocol.tdr</Path>
+        </TDRs>
+    </TDRList>
+    
+    <PDUList type="PDUList">
+        <Count> 1</Count>
+        <PDUs type="PDU">
+            <Name>cuspkg </Name>
+            <UpSize>4096 </UpSize>
+	          <DownSize>0</DownSize>	
+            <LenParsertype>PDULENPARSERID_BY_TDR </LenParsertype>
+            <LenParser type="PDULenParser">
+                <TDRParser type="PDULenTDRParser">
+            				 <TDR>cusprotocol</TDR>
+            				<Pkg>CusPkg</Pkg>
+            				<PkgLen>Head.PkgLen</PkgLen>
+                </TDRParser>
+            </LenParser>
+        </PDUs>
+    </PDUList>
+    
+    <ListenerList type="ListenerList">
+        <Count> 1</Count>
+        <Listeners type="Listener">
+            <Name>default</Name>
+            <Url>tcp://172.25.40.97:9060?reuse=1</Url>
+			<SendBuff> 65536 </SendBuff>
+			<RecvBuff> 65536 </RecvBuff>
+	   <MaxIdle>5</MaxIdle>  
+      </Listeners>
+    </ListenerList>
+    
+    <SerializerList type="SerializerList">
+        <Count> 1</Count>
+        <Serializers type="Serializer">
+            <Name>versionserver</Name>
+            <Url>10.2.1.2</Url>
+        </Serializers>
+    </SerializerList>
+	
+   <NetTransList type="NetTransList">
+        <Count> 1</Count>
+        <NetTrans type="NetTrans">
+            <Name>cusmsg</Name>
+            <PDU>cuspkg</PDU>
+            <Listener>default</Listener>
+            <Serializer>versionserver</Serializer>
+	       </NetTrans>
+    </NetTransList>
+</tconnd>

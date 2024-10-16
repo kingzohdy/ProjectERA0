@@ -1,0 +1,58 @@
+#  @file $RCSfile: Makefile.real,v $
+#  general description of this module
+#  $Id: Makefile.real,v 1.3 2012/11/02 08:22:26 zyq Exp $
+#  @author $Author: zyq $
+#  @date $Date: 2012/11/02 08:22:26 $
+#  @version $Revision: 1.3 $
+#  @note Editor: Vim 6.1, Gcc 4.0.1, tab=4
+#  @note Platform: Linux
+#
+
+include ../../src/mmog.mk 
+
+APP_NAME=world_scan
+
+#APP_FLAGS=$(CFLAGS) $(MMOG_INC)
+APP_CFILE=$(wildcard *.c)
+APP_OBJ=$(APP_CFILE:.c=.o)
+APP_EXE=$(APP_NAME)
+APP_INC=$(MMOG_INC) -I$(GAME_COMM_INC)/apps/
+APP_FLAGS = $(CFLAGS) $(APP_INC)
+
+CS_CGI_LIB=libcs_cgi.a
+
+APP_IMPORT_LIBS=$(LDPATH) \
+		$(MMOG_LIB)/libdirty.a \
+                $(MMOG_LIB)/libtdirty.a \
+                $(MMOG_LIB)/libptgen.a \
+		$(MMOG_LIB)/libnet_cs.a \
+		$(MMOG_LIB)/libmycomm.a \
+		$(MMOG_LIB)/libresloader.a \
+		$(GAME_COMM_LIB)/libtormprotocolapi.a \
+		$(GAME_COMM_LIB)/libgamecomm.a \
+		./libcs_cgi.a \
+		-Wl,-Bstatic -lscew -lexpat -Wl,-Bdynamic -lmysqlclient  
+
+.PHONY: all clean
+
+all: $(APP_EXE)
+
+-include $(APP_CFILE:.c=.d)
+
+%.d: %.c
+	$(CC) -MM $(APP_FLAGS) $< -o $@
+
+%.o: %.c %.d
+	$(CC) -c $(APP_FLAGS) $<
+
+$(CS_CGI_LIB):
+	cd ../cs_cgi && make clean; make
+
+$(APP_EXE): $(APP_OBJ) $(CS_CGI_LIB)
+	$(CC)  -o $(APP_EXE) $(APP_FLAGS)  $^ $(APP_IMPORT_LIBS) 
+	
+clean:
+	$(RM) *.o  *.d
+	$(RM) $(APP_EXE)
+	$(RM) gmon.out
+

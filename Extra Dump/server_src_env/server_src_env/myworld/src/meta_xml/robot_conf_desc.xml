@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="robot" version="10" >
+
+	<macro name="WORLD_NAME_LEN_ROBOT" value="128" />
+	<macro name="CHAT_LEN" value="32" />
+	<macro name="IP_LEN" value="32"/>
+	<macro name="MAX_GM_CMD" value="16"/>
+	<macro name="MAX_ARM" value="10"/>
+		
+	<struct name="ROLELOGIN" version ="10">
+		<entry name="LoginNum" type="uint" desc="登录的人数" />
+		<entry name="LoginID" type="uint" desc="登录账号" />
+		<entry name="Interval" type="uint" desc="登录时间间隔" />
+		<entry name="WorldName" type="string" size="WORLD_NAME_LEN_ROBOT" />
+		<entry name="DirIP" type="string" size="IP_LEN"/>
+		<entry name="DirPort" type="int" />
+		<entry name="AuthIP" type="string" size="IP_LEN"/>
+		<entry name="AuthPort" type="int" />
+		<entry name="JsNum" type="int" desc="祭师人数"/>
+		<entry name="QsNum" type="int" desc="枪手人数"/>
+		<entry name="ZsNum" type="int" desc="战士人数"/>
+		<entry name="FsNum" type="int" desc="法师人数"/>
+	</struct>
+
+	<struct name="ROLEMOVE" version="10">
+		<entry name="MoveInterval" type= "uint" desc="移动时间间隔"/>
+		<entry name="MoveDistance" type= "uint" desc= "每次移动距离"/>
+		<entry name="MoveNum" type= "uint" desc="移动人数"/>
+	</struct>
+
+	<struct name="ROLECHAT" version="10">
+		<entry name="ChatInterval" type= "uint" desc="聊天时间间隔"/>
+		<entry name="StrChat" type= "string" size="CHAT_LEN" desc= "聊天内容"/>
+		<entry name="ChatNum" type= "uint" desc="聊天人数"/>
+	</struct>
+
+	<struct name="ROLESKILL" version="10">
+		<entry name="SkillNum" type="uint" desc="战斗人数"/>
+		<entry name="SkillInterval" type="uint" desc="战斗时间间隔"/>
+		<entry name="SkillID" type="int" desc="技能ID"/>
+	</struct>
+
+	<struct name="COMMCMD" version="10">
+		<entry name="StrChat"  type= "string" size="CHAT_LEN" desc= "聊天内容"/>
+	</struct>
+	<struct name="FSCMD" version="10">
+		<entry name="StrChat"  type= "string" size="CHAT_LEN" desc= "聊天内容"/>
+	</struct>
+	<struct name="JSCMD" version="10">
+		<entry name="StrChat"  type= "string" size="CHAT_LEN" desc= "聊天内容"/>
+	</struct>
+	<struct name="ZSCMD" version="10">
+		<entry name="StrChat"  type= "string" size="CHAT_LEN" desc= "聊天内容"/>
+	</struct>
+	<struct name="QSCMD" version="10">
+		<entry name="StrChat"  type= "string" size="CHAT_LEN" desc= "聊天内容"/>
+	</struct>
+
+	<struct name="ARM" version="10">
+		<entry name="ArmID"  type= "int" />
+	</struct>
+	
+	
+	<struct name="robotconf" version ="10" >
+		<entry name="RoleLogin" type="ROLELOGIN" desc="登录相关"/>
+		<entry name="RoleMove" type="ROLEMOVE" desc="移动相关"/>
+		<entry name="RoleChat" type="ROLECHAT" desc="聊天相关"/>
+		<entry name="RoleSkill" type="ROLESKILL" desc="战斗相关"/>
+
+		<entry name="CommCount" type="int" desc="公共Gm指令数"/>
+		<entry name="CommGmCmd" type="COMMCMD"  count="MAX_GM_CMD" refer="CommCount" />
+		
+		<entry name="FsCount" type="int" desc="法师Gm指令数"/>
+		<entry name="FsGmCmd" type="FSCMD"  count="MAX_GM_CMD" refer="FsCount" />
+		<entry name="FsArmNum" type="int"  />
+		<entry name="FsArm" type="ARM"  count="MAX_ARM"  refer="FsArmNum"/>
+		
+		<entry name="JsCount" type="int" desc="祭师Gm指令数"/>
+		<entry name="JsGmCmd" type="JSCMD"  count="MAX_GM_CMD" refer="JsCount" />
+		<entry name="JsArmNum" type="int"  />
+		<entry name="JsArm" type="ARM"  count="MAX_ARM"  refer="JsArmNum"/>
+		
+		<entry name="ZsCount" type="int" desc="战士Gm指令数"/>
+		<entry name="ZsGmCmd" type="ZSCMD"  count="MAX_GM_CMD" refer="ZsCount" />
+		<entry name="ZsArmNum" type="int"  />
+		<entry name="ZsArm" type="ARM"  count="MAX_ARM"  refer="ZsArmNum"/>
+		
+		<entry name="QsCount" type="int" desc="枪手Gm指令数"/>
+		<entry name="QsGmCmd" type="QSCMD"  count="MAX_GM_CMD" refer="QsCount" />
+		<entry name="QsArmNum" type="int"  />
+		<entry name="QsArm" type="ARM"  count="MAX_ARM"  refer="QsArmNum"/>
+	</struct>
+	
+	<struct name="robotrun_status" version ="10" >
+		<entry name="Res" type="int" />
+	</struct>
+	
+</metalib>
+

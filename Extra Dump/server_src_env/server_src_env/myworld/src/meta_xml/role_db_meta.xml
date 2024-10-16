@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib name="role_db_meta" version="2555" tagsetversion="1" >
+
+	
+	<!--
+	<struct name="RoleDelTime" dependonstruct="RoleData" version="105" >
+		<entry name="RoleID" type="biguint" />
+		<entry name="DelTime" type="uint"  />
+	</struct>
+	-->
+
+	<struct name="NameID"  primarykey="GID" version="1" >
+		<entry name="GID" type="biguint"  />
+		<entry name="Name" type="string" size="NAME_LEN" unique="true" />
+		<entry name="NewTime" type="uint"  />
+		<entry name="NameType" type="tinyint" />
+	</struct>
+
+	<struct name="ChgNameID" dependonstruct="NameID" version="111" >
+		<entry name="GID" type="biguint" />
+		<entry name="Name" type="string" size="NAME_LEN" unique="true" />
+		<!--entry name="NameType" type="tinyint" version="182"/-->
+	</struct>
+
+
+	
+	<struct name="NameIDType"	dependonstruct="NameID" version="76" >
+		<entry name="GID" type="biguint"  />
+		<entry name="NameType" type="tinyint" />
+	</struct>	
+	
+	<struct name="BuddyInfo"  version="41" >
+		<entry name="RoleID" type="biguint" />
+		<entry name="Head" type="tinyuint" />
+		<entry name="Career" type="tinyuint" />
+		<entry name="Level" type="tinyuint" />
+		<entry name="Hair" type="tinyuint" version="99" />
+		<entry name="Emotion" type="string" size="EMOTION_LEN" desc="心情签名" />
+		<entry name="ClanID" type="uint" version="86" />
+		<entry name="ClanName" type="string" size="NAME_LEN" version="86" />
+		<entry name="Face" type="tinyuint" version="99" />
+	</struct>
+	
+	<struct name="Buddy"  version="41" >
+		<entry name="BuddyNum" type="smalluint"  />
+		<entry name="Res" type="smalluint" io="3" />
+		<entry name="BuddyInfos" type="BuddyInfo" count="MAX_BUDDY" refer="BuddyNum" />
+	</struct>
+	
+	<struct name="Relation"  primarykey="GID" version="41" >
+		<entry name="GID" type="biguint"  />
+		<entry name="Buddy" type="Buddy" />
+	</struct>
+	
+	<struct name="Clan" primarykey="ClanProf.GID" version="63" >
+		<entry name="ClanProf" type="ClanProf" extendtotable="true" desc="概要" />
+		<entry name="ClanBrief" type="ClanBrief" extendtotable="true" desc="简介" />
+		<entry name="ClanInner" type="ClanInner" desc="对内部公会成员可见" />
+		<entry name="ClanCity" type="ClanCity" version="119" desc="公会城市信息" />
+		<entry name="ClanCore" type="ClanCore" version="119" desc="公会核心信息，秘不公开" />
+		<entry name="ClanDestroyTime" type="int" desc="强制解散计时" />
+		<entry name="ClanActiveTime" type="int" desc="最近的一次公会成员登录时间" />
+		<entry name="ClanAdvance" type="ClanAdvance" version="405" desc="公会高级信息,科技制造仓库相关" />
+		<entry name="ClanBoon" type="ClanBoon"  desc="福利" version="2000" />
+		<entry name="ClanPet" type="ClanPet"  desc="公会宠物" version="2289" />
+	</struct>
+	
+	<struct name="MailEntry" primarykey="Mail.Head.WID" version="63" >
+		<entry name="Mail" type="Mail" extendtotable="true" />
+	</struct>
+
+	<macrosgroup name="QUICK_STATUS_TYPE" >
+		<macro name="QUICK_STATUS_NORMAL" value="0" desc="普通帐号" />
+		<macro name="QUICK_STATUS_QUICK" value="1" desc="快速试玩帐号" />
+		<macro name="QUICK_STATUS_REG" value="2" desc="转正的帐号" />
+		
+	</macrosgroup>
+
+
+	<macrosgroup name="ACTIVE_KEY_STATUS_TYPE" >
+		<macro name="ACTIVE_KEY_STATUS_INIT" value="0" desc="未激活" />
+		<macro name="ACTIVE_KEY_STATUS_ACTIVE" value="1" desc="已激活" />
+		
+	</macrosgroup>
+
+
+	<!-- 身份验证相关 begin -->
+	
+	<struct name="Account" primarykey="Uin"  version="100" >
+		<entry name="Uin" type="int" autoincrement="true" defaultvalue="1000" />
+		<entry name="UinFlag" type="int" desc="帐号标记，例如vip用户等" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" unique="true" />
+		<entry name="PasswdHash" type="tinyint" count="16" desc="用户密码的二次hash:md5(md5(pwd))" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" desc="生日" />
+		<entry name="Gender" type="tinyint" desc="性别" version="119" />
+		<entry name="RegisterTs" type="string" size="REGISTER_TIME_LEN" desc="注册时间 e.g. 201008181302" version="119" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" version="104" />
+		<entry name="SilenceStartTime" type="int" desc="什么时候开始禁言的" version="181" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="119" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" version="119" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" version="104" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" version="168" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" version="168" />
+		<entry name="AccountCreateTime" type="int" desc="账号创建时间" version="265" />
+		<entry name="LastLoginWorldID" type="int" desc="最后下线服务器ID" version="358" />
+		<entry name="SafePwd" type="tinyint" count="SAFE_LOCK_PASSWD_LEN" desc="安全锁" version="840" />
+		<entry name="QuickStatus" type="int" desc="快速试玩状态 0普通帐号 1快速试玩帐号 2 转正的帐号 QUICK_STATUS_TYPE" bindmacrosgroup="QUICK_STATUS_TYPE" version="1220" />
+		<entry name="ActiveKeyStatus" type="int" desc="激活码状态 0未激活 1已激活 ACTIVE_KEY_STATUS_TYPE" version="1386" />
+		<entry name="LastLogout" type="int" desc="最后退出时间" version="1401" />
+		<entry name="FirstLoginCltType" type="int" desc="第一登录时的客户端类型" version="1680"   />
+		<entry name="TuiGuangNum" type="int" desc="推广码" version="1680"   />
+		<entry name="TopTuiGuangNum" type="int" desc="上一级推广码" version="1680"   />
+		<entry name="PasswdCard" type="PasswdCard" desc="密保卡" version="1792"   />
+	</struct>
+
+	<macro name="ACTIVE_LEN"    value="255" />
+	<struct name="Active"   version="1383" >
+		<entry name="ActiveCode" type="string" size="ACTIVE_LEN" unique="true" /> />
+		<entry name="IsActive" type="int" desc="此鸡和马是否使用过" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN"  />
+	</struct>
+
+	<struct name="ActiveCodeGiftDef" primarykey="PreCode" desc="激活码和帐号礼包关系对应表" version="1474">
+		<entry name="PreCode" type="string" size="16" desc="激活码前缀" />
+		<entry name="Comment" type="string" size="32" desc="描述信息" />
+		<entry name="GiftName" type="string" size="32" desc="礼包名" />
+		<entry name="ItemID" type="int" desc="物品ID" />
+		<entry name="ItemNum" type="int" desc="物品数量" />
+	</struct>
+
+	<struct name="AccSafePwd" dependonstruct="Account"  version="840" >
+		<entry name="Uin" type="int" />
+		<entry name="SafePwd" type="tinyint" count="SAFE_LOCK_PASSWD_LEN" desc="安全锁"  />
+	</struct>
+
+	<struct name="IPBlock" version="175" >
+		<entry name="IP"     	type="int" />
+		<entry name="Mask" 	type="int" />
+		<entry name="BlockEnd" type="int"  desc="冻结结束时间,-1表示永久冻结" />
+	</struct>
+	
+	<struct name="AccountArchive" dependonstruct="Account"  version="168" >
+		<entry name="Uin" type="int" />
+		<entry name="LastLoginTime" type="int" desc="最后一次登录时间" version="168" />
+		<entry name="LastLoginIP" type="uint" desc="最后一次登录IP" version="168" />
+	</struct>
+
+	<struct name="AccountLastLogout" dependonstruct="Account"  version="1401" >
+		<entry name="Uin" type="int" />
+		<entry name="LastLogout" type="int" desc="最后退出时间"  />
+	</struct>
+
+	<struct name="AccountRoleWorldID" dependonstruct="Account" version="358" >
+		<entry name="Uin" type="int" />
+		<entry name="LastLoginWorldID" type="int" desc="最后下线服务器ID"  />
+	</struct>
+
+	<struct name="AccountUinFlag" dependonstruct="Account"  version="167" >
+		<entry name="Uin" type="int" />
+		<entry name="UinFlag" type="int" desc="帐号标记，例如vip用户等" />
+	</struct>
+
+	<struct name="AccountSilenceEndTime" dependonstruct="Account"  version="104" >
+		<entry name="Uin" type="int" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="SilenceStartTime" type="int" desc="什么时候开始禁言的" version="181" />
+	</struct>
+
+	<struct name="AccountFreezeEndTime" dependonstruct="Account"  version="104" >
+		<entry name="Uin" type="int" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" version="121" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="121" />
+	</struct>
+
+	<struct name="AccountActiveKey" dependonstruct="Account"  desc="激活码状态" version="1386">
+		<entry name="Uin" type="int" desc="帐号Uin" version="1386" />
+		<entry name="ActiveKeyStatus" type="int" desc="激活状态 0未激活 1已激活 ACTIVE_KEY_STATUS_TYPE" version="1386" />
+	</struct>
+
+	<struct name="UpdatePasswd" dependonstruct="Account"  version="120" >
+		<entry name="Uin" type="int" />
+		<entry name="PasswdHash" type="tinyint" count="16" desc="用户密码的二次hash:md5(md5(pwd))" />
+	</struct>
+
+	<struct name="UpdateFirstLoginCltType" dependonstruct="Account"  version="1680" >
+		<entry name="Uin" type="int" />
+		<entry name="FirstLoginCltType" type="int" desc="第一登录时的客户端类型" />
+	</struct>	
+
+	<struct name="UpdateAccount" dependonstruct="Account"  version="120" >
+		<entry name="Uin" type="int" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" desc="生日" />
+		<entry name="Gender" type="tinyint" desc="性别" version="120" />
+	</struct>
+
+	<struct name="AccountQuickUpdate" dependonstruct="Account"  version="1223" > 
+		<entry name="Uin" type="int" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="UinFlag" type="int" desc="帐号标记，例如vip用户等" />
+		<entry name="PasswdHash" type="tinyint" count="16" desc="用户密码的二次hash:md5(md5(pwd))" />
+		<entry name="QuickStatus" type="int" desc="快速试玩状态 0普通帐号 1快速试玩帐号 2 转正的帐号 QUICK_STATUS_TYPE" bindmacrosgroup="QUICK_STATUS_TYPE" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" desc="生日" version="1225"/>
+		<entry name="Gender" type="tinyint" desc="性别" version="1225" />
+	</struct>	
+
+	<struct name="AccountBirthdayUpdate" dependonstruct="Account"  version="1476" > 
+		<entry name="Uin" type="int" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" desc="生日" />
+		<entry name="Gender" type="tinyint" desc="性别"  />
+	</struct>	
+
+	<struct name="AccountAuthInfo" dependonstruct="Account"  version="1792" > 
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="Uin" type="int" />
+		<entry name="UinFlag" type="int" desc="帐号标记，例如vip用户等" />
+		<entry name="BirthDay" type="string" size="BIRTHDAY_LEN" desc="生日" />
+		<entry name="SilenceEndTime" type="int" desc="禁言结束时间" />
+		<entry name="PasswdHash" type="tinyint" count="16" desc="用户密码的二次hash:md5(md5(pwd))" />
+	</struct>	
+
+	<struct name="UpdatePasswdCard" dependonstruct="Account"  version="1792" >
+		<entry name="Uin" type="int" />
+		<entry name="PasswdCard" type="PasswdCard" desc="密保卡"  />
+	</struct>
+
+	<struct name="AccountValidPasswd" dependonstruct="Account"  desc="密码状态更新" version="2147">
+		<entry name="Uin" type="int" desc="帐号Uin" />
+		<entry name="UinFlag" type="int" desc="帐号标记，例如vip用户等" />
+		<entry name="ActiveKeyStatus" type="int" desc="激活状态 0未激活 1已激活 ACTIVE_KEY_STATUS_TYPE"  />
+		<entry name="PasswdCard" type="PasswdCard" desc="密保卡"  />
+		<entry name="PasswdHash" type="tinyint" count="16" desc="用户密码的二次hash:md5(md5(pwd))" />
+	</struct>
+	
+	<struct name="AccountRole" primarykey="RoleWID"  version="103" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="Uin" type="int" />
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" desc="角色名，索引" />
+		<entry name="DelTime" type="int" desc="删除标记" />
+		<entry name="RegionID" type="int" desc="区ID" />
+		<entry name="ServerID" type="int" desc="服ID" />
+		<entry name="CreateTime" type="int" version="175" desc="角色创建时间" />
+		<entry name="OnlineFlag" type="int" version="265" desc="在线标记 1-online  0-outline" />
+		<entry name="MacAddr" type="string" size="MAC_ADDR_LEN" desc="Mac地址" version="1639"   />
+		<entry name="Level" type="int" desc="等级" version="1743" />
+		<entry name="LastLogout" type="int" version="1743" />
+		<entry name="LastLoginIP" type="uint" version="1743" />
+		<entry name="FirstLoginTime" type="int" version="1866" />
+		<entry name="SecondLoginTime" type="int" version="1866" />
+	</struct>
+	
+	<struct name="AccountRoleName" dependonstruct="AccountRole" version="103" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" desc="角色名，索引" />
+	</struct>
+	
+	<struct name="AccountRoleFirstLogin" dependonstruct="AccountRole" version="1866" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="FirstLoginTime" type="int" version="1866" />
+		<entry name="SecondLoginTime" type="int" version="1866" />
+	</struct>
+	
+	<struct name="AccountRoleDelTime" dependonstruct="AccountRole" version="103" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="DelTime" type="int" desc="删除标记" />
+	</struct>
+
+	<struct name="AccountRoleOnline" dependonstruct="AccountRole" version="265" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="OnlineFlag" type="int" desc="在线标记 1-online  0-outline" />
+		<entry name="MacAddr" type="string" size="MAC_ADDR_LEN" desc="Mac地址" version="1639" />
+		<entry name="LastLoginIP" type="uint" version="1743" />
+	</struct>
+
+	<struct name="AccountRoleLogout" dependonstruct="AccountRole" version="265" >
+		<entry name="RoleWID" type="biguint" desc="角色唯一ID" />
+		<entry name="OnlineFlag" type="int" desc="在线标记 1-online  0-outline" />
+		<entry name="Level" type="int" desc="等级" version="1743" />
+		<entry name="LastLogout" type="int" desc="最后退出的时间" version="1743" />
+	</struct>
+	
+	<!-- 身份验证相关 end -->	
+	
+	<struct name="BillData" primarykey="Pass9Account" version="100" >
+		<entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN"  />
+	</struct>
+
+	<struct name="OnlineReCord"  version="87">
+		<entry name="RegionID" type="uint" version="182"/>
+		<entry name="WorldID" type="uint" />
+		<entry name="MudOnlineNum" type="uint" desc="Mud在线人数"  version="648"/>
+		<entry name="OnlineNum" type="uint" desc="在线人数"  />
+		<entry name="MapInfo" type="string" size="MAX_MAP_INFO" desc="地图人数信息" version="372"/>
+		<entry name="Time" type="DateTime" desc="记录时间"  />
+	</struct>
+
+	<!-- 日志数据库 start -->
+	<struct name="LogRoleLogin"  version="100">
+		<entry name="LogData" type="OpRoleLogin" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>  
+
+	<struct name="LogMapRoleNum"  version="366">
+		<entry name="LogData" type="OpMapRoleNum" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleNew"  version="100">
+		<entry name="LogData" type="OpRoleNew" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleLogout"  version="100">
+		<entry name="Uin" type="int" version="151" />
+		<entry name="AccountLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="111" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="Duration" type="int" desc="此次登录的在线时长" />
+		<entry name="IP" type="string" size="IPV4_LEN" version="111" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleShop" version="100" uniqueentryname="false" >
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="ShopAct" type="int"  bindmacrosgroup="OPLOG_SHOP" />
+		<entry name="OldShopData" type="OpShopData" extendtotable="true" />
+		<entry name="NowShopData" type="OpShopData" extendtotable="true" />
+		<entry name="GoodsData" type="OpGoodsData" extendtotable="true" />
+		<entry name="ItemDec" type="ItemDec" extendtotable="true" version="911" />
+		<entry name="ClanConDec" type="int" version="911" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+	
+	<struct name="LogRoleTask"  version="100" uniqueentryname="false">
+		<entry name="LogData" type="OpRoleTask" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleChat" version="100" >
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息"  extendtotable="true" />
+		<entry name="ChatType" type="tinyuint" desc="聊天类型" />
+		<entry name="ToName" type="string" size="NAME_LEN" desc="发送给谁" />
+		<entry name="Content" type="string" size="OPLOG_CLT_MSG_LEN" desc="内容" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleClan"  version="100"  >
+		<entry name="LogData" type="OpRoleClan" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleDel"  version="100">
+		<entry name="LogData" type="OpRoleDel" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleRespact"  version="143" uniqueentryname="false" >
+		<entry name="LogData" type="OpRoleRespact" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleDesignation"  version="143" uniqueentryname="false" >
+		<entry name="LogData" type="OpRoleDesignation" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+
+	<struct name="LogRoleFengyin"  version="1014" uniqueentryname="false" >
+		<entry name="Type" type="int" desc="0-封印 1-解封"/>
+		<entry name="RoleInfo" type="OpRoleInfo" desc="被封印者角色信息" extendtotable="true"  />
+		<entry name="FengyinInfo" type="OpRoleInfo" desc="封印者角色信息" extendtotable="true"  />
+		<entry name="LogArm" type="LogGridData" desc="装备信息" extendtotable="true"  />
+		<entry name="UnFengyinUse" type="int" desc="消耗金卷,type为1有效"/>
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogMailData" version="100" uniqueentryname="false"  >
+		<entry name="WID" type="biguint" />
+		<entry name="Flags" type="int" />
+		<entry name="To" type="string" size="ROLE_NAME_LEN_SAVE" />
+		<entry name="Send" type="string" size="ROLE_NAME_LEN_SAVE" />
+		<entry name="Title" type="string" size="SHORT_DESC_LEN" />
+		<entry name="ItemNum" type="tinyuint" />
+		<entry name="Items" type="LogGridData" count="MAIL_MAX_ITEM" refer="ItemNum" extendtotable="true"  />
+		<entry name="Money" type="uint" />
+	</struct>
+	
+	<struct name="LogRoleMail" version="100" uniqueentryname="false"  >
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN_SAVE" />
+		<entry name="Operation" type="tinyuint" />
+		<entry name="RoleMailData" type="LogMailData" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	
+	
+	<struct name="ExchgPetData" version="100" uniqueentryname="false" >
+			<entry name="PetID" type="smalluint" />
+			<entry name="WID" type="biguint" version="141" desc="宠物唯一标识" />
+			<entry name="Exp" type="uint" version="141" desc="宠物经验值" />
+			<entry name="MaxHP" type="uint" version="141" desc="最大HP" />
+			<entry name="Level" type="tinyuint" />
+			<entry name="PetGenius" type="tinyuint" bindmacrosgroup="PET_GENIUS_TYPE"  version="141" desc="资质" />
+			<entry name="BreedNum" type="tinyuint" version="141" desc="繁殖的次数" />
+			<entry name="Hierarchy" type="tinyuint" version="141" desc="第几代" />
+			<entry name="StrengthenLevel" type="tinyuint" version="141" desc="强化等级" />
+			<entry name="StrengthenInfo" type="int" count="MAX_PET_STRENGTHEN_LEVEL" version="141" desc="强化信息" />
+	</struct>
+	
+	<struct name="LogExchgData" version="100" uniqueentryname="false" >
+		<entry name="Money" type="int"  />
+		<entry name="ItemNum" type="tinyuint"  />
+		<entry name="RoleGrid" type="ExchgGridData" count="EXCHG_MAX_ITEM_NUM" refer="ItemNum" extendtotable="true" />
+		<entry name="PetNum" type="tinyuint"  />
+		<entry name="RolePet" type="ExchgPetData" count="EXCHG_MAX_PET_NUM" refer="PetNum" extendtotable="true" />
+	</struct>
+
+	<struct name="LogRoleExchg" version="100" uniqueentryname="false">
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		
+		<entry name="ExchgObjUin" type="int" version="151" />
+		<entry name="ExchgObjLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="ExchgObjRoleID" type="biguint" />
+		<entry name="ExchgObjName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="ExchgIn" type="LogExchgData" extendtotable="true" />
+		<entry name="ExchgOut" type="LogExchgData" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogStore" version="2139" uniqueentryname="false" >
+		<entry name="Type" type="tinyint" desc="0-开店1-上架2-下架 3-卖 4-关店5-注入资金"  />
+		<entry name="StoreID" type="int"   />
+		<entry name="StoreName" type="string" size="NAME_LEN" desc=""/>
+		<entry name="StoreOwnerName" type="string" size="NAME_LEN" desc=""/>
+		<entry name="StoreOwnerRoleID" type="biguint"  desc=""/>
+
+		<entry name="BuyName" type="string" size="NAME_LEN" desc=""/>
+		<entry name="BuyRoleID" type="biguint"  desc=""/>
+
+		<entry name="Money" type="int"   />
+		<entry name="Num" type="int"  />
+
+		<entry name="PreMoney" type="int"  />
+		<entry name="CurrMoney" type="int"  />
+
+		<entry name="Grid" type="ExchgGridData" extendtotable="true" />	
+		<entry name="LogTime" type="DateTime"  desc="入库时间"/>
+	</struct>
+
+	<struct name="LogStallItem" version="100" >
+		<entry name="ItemID" type="int" />
+		<entry name="WID" type="biguint" />
+		<entry name="Price" type="uint"  />
+		<entry name="Num" type="int"  version="831"/>
+	</struct>
+
+	<struct name="LogStallPet" version="100" >
+		<entry name="WID" type="biguint" version="151"/>
+		<entry name="PetID" type="uint" version="151"/>
+		<entry name="PetLv" type="uint" version="151"/>
+		<entry name="Price" type="uint"  />
+		<!--entry name="RolePet" type="RolePet" extendtotable="true" /-->
+	</struct>
+
+	<struct name="LogRoleStall" version="100" uniqueentryname="false"  >
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="StallRoleID" type="biguint" />
+		<entry name="StallOwner" type="string" size="ROLE_NAME_LEN" />
+		<entry name="StallFlag" type="int" version="726" />
+		<entry name="ItemNum" type="tinyuint"  />
+		<entry name="StallItem" type="LogStallItem" count="STALL_MAX_ITEM" refer="ItemNum" extendtotable="true" />
+		<entry name="PetNum" type="tinyuint"  />
+		<entry name="StallPet" type="LogStallPet" count="STALL_MAX_PET" refer="PetNum" extendtotable="true"  />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleStallBuy" version="100" uniqueentryname="false" >
+		<entry name="StallUin" type="int" version="151" />
+		<entry name="OwnerLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="StallRoleID" type="biguint" />
+		<entry name="StallOwner" type="string" size="ROLE_NAME_LEN" />
+		
+		<entry name="Uin" type="int" version="151" />
+		<entry name="BuyLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="Price" type="uint"  />
+		<entry name="Type" type="tinyuint" bindmacrosgroup="STALL_TYPE" />
+		<entry name="RoleGrid" type="LogGridData" id="STALL_TYPE_ITEM" extendtotable="true" />
+		<entry name="RolePet" type="LogRolePetData" id="STALL_TYPE_PET" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogMachiningArmData" version="100" uniqueentryname="false" >
+		<entry name="OldRoleArm" type="LogGridData" extendtotable="true" />
+		<entry name="NewRoleArm" type="LogGridData" extendtotable="true" />
+	</struct>
+	
+	<struct name="LogRoleArmMachining" version="100" uniqueentryname="false" >
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleID" type="biguint" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="MachiningActType" type="tinyuint" bindmacrosgroup="OP_MACHINING_TYPE" />
+		<entry name="ExpendData" type="MachinngExpendData" extendtotable="true" />
+		<entry name="ArmData" type="LogMachiningArmData" extendtotable="true" />
+		<entry name="SuccFlag" type="tinyuint" desc="成功失败标志，0失败 1成功" />
+		<entry name="ObtainItem" type="ItemDec"  count="MAX_OBTAIN" desc="加工后获得新的道具，宝石升级操作获得的物品" extendtotable="true" version="911"/>
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+	
+	<struct name="LogMosterDie" version="100" uniqueentryname="false"  >
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="MosterID" type="uint" desc="被干死的怪物ID" />
+		<entry name="KillerType" type="tinyuint" desc="怪物是被哪种类型的东西干死" />
+		<entry name="PlayerUin" type="int"  version="180" />
+		<entry name="PlayerLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="PlayerInfo" type="RoleMember" extendtotable="true" />
+		<entry name="MonsterInfo" type="MonsterInfo" extendtotable="true" />
+		<entry name="PetInfo" type="RoleMember" extendtotable="true" />
+		<entry name="MapID" type="uint" desc="事发地图" />
+		<entry name="Pos" type="ResPos"  desc="事发地点" extendtotable="true" />
+		<entry name="SubType" type="tinyuint" version="149" />
+		<entry name="PetID" type="int" desc="宠物ID|被宠物杀死有效" version="746" />
+		<entry name="LifeTime" type="int"  desc="生存了多久" version="954"/>
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogPlayerDie" version="100" uniqueentryname="false" >
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="PlayerUin" type="int" />
+		<entry name="PlayerLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="PlayerInfo" type="RoleMember"  desc="受害人信息" extendtotable="true" />
+		<entry name="KillerType" type="tinyuint" desc="被哪种类型的东西干死" />
+		<entry name="KillerUin" type="int"  version="180" />
+		<entry name="KillerLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="KillerPlayerInfo" type="RoleMember" extendtotable="true" />
+		<entry name="KillerMonsterInfo" type="MonsterInfo" extendtotable="true" />
+		<entry name="KillerPetInfo" type="RoleMember" extendtotable="true" />
+		<entry name="MapID" type="uint" desc="事发地图" />
+		<entry name="Pos" type="ResPos"  desc="事发地点" extendtotable="true" />
+		<entry name="PlayerLevel" type="int" desc="受害人等级" version="298" />
+		<entry name="Money" type="int" desc="掉落银币" version="746" />
+		<entry name="KillerLv" type="int" desc="Killer等级|被人和宠物杀死有效" version="746" />
+		<entry name="KillerCareer" type="int"  version="1401" />
+		<entry name="Career" type="int"  version="1401" />
+		<entry name="PetID" type="int" desc="宠物ID|被宠物杀死有效" version="746" />
+		<entry name="Exp" type="int" desc="" version="746" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRolePickItem" version="100" uniqueentryname="false" >
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleInfo" type="RoleMember" desc="拾取物品的角色" extendtotable="true" />
+		<entry name="How" type="tinyuint" bindmacrosgroup="OPLOG_HOWTO_PICK" desc="怎么拾取这件物品" />
+		<entry name="Items" type="LogGridData" desc="拾取的物品" extendtotable="true" />
+
+		<entry name="Map" type="int" desc="地图" version="474"/>
+		<entry name="X" type="int" desc="坐标" version="474"/>
+		<entry name="Y" type="int" desc="坐标" version="474"/>
+		<entry name="RoleCareer" type="int" desc="角色职业" version="474"/>
+		<entry name="CareerLimit" type="int" desc="职业限制" version="474"/>
+		
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleDropItem" version="150" uniqueentryname="false" >
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="DropType" type="int"  />
+		<entry name="DropMap" type="uint"  />
+		<entry name="DropPos" type="ResPos" extendtotable="true" />
+		<entry name="LogDropItem" type="LogGridData" extendtotable="true" />
+		<entry name="FromType" type="int"  desc="从什么身上掉落出来 0 未知(脚本) 1 角色 2 怪物" version="675" />
+		<entry name="FromID" type="biguint" desc="怪物ID或者RoleID" version="675" />
+		<entry name="FromName" type="string" size="RES_NAME_LEN" version="675" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRolePet" version="100" uniqueentryname="false"  >
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="Uin" type="int" version="151" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息" extendtotable="true" />
+		<entry name="Event" type="tinyuint" bindmacrosgroup="OPLOG_PET_OP" desc="事件" />
+		<entry name="PetInfo" type="LogRolePetData" extendtotable="true" desc="宠物信息" />
+		<entry name="GetItem" type="ItemDec" version="935" extendtotable="true" desc="放生获得的道具信息"/>
+		<entry name="ItemDec" type="ItemDec"  extendtotable="true" version="935" />
+		<entry name="Money" type="int"  version="935" desc="消耗的金钱" />
+		<entry name="PetStrenInfo" type="PetStrenInfo"  version="987"  extendtotable="true" desc="强化信息" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogPetSkillOne"  version="100" >
+		<entry name="SkillID" type="smalluint" />
+		<entry name="SkillLevel" type="tinyuint" />
+	</struct>
+	
+	<struct name="LogPetDiathesisOne"  version="100" >
+		<entry name="DiathesisID" type="smalluint" />
+		<entry name="Level" type="tinyuint" />
+	</struct>
+
+	<struct name="LogPetAttrChg" version="100" uniqueentryname="false" >
+		<entry name="OwnerUin" type="int" veriosn="151"/>
+		<entry name="OwnerLoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="OwnerInfo" type="RoleMember" extendtotable="true" />
+		<entry name="PetActType" type="tinyuint" bindmacrosgroup="OP_PET_ATTR_CHG" />
+		<entry name="ActObjID" type="smalluint" />
+		<entry name="PetInfo" type="LogRolePetData" extendtotable="true" desc="宠物信息" />	
+		<entry name="ItemDec" type="ItemDec" extendtotable="true" desc="扣除道具" version="1180" />	
+		<entry name="UseMoney" type="UseMoney" extendtotable="true" desc="消耗金钱" version="1180" />	
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleMapChg" uniqueentryname="false" version="111">
+		<entry name="Uin" type="int" veriosn="151"/>
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息" extendtotable="true"  />
+		<entry name="Lvl" type="int" version="1401" />
+		<entry name="MapID" type="uint" desc="当前地图" />
+		<entry name="Pos" type="ResPos"  desc="当前地点" extendtotable="true"  />
+		<entry name="PreMapID" type="uint" desc="改变前地图" />
+		<entry name="PrePos" type="ResPos"  desc="改变前地点" extendtotable="true"  />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleSkillChg" uniqueentryname="false" version="111">
+		<entry name="LogData" type="OpRoleSkillChg" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleDiathesisChg" version="111">
+		<entry name="LogData" type="OpRoleDiathesisChg" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleFairyChg" version="145">
+		<entry name="LogData" type="OpFairy" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleRideChg" version="145">
+		<entry name="LogData" type="OpRoleRide" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleGmCmd" version="151">
+		<entry name="LogData" type="OpGMCmd" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleSnapshot" version="158">
+		<entry name="LogData" type="OpRoleSnapshot" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogUseXp" version="303">
+		<entry name="LogData" type="OpUseXpSKill" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogGift" version="303">
+		<entry name="LogData" type="OpGift" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+	
+	<struct name="LogMediaGift" version="1167">
+		<entry name="LogData" type="OpMediaGift" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+	
+	<struct name="LogLtrGift" version="1167">
+		<entry name="LogData" type="OpLtrGift" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+	
+	<struct name="LogPworldTime" version="432">
+		<entry name="LogData" type="OpPworldTime" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+	
+	<struct name="LogRoleGetMailGoods" uniqueentryname="false" version="158">
+		<entry name="Uin" type="int"  version="180" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="180" />
+		<entry name="RoleInfo" type="RoleMember" extendtotable="true" />
+		<entry name="MailWID" type="biguint" />
+		<entry name="ItemNum" type="tinyuint" />
+		<entry name="Items" type="LogGridData" count="MAIL_MAX_ITEM" refer="ItemNum" extendtotable="true" />
+		<entry name="Money" type="uint" />
+		<entry name="LogTime" type="DateTime" />
+	</struct>
+
+	<struct name="LogRoleEnterPworld" version="303" uniqueentryname="false"  >
+		<entry name="Uin" type="int" />
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleInfo" type="RoleMember" extendtotable="true" desc="角色信息" />
+		<entry name="RoleLevel" type="int" desc="角色等级" />
+		<entry name="PworldID" type="int" desc="副本ID" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleSecondarySkill" version="489">
+		<entry name="LogData" type="OpRoleSecondarySkill" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleDieDrop" uniqueentryname="false" version="906">
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="Uin" type="int"/>
+		<entry name="LoginName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息"  extendtotable="true"/>
+   		<entry name="DropNum" type="int" />
+   		<entry name="DropItem" type="LogGridData" count="DIE_DROP_ITEM_NUM"  refer="DropNum" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogTaskAwardItem" uniqueentryname="false" version="906">
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="RoleInfo" type="OpRoleInfo" extendtotable="true"  />
+		<entry name="TaskID" type="int"/>
+   		<entry name="AwardNum" type="int" />
+   		<entry name="AwardItem" type="LogGridData" count="OP_MAX_TASK_AWARD_ITEM"  refer="AwardNum" extendtotable="true"  />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleSecSkillRecipe" version="489">
+		<entry name="LogData" type="OpRoleSecSkillRecipe" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogAccLogin" version="560">
+		<entry name="LogData" type="OpAccLogin" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogAccLogout" version="560">
+		<entry name="LogData" type="OpAccLogout" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+	
+	<struct name="LogRoleItemDrop" uniqueentryname="false"  version="788" >
+		<entry name="Uin" type="int" desc="帐号Uin"/>
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息" extendtotable="true"  />
+		<entry name="Pass9Account" type="string" notnull="true" size="ACCOUNT_LOGIN_NAME_LEN" desc="帐号名"/>
+		<entry name="GridData" type="LogGridData"  extendtotable="true" desc="物品信息"/>
+		<entry name="LogTime" type="DateTime"  desc="入库时间"/>
+	</struct>
+
+	<struct name="LogRolePworldAward" uniqueentryname="false"  version="924" >
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="Uin" type="int" desc="帐号Uin"/>
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息" extendtotable="true"  />
+		<entry name="Pass9Account" type="string" notnull="true" size="ACCOUNT_LOGIN_NAME_LEN" desc="帐号名"/>
+		<entry name="PworldID" type="int"   />
+		<entry name="Money" type="int"   />
+   		<entry name="Exp" type="int" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRolePworldCard" uniqueentryname="false"  version="924" >
+		<entry name="EventLogWID" type="biguint" desc="事件流水号" version="969" />
+		<entry name="Uin" type="int" desc="帐号Uin"/>
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息" extendtotable="true"  />
+		<entry name="Pass9Account" type="string" notnull="true" size="ACCOUNT_LOGIN_NAME_LEN" desc="帐号名"/>
+		<entry name="PworldID" type="int"   />
+		<entry name="Money" type="int"   />
+   		<entry name="Exp" type="int" />
+		<entry name="Item" type="LogGridData"  extendtotable="true" desc="物品信息"/>
+		<entry name="LogTime" type="DateTime" />
+	</struct>
+
+	<struct name="LogRoleBattleAward"  version="935" uniqueentryname="false">
+		<entry name="LogData" type="OpRoleBattleAward" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRolePetCatch"  version="935" uniqueentryname="false">
+		<entry name="LogData" type="OpRolePetCatch" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogRoleRecipeMake"  version="935" uniqueentryname="false">
+		<entry name="Uin" type="int" desc="帐号Uin"/>
+		<entry name="RoleInfo" type="RoleMember" desc="角色信息" extendtotable="true"  />
+		<entry name="Pass9Account" type="string" notnull="true" size="ACCOUNT_LOGIN_NAME_LEN" desc="帐号名"/>
+		<entry name="SkillType" type="tinyuint" bindmacrosgroup="SECONDARY_SKILL_TYPE" desc="生活技能类型" />
+		<entry name="SkillLevel" type="int" desc="生活技能等级" />
+		<entry name="RecipeID" type="int" desc="生活技能配方ID"/>
+		<entry name="DecItem" type="ItemDec"  count="MAX_RECIPE_STUFF" extendtotable="true" />
+		<entry name="GetItem" type="ItemDec"  extendtotable="true" />
+		<entry name="ResolveItem" type="LogGridData" extendtotable="true" />
+		<entry name="LogTime" type="DateTime"  />
+	</struct>
+
+	<struct name="LogWorldCitySiege"  version="1100" uniqueentryname="false">
+		<entry name="LogData" type="OpWorldCitySiege" extendtotable="true" />
+		<entry name="LogTime" type="DateTime" />
+	</struct>
+	
+	<!-- 日志数据库 end -->
+
+
+	<!--CDKeyDef-->
+	<struct name="CDKeyTypeDef"   primarykey="KeyType" version="787" >
+		<entry name="KeyType" type="string" size="CDKEY_TYPE_LEN" desc="字符串首,表示不同种类的兑奖卷"/>
+		<entry name="EndTime" type="DateTime" desc="到期时间" />
+		<entry name="LimitNum" type="int" desc="一个角色能领取次数,0表示无限" />
+		<entry name="Items" type="GiftItem" count="CDKEY_ITEM_NUM" desc="奖励道具数组" extendtotable="true"/>
+		<entry name="SubType" type="tinyint" desc="1-微信礼包" version="2110" />
+		<entry name="LvlLowLimit" type="int" desc="最低等级限制" version="2289" />
+		<entry name="LvlHighLimt" type="int" desc="最高等级限制"  version="2289" />
+	</struct>
+
+	<struct name="CDKeyDef"   primarykey="CDKey" version="787" >
+		<entry name="CDKey" type="string" size="CDKEY_LEN" />
+		<entry name="State" type="int" desc="0表示能领取|非零表示领取过了(服务器写回)" />
+		<entry name="RoleID" type="biguint" desc="领取角色ID(服务器写回)" />
+		<entry name="SvrID" type="int"  desc="领取角色服ID(服务器写回)"/>
+	</struct>
+
+	<struct name="CDKeyGet"   version="2110" >
+		<entry name="CDKey" type="string" size="CDKEY_LEN" />
+		<entry name="RoleID" type="biguint" desc="领取角色ID(服务器写回)" />
+		<entry name="SvrID" type="int"  desc="领取角色服ID(服务器写回)"/>
+	</struct>
+
+
+	<!-- bill计费相关 begin -->
+	<struct name="Bill" primarykey="Uin"  version="121" >
+		<!--entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" /-->
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+		<entry name="Sequence" type="biguint" desc="最新一笔冲值的流水帐号" />
+		<entry name="ServerID" type="biguint" desc="大区id" />
+		<entry name="Amount" type="biguint" desc="充值金额,以分为单位" />
+		<entry name="Points" type="biguint" desc="充值点数" />
+		<entry name="Bonus" type="biguint" desc="奖励点数" />
+		<entry name="FreezePoint" type="biguint" desc="冻结的点券" version="167"/>
+		<entry name="FreezeLastTime" type="int" desc="冻结的最后修改时间,MAX_TRADE_SHOE_TIME小时后自动解冻" version="167"/>
+		<entry name="CashTotalPoints" type="biguint" desc="充值总点数" version="629" />
+		<entry name="UsedTotalPoints" type="biguint" desc="提取总点数" version="629" />
+	</struct>
+	
+	<struct name="ReduceBill" dependonstruct="Bill"  version="121" >
+		<!--entry name="Pass9Account" type="string" size="ACCOUNT_LOGIN_NAME_LEN" /-->
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+		<entry name="Amount" type="biguint" desc="扣除的额度" />
+		<entry name="Points" type="biguint" desc="扣除的点数" />
+	</struct>
+
+	<macro name="MAX_LIST_BILL_NUM" value="16" desc="充值信息的数量" />
+
+	<struct name="ListBill" desc="各区的充值信息" version="1706" >
+		<entry name="Num" type="int" desc="充值信息" />
+		<entry name="Bill" type="Bill" count="MAX_LIST_BILL_NUM" refer="Num" desc="充值信息" />
+	</struct>
+		
+	<!--struct name="Props"  primarykey="seqID" version="121" >
+		<entry name="seqID" type="biguint" autoincrement="true" defaultvalue="1000" desc="自增"/>
+		<entry name="Pass9Account" type="string" notnull="true" size="ACCOUNT_LOGIN_NAME_LEN" />
+		<entry name="PropsID" type="biguint" desc="大区id" />
+		<entry name="PropsName" type="string" size="200" desc="礼包的名字" />
+		<entry name="PropsTime" type="string" size="15" desc="礼包到库时间" />
+	</struct-->
+	<!-- bill计费相关 end -->
+
+	<struct name="AddBillRecord" primarykey="Sequence,BillType"  version="158" >
+		<entry name="Sequence" type="string" size="32"  desc="交易流水号" />
+		<entry name="BillType" type="uint" 	 desc="消息类型" />
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+		<entry name="ServerID" type="uint" desc="充值到的大区编号" />
+		<entry name="Amount" type="biguint"  desc="充值金额" />
+		<entry name="Points" type="biguint"  desc="充值点数" />
+		<entry name="Bonus" type="biguint"  desc="奖励点数" />
+		<entry name="PropsID" type="biguint"  desc="赠送的道具包编号" />
+		<entry name="PropsName" type="string" size="200"  desc="道具包名称" />
+		<entry name="LogTime" type="DateTime"  desc="入库时间"/>
+	</struct>
+	
+	<struct name="DecBillRecord"  primarykey="seqID"  version="158" >
+		<entry name="seqID" type="biguint" autoincrement="true" defaultvalue="1" desc="自增"/>
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+		<entry name="RoleID" type="biguint" desc="操作的角色id" />
+		<entry name="RoleLevel" type="int" />
+		<entry name="WorldID" type="int" desc="操作的服id" />
+		<entry name="OperType" type="tinyint" desc="0，表示兑换点券" />
+		<entry name="GodPointNum" type="biguint" desc="金券的数量" />
+		<entry name="LogTime" type="DateTime"  desc="入库时间"/>
+	</struct>	
+
+	<struct name="GodCoinConsumeRecord"  primarykey="seqID"  version="976" >
+		<entry name="seqID" type="biguint" autoincrement="true" defaultvalue="1" desc="自增"/>
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+		<entry name="RoleID" type="biguint" desc="操作的角色id" />
+		<entry name="RoleLevel" type="int" />
+		<entry name="WorldID" type="int" desc="操作的服id" />
+		<entry name="OperType" type="int" desc="操作类型" />
+		<entry name="OperSubType" type="int" desc="操作子类型" />
+		<entry name="GodCoin" type="biguint" desc="金券数"/>
+		<entry name="ShopID" type="uint" desc="商品的id,没有就填0" />
+		<entry name="ShopNum" type="uint"  desc="商品的个数,没有就填0" />
+		<entry name="OperDesc" type="string" size="512" />
+		<entry name="LogTime" type="DateTime"  desc="入库时间"/>
+	</struct>	
+
+	<struct name="ShadowAccData" primarykey="Uin"  version="897" >
+		<entry name="Uin" type="int" desc="帐号ID"/>
+		<entry name="MudExp" type="bigint" desc="挂机获得的经验总合" />
+		<entry name="TakeTime" type="int" desc="偷经验的时间" />
+		<entry name="DayTimes" type="int" desc="当天偷经验的次数" />
+	</struct>
+
+	<struct name="AccShare" primarykey="Uin"  version="897" >
+		<entry name="Uin" type="int" desc="帐号"/>
+		<entry name="LastLogout" type="int" desc="最后登出时间"/>
+		<entry name="OfflineExp" type="int" desc="离线补偿经验"/>
+		<entry name="TakeMudExp" type="bigint" desc="提取的Mud离线补偿经验"/>
+		<entry name="GrabTime" type="int" desc="帐号异常时间" version="1787" />
+	</struct>
+		
+	<!-- 挂！机相关 end -->
+
+	<!--丢弃重要物品、宠物记录begin -->
+	<struct name="RoleDrop" primarykey="RoleID" version="372" >
+		<entry name="Uin" type="int" desc="帐号ID"/>
+		<entry name="RoleID" type="biguint" desc="角色ID" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN" />
+		<entry name="DropData" type="RoleDropData" desc="丢弃数据" />
+	</struct>
+
+	<struct name="RoleDropName"	dependonstruct="RoleDrop" version="552" >
+		<entry name="RoleID" type="biguint" desc="角色ID" />
+		<entry name="RoleName" type="string" size="ROLE_NAME_LEN"/>
+	</struct>	
+	<!--丢弃重要物品、宠物记录end -->
+
+	<struct name="GMIPMacLimit"  version="934" >
+		<entry name="IP" type="string" size="IPV4_LEN" desc="IP地址"/>
+		<entry name="Mac" type="string" size="MAC_ADDR_LEN" desc="Mac地址" />
+		<entry name="Perm" type="int" desc="权限，按位分配" />
+	</struct>
+
+	<!--acc service db操作失败记录 -->
+
+	<macro name="MAX_DB_META_NAME_LEN" value="64" desc="最大元数据名长度" />
+	<macro name="MAX_DB_SQL_LEN" value="20480" desc="SQL长度" />
+
+
+	<macrosgroup name="META_DATA_TYPE" >
+		<macro name="META_DATA_TYPE_NULL" value="0" desc="空" />
+		<macro name="META_DATA_TYPE_ACCOUNT" value="1" desc="帐号" />
+		<macro name="META_DATA_TYPE_UPDATEPASSWD" value="2" desc="修改密码" />		
+		<macro name="META_DATA_TYPE_UPDATEACCOUNT" value="3" desc="修改帐号生日" />
+		<macro name="META_DATA_TYPE_ADDBILLRECORD" value="4" desc="充值记录" />
+		<macro name="META_DATA_TYPE_BILL" value="5" desc="充值" />
+		<macro name="META_DATA_TYPE_ACCGIFT" value="6" desc="运营礼包" />
+		<macro name="META_DATA_TYPE_UPDATEPASSWDCARD" value="7" desc="修改密保卡" />
+		<macro name="META_DATA_TYPE_ACCOUNTUINFLAG" value="8" desc="修改帐号UinFlag" />
+	</macrosgroup>
+
+
+	<union name="MetaData" desc="元数据信息" version="1670">
+		<entry name="Null" type="int" id="META_DATA_TYPE_NULL" desc="空信息"   />
+		<entry name="Account" type="Account" id="META_DATA_TYPE_ACCOUNT" desc="帐号信息"   />
+		<entry name="UpdatePasswd" type="UpdatePasswd"  id="META_DATA_TYPE_UPDATEPASSWD" desc="修改密码"   />
+		<entry name="UpdateAccount" type="UpdateAccount"  id="META_DATA_TYPE_UPDATEACCOUNT" desc="修改帐号生日"   />
+		<entry name="AddBillRecord" type="AddBillRecord"  id="META_DATA_TYPE_ADDBILLRECORD" desc="充值记录" version="1705"  />
+		<entry name="Bill" type="Bill"  id="META_DATA_TYPE_BILL" desc="充值" version="1705"  />
+		<entry name="AccGift" type="AccGift"  id="META_DATA_TYPE_ACCGIFT" desc="运营礼包" version="1790"  />
+		<entry name="UpdatePasswdCard" type="UpdatePasswdCard"  id="META_DATA_TYPE_UPDATEPASSWDCARD" desc="修改密保卡" version="1792"  />
+		<entry name="AccountUinFlag" type="AccountUinFlag"  id="META_DATA_TYPE_ACCOUNTUINFLAG" desc="修改帐号UinFlag" version="1845"  />
+	</union>
+
+	<struct name="MetaInfo" desc="元数据信息" version="1670">
+		<entry name="Name" type="string" size="MAX_DB_META_NAME_LEN" desc="元数据名"   />
+		<entry name="Type" type="int" desc="元数据类型" bindmacrosgroup="META_DATA_TYPE" />
+		<entry name="Data" type="MetaData" select="Type" desc="元数据"   />
+		<entry name="Version" type="int" desc="元数据版本"   />
+	</struct>
+
+	<struct name="AccDBFailedOpLog" uniqueentryname="false" desc="未成功的DB操作记录" version="1670">
+		<entry name="LogID" type="int" desc="记录流水号" autoincrement="true" />
+		<entry name="Ip" type="int" desc="acc_service的绑定ip|区分不同的service"   />
+		<entry name="Port" type="int" desc="acc_service的绑定prot|区分不同的service"   />
+		<entry name="RegionID" type="int" desc="区ID"   />
+		<entry name="ErrCode" type="int" desc="操作失败错误码|ACC_ERR" bindmacrosgroup="ACC_ERR"  />
+		<entry name="OpType" type="int" desc="数据操作类型(TDR_DBOP_UPDATE)"   />
+		<entry name="OpSql" type="string" size="MAX_DB_SQL_LEN" desc="sql语句"   />
+		<entry name="MetaInfo" type="MetaInfo" extendtotable="true" desc="元数据信息"   />
+		<entry name="ClientTimeStamp" type="int" desc="客户端发过来的时间戳(客户端的唯一标识)"   />
+		<entry name="ClientIp" type="int" desc="客户端的IP"   />
+		<entry name="LogTime" type="int" desc="记录时间"   />
+		<entry name="Redo" type="int" desc="重做标记|0未重做 1已重做"   />
+		<entry name="RedoTime" type="int" desc="重做时间"   />
+	</struct>
+
+	<macro name="MAX_ACC_PASSWD_NUM" value="16" desc="帐号密码返回的数量" />
+
+	<struct name="AccPasswdRes" desc="帐号密码获取返回" version="1674">
+		<entry name="Num" type="int" desc="数量"   />
+		<entry name="RegionID" type="int" count="MAX_ACC_PASSWD_NUM" refer="Num" desc="区ID"   />
+		<entry name="AccPasswd" type="UpdatePasswd" count="MAX_ACC_PASSWD_NUM" refer="Num" desc="帐号密码信息" />
+	</struct>
+
+	<struct name="BiDBFailedOpLog" primarykey="LogID" desc="未成功的DB操作记录" version="1678">
+		<entry name="LogID" type="int" desc="记录流水号" autoincrement="true" />
+		<entry name="Ip" type="int" desc="bi_service的绑定ip|区分不同的service"   />
+		<entry name="Port" type="int" desc="bi_service的绑定prot|区分不同的service"   />
+		<entry name="RegionID" type="int" desc="区ID"   />
+		<entry name="ErrCode" type="int" desc="操作失败错误码|ACC_ERR" bindmacrosgroup="BI_ERR"  />
+		<entry name="MysqlErrCode" type="int" desc="mysql query操作失败错误码|ER_DUP_KEY" version="1705" />
+		<entry name="MysqlStage" type="int" desc="Mysql 执行到第几步" version="1705" />
+		<entry name="Uin" type="int"  version="1705"/>
+		<entry name="AccName" type="string" size="ACCOUNT_LOGIN_NAME_LEN" version="1705"/>
+		<entry name="OpType" type="int" desc="数据操作类型(TDR_DBOP_UPDATE)"   />
+		<entry name="OpSql" type="string" size="MAX_DB_SQL_LEN" desc="sql语句"   />
+		<entry name="MetaInfo" type="MetaInfo" extendtotable="true" desc="元数据信息"   />
+		<entry name="ClientTimeStamp" type="int" desc="客户端发过来的时间戳(客户端的唯一标识)"   />
+		<entry name="ClientIp" type="uint" desc="客户端的IP"   />
+		<entry name="LogTime" type="int" desc="记录时间"   />
+		<entry name="Redo" type="int" desc="重做标记|0未重做 1已重做"   />
+		<entry name="RedoTime" type="int" desc="重做时间"   />
+	</struct>
+	
+	<struct name="ljy_member_profile" primarykey="uid"  desc="官网wanyou库中的表格|不完整" version="2228">
+		<entry name="uid" type="int" desc="官网uid" />
+		<entry name="username" type="string" size="NAME_LEN" desc="帐号名" />
+		<entry name="mobile" type="string" size="NAME_LEN" desc="手机号码" />
+	</struct>
+
+	
+</metalib>
