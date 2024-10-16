@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="mud_svr" version="10" >
+
+	<macro name="MUD_SVR_PATH_LEN"      value="1024" />
+	<macro name="MUD_SVR_URL_LEN"      value="32" />
+	<macro name="MAX_CMD_LIMIT"      value="16" />
+	
+	<struct name="mud_svrconf" version ="10" >.
+		<entry name="PlayerShmKey" type="int" defaultvalue="631999" />
+		<entry name="UinCacheShmKey" type="int" defaultvalue="632998" />
+		<entry name="ObjShmKey" type="int" defaultvalue="633997" />
+		<entry name="DBMetaDir" type="string" size="MUD_SVR_PATH_LEN" defaultvalue="../cfg/db_meta" />
+		<entry name="DirMasterUrl" type="string" size="MUD_SVR_URL_LEN" />
+		<entry name="DirBakUrl" type="string" size="MUD_SVR_URL_LEN" />
+		<entry name="MinCltProtoVer" type="smalluint" />
+		<entry name="ConnPort" type="smalluint" />
+		<entry name="ConnIP" type="string" size="MUD_SVR_URL_LEN" />
+		<entry name="ConnIP_bak1" type="string" size="MUD_SVR_URL_LEN" />
+		<entry name="ConnIP_bak2" type="string" size="MUD_SVR_URL_LEN" />
+		<entry name="BlackWhiteCfgPath" type="string" size="MUD_SVR_PATH_LEN" defaultvalue="../cfg/black_white.cfg"/>
+		<entry name="MaxCltProtoVer" type="smalluint" />
+		<entry name="CmdLimitNum" type="smalluint" />
+		<entry name="CmdLimitIds" type="int" count="MAX_CMD_LIMIT" refer="CmdLimitNum" desc="命令屏蔽列表" />
+		<entry name="UpdateInterval" type="smallint" defaultvalue="900"  desc="update role data interval" />
+		<entry name="MaxLevel" type="smalluint" defaultvalue="120" />
+		<entry name="LoginInterval" type="tinyint" defaultvalue="5" desc="acc login min interval" />
+		<entry name="NotUinAuth" type="tinyint"   defaultvalue="0" />
+		<entry name="Res" type="tinyint" io="3" count="2" />
+		<entry name="CheckIdle" type="int"   defaultvalue="95" />
+		<entry name="NoApex" type="int"   defaultvalue="0" desc="不开启反外挂" />
+	</struct>
+	
+	<struct name="mud_svrrun_status" version ="10" >
+		<entry name="RecvCltMsg" type="int" />
+	</struct>
+	
+</metalib>

@@ -1,0 +1,24 @@
+;圣诞套装包
+
+proc 1
+    strvar num ret
+	GET_PACK_SPACE 0 num
+	
+	if @num < 5
+		ADD_SYS_MSG_START
+		ADD_SYS_MSG 背包需要5个格子才装得下哦！请先整理背包再开启
+		SET_SYS_MSG_MODE 1 0 0
+		MSG_INFO
+		return
+	endif
+	
+	DEC_ITEM_NUM_INPAK 5052428 1 ret
+	
+	if  @ret = 0
+		ADD_ITEM_NUM_INPAK_NOLIMIT 3050027 1 1 0
+		ADD_ITEM_NUM_INPAK_NOLIMIT 3450027 1 1 0
+		ADD_ITEM_NUM_INPAK_NOLIMIT 3550027 1 1 0
+		ADD_ITEM_NUM_INPAK_NOLIMIT 3750027 1 1 0
+		ADD_ITEM_NUM_INPAK_NOLIMIT 3850027 1 1 0
+	endif
+endproc

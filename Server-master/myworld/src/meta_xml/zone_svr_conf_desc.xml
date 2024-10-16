@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="zone_svr" version="22" >
+	<macro name="ZONE_SVR_PATH_LEN"      value="1024" />
+	<macro name="ZONE_SVR_URL_LEN"      value="32" />
+	<macro name="MAX_CMD_LIMIT"      value="16" />
+	<macro name="MAX_VERSION_NUMBER_LEN"      value="16" />
+	<macro name="MAX_GM_IP_LIMIT"      value="3" />
+	
+	<macrosgroup name="RES_LOAD_TYPE">
+		<macro name="RES_LOAD_BIN"  value="0x0000" />
+		<macro name="RES_LOAD_DB"  value="0x0001" />
+	</macrosgroup>
+	
+	<macrosgroup name="COUNTRY_VER">
+		<macro name="COUNTRY_VER_CHINA"  value="0x0000" />
+		<macro name="COUNTRY_VER_KOREA"  value="0x0001" />
+		<macro name="COUNTRY_VER_CHINA_TAIWAN"  value="0x0002" />
+                <macro name="COUNTRY_VER_MALAI"  value="0x0003" />
+	</macrosgroup>
+		
+	 <struct name="GMIPLIMIT" version="10">
+                <entry name="IP" type= "string" size="ZONE_SVR_URL_LEN"/>
+                <entry name="Mask" type= "string" size="ZONE_SVR_URL_LEN"/>
+        </struct>
+        
+        <struct name="GoldAward" version="10">
+                <entry name="GoldNum" type= "int" desc="提取多少金币" defaultvalue="0" />
+                <entry name="ItemID" type= "int" desc="送什么东西" defaultvalue="0" />
+                <entry name="Bind" type= "int" desc="1-绑定" defaultvalue="1" />
+        </struct>
+
+	<struct name="zone_svrconf" version ="10" >
+		<entry name="PlayerShmKey" type="int" defaultvalue="45867" />
+		<entry name="UinCacheShmKey" type="int" defaultvalue="45868" />
+		<entry name="ResShmKey" type="int" defaultvalue="45869" />
+		<entry name="MapShmKey" type="int" defaultvalue="45870" />
+		<entry name="DBMetaDir" type="string" size="ZONE_SVR_PATH_LEN" defaultvalue="./db_meta" />
+		<entry name="DirMasterUrl" type="string" size="ZONE_SVR_URL_LEN" />
+		<entry name="DirBakUrl" type="string" size="ZONE_SVR_URL_LEN" />
+		<entry name="MinCltProtoVer" type="smalluint" />
+		<entry name="ConnPort" type="smalluint" />
+		<entry name="ConnIP" type="string" size="ZONE_SVR_URL_LEN" />
+		<entry name="ConnIP_bak1" type="string" size="ZONE_SVR_URL_LEN" />
+		<entry name="ConnIP_bak2" type="string" size="ZONE_SVR_URL_LEN" />
+		<entry name="BlackWhiteCfgPath" type="string" size="ZONE_SVR_PATH_LEN" desc="黑白名单配置文件路径" />
+		<entry name="MaxCltProtoVer" type="smalluint" />
+		<entry name="CmdLimitNum" type="smalluint" />
+		<entry name="CmdLimitIds" type="int" count="MAX_CMD_LIMIT" refer="CmdLimitNum" desc="命令屏蔽列表" />
+		<entry name="LoginInterval" type="tinyint" defaultvalue="5" desc="acc login min interval" />
+		<entry name="ResloadType" type="tinyint" bindmacrosgroup="RES_LOAD_TYPE" />
+		<entry name="UpdateInterval" type="smallint" defaultvalue="900"  desc="update role data interval" />
+		<entry name="BenchTimeMoveMax" type="int" defaultvalue="4000" />
+		<entry name="BenchTimeMoveMin" type="int" defaultvalue="-4000" />
+		<entry name="BenchTimeMoveInterval" type="int" defaultvalue="100" />
+		<entry name="BenchTimeAttackMax" type="int" defaultvalue="4000" />
+		<entry name="BenchTimeAttackMin" type="int" defaultvalue="-4000" />
+		<entry name="StopTimeMax" type="int" defaultvalue="600" />
+		<entry name="StopTimeMin" type="int" defaultvalue="-600" />
+		<entry name="MaxLevel" type="smalluint" defaultvalue="120" />
+		<entry name="Res" type="tinyint" io="3" />
+		<entry name="NotUinAuth" type="tinyint"   defaultvalue="0" version ="12" />
+		<entry name="ResDBName" type="string" size="ZONE_SVR_URL_LEN"  defaultvalue="resdb" />
+		<entry name="ResDBConnect" type="string" size="ZONE_SVR_URL_LEN"  defaultvalue="localhost" />
+		<entry name="ResDBUser" type="string" size="ZONE_SVR_URL_LEN"  defaultvalue="mmog" />
+		<entry name="ResDBPasswd" type="string" size="ZONE_SVR_URL_LEN"  defaultvalue="mmog" />
+		<entry name="ExpMul" type="int"   defaultvalue="0" version ="11" />
+		<entry name="CheckIdle" type="int"   defaultvalue="137" version ="11" />
+		<entry name="ShoppingXmlFile" type="string" size="ZONE_SVR_PATH_LEN" defaultvalue="../cfg/zone_shopping.xml" desc="商城标签栏的配置" version="13"/>
+		<entry name="ShoppingVersion" type="int"  defaultvalue="1" desc="商品配置文件的版本号,要和配置文件的版本一致" version ="13" />
+		<entry name="TradeHandlingCharge" type="tinyint"  defaultvalue="1" desc="发布交易单时的手续费 1表示收1%的手续费" version ="13" />
+		<entry name="PreGetTradeRecordNum" type="uint"  defaultvalue="100" desc="每次select的数据记录数" version ="13" />
+		<entry name="MinCltVer" type="string" size="MAX_VERSION_NUMBER_LEN" defaultvalue="0.0.0" desc="客户端最小版本号"  version="14" />
+		<entry name="MaxCltVer" type="string" size="MAX_VERSION_NUMBER_LEN" defaultvalue="0.0.0" desc="客户端最大版本号" version="14" />
+		<entry name="NewWorldPersistedTime" type="int" defaultvalue="86400" desc="新开服状态的持续时间" version="15" />
+		<entry name="NoCreateRole" type="int"   defaultvalue="0" desc="服务器是否可以创建新的角色" version ="16" />
+		<entry name="BattleFlag" type="int"   defaultvalue="0" desc="是否支持跨服请求,1表示跨服,0表示不跨服" version ="16" />
+       		<entry name="BeachExpHigh" type="int"  defaultvalue="72000" desc="高阶海滩经验基数" version ="17" />
+        	<entry name="BeachExpNormal" type="int"  defaultvalue="288000" desc="普通海滩经验基数" version ="17" />
+		<entry name="BeachActiveHelperID" type="int"  defaultvalue="0" desc="海滩活动助手ID" version ="18" />
+		<entry name="PreCreateRole" type="int" defaultvalue="0" desc="是否预创建角色"/>
+		<entry name="PreCreateSms" type="int" defaultvalue="0" desc="预创建角色是否发送短信认证码"/>
+		<entry name="NoGmIpMacLimit" type="int" defaultvalue="0" desc="是否不检查gm的ipmac地址, 0 检查 1 不检查"/>
+		<entry name="NoAas" type="int" defaultvalue="0" desc="是否不检查防沉迷, 0 检查 1 不检查"/>
+		<entry name="CloseLine" type="tinyint" defaultvalue="0" desc="0-开启分线 1-关闭分线"/>
+		<entry name="UnFyUse" type="tinyint" defaultvalue="0" desc="0-金币 1-金券"/>
+		<entry name="NoLevelFeng" type="tinyint" defaultvalue="0" desc="0 开启等级封印功能，1 关闭等级封印功能"/>
+		<entry name="PingCheck" type="int" defaultvalue="0" desc="ping值检测ms，0表示不检测"/>
+		<entry name="PackStat" type="int" defaultvalue="0" desc="1 表示开启流量统计，0 表示不开启"/>
+		<entry name="CountryVer" type="int" defaultvalue="0" bindmacrosgroup="COUNTRY_VER" />
+		<entry name="SpartaFlag" type="int"   defaultvalue="0" desc="开启跨服竞技场 1表示开启,0表示不开启" version ="19" />
+		<entry name="DianFengFlag" type="int" defaultvalue="0" desc="0 表示不开启末世巅峰活动 ，1表示开启" />
+		<entry name="GoldAward" type="GoldAward"   version ="20" />
+		<entry name="StrongOpen1" type="int"  defaultvalue="300" version ="20" desc="1级据点50级人数配置"/>
+		<entry name="StrongOpen2" type="int"  defaultvalue="300" version ="20" desc="2级据点60级人数配置"/>
+		<entry name="StrongOpen3" type="int"  defaultvalue="300" version ="20" desc="3级据点70级人数配置"/>
+		<entry name="IsMatchWorld" type="tinyint"  defaultvalue="0" version ="20" desc="比赛服标记 1-比赛服"/>
+		<entry name="PreCreateBindGodCoin" type="int"  defaultvalue="0" version ="20" desc="预创建送金券：服务器配置每小时给的金券数量" />
+		<entry name="OpenSpanStrongLvl" type="tinyint"  defaultvalue="0" version ="20"/>
+		<entry name="BCTBaoXiangFlag" type="int" defaultvalue="0" desc="0:close 1:open"/>
+		<entry name="SpanMapCampNum" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营数量"/>
+		<entry name="SpanMapCamp1" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营1的服编号"/>
+		<entry name="SpanMapCamp2" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营2的服编号"/>
+		<entry name="SpanMapCamp3" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营3的服编号"/>
+		<entry name="SpanMapCamp4" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营4的服编号"/>
+		<entry name="SpanMapCamp5" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营5的服编号"/>
+		<entry name="SpanMapCamp6" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营6的服编号"/>
+		<entry name="SpanMapCamp7" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营7的服编号"/>
+		<entry name="SpanMapCamp8" type="int"  defaultvalue="0" version ="21" desc="跨服野外地图阵营8的服编号"/>
+		<entry name="LevelExpBuffLimit" type="int"  defaultvalue="0" version ="22" desc="天天向上领取等级的限制:0表示按已有限制;非0表示小于等于此等级"/>
+	</struct>
+
+	
+	<macro name="MAX_RECV_CMD"      value="256" />
+	<macro name="MAX_SEND_CMD"      value="256" />
+	<macro name="MAX_SEND_SUB_CMD"      value="80" />
+	
+	<struct name="CmdStat" version="10" >
+		<entry name="Cmd" type="int" />
+		<entry name="Num" type="int" />
+		<entry name="Bytes" type="int" />
+	</struct>
+	
+	<struct name="RecvCltMsgDetail" version="10" >
+		<entry name="RecvCmdNum" type="int" />
+		<entry name="RecvCmd" type="CmdStat" count="MAX_RECV_CMD" refer="RecvCmdNum" />
+	</struct>
+	
+	<struct name="SendCmd" version="10" >
+		<entry name="SendCmd" type="CmdStat" />
+		<entry name="SubCmdNum" type="int" />
+		<entry name="SubCmd" type="CmdStat" count="MAX_SEND_SUB_CMD" refer="SubCmdNum" />
+	</struct>
+	
+	<struct name="SendCltMsgDetail" version="10" >
+		<entry name="SendCmdNum" type="int" />
+		<entry name="SendCmd" type="SendCmd" count="MAX_SEND_CMD" refer="SendCmdNum" />
+	</struct>
+	
+	<struct name="zone_svrrun_status" version ="10" >
+		<entry name="Player" type="int" />
+		<entry name="RecvCltMsg" type="int" />
+		<entry name="RecvCltBytes" type="int" />
+		<entry name="RecvCltMsgDetail" type="RecvCltMsgDetail" />
+		<entry name="SendCltMsg" type="int" />
+		<entry name="SendCltBytes" type="int" />
+		<entry name="SendCltMsgDetail" type="SendCltMsgDetail" />
+		<entry name="RecvDBMsg" type="int" />
+		<entry name="RecvDBBytes" type="int" />
+		<entry name="RecvCSMsg" type="int" />
+		<entry name="RecvCSBytes" type="int" />
+		<entry name="RecvMudMsg" type="int" />
+		<entry name="RecvMudBytes" type="int" />
+		<entry name="RecvRegionMsg" type="int" />
+		<entry name="RecvRegionBytes" type="int" />
+		<entry name="RecvBattleMsg" type="int" />
+		<entry name="RecvBattleBytes" type="int" />
+	</struct>
+</metalib>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="torm_net" version="15" >
+
+	<!-- torm network protocol magic defined -->
+	<macro name="TORM_MAGIC"  value="0x7563" />
+	
+	<!-- torm network protocol macro defined -->
+	<macro name="TORM_MAX_PKG_LEN"  value="1050000" />
+	<macro name="TORM_MAX_BODY_LEN" value="1048576" />
+	<macro name="TORM_MAX_SUBPACK_LEN" value="65536" />
+	<macro name="TORM_MAX_META_NAME" value="32" />
+	<macro name="TORM_MAX_ENTRYLIST" value="256" />
+	<macro name="TORM_MAX_WHERE_DEF" value="1024" />
+	<macro name="TORM_MAX_INTER_CHANNEL" value="256" />
+	<macro name="TORM_MAX_BUS_CHANNEL" value="1000" />
+
+  <macrosgroup name="TORM_RESFLAGS" >
+    <macro name="TORM_RESFLAG_RET_NOINFO" value="0" desc="不包含OperInfo返回" />
+    <macro name="TORM_RESFLAG_RET_WITHINFO" value="1" desc="包含OperInfo返回" />
+    <macro name="TORM_RESFLAG_ERRRET_NOINFO" value="2" desc="出错才返回不包含OperInfo返回" />
+    <macro name="TORM_RESFLAG_ERRRET_WITHINFO" value="3" desc="出错才返回包含OperInfo返回" />
+    <macro name="TORM_RESFLAG_NORET" value="4" desc="不需要返回响应消息" />
+  </macrosgroup>
+
+  <macro name="TORM_MAX_ASYNCALLBACK_DATA_LEN" value="1024"  desc="请求方能保留的回调数据最大字节数" />
+
+  <!-- command defined -->
+  <macrosgroup name="TormCmds">
+    <macro name="TORM_EXGVER_REQ"  value="0x0001" desc="进程间开始通信时的版本交换协议" />
+    <macro name="TORM_EXGVER_RES"  value="0x0002" />
+
+    <macro name="TORM_INSERT_REQ"  value="0x0003" />
+    <macro name="TORM_INSERT_RES"  value="0x0004" />
+
+    <macro name="TORM_UPDATE_REQ"  value="0x0005" />
+    <macro name="TORM_UPDATE_RES"  value="0x0006" />
+
+    <macro name="TORM_DELETE_REQ"  value="0x0007" />
+    <macro name="TORM_DELETE_RES"  value="0x0008" />
+
+    <macro name="TORM_SELECT_REQ"  value="0x0009" />
+    <macro name="TORM_SELECT_RES"  value="0x000a" />
+
+    <macro name="TORM_SVRINFO_REQ"  value="0x000b" desc="应用程序可能需要此协议获取OrmSvr的状态信息" />
+    <macro name="TORM_SVRINFO_RES"  value="0x000c" />
+
+    <macro name="TORM_SELECT_COUNT_REQ"  value="0x000d" />
+    <macro name="TORM_SELECT_COUNT_RES"  value="0x000e" />
+  </macrosgroup>
+
+
+  <!-- package header -->
+  <struct name="TORMMetaNameVer" version="10" >
+    <entry name="MetaName" type="string" size="TORM_MAX_META_NAME" />
+    <entry name="MetaVer" type="uint" />
+  </struct>
+
+  <struct name="TORMPkgHeadComm" version="10" >
+    <entry name="Magic" type="smalluint" defaultvalue="TORM_MAGIC" />
+    <entry name="HeadLen" type="smalluint" />
+    <entry name="BodyLen" type="uint" />
+    <entry name="InstID" type="uint" desc="打包此协议的进程实体号" />
+  </struct>
+
+  <struct name="TORMPkgHeadCmd" version="10" >
+    <entry name="Cmd" type="smalluint" bindmacrosgroup="TormCmds" />
+    <entry name="Res" type="byte" count="2"/>
+    <entry name="MetaNameVer" type="TORMMetaNameVer" desc="本次操作相关MetaName和版本信息" />
+    <entry name="SplitFactor" type="uint" version="14"  desc="tormapi内部使用，应用层不需为此字段赋值" />
+  </struct>
+
+  <struct name="TORMPkgHeadApp" version="10"
+		desc="存储应用数据，tormsvr将请求消息中的内容不作改变地拷贝到响应消息">
+    <entry name="AppCmd" type="int" desc="应用进程操作命令ID" />
+    <entry name="Seq" type="int" desc="请求响应序号,由应用进程使用" />
+    <entry name="ObjID" type="int" desc="应用进程用于标识对象" />
+  </struct>
+
+  <struct name="TORMPkgHead" version="10" sizetype="HeadComm.HeadLen" >
+    <entry name="HeadComm" type="TORMPkgHeadComm" />
+    <entry name="HeadCmd" type="TORMPkgHeadCmd" />
+    <entry name="HeadApp" type="TORMPkgHeadApp" />
+    <entry name="Res" type="byte" count="4"/>
+    <entry name="AsynCallBackDataLen" type="int" defaultvalue="0"  version="11" />
+    <entry name="AsynCallBackData" type="tinyint" count="TORM_MAX_ASYNCALLBACK_DATA_LEN" refer="AsynCallBackDataLen" version ="11" desc="TORMSVR会将请求消息 中此字段中的信息原封不动地放到响应消息中，这样请求方可使用此字段保留回调数据 " />
+  </struct>
+
+  <!-- each package body  -->
+  <struct name="TORMExgVerReq" version="10" >
+    <entry name="Version" type="uint" />
+  </struct>
+
+  <struct name="TORMExgVerRes" version="10" >
+    <entry name="Version" type="uint" />
+  </struct>
+
+  <struct name="TORMSubPack" version="10" >
+    <entry name="SubPackLen" type="uint" />
+    <entry name="SubPack" type="byte" count="TORM_MAX_SUBPACK_LEN" refer="SubPackLen" />
+  </struct>
+
+  <struct name="TORMEntryNameList" version="10" >
+    <entry name="EntryNameNum" type="uint" />
+    <entry name="EntryName" type="string" size="TORM_MAX_META_NAME" count="TORM_MAX_ENTRYLIST" refer="EntryNameNum" />
+  </struct>
+
+  <struct name="TORMOperInfo" version="10" >
+    <entry name="PriKeyInfo" type="TORMSubPack" desc="主键信息,上层应用不需要填充，由ORMAPI自动生成" />
+    <entry name="SplitTableInfo" type="TORMSubPack" desc="支持分表的信息,上层应用不需要填充，由ORMAPI自动生成"/>
+    <entry name="OperContent" type="TORMSubPack" desc="操作数据信息,上层应用不需要填充，由ORMAPI自动生成"/>
+    <entry name="ResFlag" type="uint" defaultvalue="TORM_RESFLAG_RET_NOINFO" 
+           bindmacrosgroup="TORM_RESFLAGS" desc="响应方式, 缺省值为TORM_RESFLAG_RET_NOINFO" /> 
+		<entry name="EntryNameList" type="TORMEntryNameList" desc="若EntryNameNum为0,则操作针对头部指定的Meta" />
+		<entry name="WhereDef" type="string" size="TORM_MAX_WHERE_DEF" desc="没有自定操作约束(where etc.),必须设置为空串;如果此字段不是空串，ORMAPI不会自动生成主键信息"/>
+
+	</struct>
+	
+	<struct name="TORMInsertReq" version="10" >
+		<entry name="OperInfo" type="TORMOperInfo" />
+	</struct>
+	
+	<struct name="TORMInsertRes" version="10" >
+		<entry name="ErrNo" type="int" desc="错误码参考torm_error.h" /> 
+		<entry name="OperInfo" type="TORMOperInfo" />
+		<entry name="DBMSErrNo" type="int" version="11" desc="数据库返回的错误码" />
+    <entry name="LastInsertID" type="biguint" version="12" 
+           desc="返回本次insert操作所生成的AUTO_INCREMENT的值，此字段只有当操作数据中定义了AUTO_INCREMENT成员才有意义"/>
+	</struct>
+	
+	<struct name="TORMUpdateReq" version="10" >
+		<entry name="OperInfo" type="TORMOperInfo" />
+		<entry name="DoInsert" type="uint" defaultvalue="0" versoin="15" desc="如果被更新的记录不存在，是否插入新纪录，不适用于自定义条件更新" />
+	</struct>
+	
+	<struct name="TORMUpdateRes" version="10" >
+		<entry name="ErrNo" type="int" desc="错误码参考torm_error.h" /> 
+		<entry name="OperInfo" type="TORMOperInfo" />
+		<entry name="DoInsert" type="uint" defaultvalue="0" versoin="15" />
+		<entry name="DBMSErrNo" type="int" version="11" desc="数据库返回的错误码" />
+		<entry name="AffectRows" type="int" version="11" desc="受影响的行数" />		
+	</struct>
+	
+	<struct name="TORMDeleteReq" version="10" >
+		<entry name="OperInfo" type="TORMOperInfo" />
+	</struct>
+	
+	<struct name="TORMDeleteRes" version="10" >
+		<entry name="ErrNo" type="int" desc="错误码参考torm_error.h" />
+		<entry name="OperInfo" type="TORMOperInfo" />
+		<entry name="DBMSErrNo" type="int" version="11" desc="数据库返回的错误码" />
+		<entry name="AffectRows" type="int" version="11" desc="受影响的行数" />		
+	</struct>
+	
+	<struct name="TORMSelectReq" version="10" >
+		<entry name="OperInfo" type="TORMOperInfo" />
+    <entry name="Limit" type="uint" defaultvalue="0" versoin="14"
+           desc="如其值大于0则设置从数据库中检索出的最大记录行数,如果其值为0,则对记录行数没有限制" />
+    <entry name="OffSet" type="uint" defaultvalue="0" versoin="14"
+           desc="则设置返回的第一行记录在整个结果集中的偏移量(初始行的偏移量为0),如果其值为0，则从结果集的开头返回记录行" />
+	</struct>
+	
+	<struct name="TORMSelectResult" version="10" >
+		<entry name="ResultTotal" type="uint" />
+		<entry name="ThisResultStart" type="uint" />
+		<entry name="ResultNum" type="int" />
+		<entry name="ResultList" type="TORMSubPack" count="0" refer="ResultNum" />
+	</struct>
+	
+	<struct name="TORMSelectRes" version="10" >
+		<entry name="ErrNo" type="int" desc="错误码参考torm_error.h" />
+		<entry name="OperInfo" type="TORMOperInfo" />
+		<entry name="DBMSErrNo" type="int" version="11" desc="数据库返回的错误码" />		
+		<entry name="SelectResult" type="TORMSelectResult" version="10" />
+	</struct>
+	
+	<struct name="TORMSvrInfoReq" version="10" >
+		<entry name="Res" type="int" />  
+	</struct>
+	
+	<struct name="TORMChannelInfo" version="10" >
+		<entry name="ChannelIdx" type="int" /> 
+		<entry name="UpSize" type="int" />  
+		<entry name="UpHead" type="int" /> 
+		<entry name="UpTail" type="int" />
+		<entry name="DownSize" type="int" />  
+		<entry name="DownHead" type="int" /> 
+		<entry name="DownTail" type="int" />
+	</struct>
+	
+	<struct name="TORMProcessInfo" version="10" >
+		<entry name="StartTime" type="int" />
+		<entry name="DurTime" type="int" />
+		<entry name="InMsg" type="int" />
+		<entry name="InByte" type="int" />
+		<entry name="OutMsg" type="int" />
+		<entry name="OutByte" type="int" />
+		<entry name="Cache" type="int" />
+	</struct>
+	
+	<struct name="TORMInterChannelInfo" version="10" >
+		<entry name="ChannelNum" type="int" />
+		<entry name="ChannelInfo" type="TORMChannelInfo" count="TORM_MAX_INTER_CHANNEL" refer="ChannelNum" />  
+	</struct>
+	
+	<struct name="TORMSvrInfoRes" version="10" >
+		<entry name="InterChannelInfo" type="TORMInterChannelInfo" />
+		<entry name="ProcessInfo" type="TORMProcessInfo" /> 
+	</struct>
+
+  <struct name="TORMSelectCountReq" version="14" 
+          desc="指定查询条件，请求tormsvr执行select count(*)操作，即请求检索出符合查询条件的记录行总数" >
+    <entry name="WhereDef" type="string" size="TORM_MAX_WHERE_DEF" 
+           desc="指定查询条件，如果为空串，则tormsvr会检索出指定数据对应数据库表中记录行总数"/>
+    <entry name="SplitTableInfo" type="TORMSubPack" desc="支持分表的信息,上层应用不需要填充，由ORMAPI自动生成"/>
+  </struct>
+
+  <struct name="TORMSelectCountRes" version="14" >
+    <entry name="ErrNo" type="int" desc="错误码参考torm_error.h" />
+    <entry name="RowsCount" type="uint" desc="返回数据库表中匹配查询条件的记录行总数" />
+  </struct>
+		
+	<!-- package body union -->
+	<union name="TORMPkgBody" version="10" >
+        	<entry name="ExgVerReq" type="TORMExgVerReq" id="TORM_EXGVER_REQ" />
+    		<entry name="ExgVerRes" type="TORMExgVerRes" id="TORM_EXGVER_RES" />
+    		
+    		<entry name="InsertReq" type="TORMInsertReq" id="TORM_INSERT_REQ" />
+    		<entry name="InsertRes" type="TORMInsertRes" id="TORM_INSERT_RES" />
+    		
+    		<entry name="UpdateReq" type="TORMUpdateReq" id="TORM_UPDATE_REQ" />
+    		<entry name="UpdateRes" type="TORMUpdateRes" id="TORM_UPDATE_RES" />
+    		
+    		<entry name="DeleteReq" type="TORMDeleteReq" id="TORM_DELETE_REQ" />
+    		<entry name="DeleteRes" type="TORMDeleteRes" id="TORM_DELETE_RES" />
+    		
+    		<entry name="SelectReq" type="TORMSelectReq" id="TORM_SELECT_REQ" />
+    		<entry name="SelectRes" type="TORMSelectRes" id="TORM_SELECT_RES" />
+
+        <entry name="SelectCountReq" type="TORMSelectCountReq" id="TORM_SELECT_COUNT_REQ" version="14" />
+        <entry name="SelectCountRes" type="TORMSelectCountRes" id="TORM_SELECT_COUNT_RES" version="14" />
+		
+		<entry name="OrmSvrInfoReq" type="TORMSvrInfoReq" id="TORM_SVRINFO_REQ" />
+    		<entry name="OrmSvrInfoRes" type="TORMSvrInfoRes" id="TORM_SVRINFO_RES" />
+    		
+    		<entry name="MaxBody" type="byte" count="TORM_MAX_BODY_LEN" />
+  	</union>
+	
+	<struct name="TORMPkg" version="10" >
+		<entry name="Head" type="TORMPkgHead" />
+		<entry name="Body" type="TORMPkgBody" select="Head.HeadCmd.Cmd" sizeinfo="Head.HeadComm.BodyLen" />	
+	</struct>
+	
+</metalib>

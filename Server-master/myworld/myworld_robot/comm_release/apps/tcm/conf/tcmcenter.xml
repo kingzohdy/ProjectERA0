@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="gb2312"?>
+<tcmcenter CenterdAddr="1.1.1" TconndAddr="1.3.1" BussinessID="100"
+           AddrTemple="world:8.zone:8.function:8.instance:8"
+		   ConfigSoName="../lib/config_test.so"
+		   ConfigBaseDir="../conf/confcreated">
+
+  
+<!--进程层次描述树-->
+<cluster WorkPath="/data/test/mmogxyz/" AutoTimeGap="30" OpTimeout="5">
+	<Proc FuncName="update_tsf4g.sh" Flag="start" FuncID="150" IsCommon="1" Seq="1000"/>
+	<Proc FuncName="tbusd" WorkPath="tbusd"  FuncID="151" IsCommon="1" Seq="2000"/>
+	
+        <Proc FuncName="hello" WorkPath="hello" Flag="notapp|start|stop|check" FuncID="111" IsCommon="1" Seq="21"/>
+	
+	<Proc FuncName="cus_svr" WorkPath="cus/bin"  FuncID="80" ProcName="versionserver" Seq="10000"/>
+	<Proc FuncName="cus_connect" WorkPath="cus/bin" FuncID="81" ProcName="tconnd" Seq="101000"  /> 		
+	
+  <world Isolated="1" OpTimeout="5">
+		<Proc FuncName="role_db" WorkPath="bin/tormsvr" Flag="start|stop|check|auto|reload" Agrs="--conf-file=/data/test/mmogxyz/etc/tormsvr/tormsvr.xml --tlogconf=/data/test/mmogxyz/etc/tormsvr/tormsvr_log.xml --use-bus --bus-key 5678 --metabase-key=52001"  FuncID="1" ProcName="tormsvr" Seq="5"/>	
+		<zone Isolated="1" OpTimeout="5">
+			<Proc FuncName="test.sh" Flag="notapp|start"  WorkPath="testscript" FuncID="10" ProcName="test.sh" Seq="10"/>
+			<Proc FuncName="game_svr"  Flag="start|stop|check|reload" WorkPath="bin/gamesvr"  Agrs="--conf-file=../../etc/gamesvr/gamesvrd.xml --tlogconf=../../etc/gamesvr/gamesvrd_log.xml --use-bus --bus-key 5678 --metabase-key=52001"  FuncID="11"  ProcName="gamesvrd" Seq="10"/>		
+			<Proc FuncName="game_connect" WorkPath="bin/connector_gamesvr"  ProcName="tconnd" FuncID="12" Seq="12" />
+			</zone>
+	</world>
+</cluster>
+
+	<!--进程组-->
+	<ProcGroup Name="hello" Layer="cluster" >
+		<!--<Proc FuncName="cus_svr" />
+		<Proc FuncName="cus_connect"  /> -->
+		<Proc FuncName="hello" /> <!--add by vinson tmp-->
+	</ProcGroup>
+	
+	<!--<ProcGroup Name="msg_midleware" Layer="world">
+		<Proc FuncName="role_db" /> 
+	</ProcGroup>	-->
+	
+	<!--<ProcGroup Name="tsf4gmng" Layer="world">
+		<Proc FuncName="role_db" /> 
+	</ProcGroup>	-->	
+
+	<ProcGroup Name="world" Layer="world">
+		<Proc FuncName="role_db" />	
+	</ProcGroup>	
+    
+	<ProcGroup Name="zone" Layer="zone">
+		<Proc FuncName="test.sh"   />
+		<Proc FuncName="game_svr" />	
+  </ProcGroup>
+
+  <HostTab >
+    <Host Name="Host97" InnerIP="172.25.40.97" />
+    <Host Name="Host107" InnerIP="172.25.40.107" />
+  </HostTab>
+  
+<!--进程部署树-->
+  <ClusterDeploy>
+
+    <DeloyGroup Group="hello" Host="Host97" CustomAttr="abc" /> -->
+
+    <!--<world ID="200" CustomAttr="test200">
+		      <DeloyGroup Group="world" Host="Host97" />
+		      <zone ID="1">
+		          <DeloyGroup Group="zone" Host="Host97" />
+	          </zone>
+
+		      <zone ID="2">
+		          <DeloyGroup Group="zone" Host="Host107" />
+		      </zone>
+
+    </world> -->
+	
+	
+    <world ID="100" CustomAttr="test">
+      <DeloyGroup Group="world" Host="Host97" />
+      
+    <!--<DeloyGroup Group="msg_midleware" Host="Host97" InstID="1" />
+      <DeloyGroup Group="msg_midleware" Host="Host107" InstID="2" />
+       
+      <DeloyGroup Group="tsf4gmng" Host="Host97" InstID="1" />
+      <DeloyGroup Group="tsf4gmng" Host="Host107" InstID="2"  /> -->
+       
+      <zone ID="1">
+        <DeloyGroup Group="zone" Host="Host97" />
+      </zone>
+
+      <!--<zone ID="2">
+	    <DeloyGroup Group="zone" Host="Host97" />
+      </zone>-->
+	  
+    </world>
+  </ClusterDeploy>
+
+
+<!--tbus相关配置-->
+  <TbusConf BussinessID="0" GCIMShmKey="5678" GRMShmKey="6789" TbusdServicePort="9020" ChannelSize="204800" >
+           <Channel ProcSet1="game_svr" ProcSet2="role_db" Mask="255.255.0.0" />  
+         <Channel ProcSet1="cus_svr" ProcSet2="cus_connect" Mask="255.255.0.255" RecvQueSize="10240" SendQueSize="204800" />  
+         <!--<Channel ProcSet1="game_svr" ProcSet2="game_connect" Mask="255.255.0.255" RecvQueSize="10240" SendQueSize="204800" />            -->
+    	
+        	<LocalConf Host="Host107"  TbusdServicePort="9021" />
+  </TbusConf>
+
+
+</tcmcenter>

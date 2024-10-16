@@ -1,0 +1,5 @@
+;ำภานศ๋ฟฺ 333005
+
+PROC 1
+	ENTER_PWORLD 102 0 1
+ENDPROC

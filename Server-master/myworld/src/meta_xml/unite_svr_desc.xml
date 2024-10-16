@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="unite_svr" version="10" >
+	<macro name="ZONE_SVR_URL_LEN"      value="32" />
+	<macro name="MAX_UNITE_WORLD_NUM"   value="8" />
+	
+	<struct name="worldone" version ="10" >
+		<entry name="SrcWorldID" type="int" desc="源区ID"/>
+		<entry name="DstWorldID" type="int" desc="合到目标区后新的worldid"/>
+		<entry name="SrcDBName" type="string" size="ZONE_SVR_URL_LEN" desc="源角色数据库信息"/>
+		<entry name="SrcDBConnect" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="SrcDBUser" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="SrcDBPasswd" type="string" size="ZONE_SVR_URL_LEN"  />
+	</struct>
+
+	<struct name="unite_svr_conf" version ="10" >
+		<entry name="MetaFile" type="string" size="128" defaultvalue="./role_db_meta.tdr"  desc="role_db_meta.tdr" />
+		<entry name="SrcRegionID" type="int" desc="源区ID"/>
+		
+		<entry name="SrcWorldID" type="int"  desc="合服时才需要填写"/>
+		<entry name="SrcRoleDBName" type="string" size="ZONE_SVR_URL_LEN" desc="合服时才需要填写" />
+		<entry name="SrcRoleDBConnect" type="string" size="ZONE_SVR_URL_LEN"  desc="合服时才需要填写" />
+		<entry name="SrcRoleDBUser" type="string" size="ZONE_SVR_URL_LEN"  desc="合服时才需要填写" />
+		<entry name="SrcRoleDBPasswd" type="string" size="ZONE_SVR_URL_LEN" desc="合服时才需要填写" />
+		
+		<entry name="SrcAccDBName" type="string" size="ZONE_SVR_URL_LEN" desc="源accout数据库信息"/>
+		<entry name="SrcAccDBConnect" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="SrcAccDBUser" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="SrcAccDBPasswd" type="string" size="ZONE_SVR_URL_LEN"  />
+		
+		<entry name="SrcBillDBName" type="string" size="ZONE_SVR_URL_LEN" desc="源bill数据库信息"/>
+		<entry name="SrcBillDBConnect" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="SrcBillDBUser" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="SrcBillDBPasswd" type="string" size="ZONE_SVR_URL_LEN"  />
+		
+		<entry name="DestWorldID" type="int" desc="目标服Id"/>
+		<entry name="DestRegionID" type="int" desc="目标区ID"/>
+		<entry name="DestRoleDBName" type="string" size="ZONE_SVR_URL_LEN" desc="目标角色数据库信息" />
+		<entry name="DestRoleDBConnect" type="string" size="ZONE_SVR_URL_LEN"  />
+		<entry name="DestRoleDBUser" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="DestRoleDBPasswd" type="string" size="ZONE_SVR_URL_LEN"   />
+		
+		<entry name="DstAccDBName" type="string" size="ZONE_SVR_URL_LEN" desc="目标accout数据库信息" />
+		<entry name="DstAccDBConnect" type="string" size="ZONE_SVR_URL_LEN"  />
+		<entry name="DstAccDBUser" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="DstAccDBPasswd" type="string" size="ZONE_SVR_URL_LEN"   />
+		
+		<entry name="DstBillDBName" type="string" size="ZONE_SVR_URL_LEN" desc="目标bill数据库信息"/>
+		<entry name="DstBillDBConnect" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="DstBillDBUser" type="string" size="ZONE_SVR_URL_LEN"   />
+		<entry name="DstBillDBPasswd" type="string" size="ZONE_SVR_URL_LEN"  />
+
+		<entry name="DstRegionDBName" type="string" size="ZONE_SVR_URL_LEN" desc="目标region数据库信息"/>
+                <entry name="DstRegionDBConnect" type="string" size="ZONE_SVR_URL_LEN"   />
+                <entry name="DstRegionDBUser" type="string" size="ZONE_SVR_URL_LEN"   />
+                <entry name="DstRegionDBPasswd" type="string" size="ZONE_SVR_URL_LEN"  />
+		
+		
+		<entry name="AccFlag" type="int" desc="如果遇到重名角色或者工会,名字要不要加大区ID标记 0-不加大区标记 1-加"/>
+		<entry name="WorldFlag" type="int" desc="如果遇到重名角色或者工会,名字要不要加服ID标记 0-不加大区标记 1-加"/>
+		
+		<entry name="WorldNum" type="int" desc="合区时才需要填写"/>
+		<entry name="WorldList" type="worldone" count="MAX_UNITE_WORLD_NUM" refer="WorldNum" desc="合区时才需要填写"/>
+	</struct>
+	
+</metalib>

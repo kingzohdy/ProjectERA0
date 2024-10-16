@@ -1,0 +1,66 @@
+#!/bin/sh
+
+
+
+mkdir -p ~/myworld/cfg/cltres
+mkdir -p ~/myworld/cfg/cltres/meta
+mkdir -p ~/myworld/cfg/cltres/include
+mkdir -p ~/myworld/cfg/cltres/src
+mkdir -p ~/myworld/cfg/cltres/bin
+mkdir ~/myworld/cfg/cltres/bintemp
+
+rm -f ~/myworld/cfg/cltres/bin/*.*
+rm -f ~/myworld/cfg/cltres/meta/*.*
+rm -f ~/myworld/cfg/cltres/include/*.*
+rm -f ~/myworld/cfg/cltres/src/*.*
+
+cd ~/myworld/tools/db_to_bin
+./db_to_bin ~/myworld/cfg/cltres/bintemp
+
+#echo $? 
+#[ $? -eq "0" ]&&
+if [ $? = "0" ];then
+	echo "db_to_bin.sh is success!"
+	cp ~/myworld/cfg/cltres/bintemp/csres/*.bin ~/myworld/cfg/cltres/bin/
+	cd ~/myworld/cfg/cltres/bin/
+	allbin=$(find ./ -name "*.bin")
+	for i in $allbin ;do
+		binname="$i"
+#		~/comm/confuse $i $i
+	done
+#	~/comm/confuse ActionStatus.bin ActionStatus.bin
+#	~/comm/confuse AddAttrDef.bin AddAttrDef.bin
+#	~/comm/confuse ArmLevelHurtDef.bin ArmLevelHurtDef.bin
+#	~/comm/confuse BirthMapDef.bin BirthMapDef.bin
+#	~/comm/confuse DiathesisDef.bin DiathesisDef.bin
+#	~/comm/confuse FittingsDef.bin FittingsDef.bin
+ # 	~/comm/confuse ItemDef.bin ItemDef.bin
+#	~/comm/confuse LevelUP.bin LevelUP.bin
+#	~/comm/confuse MapDef.bin MapDef.bin
+#	~/comm/confuse MapMonster.bin MapMonster.bin
+#	~/comm/confuse MapNpc.bin MapNpc.bin
+#	~/comm/confuse MonsterDef.bin MonsterDef.bin
+#	~/comm/confuse NpcSellList.bin NpcSellList.bin
+#	~/comm/confuse ProcEvent.bin ProcEvent.bin
+#	~/comm/confuse PworldDef.bin PworldDef.bin
+#	~/comm/confuse SkillDef.bin SkillDef.bin
+#	~/comm/confuse StatusDef.bin StatusDef.bin
+#	~/comm/confuse StatusOverlayDef.bin StatusOverlayDef.bin
+#	~/comm/confuse StatusRelationDef.bin StatusRelationDef.bin
+#	~/comm/confuse SuitSet.bin SuitSet.bin
+#	~/comm/confuse TransList.bin TransList.bin
+
+	cp  ~/myworld/src/comm/proto_cs.meta ~/myworld/cfg/cltres/meta
+	cp  ~/myworld/src/comm/proto_comm.h ~/myworld/cfg/cltres/include
+	cp  ~/myworld/src/comm/proto_cs.h ~/myworld/cfg/cltres/include
+	cp  ~/myworld/src/comm/resdb_meta.h ~/myworld/cfg/cltres/include
+	cp  ~/myworld/src/comm/cs_net.h ~/myworld/cfg/cltres/include
+	cp  ~/myworld/src/comm/cs_net.c ~/myworld/cfg/cltres/src
+	cp  ~/myworld/cfg/resdb_meta.tdr ~/myworld/cfg/cltres/meta
+		
+else
+	echo "db_to_bin.sh is fail!"
+fi
+
+rm -rf ~/myworld/cfg/cltres/bintemp
+

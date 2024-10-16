@@ -1,0 +1,21 @@
+
+
+proc 1
+
+	GET_MAP_INST 4400 10
+	DEL_NPC 306045 15
+	
+;	map_new_npc 1 306035 24300 24000 0 4400 chdfaladi.mac
+	NEW_MAP_LIFE_NPC 1 4400 306035 24300 24000 0 61200 chdfaladi.mac
+	
+endproc  
+
+proc 2
+	
+	GET_MAP_INST 4400 10
+	DEL_NPC 306035 15
+	
+	
+	NEW_MAP_LIFE_NPC 1 4400 306045 24300 24000 0 0 chdfaladi_2.mac
+endproc 
+

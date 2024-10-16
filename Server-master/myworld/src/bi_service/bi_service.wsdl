@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="gb2312"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://www.ljy0.com/BiService/" xmlns:whttp="http://www.w3.org/ns/wsdl/http" xmlns:wsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.ljy0.com/BiService/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.ljy0.com/BiService/">
+			<!--错误信息-->
+			<s:complexType name="ErrorResponse">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--
+ErrorCode 对应宏
+	<macrosgroup name="BI_ERR">
+		<macro name="BI_ERR_SUCCEEDED" value="0" desc="操作成功" />
+		<macro name="BI_ERR_SYS" value="-1" desc="系统错误" />
+		<macro name="BI_ERR_NET" value="-2" desc="网络错误" />
+		<macro name="BI_ERR_TDR" value="-3" desc="TDR错误" />
+		<macro name="BI_ERR_ARGS" value="-4" desc="参数错误" />
+		<macro name="BI_ERR_ONLINE" value="-5" desc="操作必须角色不在线" />
+		<macro name="BI_ERR_NOT_FOUND" value="-6" desc="查找不到指定的信息" />
+		<macro name="BI_ERR_OUTLINE" value="-7" desc="操作必须角色在线" />
+		<macro name="BI_ERR_DUP" value="-8" desc="重复单号" />
+		<macro name="BI_ERR_XML" value="-9" desc="输出xml时出错" />
+		<macro name="BI_ERR_TIME_OUT" value="-10" desc="操作超时" />
+		<macro name="BI_ERR_REGION_NOT_FOUND" value="-11" desc="未找到指定的大区" />
+		<macro name="BI_ERR_SQL_CREATE" value="-12" desc="创建sql语句失败" />
+		<macro name="BI_ERR_SQL_QUERY" value="-13" desc="执行sql语句失败" />
+		<macro name="BI_ERR_SQL_EFFECT_ROW" value="-14" desc="影响行错误|小于1行" />
+		<macro name="BI_ERR_DB_HANDLE" value="-15" desc="数据库句柄错误" />
+		<macro name="BI_ERR_DB_RESULT" value="-16" desc="数据库返回错误" />
+	</macrosgroup>-->
+			<!--获取帐号Uin和是否可充值信息-->
+			<s:complexType name="GetAccountStatReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetAccountStatRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--帐号Uin-->
+					<s:element minOccurs="0" maxOccurs="1" name="Uin" type="s:int"/>
+					<!--能否充值|0不能 1可以-->
+					<s:element minOccurs="0" maxOccurs="1" name="CanCharge" type="s:int"/>
+					<!--xml结构帐号信息|AccountFreezeEndTime-->
+					<!--
+meta name:AccountFreezeEndTime
+
+  <macro name="FREEZE_REASON_LEN"    value="32" version="120" desc="冻结,封停原因"/>
+
+	<struct name="AccountFreezeEndTime" dependonstruct="Account"  version="104" >
+		<entry name="Uin" type="int" />
+		<entry name="FreezeEndTime" type="int" desc="冻结结束时间" />
+		<entry name="FreezeStartTime" type="int" desc="冻结开始时间" version="121" />
+		<entry name="FreezeReason" type="string" size="FREEZE_REASON_LEN" desc="冻结,封停原因" version="121" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--帐号充值-->
+			<s:complexType name="ChargeAccountReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--帐号Uin|GetAccountStat获取-->
+					<s:element minOccurs="0" maxOccurs="1" name="Uin" type="s:int"/>
+					<!--充值单号 长度32|卡密是卡号 其他是流水号-->
+					<s:element minOccurs="0" maxOccurs="1" name="Sequence" type="s:string"/>
+					<!--充值类型| 1卡密充值 2支付宝充值 3银联充值-->
+					<s:element minOccurs="0" maxOccurs="1" name="BillType" type="s:int"/>
+					<!--充值点卷数-->
+					<s:element minOccurs="0" maxOccurs="1" name="Points" type="s:int"/>
+					<!--赠送的道具包编号-->
+					<s:element minOccurs="0" maxOccurs="1" name="PropsID" type="s:int"/>
+					<!--道具包名称-->
+					<s:element minOccurs="0" maxOccurs="1" name="PropsName" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="ChargeAccountRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构信息|SSCashBillRes-->
+					<!--
+meta name:SSCashBillRes
+  <macro name="INFORMER_ACCOUNT_LOGIN_NAME_LEN" value="51" />
+	<struct name="SSCashBillReq"  version="127" >
+		<entry name="MessageId" type="uint" 	 desc="消息类型" />
+		<entry name="Sequence" type="biguint"  desc="交易流水号" />
+		<entry name="Pass9Account" type="string" size="INFORMER_ACCOUNT_LOGIN_NAME_LEN" desc="登录名" />
+		<entry name="ServerID" type="uint" desc="充值到的大区编号" />
+		<entry name="Amount" type="biguint"  desc="充值金额" />
+		<entry name="Points" type="biguint"  desc="充值点数" />
+		<entry name="Bonus" type="biguint"  desc="奖励点数" />
+		<entry name="PropsID" type="biguint"  desc="赠送的道具包编号" />
+		<entry name="PropsName" type="string" size="200"  desc="道具包名称" />
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+	</struct>
+
+	<struct name="SSCashBillRes"  version="127" >
+		<entry name="Result" type="int" desc="0冲值成功,非0失败"/>
+		<entry name="CashBillReq" type="SSCashBillReq" desc="返回请求包"/>
+	</struct>	
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--获取各区充值信息-->
+			<s:complexType name="GetListBillReq">
+				<s:sequence>
+					<!--区ID|0表示bi_service配置的所有区-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--帐号Uin|GetAccountStat获取-->
+					<s:element minOccurs="0" maxOccurs="1" name="Uin" type="s:int"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="GetListBillRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--xml结构信息|ListBill-->
+					<!--
+meta name:ListBill
+	<struct name="Bill" primarykey="Uin"  version="121" >
+		<entry name="Uin" type="int" desc="操作的角色uin" />
+		<entry name="Sequence" type="biguint" desc="最新一笔冲值的流水帐号" />
+		<entry name="ServerID" type="biguint" desc="大区id" />
+		<entry name="Amount" type="biguint" desc="充值金额,以分为单位" />
+		<entry name="Points" type="biguint" desc="充值点数" />
+		<entry name="Bonus" type="biguint" desc="奖励点数" />
+		<entry name="FreezePoint" type="biguint" desc="冻结的点券" version="167"/>
+		<entry name="FreezeLastTime" type="int" desc="冻结的最后修改时间,MAX_TRADE_SHOE_TIME小时后自动解冻" version="167"/>
+		<entry name="CashTotalPoints" type="biguint" desc="充值总点数" version="629" />
+		<entry name="UsedTotalPoints" type="biguint" desc="提取总点数" version="629" />
+	</struct>
+
+	<macro name="MAX_LIST_BILL_NUM" value="16" desc="充值信息的数量" />
+
+	<struct name="ListBill" desc="各区的充值信息" version="-last-" >
+		<entry name="Num" type="int" desc="充值信息" />
+		<entry name="Bill" type="Bill" count="MAX_LIST_BILL_NUM" refer="Num" desc="充值信息" />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--插入运营礼包-->
+			<s:complexType name="InsertAccGiftReq">
+				<s:sequence>
+					<!--区ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int"/>
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string"/>
+					<!--帐号Uin|GetAccountStat获取-->
+					<s:element minOccurs="0" maxOccurs="1" name="Uin" type="s:int"/>
+					<!--角色ID|帐号对应的礼包此值为0-->
+					<!--s:element minOccurs="0" maxOccurs="1" name="RoleID" type="s:unsignedLong" /-->
+					<s:element minOccurs="0" maxOccurs="1" name="RoleID" type="s:string"/>
+					<!--插入类型|0:无条件插入 1:所有同名同帐号礼包都已领取才插入 2:没有相同的礼包(包括已领取的)才插入-->
+					<s:element minOccurs="0" maxOccurs="1" name="InsertType" type="s:int"/>
+					<!--礼包名-->
+					<s:element minOccurs="0" maxOccurs="1" name="GiftName" type="s:string"/>
+					<!--礼包描述-->
+					<s:element minOccurs="0" maxOccurs="1" name="GiftDesc" type="s:string"/>
+					<!--礼包物品ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="GiftItemID" type="s:int"/>
+					<!--礼包物品数量-->
+					<s:element minOccurs="0" maxOccurs="1" name="GiftItemNum" type="s:int"/>
+				</s:sequence>
+			</s:complexType>
+			<s:complexType name="InsertAccGiftRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+					<!--AccGift表中运营礼包ID-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccGiftID" type="s:int"/>
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	<message name="GetAccountStatIn">
+		<part name="GetAccountStatReq" type="s0:GetAccountStatReq"/>
+	</message>
+	<message name="GetAccountStatOut">
+		<part name="GetAccountStatRes" type="s0:GetAccountStatRes"/>
+	</message>
+	<message name="ChargeAccountIn">
+		<part name="ChargeAccountReq" type="s0:ChargeAccountReq"/>
+	</message>
+	<message name="ChargeAccountOut">
+		<part name="ChargeAccountRes" type="s0:ChargeAccountRes"/>
+	</message>
+	<message name="GetListBillIn">
+		<part name="GetListBillReq" type="s0:GetListBillReq"/>
+	</message>
+	<message name="GetListBillOut">
+		<part name="GetListBillRes" type="s0:GetListBillRes"/>
+	</message>
+	<message name="InsertAccGiftIn">
+		<part name="InsertAccGiftReq" type="s0:InsertAccGiftReq"/>
+	</message>
+	<message name="InsertAccGiftOut">
+		<part name="InsertAccGiftRes" type="s0:InsertAccGiftRes"/>
+	</message>
+	<portType name="BiServiceSoap">
+		<!--获取帐号Uin和是否可充值信息-->
+		<operation name="GetAccountStat">
+			<input message="s0:GetAccountStatIn"/>
+			<output message="s0:GetAccountStatOut"/>
+		</operation>
+		<!--帐号充值-->
+		<operation name="ChargeAccount">
+			<input message="s0:ChargeAccountIn"/>
+			<output message="s0:ChargeAccountOut"/>
+		</operation>
+		<!--获取各区充值信息-->
+		<operation name="GetListBill">
+			<input message="s0:GetListBillIn"/>
+			<output message="s0:GetListBillOut"/>
+		</operation>
+		<!--插入运营礼包-->
+		<operation name="InsertAccGift">
+			<input message="s0:InsertAccGiftIn"/>
+			<output message="s0:InsertAccGiftOut"/>
+		</operation>
+	</portType>
+	<binding name="BiServiceSoap" type="s0:BiServiceSoap">
+		<wsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<!--获取帐号Uin和是否可充值信息-->
+		<operation name="GetAccountStat">
+			<wsoap:operation soapAction="http://www.ljy0.com/bi_service/GetAccountStat" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--帐号充值-->
+		<operation name="ChargeAccount">
+			<wsoap:operation soapAction="http://www.ljy0.com/bi_service/ChargeAccount" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--获取各区充值信息-->
+		<operation name="GetListBill">
+			<wsoap:operation soapAction="http://www.ljy0.com/bi_service/GetListBill" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+		<!--插入运营礼包-->
+		<operation name="InsertAccGift">
+			<wsoap:operation soapAction="http://www.ljy0.com/bi_service/InsertAccGift" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="BiService">
+		<documentation>LJY bi_service </documentation>
+		<port name="BiService" binding="s0:BiServiceSoap">
+			<wsoap:address location="http://192.168.0.57:800/cgi-bin/bi_service"/>
+		</port>
+	</service>
+	<!--帐号充值-->
+	<!--获取各区充值信息-->
+	<!--插入运营礼包-->
+	<!--获取帐号Uin和是否可充值信息-->
+</definitions>

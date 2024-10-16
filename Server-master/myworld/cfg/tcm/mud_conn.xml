@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<zone_connconf version="10">
+    <MaxFD>4200 </MaxFD>
+    <TDRList type="TDRList">
+        <Count>1 </Count>
+        <TDRs type="TDR">
+            <Name>default</Name>
+            <Path>../cfg/proto_cs.tdr</Path>
+        </TDRs>
+    </TDRList>
+    <PDUList type="PDUList">
+        <Count>1 </Count>
+        <PDUs type="PDU">
+            <Name>default</Name>
+            <UpSize>4096 </UpSize>
+            <DownSize>0 </DownSize>
+            <LenParsertype>BY_AUTH </LenParsertype>
+            <LenParser type="PDULenParser">
+                <AuthParser type="PDULenAuthParser">
+                    <TDR>default</TDR>
+                    <SendPkg>CSPkg</SendPkg>
+                    <RecvPkg>CSPkg</RecvPkg>
+                </AuthParser>
+            </LenParser>
+        </PDUs>
+    </PDUList>
+    <ListenerList type="ListenerList">
+        <Count>1 </Count>
+        <Listeners type="Listener">
+            <Name>default</Name>
+            <Url>tcp://192.168.0.77:9407?reuse=1</Url>
+            <SendBuff>204800 </SendBuff>
+            <RecvBuff>20480 </RecvBuff>
+            <MaxIdle>94 </MaxIdle>
+            <Backlog>60 </Backlog>
+            <MaxNoAuthIdle>5</MaxNoAuthIdle>
+        </Listeners>
+    </ListenerList>
+    <SerializerList type="SerializerList">
+        <Count>1 </Count>
+        <Serializers type="Serializer">
+            <Name>default</Name>
+            <Url>3.6.63.1</Url>
+        </Serializers>
+    </SerializerList>
+    <NetTransList type="NetTransList">
+        <Count>1 </Count>
+        <NetTrans type="NetTrans">
+            <Name>default</Name>
+            <UseTimeStamp>1 </UseTimeStamp>
+            <UseWaitQueue>0</UseWaitQueue>
+            <QueueNotifyInterval>1</QueueNotifyInterval>
+            <QueueNewWorld>0</QueueNewWorld>
+	    <QueueLimitStart>0</QueueLimitStart>
+	    <QueueLimitLast>10</QueueLimitLast>
+	    <PDU>default</PDU>
+            <Listener>default</Listener>
+            <Serializer>default</Serializer>
+            <ConnLimit type="ConnLimit">
+                <MaxConn>4000</MaxConn>
+                <Permit>0</Permit>
+                <Speed>0</Speed>
+            </ConnLimit>
+            <TransLimit type="TransLimit">
+                <PkgSpeed>10 </PkgSpeed>
+                <ByteSpeed>2000 </ByteSpeed>
+            </TransLimit>
+        </NetTrans>
+    </NetTransList>
+</zone_connconf>

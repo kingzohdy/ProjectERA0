@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="cs_service" version="10" >
+
+	<macrosgroup name="SOAP_ENCODING_TYPE">
+		<macro name="SOAP_ENCODING_TYPE_UTF8" value="0" desc="UTF8"/>
+		<macro name="SOAP_ENCODING_TYPE_GBK" value="1" desc="GBK"/>
+	</macrosgroup>
+
+	<macro name="DEFAULT_FIND_HANDLE_NUM" value="20" desc="查询句柄总数"/>
+	<macro name="DEFAULT_FIND_HANDLE_TIMEOUT" value="1200" desc="查询句柄超时时间|单位秒|20分钟"/>
+
+	<macro name="RESTRICT_IP_NUM" value="5" desc="受限IP数量"/>
+	<macro name="ALLOW_OPERATION_NUM" value="64" desc="受限IP允许的操作"/>
+
+	<struct name="OperationInfo" version="10" >
+		<entry name="Name" type="string" size="128" desc="操作名" defaultvalue="" />  
+	</struct>
+
+	<struct name="CsRestrictInfo" version="10" >
+		<entry name="RestrictIpNum" type="int" desc="ip数量" defaultvalue="1" />  
+		<entry name="RestrictIP" type="string" size="24" desc="受限的ip地址" count="RESTRICT_IP_NUM" refer="RestrictIpNum" defaultvalue="0.0.0.0"/>  
+		<entry name="AllowOperationNum" type="int" desc="允许的操作数量" defaultvalue="1" />  
+		<entry name="AllowOperation" type="OperationInfo" desc="允许的操作名" count="ALLOW_OPERATION_NUM" refer="AllowOperationNum" />  
+	</struct>
+	
+	<struct name="cs_serviceconf" version="10" >
+		<entry name="SpawnIP" type="string" size="24" desc="spawn-fcgi绑定的IP地址" defaultvalue="0.0.0.0" />  
+		<entry name="SpawnPort" type="int" desc="spawn-fcgi绑定的端口" defaultvalue="8091" />  
+		<entry name="ConvertEncoding" type="string" size="32" desc="转换的字符集" defaultvalue="GB18030" /> 
+		<entry name="FcgiWebServerIPList" type="string" size="512" desc="配置Fastcgi Web服务器的ip地址列表以逗号(,)分割,不在列表内的ip地址将被禁止访问,未设置则全部允许访问|FCGI_WEB_SERVER_ADDRS" defaultvalue="" />  
+		<entry name="FindHandleNum" type="int" desc="查询句柄总数" defaultvalue="DEFAULT_FIND_HANDLE_NUM" />  
+		<entry name="FindHandleTimeout" type="int" desc="查询句柄超时时间|单位秒" defaultvalue="DEFAULT_FIND_HANDLE_TIMEOUT" />  
+		<entry name="TdrFile" type="string" size="256" desc="proto_ss.tdr文件路径" defaultvalue="../cfg/proto_ss.tdr" />  
+		<entry name="CgiConfigFile" type="string" size="256" desc="cs_cgi.xml文件路径" defaultvalue="../cfg/cs_cgi.xml" />  
+		<entry name="SoapEncoding" type="int" desc="soap输入输出编码格式" defaultvalue="SOAP_ENCODING_TYPE_UTF8" bindmacrosgroup="SOAP_ENCODING_TYPE" /> 
+		<entry name="RestrictInfo" type="CsRestrictInfo" desc="受限ip信息"  /> 
+	</struct>
+	
+	<struct name="cs_servicerun_status" version="10" >
+		<entry name="Res" type="int" />
+	</struct>
+	
+</metalib>

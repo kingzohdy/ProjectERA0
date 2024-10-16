@@ -1,0 +1,5 @@
+;70¼¶²Ø±¦Í¼BOSS¸±±¾
+
+PROC 1
+	ENTER_PWORLD  225 0 0
+ENDPROC

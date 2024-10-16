@@ -1,0 +1,183 @@
+<!--This is IE DTD patch , Don't delete this line.-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Page-Enter" content="blendTrans(Duration=0.3)" />
+<meta http-equiv="Page-Exit" content="blendTrans(Duration=0.3)" />
+<title>零纪元后台管理系统</title>
+<link href="templates/style/frame.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="templates/js/jquery.min.js"></script>
+<script type="text/javascript" src="templates/js/frame.js"></script>
+</head>
+<body class="showmenu">
+<div class="header">
+	<div class="header_logo">
+		<div class="header_info">欢迎您：<span class="loginuser_info" title="登陆于：<?php echo GetDateTime($_SESSION['logintime']); ?>"><?php echo '<span>'.$_SESSION['admin'].'</span>';switch($_SESSION['adminlevel']){case 0:$leveltitle = '[超级管理员]';break;case 10:$leveltitle = '[超级管理员]';break;case 1:$leveltitle = '[普通管理员]';break;case 2:$leveltitle = '[文章发布员]';break;default:$leveltitle = '没有获取到权限';}echo ' '.$leveltitle; ?></span> [<a href="default.php?c=<?php echo GetRandStr(10); ?>" title="方便您快速的切换后台权限">切换</a>] [<a href="logout.php" title="快捷键Esc">退出</a>]<span class="line">&nbsp;</span><a href="../" target="_blank">网站首页</a><span class="line">&nbsp;</span><a href="javascript:;" class="lockscreen">锁屏</a><span class="line">&nbsp;</span><a href="javascript:;" class="getfuncmap">地图</a><span class="line">&nbsp;</span><a href="http://phpmywind.com/" target="_blank">官方网站</a><span class="line">&nbsp;</span><a href="http://phpmywind.com/bbs/" target="_blank" class="help">帮助</a></div>
+	</div>
+	<div class="quick"> <a href="javascript:;" id="btn" class="btn">快捷方式</a> <a href="javascript:;" class="add_btn"></a>
+		<div class="qucikmenu" id="qucikmenu">
+			<ul>
+				<li><a href="home.php" target="main">后台首页</a></li>
+				<li><a href="help.php" target="main">开发帮助</a></li>
+				<li><a href="web_config.php" target="main">网站配置管理</a></li>
+				<li><a href="infoclass.php" target="main">网站栏目管理</a></li>
+				<li><a href="info.php" target="main">单页信息管理</a></li>
+				<li><a href="infolist.php" target="main">列表信息管理</a></li>
+				<li><a href="infoimg.php" target="main">图片信息管理</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="header_bottom"> <a href="javascript:;" class="togglemenu">隐藏菜单</a> </div>
+</div>
+<div class="left">
+	<div class="menu" id="menu">
+		<iframe src="left_menu.php" frameborder="0"></iframe>
+	</div>
+</div>
+<div class="right">
+	<div class="main">
+		<iframe id="main" name="main" frameborder="0" src="home.php" <?php if(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')) echo 'scrolling="yes"'; ?>></iframe>
+	</div>
+</div>
+<div class="funcmap">
+	<div class="bg"></div>
+	<div class="warp">
+		<div class="Title">
+			<h3 class="MainTit">功能地图</h3>
+			<a href="javascript:;" title="关闭" class="Close"> </a> </div>
+		<div class="Cont">
+			<div class="mapitem"><strong>网站系统管理</strong>
+				<dl>
+					<dt>系统功能</dt>
+					<dd>
+						<ul>
+							<li><a href="admin.php" target="main">管理员管理</a></li>
+							<li><a href="web_config.php" target="main">网站信息配置</a></li>
+							<li><a href="upload_filemgr.php" target="main">上传文件管理</a></li>
+							<li><a href="database_backup.php" target="main">数据库管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>自定义功能</dt>
+					<dd>
+						<ul>
+							<li><a href="diymenu.php" target="main">自定义菜单项</a></li>
+							<li><a href="diyfield.php" target="main">自定义字段</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<div class="mapitem"><strong>网站模块配置</strong>
+				<dl>
+					<dt>栏目类别</dt>
+					<dd>
+						<ul>
+							<li><a href="infoclass.php" target="main">栏目管理</a></li>
+							<li><a href="maintype.php" target="main">二级分类管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>内容管理</dt>
+					<dd>
+						<ul>
+							<li><a href="info.php" target="main">单页信息管理</a></li>
+							<li><a href="infolist.php" target="main">列表信息管理</a></li>
+							<li><a href="infoimg.php" target="main">图片信息管理</a></li>
+							<li><a href="soft.php" target="main">软件信息管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>模块管理</dt>
+					<dd>
+						<ul>
+							<li><a href="admanage.php" target="main">广告模块管理</a></li>
+							<li><a href="weblink.php" target="main">友情链接管理</a></li>
+							<li><a href="member.php" target="main">会员模块管理</a></li>
+							<li><a href="message.php" target="main">留言模块管理</a></li>
+							<li><a href="job.php" target="main">招聘模块管理</a></li>
+							<li><a href="vote.php" target="main">投票模块管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<div class="mapitem"><strong>商品订单管理</strong>
+				<dl>
+					<dt>类别&amp;属性</dt>
+					<dd>
+						<ul>
+							<li><a href="goodstype.php" target="main">商品类别管理</a></li>
+							<li><a href="goodsattribute.php" target="main">商品属性管理</a></li>
+							<li><a href="goodsbrandtype.php" target="main">品牌类型管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>商品&amp;评论</dt>
+					<dd>
+						<ul>
+							<li><a href="goods.php" target="main">商品列表管理</a></li>
+							<li><a href="goodsreview.php" target="main">商品评论管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>订单&amp;配送</dt>
+					<dd>
+						<ul>
+							<li><a href="goodsorder.php" target="main">订单列表管理</a></li>
+							<li><a href="postarea.php" target="main">配送地区管理</a></li>
+							<li><a href="postmode.php" target="main">配送方式管理</a></li>
+							<li><a href="paymode.php" target="main">支付方式管理</a></li>
+							<li><a href="getmode.php" target="main">货到方式管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<div class="mapitem"><strong>界面模板管理</strong>
+				<dl>
+					<dt>界面管理</dt>
+					<dd>
+						<ul>
+							<li><a href="nav.php" target="main">导航菜单管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>导航管理</dt>
+					<dd>
+						<ul>
+							<li><a href="editfile.php" target="main">默认模板管理</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<div class="mapitem"><strong>系统辅助功能</strong>
+				<dl>
+					<dt>辅助功能</dt>
+					<dd>
+						<ul>
+							<li><a href="upload_file.php" target="main">上传新文件</a></li>
+						</ul>
+					</dd>
+				</dl>
+				<dl>
+					<dt>帮助更新</dt>
+					<dd>
+						<ul>
+							<li><a href="check_update.php" target="main">检查可用更新</a></li>
+							<li><a href="check_bom.php" target="main" class="bom">BOM检查</a></li>
+							<li><a href="help.php" target="main">开发帮助</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</div>
+			<div class="cl"></div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

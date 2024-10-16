@@ -1,0 +1,61 @@
+#!/bin/ksh
+
+# CVS program supdate
+# Program to update the file from CVS read/write mode
+
+cmdname=`basename $0`
+
+if [ $# -lt 1 ]; then
+        print "\nUsage: $cmdname <filename>"
+        exit -1
+fi
+
+# Check if file already exists....
+if [ $# -gt 0 -a  -f $1 ]; then
+        user_perms=" "
+        group_perms=" "
+        other_perms=" "
+        user_perms=`ls -l $1 | awk '{print $1 }' | cut -b3-3 `
+        group_perms=`ls -l $1 | awk '{print $1 }' | cut -b6-6 `
+        other_perms=`ls -l $1 | awk '{print $1 }' | cut -b9-9 `
+        if [ "$user_perms" = "w" -o "$group_perms" = "w"  \
+                -o "$other_perms" = "w" ]; then
+                while :
+                do
+                        print "\n$cmdname will backup your working file "
+                        print "$1 to $1.supdate_bak before doing any merges."
+                        print "Are you sure you want the merge the changes from"
+                        print -n "CVS repository to your working file ? <y/n> [n]: "
+                        read ans
+                        if [ "$ans" = "y" -o "$ans" = "Y" ]; then
+                                #if [ -f $1.supdate_bak ]; then
+                                #        print "\nWarning : File $1.supdate_bak already exists!!"
+                                #        print "Please examine the file $1.supdate_bak and delete it"
+                                #        print "and than re-try this $cmdname "
+                                #        print "Aborting $cmdname ...."
+                                #        exit -1
+                                #else
+                                        cp $1 $1.supdate_bak
+                                        break
+                                #fi
+                        elif [ "$ans" = "n" -o "$ans" = "N" -o "$ans" = "" -o "$ans" = " " ]; then
+                                exit -1
+                        fi
+                done
+        fi
+fi
+
+if [ -d $1 ]; then
+        print "\nDirectory update is disabled as cvs update"
+        print "merges the changes from repository to your working directory"
+        print "So give the filename to update - as shown below: "
+        print " Usage: $cmdname <filename>"
+        exit -1
+#       cvs update
+else
+        cvs update $1
+fi
+
+print "\nDone $cmdname. $cmdname successful"
+#print "\nTip (Usage): $cmdname <filename/directory name>\n"
+exit 0

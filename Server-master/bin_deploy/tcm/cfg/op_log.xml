@@ -1,0 +1,54 @@
+<TLOGConf version="1">
+    <PriorityHigh>NULL </PriorityHigh>
+    <PriorityLow>TRACE </PriorityLow>
+    <DelayInit>0 </DelayInit>
+    <SuppressError>1 </SuppressError>
+    <Count>2 </Count>
+    <CategoryList type="TLOGCategory">
+        <Name>oplog_net</Name>
+        <PriorityHigh>NULL </PriorityHigh>
+        <PriorityLow>TRACE </PriorityLow>
+        <LevelDispatch>0 </LevelDispatch>
+        <MustSucc>0 </MustSucc>
+        <MaxMsgSize>0 </MaxMsgSize>
+        <Format></Format>
+        <ForwardCat>oplog_local</ForwardCat>
+        <Device type="TLOGDevAny">
+            <Type>NET</Type>
+	    <Device>
+		<Net>
+			<Url>udp://192.168.0.77:5431</Url>
+			<Sendbuff>204800</Sendbuff>
+			<RecvBuff>0</RecvBuff>
+			<AutoReconnect>0</AutoReconnect>
+			<MaxRetry>20</MaxRetry>                 
+			<ConnTimeout>100</ConnTimeout>                     
+			<SendTimeout>100</SendTimeout>
+		</Net>
+	    </Device>
+        </Device>
+    </CategoryList>
+    <CategoryList type="TLOGCategory">
+        <Name>oplog_local</Name>
+        <PriorityHigh>NULL </PriorityHigh>
+        <PriorityLow>TRACE </PriorityLow>
+        <LevelDispatch>0 </LevelDispatch>
+        <MustSucc>0 </MustSucc>
+        <MaxMsgSize>0 </MaxMsgSize>
+        <Format></Format>
+        <Device type="TLOGDevAny">
+            <Type>FILE </Type>
+            <Device type="TLOGDevSelector">
+                <File>
+				<Pattern> ../log/oplog/local.dat </Pattern>
+				<BuffSize> 102400 </BuffSize>
+				<SizeLimit> 102400000 </SizeLimit>
+				<Precision> 1 </Precision>
+				<MaxRotate> 5 </MaxRotate>
+				<SyncTime> 0 </SyncTime>
+				<NoFindLatest> 0 </NoFindLatest>
+		</File>
+            </Device>
+        </Device>
+    </CategoryList>
+</TLOGConf>

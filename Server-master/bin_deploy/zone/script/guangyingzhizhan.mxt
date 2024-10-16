@@ -1,0 +1,17 @@
+PROC 1
+	ADD_SYS_MSG_START
+	SET_SYS_MSG_MODE 6 0 0
+	ADD_SYS_MSG 光影之战活动开始啦，参加活动就有机会得到丰富的经验奖励哦，60级后到时间城找薇薇安吧~
+	SVR_MSG_INFO
+
+	SET_EVENT_PWORLD 1 221
+ENDPROC
+
+PROC 2 
+    ADD_SYS_MSG_START
+    SET_SYS_MSG_MODE 4 0 0	
+    ADD_SYS_MSG 光影之战活动结束了，等待下次吧
+    SVR_MSG_INFO
+ENDPROC
+
+

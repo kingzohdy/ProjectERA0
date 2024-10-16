@@ -1,0 +1,27 @@
+#  @file $RCSfile: Makefile_src,v $
+#  general description of this module
+#  $Id: Makefile_src,v 1.1 2010/06/09 03:14:36 kent Exp $
+#  @author $Author: kent $
+#  @date $Date: 2010/06/09 03:14:36 $
+#  @version $Revision: 1.1 $
+#  @note Editor: Vim 6.1, Gcc 4.0.1, tab=4
+#  @note Platform: Linux
+#
+CLEANTARGET = clean
+SUBMODS = meta_xml zone 
+SUBMODSCLEAN =$(patsubst %, %.$(CLEANTARGET), $(SUBMODS)) 
+
+.PHONY: all $(CLEANTARGET) $(SUBMODS) 
+
+all: $(SUBMODS)
+$(CLEANTARGET): $(SUBMODSCLEAN)
+	
+$(SUBMODS):
+	@echo "Begin to make sub module: '$@' ......"
+	cd $@ && $(MAKE);
+	@echo "Finish to  make sub module: '$@'" 
+
+$(SUBMODSCLEAN): 
+	@echo "Begin to clean sub module: '$(patsubst %.$(CLEANTARGET),%, $@)' ......"
+	cd $(patsubst %.$(CLEANTARGET),%, $@)  && make $(CLEANTARGET);
+	@echo "Finish to  clean sub module: '$(patsubst %.$(CLEANTARGET),%, $@)'" 

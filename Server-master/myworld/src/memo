@@ -1,0 +1,142 @@
+wmh
+
+sdsd
+//1、player超时检查  IDLE_CHECK_TIMER 宏的值
+//2、zone_svr黑白名单、进入退出时check约束、定时tick处理(长时间无响应kick、定时update(PLAYER_STATUS_ROLE_LOGIN))
+//3、写client.c时与客户端交互文档一起
+//4、new player需要修改，加入重名判断。 （nameid_map_svr的开发）
+//6、定时存储/立即存储
+//8、文档整理到角色列表
+//9、初始化资源装载的2种方式
+//16、map数据结构 加 watch
+//21、active monster / active npc
+//23、zone_svr退出时检查泄漏(areadyn/pworld inst/map inst等)
+//30、z_get_ran_pos没有写   
+//28、z_check_area_dyn没有写完
+//32、z_pos_area_dyn 没有写      
+//33、active player时search view
+//22、z_in_destroy_areadyn中的playerchangemap/ItemLeaveMap
+//24、z_valid_pos没有写
+//5、角色进入地图时的选择
+//12、聊天系统和gm指令系统
+//17、重载资源相关的gm指令和zone_ctrl 
+//37、z_mon_search_view return 0;
+//18、事件区域定义, 有点浪费, 应该可以不需要
+//19、调试确认map def unit的大小
+//49、还有id泄漏？
+//62、战斗状态没有写, 装备损耗耐久
+//38、一个修改：z_in_same_area
+//40、提醒c/s的CSState修改(测试)
+//39、z_clear_all_npc/z_clear_all_monster
+//41、客户端长路径的处理(截断发移动包)
+//44、z_tick_bench 战斗状态不用去调节
+//65、package_dec_test、package_dec 重新实现
+//13、脏字过滤
+//15、bin文件排序问题
+//69、顶号通知
+//70、弹药消耗的问题
+//71、服务器选择界面做刷新按钮
+//34、怪物的stNextPos的梳理  
+//48、进副本时设置退出地图
+//68、套装修饰有问题ArmID？
+//20、检查pworld 超时
+//50、客户端对帐号登录错误的处理
+//25、active_item没有写
+//27、active item 的检查
+//36、pstDItem->iMIndex生成drop item时的处理
+//59、logsvr没有加入到集中控制里，OP_LOG_ROLELOGOUT没写，可给新人练习
+//60、package_arrange、package_add_test没有完成，可给新人练习
+//69、zone_ctrl直接删除共享内存
+//65、聊天限制问题
+//66、取消了装备损耗度
+//61、使用gd生成验证码的效率比较低，开发机器上是1.08ms左右生成一个，一种方法是研究gd的使用，采用效率的方法；另一种方法是预生成和空闲生成一些验证码。
+//76、哥布林窃贼的处理
+//71、枪手初始弹药包格子数目？
+//26、active npc 先不写
+//29、角色登录时死亡状态没处理
+//70、副本预留npc和怪物还没做
+//73、zone_ctrl restart
+//75、火药桶触发战利品优先者判断
+//81、z_in_destroy_pworld_inst出现过pworld defid 0，找不到pworlddef
+//90、角色延迟删除
+//83、强制出生地图
+//84、地图referareafrom，referareato
+//78、清理gift函数
+//11、延迟退出
+//31、z_role_login时z_valid_pos失败后应该取本地图的安全坐标点 
+//35、z_player_view_item Number
+//42、再买一台服务器，进行数据库热备、cvs的每天备份
+//43、技能备忘：技能需要的装备，在skillatk时对弹药消耗的检查,z_player_filter_atkobj的判定,带动感应技能没有做，激活诱发没做，借助没有做，集气打断目前是直接无效。
+              集气段数对于攻击力的影响（要填表），辅助技能对SkillData的影响 
+//53、dir_conn的idle check 和 zone_conn 的idle check适当设置              
+//64、新手村的考虑(避免大量角色堆积)
+//63、企划填表格之后，对于resdb设置2个帐户，一个只能看
+//1126、客户端serverlog的开关修改
+//72、复活类的技能放宽容忍范围（因为死亡可能会导致位置不一致）
+//82、怪物数量和刷新
+//85、状态关系表
+//91、随机函数
+//1123、客户端目录清理，客户端某些日志的关闭，动态增长的信息的控制
+//1124、数据库表建立相关索引，例如Mail的Recv
+//1114、运营时的参数调整，特别是zone_conn的限制,MaxIdle,MaxNoAuthIdle
+//1118、测试一定的网络波动情况下的行走和技能。
+
+x 86、去掉assert，在role_logout_res中肯定有一个
+x 67、怪物ai的召集还没做; 怪物AIAtkeeSkills没做
+x 10、统计信息：参考fo
+x 7、帐号登录的图形验证码（开关）和天降神医
+x 45、怪打人时需要计算防御时积累
+x 46、人打怪时，击杀修正没有计算等级差
+x 47、技能的状态条件
+x 51、在z_player_enter_world时属性、技能要再更新一次
+x 52、服务器选择的引导（可用简单的ping）
+x 1122、客户端选择服务器时显示网络质量
+
+54、补充：客户端技能对象判断时考虑死亡对象(对象的判断)
+55、PreDiathesisID没有使用
+56、z_mon_status_clear没有处理绑定技能
+57、换装备等情况下z_player_chk_mspd
+58、STATUS_RESULT_NOITEM没有处理
+
+
+74、跳跃、位置位置技能的障碍问题
+77、黑名单的完善
+79、宠物指令限制
+80、数据库ItemDef表中买的钱和卖的钱相同？
+81、检查客户端获取列表（没有dir是否可以显示cache，url解析的ip地址使用问题）
+
+
+87、检查broadcast
+88、检查在线人数的report的url地址
+89、测试补填身份信息、修改密码、重复反向接口
+
+92、检查精灵炼化等级限制
+
+1112、IDLE_CHECK_TIMER 宏的值
+1113、z_cltmsg_broadcast //晕，这种方式无法做协议兼容，要求广播消息暂时不做版本兼容，先备忘
+
+1115、数据库表加索引<entry name="Uin" type="int" desc="qq num,should be index by manipulated" />
+1116、客户端dir信息的存储, dir服务器的随机选择 
+1117、去除一些tlog
+
+1119、攻击时走到攻击范围内不要发stop
+1120、assert语句
+1121、检查副本的npc和怪物数量需求是否填写
+
+
+1125、检查不要让一个玩家没有代价占用大量怪，例如龙蛋谷
+
+tt1临时内容的清除：50级邮件，礼包，活动等
+
+
+约束：
+1、要求Uin>=0 （在z_db_msg处理时有限制）
+2、要求world id < 256*16  instance id < 16 （myworld_get_shm_key自动生成共享内存key时限制）
+3、z_cltmsg_broadcast //晕，这种方式无法做协议兼容，要求广播消息暂时不做版本兼容，先备忘
+4、一个地图最多128个Area
+5、Npc的第一个成员必须是Monster
+6、不支持主范围是单体而副范围是范围的技能
+7、关注技能个数：#define MAX_ROLE_SKILL                           	128
+8、RoleArm/RoleItem头几个字段相同
+
+/**/

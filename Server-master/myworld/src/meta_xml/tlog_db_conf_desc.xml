@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="tlog_db" version="1" >
+
+	<macro name="TLOG_DB_STRING_LEN" value="255" />
+	<macro name="TLOG_OP_NUM" value="255" />
+
+	<struct name="OpCmd" version ="1" >
+		<entry name="Opcmd" type="tinyuint" />
+	</struct>
+	
+	<struct name="tlog_dbconf" version ="1" >
+		<entry name="szUri" type="string" size="TLOG_DB_STRING_LEN"/>
+		<entry name="szRoleDbMeta" type="string" size="256" />
+		<entry name="szLogDBName" type="string" size="32" />
+		<entry name="szLogDBConnect" type="string" size="32"   />
+		<entry name="szLogDBUser" type="string" size="32"   />
+		<entry name="szLogDBPasswd" type="string" size="32"  />	
+
+		<entry name="MonSubLimit" type="tinyuint" defaultvalue="0" />
+		<entry name="DropItemLimit" type="tinyuint" defaultvalue="0" />
+		<entry name="Count" type="tinyuint" defaultvalue="0"/>
+		<entry name="LimitCmd" type="OpCmd" count="TLOG_OP_NUM" refer="Count" />
+		
+	</struct>
+	
+	<struct name="tlog_dbrun_status" version ="1" >
+		<entry name="Res" type="int" />
+	</struct>
+	
+</metalib>

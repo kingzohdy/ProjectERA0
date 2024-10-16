@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<TLOGConf version="1">
+    <PriorityHigh>NULL </PriorityHigh>
+    <PriorityLow>TRACE </PriorityLow>
+    <DelayInit>0 </DelayInit>
+    <SuppressError>1 </SuppressError>
+    <Count>3 </Count>
+    <CategoryList type="TLOGCategory">
+        <Name>tsf4g.tbus</Name>
+        <PriorityHigh>FATAL </PriorityHigh>
+        <PriorityLow>ERROR </PriorityLow>
+        <Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+        <Device type="TLOGDevAny">
+            <Type>FILE </Type>
+            <Device type="TLOGDevSelector">
+                <File type="TLOGDevFile">
+                    <Pattern>./tbusd.error</Pattern>
+                    <BuffSize>0 </BuffSize>
+                    <SizeLimit>20971520 </SizeLimit>
+                    <Precision>1 </Precision>
+                    <MaxRotate>3 </MaxRotate>
+                    <SyncTime>0 </SyncTime>
+                    <NoFindLatest>0 </NoFindLatest>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+    <CategoryList type="TLOGCategory">
+        <Name>tsf4g.tbus.tbusd</Name>
+        <PriorityHigh>NULL </PriorityHigh>
+        <PriorityLow>ERROR </PriorityLow>       
+        <Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+        <ForwardCat>tsf4g.tbus</ForwardCat>
+        <Device type="TLOGDevAny">
+            <Type>FILE </Type>
+            <Device type="TLOGDevSelector">
+                <File type="TLOGDevFile">
+                    <Pattern>./tbusd.log</Pattern>
+                    <BuffSize>0 </BuffSize>
+                    <SizeLimit>20971520 </SizeLimit>
+                    <Precision>1 </Precision>
+                    <MaxRotate>3 </MaxRotate>
+                    <SyncTime>0 </SyncTime>
+                    <NoFindLatest>0 </NoFindLatest>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+   
+    <CategoryList type="TLOGCategory">
+        <Name>tbusdstat</Name>
+        <PriorityHigh>NULL </PriorityHigh>
+        <PriorityLow>TRACE </PriorityLow>
+        <LevelDispatch>0 </LevelDispatch>
+        <MustSucc>0 </MustSucc>
+        <MaxMsgSize>0 </MaxMsgSize>
+        <Format>[%d.%u][(%f:%l) (%F)] %m%n</Format>
+        <ForwardCat></ForwardCat>
+        <Device type="TLOGDevAny">
+            <Type>FILE </Type>
+            <Device type="TLOGDevSelector">
+                <File type="TLOGDevFile">
+                    <Pattern>./tbusd_rundata.log</Pattern>
+                    <BuffSize>0 </BuffSize>
+                    <SizeLimit>20971520 </SizeLimit>
+                    <Precision>1 </Precision>
+                    <MaxRotate>3 </MaxRotate>
+                    <SyncTime>0 </SyncTime>
+                    <NoFindLatest>0 </NoFindLatest>
+                </File>
+            </Device>
+        </Device>
+    </CategoryList>
+</TLOGConf>

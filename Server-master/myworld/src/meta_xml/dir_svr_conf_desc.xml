@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="dir_svr" version="10" >
+	<macro name="DIR_STRING_LEN" value="256" />
+	<macro name="AUTH_CONN_IP_LEN" value="128" />
+	<macro name="DIR_DEF_OUTER_PORT" value="6638" />
+	<macro name="DIR_DEF_INNER_PORT" value="6639" />
+	<macro name="MAX_DIR_SLAVE" value="8" />
+	<macro name="MAX_REGION" value="32" />
+
+	<macro name="CREAT_XML_FILENAME_MAX" value="256" />
+	
+	<macrosgroup name="MasterFlag">
+		<macro name="DIR_MASTER" value="0" />
+		<macro name="DIR_BAK" value="1" />
+		<macro name="DIR_SLAVE" value="2" />
+		<macro name="DIR_SLAVE1" value="3" />
+	</macrosgroup>
+	
+	<struct name="AuthConn" version ="10" >
+		<entry name="AuthConnIP" type="string" size="AUTH_CONN_IP_LEN" />
+		<entry name="AuthConnPort" type="smalluint" />
+		<entry name="AuthConnIP_Bak1" type="string" size="AUTH_CONN_IP_LEN" />
+		<entry name="AuthConnIP_Bak2" type="string" size="AUTH_CONN_IP_LEN" />
+		<entry name="RegionID" type="smalluint" />
+	</struct>
+	
+	<struct name="busy_degree" version ="10" >
+		<entry name="Excellence" type="tinyint" defaultvalue="5" desc="服务状态很好时在线人数的比例" />
+		<entry name="Normal" type="tinyint" defaultvalue="15" desc="服务状态正常时在线人数的比例" />
+		<entry name="Busy" type="tinyint" defaultvalue="35" desc="服务状态繁忙时在线人数的比例" />
+		<entry name="Full" type="tinyint" defaultvalue="50" desc="服务状态拥挤时在线人数的比例" />
+	</struct>
+	
+	<struct name="dir_svrconf" version ="10" >
+		<entry name="MasterFlag" type="uint" defaultvalue="DIR_MASTER" bindmacrosgroup="MasterFlag" desc="dir_master,bak,slave" />
+		<entry name="DirBakAddr" type="string" size="DIR_STRING_LEN" desc="dir_bak的接入地址" />
+		<entry name="AuthConnNum" type="tinyuint" />
+		<entry name="AuthConn" type="AuthConn" count="MAX_REGION" refer="AuthConnNum"/>
+		<entry name="DirSlaveAddrNum" type="int" defaultvalue="0"  />
+		<entry name="DirSlaveAddrList" type="string" size="DIR_STRING_LEN" count="MAX_DIR_SLAVE" refer="DirSlaveAddrNum" desc="dir_slave的接入地址列表" />
+		<entry name="BlackWhiteCfgPath" type="string" size="DIR_STRING_LEN" desc="黑白名单配置文件路径" />
+		<entry name="WorldListCfgPath" type="string" size="DIR_STRING_LEN" desc="区服列表配置文件" />
+		<entry name="BindInnerAddr" type="string" size="DIR_STRING_LEN" desc="内网接收udp的地址" />
+		<entry name="UpdataDBInterVal" type="int"  desc="在线在数写入数据库时间间隔,单位:分" />
+		<entry name="ReportAddr" type="string" size="DIR_STRING_LEN" desc="在线人数纪录udp地址" />
+		<entry name="BusyDegree" type="busy_degree" desc="服务器是否繁忙的比例"  />
+
+		<entry name="XmlFileName" type="string" size="CREAT_XML_FILENAME_MAX" desc="生成xml文件路径文件名"  />
+		<entry name="XmlInterval" type="int"  desc="生成xml文件时间间隔|单位:秒"  />
+	</struct>
+	
+	<struct name="dir_svrrun_status" version ="10" >
+		<entry name="RecvCltMsg" type="bigint" />
+		<entry name="BadCltMsg" type="bigint" />
+		<entry name="SendCltMsgFail" type="bigint" />
+		<entry name="SendAllWorldInfo" type="bigint" />
+		<entry name="SendLatestWorldInfo" type="bigint" />
+		<entry name="RecvSvrMsg" type="bigint" />
+		<entry name="BadSvrMsg" type="bigint" />
+	</struct>
+	
+</metalib>

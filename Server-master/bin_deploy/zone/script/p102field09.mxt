@@ -1,0 +1,16 @@
+;30¸±±¾  Âß¼­ÇøÓò9
+
+
+PROC 1
+
+	GET_PWORLD_VAR 32 32 1 103
+	If 103 = 0
+
+		NEW_MON 284010 1 11771 18509 0 0 0 1 2
+		NEW_MON 284008 4 11771 18509 300 0 0 1 2
+
+		var 103 1
+		set_pworld_var 32 32 @103 1
+	endif	
+
+ENDPROC

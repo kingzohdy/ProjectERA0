@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS OnlineReCord (
+ RegionID INT UNSIGNED    ,
+ WorldID INT UNSIGNED    ,
+ MudOnlineNum INT UNSIGNED    ,
+ OnlineNum INT UNSIGNED    ,
+ MapInfo TEXT    ,
+ Time DATETIME    )  ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -1,0 +1,12 @@
+;ªÿ≥«æÌ÷·
+
+proc 1
+	TRANSMIT 1000 26506 28694 1
+	IF 1 = 0
+		DEC_ITEM_NUM_INPAK 5151000 1 1
+	ENDIF
+endproc
+
+
+	
+		

@@ -1,0 +1,13 @@
+proc 1
+	ENTER_LOGIC_AREA 4 1
+;	ENTER_LOGIC_AREA 2 1
+
+endproc 
+
+proc 3
+	LEAVE_LOGIC_AREA 4 1
+;	LEAVE_LOGIC_AREA 2 1
+
+endproc
+
+

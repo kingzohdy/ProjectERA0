@@ -1,0 +1,11 @@
+;ÀÇ
+
+
+proc 2
+
+		strvar roc
+		get_pworld_var 101 8 1 roc
+		var roc 2
+		set_pworld_var 101 8 @roc 1
+
+endproc 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+
+<metalib tagsetversion="1" name="auth_svr" version="10" >
+	
+	<macro name="AUTH_SVR_PATH_LEN"      value="1024" />
+	<macro name="AUTH_SVR_URL_LEN"      value="32" />
+	
+	<macrosgroup name="AUTH_MODE_TYPE">
+		<macro name="AUTH_MODE_PRODUCE"  value="0" desc="运营模式" />
+		<macro name="AUTH_MODE_PERMISSION"  value="1" desc="放号模式" />
+		<macro name="AUTH_MODE_DEVELOP"  value="2" desc="开发模式" />
+		<macro name="AUTH_MODE_CLOSE"  value="3" desc="封闭模式" />
+	</macrosgroup>
+	
+	<macro name="MAX_WEB_SIGN_CLIENT_IP_NUM" value="12" desc="最大获取web签名客户端ip数量"/>
+	
+	<struct name="auth_svrconf" version ="10" >
+		<entry name="AuthMode" type="int" bindmacrosgroup="AUTH_MODE_TYPE" defaultvalue="AUTH_MODE_PRODUCE" />
+		<entry name="DBMetaDir" type="string" size="AUTH_SVR_PATH_LEN" defaultvalue="../cfg/db_meta" />
+		<entry name="ResShmKey" type="int" defaultvalue="65535" />
+		<entry name="IPLimitDBName" type="string" size="AUTH_SVR_URL_LEN"  defaultvalue="IPBlock" />
+        <entry name="IPLimitDBConnect" type="string" size="AUTH_SVR_URL_LEN"  defaultvalue="localhost" />
+        <entry name="IPLimitDBUser" type="string" size="AUTH_SVR_URL_LEN"  defaultvalue="mmog" />
+        <entry name="IPLimitDBPasswd" type="string" size="AUTH_SVR_URL_LEN"  defaultvalue="mmog" />
+		<entry name="DebugIP" type="string" size="64" desc="用DebugMode来对待此IP的AUTH_CLT协议" defaultvalue="0.0.0.0" />
+		<entry name="DebugAuthMode" type="int" bindmacrosgroup="AUTH_MODE_TYPE" desc="用此模式来对待此DebugIP的AUTH_CLT协议" defaultvalue="AUTH_MODE_PRODUCE" />
+		<entry name="WebSignClientIPNum" type="int" defaultvalue="1" desc="拿web签名客户端ip数量"/>
+		<entry name="WebSignClientIP" type="string" size="64" count="MAX_WEB_SIGN_CLIENT_IP_NUM" refer="WebSignClientIPNum" desc="拿web签名客户端ip" defaultvalue="192.168.0.77" />
+		<entry name="NoxFlag" type="int" defaultvalue="0" desc="只处理Nox的验证方式|韩国版默认为1"/>
+	</struct>
+	
+	<struct name="auth_svrrun_status" version ="10" >
+		<entry name="RecvCltMsg" type="int" />
+		<entry name="SendCltMsgFail" type="int" />
+		<entry name="BadCltMsg" type="int" />
+	</struct>
+	
+</metalib>

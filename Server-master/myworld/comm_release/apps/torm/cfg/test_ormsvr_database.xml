@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<metalib name="roledb"  version="10" tagsetversion="1" >
+
+<macro name="MAX_ROLE_ITEM" value="32" />
+<macro name="MAX_ROLE_SKILL" value="64" />
+<macro name="ROLE_TABLE_SPLIT_FACTOR" value="7" />
+
+<struct name="ItemDetail"  version="10">
+	<entry name="ItemIndex" type="int" />
+	<entry name="Grid" type="int" />
+</struct>
+
+<struct name="ItemInfo"  version="10">
+	<entry name="ItemNum" type="int" />
+	<entry name="ItemList" type="ItemDetail" count="MAX_ROLE_ITEM" refer="ItemNum" />
+</struct>
+
+<struct name="SkillDetail"  version="10">
+	<entry name="SkillIndex" type="int" />
+	<entry name="SkillLevel" type="int" />
+</struct>
+
+<struct name="SkillInfo"  version="10">
+	<entry name="SkillNum" type="int" />
+	<entry name="SkillList" type="SkillDetail" count="MAX_ROLE_SKILL" refer="SkillNum" />
+</struct>
+
+<struct name="RolePackag"  version="10">
+	<entry name="ItemInfo" type="ItemInfo" />
+	<entry name="SkillInfo" type="SkillInfo" />
+</struct>
+
+<struct name="RoleData"  primarykey="RoleName" splittablefactor="ROLE_TABLE_SPLIT_FACTOR"  splittablekey="Uin" version="10" >
+	<entry name="Uin" type="int" />
+	<entry name="RoleName" type="string" size="32" />
+	<entry name="Exp" type="int" />
+	<entry name="HP" type="int" />
+	<entry name="Str" type="int" />
+	<entry name="Vit" type="int" />
+	<entry name="Spi" type="int" />
+	<entry name="Package" type="RolePackag" />
+</struct>
+
+</metalib>

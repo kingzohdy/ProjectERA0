@@ -1,0 +1,78 @@
+<TLOGConf>
+	<PriorityHigh>NULL</PriorityHigh>
+	<PriorityLow>UNKNOWN</PriorityLow>
+	<DelayInit>0</DelayInit>
+	<SuppressError>1</SuppressError>
+	<Count>1</Count>
+	<CategoryList>
+		<Name>VecTest</Name>
+		<PriorityHigh>NULL</PriorityHigh>
+		<PriorityLow>UNKNOWN</PriorityLow>
+		<LevelDispatch>1</LevelDispatch>				
+		<MustSucc>0</MustSucc>
+		<Format>[%d]%m%n</Format>
+		<ForwardCat></ForwardCat>
+		<Device>
+			<Type>VEC</Type>
+			<Device>
+				<Vec>
+					<Count>2</Count>
+					<Elements>
+						<ID>0</ID>
+						<Ctrl>0</Ctrl>
+						<FilterVec>
+							<Count>1</Count>
+							<Filters>
+								<IDFilter>
+									<Start>0</Start>
+									<Count>100</Count>
+								</IDFilter>
+								<ClsFilter>
+								</ClsFilter>
+							</Filters>
+						</FilterVec>
+						<Type>NET</Type>
+						<Device>
+							<Net>
+								<Url>tcp://127.0.0.1:6666</Url>
+								<Sendbuff>0</Sendbuff>
+								<RecvBuff>32768</RecvBuff>
+								<AutoReconnect>10</AutoReconnect>
+								<iMaxRetry>20</iMaxRetry>                 
+								<iConnTimeout>1000</iConnTimeout>                     
+								<iSendTimeout>1000</iSendTimeout>  
+							</Net>
+						</Device>	
+					</Elements>
+					<Elements>
+						<ID>0</ID>
+						<Ctrl>0</Ctrl>
+						<FilterVec>
+							<Count>1</Count>
+							<Filters>
+								<IDFilter>
+									<Start>100</Start>
+									<Count>100</Count>
+								</IDFilter>
+								<ClsFilter>
+								</ClsFilter>
+							</Filters>
+						</FilterVec>
+						<Type>FILE</Type>
+						<Device>
+							<File>
+								<Pattern>./test_vec.log</Pattern>
+								<BuffSize> 1024000 </BuffSize>
+								<SizeLimit> 51200000 </SizeLimit>
+								<Precision> 1 </Precision>
+								<MaxRotate> 10 </MaxRotate>
+								<SyncTime> 0 </SyncTime>
+								<NoFindLatest> 0 </NoFindLatest>
+							</File>	
+						</Device>	
+					</Elements>	
+				</Vec>
+			</Device>
+		</Device>
+	</CategoryList>
+</TLOGConf>

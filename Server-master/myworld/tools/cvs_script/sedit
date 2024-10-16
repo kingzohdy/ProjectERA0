@@ -1,0 +1,179 @@
+#!/bin/ksh
+# CVS program sedit
+# Program to check out the file from CVS read/write mode with locking
+
+cmdname=`basename $0`
+
+Usage()
+{
+#       print "\nUsage: $cmdname [-r revision_number] [-F] <filename>"
+#       print "The options -r, -F are optional "
+#       print "The option -F is FORCE edit even if file is "
+#       print "locked by another developer"
+
+        print "\nUsage: $cmdname [-r revision_number] <filename>"
+        print "The options -r are optional "
+
+        print "For example - "
+        print " $cmdname -r 1.1 foo.cpp"
+        print " $cmdname foo.cpp "
+#       print " $cmdname -F foo.cpp "
+        print " "
+}
+
+# Command getopt will not supported in next major release. 
+# Use getopts instead. 
+#while getopts r:F ii
+while getopts r: ii
+do
+        case $ii in
+        r) FLAG1=$ii; OARG1="$OPTARG";;
+#       F) FLAG2=$ii; OARG2="$OPTARG";;
+        ?) Usage; exit 2;;
+        esac
+done
+shift ` expr $OPTIND - 1 `
+
+#echo FLAG1 = $FLAG1 , OARG1 = $OARG1
+
+if [ $# -lt 1 ]; then
+        Usage
+        exit
+fi
+
+hme=` echo $HOME | cut -f1 -d' '  `
+if [ "$hme" = "" ]; then
+        print "\nError: \$HOME is not set!!\n"
+        exit
+fi
+
+bkextn=sedit_bak
+
+cur_dir=`pwd`
+#echo $cur_dir
+
+len=${#hme}
+len=$(($len + 2))
+#echo $len
+
+subdir=` echo $cur_dir | cut -b $len-2000 `
+#echo $subdir
+
+if [ "$subdir" = "" ]; then
+        fdname=$1
+else
+        fdname=$subdir"/"$1
+fi
+
+# If file is already checked out by another developer....
+cvs_root=` echo $CVSROOT | cut -f1 -d' '  `
+if [ "$cvs_root" = "" ]; then
+        print "\nError: \$CVSROOT is not set!!\n"
+        exit
+fi
+cldir=$CVSROOT/$subdir/Locks
+mkdir $cldir 2>/dev/null
+chmod g+w cldir 2>/dev/null
+rcsfile=$CVSROOT/$subdir/$1,v
+#echo $rcsfile
+
+if [ ! -e $rcsfile ]; then
+        print "\nError: File $1 does not exist in CVS repository!!\n"
+        exit
+fi
+
+# Get the tip revision number of the file....
+# Use tmpfile as the arg cannot be set inside the sub-shell
+tmpfile=$hme/sedit-lock.tmp
+\rm -f $tmpfile 2>/dev/null
+if [ "$FLAG1" = "" ]; then
+        (
+        cd $hme
+	cvs log $fdname > $tmpfile
+        )
+        OARG1=`head -6 $tmpfile | grep head: | awk '{print $2}'`
+        \rm -f $tmpfile 2>/dev/null
+fi
+
+lockfile=$cldir/$1-$OARG1
+#if [ -e $lockfile -a "$FLAG2" = "" ]; then
+if [ -e $lockfile ]; then
+        print "\nError: File $1 Revision $OARG1 already locked by another developer !!"
+        aa=` ls -l $lockfile | awk '{print "Locking developers unix login name is = " $3}' `
+        print $aa
+        print "That developer should do scommit OR sunlock to release the lock"
+        print " "
+#       print "You can also use -F option to force edit the file even if"
+#       print "the file is locked by another developer. But you must talk to"
+#       print "other developer to work concurrently on this file." 
+#       print "For example - this option is useful if you work on a seperate"
+#       print "C++ function in the file which does not interfere with other"
+#       print "developer."
+#       print " "
+        exit
+fi
+
+# Get read-only copy now....
+if [ ! -e $1 ]; then
+        (
+        cd $hme
+        cvs -r checkout $fdname 1>/dev/null
+        )
+fi
+
+# Check if file already exists....
+if [ -f $1 ]; then
+        user_perms=" "
+        group_perms=" "
+        other_perms=" "
+        user_perms=`ls -l $1 | awk '{print $1 }' | cut -b3-3 `
+        group_perms=`ls -l $1 | awk '{print $1 }' | cut -b6-6 `
+        other_perms=`ls -l $1 | awk '{print $1 }' | cut -b9-9 `
+        if [ "$user_perms" = "w" -o "$group_perms" = "w"  \
+                -o "$other_perms" = "w" ]; then
+                print "\nwarning: The file is writable. try supdate"
+                #print "       You must backup, scommit or delete file and"
+                #print "       try $cmdname again\n"
+		supdate $1
+		if [ $? != "0" ];then
+                	exit
+		fi
+		print "sedit success"
+		touch $lockfile
+		exit
+        fi
+        #print "\nNote: The file $1 is read-only."
+        #print "Hence I am moving it to $1.$bkextn ....\n"
+        \mv -f $1 $1.$bkextn
+        chmod 444 $1.$bkextn
+elif [ -d $1 ]; then
+        print "\nError: $1 is a directory and NOT a file. Aborting $cmdname ....\n"
+        exit
+fi
+
+# Create subshell
+print "\nNow getting the file $1 from CVS repository ...\n"
+(
+cd $hme
+#echo $fdname
+# Use -A option to clear the sticky tag and to get 
+# the HEAD revision version
+if [ "$FLAG1" = "" ]; then
+        #cvs -w checkout -A $fdname
+        cvs -w checkout $fdname
+else
+        #cvs -w checkout -A -$FLAG1 $OARG1 $fdname
+        cvs -w checkout  -$FLAG1 $OARG1 $fdname
+fi
+)
+
+if [ -e $1 ]; then
+        touch $lockfile
+fi
+
+#pwd
+
+print "\nDone $cmdname"
+#print "\nTip (Usage): $cmdname <filename> \n"
+
+(cd $hme; chmod u+w $fdname)

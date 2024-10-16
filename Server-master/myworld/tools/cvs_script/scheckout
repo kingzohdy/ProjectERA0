@@ -1,0 +1,15 @@
+#!/bin/ksh
+
+pro="myworld"
+
+if [ $# -gt 1 ]; then
+        print "need no args"
+        exit 2
+fi
+
+hme=` echo $HOME | cut -f1 -d' '  `
+cd ${hme}
+
+cvs checkout ${pro}
+cd ${pro}
+find src -type f|xargs chmod -w 

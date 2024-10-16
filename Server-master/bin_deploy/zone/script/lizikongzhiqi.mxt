@@ -1,0 +1,4 @@
+proc 1
+	COMMIT_XUKONG_ENERGY 0
+	; 0=∑µªÿ±Í÷æ
+ENDPROC

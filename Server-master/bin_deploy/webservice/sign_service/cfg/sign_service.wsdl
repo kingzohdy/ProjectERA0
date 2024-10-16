@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="gb2312"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://www.ljy0.com/SignService/" xmlns:whttp="http://www.w3.org/ns/wsdl/http" xmlns:wsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.ljy0.com/SignService/">
+	<types>
+		<s:schema elementFormDefault="qualified" targetNamespace="http://www.ljy0.com/SignService/">
+			<!--错误信息-->
+			<s:complexType name="ErrorResponse">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="ErrorText" type="s:string"/>
+				</s:sequence>
+			</s:complexType>
+			<!--
+ErrorCode 对应宏
+	<macrosgroup name="SIGN_ERR">
+		<macro name="SIGN_ERR_SUCCEEDED" value="0" desc="操作成功" />
+		<macro name="SIGN_ERR_SYS" value="-1" desc="系统错误" />
+		<macro name="SIGN_ERR_NET" value="-2" desc="网络错误" />
+		<macro name="SIGN_ERR_TDR" value="-3" desc="TDR错误" />
+		<macro name="SIGN_ERR_ARGS" value="-4" desc="参数错误" />
+		<macro name="SIGN_ERR_ONLINE" value="-5" desc="操作必须角色不在线" />
+		<macro name="SIGN_ERR_NOT_FOUND" value="-6" desc="查找不到指定的信息" />
+		<macro name="SIGN_ERR_OUTLINE" value="-7" desc="操作必须角色在线" />
+		<macro name="SIGN_ERR_DUP" value="-8" desc="重名" />
+		<macro name="SIGN_ERR_XML" value="-9" desc="输出xml时出错" />
+		<macro name="SIGN_ERR_TIME_OUT" value="-10" desc="操作超时" />
+		<macro name="SIGN_ERR_REGION_NOT_FOUND" value="-11" desc="未找到指定的大区" />
+		<macro name="SIGN_ERR_SQL_CREATE" value="-12" desc="创建sql语句失败" />
+		<macro name="SIGN_ERR_SQL_QUERY" value="-13" desc="执行sql语句失败" />
+		<macro name="SIGN_ERR_SQL_EFFECT_ROW" value="-14" desc="影响行错误|小于1行" />
+		<macro name="SIGN_ERR_DB_HANDLE" value="-15" desc="数据库句柄错误" />
+		<macro name="SIGN_ERR_DB_RESULT" value="-16" desc="数据库返回错误" />
+	</macrosgroup>-->
+			
+			<!--网站获取帐号的签名信息,这里有个约定:
+			如果帐号绑定了密保卡或需要激活码请在调用此接口前web端自行判断,
+			获取了签名后,插件端就可以直接进游戏了-->
+			<s:complexType name="GetSignReq">
+				<s:sequence>
+
+					<!--区id-->
+					<s:element minOccurs="0" maxOccurs="1" name="RegionID" type="s:int" />
+
+					<!--帐号Uin-->
+					<s:element minOccurs="0" maxOccurs="1" name="Uin" type="s:int" />
+
+					<!--帐号名-->
+					<s:element minOccurs="0" maxOccurs="1" name="AccName" type="s:string" />
+
+					<!--生日|格式为 19820623-->
+					<s:element minOccurs="0" maxOccurs="1" name="Birthday" type="s:string" />
+
+					<!--客户端IP-->
+					<s:element minOccurs="0" maxOccurs="1" name="ClientIP" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+
+			<s:complexType name="GetSignRes">
+				<s:sequence>
+					<!--错误码|0成功 -->
+					<s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" default="0"/>
+					<!--错误信息-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrError" type="s0:ErrorResponse"/>
+
+					<!--xml结构信息|WebSignInfoHex-->
+					<!--
+meta name:WebSignInfoHex
+
+	<macro name="MAX_WEB_SIGN_HEX_LEN" value="128" desc="最大网站签名信息HEX格式的长度|必须是两个WebSignInfo结构体长度以上" />
+
+	<struct name="WebSignInfoHex"  desc="网站签名信息的hex格式" version="1513">
+		<entry name="Sign" type="tinyint" count="MAX_WEB_SIGN_HEX_LEN" desc="WebSignInfo结构的hex格式"   />
+	</struct>
+
+-->
+					<s:element minOccurs="0" maxOccurs="1" name="StrXML" type="s:string" />
+				</s:sequence>
+			</s:complexType>
+		</s:schema>
+	</types>
+	
+	<!--网站获取帐号的签名信息-->
+	<message name="GetSignIn">
+		<part name="GetSignReq" type="s0:GetSignReq"/>
+	</message>
+	<message name="GetSignOut">
+		<part name="GetSignRes" type="s0:GetSignRes"/>
+	</message>
+	<portType name="SignServiceSoap">		
+		<!--网站获取帐号的签名信息-->
+		<operation name="GetSign">
+			<input message="s0:GetSignIn"/>
+			<output message="s0:GetSignOut"/>
+		</operation>
+	</portType>
+	<binding name="SignServiceSoap" type="s0:SignServiceSoap">		
+		<!--网站获取帐号的签名信息-->
+		<operation name="GetSign">
+			<wsoap:operation soapAction="http://www.ljy0.com/sign_service/GetSign" style="document"/>
+			<input>
+				<wsoap:body use="literal"/>
+			</input>
+			<output>
+				<wsoap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="SignService">
+		<documentation>sign_service </documentation>
+		<port name="SignService" binding="s0:SignServiceSoap">
+			<wsoap:address location="http://192.168.0.57:800/cgi-bin/sign_service"/>
+		</port>
+	</service>
+</definitions>
+

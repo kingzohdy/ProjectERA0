@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="gbk"?>
+<VersionServer version="2">
+		<!-- 服务器主配置信息-->
+    <MainConf type="VersionServerConf">
+        <TconndEntityID>10.2.1.1 </TconndEntityID>
+        <!-- 产品业务扩展逻辑so,如果不需要扩展可以使用以下默认项 -->
+        <BusinessSOFile>../conf/libcusmmogbusiness.so </BusinessSOFile>
+        <BusinessConfFile>../conf/mmogbusinessconf.xml </BusinessConfFile>
+        <BusinessTDRLIB>../conf/mmog_data.tdr </BusinessTDRLIB>
+    </MainConf>
+    <VersionsConf type="UpdatingVersionsConf">
+	     <!-- 游戏服务器当前运行最低版本-->   
+	         <AllowedLowVer>0.0.1.0 </AllowedLowVer>
+         <!-- 服务器当前发布的版本序列 -->
+ 		    <MidVersion>0.0.1.0</MidVersion>
+  			<MidVersion>0.0.2.0</MidVersion>
+  			<MidVersion>0.0.2.1</MidVersion>
+   			<MidVersion>0.0.3.0</MidVersion>  
+   			<!-- http下载服务器的URL地址，如果文件的HTTP下载URL为http://xx.gamedl.qq.com/1.2.1.1/list.txt,则此处配置xx.gamedl.qq.com -->
+        <HttpURLAddr>http://10.1.44.61:8000 </HttpURLAddr>
+        
+        <!--0.0.3.1版本回滚,回滚到0.0.2.1-->
+        <!-- <RollBackPackageS type="RollBackPackage"> -->
+        <!--   <RollBackFrom>0.0.3.0</RollBackFrom> -->
+        <!--   <RollBackTo>0.0.2.1</RollBackTo> -->
+           <!--回滚目的版本显示字符串-->
+        <!--   <RollBackToVerStr>0.2.1</RollBackToVerStr> -->
+        <!-- </RollBackPackageS> -->
+         
+       <!-- 0.0.3.0版本灰度升级限制 -->
+		    <GrayUpdatePolicy type="GrayUpdate"> 
+		      <Version>0.0.3.0 </Version> 
+		          <!--业务控制灰度升级条件默认在mmogbusinessconf.xml中配置 -->
+		      <EnableBusinessLimit>1 </EnableBusinessLimit> 
+	     </GrayUpdatePolicy>  
+        
+         <!-- 更新包下载信息-->
+			  <Package type="UpdatePackage">
+			     <!-- 升级包源版本-->
+			    <VersionFrom>0.0.1.0</VersionFrom>
+			     <!-- 升级包目的版本-->
+			    <VersionTo>0.0.2.0</VersionTo>
+			    <!--升级包名称-->
+			    <Name>LQ-0.0.1-0.0.2-zhCN.pk0</Name>
+			    <!--升级目的版本显示字符串-->
+			    <Description>0.2.0</Description>
+			    <HttpURL>/LQ-0.0.1-0.0.2-zhCN.pk0</HttpURL>
+			    <!--升级包Hash值-->
+			    <FileHash>1c18bd23087951316cfecdf187d61e6c </FileHash>
+			    <!--升级包大小-->
+			    <Size>4051037</Size>
+			    <!-- 升级策略-->
+			    <UpdateStrategy> 1</UpdateStrategy>
+			    <!-- 下载方法-->
+			    <DownloadMechanishm>1</DownloadMechanishm>  
+			  </Package>
+			  
+			  <!-- 更新包下载信息-->
+			   <Package type="UpdatePackage">
+			    <VersionFrom>0.0.2.0</VersionFrom>
+			    <VersionTo>0.0.2.1</VersionTo>
+			    <Name>LQ-0.0.2-0.2.1-zhCN.pk0</Name>
+			    <Description>0.2.1</Description>
+			    <HttpURL>/LQ-0.0.2-0.2.1-zhCN.pk0</HttpURL>
+			     <FileHash>95c2353fa31f71873c7cb805866911da </FileHash>
+			     <Size>3989212</Size>
+			     <UpdateStrategy> 1</UpdateStrategy>
+			    <DownloadMechanishm>1</DownloadMechanishm>  
+			  </Package>	
+			
+			   <!-- 更新包下载信息-->
+			   <Package type="UpdatePackage">
+			    <VersionFrom>0.0.2.1</VersionFrom>
+			    <VersionTo>0.0.3.0</VersionTo>
+			    <Name>LQ-0.2.1-0.0.3-zhCN.pk0</Name>
+			    <Description>0.3.0</Description>
+			    <HttpURL>/LQ-0.2.1-0.0.3-zhCN.pk0</HttpURL>
+			     <FileHash>95c2353fa31f71873c7cb805866911da </FileHash>
+			     <Size>3989212</Size>
+			     <UpdateStrategy> 1</UpdateStrategy>
+			    <DownloadMechanishm>1</DownloadMechanishm>  
+			  </Package>			
+	 </VersionsConf>
+</VersionServer>

@@ -1,0 +1,58 @@
+# @file $RCSfile: Makefile_xml,v $
+#  general description of this module
+#  $Id: Makefile_xml,v 1.2 2010/12/30 08:44:12 kent Exp $
+#  @author $Author: kent $
+#  @date $Date: 2010/12/30 08:44:12 $
+#  @version 1.0
+#  @note Editor: Vim 6.1, Gcc 4.0.2, tab=4
+#  @note Platform: Linux
+
+include ../mmog.mk
+
+.PHONY: all clean
+
+all:proto_cs role_db_meta zone torm_protocol proto_ss  cgi robot res op_log
+proto_cs:proto_comm.xml proto_cs.xml proto_comm.xml
+	$(GAME_COMM_TOOLS)/tdr -H -O ../comm/  --no_type_prefix   --no_lowercase_prefix proto_comm.xml  proto_cs.xml
+	$(GAME_COMM_TOOLS)/tdr -C -o ../comm/proto_cs.c proto_comm.xml  proto_cs.xml
+	$(GAME_COMM_TOOLS)/tdr -B -o ../comm/proto_cs.tdr proto_comm.xml proto_cs.xml
+	../comm/confuse ../comm/proto_cs.tdr ../comm/proto_cs.meta
+
+proto_ss:proto_comm.xml proto_ss.xml  proto_comm.xml
+	$(GAME_COMM_TOOLS)/tdr -H -O ../comm/  --no_type_prefix   --no_lowercase_prefix proto_comm.xml  proto_ss.xml
+	$(GAME_COMM_TOOLS)/tdr -C -o ../comm/proto_ss.c proto_comm.xml  proto_ss.xml	
+	$(GAME_COMM_TOOLS)/tdr -B -o ../comm/proto_ss.tdr proto_comm.xml proto_ss.xml
+
+role_db_meta:role_db_meta.xml tormsvr_conf_desc.xml proto_comm.xml
+	$(GAME_COMM_TOOLS)/tdr -B -o $(MMOG_HOME)/cfg/db_meta/role_db_meta.tdr proto_comm.xml role_db_meta.xml
+	$(GAME_COMM_TOOLS)/tdr -H -O ../zone/zone_svr/  --no_type_prefix   --no_lowercase_prefix proto_comm.xml role_db_meta.xml
+	rm -rf ../zone/zone_svr/proto_comm.h
+	
+zone:zone_svr_conf_desc.xml zone_conn_conf_desc.xml
+	$(GAME_COMM_TOOLS)/tdr -H -O ../zone/zone_svr/  --no_type_prefix   --no_lowercase_prefix zone_svr_conf_desc.xml
+	$(GAME_COMM_TOOLS)/tdr -C -o ../zone/zone_svr/zone_svr_conf_desc.c zone_svr_conf_desc.xml 
+	
+	
+	
+torm_protocol:torm_protocol.xml
+	$(GAME_COMM_TOOLS)/tdr -B -o $(MMOG_HOME)/cfg/db_meta/torm_protocol.tdr torm_protocol.xml
+	
+
+cgi:cgi_conf_desc.xml
+	$(GAME_COMM_TOOLS)/tdr -H cgi_conf_desc.xml
+	$(GAME_COMM_TOOLS)/tdr -C -o ./cgi_conf_desc.c  cgi_conf_desc.xml
+
+robot:robot_conf_desc.xml
+	$(GAME_COMM_TOOLS)/tdr -H robot_conf_desc.xml
+	$(GAME_COMM_TOOLS)/tdr -C -o ./robot_conf_desc.c  robot_conf_desc.xml
+
+res:resdb_meta.xml
+	$(GAME_COMM_TOOLS)/tdr -H -O ../comm/  --no_type_prefix   --no_lowercase_prefix proto_comm.xml resdb_meta.xml
+	$(GAME_COMM_TOOLS)/tdr -B -o ../../tools/db_to_bin/resdb_meta.tdr proto_comm.xml resdb_meta.xml
+
+op_log:op_log_meta.xml op_log.xml proto_comm.xml
+	$(GAME_COMM_TOOLS)/tdr -H -O ../comm/  --no_type_prefix   --no_lowercase_prefix proto_comm.xml  op_log_meta.xml 
+	$(GAME_COMM_TOOLS)/tdr -C -o ../comm/op_log_meta.c proto_comm.xml op_log_meta.xml 
+	$(GAME_COMM_TOOLS)/tdr -B -o ../comm/op_log_meta.tdr proto_comm.xml op_log_meta.xml
+clean:
+	

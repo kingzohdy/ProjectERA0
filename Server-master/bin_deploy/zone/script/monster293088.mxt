@@ -1,0 +1,12 @@
+
+
+proc 2
+	GET_PLAYER_ID 1 41
+	TARGET_ADD_STATUS 1 @41 1219 1 0 1
+	GET_MON_INFO 0 0 0 0 0 0 30 31
+;	GET_TARGET_INFO 3 3 30
+;	GET_TARGET_INFO 3 4 31
+;	task_fini 1316 0
+	call_mon 1 293087 0 3 @30 @31 100
+
+endproc 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GBK" standalone="yes" ?>
+<chat_mon_serviceconf version="10">
+    <SpawnIP>0.0.0.0</SpawnIP>
+    <SpawnPort>8010 </SpawnPort>
+    <SpawnNum>1 </SpawnNum>
+    <FcgiWebServerIPList></FcgiWebServerIPList>
+    <SoapEncoding>UTF8 </SoapEncoding>
+    <ChannelKeyStart>0 </ChannelKeyStart>
+    <HeartBeatInterval>10 </HeartBeatInterval>
+    <DirtyWordFile>../cfg/dirtyword.txt</DirtyWordFile>
+    <DirtyWordMd5File>../cfg/dirtyword.txt.md5</DirtyWordMd5File>
+    <RoleDBMetaFile>../cfg/role_db_meta.tdr</RoleDBMetaFile>
+    <ServiceDBInfo type="TORMConnectDBInfo">
+        <IDX>1 </IDX>
+        <MajorVersion>0 </MajorVersion>
+        <MinVersion>0 </MinVersion>
+        <DBMSName>mysql</DBMSName>
+        <DBMSConnectionInfo>localhost</DBMSConnectionInfo>
+        <DBMSCurDatabaseName>testdb</DBMSCurDatabaseName>
+        <DBMSUser>user</DBMSUser>
+        <DBMSPassword>passwd</DBMSPassword>
+        <DBMSSock>/tmp/mysql.sock</DBMSSock>
+    </ServiceDBInfo>
+    <Listener type="ChatMonListener">
+        <Name>default</Name>
+        <Url>tcp://192.168.0.77:8020?reuse=1</Url>
+        <SendBuff>655360 </SendBuff>
+        <RecvBuff>655360 </RecvBuff>
+        <MaxIdle>95 </MaxIdle>
+        <Backlog>20 </Backlog>
+        <MaxNoAuthIdle>3 </MaxNoAuthIdle>
+    </Listener>
+    <ChatLogDBConnNum>1 </ChatLogDBConnNum>
+    <ChatMonLogDBConnInfo type="ChatMonLogDBConnInfo">
+        <Name>world_3_10</Name>
+        <Url>udp://192.168.0.77:9320</Url>
+    </ChatMonLogDBConnInfo>
+</chat_mon_serviceconf>

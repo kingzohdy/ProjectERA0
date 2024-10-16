@@ -1,0 +1,45 @@
+;50元充值礼包
+
+
+proc 1
+	strvar Num
+	GET_PACK_SPACE 0 Num
+
+	if Num < 7
+		add_sys_msg_start
+		add_sys_msg 请预留7个背包空格再开启礼包！
+		set_sys_msg_mode 4 0 0
+		msg_info
+		return
+	else
+		
+		DEC_ITEM_NUM_INPAK 5052933 1 100
+		if 100 = 0
+			ADD_BIND_ITEM_NUM_INPAK 5002002 1 1 20
+			ADD_BIND_ITEM_NUM_INPAK 5003002 1 1 20
+			ADD_BIND_ITEM_NUM_INPAK 3550002 1 1 20
+			
+			GET_ID_PLAYER_INFO 0 6 30
+			if 30 = 1
+			
+				ADD_BIND_ITEM_NUM_INPAK 3051002 1 1 20
+				ADD_BIND_ITEM_NUM_INPAK 3451002 1 1 20
+				ADD_BIND_ITEM_NUM_INPAK 3751002 1 1 20
+				ADD_BIND_ITEM_NUM_INPAK 3851002 1 1 20
+			else
+				ADD_BIND_ITEM_NUM_INPAK 3050002 1 1 20
+				ADD_BIND_ITEM_NUM_INPAK 3450002 1 1 20
+				ADD_BIND_ITEM_NUM_INPAK 3750002 1 1 20
+				ADD_BIND_ITEM_NUM_INPAK 3850002 1 1 20
+			
+			endif
+			
+			
+		endif
+	endif
+	;	ADD_ITEM_NUM_INPAK 5012115 1 1 20
+
+endproc
+
+
+

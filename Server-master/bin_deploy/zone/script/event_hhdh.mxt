@@ -1,0 +1,399 @@
+;航海大亨   帆船比赛事件   事件ID:53     活动助手ID:95
+
+PROC 1
+	call 200
+	;清零
+	HANG_HAI_BEGIN 1
+	set_event_var 0 32 0 1
+	set_event_var 4 32 0 1
+	set_event_var 8 32 0 1
+	
+	;刷哥伦布npc
+	NEW_MAP_LIFE_NPC 1 4403 304129 23900 32000 158 0 npc304129.mac
+	
+	DEL_NPC 304132 0
+	
+	DEL_NPC 304130 0
+	NEW_MAP_LIFE_NPC 1 4403 304138 24600 30000 158 0 npc304138.mac
+	
+	add_sys_msg_start
+	add_sys_msg 无畏的英雄，勇敢的水手们，新一届的航海大亨比赛开始了，赶紧来参加吧，去寻找海上的宝藏，成为航海之王！
+	set_sys_msg_mode 6 0 0
+	svr_msg_info
+ENDPROC
+
+PROC 2
+	HANG_HAI_END 1
+	OPEN_HANG_HAI_RANGE_UI 1
+	
+	call 200
+	
+	;刷304132npc
+	NEW_MAP_LIFE_NPC 1 4403 304132 23900 32000 158 0 npc304132.mac
+	
+	NEW_MAP_LIFE_NPC 1 4403 304130 24600 30000 158 0 npc304130.mac
+	DEL_NPC 304138 0
+		
+	add_sys_msg_start
+	add_sys_msg 航海活动圆满结束！
+	set_sys_msg_mode 6 0 0
+	svr_msg_info
+ENDPROC
+
+;10秒触发一次
+PROC 3	
+	;call 100
+	
+	;get_event_var 0 32 1 10
+	;30秒刷一次
+	;if @10 = 3
+	;	call 202
+	;	set_event_var 0 32 0 1
+	;else
+	;	add 10 1
+	;	set_event_var 0 32 @10 1
+	;endif
+	
+	;get_event_var 4 32 1 11
+	;if @11 = 3
+	;	get_event_var 8 32 1 12
+	;	if @12 = 1
+	;		call 204
+	;		set_event_var 8 32 0 1
+	;	else
+	;;		call 203
+	;	set_event_var 8 32 1 1
+	;	endif
+	;	set_event_var 4 32 0 1
+	;else
+	;	add 11 1
+	;	set_event_var 4 32 @11 1
+	;endif
+
+	
+	;刷宝箱
+	;get_event_var 4 32 1 11
+	;5分钟后开始刷宝箱
+	;if @11 = 29
+	;	set_event_var 8 32 1 1
+	;else
+	;	add 11 1
+	;	set_event_var 4 32 @11 1
+	;endif
+	
+	;get_event_var 8 32 1 12
+	;if @12 = 1
+	;	get_event_var 0 32 1 10
+		;30秒刷一次
+	;	if @10 = 3
+	;		call 205
+	;		set_event_var 0 32 0 1
+	;	else
+	;		add 10 1
+	;		set_event_var 0 32 @10 1
+	;	endif
+	;endif
+ENDPROC
+
+;刷临时道具
+PROC 100
+	GET_MAP_INST 4403 10
+	;加速    刷临时道具    12个
+	NEW_TMP_ITEM 1460310 20788 34594 0 0 10 0
+	NEW_TMP_ITEM 1460310 16646 34606 0 0 10 0
+	NEW_TMP_ITEM 1460310 10764 34801 0 0 10 0
+	NEW_TMP_ITEM 1460310 7726 31953 0 0 10 0
+	NEW_TMP_ITEM 1460310 11773 5495 0 0 10 0
+	NEW_TMP_ITEM 1460310 25422 4668 0 0 10 0
+	NEW_TMP_ITEM 1460310 33987 5254 0 0 10 0
+	NEW_TMP_ITEM 1460310 8610 30629 0 0 10 0
+	NEW_TMP_ITEM 1460310 5339 27013 0 0 10 0
+	NEW_TMP_ITEM 1460310 8384 26369 0 0 10 0
+	NEW_TMP_ITEM 1460310 6377 16528 0 0 10 0
+	NEW_TMP_ITEM 1460310 38459 20220 0 0 10 0
+	
+	;减速    刷临时道具    12个
+	NEW_TMP_ITEM 1460311 19089 34567 0 0 10 0
+	NEW_TMP_ITEM 1460311 14563 34765 0 0 10 0
+	NEW_TMP_ITEM 1460311 10259 32400 0 0 10 0
+	NEW_TMP_ITEM 1460311 8049 29537 0 0 10 0
+	NEW_TMP_ITEM 1460311 7599 22572 0 0 10 0
+	NEW_TMP_ITEM 1460311 8316 17190 0 0 10 0
+	NEW_TMP_ITEM 1460311 9816 11927 0 0 10 0
+	NEW_TMP_ITEM 1460311 11923 6204 0 0 10 0
+	NEW_TMP_ITEM 1460311 24799 5351 0 0 10 0
+	NEW_TMP_ITEM 1460311 34687 17472 0 0 10 0
+	NEW_TMP_ITEM 1460311 32976 27317 0 0 10 0
+	NEW_TMP_ITEM 1460311 27975 3128 0 0 10 0
+	
+	;晕眩   刷临时道具    12个
+	NEW_TMP_ITEM 1460313 21451 32845 0 0 10 0
+	NEW_TMP_ITEM 1460313 16245 33986 0 0 10 0
+	NEW_TMP_ITEM 1460313 12058 32452 0 0 10 0
+	NEW_TMP_ITEM 1460313 9301 28364 0 0 10 0
+	NEW_TMP_ITEM 1460313 8957 24118 0 0 10 0
+	NEW_TMP_ITEM 1460313 9826 18736 0 0 10 0
+	NEW_TMP_ITEM 1460313 11114 13781 0 0 10 0
+	NEW_TMP_ITEM 1460313 13854 5903 0 0 10 0
+	NEW_TMP_ITEM 1460313 23093 6422 0 0 10 0
+	NEW_TMP_ITEM 1460313 32815 5350 0 0 10 0
+	NEW_TMP_ITEM 1460313 33481 14501 0 0 10 0
+	NEW_TMP_ITEM 1460313 32000 24211 0 0 10 0
+ENDPROC
+
+proc 200
+	GET_MAP_INST 4403 10
+	DEL_NPC 304129 0
+	DELETE_MON_BY_DEFID 293523 1
+endproc
+
+;30秒刷一次
+proc 202
+	;绑银 1460315
+	NEW_TMP_ITEM 1460315 20880 32845 0 0 30 0
+	NEW_TMP_ITEM 1460315 15583 34717 0 0 30 0
+	NEW_TMP_ITEM 1460315 11079 33510 0 0 30 0
+	NEW_TMP_ITEM 1460315 9243 32020 0 0 30 0
+	NEW_TMP_ITEM 1460315 8305 26099 0 0 30 0
+	NEW_TMP_ITEM 1460315 5074 25290 0 0 30 0
+	NEW_TMP_ITEM 1460315 8959 19571 0 0 30 0
+	NEW_TMP_ITEM 1460315 5624 17908 0 0 30 0
+	NEW_TMP_ITEM 1460315 9030 9598 0 0 30 0
+	NEW_TMP_ITEM 1460315 12123 8340 0 0 30 0
+	NEW_TMP_ITEM 1460315 18750 4128 0 0 30 0
+	NEW_TMP_ITEM 1460315 27733 2602 0 0 30 0
+	NEW_TMP_ITEM 1460315 33704 3657 0 0 30 0
+	NEW_TMP_ITEM 1460315 35046 6872 0 0 30 0
+	NEW_TMP_ITEM 1460315 33003 14685 0 0 30 0
+	NEW_TMP_ITEM 1460315 34278 23251 0 0 30 0
+	NEW_TMP_ITEM 1460315 32683 26667 0 0 30 0
+	
+	;经验 1460314
+	NEW_TMP_ITEM 1460314 17852 34643 0 0 30 0
+	NEW_TMP_ITEM 1460314 13792 34892 0 0 30 0
+	NEW_TMP_ITEM 1460314 9439 33817 0 0 30 0
+	NEW_TMP_ITEM 1460314 9966 30228 0 0 30 0
+	NEW_TMP_ITEM 1460314 8477 30508 0 0 30 0
+	NEW_TMP_ITEM 1460314 5350 28295 0 0 30 0
+	NEW_TMP_ITEM 1460314 9253 16350 0 0 30 0
+	NEW_TMP_ITEM 1460314 11683 12012 0 0 30 0
+	NEW_TMP_ITEM 1460314 10922 6308 0 0 30 0
+	NEW_TMP_ITEM 1460314 15237 4195 0 0 30 0
+	NEW_TMP_ITEM 1460314 19986 2698 0 0 30 0
+	NEW_TMP_ITEM 1460314 31391 3046 0 0 30 0
+	NEW_TMP_ITEM 1460314 26804 4066 0 0 30 0
+	NEW_TMP_ITEM 1460314 33647 9539 0 0 30 0
+	NEW_TMP_ITEM 1460314 34977 17824 0 0 30 0
+	NEW_TMP_ITEM 1460314 31384 24649 0 0 30 0
+	NEW_TMP_ITEM 1460314 6779 25121 0 0 30 0
+endproc
+
+;事件刚开始时。30秒开始刷。以后一分钟刷
+proc 203
+	;银币 1460312
+	NEW_TMP_ITEM 1460312 22296 34121 0 0 60 0
+	NEW_TMP_ITEM 1460312 11667 34366 0 0 60 0
+	NEW_TMP_ITEM 1460312 10871 31733 0 0 60 0
+	NEW_TMP_ITEM 1460312 5414 21885 0 0 60 0
+	NEW_TMP_ITEM 1460312 12953 4368 0 0 60 0
+	NEW_TMP_ITEM 1460312 21434 4825 0 0 60 0
+	NEW_TMP_ITEM 1460312 32729 5737 0 0 60 0
+	NEW_TMP_ITEM 1460312 34770 11926 0 0 60 0
+endproc
+
+;事件刚开始时，一分钟刷，以后也是一分钟刷
+proc 204
+	NEW_TMP_ITEM 1460312 17224 33858 0 0 60 0
+	NEW_TMP_ITEM 1460312 6777 29636 0 0 60 0
+	NEW_TMP_ITEM 1460312 9198 22731 0 0 60 0
+	NEW_TMP_ITEM 1460312 8767 13740 0 0 60 0
+	NEW_TMP_ITEM 1460312 17858 3004 0 0 60 0
+	NEW_TMP_ITEM 1460312 25028 4146 0 0 60 0
+	NEW_TMP_ITEM 1460312 29511 3760 0 0 60 0
+	NEW_TMP_ITEM 1460312 33925 20432 0 0 60 0
+endproc
+
+;活动开始5分钟后刷宝箱,每30秒刷10个（坐标随机）
+proc 205
+	strvar x1 y1 x2 y2 x3 y3 x4 y4 x5 y5
+	strvar x6 y6 x7 y7 x8 y8 x9 y9 x y
+	rand 15 5
+	switch 15
+		case 0
+			var x1 26187
+			var y1 29730
+			
+			var x2 26560
+			var y2 29579
+			
+			var x3 26785
+			var y3 29444
+			
+			var x4 26840
+			var y4 29131
+			
+			var x5 26451
+			var y5 29309
+			
+			var x6 26811
+			var y6 29258
+			
+			var x7 26294
+			var y7 29141
+			
+			var x8 26544
+			var y8 29056
+			
+			var x9 26804
+			var y9 28827
+			
+			var x 26006
+			var y 29371
+		endcase
+
+		case 1
+			var x1 26560
+			var y1 29579
+			
+			var x2 26785
+			var y2 29444
+			
+			var x3 26840
+			var y3 29131
+			
+			var x4 26451
+			var y4 29309
+			
+			var x5 26811
+			var y5 29258
+			
+			var x6 26294
+			var y6 29141
+			
+			var x7 26544
+			var y7 29056
+			
+			var x8 26804
+			var y8 28827
+			
+			var x9 26006
+			var y9 29371
+			
+			var x 26462
+			var y 29500
+		endcase
+
+		case 2
+			var x1 26785
+			var y1 29444
+			
+			var x2 26840
+			var y2 29131
+			
+			var x3 26451
+			var y3 29309
+			
+			var x4 26811
+			var y4 29258
+			
+			var x5 26294
+			var y5 29141
+			
+			var x6 26544
+			var y6 29056
+			
+			var x7 26804
+			var y7 28827
+			
+			var x8 26006
+			var y8 29371
+			
+			var x9 26462
+			var y9 29500
+			
+			var x 26961
+			var y 28685
+		endcase
+				
+		case 3
+			var x1 26840
+			var y1 29131
+		
+			var x2 26961
+			var y2 28685
+
+			var x3 26124
+			var y3 29216
+	
+			var x4 26345
+			var y4 28929
+	
+			var x5 25689
+			var y5 29512
+	
+			var x6 26977
+			var y6 29841
+	
+			var x7 26389
+			var y7 29393
+
+			var x8 26555
+			var y8 29778
+	
+			var x9 26931
+			var y9 29706
+	
+			var x 26999
+			var y 29118
+		endcase
+				
+		case 4
+			var x1 26451
+			var y1 29309
+			
+			var x2 26294
+			var y2 29141
+	
+			var x3 26544
+			var y3 29056
+	
+			var x4 26804
+			var y4 28827
+	
+			var x5 26006
+			var y5 29371
+	
+			var x6 26462
+			var y6 29500
+
+			var x7 26961
+			var y7 28685
+	
+			var x8 26124
+			var y8 29216
+		
+			var x9 26345
+			var y9 28929
+			
+			var x 26999
+			var y 29118
+		endcase
+	endswitch
+
+	GET_MAP_INST 4403 10
+	;NEW_LIFE_MON #怪物id #怪物数量 #坐标x #坐标y #随机半径 #巡逻ID #是否可以重生 #朝向 #生存时间 #返回标志 #第一只怪物的实例ID
+	
+	;生存时间? 生存时间为0时(单位:秒),怪物不会自动消失.
+
+    NEW_LIFE_MON 293523 1 @x1 @y1 0 0 0 0 20 0 0
+	NEW_LIFE_MON 293523 1 @x2 @y2 0 0 0 0 20 0 0
+	NEW_LIFE_MON 293523 1 @x3 @y3 0 0 0 0 20 0 0
+	NEW_LIFE_MON 293523 1 @x4 @y4 0 0 0 0 20 0 0
+	NEW_LIFE_MON 293523 1 @x5 @y5 0 0 0 0 20 0 0
+	
+	NEW_LIFE_MON 293523 1 @x6 @y6 0 0 0 0 20 0 0 
+	NEW_LIFE_MON 293523 1 @x7 @y7 0 0 0 0 20 0 0
+	NEW_LIFE_MON 293523 1 @x8 @y8 0 0 0 0 20 0 0
+	NEW_LIFE_MON 293523 1 @x9 @y9 0 0 0 0 20 0 0
+	NEW_LIFE_MON 293523 1 @x @y 0 0 0 0 0 20 0 0
+endproc

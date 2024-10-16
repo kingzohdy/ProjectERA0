@@ -1,0 +1,21 @@
+;离开副本1的传送员
+
+PROC 1 
+	
+	DIALOG 1
+
+
+	ADD_TALK 离开副本1
+
+	OPTION 101 #离开副本1
+	OPTION 104 #离开
+    TALK               
+ENDPROC
+
+PROC 101
+	OUT_PWORLD_BY_SINGLE
+ENDPROC  
+
+PROC 104
+	RETURN
+ENDPROC

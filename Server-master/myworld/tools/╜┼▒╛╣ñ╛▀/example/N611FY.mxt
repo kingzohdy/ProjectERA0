@@ -1,0 +1,252 @@
+;飞扬城宝石加工师
+;使用临时变量824
+;
+PROC 1
+    GET_TASK_VAR  001 0 1003
+    IF 1003 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务001完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 001 0 30
+    	FINISH_TASK 001
+    	ADD_TASK_HINT 001 03
+    	ADD_MONEY 100
+    	RETURN
+    ENDIF 
+    GET_TASK_VAR  002 0 1006
+    IF 1006 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务002完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 002 0 30
+    	FINISH_TASK 002
+    	ADD_TASK_HINT 002 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF 
+    GET_TASK_VAR  003 0 1009
+    IF 1009 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务003完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 003 0 30
+    	FINISH_TASK 003
+    	ADD_TASK_HINT 003 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF 
+    GET_TASK_VAR  004 0 1012
+    IF 1012 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务004完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 004 0 30
+    	FINISH_TASK 004
+    	ADD_TASK_HINT 004 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF 
+    GET_TASK_VAR  005 0 1015
+    IF 1015 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务005完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 005 0 30
+    	FINISH_TASK 005
+    	ADD_TASK_HINT 005 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF 
+    GET_TASK_VAR  006 0 1018
+    IF 1018 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务006完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 006 0 30
+    	FINISH_TASK 006
+    	ADD_TASK_HINT 006 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF 
+    GET_TASK_VAR  007 0 1021
+    IF 1021 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务007完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 007 0 30
+    	FINISH_TASK 007
+    	ADD_TASK_HINT 007 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF 
+    GET_TASK_VAR  008 0 999
+    IF 999 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务008完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 008 0 30
+    	FINISH_TASK 008
+    	ADD_TASK_HINT 008 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF    
+    GET_TASK_VAR  009 0 996
+    IF 996 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务009完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 009 0 30
+    	FINISH_TASK 009
+    	ADD_TASK_HINT 009 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF  
+    GET_TASK_VAR  010 0 993
+    IF 993 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务010完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 010 0 30
+    	FINISH_TASK 010
+    	ADD_TASK_HINT 010 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF
+    IF 993 = 50
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务010完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 010 0 30
+    	FINISH_TASK 010
+    	ADD_TASK_HINT 010 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF
+    GET_TASK_VAR  011 0 990
+    IF 990 = 20
+    	DIALOG 3
+    	ADD_TALK $_npc$：
+    	ADD_TALK 任务011完成，奖励你100天币！
+    	TALK 
+    	SET_TASK_VAR 011 0 30
+    	FINISH_TASK 011
+    	ADD_TASK_HINT 011 03
+    	ADD_MONEY 100
+    	RETURN 
+    ENDIF
+    
+    DIALOG 1
+    ADD_TALK $_npc$：
+    ADD_TALK 刮风啰！下雨啰！开始测任务啰！
+    OPTION 10 第一组任务
+    OPTION 20 第二组任务
+    OPTION 30 第三组任务
+    TALK
+ENDPROC
+;
+;
+PROC 10
+    DIALOG 1
+    ADD_TALK $_npc$：
+    ADD_TALK 饭是要吃的，觉是要睡的，任务是要测的！
+    OPTION 11 任务001
+    OPTION 12 任务002
+    OPTION 13 任务003
+    OPTION 14 任务004
+    OPTION 15 任务005
+    TALK
+ENDPROC
+;
+;
+PROC 20
+    DIALOG 1
+    ADD_TALK $_npc$：
+    ADD_TALK 人是铁，饭是钢，任务不测心里慌！
+    OPTION 21 任务006
+    OPTION 22 任务007
+    OPTION 23 任务008
+    OPTION 24 任务009
+    OPTION 25 任务010
+    TALK
+ENDPROC
+;
+;
+PROC 30
+    DIALOG 1
+    ADD_TALK $_npc$：
+    ADD_TALK 让要测的任务来得更变态些吧！
+    OPTION 31 任务011
+    ;OPTION 32 任务012
+    ;OPTION 33 任务013
+    ;OPTION 34 任务014
+    ;OPTION 35 任务025
+    TALK
+ENDPROC 
+;
+;
+PROC 11
+    EXEC TASK001 1    
+ENDPROC   
+;
+;
+PROC 12
+    EXEC TASK002 1    
+ENDPROC  
+;
+;
+PROC 13
+    EXEC TASK003 1    
+ENDPROC  
+;
+;
+PROC 14
+    EXEC TASK004 1    
+ENDPROC  
+;
+;
+PROC 15
+    EXEC TASK005 1    
+ENDPROC  
+;
+;
+PROC 21
+    EXEC TASK006 1    
+ENDPROC  
+;
+;
+PROC 22
+    EXEC TASK007 1    
+ENDPROC  
+;
+;
+PROC 23
+    EXEC TASK008 1    
+ENDPROC  
+;
+;
+PROC 24
+    EXEC TASK009 1    
+ENDPROC  
+;
+;
+PROC 25
+    EXEC TASK010 1    
+ENDPROC  
+;
+;
+PROC 31
+    EXEC TASK011 1    
+ENDPROC 
+;
+
