@@ -1,0 +1,1910 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\RideFrame.lua"/>
+	<Frame name="RideFrame" frameStrata="DIALOG" parent="UIClient" hidden="true"  movable="true"  framelevel="10">
+		<Size>
+			<AbsDimension x="288" y="462" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="坐骑" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+
+				<FontString name="RideFrameRideNameText" fonttype="TeenyFZYBlackFont" justifyH="center" text=""> 
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="73"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentTransparentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+			</Layer>  	
+			<Layer level="overlay">
+				<ModelView name="RideFrame_ModelView" >
+					<Size>
+						<AbsDimension x="260" y="230" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="-80" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+			</Layer>
+		</Layers>	
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			
+			##坐骑面板的【坐骑物品】按钮模板
+			<Button name="RideFrameButtonTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>					
+					<Layer level="background">
+						<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>	
+						<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="3" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>		
+						<Texture name="$parentBackGround_UV_Texture" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-9" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>						
+						<Texture name="$parentRedTex" file="uires\\ZhuJieMian\\1.dds" x="517" y="795" w="44" h="44" hidden="true" alphamode="alphablend">
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTex">
+									<Offset>
+										<AbsDimension x="-2" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</Texture>
+						<Texture name="$parentValidTimeTex" file="uires\\ZhuJieMian\\2.dds" x="529" y="932" w="44" h="44" hidden="true">
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<Scripts>
+					<OnClick>RideInfoBtn_OnClick();</OnClick>
+					<OnEnter>RideInfoBtn_OnEnter();</OnEnter>
+					<OnLeave>RideInfoBtn_OnLeave();</OnLeave>
+					<OnBeginDrag>RideInfoBtn_Drag();</OnBeginDrag>
+					<OnReceiveDrag>RideInfoBtn_OnReceiveDrag();</OnReceiveDrag>
+				</Scripts>
+			</Button>
+
+			<Button name="RideFrameButton1" inherits="RideFrameButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="-120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>					
+			<Button name="RideFrameButton2" inherits="RideFrameButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton1">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RideFrameButton3" inherits="RideFrameButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton2">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RideFrameButton4" inherits="RideFrameButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton3">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>	
+			<Button name="RideFrameButton5" inherits="RideFrameButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton4">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>					
+			<Button name="RideFrameButton6" inherits="RideFrameButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton5">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RideFrameButton7" inherits="RideFrameButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="-74" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RideFrameButton8" inherits="RideFrameButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton7">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>	
+			<Button name="RideFrameButton9" inherits="RideFrameButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton8">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>					
+			<Button name="RideFrameButton10" inherits="RideFrameButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton9">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RideFrameButton11" inherits="RideFrameButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton10">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RideFrameButton12" inherits="RideFrameButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="RideFrameButton11">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>	
+			
+			# 向左转按钮
+			<Button name="RideFrame_TurnLeftBtn" inherits="TurnRightButtonTemplate">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="78" y="270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>RideFrame_TurnLeftBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+
+			# 向右转按钮
+			<Button name="RideFrame_TurnRightBtn" inherits="TurnLeftButtonTemplate">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="RideFrame_TurnLeftBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="80" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>RideFrame_TurnRightBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+			
+			# 开始骑乘按钮
+			<Button name="RideFrameRideBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="骑 乘">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="38" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuide"  hidden="true">
+						<Size>
+							<AbsDimension x="100" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="45" y="-33" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Layers>
+							<Layer>
+								<FontString name="$parentFont" fonttype="HeiTiFont14" justifyH="left" text="点击使用坐骑	">
+									<Size>
+										<AbsDimension x="100" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="bottomleft" relativeTo="$parent">
+										   <Offset>
+												<AbsDimension x="5" y="3" />
+										   </Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="86" g="79" b="54" />
+								</FontString>
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-13" y="16" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>RideFrameRideBtnGuideTex:SetAngle(27);</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnClick>RideFrameRideBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 下驾按钮
+			<Button name="RideFrameRideDownBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="下 驾" hidden="true">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="38" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideFrameRideDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 坐骑强化升级
+			<Button name="RideFrame_RideLevelUpBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="坐骑升级">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="RideFrameRideDownBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="16" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideFrame_RideLevelUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 丢弃坐骑
+			<Button name="RideFrame_DropRideBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="丢 弃">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="RideFrameRideBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="158" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideFrame_RideGiveUp_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 新手指引提示
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="92" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="RideFrameRideBtn">
+						<Offset>
+							<AbsDimension x="-9" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="92" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+		</Frames>	
+		<Scripts>
+			<OnLoad>RideFrame_OnLoad();</OnLoad>
+			<OnEvent>RideFrame_OnEvent();</OnEvent>
+			<OnShow>RideFrame_OnShow();</OnShow>
+			<OnHide>RideFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	# 邀请共同坐骑
+	<Frame  name="InviteRideFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentFrameground" inherits="MainBkgTemplate" />
+                  
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="消息">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>		
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="InviteRideFrameMessageFont" fonttype="TeenyFZYBlackFont" justifyH="center" >
+							<Size>
+								<AbsDimension x="280" y="15"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="4" y="97"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			## 同意
+			<Button name="InviteRideFrame_AcceptBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>InviteRideFrame_AcceptBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			## 拒绝
+			<Button name="InviteRideFrame_RefuseBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>InviteRideFrame_RefuseBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>InviteRideFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	# 确认升级坐骑面板
+	<Frame name="RideLevelUpFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true"  framelevel="500">
+		<Size>
+			<AbsDimension x="239" y="325" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				# 界面标题
+				<FontString name="$parentFrameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="坐骑升级" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				#底板分割线
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="234" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="285"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />			
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="233" y="291"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 坐骑名字
+			<Button name="$parentRideNameBtn" >
+				<Size>
+					<AbsDimension x="210" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+						<Offset>
+							<AbsDimension x="0" y="38"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="RideLevelUpFrame_RideNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="210" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 坐骑当前等级
+			<Button name="$parentRideCurLevelBtn" >
+				<Size>
+					<AbsDimension x="88" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="18" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentRideCurLevelFont" fonttype="LittleFZYBlackFont" justifyH="left" text="坐骑当前等级：">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="92" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="RideLevelUpFrame_RideCurLevelBtn" >
+				<Size>
+					<AbsDimension x="40" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentRideCurLevelBtn" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="3" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="RideLevelUpFrame_RideCurLevelFont" fonttype="LittleFZYBlackFont" justifyH="left" text="111111111111111111111111111111111111111111111111111">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="113" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="3" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>RideCurLevelBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 增加移动速度
+			<Button name="$parentIncreaseSpeedBtn" >
+				<Size>
+					<AbsDimension x="88" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="18" y="80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentIncreaseSpeedFont" fonttype="LittleFZYBlackFont" justifyH="left" text="移动速度提升：">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="92" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="RideLevelUpFrame_IncreaseSpeedBtn" >
+				<Size>
+					<AbsDimension x="36" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentIncreaseSpeedBtn" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="3" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="RideLevelUpFrame_IncreaseSpeedFont" fonttype="LittleFZYBlackFont" justifyH="left" text="111111111111111111111111111111111111111111111111111">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="113" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="3" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>IncreaseSpeedBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 坐骑当前品质
+			<Button name="$parentCurRidePinZhiBtn" >
+				<Size>
+					<AbsDimension x="88" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="18" y="100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentCurRidePinZhiFont" fonttype="LittleFZYBlackFont" justifyH="left" text="坐骑当前品质：">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="92" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="RideLevelUpFrame_CurRidePinZhiBtn" >
+				<Size>
+					<AbsDimension x="64" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentCurRidePinZhiBtn" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="3" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="RideLevelUpFrame_CurRidePinZhiFont" fonttype="LittleFZYBlackFont" justifyH="left" text="111111111111111111111111111111111111111111111111111">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="113" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="3" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>CurRidePinZhiBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 第3个面板底版
+			<Button name="$parentThirdBackGroundButton">
+				<Size>
+					<AbsDimension x="220" y="110"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="125" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			# 升级所需宝石
+			<Button name="$parentLevelUpNeedBaoShiBtn" >
+				<Size>
+					<AbsDimension x="117" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="18" y="147"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parent_LevelUpNeedBaoShiFont" fonttype="LittleFZYBlackFont" justifyH="left" text="升级需要消耗">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="114" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="RideLevelUpFrame_LevelUpNeedBaoShiBtn" >
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="100" y="132"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentIcon" file="uires\\ZhuJieMian\\3.dds" x="421" y="197" w="44" h="44" >
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right"  fontStyle="border" text="">
+							<Color r="204" g="128" b="51"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<ModelView name="$parentModelView" background="">
+							<Size>
+								<AbsDimension x="263" y="264" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentBuyBtn" inherits="GongYongAnNiuG3ButtonTemplate" text="快\n速\n购\n买">
+						<Size>
+							<AbsDimension x="25" y="56"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-3" y="-7" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>FastBuyItem_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnEnter>RideLevelUpFrame_LevelUpNeedBaoShiBtn_OnEnter();</OnEnter>
+					<OnLeave>RideLevelUpFrame_LevelUpNeedBaoShiBtn_OnLeave();</OnLeave>
+					<OnReceiveDrag>RideLevelUpFrame_LevelUpNeedBaoShiBtn_ReceiveDrag();</OnReceiveDrag>
+					<OnClick>RideLevelUpFrame_LevelUpNeedBaoShiBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentLevelUpNeedBaoShiNumBtn" >
+				<Size>
+					<AbsDimension x="88" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="RideLevelUpFrame_LevelUpNeedBaoShiBtn" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="29" y="15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="RideLevelUpFrame_LevelUpNeedBaoShiNumFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="*2">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="88" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parent_LevelUpCostBtn">
+				<Size>
+					<AbsDimension x="114" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="18" y="183"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parenFont" fonttype="LittleFZYBlackFont" justifyH="left" text="升级需要消费">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="114" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="118" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft" >
+									<Offset>
+										<AbsDimension x="85" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentValueFont" fonttype="LittleFZYBlackFont" justifyH="left" text="0">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft" >
+									<Offset>
+										<AbsDimension x="91" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentMoneyBtn">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="right" relativeTo="$parentBkg" relativePoint="right" >
+								<Offset>
+									<AbsDimension x="-4" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" />
+						<Scripts>
+							<OnEnter>MoneyTex_OnEnter();</OnEnter>	 
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+							<OnLoad>this:SetClientUserData(0,3);</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+
+			# 升级成功几率为
+			<Button name="$parentLevelUpSuccessJiLvBtn" >
+				<Size>
+					<AbsDimension x="117" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="18" y="208"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentLevelUpSuccessJiLvFont" fonttype="LittleFZYBlackFont" justifyH="left" text="升级成功几率">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="114" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>				
+			</Button>
+			<Button name="RideLevelUpFrame_LevelUpSuccessJiLvBtn" >
+				<Size>
+					<AbsDimension x="118" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="103" y="208"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="RideLevelUpFrame_LevelUpSuccessJiLvFont" fonttype="LittleFZYBlackFont" justifyH="left" text="223">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="6" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnEnter>RideLevelUpFrameLevelUpSuccessJiLvBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentSecondClueTitleBtn" >
+				<Size>
+					<AbsDimension x="200" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="240"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentSecondClueTitleFont"fonttype="LittleFZYBlackFont" text="每次升级成功提升1%的移动速度" justifyH="left">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 进行强化按钮 
+			<Button name="RideLevelUpFrame_StengthenBtn" inherits="GongYongAnNiuB1Template">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="19" y="289"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="进行升级">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>   
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>RideLevelUpFrame_StrengthenBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 取消强化按钮 
+			<Button name="RideLevelUpFrame_CancelBtn" inherits="GongYongAnNiuB1Template">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="140" y="289"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="取消升级">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>   
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>RideLevelUpFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 新手指引提示
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="92" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="RideLevelUpFrame_StengthenBtn">
+						<Offset>
+							<AbsDimension x="-9" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="120" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-9" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true" >
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>RideLevelUpFrame_OnLoad();</OnLoad>
+			<OnEvent>RideLevelUpFrame_OnEvent();</OnEvent>
+			<OnShow>RideLevelUpFrame_OnShow();</OnShow>
+			<OnHide>RideLevelUpFrame_OnHide();</OnHide>
+		</Scripts>		
+	</Frame>
+
+	# 确认是否丢弃坐骑的二次确认面板
+	<Frame  name="DropRideConfirmFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentFrameground" inherits="MainBkgTemplate" />
+                  
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="DropRideConfirmFrameLongMessageFont" fonttype="TeenyFZYBlackFont" autowrap="true" lineInterval="2" justifyH="center" >
+							<Size>
+								<AbsDimension x="280" y="35"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+            <RichText name="DropRideConfirmFrameShortMessageRich" fonttype="TeenyFZYBlackFont">
+				<Size>
+					<AbsDimension x="280" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="38"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 确定
+			<Button name="DropRideConfirmFrame_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>DropRideConfirmFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 取消
+			<Button name="DropRideConfirmFrame_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>DropRideConfirmFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>DropRideConfirmFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	<Frame name="RideMoveLevelFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="10">
+		<Size>
+			<AbsDimension x="283" y="426" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="坐骑等级转移" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="100" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentDescBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="266" y="96" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="2" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMoveBkg1" file="uires\\ZhuJieMian\\1.dds" x="746" y="390" w="18" h="36" >
+					<Size>
+						<AbsDimension x="18" y="36" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="115" y="197" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMoveBkg2" file="uires\\ZhuJieMian\\1.dds" x="746" y="390" w="18" h="36" >
+					<Size>
+						<AbsDimension x="18" y="36" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="131" y="197" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMoveBkg3" file="uires\\ZhuJieMian\\1.dds" x="746" y="390" w="18" h="36" >
+					<Size>
+						<AbsDimension x="18" y="36" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="148" y="197" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentSrcTitleFont" fonttype="TeenyBlackFont" justifyH="center" text="转级坐骑">
+					<Color r="255" g="200" b="0"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="51" y="247" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDesTitleFont" fonttype="TeenyBlackFont" justifyH="center" text="目标坐骑">
+					<Color r="255" g="200" b="0"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="179" y="247" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNeedMoneyTitle" fonttype="LittleFZYBlackFont" text="需要消耗:">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="63" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="36" y="298" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentEditBoxTex" inherits="EditBoxBkgTemplate" >
+					<Size>
+						<AbsDimension x="145" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="102" y="295" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNeedMoney" fonttype="LittleFZYBlackFont" justifyH="right" text="xxxxxxxxx">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="63" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="165" y="298" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" virtual="true" >
+					<Size>
+						<AbsDimension x="17" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="228" y="297" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWaringTex" file="uires\\ZhuJieMian\\1.dds" x="564" y="34" w="32" h="27" virtual="true" >
+					<Size>
+						<AbsDimension x="17" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="27" y="320" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSep" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="278" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="370" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<RichText name="$parentDescRich" fonttype="LittleFZYBlackFont" lineInterval="2" text="" fontStyle="normal" >
+				<Size>
+					<AbsDimension x="257" y="90" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDescBkg" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentWarning" fonttype="LittleFZYBlackFont" lineInterval="2" text="" fontStyle="normal" >
+				<Size>
+					<AbsDimension x="240" y="40" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="27" y="320" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentSrcRide" inherits="ItemButtonTemplate" id="1">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="56" y="189" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideMoveLevelFrameRide_OnClick();</OnClick>
+					<OnEnter>RideMoveLevelFrameRide_OnEnter();</OnEnter>
+					<OnLeave>RideInfoBtn_OnLeave();</OnLeave>
+					<OnBeginDrag>RideMoveLevelFrameRide_OnBeginDrag();</OnBeginDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentDesRide" inherits="ItemButtonTemplate" id="2">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="185" y="189" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideMoveLevelFrameRide_OnClick();</OnClick>
+					<OnEnter>RideMoveLevelFrameRide_OnEnter();</OnEnter>
+					<OnLeave>RideInfoBtn_OnLeave();</OnLeave>
+					<OnBeginDrag>RideMoveLevelFrameRide_OnBeginDrag();</OnBeginDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="开始转移">
+				<Size>
+					<AbsDimension x="85" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="99" y="387" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideMoveLevelFrameOkBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentModel" input_transparent="true">
+				<Size>
+					<AbsDimension x="267" y="145" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentDescBkg" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="60" y="-45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<ModelView name="$parentView">
+							<Size>
+								<AbsDimension x="267" y="145" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="6" y="13" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>RideMoveLevelFrame_OnLoad();</OnLoad>
+			<OnShow>RideMoveLevelFrame_OnShow();</OnShow>
+			<OnHide>RideMoveLevelFrame_OnHide();</OnHide>
+			<OnUpdate>RideMoveLevelFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="RideMoveMessageFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="21">
+		<Size>
+			<AbsDimension x="351" y="122" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="转移提示" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="100" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentSign" file="uires\\ZhuJieMian\\1.dds" x="683" y="340" w="56" h="42" >
+					<Size>
+						<AbsDimension x="56" y="42" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="12" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSep" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="346" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<RichText name="$parentDescRich" fonttype="LittleFZYBlackFont" autoextend="true" lineInterval="2" text="" fontStyle="normal" >
+				<Size>
+					<AbsDimension x="240" y="55" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="70" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="21" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideMoveMessageFrameOkBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancleBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="266" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RideMoveMessageFrameCancleBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>RideMoveMessageFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

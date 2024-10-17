@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\PetLandFrame.lua"/>
+	##  基友配对确认框
+	<Frame name="FindGayMessageBoxFrame" frameStrata="dialog" parent="UIClient" framelevel="199" hidden="true" moveable="true">
+		<Size>
+			<AbsDimension x="278" y="286" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentSepTexture" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="273" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="247" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentCaption" fonttype="TeenyFZYBlackFont" justifyH="center" text="配对确认">
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate">
+				<Scripts>
+					<OnClick>FindGayMessageBoxFrameCancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<RichText name="$parentRich" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="250" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="17" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="确认配对">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="33" y="250" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>FindGayMessageBoxFrameOkBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuB1Template" text="拒 绝">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="165" y="250" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>FindGayMessageBoxFrameCancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>FindGayMessageBoxFrame_OnLoad()</OnLoad>
+			<OnShow>FindGayMessageBoxFrame_OnShow()</OnShow>
+			<OnUpdate>FindGayMessageBoxFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

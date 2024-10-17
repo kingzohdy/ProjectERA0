@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Ui>
+	<Script file="uires\Scripts\Equip\EquipJieFengFrame.lua" />
+	<Frame name="EquipJieFengFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="210">
+		<Size>
+			<AbsDimension x="283" y="372" />
+		</Size>
+		<Anchors>
+			<Anchor point="topright" relativeTo="PlayerContainerFrame" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				 <Texture name="$parentbackground" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="装备解封" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentDescBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="266" y="115" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentLableFont" fonttype="LittleFZYBlackFont" text="解封说明：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="65" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDescBkg" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentNeedMoneyBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="120" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentDescBkg" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="30" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNeedMoneyTitle" fonttype="LittleFZYBlackFont" text="需要金币" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parentNeedMoneyBkg" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="-5" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNeedMoneyFont" fonttype="LittleFZYBlackFont" justifyH="right" text="100">
+					<Color r="150" g="150" b="150"/>
+					<Size>
+						<AbsDimension x="90" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentNeedMoneyBkg" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="-5" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentCurrMoneyBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="120" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentNeedMoneyBkg" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentCurrMoneyTitle" fonttype="LittleFZYBlackFont" text="现有金币" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parentCurrMoneyBkg" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="-5" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCurrMoneyFont" fonttype="LittleFZYBlackFont" justifyH="right" text="12000">
+					<Color r="150" g="150" b="150"/>
+					<Size>
+						<AbsDimension x="90" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentCurrMoneyBkg" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="-5" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSep" file="uires\\ZhuJieMian\\1.dds" x="739" y="627" w="9" h="10">
+					<Size>
+						<AbsDimension x="278" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="3" y="-55" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+
+			<RichText name="$parentDescRich" fonttype="LittleFZYBlackFont" lineInterval="2" text="" fontStyle="normal">
+				<color r="160" g="155" b="130" />
+				<Size>
+					<AbsDimension x="250" y="115" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDescBkg" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="5" y="26" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parent_EquipItemBtn" >
+				<Size>
+					<AbsDimension x="52" y="52" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="114" y="181" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentIconTexture" file="uires\\ZhuJieMian\\1.dds" x="749" y="517"  w="44" h="44" >
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>EquipJieFengFrame_EquipItemBtn_OnEnter();</OnEnter>
+					<OnLeave>EquipJieFengFrame_EquipItemBtn_OnLeave();</OnLeave>	
+					<OnReceiveDrag>EquipJieFengFrame_EquipItemBtn_ReceiveDrag();</OnReceiveDrag>
+					<OnClick>EquipJieFengFrame_EquipItemBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentMoneyBtn1">
+				<Size>
+					<AbsDimension x="17" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentCurrMoneyBkg" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="99" y="494" w="17" h="18" />
+				<Scripts>
+					<OnEnter>MoneyTex_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+					<OnLoad>this:SetClientUserData(0,1);</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentMoneyBtn2">
+				<Size>
+					<AbsDimension x="17" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentNeedMoneyBkg" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="99" y="494" w="17" h="18" />
+				<Scripts>
+					<OnEnter>MoneyTex_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+					<OnLoad>this:SetClientUserData(0,1);</OnLoad>
+				</Scripts>
+			</Button>
+			# 解封
+			<Button name="$parent_JieFengBtn" inherits="GongYongAnNiuB1Template" text="开始解封">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="99" y="329" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>EquipJieFengFrame_JieFengBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+
+		<Scripts>
+			<OnLoad>EquipJieFengFrame_OnLoad();</OnLoad>
+			<OnEvent>EquipJieFengFrame_OnEvent();</OnEvent>
+			<OnShow>EquipJieFengFrame_OnShow();</OnShow>
+			<OnHide>EquipJieFengFrame_OnHide();</OnHide>
+		</Scripts>	
+	</Frame>
+
+	<Frame name="ConfirmJieFengFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			<RichText name="$parent_DescRich" multiLine="false" fonttype="LittleFZYBlackFont" fontStyle="normal" lineInterval="4" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="300" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center" >
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmJieFengFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmJieFengFrame:Hide();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnShow>ConfirmJieFengFrame_OnShow();</OnShow>
+			<OnHide>ConfirmJieFengFrame_OnHide();</OnHide>
+		</Scripts>	
+    </Frame>
+</Ui>

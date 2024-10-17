@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/GameCangBaoTu.lua" />
+	
+	<Frame name="GameCBTFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true"  framelevel="500">
+		<Size>
+			<AbsDimension x="288" y="472" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="藏宝图" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTitleDesc" fonttype="FZYBlackFont14" text="找到图示的藏宝地点挖掘宝藏" >
+					<Color r="255" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="186" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="45" y="316" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentStateDesc" fonttype="LittleFZYBlackFont" justifyH="center" text="" >
+					<Color r="24" g="255" b="6"/>
+					<Size>
+						<AbsDimension x="240" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="376" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			## 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="282" y="428" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentMapBtn" >
+				<Size>
+					<AbsDimension x="269" y="269" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="6" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" >
+							<Size>
+								<AbsDimension x="258" y="258" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>										
+										<AbsDimension x="6" y="6" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<FontString name="$parentMapNameFont" fonttype="FZYBlackFont12" justifyH="center" text="" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<!--
+			<RichText name="$parentTitleDescRich" multiLine="false" fonttype="FZYBlackFont14" text="" lineInterval ="4">
+				<Size>
+					<AbsDimension x="180" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="65" y="285" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			-->
+			<RichText name="$parentCanUseTimesDescRich" multiLine="false" fonttype="FZYBlackFont12" text="" lineInterval ="4">
+				<Size>
+					<AbsDimension x="258" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="13" y="372" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentVipUseTimesDescRich" multiLine="false" fonttype="FZYBlackFont12" text="" lineInterval ="4">
+				<Size>
+					<AbsDimension x="258" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="13" y="386" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<!--
+			<RichText name="$parentWarnDescRich" multiLine="false" fonttype="FZYBlackFont12" text="" lineInterval ="4">
+				<Size>
+					<AbsDimension x="258" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="50" y="310" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+
+			<RichText name="$parentAdviseDescRich" multiLine="false" fonttype="FZYBlackFont12" text="" lineInterval ="4">
+				<Size>
+					<AbsDimension x="262" y="45" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="13" y="335" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			-->
+			# 信息标识按钮 
+			<Button name="$parent_TipsBtn">
+				<Size>
+					<AbsDimension x="32" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="230" y="310"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentWarningTex" file="uires\\ZhuJieMian\\1.dds" x="564" y="34" w="32" h="27" >		
+							<Size>
+								<AbsDimension x="32" y="27" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>GameCBTFrame_TipsBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 挖掘按钮 
+			<Button name="$parent_WaJueBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="挖掘">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="58" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="110" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-17" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnUpdate>GameCBTFrame_WaJueBtn_OnUpdate();</OnUpdate>
+					<OnEnter>GameCBTFrame_WaJueBtn_OnEnter();</OnEnter>
+					<OnLeave>GameCBTFrame_WaJueBtn_OnLeave();</OnLeave>
+					<OnClick>GameCBTFrame_WaJueBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 重置按钮 
+			<Button name="$parent_ResetBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="重置">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-58" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>GameCBTFrame_ResetBtn_OnEnter();</OnEnter>
+					<OnLeave>GameCBTFrame_ResetBtn_OnLeave();</OnLeave>
+					<OnClick>GameCBTFrame_ResetBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="18" y="18" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ShanShuoTiShi 97X96.tga" hidden="true">
+							<Size>
+								<AbsDimension x="97" y="96" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="604" y="78" w="20" h="20" />
+				<Scripts>
+					<OnClick>GameCBTFrame_PosBtn_OnClick();</OnClick>
+					<OnEnter>GameCBTFrame_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>GameCBTFrame_PosBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 宝藏图标 <!--
+			<Button name="$parent_BaoZangBtn" inherits="GameCBTFrameBaoZangPosBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="27" y="305"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>-->
+			<Button name="GameCBTFrameBaoZangPosBtn1" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="1">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn2" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="2">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn3" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="3">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn4" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="4">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn5" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="5">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn6" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="6">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn7" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="7">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn8" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="8">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn9" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="9">
+			</Button>
+			<Button name="GameCBTFrameBaoZangPosBtn10" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="10">
+			</Button>
+			<Button name="$parentBtn1" id="1">
+				<Size>
+					<AbsDimension x="64" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="27" y="345" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkgTex" inherits="Tips3BkgTemplate">
+							<Size>
+								<AbsDimension x="64" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBkg" file="uires\\ZhuJieMian\\1.dds" x="746" y="390" w="18" h="36" >
+							<Size>
+								<AbsDimension x="18" y="36" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="66" y="-6" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="1.点击红叉">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="64" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>GameCBTFrame_GuideBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentBtn2" id="2">
+				<Size>
+					<AbsDimension x="64" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBtn1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="85" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkgTex" inherits="Tips3BkgTemplate">
+							<Size>
+								<AbsDimension x="64" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBkg" file="uires\\ZhuJieMian\\1.dds" x="746" y="390" w="18" h="36" >
+							<Size>
+								<AbsDimension x="18" y="36" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="66" y="-6" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="2.到达地点">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="64" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>GameCBTFrame_GuideBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentBtn3" id="3">
+				<Size>
+					<AbsDimension x="64" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBtn2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="85" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkgTex" inherits="Tips3BkgTemplate">
+							<Size>
+								<AbsDimension x="64" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="3.挖掘宝藏">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="64" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>GameCBTFrame_GuideBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>GameCBTFrame_OnLoad();</OnLoad>
+			<OnEvent>GameCBTFrame_OnEvent();</OnEvent>
+			<OnUpdate>GameCBTFrame_OnUpdate();</OnUpdate>
+			<OnShow>GameCBTFrame_OnShow();</OnShow>
+			<OnHide>GameCBTFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="OpenItemMapFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true"  framelevel="500">
+		<Size>
+			<AbsDimension x="288" y="462" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentFrameFont" fonttype="FZYBlackFont12" justifyH="center" text="藏宝图" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="18" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="270" y="70" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="318" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			## 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="282" y="428" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentMapBtn" >
+				<Size>
+					<AbsDimension x="269" y="269" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="6" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" >
+							<Size>
+								<AbsDimension x="258" y="258" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>										
+										<AbsDimension x="6" y="6" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<FontString name="$parentMapNameFont" fonttype="FZYBlackFont12" justifyH="center" text="" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<RichText name="$parentDescRich" multiLine="true" fonttype="FZYBlackFont12" text="" lineInterval ="4" input_transparent="true">
+				<Size>
+					<AbsDimension x="270" y="70" />
+				</Size>				
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="2" y="323" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 挖掘按钮 
+			<Button name="$parent_WaJueBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="挖掘">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>OpenItemMapFrame_WaJueBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentBaoZangPosBtn" inherits="GameCBTFrameBaoZangPosBtnTemplate"  id="1">
+			</Button>			
+		</Frames>
+	</Frame>
+</Ui>

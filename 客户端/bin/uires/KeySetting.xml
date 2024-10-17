@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\KeySetting.lua" />
+	<Button name="KeySettingEntryTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="324" y="20" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentTypeTex" inherits="GongYongAnNiuA1DisabledTemplate" hidden="true">
+					<Size>
+						<AbsDimension x="324" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentName" fonttype="TeenyBlackFont" justifyH="center" text="">
+					<Color r="150" g="150" b="90"/>
+					<Size>
+						<AbsDimension x="108" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDefaultKey" fonttype="TeenyBlackFont" justifyH="center" text="">
+					<Color r="150" g="150" b="90"/>
+					<Size>
+						<AbsDimension x="108" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parent" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentType" fonttype="LittleFZYBlackFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentNowKey" inherits="GongYongAnNiuA3NoFontTemplate">
+				<Size>
+					<AbsDimension x="108" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentText" fonttype="TeenyBlackFont" justifyH="center" text="">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="300" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>KeySettingEntryNowKey_OnClick()</OnClick>
+					<OnMouseWheel>KeySettingFrame_OnMouseWheel()</OnMouseWheel>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnMouseWheel>KeySettingFrame_OnMouseWheel()</OnMouseWheel>
+		</Scripts>
+	</Button>
+	
+	# 按键设置
+	<Frame name="KeySettingFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="21" movable ="true">
+		<Size>
+			<AbsDimension x="484" y="474" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+				<Texture name="$parentBackgroundLeft" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="108" y="428"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackgroundRight" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="355" y="428"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="120" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentContent" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="345" y="360"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="125" y="61" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				# 消息提示
+				<FontString name="$parentDesc" fonttype="TeenyBlackFont" justifyH="left">
+					<Size>
+						<AbsDimension x="335" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="130" y="423" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				# 背景分割
+				<Texture name="$parentSpace1" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace2" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="22"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace3" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="42"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace4" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="62"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace5" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="82"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace6" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="102"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace7" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="122"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace8" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="142"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace9" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="162"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace10" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="182"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace11" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="202"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace12" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="222"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace13" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="242"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace14" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="262"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace15" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="282"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace16" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="302"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace17" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="322"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSpace18" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentContent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="342"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				<Texture name="$parentSliderBackground2" file="uires\\ZhuJieMian\\1.dds" x="58" y="273" w="21" h="14">
+					<Size>
+						 <AbsDimension x="21" y="360" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentContent" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSliderBackground1" file="uires\\ZhuJieMian\\1.dds" x="58" y="240" w="21" h="30">
+					<Size>
+						 <AbsDimension x="21" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parentContent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSliderBackground3" file="uires\\ZhuJieMian\\1.dds" x="58" y="290" w="21" h="30">
+					<Size>
+						 <AbsDimension x="21" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativeTo="$parentContent" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="系统设置">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="70" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTitle1" fonttype="TeenyBlackFont" justifyH="center" text="命令">
+					<Color r="150" g="150" b="90"/>
+					<Size>
+						<AbsDimension x="108" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackgroundRight" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTitle2" fonttype="TeenyBlackFont" justifyH="center" text="当前设置">
+					<Color r="150" g="150" b="90"/>
+					<Size>
+						<AbsDimension x="108" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackgroundRight" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="113" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTitle3" fonttype="TeenyBlackFont" justifyH="center" text="推荐设置">
+					<Color r="150" g="150" b="90"/>
+					<Size>
+						<AbsDimension x="108" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackgroundRight" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="221" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseButton" inherits="CloseBtnTemplate" />
+			
+			# 视频设置
+			<Button name="$parent_ShiPinSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="视频设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrame_ShiPinSettingButton_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			# 信息设置
+			<Button name="$parent_XianShiSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="信息设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrame_XianShiSettingButton_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			# 鼠标设置
+			<Button name="$parent_MouseSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="鼠标设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="88" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrame_MouseSettingButton_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			# 按键设置
+			<Button name="$parent_KeySettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="按键设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="112" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 滚动条
+			<Button name="$parentScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentContent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrame_ScrollUpBtn()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parentContent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrame_ScrollDownBtn()</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parentScrollBar" orientation="VERTICAL" minValue="0" maxValue="1" valueStep="1" defaultValue="0">
+				<Size>
+					<AbsDimension x="23" y="320" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativePoint="right" relativeTo="$parentContent">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>KeySettingFrame_ScrollBarValueChange()</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel()</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 应用
+			<Button name="$parentSave" inherits="GongYongAnNiuC1ButtonTemplate" text="应  用">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-93" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrameSave_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			# 取消
+			<Button name="$parentCancel" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-12" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this)</OnClick>
+				</Scripts>
+			</Button>
+			# 恢复默认设置
+			<Button name="$parentResetAll" inherits="GongYongAnNiuC1ButtonTemplate" text="恢复默认设置">
+				<Size>
+					<AbsDimension x="106" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="123" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrameResetAll_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			# 恢复键位
+			<Button name="$parentReset" inherits="GongYongAnNiuC1ButtonTemplate" text="恢复键位">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="230" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>KeySettingFrameReset_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+						
+			# 快捷键设置条目
+			<Button name="$parentEntry1" inherits="KeySettingEntryTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry2" inherits="KeySettingEntryTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry3" inherits="KeySettingEntryTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry4" inherits="KeySettingEntryTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry5" inherits="KeySettingEntryTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry6" inherits="KeySettingEntryTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry7" inherits="KeySettingEntryTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry8" inherits="KeySettingEntryTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="140"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry9" inherits="KeySettingEntryTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="160"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry10" inherits="KeySettingEntryTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="180"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry11" inherits="KeySettingEntryTemplate" id="11">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="200"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry12" inherits="KeySettingEntryTemplate" id="12">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry13" inherits="KeySettingEntryTemplate" id="13">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="240"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry14" inherits="KeySettingEntryTemplate" id="14">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="260"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry15" inherits="KeySettingEntryTemplate" id="15">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="280"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry16" inherits="KeySettingEntryTemplate" id="16">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="300"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry17" inherits="KeySettingEntryTemplate" id="17">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="320"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry18" inherits="KeySettingEntryTemplate" id="18">
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentContent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="340"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>KeySettingFrame_OnHide()</OnHide>
+			<OnShow>KeySettingFrame_OnShow()</OnShow>
+			<OnLoad>KeySettingFrame_OnLoad()</OnLoad>
+			<OnMouseWheel>KeySettingFrame_OnMouseWheel()</OnMouseWheel>
+		</Scripts>
+	</Frame>
+</Ui>

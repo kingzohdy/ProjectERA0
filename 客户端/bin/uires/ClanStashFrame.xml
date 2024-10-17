@@ -1,0 +1,1142 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/ClanStashFrame.lua" />
+	<Button name="ClanItemButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="192" y="53"/>
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentNameTex" inherits="GongYongAnNiuA1DisabledTemplate">
+					<Size>
+						<AbsDimension x="142" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="47" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentName" fonttype="LittleFZYBlackFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="142" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentNameTex" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentNumTex" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="96" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="48" y="27"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMoneyIcon" file="uires\\ZhuJieMian\\1.dds" x="577" y="570" w="14" h="18">
+					<Size>
+						<AbsDimension x="14" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="right" relativeTo="$parentNumTex">
+							<Offset>
+								<AbsDimension x="-3" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNum" fonttype="LittleFZYBlackFont" justifyH="right" text="">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="78" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentNumTex" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentCutLine" inherits="SpaceLineTemplate">
+					<Size>
+						<AbsDimension x="190" y="2"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSelectedTex" inherits="HighlightTextureTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentMoneyIconTips">
+				<Size>
+					<AbsDimension x="14" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativePoint="right" relativeTo="$parentNumTex">
+						<Offset>
+							<AbsDimension x="-3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>ClanStashFrameOnMoneyTips()</OnEnter>
+					<OnLeave>GameTooltipOnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentBuy" inherits="GongYongAnNiuA2ButtonTemplate" text="换取">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center">
+					<Size>
+						<RelDimension x="1.0" />
+						<AbsDimension y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="45" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="144" y="26" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>coroutine.wrap(ClanStashFrameUseBtn_OnClick)()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem">
+				<Size>
+					<AbsDimension x="43" y="43"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<!--<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44" hidden="true">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>-->
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentFrame" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44">
+							<Size>
+								<RelDimension x="1.0" y="1.0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<FontString name="$parentCount" fonttype="TeenyBlackFont" justifyH="right" fontStyle="border" text="">
+							<Color r="255" g="0" b="255"/>
+							<Size>
+								<AbsDimension x="40" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-6" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<Scripts>
+					<OnClick>ClanStashFrameOnItemClick()</OnClick>
+					<OnEnter>ClanStashFrameItemButton_OnEnter()</OnEnter>
+					<OnLeave>ItemButton_OnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>ClanStashFrameOnItemClick()</OnClick>
+		</Scripts>
+	</Button>
+	
+	##公会仓库
+	<Frame name="ClanStashFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true"  framelevel="500">
+		<Size>
+			<AbsDimension x="392" y="415" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentUp" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="379" y="81" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeft" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="192" y="289" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="7" y="119" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRight" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="184" y="266" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-7" y="119" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="公会资源中心">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentResourceTitleTex" inherits="GongYongAnNiuG2DisabledTemplate">
+					<Size>
+						<AbsDimension x="24" y="77" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentUp" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentResourceTitle" fonttype="LittleFZYBlackFont" multiLine="true" lineInterval="2" justifyH="center" text="公\n会\n资\n源">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="15" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentResourceTitleTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentResourceTex1" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="349" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parentUp" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-3" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentResourceTex2" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="349" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentUp" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentResourceTex3" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="349" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativeTo="$parentUp" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="-3" y="-1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentVerticalCut" inherits="VerticalLineTemplate">
+					<Size>
+						<AbsDimension x="2" y="79" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentUp" relativePoint="center">
+							<Offset>
+								<AbsDimension x="12" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentResourceName1" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentUp" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="35" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName2" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName1" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName3" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName2" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName4" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName3" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName5" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName4" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName6" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentUp" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="211" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName7" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName6" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName8" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName7" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName9" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName8" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceName10" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentResourceName9" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum1" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName1" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum2" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName2" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum3" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName3" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum4" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName4" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum5" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName5" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum6" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName6" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum7" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName7" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum8" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName8" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum9" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName9" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentResourceNum10" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentResourceName10" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentPageText" fonttype="LittleFZYBlackFont" justifyH="center" text="第1/2页">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="64" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parentLeft" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentModelViewTex" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="176" y="125" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentRight" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentModelName" fonttype="LittleFZYBlackFont" justifyH="center" text="">
+					<Color r="255" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="100" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentModelViewTex" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<ModelView name="$parentModelView">
+					<Size>
+						<AbsDimension x="176" y="100" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentModelViewTex" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="25" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+				<FontString name="$parentMoneyTitle" fonttype="TeenyMSYHFont" justifyH="left" text="当前个人贡献度：">
+					<Color r="0" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="100" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="209" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMoney" fonttype="TeenyMSYHFont" justifyH="left" text="">
+					<Color r="0" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="70" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentMoneyTitle" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			# 帮助按钮
+			<Button name="$parentHelp" inherits="HelpBtnTemplate" />
+			# 限制按钮
+			<Button name="$parentLockLimitBtn">
+				<Size>
+					<AbsDimension x="20" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parentModelViewTex" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-5" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="0" y="829" w="20" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="0" y="847" w="20" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="0" y="865" w="20" h="17" />
+				<Scripts>
+					<OnClick>ClanStashFrameLockBtn_OnClick()</OnClick>
+					<OnEnter>ClanStashFrameLockBtn_OnEnter()</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
+				</Scripts>
+			</Button>
+			# 锁定按钮
+			<Button name="$parentLockCloseBtn">
+				<Size>
+					<AbsDimension x="12" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentLockLimitBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="42" y="829" w="12" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="42" y="847" w="12" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="42" y="865" w="12" h="17" />
+				<Scripts>
+					<OnClick>ClanStashFrameLockBtn_OnClick()</OnClick>
+					<OnEnter>ClanStashFrameLockBtn_OnEnter()</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
+				</Scripts>
+			</Button>
+			# 开放按钮
+			<Button name="$parentLockOpenBtn">
+				<Size>
+					<AbsDimension x="20" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentLockLimitBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="21" y="829" w="20" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="21" y="847" w="20" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="21" y="865" w="20" h="17" />
+				<Scripts>
+					<OnClick>ClanStashFrameLockBtn_OnClick()</OnClick>
+					<OnEnter>ClanStashFrameLockBtn_OnEnter()</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
+				</Scripts>
+			</Button>
+			<RichText name="$parentDesc" lineInterval ="2" multiLine="true" autowrap="true" fonttype="TeenyBlackFont">
+				<Size>
+					<AbsDimension x="172" y="132" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentModelViewTex" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentPagePrev" inherits="PrevPageBtnTemplate">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentPageText" relativePoint="left">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashFramePrev_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentPageNext" inherits="NextPageBtnTemplate">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentPageText" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashFrameNext_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentPageFirst" inherits="FirstPageBtnTemplate">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentPagePrev" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashFrameFirst_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentPageLast" inherits="LastPageBtnTemplate">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentPageNext" relativePoint="right">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashFrameLast_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentList1" inherits="ClanItemButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeft" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentList2" inherits="ClanItemButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentList1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentList3" inherits="ClanItemButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentList2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentList4" inherits="ClanItemButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentList3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentList5" inherits="ClanItemButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentList4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<!--##销毁 $parentPageText
+			<Button name="$parentDesoryBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="销毁">
+				<Size>
+					<AbsDimension x="39" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentChargePowerBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-6" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashFrameDesoryBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>-->
+		</Frames>
+		<Scripts>
+			<OnLoad>ClanStashFrame_OnLoad()</OnLoad>
+			<OnEvent>ClanStashFrame_OnEvent()</OnEvent>
+			<OnShow>ClanStashFrame_OnShow()</OnShow>
+			<OnHide>ClanStashFrame_OnHide()</OnHide>
+			<OnUpdate>ClanStashFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="ClanStashExchangeFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="351" y="122" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="兑换数量">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<RelDimension x="1.0"/>
+						<AbsDimension y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNumTitle" fonttype="TeenyFZYBlackFont" justifyH="left" text="请输入兑换数量：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="112" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="65" y="42"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentNumTex" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="109" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentNumTitle" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentMustTitle" fonttype="TeenyFZYBlackFont" justifyH="left" text="需消耗：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="53" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="60" y="67"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMaxTitle" fonttype="TeenyFZYBlackFont" justifyH="left" text="现有：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="189" y="67"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentMustMoneyIcon" file="uires\\ZhuJieMian\\1.dds" x="577" y="570" w="14" h="18">
+					<Size>
+						<AbsDimension x="14" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="173" y="67"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMaxMoneyIcon" file="uires\\ZhuJieMian\\1.dds" x="577" y="570" w="14" h="18">
+					<Size>
+						<AbsDimension x="14" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="289" y="67"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentMust" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="57" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentMustTitle" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMax" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="57" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentMaxTitle" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentCutLine" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="346" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="90"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="$parentNum" historyLines="0" multiLine="false" editMethod="2" letters="4">
+				<Size>
+					<AbsDimension x="68" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentNumTex" relativePoint="left">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" justifyH="right" text="">
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Scripts>
+					<OnFinishChar>ClanStashExchangeFrame_OnChange()</OnFinishChar>
+				</Scripts>
+			</EditBox>
+			<Button name="$parentDes" inherits="ScrollDownBtnTemplate">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentNumTex" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashExchangeFrame_OnDes()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentInc" inherits="ScrollUpBtnTemplate">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDes" relativePoint="left">
+						<Offset>
+							<AbsDimension x="3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashExchangeFrame_OnInc()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="21" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanStashExchangeFrame_OnEnter()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-21" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this)</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ClanStashExchangeFrame_OnLoad()</OnLoad>
+			<OnEvent>ClanStashExchangeFrame_OnEvent()</OnEvent>
+			<OnShow>ClanStashExchangeFrame_OnShow()</OnShow>
+			<OnHide>ClanStashExchangeFrame_OnHide()</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

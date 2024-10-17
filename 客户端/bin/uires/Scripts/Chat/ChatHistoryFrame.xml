@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Ui>
+	<Script file="uires\Scripts\Chat\ChatHistoryFrame.lua" />
+	# 聊天记录
+	<Frame name="ChatHistoryMsgMgrFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="300" >
+		<Size>
+			<AbsDimension x="435" y="367" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="$parentBackTex" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="信息记录" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>		
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			<Button name="$parentBackGround">
+				<Size>
+					<AbsDimension x="429" y="333"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			##透明底版
+			<Button name="$parentDescBackGround">
+				<Size>
+					<AbsDimension x="415" y="275"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="192" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+							<Size>
+								<AbsDimension x="21" y="275" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="394" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentScrollCenter" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>				
+						<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentScrollCenter" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parent_SystemBtn" inherits="GongYongAnNiuD1Template" text="系统" checked="true">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_NearBtn" inherits="GongYongAnNiuD1Template" text="附近">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_SystemBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_WorldBtn" inherits="GongYongAnNiuD1Template" text="世界">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_NearBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_ClanBtn" inherits="GongYongAnNiuD1Template" text="公会">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_WorldBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_ClanGroupBtn" inherits="GongYongAnNiuD1Template" text="战团">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_ClanBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_TeamBtn" inherits="GongYongAnNiuD1Template" text="队伍">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_ClanGroupBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_PrivateBtn" inherits="GongYongAnNiuD1Template" text="私聊">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_TeamBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_BugleBtn" inherits="GongYongAnNiuD1Template" text="喇叭">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_PrivateBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_MsgBtn" inherits="GongYongAnNiuD1Template" text="信息">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent_BugleBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ChatTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_ClearBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="信息清除">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-10" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ClearBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<RichText name="$parent_SystemRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="30" y="75" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_NearRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_SystemRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_WorldRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_SystemRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_ClanRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_SystemRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_ClanGroupRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_ClanRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_TeamRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_ClanGroupRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_PrivateRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_SystemRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_BugleRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_SystemRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parent_MsgRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" input_transparent="false" hidden="false">
+				<Size>
+					<AbsDimension x="360" y="254" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ChatHistoryMsgMgrFrame_SystemRich" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="404" y="55"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="255"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatHistoryMsgMgrFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="100" valueStep="1" defaultValue="0">	
+				<Size>
+					<AbsDimension x="16" y="234" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>ChatHistoryMsgMgrFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnLoad>ChatHistoryMsgMgrFrame_OnLoad();</OnLoad>
+			<OnEvent>ChatHistoryMsgMgrFrame_OnEvent();</OnEvent>
+			<OnShow>ChatHistoryMsgMgrFrame_OnShow();</OnShow>
+			<OnHide>ChatHistoryMsgMgrFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/PworldLeaveTimeFrame.lua" />
+	<!--离开副本剩下时间-->
+	<!--<Button name="PworldLeaveTime" parent="UIClient" hidden="true">-->
+	<Frame name="PworldLeaveTimeFrame" parent="UIClient" frameStrata="BACKGROUND" hidden="true" input_transparent="true">
+		<Size>
+			<AbsDimension x="142" y="37" />
+		</Size>
+		<Anchors>
+			<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="-48" y="201" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="PworldLeaveTimeFrame_Background_TopLeft" inherits="TipsBkgTemplate" >
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="LeaveTimeTextFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="副本剩余时间">
+					<Color r="255" g="254" b="189" />
+					<Size>
+						<AbsDimension x="142" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			    <!--剩余时间-->
+				<FontString name="LeaveTimeFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="">
+					<Color r="255" g="91" b="26" />
+					<Size>
+						<AbsDimension x="172" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="Top" relativePoint="Bottom" relativeTo="LeaveTimeTextFont">
+							<Offset>
+								<AbsDimension x="0" y="-8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+		</Frames>
+		<Scripts>
+			<OnLoad>PworldLeaveTimeFrame_OnLoad();</OnLoad>
+			<OnEvent>PworldLeaveTimeFrame_OnEvent();</OnEvent>
+			<OnShow>PworldLeaveTimeFrame_OnShow();</OnShow>
+			<OnUpdate>PworldLeaveTimeFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CountDownFrame" parent="UIClient" frameStrata="TOOLTIP" hidden="true" input_transparent="true" moveable="false">
+		<Size>
+			<AbsDimension x="300" y="20" />
+		</Size>
+		<Anchors>
+			<Anchor point="top" relativePoint="top" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="150" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString name="$parentFont"  fonttype="FZYBlackFont15" justifyH="CENTER">
+					<Color r="255" g="0" b="0" />
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>this:setUpdateTime( 1 )</OnLoad>
+			<OnUpdate>CountDownFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="PworldCountFrame" parent="UIClient" frameStrata="background" hidden="true" input_transparent="true" moveable="false">
+		<Size>
+			<AbsDimension x="88" y="37" />
+		</Size>
+		<Anchors>
+			<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+				<Offset>
+					<AbsDimension x="-196" y="201" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="Tips3BkgTemplate" />
+				<FontString name="$parentFont"  fonttype="TeenyFZYBlackFont" justifyH="CENTER">
+					<Color r="255" g="255" b="0" />
+					<Size>
+						<AbsDimension x="88" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+</Ui>

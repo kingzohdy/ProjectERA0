@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/PanelTemplates.lua"/>
+	<Button name="UIPanelScrollUpButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="10" y="16" />
+		</Size>
+	</Button>
+	<Button name="UIPanelScrollDownButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="10" y="12" />
+		</Size>
+	</Button>
+	<Button name="UIPanelCloseButton" virtual="true">
+		<Size>
+			<AbsDimension x="22" y="22" />
+		</Size>
+	</Button>
+	<Button name="UIPanelQuestionButton" virtual="true">
+		<Size>
+			<AbsDimension x="22" y="22" />
+		</Size>
+	</Button>	
+	<Button name="UIPanelButtonTemplate" virtual="true" frameStrata="dialog">
+	</Button>
+	
+	<Button name="UIPanelAcceptButtonTemplate" virtual="true" frameStrata="dialog">
+		<Size>
+			<AbsDimension x="74" y="22"/>
+		</Size>	
+	</Button>
+	
+	<Button name="UIPanelCancelButtonTemplate" virtual="true" frameStrata="dialog">
+		<Size>
+			<AbsDimension x="74" y="22"/>
+		</Size>		
+	</Button>	
+	
+	<Slider name="UIPanelScrollBarTemplate" virtual="true" orientation="VERTICAL" minValue="0" maxValue="0" valueStep="1" defaultValue="0">	
+		<Frames>
+			<Button name="$parentScrollUpButton" inherits="UIPanelScrollUpButtonTemplate">
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-16" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ScrollUpButtonOnClick();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollDownButton" inherits="UIPanelScrollDownButtonTemplate">
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-16" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						ScrollDownButtonOnClick();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>		
+			<OnValueChanged>
+				Slider_OnValueChanged();
+			</OnValueChanged>
+			<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+		</Scripts>
+		<ThumbTexture name="$parentThumbTexture" file="uires\\ui\\mask\\TouMingTongDao.tga" hidden="false">
+			<Size>
+				<AbsDimension x="32" y="32" />
+			</Size>
+		</ThumbTexture>
+	</Slider>
+
+	<ScrollFrame name="UIPanelScrollFrameTemplate" virtual="true">
+		<Frames>
+			<Slider name="$parentScrollBar" inherits="UIPanelScrollBarTemplate">
+				<Size>
+					<AbsDimension x="48" y="0" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-10" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				ScrollFrame_OnLoad();
+			</OnLoad>		
+			<OnScrollRangeChanged>
+				ScrollFrame_OnScrollRangeChanged(arg2);
+			</OnScrollRangeChanged>
+			<!--  The code to disable the ScrollDownButton is pretty hacked, but it works -->
+			<OnMouseWheel>
+				ScrollFrameTemplate_OnMouseWheel();
+			</OnMouseWheel>			
+			<OnVerticalScroll>
+				ScrollFrame_OnVerticalScroll();
+			</OnVerticalScroll>
+			<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+		</Scripts>
+	</ScrollFrame>
+	<ScrollFrame name="FauxScrollFrameTemplate" inherits="UIPanelScrollFrameTemplate" virtual="true">
+		<ScrollChild>
+			<Frame name="$parentScrollChildFrame">
+				<Size>
+					<AbsDimension x="300" y="334" />
+				</Size>
+			</Frame>
+		</ScrollChild>	
+	</ScrollFrame>
+	<Slider name="UIPanelScrollBarTemplate1"  virtual="true" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">	
+		<ThumbTexture name="$parentThumbTexture" file="uires\\ui\\mask\\TouMingTongDao.tga" hidden="true">
+			<Size>
+				<AbsDimension x="13" y="13" />
+			</Size>
+		</ThumbTexture>
+	</Slider>
+
+</Ui>

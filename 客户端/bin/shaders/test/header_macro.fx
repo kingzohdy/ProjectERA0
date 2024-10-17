@@ -1,0 +1,18 @@
+
+#define LT_POINTLIGHT 0
+#define LT_DIRLIGHT 1
+
+#define RENDER_USAGE_UI 1
+#define RENDER_USAGE_GENERAL 2
+#define RENDER_USAGE_REFLECT 4
+#define RENDER_USAGE_SHADOWMAPGEN 8
+#define RENDER_USAGE_GLOW 16
+#define RENDER_USAGE_DISTORT 32
+#define RENDER_USAGE_SHADOWCUBEMAPGEN 64
+#define RENDER_USAGE_REFRACT 128
+
+#define SELFILLUM_NONE 0  //无自发光
+#define SELFILLUM_TEX  1  //只使用自发光贴图
+#define SELFILLUM_COLOR 2 //只使用自发光颜色
+#define SELFILLUM_ALPHA 3 //只使用diffuse贴图alpha通道作为自发光
+#define SELFILLUM_ALL 4   //使用所有

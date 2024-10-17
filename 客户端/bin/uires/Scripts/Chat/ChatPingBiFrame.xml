@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Ui>
+	<Script file="uires\Scripts\Chat\ChatPingBiFrame.lua" />
+	# 聊天设置
+	<Frame name="ChatPingBiSettingFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="210">
+		<Size>
+			<AbsDimension x="302" y="227" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				 <Texture name="$parentbackground" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="聊天设置" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			# 综合
+			<Button name="$parent_ZongHePageButton" inherits="GongYongAnNiuD3Template" text="综合">
+				<Size>
+					<AbsDimension x="55" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="6" y="35"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_PageTypeButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 世界
+			<Button name="$parent_WorldPageButton" inherits="GongYongAnNiuD3Template" text="世界">
+				<Size>
+					<AbsDimension x="55" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="6" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_PageTypeButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 公会
+			<Button name="$parent_ClanPageButton" inherits="GongYongAnNiuD3Template" text="公会">
+				<Size>
+					<AbsDimension x="55" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="6" y="85"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_PageTypeButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 队伍
+			<Button name="$parent_TeamPageButton" inherits="GongYongAnNiuD3Template" text="队伍">
+				<Size>
+					<AbsDimension x="55" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="6" y="110"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_PageTypeButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 附近
+			<Button name="$parent_NearPageButton" inherits="GongYongAnNiuD3Template" text="附近">
+				<Size>
+					<AbsDimension x="55" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="6" y="135"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_PageTypeButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 私聊	
+			<Button name="$parent_PrivatePageButton" inherits="GongYongAnNiuD3Template" text="私聊">
+				<Size>
+					<AbsDimension x="55" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="6" y="160"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_PageTypeButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 面板背景
+			<Button name="$parentBackBtn" >
+				<Size>
+					<AbsDimension x="235" y="155" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="61" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 提示抬头
+			<Button name="$parentTiShiHeadBtn">
+				<Size>
+					<AbsDimension x="170" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="74" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="勾选当前要显示的频道信息" >
+							<Color r="0" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="170" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 系统频道
+			<CheckButton name="$parentSystemChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="66" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 系统频道抬头
+			<Button name="$parentSystemHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="68" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="系统频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 队伍频道
+			<CheckButton name="$parentTeamChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="172" y="66" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 队伍频道抬头
+			<Button name="$parentTeamHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="196" y="68" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="队伍频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 世界频道
+			<CheckButton name="$parentWorldChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 世界频道抬头
+			<Button name="$parentWorldHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="世界频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 附近频道
+			<CheckButton name="$parentNearChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="172" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 附近频道抬头
+			<Button name="$parentNearHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="196" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="附近频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 公会频道
+			<CheckButton name="$parentClanChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="112" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 公会频道抬头
+			<Button name="$parentClanHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="114" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="公会频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 私聊频道
+			<CheckButton name="$parentPrivateChatChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="172" y="112" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 私聊频道抬头
+			<Button name="$parentPrivateChatHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="196" y="114" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="私聊频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 战场频道
+			<CheckButton name="$parentBattleChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="135" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 战场频道抬头
+			<Button name="$parentBattleHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="137" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="战场频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 战团频道
+			<CheckButton name="$parentClanGroupChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="172" y="135" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 战团频道抬头
+			<Button name="$parentClanGroupHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="196" y="137" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="战团频道" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 消息提醒
+			<CheckButton name="$parentWarnNewMessageChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="158" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 消息提醒抬头
+			<Button name="$parentWarnNewMessageHeadBtn">
+				<Size>
+					<AbsDimension x="52" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="160" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="left" text="消息提醒" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="52" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 恢复默认
+			<Button name="$parent_OneChatChannelDefaultButton" inherits="GongYongAnNiuA1ButtonTemplate" text="恢复默认">
+				<Size>
+					<AbsDimension x="75" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="156" y="160"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OneChatChannelDefaultButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 应用
+			<Button name="$parent_OneChatChannelApplyCurrentButton" inherits="GongYongAnNiuA1ButtonTemplate" text="应用">
+				<Size>
+					<AbsDimension x="55" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="233" y="160"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_OneChatChannelApplyCurrentButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 水平分割线
+			<Button name="$parent_HorizonalPartionBtn" >
+				<Size>
+					<AbsDimension x="297" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="3" y="194" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 全部恢复默认
+			<Button name="$parent_AllChannelDefaultButton" inherits="GongYongAnNiuC1ButtonTemplate" text="全部恢复默认">
+				<Size>
+					<AbsDimension x="100" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="37" y="198"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_AllChannelDefaultButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 确认
+			<Button name="$parent_AllChannelConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确认">
+				<Size>
+					<AbsDimension x="60" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="205" y="198"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSettingFrame_AllChannelConfirmButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ChatPingBiSettingFrame_OnLoad();</OnLoad>
+			<OnEvent>ChatPingBiSettingFrame_OnEvent();</OnEvent>
+			<OnShow>ChatPingBiSettingFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+
+	# 全部设置恢复默认
+	<Frame name="ChatPingBiSetting_AllDefaultFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="是否确认将所有频道恢复系统默认状态？">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="20"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSetting_AllDefaultFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ChatPingBiSetting_AllDefaultFrame:Hide();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnShow>ChatPingBiSetting_AllDefaultFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+</Ui>

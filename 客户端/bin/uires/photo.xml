@@ -1,0 +1,2366 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/photo.lua" />
+	<Button name="PhotoBuffButtonTemplate" frameStrata="BACKGROUND" virtual="true">
+		<Size>
+			<AbsDimension x="25" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentIcon" file="uires\\TuPianLei\\JiNeng\\Buff\\1024.tga" >
+                    <Size>
+                       <AbsDimension x="23" y="23"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="1" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+				<Texture name="$parentGround" file="uires\ui\buff  TuBiaoDiBan\Bai.tga" >
+                    <Size>
+                       <AbsDimension x="25" y="25"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+			</Layer>
+			<Layer level="HIGHLIGHT">
+				<FontString name="$parentOverlay" fonttype="MinimumBlackFont" justifyH="right" fontStyle="border" text="">
+					<Color r="255" g="255" b="255" />
+					<Size>
+						<AbsDimension x="12" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-3" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>CoolBuffButton_OnEnter();</OnEnter>
+			<OnLeave>CoolBuffButton_OnLeave();</OnLeave>
+			<OnClick>CoolBuffButton_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+
+	# TODO: 玩家信息	LOW
+	<Button name="PhotoFrame" parent="UIClient" hidden="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="268" y="102" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				# 身体
+				<Texture name="PhotoBodyTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male_body.tga">
+					<Size>
+						<AbsDimension x="79" y="79" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="11" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="Photo" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\5520001.tga">
+					<Size>
+						<AbsDimension x="79" y="79" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="11" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="PhotoHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga" alphaMode="ADD">
+					<Size>
+						<AbsDimension x="79" y="79" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="11" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="hairPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_3.tga">
+					<Size>
+						<AbsDimension x="79" y="79" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="11" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				# file="uires\\ui\\MianBan  16.dds" x="738" y="793" w="268" h="102"		file="uires\\ZhuJieMian\\1.dds" x="561" y="787" w="268" h="102"
+				<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\1.dds" x="561" y="787" w="268" h="102" >
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## hidden="true"
+				<Texture name="PhotoFightCircleBackground" file="uires\\ui\\ZhanDouXianShiShanShuoBianKuang1.tga" hidden="true">
+					<Size>
+						<AbsDimension x="85" y="78" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="2" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## hidden="true"
+				<Texture name="PhotoFightRectBackground" file="uires\\ui\\ZhanDouXianShiShanShuoBianKuang2.tga" hidden="true">
+					<Size>
+						<AbsDimension x="168" y="70" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="70" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="PhotoFightTex" file="uires\\ui\\CharacterFrame  FightXianShiShanSHuo.tga" hidden="true">
+					<Size>
+						<AbsDimension x="268" y="102" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">				
+				# 名字
+				<FontString name="CharacterPhotoName" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="shadow" 
+				text="你好你好你好你好你好你好你好你好你好你好你好" >
+					<Color r="255" g="254" b="191" />
+					<Size>
+						<AbsDimension x="107" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="PhotoFrame">
+							<Offset>
+								<AbsDimension x="126" y="26" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# hidden="true"
+			<Button name="PhotoFrameCaptainButton" hidden="true">
+				<Size>
+					<AbsDimension x="19" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="81" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="173" y="288" w="19" h="12"/>
+				<Scripts>					
+					<OnEnter>PhotoFrameCaptainButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="PhotoFrameLevelBtn">
+				<Size>
+					<AbsDimension x="27" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="83" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="CharacterLevel" fonttype="NormalBlackFont" justifyH="CENTER" fontStyle="shadow" text="120">
+							<Color r="255" g="245" b="191" />
+							<Size>
+								<AbsDimension x="27" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>PhotoFrameLevelBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="PhotoFrameRaceBtn">
+				<Size>
+					<AbsDimension x="33" y="33"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="82" y="13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="PhotoFrameRaceSignTextureBack" file="uires\\ZhuJieMian\\2.dds" x="182" y="577" w="33" h="33" >
+							<Size>
+								<AbsDimension x="33" y="33"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="PhotoFrameRaceSignTexture" file="uires\\ZhuJieMian\\2.dds" x="684" y="516" w="20" h="28" >
+							<Size>
+								<AbsDimension x="20" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>PhotoFrameRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			#显示HP
+			<Button name="PhotoFrameHP">
+				<Size>
+					<AbsDimension x="143" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PhotoFrame">
+						<Offset>
+							<AbsDimension x="106" y="46" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="Background">
+						# file="uires\\ui\\MianBan  1.dds" x="345" y="848" w="286" h="14"	inherits="MainplayerHPTexTemplate" 
+						<Texture name="$parentTex" inherits="MainplayerHPTexTemplate"  >
+							<Size>
+								<AbsDimension x="143" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="HpPercentFont" fonttype="FZYBlackFont12" justifyH="center" fontStyle="border" text="200/100" >
+							<Size>
+								<AbsDimension x="140" y="15"/>
+							</Size>
+							<Color r="255" g="255" b="255"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="PhotoFrameHP" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>PhotoFrame_OnClick();</OnClick>
+					<OnLoad>PhotoFrameHP_OnLoad();</OnLoad>
+					<OnEvent>PhotoFrameHP_OnEvent();</OnEvent>
+					<OnUpdate>PhotoFrameHP_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+
+			# 显示MP
+			<Button name="PhotoFrameMP">
+				<Size>
+					<AbsDimension x="143" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="PhotoFrameHP">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="Background">
+						# "MainplayerMPTexTemplate"		file="uires\\ui\\MianBan  1.dds" x="345" y="863" w="143" h="14"
+						 <Texture name="$parentTex" inherits="MainplayerMPTexTemplate" >
+							<Size>
+								<AbsDimension x="143" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+					<Layer level="overlay">			
+						<FontString name="MpPercentFont" fonttype="FZYBlackFont12" justifyH="center" fontStyle="border" text="200/100">
+							<Size>
+								<AbsDimension x="140" y="14"/>
+							</Size>
+							<Color r="255" g="255" b="255"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="PhotoFrameMP" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>PhotoFrame_OnClick();</OnClick>
+					<OnLoad>PhotoFrameMP_OnLoad();</OnLoad>
+					<OnEvent>PhotoFrameMP_OnEvent();</OnEvent>
+					<OnUpdate>PhotoFrameMP_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			# 停止普通跟随
+			<Button name="PhotoFrameStopWeiXingButton" hidden="true">
+				<Size>
+					<AbsDimension x="17" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="65" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="957" y="663" w="17" h="17"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="975" y="663" w="17" h="17"/>
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="939" y="668" w="17" h="17"/>
+				<Scripts>
+					<OnClick>PhotoFrameStopWeiXingButton_OnClick();</OnClick>
+					<OnEnter>PhotoFrameStopWeiXingButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			#组队跟随标志
+			<Button name="PhotoFrameAppealFollowSignButton" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="65" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\Li.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="28" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture	  file="uires\\ZhuJieMian\\3.dds" x="959" y="681" w="16" h="16"/>
+				<HighlightTexture file="uires\\ZhuJieMian\\3.dds" x="959" y="698" w="16" h="16"/>
+				<PushedTexture	  file="uires\\ZhuJieMian\\3.dds" x="959" y="715" w="16" h="16"/>
+				<Scripts>
+					<OnEnter>PhotoFrameAppealFollowButton_OnEnter();</OnEnter>
+					<OnClick>PhotoFrameAppealFollowButton_OnClick();</OnClick>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="PhotoFrameCancelFollowSignButton" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="65" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	  file="uires\\ZhuJieMian\\3.dds" x="976" y="681" w="16" h="16"/>
+				<HighlightTexture file="uires\\ZhuJieMian\\3.dds" x="976" y="698" w="16" h="16"/>
+				<PushedTexture	  file="uires\\ZhuJieMian\\3.dds" x="976" y="715" w="16" h="16"/>
+				<Scripts>
+					<OnEnter>PhotoFrameCancelFollowButton_OnEnter();</OnEnter>
+					<OnClick>PhotoFrameCancelFollowButton_OnClick();</OnClick>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="PhotoFrameFollowSignButton" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="65" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\3.dds" x="929" y="754" w="16" h="16"/>
+				<Scripts>
+					<OnEnter>PhotoFrameFollowButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# TODO	hidden="true"
+			<Button name="MainPlayerLeaveTeamBtn" inherits="GongYongAnNiuA3NoFontTemplate" text="离队" hidden="true">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="41" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="PhotoFrameHP">
+						<Offset>
+							<AbsDimension x="16" y="-20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainPlayerLeaveTeamBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示DP
+			<Button name="DPHeadBtn" hidden="true">
+				<Size>
+					<AbsDimension x="11" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="PhotoFrameMP">
+						<Offset>
+							<AbsDimension x="19" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="939" y="923" w="11" h="10"/>
+			</Button>
+			<Button name="DPBtn" hidden="false">
+				<Size>
+					<AbsDimension x="107" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="PhotoFrameMP">
+						<Offset>
+							<AbsDimension x="28" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="Background">
+						# file="uires\\ui\\MianBan  14.dds" x="575" y="844" w="107" h="12"	"MainplayerDPTexTemplate"
+						<Texture name="$parentGreenTex" inherits="MainplayerGreenDPTexTemplate" >
+							<Size>
+								<AbsDimension x="100" y="7" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+						<Texture name="$parentYellowTex" inherits="MainplayerYellowDPTexTemplate" >
+							<Size>
+								<AbsDimension x="100" y="7" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+						<Texture name="$parentPurpleTex" inherits="MainplayerPurpleDPTexTemplate" >
+							<Size>
+								<AbsDimension x="107" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="$parentPercentFont" fonttype="NormalBlackFont" justifyH="center" fontStyle="border" text="200/100">
+							<Size>
+								<AbsDimension x="100" y="14"/>
+							</Size>
+							<Color r="255" g="255" b="255"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>DPBtn_OnLoad();</OnLoad>
+					<OnEvent>DPBtn_OnEvent();</OnEvent>
+					<OnEnter>DPBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="PKBtn">
+				<Size>
+					<AbsDimension x="22" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomleft" relativeTo="PhotoFrameMP">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentFrame" file="uires\\ZhuJieMian\\1.dds" x="233" y="362" w="22" h="22">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<Texture name="$parent_0" hidden="false" file="uires\\ZhuJieMian\\1.dds" x="499" y="33" w="16" h="11">
+							<Size>
+								<AbsDimension x="16" y="11" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_1" hidden="true" file="uires\\ZhuJieMian\\1.dds" x="643" y="81" w="16" h="15">
+							<Size>
+								<AbsDimension x="16" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_2" hidden="true" file="uires\\ZhuJieMian\\1.dds" x="184" y="370" w="12" h="17">
+							<Size>
+								<AbsDimension x="12" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_3" hidden="true" file="uires\\ZhuJieMian\\1.dds" x="563" y="62" w="14" h="15">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_4" hidden="true" file="uires\\ZhuJieMian\\1.dds" x="628" y="81" w="14" h="15">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_5" hidden="true" file="uires\\ZhuJieMian\\4.dds" x="286" y="53" w="18" h="10">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_6" hidden="true" file="uires\\ZhuJieMian\\1.dds" x="673" y="63" w="11" h="14">
+							<Size>
+								<AbsDimension x="11" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="24" y="24"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<!--<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="915" y="906" w="12" h="16" />
+				<PushedTexture file="uires\\ZhuJieMian\\1.dds" x="915" y="889" w="12" h="16" />-->
+				<Scripts>
+					<OnClick>PKBtn_OnClick()</OnClick>
+					<OnEnter>PKBtn_OnEnter()</OnEnter>
+					<OnLeave>PKBtn_OnLeave()</OnLeave>
+					<OnUpdate>PKBtn_OnUpdate()</OnUpdate>
+				</Scripts>
+			</Button>
+			<Button name="PKSwitchButtonTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="22" y="22" />
+				</Size>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentFrame" file="uires\\ZhuJieMian\\1.dds" x="233" y="362" w="22" h="22">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<Scripts>
+					<OnClick>PKSwitch_OnClick()</OnClick>
+					<OnLoad>PKSwitch_OnLoad()</OnLoad>
+					<OnEnter>PKSwitch_OnEnter()</OnEnter>
+					<OnLeave>PKSwitch_OnLeave()</OnLeave>
+					<OnShow>PKSwitch_OnShow()</OnShow>
+					<OnHide>PKSwitch_OnLeave()</OnHide>
+					<OnUpdate>PKSwitch_OnUpdate()</OnUpdate>
+				</Scripts>
+			</Button>
+			
+			<Button name="PKSwitchButton6" inherits="PKSwitchButtonTemplate" id="6" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="673" y="63" w="11" h="14">
+							<Size>
+								<AbsDimension x="11" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="PKSwitchButton5" inherits="PKSwitchButtonTemplate" id="5" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga" x="628" y="81" w="14" h="15">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="PKSwitchButton4" inherits="PKSwitchButtonTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="628" y="81" w="14" h="15">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="PKSwitchButton3" inherits="PKSwitchButtonTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="563" y="62" w="14" h="15">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="PKSwitchButton2" inherits="PKSwitchButtonTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="184" y="370" w="12" h="17">
+							<Size>
+								<AbsDimension x="12" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="PKSwitchButton1" inherits="PKSwitchButtonTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="643" y="81" w="16" h="15">
+							<Size>
+								<AbsDimension x="16" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="PKSwitchButton0" inherits="PKSwitchButtonTemplate" id="0" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="499" y="33" w="16" h="11">
+							<Size>
+								<AbsDimension x="16" y="11" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# TODO:  hidden="true"
+			<Button name="LockBtn" hidden="true">
+				<Size>
+					<AbsDimension x="15" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="2" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<!--<NormalTexture file="uires\\ui\\MianBan  1.dds" x="244" y="88" w="15" h="15" />-->
+			</Button>
+			#显示礼包 hidden="true"
+			# TODO
+			<Button name="GiftBtn" >
+				<Size>
+					<AbsDimension x="35" y="36" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="PhotoFrameHP">
+						<Offset>
+							<AbsDimension x="16" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\Li.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="62" y="62"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-14" y="-14"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="743" y="166" w="35" h="36" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="779" y="166" w="35" h="36" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="815" y="166" w="35" h="36" />
+				<Scripts>
+					<OnClick>GiftBtn_OnClick();</OnClick>
+					<OnEnter>GiftBtn_OnEnter();</OnEnter>
+					<OnLeave>GiftBtn_OnLeave();</OnLeave>
+					<OnUpdate>GiftBtn_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			## 快速注册按钮
+			<Button name="QuickRegisterBtn" hidden="true">
+				<Size>
+					<AbsDimension x="60" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="GiftBtn">
+						<Offset>
+							<AbsDimension x="-150" y="-48" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAminTex" file="uires\\ui\\Texiao\\ShengJi.tga" alphamode="add">
+							<Size>
+								<AbsDimension x="85" y="60"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="2" texcols="2" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="963" y="63" w="60" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="963" y="84" w="60" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="963" y="105" w="60" h="20" />
+				<Scripts>
+					<OnClick>QuickRegisterBtn_OnClick();</OnClick>
+					<OnEnter>QuickRegisterBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 新手指引提示
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="GiftBtn">
+						<Offset>
+							<AbsDimension x="-5" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="7" y="19" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Shang.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="TOPLEFT" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" 
+						fontStyle="normal"	autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+						<Size>
+							<AbsDimension x="13" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="1" y="60" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>PhotoFrameXinShouBtn:Hide();</OnClick>
+						</Scripts>
+					</Button>	
+				</Frames>
+				<Scripts>
+					<OnShow>PhotoFrameXinShouBtn_OnShow();</OnShow>
+					<OnUpdate>PhotoFrameXinShouBtn_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			
+			# 新手PK指引提示
+			<Button name="$parentPKXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomright" relativeTo="PKBtn">
+						<Offset>
+							<AbsDimension x="-35" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="50"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="19" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Shang.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="TOPLEFT" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" 
+						fontStyle="normal"	autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+						<Size>
+							<AbsDimension x="13" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-3" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>PhotoFramePKXinShouBtn:Hide();</OnClick>
+						</Scripts>
+					</Button>	
+				</Frames>
+				<Scripts>
+					
+				</Scripts>
+			</Button>
+			
+			
+			<Button name="$parentFollowXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="PhotoFrameAppealFollowSignButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="130" y="64"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-28" y="-44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Shang.tga">
+									<Size>
+										<AbsDimension x="20" y="12" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="TOPLEFT" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" 
+						fontStyle="normal"	autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+						<Size>
+							<AbsDimension x="13" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="1" y="60" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>PhotoFrameFollowXinShouBtn:Hide();</OnClick>
+						</Scripts>
+					</Button>	
+				</Frames>
+				<Scripts>
+					<OnShow>PhotoFrameFollowXinShouBtn_OnShow();</OnShow>
+					<OnUpdate>PhotoFrameFollowXinShouBtn_OnUpdate();</OnUpdate>
+					<OnHide>PhotoFrameFollowXinShouBtn_OnHide();</OnHide>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentVipBtn" >
+				<Size>
+					<AbsDimension x="31" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="10" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="806" y="49" w="31" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="806" y="67" w="31" h="17"	/>
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="806" y="85" w="31" h="17"	/>
+				<Scripts>
+					<OnEnter>PhotoFrameVipBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+					<OnClick>PhotoFrameVipBtn_OnClick();</OnClick>
+					<OnUpdate>PhotoFrameVipBtn_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>PhotoFrame_Test_OnShow();</OnShow>-->
+			<OnShow>PhotoFrame_OnShow();</OnShow>
+			<OnClick>PhotoFrame_OnClick();</OnClick>
+			<OnLoad>PhotoFrameOnLoad();</OnLoad>
+			<OnUpdate>PhotoFrame_OnUpdate();</OnUpdate>
+			<OnEvent>PhotoFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Button>
+
+	# 目标 BACKGROUND
+	<Button name="Target" parent="UIClient" hidden="true" frameStrata="BACKGROUND">
+		<Size>
+			<AbsDimension x="228" y="72" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="320" y="20" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="TargetBodyTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male_body.tga">
+					<Size>
+						<AbsDimension x="66" y="66" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="154" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="TargetPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\5520001.tga">
+					<Size>
+						<AbsDimension x="66" y="66" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="TargetBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="TargetHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga">
+					<Size>
+						<AbsDimension x="66" y="66" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="TargetBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="TargetHairPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_3.tga" >
+					<Size>
+						<AbsDimension x="66" y="66" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="TargetBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="TargetPhotoBackground3" file="uires\\ZhuJieMian\\3.dds" x="895" y="534" w="91" h="82" hidden="true">
+					<Size>
+						<AbsDimension x="91" y="82" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="Target" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="141" y="-6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>			
+				<Texture name="TargetPhotoBackground1" file="uires\\ZhuJieMian\\1.dds" x="561" y="890" w="228" h="72">
+					<Size>
+						<AbsDimension x="228" y="72" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="Target" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="TargetPhotoBackground2" file="uires\\ZhuJieMian\\1.dds" x="790" y="934" w="164" h="28" >
+					<Size>
+						<AbsDimension x="164" y="28" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="Target" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="6" y="42" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				<Texture name="TargetFightCircleBackground" file="uires\\ui\\MonsterFightShanShuoBianKuang1.tga" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="65" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="TargetPhoto" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="TargetFightRectBackground" file="uires\\ui\\MonsterFightShanShuoBianKuang2.tga" hidden="true">
+					<Size>
+						<AbsDimension x="159" y="19" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="11" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="TargetPhotoName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="怪物" fontStyle="shadow">
+					<Color r="255" g="254" b="191" />
+					<Size>
+						<AbsDimension x="110" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="Target">
+							<Offset>
+								<AbsDimension x="25" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TargetLevel" fonttype="LessTeenyBlackFont" justifyH="CENTER" fontStyle="border" text="111">
+					<Color r="255" g="221" b="161" />
+					<Size>
+						<AbsDimension x="16" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topright" relativeTo="Target">
+							<Offset>
+								<AbsDimension x="-7" y="47" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="TargetPhotoFrameRaceBtn">
+				<Size>
+					<AbsDimension x="33" y="33"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="212" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="TargetPhotoFrameRaceSignTextureBack" file="uires\\ZhuJieMian\\2.dds" x="182" y="577" w="33" h="33" >
+							<Size>
+								<AbsDimension x="33" y="33"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="TargetPhotoFrameRaceSignTexture" file="uires\\ZhuJieMian\\2.dds" x="684" y="516" w="20" h="28" >
+							<Size>
+								<AbsDimension x="20" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TargetPhotoFrameRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 血量信息
+			<Button name="TargetHP" >
+				<Size>
+					<AbsDimension x="142" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="Target">
+						<Offset>
+							<AbsDimension x="9" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="Background">
+						<Texture name="$parentTex" inherits="TargetHPTexTemplate">
+							<Size>
+								<AbsDimension x="142" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="$parentPercentFont" fonttype="FZYBlackFont12" justifyH="center" fontStyle="border" >
+							<Size>
+								<AbsDimension x="140" y="14"/>
+							</Size>
+							<Color r="255" g="255" b="255"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				
+				<Scripts>
+					<OnEnter>TargetHP_OnEnter();</OnEnter>
+					<OnLeave>TargetHP_OnLeave();</OnLeave>
+					<OnClick>Target_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 蓝信息
+			<Button name="TargetMP">
+				<Size>
+					<AbsDimension x="142" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="Target">
+						<Offset>
+							<AbsDimension x="8" y="44" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" inherits="TargetMPTexTemplate" >
+							<Size>
+								<AbsDimension x="142" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="$parentPercentFont" fonttype="FZYBlackFont12" justifyH="center" fontStyle="border">
+							<Size>
+								<AbsDimension x="140" y="14"/>
+							</Size>
+							<Color r="255" g="255" b="255"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				
+				<Scripts>
+					<!--<OnEnter>TargetMP_OnEnter();</OnEnter>
+					<OnLeave>TargetMP_OnLeave();</OnLeave>-->
+					<OnClick>Target_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 怪物品质标志
+			<Button name="TargetMonsterPinZhiFlagBtn" >
+				<Size>
+					<AbsDimension x="47" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="TargetPhoto" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="26" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="MonsterPinzhiTex" file="uires\\ui\\Za\\GuaiWuPinZhiKuang\\PinZhiKuang.tga">
+							<Size>
+								<AbsDimension x="47" y="23" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="MonsterPinzhiFlagTex" file="uires\\ui\\Za\\GuaiWuPinZhiKuang\\PinZhiDengJiLeiXing  28,16.tga" >
+							<Size>
+								<AbsDimension x="28" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="-6" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>Target_OnClick();</OnClick>
+					<OnEnter>TargetMonsterPinZhiFlagBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 玩家队长标志
+			<Button name="TargetCaptainFlag" hidden="true">
+				<Size>
+					<AbsDimension x="19" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-33" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="173" y="288" w="19" h="12"/>
+				<OnEnter>PhotoFrameCaptainButton_OnEnter();</OnEnter>
+				<OnLeave>GameTooltip:Hide();</OnLeave>
+			</Button>
+			<Button name="$parentBuff1" inherits="PhotoBuffButtonTemplate" id = "1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="130" y="70"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff2" inherits="PhotoBuffButtonTemplate" id = "2" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff1" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff3" inherits="PhotoBuffButtonTemplate" id = "3">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff2" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff4" inherits="PhotoBuffButtonTemplate" id = "4">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff3" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff5" inherits="PhotoBuffButtonTemplate" id = "5">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff4" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff6" inherits="PhotoBuffButtonTemplate" id = "6">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff5" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff7" inherits="PhotoBuffButtonTemplate" id = "7">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff6" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff8" inherits="PhotoBuffButtonTemplate" id = "8">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff7" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentBuff9" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentBuff1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff10" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff9" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff11" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff10" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff12" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff11" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff13" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff12" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff14" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff13" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff15" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff14" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff16" inherits="PhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentBuff15" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			# debuff use
+			<Button name="$parentDebuff1" inherits="PhotoBuffButtonTemplate" id = "1">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentBuff9" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff2" inherits="PhotoBuffButtonTemplate" id = "2">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDebuff1" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff3" inherits="PhotoBuffButtonTemplate" id = "3">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDebuff2" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff4" inherits="PhotoBuffButtonTemplate" id = "4">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDebuff3" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff5" inherits="PhotoBuffButtonTemplate" id = "5">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDebuff4" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff6" inherits="PhotoBuffButtonTemplate" id = "6">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDebuff5" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff7" inherits="PhotoBuffButtonTemplate" id = "7">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDebuff6" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff8" inherits="PhotoBuffButtonTemplate" id = "8">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentDebuff7" relativePoint="left">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="MonsterPhsicTypeTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="22" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="145" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>Target_OnLoad();</OnLoad>
+			<OnEvent>Target_OnEvent();</OnEvent>
+			<OnShow>Target_OnShow();</OnShow>
+			<OnClick>Target_OnClick();</OnClick>
+			<OnHide>Target_OnHide();</OnHide>
+			<OnUpdate>Target_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Button>
+	## 目标的目标
+	<Button name="TargetOfTarget" parent="UIClient" hidden="true" frameStrata="BACKGROUND">
+		<Size>
+			<AbsDimension x="109" y="32"/>
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="bottomright" relativeTo="Target">
+				<Offset>
+					<AbsDimension x="-70" y="-4" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentPhoto" hidden="true">
+					<Size>
+						<AbsDimension x="29" y="29" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRoleBodyTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male_body.tga">
+					<Size>
+						<AbsDimension x="29" y="29" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRoleTexture" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\5520001.tga" >
+					<Size>
+						<AbsDimension x="29" y="29" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentRoleBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRoleHairPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_3.tga">
+					<Size>
+						<AbsDimension x="29" y="29" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentRoleBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRoleHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga">
+					<Size>
+						<AbsDimension x="29" y="29" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentRoleBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\2.dds" x="497" y="636" w="109" h="32">
+					<Size>
+						<AbsDimension x="109" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="artwork">		
+				<FontString name="$parent_NameFont" fonttype="NormalBlackFont" justifyH="left" fontStyle="border" text="MMMMMMMMMMMMM" >
+					<Color r="255" g="255" b="190"/>  
+					<Size>
+						<AbsDimension x="150" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="49" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>			
+		</Layers>
+		<Frames>
+			<Button name="$parent_HP">
+				<Size>
+					<AbsDimension x="72" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="32" y="14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" DrawType="center" >
+							<Center>								
+								<Left			x="549"	y="669" w="8"	h="6"	/>
+								<Center			x="558" y="669" w="8"	h="6"	/>
+								<Right			x="567" y="669" w="8"	h="6"	/>
+							</Center>
+							<Size>
+								<AbsDimension x="72" y="6" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TargetofTarget_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+					<OnClick>TargetOfTarget_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示队员的MP 
+			<Button name="$parent_MP">
+				<Size>
+					<AbsDimension x="72" y="6"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent_HP" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" DrawType="center" >
+							<Center>
+								<Left			x="576"	y="669" w="8"	h="6"	/>
+								<Center			x="585" y="669" w="8"	h="6"	/>
+								<Right			x="594" y="669" w="8"	h="6"	/>
+							</Center>
+							<Size>
+								<AbsDimension x="72" y="6" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TargetofTarget_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+					<OnClick>TargetOfTarget_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>TargetOfTarget_OnUpdate();</OnUpdate>
+			<OnClick>TargetOfTarget_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+
+	## 仙子头像面板
+	<Button name="PetFairyUI" parent="UIClient" hidden="true">
+		<Size>
+			<AbsDimension x="38" y="38" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="topright" relativeTo="PhotoFrame">
+				<Offset>
+					<AbsDimension x="20" y="20" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="PetFairyPhoto" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="28" y="28" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<!--<Texture name="PetFairyPhotoBackground" file="uires\\ui\\MianBan  1.dds" x="248" y="0" w="38" h="38">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>-->
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="PetFairyMP">
+				<Size>
+					<AbsDimension x="20" y="38"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="-1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ui\\mask\\XianZiTiao.tga" />
+				<Scripts>				
+					<OnEnter>PetFairyMP_OnEnter();</OnEnter>
+					<OnLeave>PetFairyMP_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>		
+		<Scripts>
+			<OnEvent>PetXian_OnEvent();</OnEvent>
+			<OnLoad>PetXian_OnLoad();</OnLoad>
+		</Scripts>
+	</Button>
+	
+	# 主角头像右键选项菜单
+	<Frame name="MainPlayerRightMenu" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="99" y="55" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="MainPlayerRightBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="95" y="16" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="92" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MainPlayerRightBtn_OnClick();</OnClick>
+					<OnEnter>MainPlayerRightBtn_OnEnter();</OnEnter>
+					<OnLeave>MainPlayerRightBtn_OnLeave();</OnLeave>
+				</Scripts>		
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="1" y="1" w="1" h="1" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+			</Button>
+			<Button name="MainPlayerRightBtn1" inherits="MainPlayerRightBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="2" y="7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="MainPlayerRightBtn2" inherits="MainPlayerRightBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="MainPlayerRightBtn1" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="MainPlayerRightBtn3" inherits="MainPlayerRightBtnTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="MainPlayerRightBtn2" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>MainPlayerRightMenu_OnLoad();</OnLoad>
+			<OnShow>MainPlayerRightMenu_OnShow();</OnShow>
+		</Scripts>		
+	</Frame>
+
+	<Frame name="ConfirmLeaveTeamFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="确定要离开队伍吗？">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="15"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>			
+            </Button>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmLeaveTeamFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmLeaveTeamFrame:Hide();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnShow>ConfirmLeaveTeamFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+</Ui>

@@ -1,0 +1,2685 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>	
+	<Script file="uires\Scripts\Team\TeamFrame.lua" />
+	# 队伍主面板上面的队伍成员信息按钮
+
+	<Button name="TeamMemberFrame_MemberButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="133" y="389"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parent_BackTransparentTex" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="133" y="389"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parent_BackTransparentTex1" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="125" y="311"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="4" y="74" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				#下线时的状态标志
+				<Texture name="$parent_OfflineTex" file="uires\\ZhuJieMian\\2.dds" x="215" y="578" w="68" h="91" hidden="true">
+					<Size>
+						<AbsDimension x="68" y="91"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>				
+				#选中时的状态标志
+				<Texture name="$parent_SelectHilightTexture" file="uires\\ZhuJieMian\\3.dds" x="0" y="282" w="288" h="32" DrawType="tile" hidden="true">
+					<Tile>
+						<TileSize>
+							<AbsValue val="32" />
+						</TileSize>
+						<BackgroundInsets>
+							<AbsInset left="32" right="32" top="32" bottom="32" />
+						</BackgroundInsets>
+					</Tile>
+					<Size>
+						<AbsDimension x="133" y="389"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentServerName" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="服务器">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="14" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentname" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="姓名">			
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLevelCareer" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="等级">			
+					<Color r="255" g="200" b="0"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="54" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentScene" fonttype="TeenyBlackFont" justifyH="CENTER" text="所在场景名">			
+					<Color r="148" g="98" b="98"/>
+					<Size>
+						<AbsDimension x="250" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="175" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				#3D人人物模型
+				<ModelView name="$parentModelView">
+					<Size>
+						<AbsDimension x="120" y="235" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="15" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentKickBtn" inherits="CloseBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="110" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_KickOffTeamButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTurnRightBtn">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="27" y="323" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds"	x="457" y="694" w="55" h="55" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds"	x="513" y="694" w="55" h="55"/>
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds"	x="569" y="694" w="55" h="55"/>
+				<Scripts>
+					<onbuttonclick>TeamMemberTurnRightBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTurnLeftBtn">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="75" y="323" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds"	x="457" y="750" w="55" h="55" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds"	x="513" y="750" w="55" h="55"/>
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds"	x="569" y="750" w="55" h="55"/>
+				<Scripts>
+					<onbuttonclick>TeamMemberTurnLeftBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>TeamMemberFrame_MemberButton_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+
+	<Button name="TypeSelectTemplate" virtual="true">
+		<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+			<Anchors>
+				<Anchor point="center">
+					<Offset>
+						<AbsDimension x="0" y="5"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</FontString>
+		<NormalTexture		inherits="GongYongAnNiuD1NormalTemplate"	r="160" g="160" b="90 "	/>
+		<HighlightTexture	inherits="GongYongAnNiuD1HighTemplate"		r="255" g="255" b="255"	/>
+		<PushedTexture		inherits="GongYongAnNiuD1PushedTemplate"	r="255" g="255" b="190"	/>
+		<DisabledTexture	inherits="GongYongAnNiuD1PushedTemplate"	r="255" g="255" b="190"	/>
+	</Button>
+	
+	# 队伍改名面板
+	<Frame name="ChangeNameFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable ="true" framelevel="21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="TeamMemberFrame" relativePoint="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentGround" inherits="MainBkgTemplate" />                   
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="请输入队伍名字">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			#角色名字输入框背景框
+			<Button name="$parent_EditBackBtn">
+				<Size>
+					<AbsDimension x="167" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture inherits="EditBoxBkgTemplate" />
+				<Scripts>
+				</Scripts>
+			</Button>
+			##输入框
+			<EditBox name="ChangeName_EditBox" letters="18" multiLine="false" >
+				<Size>
+					<AbsDimension x="153" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent_EditBackBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont14" >
+					<Color r="255" g="229" b="189"/>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>ChangeNameConfirm_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			##确定
+			<Button name="ChangeNameConfirm_Btn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ChangeNameConfirm_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="ChangeNameCancel_Btn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>ChangeNameCancel_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ChangeNameFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	# 队伍的队伍成员子面板
+	<Frame name="TeamMemberFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="21">
+		<Size>
+			<AbsDimension x="857" y="516"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="队 伍">
+					<Size>
+						<AbsDimension x="60" y="15"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBkg1" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="836" y="407"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="57"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNumFont" fonttype="TeenyFZYBlackFont" justifyH="right" text="队伍内人数越多击杀怪物获得的经验越高">
+					<Size>
+						<AbsDimension x="300" y="15"/>
+					</Size>
+					<Color r="0" g="254" b="0"/>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parentBkg1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-2" y="-18"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="852" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="470"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseButton" inherits="CloseBtnTemplate" />			
+			# 问号按钮
+			<Button name="$parentHelpButton" inherits="HelpBtnTemplate" />			
+
+			# 队伍成员按钮
+            <Button name="$parentMemberButton" inherits="TypeSelectTemplate" text="队伍成员">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+                        <Offset>
+                            <AbsDimension x="14" y="33"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamMemberButton_OnClick();</OnClick>
+				</Scripts>				
+            </Button> 
+			# 申请列表按钮
+			<Button name="$parentApplyListButton"  inherits="TypeSelectTemplate" text="申请列表">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+                        <Offset>
+                            <AbsDimension x="94" y="33"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 周围玩家按钮
+			<Button name="$parentAroundPlayerButton"  inherits="TypeSelectTemplate" text="周围玩家">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+                        <Offset>
+                            <AbsDimension x="174" y="33"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamAroundPlayerButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 设置契约按钮
+			<Button name="$parentSetQiYueButton" inherits="TypeSelectTemplate" text="契约设置" hidden="true">
+				<Size>
+					<AbsDimension x="89" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomLeft" relativeTo="$parentAroundPlayerButton" relativePoint="bottomRight">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamSetQiYueButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 加为好友
+			<Button name="$parentAddFriendButton" inherits="GongYongAnNiuB1Template" text="加为好友">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="649" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_AddFriendButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 勾选框
+			<CheckButton name="$parentAutoFollowAccept" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="28" y="480"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" text="自动接受组队跟随">
+							<Size>
+								<AbsDimension x="120" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="26" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>TeamMemberFrame_AutoFollowAccept_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 队伍跟随
+			<Button name="$parentWeiXingButton" inherits="GongYongAnNiuB1Template" text="队员跟随" hidden="true" >
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="449" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberWeiXingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 解散队伍
+			<Button name="$parentJieSanTeamButton" inherits="GongYongAnNiuB1Template" text="解散队伍">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="549" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrameJieSanTeamButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 转让队长
+			<Button name="$parentZhuangRangCaptainButton" inherits="GongYongAnNiuB1Template" text="转让队长">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="449" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_ZhuangRangCaptainButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 请离队伍
+			<Button name="$parentKickOffTeamButton" inherits="GongYongAnNiuB1Template" text="请离队伍" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="349" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_KickOffTeamButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 离开队伍
+			<Button name="$parentLeaveTeamButton" inherits="GongYongAnNiuB1Template" text="离  队">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="749" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_LeaveTeamButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>  
+			# 请求组队跟随
+			<Button name="$parentRequestTeamFollowButton" inherits="GongYongAnNiuB1Template" text="组队跟随" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="449" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_RequestTeamFollowButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消组队跟随
+			<Button name="$parentCancelTeamFollowButton" inherits="GongYongAnNiuB1Template" text="取消跟随" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="449" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_CancelTeamFollowButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 队伍改名
+			<Button name="$parentChangeNameButton" inherits="GongYongAnNiuA1ButtonTemplate" text="队伍改名" hidden="true">
+				<Size>
+					<AbsDimension x="65" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="topright" relativeTo="$parentAddFriendButton">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberChangeNameButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			#队伍信息
+			# TroopMemberInfoButton1
+			# TODO: 改控件名字，渐进式改，不全量改动
+			<Button name="TeamMemberFrame_MemberButton1" inherits="TeamMemberFrame_MemberButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="20" y="66"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>	
+			
+			<Button name="TeamMemberFrame_MemberButton2" inherits="TeamMemberFrame_MemberButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="157" y="66"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="TeamMemberFrame_MemberButton3" inherits="TeamMemberFrame_MemberButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="294" y="66"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>			
+			
+			<Button name="TeamMemberFrame_MemberButton4" inherits="TeamMemberFrame_MemberButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="431" y="66"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="TeamMemberFrame_MemberButton5" inherits="TeamMemberFrame_MemberButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="568" y="66"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="TeamMemberFrame_MemberButton6" inherits="TeamMemberFrame_MemberButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="705" y="66"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 队长标志
+			# TODO
+			<Button name="TeamMemberFrame_CaptainMarkButton" >
+				<Size>
+					<AbsDimension x="19" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="TeamMemberFrame_MemberButton1">
+						<Offset>
+							<AbsDimension x="4" y="37"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="173" y="288" w="19" h="12" />
+			</Button>
+			<!--	注释契约功能
+			# 契约抬头显示
+			<Button name="TeamMemberFrame_QiYueHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="20"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="当前契约：">
+							<Size>
+								<AbsDimension x="63" y="20"/>
+							</Size>
+							<Color r="63" g="49" b="28"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="bottomLeft" relativeTo="TeamMemberFrame_MemberButton1">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 契约图片显示区域
+			<Button name="TeamMemberFrame_QiYuePictureBtn" >
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="bottomleft" relativeTo="TeamMemberFrame_QiYueHeadBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="background">
+						# 图片
+						<Texture name="TeamMemberFrame_QiYueTex" file="uires\\TuPianLei\\JiNeng\\JiNeng\\1001.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>				
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</Texture>	
+						# 外框
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<Scripts>
+					<OnEnter>TeamMemberFrame_QiYuePictureBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 契约名字
+			<Button name="TeamMemberFrame_QiYueNameBtn" >
+				<Size>
+					<AbsDimension x="113" y="50"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="TeamMemberFrame_QiYueNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="契约名字契约名字契约名字契约名字契约名字契约名字契约名字">
+							<Size>
+								<AbsDimension x="95" y="30"/>
+							</Size>
+							<Color r="63" g="49" b="28"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamMemberFrame_QiYuePictureBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			-->
+		</Frames>
+		<Scripts>
+			<OnLoad>TeamMemberFrame_OnLoad();</OnLoad>
+			<OnEvent>TeamMemberFrame_OnEvent();</OnEvent>
+			<OnHide>TeamMemberFrame_OnHide();</OnHide>
+			<OnShow>TeamMemberFrame_OnShow();</OnShow>
+		</Scripts>
+		<OnShowSound file="sounds\\UI\\dakaibaibao.wav" />
+		<OnHideSound file="sounds\\UI\\guanbibaibao.wav" />
+	</Frame>
+	
+	# 申请玩家按钮
+	<Button name="TeamApplyPlayerInfoButtonTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="795" y="24"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentNameTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="198" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLevelTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="95" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentNameTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCareerTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="95" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentLevelTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentClanTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="200" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentCareerTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWorldTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="200" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentClanTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="申请玩家">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="198" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLevelFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家等级">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="95" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentNameFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCareerFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家职业">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="95" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="topright" relativeTo="$parentLevelFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentClanFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家公会">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="200" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="topright" relativeTo="$parentCareerFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>		
+				<FontString name="$parentWorldFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家服务区">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="200" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="topright" relativeTo="$parentClanFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<PushedTexture		inherits="PushedTextureTemplate" />
+		<DisabledTexture	inherits="TransTextureTemplate"/>
+		<Scripts>
+			<OnClick>TeamApplyPlayerInfoButton_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+	# 队伍的申请列表子面板
+	<Frame name="TeamApplyListFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="21">
+		<Size>
+			<AbsDimension x="857" y="516"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				# 分割线
+				<Texture name="$parentHorizonalLine" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="852" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="470"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="队伍">
+					<Size>
+						<AbsDimension x="60" y="30"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 自动同意文字
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" text="自动同意申请入队">
+					<Size>
+						<AbsDimension x="120" y="20"/>
+					</Size>
+					<Color r="255" g="255" b="190"/>
+					<Anchors>
+						<Anchor point="toplef" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="54" y="483"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseButton" inherits="CloseBtnTemplate" />			
+			# 问号按钮
+			<Button name="$parentHelpButton" inherits="HelpBtnTemplate" />
+			# 队伍成员按钮
+            <Button name="$parentMemberButton" inherits="TypeSelectTemplate" text="队伍成员">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+                        <Offset>
+                            <AbsDimension x="14" y="33"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamMemberButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 申请列表按钮
+			<Button name="$parentApplyListButton" inherits="TypeSelectTemplate" text="申请列表">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topRight" relativeTo="$parentMemberButton">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 周围玩家按钮
+			<Button name="$parentAroundPlayerButton" inherits="TypeSelectTemplate" text="周围玩家">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="bottomLeft" relativePoint="bottomRight" relativeTo="$parentApplyListButton">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamAroundPlayerButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 设置契约按钮
+			<Button name="$parentSetQiYueButton" inherits="TypeSelectTemplate" text="契约设置" hidden="true">
+				<Size>
+					<AbsDimension x="89" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomLeft" relativeTo="$parentAroundPlayerButton" relativePoint="bottomRight">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamSetQiYueButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 申请列表面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="836" y="407"/>
+				</Size>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="11" y="58"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSecondBackGroundButton">
+				<Size>
+					<AbsDimension x="818" y="389"/>
+				</Size>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="9" y="9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 姓名按钮
+			<Button name="$parentNameButton" inherits="GongYongAnNiuA1ButtonTemplate" text="姓名">
+				<Size>
+					<AbsDimension x="201" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyNameButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 等级按钮
+			<Button name="$parentLevelButton" inherits="GongYongAnNiuA1ButtonTemplate" text="等级">
+				<Size>
+					<AbsDimension x="96" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentNameButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyLevelButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 职业按钮
+			<Button name="$parentCareerButton" inherits="GongYongAnNiuA1ButtonTemplate" text="职业">
+				<Size>
+					<AbsDimension x="96" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentLevelButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyCareerButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 公会按钮
+			<Button name="$parentClanButton" inherits="GongYongAnNiuA1ButtonTemplate" text="公会">
+				<Size>
+					<AbsDimension x="202" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentCareerButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyClanNameButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 所在服务区按钮
+			<Button name="$parentWorldButton" inherits="GongYongAnNiuA1ButtonTemplate" text="所在服务区">
+				<Size>
+					<AbsDimension x="202" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentClanButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyWorldButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton1" inherits="TeamApplyPlayerInfoButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="0" y="26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton2" inherits="TeamApplyPlayerInfoButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton1">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton3" inherits="TeamApplyPlayerInfoButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton2">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton4" inherits="TeamApplyPlayerInfoButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton3">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton5" inherits="TeamApplyPlayerInfoButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton4">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton6" inherits="TeamApplyPlayerInfoButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton5">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton7" inherits="TeamApplyPlayerInfoButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton6">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton8" inherits="TeamApplyPlayerInfoButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton7">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton9" inherits="TeamApplyPlayerInfoButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton8">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton10" inherits="TeamApplyPlayerInfoButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton9">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton11" inherits="TeamApplyPlayerInfoButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton10">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton12" inherits="TeamApplyPlayerInfoButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton11">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton13" inherits="TeamApplyPlayerInfoButtonTemplate" id="13">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton12">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton14" inherits="TeamApplyPlayerInfoButtonTemplate" id="14">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton13">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentApplyPlayerInfoButton15" inherits="TeamApplyPlayerInfoButtonTemplate" id="15">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentApplyPlayerInfoButton14">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 滚动条底版
+			<Button name="$parentScrollBackBtn">
+				<Size>
+					<AbsDimension x="21" y="385" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentSecondBackGroundButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+							<Size>
+								<AbsDimension x="21" y="385" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parentScrollCenter" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parentScrollCenter" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 向上滚动按钮
+			<Button name="$parentScrollUpBtn" inherits="ScrollUpBtnTemplate" >			
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentScrollBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 向下滚动按钮
+			<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parentScrollBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parentScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="21" y="345" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentScrollUpBtn" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>TeamApplyListFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 勾选框
+			<CheckButton name="$parentAutoAccept" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="28" y="480"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_AutoAcceptCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 清空列表
+			<Button name="$parentRefuseAllButton" inherits="GongYongAnNiuB1Template" text="清空列表">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="449" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_RefuseAllButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 拒绝入队
+			<Button name="$parentRefuseResButton" inherits="GongYongAnNiuB1Template" text="拒绝入队">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentRefuseAllButton">
+						<Offset>
+							<AbsDimension x="100" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_RefuseResButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 加为好友
+			<Button name="$parentAddFriendButton" inherits="GongYongAnNiuB1Template" text="加为好友">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentRefuseResButton">
+						<Offset>
+							<AbsDimension x="100" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_AddFriendButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 同意入队
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuB1Template" text="同意入队">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentAddFriendButton">
+						<Offset>
+							<AbsDimension x="100" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_AcceptButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<OnShowSound file="sounds\\UI\\dakaibaibao.wav" />
+		<OnHideSound file="sounds\\UI\\guanbibaibao.wav" />
+		<Scripts>
+			<OnLoad>TeamApplyListFrame_OnLoad();</OnLoad>
+			<OnEvent>TeamApplyListFrame_OnEvent();</OnEvent>
+			<OnHide>TeamApplyListFrame_OnHide();</OnHide>
+			<OnShow>TeamApplyListFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	# 周围玩家信息按钮模板
+	<Button name="TeamNearPlayerInfoButtonTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="795" y="24"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentTeamTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="44" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentNameTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="190" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentTeamTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLevelTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="87" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentNameTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCareerTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="87" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentLevelTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentClanTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="192" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentCareerTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWorldTex" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="188" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentClanTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<Texture name="$parentCaptainTex" file="uires\\ZhuJieMian\\1.dds" x="173" y="288" w="19" h="12" >
+					<Size>
+						<AbsDimension x="19" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="15" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMemberTex" file="uires\\ZhuJieMian\\1.dds" x="297" y="287" w="12" h="14" >
+					<Size>
+						<AbsDimension x="12" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="申请玩家">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="190" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="44" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLevelFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家等级">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="87" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentNameFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCareerFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家职业">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="87" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="topright" relativeTo="$parentLevelFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentClanFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家公会">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="192" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="topright" relativeTo="$parentCareerFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>		
+				<FontString name="$parentWorldFont" fonttype="TeenyBlackFont" justifyH="CENTER" text="玩家服务区">			
+					<Color r="190" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="188" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="topright" relativeTo="$parentClanFont">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<PushedTexture		inherits="PushedTextureTemplate" />
+		<DisabledTexture	inherits="TransTextureTemplate"/>
+		<Scripts>
+			<OnClick>TeamNearPlayerInfoButton_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+
+	# 队伍的周围玩家子面板
+	<Frame name="TeamAroundPlayerFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="21">
+		<Size>
+			<AbsDimension x="857" y="516"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				# 分割线
+				<Texture name="$parentHorizonalLine" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="852" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="470"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="队伍">
+					<Size>
+						<AbsDimension x="60" y="30"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseButton" inherits="CloseBtnTemplate" />				
+			# 问号按钮
+			<Button name="$parentHelpButton" inherits="HelpBtnTemplate" />			
+			# 申请列表面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="836" y="407"/>
+				</Size>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="11" y="58"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSecondBackGroundButton">
+				<Size>
+					<AbsDimension x="818" y="389"/>
+				</Size>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="9" y="9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 队伍成员按钮
+            <Button name="$parentMemberButton" inherits="TypeSelectTemplate" text="队伍成员">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+                        <Offset>
+                            <AbsDimension x="14" y="33"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamMemberButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 申请列表按钮
+			<Button name="$parentApplyListButton" inherits="TypeSelectTemplate" text="申请列表">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topRight" relativeTo="$parentMemberButton">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 周围玩家按钮
+			<Button name="$parentAroundPlayerButton" inherits="TypeSelectTemplate" text="周围玩家">
+				<Size>
+					<AbsDimension x="80" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="bottomLeft" relativePoint="bottomRight" relativeTo="$parentApplyListButton">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamAroundPlayerButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 设置契约按钮
+			<Button name="$parentSetQiYueButton" inherits="TypeSelectTemplate" text="契约设置" hidden="true">
+				<Size>
+					<AbsDimension x="89" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomLeft" relativeTo="$parentAroundPlayerButton" relativePoint="bottomRight">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamSetQiYueButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>			
+			# 滚动条底版
+			<Button name="$parentScrollBackBtn">
+				<Size>
+					<AbsDimension x="21" y="385" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentSecondBackGroundButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+							<Size>
+								<AbsDimension x="21" y="385" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parentScrollCenter" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parentScrollCenter" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 向上滚动按钮
+			<Button name="$parentScrollUpBtn" inherits="ScrollUpBtnTemplate" >			
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentScrollBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 向下滚动按钮
+			<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parentScrollBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parentScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="21" y="345" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentScrollUpBtn" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>TeamAroundPlayerFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 刷新列表
+			<Button name="$parentRefurbishButton" inherits="GongYongAnNiuB1Template" text="刷新列表">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="14" y="478"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundPlayerFrame_RefurbishButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 加为好友
+			<Button name="$parentAddFriendButton" inherits="GongYongAnNiuB1Template" text="加为好友">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="649" y="476"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberFrame_AddFriendButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			<!--# 申请入队
+			<Button name="$parentApplyButton" inherits="GongYongAnNiuB1Template" text="申请入队">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentAddFriendButton">
+						<Offset>
+							<AbsDimension x="100" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundPlayerFrame_ApplyButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> -->
+			# 邀请入队
+			<Button name="$parentInviteButton" inherits="GongYongAnNiuB1Template" text="组  队">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentAddFriendButton">
+						<Offset>
+							<AbsDimension x="100" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundPlayerFrame_InviteButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 队伍按钮
+			<Button name="$parentTeamButton" inherits="GongYongAnNiuA1ButtonTemplate" text="队伍">
+				<Size>
+					<AbsDimension x="48" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundTeamButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 姓名按钮
+			<Button name="$parentNameButton" inherits="GongYongAnNiuA1ButtonTemplate" text="姓名">
+				<Size>
+					<AbsDimension x="192" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentTeamButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundNameButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 等级按钮
+			<Button name="$parentLevelButton" inherits="GongYongAnNiuA1ButtonTemplate" text="等级">
+				<Size>
+					<AbsDimension x="87" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentNameButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundLevelButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 职业按钮
+			<Button name="$parentCareerButton" inherits="GongYongAnNiuA1ButtonTemplate" text="职业">
+				<Size>
+					<AbsDimension x="87" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentLevelButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundCareerButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 公会按钮
+			<Button name="$parentClanButton" inherits="GongYongAnNiuA1ButtonTemplate" text="公会">
+				<Size>
+					<AbsDimension x="192" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentCareerButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundClanNameButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 所在服务区按钮
+			<Button name="$parentWorldButton" inherits="GongYongAnNiuA1ButtonTemplate" text="所在服务区">
+				<Size>
+					<AbsDimension x="192" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topright" relativeTo="$parentClanButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamAroundWorldButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton1" inherits="TeamNearPlayerInfoButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="0" y="26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton2" inherits="TeamNearPlayerInfoButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton1">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton3" inherits="TeamNearPlayerInfoButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton2">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton4" inherits="TeamNearPlayerInfoButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton3">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton5" inherits="TeamNearPlayerInfoButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton4">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton6" inherits="TeamNearPlayerInfoButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton5">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton7" inherits="TeamNearPlayerInfoButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton6">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton8" inherits="TeamNearPlayerInfoButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton7">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton9" inherits="TeamNearPlayerInfoButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton8">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton10" inherits="TeamNearPlayerInfoButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton9">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton11" inherits="TeamNearPlayerInfoButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton10">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton12" inherits="TeamNearPlayerInfoButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton11">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton13" inherits="TeamNearPlayerInfoButtonTemplate" id="13">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton12">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton14" inherits="TeamNearPlayerInfoButtonTemplate" id="14">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton13">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentNearPlayerInfoButton15" inherits="TeamNearPlayerInfoButtonTemplate" id="15">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="$parentNearPlayerInfoButton14">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<OnShowSound file="sounds\\UI\\dakaibaibao.wav" />
+		<OnHideSound file="sounds\\UI\\guanbibaibao.wav" />
+		<Scripts>
+			<OnLoad>TeamAroundPlayerFrame_OnLoad();</OnLoad>
+			<OnEvent>TeamAroundPlayerFrame_OnEvent();</OnEvent>
+			<OnHide>TeamAroundPlayerFrame_OnHide();</OnHide>
+			<OnShow>TeamAroundPlayerFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	
+	# 契约按钮模板
+	<Button name="TeamQiYueButtonTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="870" y="62"/>
+		</Size>
+		<Layers>	
+			<Layer level="background">	
+				##分割线
+				<Texture name="$parentPartitionLineTex" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2">
+					<Size>
+						<AbsDimension x="867" y="2"/>
+					</Size>					
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">	
+				<FontString name="$parentNameFont" fonttype="TeenyFZYBlackFont" fontStyle="shadow" justifyH="left" text="玩家名字玩家名字玩家名字玩家名字玩家名字玩家名字玩家名字玩家名字玩家名字玩家名字玩家名字玩家名字" >			
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="130" y="40" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="51" y="15" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentQiYueDescFont" fonttype="TeenyFZYBlackFont" fontStyle="shadow" autowrap="true" justifyH="CENTER" text="契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述契约描述">	
+					<Color r="147" g="130" b="89"/>
+					<Size>
+						<AbsDimension x="410" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="421" y="9" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>	
+		<Scripts>
+			<OnClick>TeamQiYueFrame_OnClick();</OnClick>
+		</Scripts>
+		<NormalTexture		inherits="TransTextureTemplate" />
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<PushedTexture		inherits="HighlightTextureTemplate" />
+		<DisabledTexture	inherits="TransTextureTemplate" />
+	</Button>
+
+	<Button name="TeamQiYuePictureBtnTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="44" y="44"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentQiYueTex" >
+					<Size>
+						<AbsDimension x="40" y="40" />
+					</Size>					
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentQiYueBorderTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" >
+					<Size>
+						<AbsDimension x="44" y="44" />
+					</Size>					
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>TeamQiYuePictureBtn_OnEnter();</OnEnter>
+			<OnLeave>GameTooltip:Hide();</OnLeave>
+		</Scripts>
+	</Button>
+
+	<CheckButton name="TeamQiYueChkBtnTemplate" inherits="CheckBtnTemplate" virtual="true" >
+		<Scripts>
+			<OnClick>TeamQiYueChkBtn_OnClick();</OnClick>
+			<OnEnter>TeamQiYueChkBtn_OnEnter();</OnEnter>
+			<OnLeave>TeamQiYueChkBtn_OnLeave();</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	# 队伍的设置契约子面板
+	<Frame name="TeamQiYueFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="21">
+		<Size>
+			<AbsDimension x="900" y="516"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="队伍">
+					<Size>
+						<AbsDimension x="60" y="30"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="894" y="482"/>
+				</Size>				
+				<Anchors>            
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 队伍成员按钮
+            <Button name="$parentMemberButton" inherits="TypeSelectTemplate" text="队伍成员">
+				<Size>
+					<AbsDimension x="89" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+                        <Offset>
+                            <AbsDimension x="15" y="28"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamMemberButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 申请列表按钮
+			<Button name="$parentApplyListButton" inherits="TypeSelectTemplate" text="申请列表">
+				<Size>
+					<AbsDimension x="89" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativePoint="topRight" relativeTo="$parentMemberButton">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamApplyListButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 周围玩家按钮
+			<Button name="$parentAroundPlayerButton" inherits="TypeSelectTemplate" text="周围玩家">
+				<Size>
+					<AbsDimension x="89" y="26"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="bottomLeft" relativePoint="bottomRight" relativeTo="$parentApplyListButton">
+                        <Offset>
+                            <AbsDimension x="0" y="0"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TeamAroundPlayerButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 设置契约按钮
+			<Button name="$parentSetQiYueButton" inherits="TypeSelectTemplate" text="契约设置" hidden="true">
+				<Size>
+					<AbsDimension x="89" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomLeft" relativeTo="$parentAroundPlayerButton" relativePoint="bottomRight">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamSetQiYueButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 关闭按钮
+			<Button name="$parentCloseButton" inherits="CloseBtnTemplate" />
+
+			# 问号按钮
+			<Button name="$parentHelpButton" inherits="HelpBtnTemplate" />
+			
+			# 面板透明底版
+			<Button name="$parentSecondBackGroundButton">
+				<Size>
+					<AbsDimension x="870" y="378"/>
+				</Size>
+				<Anchors>            
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 契约按钮	
+			<Button name="TeamQiYueButton1" inherits="TeamQiYueButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamQiYuePictureBtn1" inherits="TeamQiYuePictureBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="TeamQiYueButton1">
+						<Offset>
+							<AbsDimension x="270" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="TeamQiYueChkBtn1" inherits="TeamQiYueChkBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamQiYueButton1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="327" y="17" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+
+			<Button name="TeamQiYueButton2" inherits="TeamQiYueButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="TeamQiYueButton1">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamQiYuePictureBtn2" inherits="TeamQiYuePictureBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="TeamQiYueButton2">
+						<Offset>
+							<AbsDimension x="270" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="TeamQiYueChkBtn2" inherits="TeamQiYueChkBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamQiYueButton2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="327" y="17" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+
+			<Button name="TeamQiYueButton3" inherits="TeamQiYueButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="TeamQiYueButton2">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamQiYuePictureBtn3" inherits="TeamQiYuePictureBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="TeamQiYueButton3">
+						<Offset>
+							<AbsDimension x="270" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="TeamQiYueChkBtn3" inherits="TeamQiYueChkBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamQiYueButton3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="327" y="17" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+
+			<Button name="TeamQiYueButton4" inherits="TeamQiYueButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="TeamQiYueButton3">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamQiYuePictureBtn4" inherits="TeamQiYuePictureBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="TeamQiYueButton4">
+						<Offset>
+							<AbsDimension x="270" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="TeamQiYueChkBtn4" inherits="TeamQiYueChkBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamQiYueButton4" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="327" y="17" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+
+			<Button name="TeamQiYueButton5" inherits="TeamQiYueButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="TeamQiYueButton4">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamQiYuePictureBtn5" inherits="TeamQiYuePictureBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="TeamQiYueButton5">
+						<Offset>
+							<AbsDimension x="270" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="TeamQiYueChkBtn5" inherits="TeamQiYueChkBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamQiYueButton5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="327" y="17" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+
+			<Button name="TeamQiYueButton6" inherits="TeamQiYueButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="bottomleft" relativeTo="TeamQiYueButton5">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamQiYuePictureBtn6" inherits="TeamQiYuePictureBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="TeamQiYueButton6">
+						<Offset>
+							<AbsDimension x="270" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="TeamQiYueChkBtn6" inherits="TeamQiYueChkBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamQiYueButton6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="327" y="17" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+
+			# 队长标志
+			<Button name="TeamQiYueFrame_CaptainMarkButton" >
+				<Size>
+					<AbsDimension x="19" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TeamQiYueButton1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="12" y="20" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="173" y="288" w="19" h="12" />
+			</Button> 
+		</Frames>
+		<Scripts>
+			<OnLoad>TeamQiYueFrame_OnLoad();</OnLoad>
+			<OnEvent>TeamQiYueFrame_OnEvent();</OnEvent>
+			<OnHide>TeamQiYueFrame_OnHide();</OnHide>
+			<OnShow>TeamQiYueFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/PickUpFrame.lua"/>
+	<Button name="PickUpButtonTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="191" y="50"/>
+		</Size>
+		<Scripts>
+			<OnClick>PickUpButton_OnClick();</OnClick>
+			<OnEnter>PickUpButton_OnEnter();</OnEnter>
+			<OnLeave>PickUpButton_OnLeave();</OnLeave>
+			<ondoubleclick>PickUpButton_OnDoubleClick();</ondoubleclick>
+		</Scripts>
+		<Layers>
+			<Layer level="BACKGROUND">	
+				<Texture name="$parent_Item_Texture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+							<Offset>
+								<AbsDimension x="5" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parent_ItemName_Font" fonttype="TeenyBlackFont" text="">
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parent_Item_Texture" relativePoint="Right">
+							   <Offset>
+									<AbsDimension x="5" y="0" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+			</Layer>
+			<Layer level="Dialog">
+				<FontString name="$parentCountSmallFont" fonttype="TeenyBlackFont"  justifyH="right"  fontStyle="border" text="">
+					<Color r="204" g="128" b="51"/>
+					<Size>
+						<AbsDimension x="26" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parent_Item_Texture" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-3" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level ="Dialog">
+				<Texture name="$parentBack" inherits="HighlightTextureTemplate" hidden="true">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ZhuangBei  1.tga" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-9" y="-9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<UVAnimation texrows="6" texcols="5" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentHighLightIcon" Hidden="true"  frameStrata="BACKGROUND">
+				<Size>
+					<AbsDimension x="180" y="40" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+                <Layers>
+					<Layer level ="Dialog">
+						<Texture name="$parentBack" inherits="HighlightTextureTemplate" hidden="true">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<Backdrop edgeFile="uires\\ui\\tips\\LieBiaoKuang\\LieBiaoKuangXuanZhong  9.tga" bgFile="uires\\ui\\tips\\LieBiaoKuang\\LieBiaoKuangXuanZhong  9  Zhong.tga" tile="true">
+			<EdgeSize>
+				<AbsValue val="9" />
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="9" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="9" right="9" top="9" bottom="9" />
+			</BackgroundInsets>
+		</Backdrop>
+		##TODO HERE
+		#PushedTexture		file="uires\\ui\\MianBan  1.dds" x="0" y="434" w="31" h="40"
+	</Button>
+
+	<!--拾取框架-->
+	<Frame name="PickUpFrame" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true" >
+		<Size>
+			<AbsDimension x="212" y="300" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="PickUpFrame_BackGround_topLeft" inherits="MainBkgTemplate" />				
+			</Layer>
+			<Layer level="artwork">	
+				<Texture name="PickUpButtonSelect_Texture" file="uires\\ui\\mask\\TouMingTongDao.tga" hidden="true">
+					<Size>
+						<AbsDimension x="180" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="CurPageNumber_Font" fonttype="TeenyBlackFont" >
+					<Size>
+						<AbsDimension x="10" y="15" />
+					</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="95" y="-18" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="MaxPageNumber_Font" fonttype="TeenyBlackFont" >
+					<Size>
+						<AbsDimension x="20" y="15" />
+					</Size>
+						<Anchors>
+							<Anchor point="left" relativePoint="right" relativeTo="CurPageNumber_Font">
+								<Offset>
+									<AbsDimension x="-2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!--关闭-->
+			<Button name="PickUpFrameClose_Btn" inherits="CloseBtnTemplate" />
+			
+			<!--全部拾取-->
+			<Button name="PickUpAll_Btn" inherits="GongYongAnNiuB3Template" text="全部拾取">
+				<Size>
+					<AbsDimension x="117" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<OnClickSound file="sounds\\UI\\shiqu.wav"/>
+				<Scripts>
+					<OnClick>PickUpAll_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<!--上一个界面-->
+			<Button name="PickUpFramePrevious_Btn" inherits="LeftArrowButtonTemplate">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="64" y="-14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PickUpFramePrevious_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<!--下一个界面-->
+			<Button name="PickUpFrameNext_Btn" inherits="RightArrowButtonTemplate">
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-64" y="-14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PickUpFrameNext_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="PickUpButton1" inherits="PickUpButtonTemplate" id="1" >
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="56"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<OnClickSound file="sounds\\UI\\shiqu.wav"/>
+			</Button>
+			<Button name="PickUpButton2" inherits="PickUpButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="PickUpButton1">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<OnClickSound file="sounds\\UI\\shiqu.wav"/>
+			</Button>
+			<Button name="PickUpButton3" inherits="PickUpButtonTemplate" id="3" >
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="PickUpButton2">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<OnClickSound file="sounds\\UI\\shiqu.wav"/>
+			</Button>
+			<Button name="PickUpButton4" inherits="PickUpButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="PickUpButton3">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<OnClickSound file="sounds\\UI\\shiqu.wav"/>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>PickUpFrame_OnLoad();</OnLoad>
+			<OnEvent></OnEvent>
+			<OnShow>PickUpFrame_OnShow();</OnShow>
+			<OnUpdate>PickUpFrame_OnUpdate();</OnUpdate>
+			<OnEvent>PickUpFrame_OnEvnet();</OnEvent>
+			<OnHide>PickUpFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

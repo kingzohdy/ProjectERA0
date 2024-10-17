@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Team\TeamPhotoFrame.lua" />
+	#请求跟随队长框
+	<Frame name="TroopInviteFollowFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />				
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="TroopInviteFollowFrameBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentInviteFont" fonttype="TeenyFZYBlackFont" fontStyle="shadow" justifyH="center" text="队长要求你跟随">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="5"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			#同意邀请按钮
+			<Button name="TroopInviteFollowFrame_AcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TroopInviteFollowFrame_AcceptButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 拒绝邀请按钮
+			<Button name="TroopInviteFollowFrame_RufuseOneButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TroopInviteFollowFrame_RufuseOneButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnHide>TroopInviteFollowFrame_OnHide();</OnHide>
+			<OnUpdate>TroopInviteFollowFrame_OnUpdate();</OnUpdate>
+		</Scripts>	
+    </Frame>
+
+	#请求组队跟随框
+	<Frame name="TroopInviteTeamFollowFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />				
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentInviteFont" fonttype="TeenyFZYBlackFont" fontStyle="shadow" justifyH="center" text="队长要求你跟随">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="5"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			#同意跟随按钮
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TroopInviteTeamFollowFrameAcceptButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 拒绝跟随按钮
+			<Button name="$parentRufuseButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>TroopInviteTeamFollowFrameRufuseButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnHide>TroopInviteTeamFollowFrame_OnHide();</OnHide>
+			<OnUpdate>TroopInviteTeamFollowFrame_OnUpdate();</OnUpdate>
+		</Scripts>	
+    </Frame>
+	
+	# TODO: 组队buff按钮 hidden="true"
+	<Button name="TeamPhotoBuffButtonTemplate"  virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="15" y="15"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentIcon" file="uires\\TuPianLei\\JiNeng\\Buff\\1024.tga" >
+                    <Size>
+                       <AbsDimension x="13" y="13"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="1" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+				<Texture name="$parentGround" file="uires\ui\buff  TuBiaoDiBan\Bai.tga" >
+                    <Size>
+                       <AbsDimension x="15" y="15"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>TeamPhotoBuffButton_OnEnter();</OnEnter>
+			<OnLeave>TeamPhotoBuffButton_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+
+	# 此为组队成功后在界面左边显示的人物头像
+	<Button name="TeamRoleButtonTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="125" y="44"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTeamRoleBodyTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male_body.tga">
+					<Size>
+						<AbsDimension x="39" y="39" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="7" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTeamRoleTexture" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\5520001.tga" >
+					<Size>
+						<AbsDimension x="39" y="39" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentTeamRoleBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTeamRoleHairPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_3.tga">
+					<Size>
+						<AbsDimension x="39" y="39" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentTeamRoleBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTeamRoleHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga">
+					<Size>
+						<AbsDimension x="39" y="39" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentTeamRoleBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\1.dds" x="789" y="889" w="125" h="44">
+					<Size>
+						<AbsDimension x="125" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="artwork">	
+				# hidden="true"
+				<Texture name="$parent_OfflineSign_Texture" file="uires\\ZhuJieMian\\1.dds" x="410" y="475" w="37" h="37" hidden="true">
+					<Size>
+						<AbsDimension x="37" y="37"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRaceSignTexture" file="uires\\ZhuJieMian\\2.dds" x="663" y="520" w="20" h="28" >
+					<Size>
+						<AbsDimension x="20" y="28"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parent_Name" fonttype="TeenyBlackFont" justifyH="left" fontStyle="border" text="玩家名字玩家名字玩家名字玩家名字玩家名字">
+					<Color r="255" g="254" b="189"/>  
+					<Size>
+						<AbsDimension x="100" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="47" y="-7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 显示队员的LV
+			<Button name="$parent_LV">
+				<Size>
+					<AbsDimension x="22" y="22"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentFont" fonttype="MinimumBlackFont" justifyH="center" fontStyle="border" text="868" >
+							<Color r="255" g="254" b="189"/>  
+							<Size>
+								<AbsDimension x="18" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="-8" y="23" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="233" y="362" w="22" h="22" />
+				<Scripts>
+					<OnClick>TeamRoleChildButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示队员的HP
+			<Button name="$parent_HP">
+				<Size>
+					<AbsDimension x="72" y="9"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="48" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						# file="uires\\ui\\MianBan  1.dds" x="631" y="852" w="150" h="12"
+						<Texture name="$parentTex" inherits="TeamHPTexTemplate">
+							<Size>
+								<AbsDimension x="72" y="9" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="MinimumBlackFont" justifyH="center" fontStyle="shadow" text="44 / 100" hidden="true">
+							<Color r="255" g="255" b="255"/>  
+							<Size>
+								<AbsDimension x="75" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TeamHP_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+					<OnClick>TeamRoleChildButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示队员的MP 
+			<Button name="$parent_MP">
+				<Size>
+					<AbsDimension x="72" y="9"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent_HP" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						# file="uires\\ui\\MianBan  1.dds" x="631" y="865" w="150" h="12"
+						<Texture name="$parentTex" inherits="TeamMPTexTemplate">
+							<Size>
+								<AbsDimension x="72" y="9" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="MinimumBlackFont" justifyH="center" fontStyle="shadow" text="44 / 10" hidden="true">
+							<Color r="255" g="255" b="255"/>  
+							<Size>
+								<AbsDimension x="75" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="-1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TeamMP_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+					<OnClick>TeamRoleChildButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_FollowSign" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="30" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\3.dds" x="929" y="754" w="16" h="16"/>
+				<Scripts>
+					<OnEnter>PhotoFrameFollowButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentBuff1" inherits="TeamPhotoBuffButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="43" y="-11"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff2" inherits="TeamPhotoBuffButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff1" relativePoint="right">
+						<Offset>
+								<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff3" inherits="TeamPhotoBuffButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff2" relativePoint="right">
+						<Offset>
+								<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff4" inherits="TeamPhotoBuffButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff3" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff5" inherits="TeamPhotoBuffButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff4" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff6" inherits="TeamPhotoBuffButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff5" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff7" inherits="TeamPhotoBuffButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff6" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff8" inherits="TeamPhotoBuffButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff7" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# nolimit buff use
+			<Button name="$parentBuff9" inherits="TeamPhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff8" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff10" inherits="TeamPhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff9" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff11" inherits="TeamPhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff10" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff12" inherits="TeamPhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff11" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff13" inherits="TeamPhotoBuffButtonTemplate" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff12" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentDebuff1" inherits="TeamPhotoBuffButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_HP" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="4" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff2" inherits="TeamPhotoBuffButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentDebuff1" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff3" inherits="TeamPhotoBuffButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentDebuff2" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff4" inherits="TeamPhotoBuffButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentDebuff3" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff5" inherits="TeamPhotoBuffButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentDebuff4" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff6" inherits="TeamPhotoBuffButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentDebuff5" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff7" inherits="TeamPhotoBuffButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentDebuff6" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDebuff8" inherits="TeamPhotoBuffButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentDebuff7" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 此为队伍成员说话的时候弹出消息	
+			<Button name="$parentChatPopBtn" hidden="true" input_transparent="true">	
+				<Size>
+					<AbsDimension x="250" y="100" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parent" relativePoint="right">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\LiaoTianPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\LiaoTianPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="10" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentRich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true">
+						<Size>
+							<AbsDimension x="230" y="200" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4" y="4" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>RichText_OnClick();</OnClick>
+						</Scripts>
+					</RichText>   
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>TeamRoleButton_OnClick();</OnClick>
+			<OnEnter>TeamRoleButton_OnEnter();</OnEnter>
+			<OnLeave>GameTooltip:Hide();</OnLeave>
+			<OnUpdate>TeamRoleButton_OnUpdate();</OnUpdate>
+			<OnHide>TeamRoleButton_OnHide();</OnHide>
+		</Scripts>
+	</Button>
+
+	# TODO: 队伍角色头像列表  TeamRoleFrame hidden="true"	TODO   BACKGROUND
+	<Frame name = "TeamRoleFrame" parent="UIClient" frameStrata="BACKGROUND" hidden="true" framelevel="197" >
+		<Size>
+			<AbsDimension x="50" y="250" />
+		</Size>
+		<Anchors>
+			<Anchor point="TopLeft" relativeTo="PhotoFrame" relativePoint="BottomLeft">
+				<Offset>
+					<AbsDimension x="0" y="10" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+		<!--hidden="true"-->
+			<Button name="TeamRoleCaptainSignButton" hidden="true">
+				<Size>
+					<AbsDimension x="19" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="173" y="288" w="19" h="12"/>
+				<Scripts>
+					<OnEnter>PhotoFrameCaptainButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>			
+			<Button name="TeamRoleButton1" inherits="TeamRoleButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="7" y="42"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamRoleButton2" inherits="TeamRoleButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="TeamRoleButton1">
+						<Offset>
+							<AbsDimension x="0" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamRoleButton3" inherits="TeamRoleButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="TeamRoleButton2">
+						<Offset>
+							<AbsDimension x="0" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamRoleButton4" inherits="TeamRoleButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="TeamRoleButton3">
+						<Offset>
+							<AbsDimension x="0" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamRoleButton5" inherits="TeamRoleButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="TeamRoleButton4">
+						<Offset>
+							<AbsDimension x="0" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TeamRoleButton6" inherits="TeamRoleButtonTemplate" id="6" hidden="true">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="TeamRoleButton5">
+						<Offset>
+							<AbsDimension x="0" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFollowXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="TeamRoleAppealFollowSignButton">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="130" y="64"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-28" y="-44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Shang.tga">
+									<Size>
+										<AbsDimension x="20" y="12" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="TOPLEFT" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" 
+						fontStyle="normal"	autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+						<Size>
+							<AbsDimension x="13" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="1" y="60" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>TeamRoleFrameFollowXinShouBtn:Hide();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>TeamRoleFrameFollowXinShouBtn_OnShow();</OnShow>
+					<OnUpdate>TeamRoleFrameFollowXinShouBtn_OnUpdate();</OnUpdate>
+					<OnHide>TeamRoleFrameFollowXinShouBtn_OnHide();</OnHide>
+				</Scripts>
+			</Button>
+			<Button name="TeamRoleAppealFollowSignButton" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\Li.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="28" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture	  file="uires\\ZhuJieMian\\3.dds" x="959" y="681" w="16" h="16"/>
+				<HighlightTexture file="uires\\ZhuJieMian\\3.dds" x="959" y="698" w="16" h="16"/>
+				<PushedTexture	  file="uires\\ZhuJieMian\\3.dds" x="959" y="715" w="16" h="16"/>
+				<Scripts>
+					<OnEnter>PhotoFrameAppealFollowButton_OnEnter();</OnEnter>
+					<OnClick>PhotoFrameAppealFollowButton_OnClick();</OnClick>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="TeamRoleCancelFollowSignButton" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	  file="uires\\ZhuJieMian\\3.dds" x="976" y="681" w="16" h="16"/>
+				<HighlightTexture file="uires\\ZhuJieMian\\3.dds" x="976" y="698" w="16" h="16"/>
+				<PushedTexture	  file="uires\\ZhuJieMian\\3.dds" x="976" y="715" w="16" h="16"/>
+				<Scripts>
+					<OnEnter>PhotoFrameCancelFollowButton_OnEnter();</OnEnter>
+					<OnClick>PhotoFrameCancelFollowButton_OnClick();</OnClick>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>						
+		</Frames>
+		<Scripts>
+			<OnLoad>TeamRoleFrame_OnLoad();</OnLoad>
+			<OnEvent>TeamRoleFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

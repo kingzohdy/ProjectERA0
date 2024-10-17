@@ -1,0 +1,2403 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Pet\PetRongHe.lua"/>
+	# 申请进行宠物融合提示框
+	<Frame  name="ReqirePetRongHeFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="347" y="121" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentFrameground"  inherits="MainBkgTemplate" >
+                    <Size>
+                       <AbsDimension x="347" y="121" />
+                     </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>   
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="宠物融合">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="-33" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="339" y="89"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTopLineTex"  inherits="HorizonalLineTemplate" >
+							<Size>
+							   <AbsDimension x="337" y="2"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="1" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="想与您的霸王龙进行融合，是否同意？想与您的霸王龙进行融合，是否同意？" >
+							<Size>
+								<AbsDimension x="330" y="15"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentBottomLineTex"  inherits="HorizonalLineTemplate" >
+							<Size>
+							   <AbsDimension x="342" y="2"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="DropPetConfirmFrame" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="89" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="4" y="27"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+
+			<RichText name="$parent_DescRich" lineInterval ="3" multiLine="true" fonttype="LittleFZYBlackFont" input_transparent="true">
+				<Size>
+					<AbsDimension x="347" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				</Scripts>
+			</RichText> 
+
+			# 确定
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="21" y="93"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ReqirePetRongHeFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 拒绝
+			<Button name="$parent_RefuseBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topRight" relativeTo="$parent" relativePoint="topRight" >
+                        <Offset>
+                            <AbsDimension x="-21" y="93"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>	
+				<Scripts>
+					<OnClick>ReqirePetRongHeFrame_RefuseBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ReqirePetRongHeFrame_OnLoad();</OnLoad>
+			<OnEvent>ReqirePetRongHeFrame_OnEvent();</OnEvent>
+			<OnShow>ReqirePetRongHeFrame_OnShow();</OnShow>
+			<OnHide>ReqirePetRongHeFrame_OnHide();</OnHide>
+			<OnUpdate>ReqirePetRongHeFrame_OnUpdate();</OnUpdate>
+			
+			<!--<OnShow>ReqirePetRongHeFrame_Test_OnShow();</OnShow>-->
+		</Scripts>
+	</Frame>
+	
+	# 正在进行宠物融合的操作面板
+	<Frame  name="PetRongHeProcessFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="484" y="284" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+               <Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="宠物融合">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseBtn" inherits="TransparentCloseBtnNoScriptTemplate">
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-10" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetRongHeProcessFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 左边显示面板背景
+			<Button name="$parentLeftPetBackBtn" >
+				<Size>
+					<AbsDimension x="234" y="151" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="7" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						##此为对方锁定交易后,覆盖对方交易信息的遮罩
+						<Texture name="$parentMaskTex" inherits="HighlightTextureTemplate" hidden="true">
+							<Size>
+								<AbsDimension x="234" y="151" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parentLeftPetBackTopHeadBtn" >
+				<Size>
+					<AbsDimension x="230" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentLeftPetBackBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="220" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="GongYongAnNiuA1DisabledTemplate"	r="255"	g="255"	b="190"	/>
+			</Button>
+			<Button name="$parentLeftPetModelBtn" >
+				<Size>
+					<AbsDimension x="83" y="140" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetBackTopHeadBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="" >
+							<Size>
+								<AbsDimension x="81" y="150" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+			# 左侧宠物名字显示
+			<Button name="$parentLeftPetNameBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="85" y="52" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="名称：卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 左侧宠物等级显示
+			<Button name="$parentLeftPetLevelBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="85" y="70" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="等级：5555555555555555555555555555555555555">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 左侧宠物资质显示
+			<Button name="$parentLeftPetGeniusBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="85" y="87" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="资质：一般完美普通">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 左侧宠物战斗力显示
+			<Button name="$parentLeftPetFightBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="85" y="104" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="战斗力：250000">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 左边宠物代数
+			<Button name="$parentLeftPetDaiShuBtn">
+				<Size>
+					<AbsDimension x="22" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentLeftPetBackTopHeadBtn" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-3" y="-1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="377" y="756" w="22" h="16" >
+							<Size>
+								<AbsDimension x="22" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<OnEnter>PetFrame_DaiShuBtn_OnEnter();</OnEnter>
+					<OnLeave>PetFrame_Btn_OnLeave();</OnLeave>-->
+				</Scripts>
+			</Button>
+
+			# 右边显示面板背景
+			<Button name="$parentRightPetBackBtn" >
+				<Size>
+					<AbsDimension x="234" y="151" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-7" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						##此为对方锁定交易后,覆盖对方交易信息的遮罩
+						<Texture name="$parentMaskTex" inherits="HighlightTextureTemplate" hidden="true">
+							<Size>
+								<AbsDimension x="234" y="151" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parentRightPetBackTopHeadBtn" >
+				<Size>
+					<AbsDimension x="230" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentRightPetBackBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="220" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="GongYongAnNiuA1DisabledTemplate"	r="255"	g="255"	b="190"	/>
+			</Button>
+			<Button name="$parentRightPetModelBtn" >
+				<Size>
+					<AbsDimension x="83" y="140" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetBackTopHeadBtn" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="0" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="" >
+							<Size>
+								<AbsDimension x="81" y="150" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+			# 右侧宠物名字显示
+			<Button name="$parentRightPetNameBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="14" y="52" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="名称：卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 右侧宠物等级显示
+			<Button name="$parentRightPetLevelBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="14" y="70" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="等级：5555555555555555555555555555555555555">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 右侧宠物资质显示
+			<Button name="$parentRightPetGeniusBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="14" y="87" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="资质：一般完美普通">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 右侧宠物战斗力显示
+			<Button name="$parentRightPetFightBtn" >
+				<Size>
+					<AbsDimension x="141" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="14" y="104" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="战斗力：250000">
+							<Color r="180" g="180" b="90" />
+							<Size>
+								<AbsDimension x="141" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 右边宠物代数
+			<Button name="$parentRightPetDaiShuBtn">
+				<Size>
+					<AbsDimension x="22" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentRightPetBackTopHeadBtn" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-3" y="-1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="377" y="756" w="22" h="16" >
+							<Size>
+								<AbsDimension x="22" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<OnEnter>PetFrame_DaiShuBtn_OnEnter();</OnEnter>
+					<OnLeave>PetFrame_Btn_OnLeave();</OnLeave>-->
+				</Scripts>
+			</Button>
+			
+			# 红色警告
+			<Button name="$parentNotEnoughMoneyBtn" >
+				<Size>
+					<AbsDimension x="100" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="124" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentGround" file="uires\\ZhuJieMian\\1.dds" x="256" y="402" w="30" h="22" >
+							<Size>
+							   <AbsDimension x="30" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="金钱不足！">
+							<Color r="255" g="0" b="0" />
+							<Size>
+								<AbsDimension x="65" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="32" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 提示信息
+			<Button name="$parentHelpInfoBtn" >
+				<Size>
+					<AbsDimension x="32" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="25" y="186" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="564" y="34" w="32" h="27"/>
+				<Scripts>
+					<OnEnter>PetRongHeProcessFrame_HelpInfoBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 成功概率的底板
+			<Button name="$parentSuccessProbabilityBackBtn" >
+				<Size>
+					<AbsDimension x="177" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetBackBtn" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="0" y="6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnEnter>PetRongHeProcessFrame_SuccessProbabilityBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 成功概率抬头
+			<Button name="$parentSuccessProbabilityHeadBtn" text="成功率">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="52" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSuccessProbabilityBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+				<Scripts>
+					<OnEnter>PetRongHeProcessFrame_SuccessProbabilityBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 成功率的值
+			<Button name="$parentSuccessProbabilityValueBtn" >
+				<Size>
+					<AbsDimension x="170" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativePoint="right" relativeTo="$parentSuccessProbabilityBackBtn">
+						<Offset>
+							<AbsDimension x="-8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="1000%">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="170" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>PetRongHeProcessFrame_SuccessProbabilityBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 消耗金钱的底版
+			<Button name="$parentCostMoneyBackBtn" >
+				<Size>
+					<AbsDimension x="177" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# 消耗金钱抬头
+			<Button name="$parentCostMoneyHeadBtn" text="消耗">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="52" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentCostMoneyBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+			</Button>
+			# 消耗的值
+			<Button name="$parentCostMoneyValueBtn" >
+				<Size>
+					<AbsDimension x="170" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativePoint="right" relativeTo="$parentCostMoneyBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentmoneyTypeTex"  file="uires\\ZhuJieMian\\1.dds" x="78" y="494" w="20" h="18" >
+							<Size>
+								<AbsDimension x="20" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="-2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="10000000000000000000">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="95" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-24" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 融合
+			<Button name="$parentRongHeBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="融  合" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="91" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="140" y="-43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetRongHeProcessFrame_RongHeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="取  消" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="91" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-140" y="-43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetRongHeProcessFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 分割线
+			<Button name="$parent_PartionBtn" >
+				<Size>
+					<AbsDimension x="479" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 描述信息
+			<Button name="$parentRongHeDescBtn" >
+				<Size>
+					<AbsDimension x="450" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="249" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" autowrap="true" text="    一代宠物的当前等级和宠物的强化等级越高，二代宠物的成长属性越高。融合成功率由资质决定，资质越高，融合成功几率越大。融合成功后一代宠物消失。">
+							<Color r="255" g="125" b="0" />
+							<Size>
+								<AbsDimension x="450" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentResultModelBtn" input_transparent="true" >
+				<Size>
+					<AbsDimension x="232" y="150" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="" >
+							<Size>
+								<AbsDimension x="232" y="150" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>PetRongHeProcessFrame_OnLoad();</OnLoad>
+			<OnEvent>PetRongHeProcessFrame_OnEvent();</OnEvent>
+			<OnShow>PetRongHeProcessFrame_OnShow();</OnShow>
+			<OnHide>PetRongHeProcessFrame_OnHide();</OnHide>
+			<OnUpdate>PetRongHeProcessFrame_OnUpdate();</OnUpdate>
+			
+			<!--<OnShow>ReqirePetRongHeFrame_Test_OnShow();</OnShow>-->
+		</Scripts>
+	</Frame>
+	
+
+	# 宠物融合成功后的操作面板
+	<Frame  name="PetRongHeSuccessFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="484" y="284" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+			   <Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="宠物融合">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+
+			# 左边显示面板背景
+			<Button name="$parentLeftPetBackBtn" >
+				<Size>
+					<AbsDimension x="234" y="187" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="7" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parentLeftPetBackTopHeadBtn" >
+				<Size>
+					<AbsDimension x="230" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentLeftPetBackBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="220" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="GongYongAnNiuA1DisabledTemplate"	r="255"	g="255"	b="190"	/>
+			</Button>
+			<Button name="$parentLeftPetModelBackBtn" >
+				<Size>
+					<AbsDimension x="104" y="158" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetBackTopHeadBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">						
+						##宠物技能列表底版 
+						
+					</Layer>  
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parentLeftPetModelBtn" >
+				<Size>
+					<AbsDimension x="104" y="154" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetModelBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBackTex" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="25" y="57" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="25" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						# toolres\fxeditor\arrx.omod
+						<ModelView name="$parentModelView" background="" >
+							<Size>
+								<AbsDimension x="104" y="154" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+			# 左边宠物代数
+			<Button name="$parentLeftPetDaiShuBtn">
+				<Size>
+					<AbsDimension x="22" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentLeftPetModelBackBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-3" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="377" y="756" w="22" h="16" >
+							<Size>
+								<AbsDimension x="22" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<OnEnter>PetFrame_DaiShuBtn_OnEnter();</OnEnter>
+					<OnLeave>PetFrame_Btn_OnLeave();</OnLeave>-->
+				</Scripts>
+			</Button>
+			# 左边天赋图标
+			<Button name="$parentLeftPetGeniusBtn"  inherits="PetGeniusButtonTemplate">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parentLeftPetModelBackBtn" relativePoint="BOTTOMRIGHT" >
+						<Offset>
+							<AbsDimension x="-3" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button> 
+			# 左边宠物的资质底版
+			<Button name="$parentLeftPetZiZhiBackBtn" >
+				<Size>
+					<AbsDimension x="121" y="158" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetBackTopHeadBtn" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-2" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 分割线
+			<Button name="$parent_LeftPetZiZhiPartionBtn" >
+				<Size>
+					<AbsDimension x="119" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parentLeftPetZiZhiBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="21" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 资质抬头
+			<Button name="$parentLeftPetZiZhiHeadBtn" >
+				<Size>
+					<AbsDimension x="25" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="25" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="资质">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="25" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 资质描述
+			<Button name="$parentLeftPetZiZhiValueBtn" >
+				<Size>
+					<AbsDimension x="25" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="完美完美完美">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="25" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 攻击成长抬头
+			<Button name="$parentLeftPetAttackHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="攻击成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 攻击成长值
+			<Button name="$parentLeftPetAttackValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 生命成长抬头
+			<Button name="$parentLeftPetLifeHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="生命成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 生命成长值
+			<Button name="$parentLeftPetLifeValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 物防成长抬头
+			<Button name="$parentLeftPetPhysicDefHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="73" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="物防成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 物防成长值
+			<Button name="$parentLeftPetPhysicDefValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="73" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 魔防成长抬头
+			<Button name="$parentLeftPetMagicDefHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="魔防成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 魔防成长值
+			<Button name="$parentLeftPetMagicDefValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 命中成长抬头
+			<Button name="$parentLeftPetHitRateHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="110" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="命中成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 命中成长值
+			<Button name="$parentLeftPetHitRateValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="110" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 闪避成长抬头
+			<Button name="$parentLeftPetFleeHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="闪避成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 闪避成长值
+			<Button name="$parentLeftPetFleeValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentLeftPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 右边显示面板背景
+			<Button name="$parentRightPetBackBtn" >
+				<Size>
+					<AbsDimension x="234" y="187" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-7" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parentRightPetBackTopHeadBtn" >
+				<Size>
+					<AbsDimension x="230" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentRightPetBackBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物卡扎菲的宠物">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="220" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="GongYongAnNiuA1DisabledTemplate"	r="255"	g="255"	b="190"	/>
+			</Button>
+			<Button name="$parentRightPetModelBackBtn" >
+				<Size>
+					<AbsDimension x="104" y="158" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetBackTopHeadBtn" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">						
+						##宠物技能列表底版 
+						<Texture name="$parentSkillBackTex" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="25" y="57" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="25" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>  
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parentRightPetModelBtn" >
+				<Size>
+					<AbsDimension x="104" y="154" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetModelBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="" >
+							<Size>
+								<AbsDimension x="104" y="154" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+			# 右边宠物代数
+			<Button name="$parentRightPetDaiShuBtn">
+				<Size>
+					<AbsDimension x="22" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentRightPetModelBackBtn" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="3" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="377" y="756" w="22" h="16" >
+							<Size>
+								<AbsDimension x="22" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<OnEnter>PetFrame_DaiShuBtn_OnEnter();</OnEnter>
+					<OnLeave>PetFrame_Btn_OnLeave();</OnLeave>-->
+				</Scripts>
+			</Button>
+			# 右边天赋图标
+			<Button name="$parentRightPetGeniusBtn"  inherits="PetGeniusButtonTemplate">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parentRightPetModelBackBtn" relativePoint="BOTTOMLEFT" >
+						<Offset>
+							<AbsDimension x="3" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button> 
+			# 右边宠物的资质底版
+			<Button name="$parentRightPetZiZhiBackBtn" >
+				<Size>
+					<AbsDimension x="121" y="158" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetBackTopHeadBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="2" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 分割线
+			<Button name="$parent_RightPetZiZhiPartionBtn" >
+				<Size>
+					<AbsDimension x="119" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parentRightPetZiZhiBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="21" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 资质抬头
+			<Button name="$parentRightPetZiZhiHeadBtn" >
+				<Size>
+					<AbsDimension x="25" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="25" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="资质">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="25" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 资质描述
+			<Button name="$parentRightPetZiZhiValueBtn" >
+				<Size>
+					<AbsDimension x="25" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="完美完美完美">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="25" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 攻击成长抬头
+			<Button name="$parentRightPetAttackHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="攻击成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 攻击成长值
+			<Button name="$parentRightPetAttackValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 生命成长抬头
+			<Button name="$parentRightPetLifeHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="生命成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 生命成长值
+			<Button name="$parentRightPetLifeValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 物防成长抬头
+			<Button name="$parentRightPetPhysicDefHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="73" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="物防成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 物防成长值
+			<Button name="$parentRightPetPhysicDefValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="73" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 魔防成长抬头
+			<Button name="$parentRightPetMagicDefHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="魔防成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 魔防成长值
+			<Button name="$parentRightPetMagicDefValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 命中成长抬头
+			<Button name="$parentRightPetHitRateHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="110" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="命中成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 命中成长值
+			<Button name="$parentRightPetHitRateValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="110" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 闪避成长抬头
+			<Button name="$parentRightPetFleeHeadBtn" >
+				<Size>
+					<AbsDimension x="57" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="闪避成长">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="57" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 闪避成长值
+			<Button name="$parentRightPetFleeValueBtn" >
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentRightPetZiZhiBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-11" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="right" text="+10000000000000000">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="35" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 分割线
+			<Button name="$parent_PartionBtn" >
+				<Size>
+					<AbsDimension x="479" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-51" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 描述信息
+			<Button name="$parentRongHeDescBtn" >
+				<Size>
+					<AbsDimension x="460" y="56" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont1" fonttype="TeenyBlackFont" justifyH="left" text="二代宠物拥有天赋。">
+							<Color r="255" g="125" b="0" />
+							<Size>
+								<AbsDimension x="460" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="13" y="8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFont2" fonttype="TeenyBlackFont" justifyH="left" text="二代宠物不能进行宠物幻化操作。">
+							<Color r="255" g="125" b="0" />
+							<Size>
+								<AbsDimension x="460" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="13" y="23" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFont3" fonttype="TeenyBlackFont" justifyH="left" text="二代宠物继承一代宠物的资质，但是资质上限有所增加。">
+							<Color r="255" g="125" b="0" />
+							<Size>
+								<AbsDimension x="460" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="13" y="38" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentResultModelBtn" input_transparent="true" >
+				<Size>
+					<AbsDimension x="232" y="150" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="" >
+							<Size>
+								<AbsDimension x="232" y="150" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>PetRongHeSuccessFrame_Test_OnShow();</OnShow>-->
+			<OnShow>PetRongHeSuccessFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

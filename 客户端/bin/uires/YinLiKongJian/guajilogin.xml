@@ -1,0 +1,1246 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\YinLiKongJian\guajilogin.lua"/>
+	##聊天界面次标题衬底
+	<Texture name="LiaoTianJieMianCiBiaoTiCengdi" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="316"	 y="133" w="16"	h="26"	/>
+			<Center			x="333"  y="133" w="15"	h="26"	/>
+			<Right			x="349"  y="133" w="16"	h="26"	/>
+		</Center>
+	</Texture>
+	##圆点按钮
+	<Button name="YuandianAnniu" virtual="true">
+		<Size>
+			<AbsDimension x="21" y="21" />
+		</Size>
+		<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="205"	 y="88" w="20"	h="20" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="463"	 y="134" w="20"	h="20" />
+		<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="463"	 y="134" w="20"	h="20" />
+	</Button>
+	
+	##高亮框底板
+	<Texture name="GaoLiangKuang" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="312"	 y="48"	 w="15"	h="34"  />
+			<Center			x="328"	 y="48"	 w="15"	h="34"  />
+			<Right			x="344"	 y="48"	 w="15"	h="34"  />
+		</Center>
+	</Texture>
+
+	##选择角色进入挂机模板
+	<Button name="SelectActorFrame" virtual="true">
+		<Size>
+			<AbsDimension x="220" y="23" />
+		</Size>
+		<Layers>
+			<Layer level="Overlay">
+				<Texture name="$parentcengdi" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="0" y="463" w="206"	h="23" >
+					<size>
+						<AbsDimension x="220" y="23" />
+					</size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentjiaoseFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center"  >
+					<Color r="150" g="150" b="110" />
+					<size>
+						<AbsDimension x="111" y="23" />
+					</size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="21" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentzhiyeFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center"  >
+					<Color r="150" g="150" b="110" />
+					<size>
+						<AbsDimension x="37" y="23" />
+					</size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentjiaoseFont">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentdengjiFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center"  >
+					<Color r="150" g="150" b="110" />
+					<size>
+						<AbsDimension x="37" y="23" />
+					</size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentzhiyeFont">
+							<Offset>
+								<AbsDimension x="5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentHighLightTex" inherits="GaoLiangKuang" hidden="true">
+					<Size>
+						<AbsDimension x="230" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+							<Offset>
+								<AbsDimension x="-5" y="-3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentyuananniu" inherits="YuandianAnniu" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>SelectActorFrame_OnClick();</OnClick>
+			<OnEnter>SelectActorFrame_OnEnter();</OnEnter>
+			<OnLeave>SelectActorFrame_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+
+	##输入框底板
+	<Texture name="ShuRuKuangDiBan" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="316"	 y="160" w="16"	h="24"	/>
+			<Center			x="333"  y="160" w="15"	h="24"	/>
+			<Right			x="349"  y="160" w="16"	h="24"	/>
+		</Center>
+	</Texture>
+	<Texture name="fengeTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="375" y="300" w="35" h="5" >				
+	</Texture>
+
+	##发布心情按钮模板按钮Y3
+		## 普通状态
+	<Texture name="FaBuXinQingNormalTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="205"	y="0" w="11"	h="21"	/>
+			<Center			x="217"  y="0" w="10"	h="21"	/>
+			<Right			x="228"  y="0" w="11"	h="21"	/>
+		</Center>
+	</Texture>
+	## 高亮状态
+	<Texture name="FaBuXinQingHighTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="205"	 y="22" w="11"	h="21"	/>
+			<Center			x="217"  y="22" w="10"	h="21"	/>
+			<Right			x="228"  y="22" w="11"	h="21"	/>
+		</Center>
+	</Texture>
+	## 按下状态
+	<Texture name="FaBuXinQingPushedTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="205"	y="44" w="11"	h="21"	/>
+			<Center			x="217"  y="44" w="10"	h="21"	/>
+			<Right			x="228"  y="44" w="11"	h="21"	/>
+		</Center>
+	</Texture>
+	## 不可按状态
+	<Texture name="FaBuXinQingDisabledTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="205"	 y="66" w="11"	h="21"	/>
+			<Center			x="217"  y="66" w="10"	h="21"	/>
+			<Right			x="228"  y="66" w="11"	h="21"	/>
+		</Center>
+	</Texture>
+	<Button name="FaBuXinQingTemplate" virtual="true" >
+		<FontString name="$parentFont" fonttype="FZYBlackFont12"  justifyH="center"  >
+			<Anchors>
+				<Anchor point="center">
+					<Offset>
+						<AbsDimension x="0" y="4"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</FontString>
+		<NormalTexture		inherits="FaBuXinQingNormalTemplate"	r="55" g="50" b="44" />
+		<HighlightTexture	inherits="FaBuXinQingHighTemplate"		r="55" g="50" b="44" />
+		<PushedTexture		inherits="FaBuXinQingPushedTemplate"	r="55" g="50" b="44" />
+		<DisabledTexture	inherits="FaBuXinQingDisabledTemplate"  r="55" g="50" b="44" />
+	</Button>
+
+
+
+	<Button name="LiaoTianShiAnNiuTemplate" virtual="true" >
+		<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center"  >
+			<Anchors>
+				<Anchor point="center">
+					<Offset>
+						<AbsDimension x="0" y="7"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</FontString>
+		<NormalTexture		inherits="GongYongAnNiuY1NormalTemplate" r="255" g="255" b="190"	/>
+		<HighlightTexture	inherits="GongYongAnNiuY1HighTemplate"	 r="255" g="255" b="230"	/>
+		<PushedTexture		inherits="GongYongAnNiuY1HighTemplate"	 r="255" g="255" b="230"	/>
+		<DisabledTexture	inherits="GongYongAnNiuY1DisabledTemplate" r="160" g="160" b="160" />
+	</Button>
+
+	##按钮Y4模板
+		## 普通状态
+	<Texture name="GongYongAnNiuY4NormalTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="366"	y="133" w="16"	h="22"	/>
+			<Center			x="383" y="133" w="14"	h="22"	/>
+			<Right			x="398" y="133" w="16"	h="22"	/>
+		</Center>
+	</Texture>
+	## 高亮状态
+	<Texture name="GongYongAnNiuY4HighTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="366"	y="156" w="16"	h="22"	/>
+			<Center			x="383" y="156" w="14"	h="22"	/>
+			<Right			x="398" y="156" w="16"	h="22"	/>
+		</Center>
+	</Texture>
+	## 按下状态
+	<Texture name="GongYongAnNiuY4PushedTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="366"	y="179" w="16"	h="22"	/>
+			<Center			x="383" y="179" w="14"	h="22"	/>
+			<Right			x="398" y="179" w="16"	h="22"	/>
+		</Center>
+	</Texture>
+	## 不可按状态
+	<Texture name="GongYongAnNiuY4DisabledTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="366"	y="202" w="16"	h="22"	/>
+			<Center			x="383" y="202" w="14"	h="22"	/>
+			<Right			x="398" y="202" w="16"	h="22"	/>
+		</Center>
+	</Texture>
+	
+
+
+	<Button name="GongYongAnNiuY4Template" virtual="true" >
+		<NormalTexture		inherits="GongYongAnNiuY4NormalTemplate"   r="255" g="255" b="190"/>
+		<HighlightTexture	inherits="GongYongAnNiuY4HighTemplate"		r="255" g="255" b="200"/>
+		<PushedTexture		inherits="GongYongAnNiuY4PushedTemplate"	r="180" g="160" b="120"/>
+		<DisabledTexture	inherits="GongYongAnNiuY4DisabledTemplate"  r="180" g="180" b="180"/>
+	</Button>
+
+	<Button name="GuajiJiantouUp" virtual="true">
+		<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="261" y="48" w="16" h="14" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="278" y="48" w="16" h="14" />
+		<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="295" y="48" w="16" h="14" />
+	</Button>
+	<Button name="GuajiJiantouDown" virtual="true">
+		<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="261" y="63" w="16" h="14" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="278" y="63" w="16" h="14" />
+		<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="295" y="63" w="16" h="14" />
+	</Button>
+
+
+
+
+
+	
+	# 输入框
+	<Texture name="LoginInputEidtBackTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" x="857" y="855" w="45" h="5" DrawType="tile">
+		<Tile>
+			<TileSize>
+				<AbsValue val="5" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5" />
+			</BackgroundInsets>
+		</Tile>
+	</Texture>
+	<Texture name="LogindibanTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="0" y="396" w="251" h="32" >				
+		<Size>
+			<AbsDimension x="249" y="30" />
+		</Size>
+	</Texture>
+	<Texture name="FramedibanTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="height" >
+		<Height>
+			<Top			x="0" y="334" w="251" h="60"	/>
+			<Center			x="0" y="396" w="251" h="32"	/>
+			<Bottom			x="0" y="429" w="251" h="32"	/>
+		</Height>
+	</Texture>
+
+	<Frame name="guajiloginFrame"   frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199"  hidden="false">
+		<Size>
+			<AbsDimension x="249" y="632" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft"  relativePoint="topleft" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="logindiban">
+				<Size>
+					<AbsDimension x="249" y="632"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$patentdiban" inherits="FramedibanTemplate">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="fontTex" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="255" y="96" w="58" h="16" >				
+							<Size>
+								<AbsDimension x="58" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+									<AbsDimension x="10" y="5" />
+								</Offset>
+							</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="0" y="148" w="212" h="185" >				
+							<Size>
+								<AbsDimension x="212" y="185" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="20" y="60" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<!--<Texture name="sdfsdf" inherits="sliderdibanTemplate">
+							<Size>
+								<AbsDimension x="15" y="100"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>-->
+					</Layer>
+				</Layers>
+			</Frame>
+			<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="23" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-7" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+				<Scripts>
+					<OnClick>System_Close();</OnClick>
+				</Scripts>
+			</Button>
+			# 服务器下拉菜单栏
+			<Button name="ServerFrame_SelectBtn" inherits="GongYongAnNiuY1Template" text="服务器">
+				<Size>
+					<AbsDimension x="100" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="logindiban" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="20" y="245"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ServerFrame_SelectDownBtn_OnClick();</OnClick>
+					<ONFOCUSLOST>ServerFrame_SelectDownBtn_OnLostFoucs();</ONFOCUSLOST>
+				</Scripts>
+			</Button>
+
+			# 服务器下拉选择框
+			<Button name="BigWorldSelectNameFrame" hidden="true"  >
+				<Size>
+					<AbsDimension x="108" y="180" />
+				</Size>
+				<Frames>
+					<Button name="$parentground">
+						<size>
+							<AbsDimension x="108" y="180" />
+						</size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+						<Layer level="overlay">
+							<Texture name="$parentdiban" inherits="RightKeydibanTemplate" />
+						</Layer>
+						</Layers>
+					</Button>
+					# 滚动条背景
+					<Button name="BigWorldSelectNameBtn_SliderBack">
+						<Size>
+							<AbsDimension x="14" y="176" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentGround"  file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="79" w="15" h="15">
+									<Size>
+									   <AbsDimension x="14" y="176" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="-1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 向上滚动按钮
+					<Button name="BigWorldSelectNameFrame_ScrollUpBtn" inherits="GuajiJiantouUp">
+						<Size>
+							<AbsDimension x="14" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="BigWorldSelectNameBtn_SliderBack" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-2 " y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>BigWorldSelectNameFrame_ScrollUpBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 向下滚动按钮
+					<Button name="BigWorldSelectNameFrame_ScrollDownBtn" inherits="GuajiJiantouDown">
+						<Size>
+							<AbsDimension x="14" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="BigWorldSelectNameBtn_SliderBack" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>BigWorldSelectNameFrame_ScrollDownBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="BigWorldSelectNameBtn1" inherits="WorldSelectBtnTemplate" id="1"/>
+					<Button name="BigWorldSelectNameBtn2" inherits="WorldSelectBtnTemplate" id="2"/>
+					<Button name="BigWorldSelectNameBtn3" inherits="WorldSelectBtnTemplate" id="3"/>
+					<Button name="BigWorldSelectNameBtn4" inherits="WorldSelectBtnTemplate" id="4"/>
+					<Button name="BigWorldSelectNameBtn5" inherits="WorldSelectBtnTemplate" id="5"/>
+					<Button name="BigWorldSelectNameBtn6" inherits="WorldSelectBtnTemplate" id="6"/>
+					<Button name="BigWorldSelectNameBtn7" inherits="WorldSelectBtnTemplate" id="7"/>
+					<Button name="BigWorldSelectNameBtn8" inherits="WorldSelectBtnTemplate" id="8"/>
+					<Button name="BigWorldSelectNameBtn9" inherits="WorldSelectBtnTemplate" id="9"/>
+				</Frames>
+			</Button>
+
+			# 服务器下拉按钮 
+			<Button name="ServerFrame_SelectDownBtn">
+				<Size>
+					<AbsDimension x="13" y="11" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="ServerFrame_SelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="215" y="209"  w="13" h="11" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="215" y="221"  w="13" h="11" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="215" y="233"  w="13" h="11" />
+				<Scripts>
+					<OnClick>ServerFrame_SelectDownBtn_OnClick();</OnClick>
+					<ONFOCUSLOST>ServerFrame_SelectDownBtn_OnLostFoucs();</ONFOCUSLOST>
+				</Scripts>
+			</Button>
+			# 世界下拉菜单栏
+			<Button name="ServerWorldFrame_SelectBtn"inherits="GongYongAnNiuY1Template" text="世界">
+				<Size>
+					<AbsDimension x="100" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ServerFrame_SelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ServerWorldFrame_SelectDownBtn_OnClick();</OnClick>
+					<ONFOCUSLOST>ServerWorldFrame_SelectDownBtn_OnLostFoucs();</ONFOCUSLOST>
+				</Scripts>
+			</Button>
+			# 世界下拉按钮 
+			<Button name="ServerWorldFrame_SelectDownBtn">
+				<Size>
+					<AbsDimension x="13" y="11" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="ServerWorldFrame_SelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="215" y="209"  w="13" h="11" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="215" y="221"  w="13" h="11" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="215" y="233"  w="13" h="11" />
+				<Scripts>
+					<OnClick>ServerWorldFrame_SelectDownBtn_OnClick();</OnClick>
+					<ONFOCUSLOST>ServerWorldFrame_SelectDownBtn_OnLostFoucs();</ONFOCUSLOST>
+				</Scripts>
+			</Button>
+			
+			# 世界下拉选择框
+			<Button name="WorldSelectNameFrame" hidden="true" >
+				<Size>
+					<AbsDimension x="108" y="180" />
+				</Size>
+				<Frames>
+					<Button name="$parentground">
+						<size>
+							<AbsDimension x="108" y="180" />
+						</size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+						<Layer level="overlay">
+							<Texture name="$parentdiban" inherits="RightKeydibanTemplate" />
+						</Layer>
+						</Layers>
+					</Button>
+					# 滚动条背景
+					<Button name="WorldSelectNameBtn_SliderBack">
+						<Size>
+							<AbsDimension x="14" y="176" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentGround"  file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="79" w="15" h="15">
+									<Size>
+									   <AbsDimension x="14" y="176" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="-1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 向上滚动按钮
+					<Button name="WorldSelectNameFrame_ScrollUpBtn" inherits="GuajiJiantouUp">
+						<Size>
+							<AbsDimension x="14" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WorldSelectNameBtn_SliderBack" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0 " y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WorldSelectNameFrame_ScrollUpBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 向下滚动按钮
+					<Button name="WorldSelectNameFrame_ScrollDownBtn" inherits="GuajiJiantouDown">
+						<Size>
+							<AbsDimension x="14" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="WorldSelectNameBtn_SliderBack" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WorldSelectNameFrame_ScrollDownBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="WorldSelectNameBtn1" inherits="WorldSelectBtnTemplate" id="11"/>
+					<Button name="WorldSelectNameBtn2" inherits="WorldSelectBtnTemplate" id="12"/>
+					<Button name="WorldSelectNameBtn3" inherits="WorldSelectBtnTemplate" id="13"/>
+					<Button name="WorldSelectNameBtn4" inherits="WorldSelectBtnTemplate" id="14"/>
+					<Button name="WorldSelectNameBtn5" inherits="WorldSelectBtnTemplate" id="15"/>
+					<Button name="WorldSelectNameBtn6" inherits="WorldSelectBtnTemplate" id="16"/>
+					<Button name="WorldSelectNameBtn7" inherits="WorldSelectBtnTemplate" id="17"/>
+					<Button name="WorldSelectNameBtn8" inherits="WorldSelectBtnTemplate" id="18"/>
+					<Button name="WorldSelectNameBtn9" inherits="WorldSelectBtnTemplate" id="19"/>
+
+				</Frames>
+			</Button>
+			# 账号输入框底板
+			<Button name="$parent_AccountBtn" >
+				<Size>
+					<AbsDimension x="26" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ServerFrame_SelectBtn" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="5" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="账号" fontStyle="shadow">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="26" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentAccountEditBackBtn">
+				<Size>
+					<AbsDimension x="164" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_AccountBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="15" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture inherits="ShuRuKuangDiBan" />
+			</Button>
+			<EditBox name="LoginNameEdit" letters="50" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="160" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="Left" relativeTo="$parentAccountEditBackBtn" relativePoint="Left">
+						<Offset>
+							<AbsDimension x="5" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+
+				<FontString name="ChatFontNormal" fonttype="LittleFZYBlackFont"><Color r="255" g="255" b="190" /></FontString>							
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("PassWordEdit");</OnTabPressed>
+					<OnClick>LoginNameEdit_OnClick();</OnClick>
+					<ONENTERPRESSED>LoginNameEdit_OnEnterPressed();</ONENTERPRESSED>
+				</Scripts>
+			</EditBox>
+
+			# 密码输入框底板
+			<Button name="$parent_PassWordBtn" >
+				<Size>
+					<AbsDimension x="26" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_AccountBtn" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="0" y="32"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="密码" fontStyle="shadow">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="26" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentPasswordEditBackBtn">
+				<Size>
+					<AbsDimension x="164" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent_PassWordBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="15" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture inherits="ShuRuKuangDiBan" />
+			</Button>
+			<EditBox name="PassWordEdit" letters="16" historyLines="1" multiLine="false" password="true" editMethod="163">
+				<Size>
+					<AbsDimension x="160" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="Left" relativeTo="$parentPasswordEditBackBtn" relativePoint="Left">
+						<Offset>
+							<AbsDimension x="5" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="pwdfontstring" fonttype="LittleFZYBlackFont">
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<Scripts>
+					<OnTabPressed>LoginFrame_OnLoginBtnTabPressed();</OnTabPressed>
+					<ONENTERPRESSED>LoginPasswordEdit_OnEnterPressed();</ONENTERPRESSED>
+				</Scripts>
+			</EditBox>
+			# 记住账号
+			<CheckButton name="LoginSaveUserNameChkBtn" inherits="CheckBtnTemplate" checked="true">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentAccountEditBackBtn" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="80" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="LoginSaveUserHeadBtn" input_transparent="true">
+				<Size>
+					<AbsDimension x="56" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="LoginSaveUserNameChkBtn">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentStateFont" fonttype="FZYBlackFont12" fontStyle="shadow" text="记住账号" justifyH="left">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="56" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			##刷新服务器按钮
+			<Button name="LoginUpdateServerBtn">
+				<Size>
+					<AbsDimension x="21" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentAccountEditBackBtn" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="-30" y="42"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentStateFont" fonttype="FZYBlackFont12" fontStyle="shadow" text="刷新服务器" justifyH="left">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="70" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="252" y="338" w="21" h="21" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="274" y="338" w="21" h="21" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="338" w="21" h="21" />
+				<Scripts>
+					<OnClick>LoginUpdateServerBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 确定
+			<Button name="LoginButton" inherits="GongYongAnNiuY1Template" text="登录">
+				<Size>
+					<AbsDimension x="117" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentAccountEditBackBtn" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="130" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CFloginBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ZhuCe"	inherits="FaBuXinQingTemplate" text="点击注册">
+				<Size>
+					<AbsDimension x="66" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="LoginButton" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="24" y="90"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentfenge" inherits="hengfengge">
+							<Size>
+								<AbsDimension x="242" y="5"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+									<Offset>
+										<AbsDimension x="-88" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>WebBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="QuHuimima"	inherits="FaBuXinQingTemplate" text="取回密码">
+				<Size>
+					<AbsDimension x="66" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ZhuCe" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WebBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTuodong">
+				<Size>
+					<AbsDimension x="224" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnMouseDown>TuodongOnMouseDonw();</OnMouseDown>
+					<OnMouseUp>TuodongOnMouseUp();</OnMouseUp>
+				</Scripts>	
+			</Button>
+			<Button name="$parent_minbtn" inherits="minwindowbtn"/>
+		</Frames>
+		<Scripts>
+			<OnLoad>GuajiloginFrameOnLoad();</OnLoad>
+			<OnShow>GuajiloginFrameOnShow();</OnShow>
+			<OnEvent>GuajiloginFrameOnEvent();</OnEvent>
+			<ONENTERPRESSED>GuajiloginFrameOnEnterpressed();</ONENTERPRESSED>
+		</Scripts>	
+	</Frame>
+	<Frame name="selectman" frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199"  hidden="true" toplevel="true">
+		<Size>
+			<AbsDimension x="250" y="185" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="0" y="200"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+			<Texture name="$parentDiban" inherits="ChatBigdibanTemplate"/>
+			<Texture name="$parentjiaosemingban" inherits="LiaoTianJieMianCiBiaoTiCengdi">
+				<Size>
+					<AbsDimension x="130" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="14" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Texture>
+			<FontString name="$parentjiaosemingbanFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" text="角色名" >
+				<Color r="255" g="255" b="190" />
+				<Size>
+					<AbsDimension x="130" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentjiaosemingban">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<Texture name="$parentzhiyemingban" inherits="LiaoTianJieMianCiBiaoTiCengdi">
+				<Size>
+					<AbsDimension x="48" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentjiaosemingban">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Texture>
+			<FontString name="$parentzhiyemingbanFomt" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" text="职业" >
+				<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="48" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentzhiyemingban">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+			</FontString>
+			<Texture name="$parentdengjimingban" inherits="LiaoTianJieMianCiBiaoTiCengdi">
+				<Size>
+					<AbsDimension x="42" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentzhiyemingban">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Texture>
+			<FontString name="$parentdengjimingbanFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" text="等级" >
+				<Color r="255" g="255" b="190" />
+				<Size>
+					<AbsDimension x="48" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentdengjimingban">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+		</Layer>
+	</Layers>
+	<Frames>
+		<Button name="$parent_CloseBtn">
+			<Size>
+				<AbsDimension x="23" y="22" />
+			</Size>
+			<Anchors>
+				<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+					<Offset>
+						<AbsDimension x="-7" y="3" />
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+			<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+			<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+			<Scripts>
+				<OnClick>selectman_Close();</OnClick>
+			</Scripts>
+			</Button>
+			<Button name="$parentjiaose1" inherits="SelectActorFrame" id="1"/>
+			<Button name="$parentjiaose2" inherits="SelectActorFrame" id="2"/>
+			<Button name="$parentjiaose3" inherits="SelectActorFrame" id="3"/>
+			<Button name="$parentjiaose4" inherits="SelectActorFrame" id="4"/>
+			<Button name="scrolldiban">
+				<Size>
+					<AbsDimension x="14" y="87"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parentjiaose1">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentdiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="79" w="15" h="15">
+							<Size>
+								<AbsDimension x="14" y="87" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Slider name="$parentSlider" orientation="VERTICAL" minValue="0" maxValue="1000" valueStep="5" defaultValue="0" hidden="true">
+				<Size>
+					<AbsDimension x="14" y="57"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parentjiaose1">
+						<Offset>
+							<AbsDimension x="1" y="15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+					<ThumbTexture name="$parentTexture" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="height">
+						<Height>
+							<Top			x="320" y="185" w="14" h="15"	/>
+							<Center			x="320" y="201" w="14" h="15"	/>
+							<Bottom			x="320" y="217" w="14" h="15"	/>
+						</Height>
+					</ThumbTexture>
+					<Scripts>
+						<OnValueChanged>SelectmanFrame_ScrollBarValueChange();</OnValueChanged>
+						<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+					</Scripts>
+			</Slider>
+			<Button name="$parentUp" inherits="GuajiJiantouUp">
+				<Size>
+					<AbsDimension x="14" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parentjiaose1">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SelectmanFrameUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentDown" inherits="GuajiJiantouDown">
+				<Size>
+					<AbsDimension x="14" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentjiaose4">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SelectmanFrameDownBtn_OnClick();</OnClick>
+				</Scripts>							
+			</Button>
+			<!--<Button name="$parentHuadong">
+				<Size>
+					<AbsDimension x="13" y="202" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-17" y="52" />
+						</Offset>
+					</Anchor>
+			  </Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentdiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="79" w="15" h="15">
+							<Size>
+								<AbsDimension x="13" y="202" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentUp" inherits="GuajiJiantouUp">
+						<Size>
+							<AbsDimension x="14" y="15" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentdiban">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentDown" inherits="GuajiJiantouDown">
+						<Size>
+							<AbsDimension x="14" y="15" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentdiban">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>-->
+			<Button name="$parentSure" inherits="GongYongAnNiuY1Template" text="确定">
+				<Size>
+					<AbsDimension x="92" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativepoint="bottomleft" realtiveto="$parent">
+						<Offset>
+							<AbsDimension x="79" y="-15"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentfenge" inherits="hengfengge">
+							<Size>
+								<AbsDimension x="220" y="5"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+									<Offset>
+										<AbsDimension x="-65" y="-9"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>selectmanSurebtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>SelectManFrameOnLoad();</OnLoad>
+			<OnEvent>SelectManFrameOnEvent();</OnEvent>
+			<OnShow>SelectManFrameOnShow();</OnShow>
+			<OnHide>selectman_OnHide();</OnHide>
+		</Scripts>	
+	</Frame>
+</Ui>
+
+
+			<!--
+					<Slider name="WorldSelectNameFrame_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+						<Size>
+							<AbsDimension x="23" y="162" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativePoint="bottom" relativeTo="WorldSelectNameFrame_ScrollUpBtn">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ThumbTexture name="$parentThumbTexture" file="uires\\ui\\MianBan  9.dds" x="699" y="418" w="15" h="25" hidden="true" >
+							<Size>
+								<AbsDimension x="15" y="25" />
+							</Size>
+						</ThumbTexture>
+						<Scripts>
+							<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+						</Scripts>
+					</Slider>
+					-->

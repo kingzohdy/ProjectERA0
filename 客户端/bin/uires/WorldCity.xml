@@ -1,0 +1,1493 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/WorldCity.lua" />
+	
+	# 公会战建造主界面
+	<Frame name="WorldCityBuildFrame" parent="UIClient" frameStrata="DIALOG" movable="true" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="674" y="532" />
+        </Size>
+        <Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentLeft" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="486" y="486" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="9" y="-9" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRight1" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="166" y="161" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentLeft" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRight2" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="166" y="320" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parentLeft" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="中控中心城防建设蓝图">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 地图
+				<Texture name="$parentMap" file="uires\\DiTuLei\\QuYuDiTu\\ZhongXingChengFangLanTu.tga">
+					<Size>
+						<AbsDimension x="480" y="480" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentLeft" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				# 名字
+				<FontString name="$parentName" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="166" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentRight1" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="9" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<ModelView name="$parentModelView">
+					<Size>
+						<AbsDimension x="120" y="120" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentName" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+				<Texture name="$parentScrollTex" inherits="ScrollBkgTemplate">
+					<Size>
+						<AbsDimension x="21" y="320" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentRight2" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			# 帮助按钮
+			<Button name="$parentHelp" inherits="HelpBtnTemplate" />
+			<ScrollFrame name="$parentScroll">
+				<Size>
+					<AbsDimension x="135" y="310" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentRight2">
+						<Offset>
+							<AbsDimension x="8" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					# 描述
+					<RichText name="$parentPost" fonttype="TeenyMSYHFont" lineInterval="2" fontStyle="normal">
+						<Size>
+							<AbsDimension x="135" y="310"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</ScrollChild>
+			</ScrollFrame>
+			#向上滚动方向键
+			<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate" >
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentScrollTex" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldCityBuildFrameScrollUpBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			#向下滚动方向键
+			<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate" >
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentScrollTex" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldCityBuildFrameScrollDownBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			#滚动条
+			<Slider name="$parentScrollBar"  orientation="VERTICAL" minValue="0" maxValue="300" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="15" y="280" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentScrollTex" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>WorldCityBuildFrameScrollBar_OnValueChanged()</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 按钮模板
+			<Button name="$parentEntryTemplate" virtual="true" hidden="true">
+				<Size>
+					<AbsDimension x="47" y="57" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMap" relativePoint="topleft">
+						<Offset>
+							<RelDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentProgress" inherits="RoleExpGreenTextureTemplate" hidden="true">
+							<Size>
+								<AbsDimension x="50" y="7" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parent_" input_transparent="true">
+						<Size>
+							<AbsDimension x="74" y="74" />
+						</Size>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+						<Frames>
+							# 底圈
+							<Button name="$parentFrame" input_transparent="true">
+								<Size>
+									<RelDimension x="1.0" y="1.0" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="overlay">
+										<Texture name="$parentLeft" file="uires\\ZhuJieMian\\2.dds" x="688" y="545" w="37" h="74">
+											<Size>
+												<RelDimension x="0.5" y="1.0" />
+											</Size>
+											<Anchors>
+												<Anchor point="right" relativeTo="$parent" relativePoint="center">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+										<Texture name="$parentRight" file="uires\\ZhuJieMian\\2.dds" x="688" y="545" w="37" h="74" UVType="mirroeu">
+											<Size>
+												<RelDimension x="0.5" y="1.0" />
+											</Size>
+											<Anchors>
+												<Anchor point="left" relativeTo="$parent" relativePoint="center">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+							</Button>
+							# 升级按钮
+							<Button name="$parentUpgrade">
+								<Size>
+									<AbsDimension x="27" y="27" />
+								</Size>
+								<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="514" y="495" w="27" h="27" />
+								<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="542" y="495" w="27" h="27" />
+								<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="570" y="495" w="27" h="27" />
+								<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<Scripts>
+									<OnEnter>WorldCityBuildEntry_Upgrade_OnEnter()</OnEnter>
+									<OnLeave>WorldMapGameTooltip:Hide();</OnLeave>
+									<OnClick>coroutine.wrap(WorldCityBuildEntry_Upgrade_OnClick)()</OnClick>
+								</Scripts>
+							</Button>
+							# 维修按钮
+							<Button name="$parentRepair">
+								<Size>
+									<AbsDimension x="27" y="27" />
+								</Size>
+								<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="514" y="523" w="27" h="27" />
+								<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="542" y="523" w="27" h="27" />
+								<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="570" y="523" w="27" h="27" />
+								<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<Scripts>
+									<OnEnter>WorldCityBuildEntry_Repair_OnEnter()</OnEnter>
+									<OnLeave>GameTooltip:Hide();</OnLeave>
+									<OnClick>coroutine.wrap(WorldCityBuildEntry_Repair_OnClick)()</OnClick>
+								</Scripts>
+							</Button>
+							# 充能按钮
+							<Button name="$parentSupply">
+								<Size>
+									<AbsDimension x="27" y="27" />
+								</Size>
+								<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="677" y="436" w="27" h="27" />
+								<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="705" y="436" w="27" h="27" />
+								<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="733" y="436" w="27" h="27" />
+								<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<Scripts>
+									<OnEnter>WorldCityBuildEntry_Supply_OnEnter()</OnEnter>
+									<OnLeave>GameTooltip:Hide();</OnLeave>
+									<OnClick>coroutine.wrap(WorldCityBuildEntry_Supply_OnClick)()</OnClick>
+								</Scripts>
+							</Button>
+							# 进入建设界面
+							<Button name="$parentRemove">
+								<Size>
+									<AbsDimension x="27" y="27" />
+								</Size>
+								<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="677" y="464" w="27" h="27" />
+								<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="705" y="464" w="27" h="27" />
+								<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="733" y="464" w="27" h="27" />
+								<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<Scripts>
+									<OnEnter>WorldCityBuildEntry_Remove_OnEnter()</OnEnter>
+									<OnLeave>GameTooltip:Hide();</OnLeave>
+									<OnClick>coroutine.wrap(WorldCityBuildEntry_Remove_OnClick)()</OnClick>
+								</Scripts>
+							</Button>
+							# 建造按钮模板
+							<Button name="$parentConstructTemplate" virtual="true" hidden="true">
+								<Size>
+									<AbsDimension x="27" y="27" />
+								</Size>
+								<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<HighlightTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+								<Scripts>
+									<OnEnter>WorldCityBuildEntry_Construct_OnEnter()</OnEnter>
+									<OnLeave>WorldMapGameTooltip:Hide();</OnLeave>
+									<OnClick>coroutine.wrap(WorldCityBuildEntry_Construct_OnClick)()</OnClick>
+								</Scripts>
+							</Button>
+							<Button name="$parentConstruct1" inherits="$parentConstructTemplate" id="1" />
+							<Button name="$parentConstruct2" inherits="$parentConstructTemplate" id="2" />
+							<Button name="$parentConstruct3" inherits="$parentConstructTemplate" id="3" />
+							<Button name="$parentConstruct4" inherits="$parentConstructTemplate" id="4" />
+							<Button name="$parentConstruct5" inherits="$parentConstructTemplate" id="5" />
+							<Button name="$parentConstruct6" inherits="$parentConstructTemplate" id="6" />
+							<Button name="$parentConstruct7" inherits="$parentConstructTemplate" id="7" />
+							<Button name="$parentConstruct8" inherits="$parentConstructTemplate" id="8" />
+						</Frames>
+						<Scripts>
+							<OnFocusLost>WorldCityBuildEntry_OnFocusLost()</OnFocusLost>
+							<OnUpdate>WorldCityBuildEntry_OnUpdate()</OnUpdate>
+						</Scripts>
+					</Button>
+				</Frames>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighlightTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<Scripts>
+					<OnEnter>WorldCityBuildEntry_OnEnter()</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+					<OnClick>WorldCityBuildEntry_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentEntry1" inherits="$parentEntryTemplate" id="1" />
+			<Button name="$parentEntry2" inherits="$parentEntryTemplate" id="2" />
+			<Button name="$parentEntry3" inherits="$parentEntryTemplate" id="3" />
+			<Button name="$parentEntry4" inherits="$parentEntryTemplate" id="4" />
+			<Button name="$parentEntry5" inherits="$parentEntryTemplate" id="5" />
+			<Button name="$parentEntry6" inherits="$parentEntryTemplate" id="6" />
+			<Button name="$parentEntry7" inherits="$parentEntryTemplate" id="7" />
+			<Button name="$parentEntry8" inherits="$parentEntryTemplate" id="8" />
+			<Button name="$parentEntry9" inherits="$parentEntryTemplate" id="9" />
+			<Button name="$parentEntry10" inherits="$parentEntryTemplate" id="10" />
+			<Button name="$parentEntry11" inherits="$parentEntryTemplate" id="11" />
+			<Button name="$parentEntry12" inherits="$parentEntryTemplate" id="12" />
+			<Button name="$parentEntry13" inherits="$parentEntryTemplate" id="13" />
+			<Button name="$parentEntry14" inherits="$parentEntryTemplate" id="14" />
+			<Button name="$parentEntry15" inherits="$parentEntryTemplate" id="15" />
+			<Button name="$parentEntry16" inherits="$parentEntryTemplate" id="16" />
+			<Button name="$parentEntry17" inherits="$parentEntryTemplate" id="17" />
+			<Button name="$parentEntry18" inherits="$parentEntryTemplate" id="18" />
+			<Button name="$parentEntry19" inherits="$parentEntryTemplate" id="19" />
+			<Button name="$parentEntry20" inherits="$parentEntryTemplate" id="20" />
+			<Button name="$parentEntry21" inherits="$parentEntryTemplate" id="21" />
+			<Button name="$parentEntry22" inherits="$parentEntryTemplate" id="22" />
+			<Button name="$parentEntry23" inherits="$parentEntryTemplate" id="23" />
+			<Button name="$parentEntry24" inherits="$parentEntryTemplate" id="24" />
+		</Frames>
+		<Scripts>
+			<OnLoad>WorldCityBuildFrame_OnLoad()</OnLoad>
+			<OnEvent>WorldCityBuildFrame_OnEvent()</OnEvent>
+			<OnShow>WorldCityBuildFrame_OnShow()</OnShow>
+			<OnUpdate>WorldCityBuildFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="WorldCityCaptureFrame" parent="UIClient" frameStrata="BACKGROUND" movable="false" hidden="true" framelevel="100" input_transparent="true">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+        </Size>
+        <Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBuild2" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="150" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBuildBlink2" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild2" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentOwner2" fonttype="FZYBlackFont15" justifyH="center" fontStyle="shadow" text="libla">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBuild2" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBuild1" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild2" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-300" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBuildBlink1" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild1" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentOwner1" fonttype="FZYBlackFont15" justifyH="center" fontStyle="shadow" text="libla">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBuild1" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBuild3" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild2" relativePoint="center">
+							<Offset>
+								<AbsDimension x="300" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBuildBlink3" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild3" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentOwner3" fonttype="FZYBlackFont15" justifyH="center" fontStyle="shadow" text="libla">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBuild3" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBuild4" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild2" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-300" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBuildBlink4" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild4" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentOwner4" fonttype="FZYBlackFont15" justifyH="center" fontStyle="shadow" text="libla">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBuild4" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBuild5" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild2" relativePoint="center">
+							<Offset>
+								<AbsDimension x="300" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBuildBlink5" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentBuild5" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentOwner5" fonttype="FZYBlackFont15" justifyH="center" fontStyle="shadow" text="libla">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBuild5" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentName" fonttype="SmallBlackFont" justifyH="center" fontStyle="shadow" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="600" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-200" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTime" fonttype="SmallBlackFont" multiLine="true" justifyH="center" fontStyle="shadow" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="600" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentName" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>WorldCityCaptureFrame_OnLoad()</OnLoad>
+			<OnEvent>WorldCityCaptureFrame_OnEvent()</OnEvent>
+			<OnShow>WorldCityCaptureFrame_OnShow()</OnShow>
+			<OnUpdate>WorldCityCaptureFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="WorldCityWarContineKillFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="210" hidden="true" input_transparent="true">
+		<Size>
+            <AbsDimension x="280" y="90" />
+        </Size>
+		<Anchors>
+			<Anchor point="BottomRight" relativePoint="BottomRight" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="-200" y="-109"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentKillNum1" file="uires\\ShuZiXiangGuanZiYuan\\new\\JiShaShu.tga" x="0" y="0" w="70" h="80">		
+					<Size>
+						<RelDimension x="0.23" y="0.86" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parent">
+							<Offset>
+								<RelDimension x="0.175" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentKillNum2" file="uires\\ShuZiXiangGuanZiYuan\\new\\JiShaShu.tga" x="0" y="0" w="70" h="80">		
+					<Size>
+						<RelDimension x="0.23" y="0.86" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentKillNum1">
+							<Offset>
+								<RelDimension x="-0.04" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentKillNum3" file="uires\\ShuZiXiangGuanZiYuan\\new\\JiShaShu.tga" x="140" y="80" w="70" h="80">		
+					<Size>
+						<RelDimension x="0.23" y="0.86" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="right" relativeTo="$parentKillNum2">
+							<Offset>
+								<RelDimension x="-0.04" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentKillBack1" file="uires\\ShuZiXiangGuanZiYuan\\new\\JiShaShu.tga" x="0" y="290" w="195" h="140">		
+					<Size>
+						<RelDimension x="1.4" y="1.56" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parent">
+							<Offset>
+								<RelDimension x="-0.13" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentKillBack2" file="uires\\ShuZiXiangGuanZiYuan\\new\\JiShaShu.tga" x="0" y="290" w="195" h="140">		
+					<Size>
+						<RelDimension x="0.7" y="1.56" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parent">
+							<Offset>
+								<RelDimension x="0.35" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentKillTex" file="uires\\ShuZiXiangGuanZiYuan\\new\\JiShaShu.tga" x="0" y="160" w="260" h="130">		
+					<Size>
+						<RelDimension x="0.696" y="1.16" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="right" relativeTo="$parent">
+							<Offset>
+								<RelDimension x="0.18" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>WorldCityWarContineKillFrame_OnLoad();</OnLoad>
+			<OnHide>WorldCityWarContineKillFrame_OnHide();</OnHide>
+			<OnUpdate>WorldCityWarContineKillFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Button name="WorldCityWarItemTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="715" y="21"/>
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				<FontString name="$parentRank" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="40" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentRankHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentRank" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentClan" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="105" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentRank" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentClanHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentClan" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentReviveBuild" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="80" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentClan" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentReviveBuildHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentReviveBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentControlBuild" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="105" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentReviveBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentControlBuildHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentControlBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentBuffBuild" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="135" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentControlBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBuffBuildHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentBuffBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentDoorBuild" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="95" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentBuffBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentDoorBuildHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentDoorBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentDefBuild" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="110" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentDoorBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentDefBuildHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentDefBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTotal" fonttype="TeenyMSYHFont" justifyH="center" text="">
+					<Color r="190" g="190" b="90"/>
+					<Size>
+						<AbsDimension x="45" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentDefBuild" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTotalHori" file="uires\\ZhuJieMian\\1.dds" x="101" y="284" w="1" h="13">
+					<Size>
+						<AbsDimension x="2" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentTotal" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Button>
+	<Button name="WorldCityWarItemTitleTemplate" virtual="true" >
+		<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" >
+			<Size>
+				<RelDimension x="1.0" />
+				<AbsDimension y="14" />
+			</Size>
+			<Anchors>
+				<Anchor point="center"  relativeTo="$parent" relativePoint="center">
+					<Offset>
+						<AbsDimension x="0" y="2"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</FontString>
+		<NormalTexture		inherits="GongYongAnNiuH1DisabledTemplate"	r="255" g="255" b="190"	/>
+		<HighlightTexture	inherits="GongYongAnNiuH1DisabledTemplate"	r="255" g="255" b="190"	/>
+		<PushedTexture		inherits="GongYongAnNiuH1DisabledTemplate"	r="255" g="255" b="190"	/>
+		<DisabledTexture	inherits="GongYongAnNiuH1DisabledTemplate"	r="255" g="255" b="190"	/>
+		<Scripts>
+		</Scripts>
+	</Button>
+	<Frame name="WorldCityWarInfoFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" framelevel="500" movable="true">
+		<Size>
+            <AbsDimension x="732" y="408" />
+        </Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="战场信息">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSepLineTex" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="726" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="367"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentEnterTime" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="进入战场时间：120分钟">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright" >
+							<Offset>
+								<AbsDimension x="-10" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentClanInfo">
+				<Size>
+					<AbsDimension x="717" y="169"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="36" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBack" inherits="LayerBlackBkgTemplate" />	
+						<Texture name="$parentClanBK1" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="715" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="24" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentClanBK2" inherits="WhiteCategoryBkg">
+							<Size>
+								<AbsDimension x="715" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentClanBK1" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentClanBK3" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="715" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentClanBK2" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentClanBK4" inherits="WhiteCategoryBkg">
+							<Size>
+								<AbsDimension x="715" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentClanBK3" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentClanBK5" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="715" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentClanBK4" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentClanBK6" inherits="WhiteCategoryBkg">
+							<Size>
+								<AbsDimension x="715" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentClanBK5" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentRank" inherits="WorldCityWarItemTitleTemplate" text="排名">
+						<Size>
+							<AbsDimension x="40" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentClan" inherits="WorldCityWarItemTitleTemplate" text="公会">
+						<Size>
+							<AbsDimension x="105" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentRank" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentReviveBuild" inherits="WorldCityWarItemTitleTemplate" text="争夺复活点">
+						<Size>
+							<AbsDimension x="80" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentClan" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentControlBuild" inherits="WorldCityWarItemTitleTemplate" text="抢夺终端控制器">
+						<Size>
+							<AbsDimension x="105" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentReviveBuild" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentBuffBuild" inherits="WorldCityWarItemTitleTemplate" text="守护/击毁能源增幅器">
+						<Size>
+							<AbsDimension x="135" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentControlBuild" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentDoorBuild" inherits="WorldCityWarItemTitleTemplate" text="守护/破坏城门">
+						<Size>
+							<AbsDimension x="95" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentBuffBuild" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentDefBuild" inherits="WorldCityWarItemTitleTemplate" text="守护/破坏防御塔">
+						<Size>
+							<AbsDimension x="110" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentDoorBuild" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentTotal" inherits="WorldCityWarItemTitleTemplate" text="总积分">
+						<Size>
+							<AbsDimension x="45" y="21"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentDefBuild" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentClanInfo1" inherits="WorldCityWarItemTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentClanInfo2" inherits="WorldCityWarItemTemplate">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentClanInfo1" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>	
+					<Button name="$parentClanInfo3" inherits="WorldCityWarItemTemplate">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentClanInfo2" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>	
+					<Button name="$parentClanInfo4" inherits="WorldCityWarItemTemplate">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentClanInfo3" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>	
+					<Button name="$parentClanInfo5" inherits="WorldCityWarItemTemplate">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentClanInfo4" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>		
+					<Button name="$parentClanInfo6" inherits="WorldCityWarItemTemplate">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentClanInfo5" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>	
+				</Frames>
+			</Button>
+			<Button name="$parentWinInfo">
+				<Size>
+					<AbsDimension x="191" y="156"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="209" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBack" inherits="LayerBlackBkgTemplate" />	
+						<FontString name="$parentRank" fonttype="BigBlackFont" justifyH="center" text="">
+							<Color r="255" g="200" b="0"/>
+							<Size>
+								<AbsDimension x="180" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="22" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentGetFontBK" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="191" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="75" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentGetFont" fonttype="TeenyMSYHFont" justifyH="center" text="">
+							<Color r="255" g="200" b="0"/>
+							<Size>
+								<AbsDimension x="180" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="10" y="77" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentGetMoneyBK" inherits="WhiteCategoryBkg">
+							<Size>
+								<AbsDimension x="191" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="94" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentGetMoney" fonttype="TeenyMSYHFont" justifyH="left" text="">
+							<Color r="255" g="200" b="0"/>
+							<Size>
+								<AbsDimension x="180" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="10" y="96" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentGetExpBK" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="191" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="113" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentGetExp" fonttype="TeenyMSYHFont" justifyH="left" text="">
+							<Color r="255" g="200" b="0"/>
+							<Size>
+								<AbsDimension x="180" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="10" y="115" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentGetGiftBK" inherits="WhiteCategoryBkg">
+							<Size>
+								<AbsDimension x="191" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="132" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentGetGift" fonttype="TeenyMSYHFont" justifyH="left" text="">
+							<Color r="255" g="200" b="0"/>
+							<Size>
+								<AbsDimension x="180" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="10" y="134" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentRemindInfo">
+				<Size>
+					<AbsDimension x="522" y="156"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="203" y="209" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBack" inherits="LayerBlackBkgTemplate" />	
+						<Texture name="$parentNeed1" file="uires\\ZhuJieMian\\1.dds" x="576" y="78" w="27" h="24">
+							<Size>
+								 <AbsDimension x="15" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="10" y="30" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>	
+						<Texture name="$parentNeed2" file="uires\\ZhuJieMian\\1.dds" x="576" y="78" w="27" h="24">
+							<Size>
+								 <AbsDimension x="15" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="10" y="45" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>	
+					</Layer>
+				</Layers>
+				<Frames>
+					<RichText name="$parentRemind1" fonttype="TeenyMSYHFont" justifyH="left" lineInterval ="4" multiLine="true">
+						<Size>
+							<AbsDimension x="250" y="115" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+								<Offset>
+									<AbsDimension x="15" y="-9" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="$parentRemind2" fonttype="TeenyMSYHFont" justifyH="left" lineInterval ="4" multiLine="true">
+						<Size>
+							<AbsDimension x="290" y="143" />
+						</Size>
+						<Anchors>
+							<Anchor point="right" relativeTo="$parent" relativePoint="right" >
+								<Offset>
+									<AbsDimension x="-2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentClose" inherits="GongYongAnNiuB1Template" text="关闭">
+				<Size>
+					<AbsDimension x="140" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="295" y="371"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this);</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>WorldCityWarInfoFrame_OnLoad();</OnLoad>
+			<OnShow>WorldCityWarInfoFrame_OnShow();</OnShow>
+			<OnUpdate>WorldCityWarInfoFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\DreamLand.lua" />
+	# BOSS查询面板条目模板
+    <Button name="DreamLandBossEntryTemplate" virtual="true">
+    	<Size>
+			<AbsDimension x="230" y="22" />
+		</Size>
+		<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center">
+			<Size>
+				<AbsDimension x="230" y="15" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativeTo="$parent" relativePoint="center">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</FontString>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBlackTex" inherits="BlackCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWhiteTex" inherits="WhiteCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture inherits="TransTextureTemplate" r="160" g="160" b="90" />
+		<PushedTexture inherits="HighlightTextureTemplate" r="255" g="255" b="190" />
+		<HighlightTexture inherits="HighlightTextureTemplate" r="255" g="255" b="190" />
+		<DisabledTexture inherits="TransTextureTemplate" r="160" g="160" b="90" />
+	</Button>
+	# 幻境传送条目模板
+    <Button name="DreamLandSelectLayerEntryTemplate" virtual="true">
+    	<Size>
+			<AbsDimension x="230" y="22" />
+		</Size>
+		<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center">
+			<Size>
+				<AbsDimension x="230" y="15" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativeTo="$parent" relativePoint="center">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</FontString>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBlackTex" inherits="BlackCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWhiteTex" inherits="WhiteCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>DreamLandSelectLayerEntry_OnClick()</OnClick>
+		</Scripts>
+		<NormalTexture inherits="TransTextureTemplate" r="255" g="255" b="190" />
+		<PushedTexture inherits="PushedTextureTemplate" r="160" g="160" b="60" />
+		<HighlightTexture inherits="HighlightTextureTemplate" r="255" g="255" b="60" />
+		<DisabledTexture inherits="TransTextureTemplate" r="100" g="100" b="100" />
+	</Button>
+	# 幻境队伍标题模板
+	<Button name="DreamLandTeamTitleTemplate" virtual="true">
+		<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center">
+			<Size>
+				<RelDimension x="1.0" />
+				<AbsDimension y="15" />
+			</Size>
+			<Anchors>
+				<Anchor point="center" relativeTo="$parent" relativePoint="center">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</FontString>
+		<NormalTexture inherits="GongYongAnNiuA1DisabledTemplate" r="130" g="130" b="130" />
+	</Button>
+	# 幻境队伍条目模板
+	<Button name="DreamLandTeamEntryTemplate" virtual="true">
+    	<Size>
+			<AbsDimension x="305" y="22" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBlackTex" inherits="BlackCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWhiteTex" inherits="WhiteCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine1" inherits="VerticalLineTemplate">
+					<Size>
+						<AbsDimension x="2" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="113" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine2" inherits="VerticalLineTemplate">
+					<Size>
+						<AbsDimension x="2" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine1" relativePoint="right">
+							<Offset>
+								<AbsDimension x="48" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine3" inherits="VerticalLineTemplate">
+					<Size>
+						<AbsDimension x="2" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine2" relativePoint="right">
+							<Offset>
+								<AbsDimension x="48" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<Texture name="$parentHighlight" inherits="HighlightTextureTemplate" hidden="true">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentName" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left">
+					<Color r="130" g="130" b="130" />
+					<Size>
+						<AbsDimension x="93" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="10" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLevel" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center">
+					<Color r="130" g="130" b="130" />
+					<Size>
+						<AbsDimension x="28" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine1" relativePoint="right">
+							<Offset>
+								<AbsDimension x="10" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCount" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center">
+					<Color r="130" g="130" b="130" />
+					<Size>
+						<AbsDimension x="12" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine2" relativePoint="right">
+							<Offset>
+								<AbsDimension x="18" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLayer" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left">
+					<Color r="130" g="130" b="130" />
+					<Size>
+						<AbsDimension x="53" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine3" relativePoint="right">
+							<Offset>
+								<AbsDimension x="30" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>DreamLandTeamEntry_OnEnter()</OnEnter>
+			<OnLeave>DreamLandTeamEntry_OnLeave()</OnLeave>
+			<OnClick>DreamLandTeamEntry_OnClick()</OnClick>
+		</Scripts>
+		<NormalTexture inherits="TransTextureTemplate" />
+		<PushedTexture inherits="PushedTextureTemplate" />
+		<HighlightTexture inherits="HighlightTextureTemplate" />
+		<DisabledTexture inherits="TransTextureTemplate" />
+	</Button>
+	
+	# BOSS查询面板
+	<Frame name="DreamLandBossFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="200">
+		<Size>
+			<AbsDimension x="250" y="306" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGroundPanel" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="235" y="224"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+            </Layer>
+            <Layer level="overlay">
+            	# 界面标题
+				<FontString name="$parentTitleName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="BOSS状态">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLine" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="244" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			
+			<Button name="$parentCancel" inherits="GongYongAnNiuB1Template" text="关  闭">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this)</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentEntry1" inherits="DreamLandBossEntryTemplate" id="1">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBackGroundPanel" relativePoint="top" >
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry2" inherits="DreamLandBossEntryTemplate" id="2">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry1" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry3" inherits="DreamLandBossEntryTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry2" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry4" inherits="DreamLandBossEntryTemplate" id="4">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry3" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry5" inherits="DreamLandBossEntryTemplate" id="5">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry4" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry6" inherits="DreamLandBossEntryTemplate" id="6">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry5" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry7" inherits="DreamLandBossEntryTemplate" id="7">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry6" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry8" inherits="DreamLandBossEntryTemplate" id="8">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry7" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry9" inherits="DreamLandBossEntryTemplate" id="9">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry8" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry10" inherits="DreamLandBossEntryTemplate" id="10">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry9" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>DreamLandBossFrame_OnLoad()</OnLoad>
+			<OnEvent>DreamLandBossFrame_OnEvent()</OnEvent>
+			<OnShow>DreamLandBossFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+	
+	# 地图传送面板
+	<Frame name="DreamLandSelectLayerFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="200">
+		<Size>
+			<AbsDimension x="250" y="328" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGroundPanel" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="235" y="246"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+            </Layer>
+            <Layer level="overlay">
+            	# 界面标题
+				<FontString name="$parentTitleName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="幻境传送">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLine" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="244" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			
+			<Button name="$parentOK" inherits="GongYongAnNiuB1Template" text="确  定">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="18" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DreamLandSelectLayerFrame_OnOK()</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentCancel" inherits="GongYongAnNiuB1Template" text="取  消">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-18" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this)</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentEntry1" inherits="DreamLandSelectLayerEntryTemplate" id="1">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBackGroundPanel" relativePoint="top" >
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry2" inherits="DreamLandSelectLayerEntryTemplate" id="2">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry1" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry3" inherits="DreamLandSelectLayerEntryTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry2" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry4" inherits="DreamLandSelectLayerEntryTemplate" id="4">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry3" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry5" inherits="DreamLandSelectLayerEntryTemplate" id="5">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry4" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry6" inherits="DreamLandSelectLayerEntryTemplate" id="6">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry5" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry7" inherits="DreamLandSelectLayerEntryTemplate" id="7">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry6" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry8" inherits="DreamLandSelectLayerEntryTemplate" id="8">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry7" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<!--
+			<Button name="$parentEntry9" inherits="DreamLandSelectLayerEntryTemplate" id="9">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry8" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry10" inherits="DreamLandSelectLayerEntryTemplate" id="10">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry9" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry11" inherits="DreamLandSelectLayerEntryTemplate" id="11">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry10" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			-->
+		</Frames>
+		<Scripts>
+			<OnLoad>DreamLandSelectLayerFrame_OnLoad()</OnLoad>
+			<OnEvent>DreamLandSelectLayerFrame_OnEvent()</OnEvent>
+			<OnShow>DreamLandSelectLayerFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+	
+	# 队伍查询
+	<Frame name="DreamLandTeamFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="200">
+		<Size>
+			<AbsDimension x="344" y="329" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGroundPanel" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="329" y="247"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+            </Layer>
+            <Layer level="overlay">
+            	# 界面标题
+				<FontString name="$parentTitleName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="队伍查询">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="25" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLine" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="338" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			
+			<Button name="$parentJoin" inherits="GongYongAnNiuB1Template" text="组  队">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="78" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DreamLandTeamFrame_OnJoin()</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentCancel" inherits="GongYongAnNiuB1Template" text="取  消">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-78" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this)</OnClick>
+				</Scripts>
+			</Button>			
+			
+			<Button name="$parentEntry1" inherits="DreamLandTeamEntryTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundPanel" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="2" y="25" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry2" inherits="DreamLandTeamEntryTemplate" id="2">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry1" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry3" inherits="DreamLandTeamEntryTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry2" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry4" inherits="DreamLandTeamEntryTemplate" id="4">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry3" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry5" inherits="DreamLandTeamEntryTemplate" id="5">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry4" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry6" inherits="DreamLandTeamEntryTemplate" id="6">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry5" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry7" inherits="DreamLandTeamEntryTemplate" id="7">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry6" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry8" inherits="DreamLandTeamEntryTemplate" id="8">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry7" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry9" inherits="DreamLandTeamEntryTemplate" id="9">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry8" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEntry10" inherits="DreamLandTeamEntryTemplate" id="10">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentEntry9" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentTitle1" inherits="DreamLandTeamTitleTemplate" text="姓名">
+				<Size>
+					<AbsDimension x="115" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundPanel" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTitle2" inherits="DreamLandTeamTitleTemplate" text="等级">
+				<Size>
+					<AbsDimension x="50" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentTitle1" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTitle3" inherits="DreamLandTeamTitleTemplate" text="人数">
+				<Size>
+					<AbsDimension x="50" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentTitle2" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTitle4" inherits="DreamLandTeamTitleTemplate" text="位置">
+				<Size>
+					<AbsDimension x="115" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentTitle3" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			##滚动条背景
+			<Button name="$parent_SliderBack">
+				<Size>
+					<AbsDimension x="21" y="221" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentBackGroundPanel" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+							<Size>
+								<AbsDimension x="21" y="221" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentScrollCenter" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>				
+						<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentScrollCenter" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+			</Button>
+			#向上滚动按钮
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_SliderBack" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DreamLandTeamFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			#向下滚动按钮
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ScrollUpBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="203"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DreamLandTeamFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			#滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="40" valueStep="1" defaultValue="0">
+				<Size>
+					<AbsDimension x="26" y="183" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+					<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+						<Size>
+							<AbsDimension x="17" y="42" />
+						</Size>
+					</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>DreamLandTeamFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnLoad>DreamLandTeamFrame_OnLoad()</OnLoad>
+			<OnShow>DreamLandTeamFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

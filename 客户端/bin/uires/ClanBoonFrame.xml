@@ -1,0 +1,1558 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ClanBoonFrame.lua" />
+	<Frame name="ClanBoonFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true"  framelevel="500">
+		<Size>
+			<AbsDimension x="537" y="343" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>  
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+				<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="520" y="278" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="56" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentCaption" fonttype="TeenyFZYBlackFont" justifyH="center" text="工  资" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentCondType" inherits="GongYongAnNiuD1Template" text="工资福利" checked="false" id="1">
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="14" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanBoonFrameTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentAssignType" inherits="GongYongAnNiuD1Template" text="福利分配" checked="false" id="2">
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="94" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanBoonFrameTypeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCondBtn">
+				<Size>
+					<AbsDimension x="520" y="278" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentLeftBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="169" y="262" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="8" y="8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentRightBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="330" y="262" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="182" y="8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentWeekFont1" fonttype="LittleFZYBlackFont" justifyH="center" text="上周领取工资条件" >
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="161" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parentLeftBkg" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="15" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentWeekFont2" fonttype="LittleFZYBlackFont" justifyH="center" text="本周领取工资条件" >
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="161" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parentRightBkg" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="15" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentStateFont" fonttype="EighteenFont" justifyH="center" text="未达成" >
+							<Color r="220" g="0" b="0"/>
+							<Size>
+								<AbsDimension x="121" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parentLeftBkg" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="38" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentProcessFont" fonttype="EighteenFont" text="进度" >
+							<Color r="0" g="220" b="0"/>
+							<Size>
+								<AbsDimension x="121" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentRightBkg" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="38" y="38" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentBonusFont" fonttype="EighteenFont" text="加成" >
+							<Color r="0" g="220" b="0"/>
+							<Size>
+								<AbsDimension x="121" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentProcessFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="22" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentClanFont" fonttype="LittleFZYBlackFont" text="公会名称" >
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="161" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLeftBkg" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="9" y="69" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNameFont" fonttype="LittleFZYBlackFont" text="角色名称" >
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="161" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLeftBkg" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="9" y="85" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentPosFont" fonttype="LittleFZYBlackFont" text="职位名称" >
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="161" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLeftBkg" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="9" y="101" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentSelfFont" fonttype="LittleFZYBlackFont" text="你的工资：" >
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLeftBkg" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="9" y="134" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentSalaryFont" fonttype="LittleFZYBlackFont" text="5" >
+							<Color r="255" g="230" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLeftBkg" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="76" y="134" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentWarnFont" fonttype="LittleFZYBlackFont" text="注：每周日6点将更新工资\n情况, 请尽快领取你的工资\n, 逾期将作废" >
+							<Color r="130" g="130" b="130"/>
+							<Size>
+								<AbsDimension x="161" y="45" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLeftBkg" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="9" y="154" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCondFont1" fonttype="LittleFZYBlackFont" text="领取金券条件：" >
+							<Color r="255" g="130" b="0"/>
+							<Size>
+								<AbsDimension x="86" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="197" y="77" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentWeekFont1" fonttype="LittleFZYBlackFont" text="（单位：周）" >
+							<Color r="130" g="130" b="130"/>
+							<Size>
+								<AbsDimension x="80" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentCondFont1" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<!--
+						<FontString name="$parentCondFont2" fonttype="LittleFZYBlackFont" text="领取金币条件：" >
+							<Color r="255" g="220" b="0"/>
+							<Size>
+								<AbsDimension x="86" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="197" y="163" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentWeekFont2" fonttype="LittleFZYBlackFont" text="（单位：周）" >
+							<Color r="130" g="130" b="130"/>
+							<Size>
+								<AbsDimension x="80" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentCondFont2" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						-->
+						<FontString name="$parentCondFont2" fonttype="LittleFZYBlackFont" text="达成领取条件" >
+							<Color r="255" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="86" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="197" y="163" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentWeekFont2" fonttype="LittleFZYBlackFont" lineInterval ="2" text="（单位：周）" >
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="300" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentCondFont2" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="16" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGetSalary" inherits="GongYongAnNiuB1Template" text="领取上周工资">
+						<Size>
+							<AbsDimension x="120" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentLeftBkg">
+								<Offset>
+									<AbsDimension x="25" y="219" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>ClanBoonFrameCondBtnGetSalary_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentProcessInfoTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="300" y="30" />
+						</Size>
+						<Layers>
+							<Layer>
+								<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" text="条件" >
+									<Color r="255" g="255" b="190"/>
+									<Size>
+										<AbsDimension x="260" y="30" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="LittleFZYBlackFont" text="未完成" >
+									<Color r="220" g="0" b="0"/>
+									<Size>
+										<AbsDimension x="40" y="30" />
+									</Size>
+									<Anchors>
+										<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTechBtn" inherits="$parentProcessInfoTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="197" y="93" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentOnlineBtn" inherits="$parentProcessInfoTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTechBtn">
+								<Offset>
+									<AbsDimension x="0" y="16" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentContriBtn" inherits="$parentProcessInfoTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentOnlineBtn">
+								<Offset>
+									<AbsDimension x="0" y="16" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGoldBtn1" inherits="$parentProcessInfoTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentContriBtn">
+								<Offset>
+									<AbsDimension x="0" y="16" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<!--
+					<Button name="$parentCountBtn" inherits="$parentProcessInfoTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentGoldBtn1">
+								<Offset>
+									<AbsDimension x="0" y="38" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGoldBtn2" inherits="$parentProcessInfoTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentCountBtn">
+								<Offset>
+									<AbsDimension x="0" y="16" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					-->
+					<Button name="$parentSalaryBonus" inherits="GongYongAnNiuB1Template" text="工资加成明细">
+						<Size>
+							<AbsDimension x="120" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="287" y="227" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>ClanBoonFrameCondBtnSalaryBonus_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					##记录
+					<Button name="$parentRecordFrame" hidden = "true" >
+						<Size>
+							<AbsDimension x="215" y="342" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topright" >
+								<Offset>
+									<AbsDimension x="7" y="-56" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentBkg"	inherits="TipsBkgTemplate" />
+								<FontString name="$parentCaption" fonttype="LittleFZYBlackFont" justifyH="center" text="工资加成明细" >
+									<Color r="255" g="255" b="190"/>
+									<Size>
+										<AbsDimension x="120" y="22" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="8" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="$parentCloseBtn" inherits="CloseBtnTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="191" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<RichText name="$parentRich" lineInterval ="2" multiLine="true" fonttype="LittleFZYBlackFont" >
+								<Size>
+									<AbsDimension x="195" y="310" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="10" y="26" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+							##左箭头
+							<Button name="$parentLeftBtn" inherits="NewPrePageTemplate">
+								<Anchors>
+									<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="57" y="318"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>ClanBoonFrameCondBtnRecordFrameLeft_OnClick();</OnClick>
+								</Scripts>		
+							</Button>
+							##右箭头
+							<Button name="$parentRightBtn" inherits="NewNextPageTemplate">
+								<Anchors>
+									<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="108" y="318"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>ClanBoonFrameCondBtnRecordFrameRight_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+						</Frames>
+						<Scripts>
+							<OnShow>ClanBoonFrameCondBtnRecordFrame_OnShow();</OnShow>
+							<OnHide>ClanBoonFrameCondBtnRecordFrame_OnHide();</OnHide>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+			<Button name="$parentAssignBtn">
+				<Size>
+					<AbsDimension x="520" y="278" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentLeftBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="170" y="162" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="7" y="71" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentRightBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="331" y="225" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="182" y="8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBkg" file="uires\\ZhuJieMian\\1.dds" x="746" y="390" w="18" h="36" >
+							<Size>
+								<AbsDimension x="18" y="36" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="139" y="25" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+							<Size>
+								<AbsDimension x="518" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="1" y="239" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentWeekFont" fonttype="LittleFZYBlackFont" justifyH="center" text="本周公会福利" >
+							<Color r="255" g="255" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parentLeftBkg" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="-57" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentGoldFont" fonttype="LittleFZYBlackFont" justifyH="center" text="金币" >
+							<Color r="255" g="255" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parentLeftBkg" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="-38" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentBindGoldFont" fonttype="LittleFZYBlackFont" justifyH="center" text="金券" >
+							<Color r="255" g="255" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parentLeftBkg" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="-21" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentUnusedFont" fonttype="LittleFZYBlackFont" text="剩余分配" >
+							<Color r="255" g="160" b="0"/>
+							<Size>
+								<AbsDimension x="120" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="15" y="252" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentUsedFont" fonttype="LittleFZYBlackFont" text="已经分配" >
+							<Color r="255" g="160" b="0"/>
+							<Size>
+								<AbsDimension x="120" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="152" y="252" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentBkg1" inherits="GongYongAnNiuListTopNormalTemplate">
+							<Size>
+								<AbsDimension x="80" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="184" y="10" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" justifyH="center" text="公会职称" >
+							<Size>
+								<AbsDimension x="80" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentBkg1" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90"/>
+						</FontString>
+						<Texture name="$parentBkg2" inherits="GongYongAnNiuListTopNormalTemplate">
+							<Size>
+								<AbsDimension x="105" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBkg1" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont2" fonttype="LittleFZYBlackFont" justifyH="center" text="角色名称" >
+							<Size>
+								<AbsDimension x="105" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentBkg2" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90"/>
+						</FontString>
+						<Texture name="$parentBkg3" inherits="GongYongAnNiuListTopNormalTemplate">
+							<Size>
+								<AbsDimension x="85" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBkg2" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont3" fonttype="LittleFZYBlackFont" justifyH="center" text="分配" >
+							<Size>
+								<AbsDimension x="85" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentBkg3" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90"/>
+						</FontString>
+						<Texture name="$parentBkg4" inherits="GongYongAnNiuListTopNormalTemplate">
+							<Size>
+								<AbsDimension x="60" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBkg3" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont4" fonttype="LittleFZYBlackFont" justifyH="center" text="领取情况" >
+							<Size>
+								<AbsDimension x="60" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentBkg4" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90"/>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<RichText name="$parentRich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" >
+						<Size>
+							<AbsDimension x="160" y="160" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="13" y="78" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parentResetBtn" inherits="GongYongAnNiuB1Template" text="重  置">
+						<Size>
+							<AbsDimension x="65" y="31"/>
+						</Size>
+						 <Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+								<Offset>
+									<AbsDimension x="358" y="243"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>ClanBoonFrameAssignBtnReset_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentConfirmBtn" inherits="GongYongAnNiuB1Template" text="确认分配">
+						<Size>
+							<AbsDimension x="85" y="31"/>
+						</Size>
+						 <Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+								<Offset>
+									<AbsDimension x="425" y="243"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>ClanBoonFrameAssignBtnConfirm_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentListInfoTemplate" frameStrata="Dialog" virtual="true">
+						<Size>
+							<AbsDimension x="330" y="25"/>
+						</Size>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentJobBkg" inherits="WhiteCategoryBkg">
+									<Size>
+										<AbsDimension x="79" y="25" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentNameBkg" inherits="WhiteCategoryBkg">
+									<Size>
+										<AbsDimension x="103" y="25" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentJobBkg" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentMoneyBkg" inherits="WhiteCategoryBkg">
+									<Size>
+										<AbsDimension x="83" y="25" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentNameBkg" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentStateBkg" inherits="WhiteCategoryBkg">
+									<Size>
+										<AbsDimension x="58" y="25" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentJobFont" fonttype="LittleFZYBlackFont" justifyH="center" text="休斯佩恩" >
+									<Size>
+										<AbsDimension x="79" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parentJobBkg" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="190"/>
+								</FontString>
+								<FontString name="$parentNameFont" fonttype="LittleFZYBlackFont" justifyH="center" text="80" >
+									<Size>
+										<AbsDimension x="103" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parentNameBkg" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="190"/>
+								</FontString>
+								<FontString name="$parentMoneyFont" fonttype="LittleFZYBlackFont" justifyH="center" text="80" >
+									<Size>
+										<AbsDimension x="83" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parentMoneyBkg" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="190"/>
+								</FontString>
+								<FontString name="$parentStateFont" fonttype="LittleFZYBlackFont" justifyH="center" text="未领取" >
+									<Size>
+										<AbsDimension x="58" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parentStateBkg" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="190"/>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentList0" inherits="$parentListInfoTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+								<Offset>
+									<AbsDimension x="184" y="31"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentList1" inherits="$parentListInfoTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentList0" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="$parentNum">
+								<Size>
+									<AbsDimension x="43" y="21" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="1" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer>
+										<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+											<Size>
+												<AbsDimension x="43" y="21" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									##输入框
+									<EditBox name="$parentEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+										<Size>
+											<AbsDimension x="40" y="15" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="1" y="3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="0">
+											<Color r="255" g="255" b="190" />
+										</FontString>
+										<Scripts>
+											<onfocuslost>ClanBoonFrameEdit_OnFocusLost();</onfocuslost>
+											<OnTabPressed>ClanBoonFrameEdit_OnTabPressed();</OnTabPressed>
+										</Scripts>
+									</EditBox>
+									<!--##加数量按钮
+									<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="42" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollUp_OnClick();</OnClick>
+										</Scripts>
+									</Button>
+									##减数量按钮
+									<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="60" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollDown_OnClick();</OnClick>
+										</Scripts>
+									</Button>-->
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+					<Button name="$parentList2" inherits="$parentListInfoTemplate" id="9">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentList1" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="$parentNum">
+								<Size>
+									<AbsDimension x="43" y="21" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="1" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer>
+										<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+											<Size>
+												<AbsDimension x="43" y="21" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									##输入框
+									<EditBox name="$parentEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+										<Size>
+											<AbsDimension x="40" y="15" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="1" y="3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="0">
+											<Color r="255" g="255" b="190" />
+										</FontString>
+										<Scripts>
+											<onfocuslost>ClanBoonFrameEdit_OnFocusLost();</onfocuslost>
+											<OnTabPressed>ClanBoonFrameEdit_OnTabPressed();</OnTabPressed>
+										</Scripts>
+									</EditBox>
+									<!--##加数量按钮
+									<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="42" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollUp_OnClick();</OnClick>
+										</Scripts>
+									</Button>
+									##减数量按钮
+									<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="60" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollDown_OnClick();</OnClick>
+										</Scripts>
+									</Button>-->
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+					<Button name="$parentList3" inherits="$parentListInfoTemplate" id="10">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentList2" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="$parentNum">
+								<Size>
+									<AbsDimension x="43" y="21" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="1" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer>
+										<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+											<Size>
+												<AbsDimension x="43" y="21" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									##输入框
+									<EditBox name="$parentEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+										<Size>
+											<AbsDimension x="40" y="15" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="1" y="3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="0">
+											<Color r="255" g="255" b="190" />
+										</FontString>
+										<Scripts>
+											<onfocuslost>ClanBoonFrameEdit_OnFocusLost();</onfocuslost>
+											<OnTabPressed>ClanBoonFrameEdit_OnTabPressed();</OnTabPressed>
+										</Scripts>
+									</EditBox>
+									<!--##加数量按钮
+									<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="42" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollUp_OnClick();</OnClick>
+										</Scripts>
+									</Button>
+									##减数量按钮
+									<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="60" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollDown_OnClick();</OnClick>
+										</Scripts>
+									</Button>-->
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+					<Button name="$parentList4" inherits="$parentListInfoTemplate" id="11">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentList3" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="$parentNum">
+								<Size>
+									<AbsDimension x="43" y="21" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="1" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer>
+										<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+											<Size>
+												<AbsDimension x="43" y="21" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									##输入框
+									<EditBox name="$parentEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+										<Size>
+											<AbsDimension x="40" y="15" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="1" y="3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="0">
+											<Color r="255" g="255" b="190" />
+										</FontString>
+										<Scripts>
+											<onfocuslost>ClanBoonFrameEdit_OnFocusLost();</onfocuslost>
+											<OnTabPressed>ClanBoonFrameEdit_OnTabPressed();</OnTabPressed>
+										</Scripts>
+									</EditBox>
+									<!--##加数量按钮
+									<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="42" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollUp_OnClick();</OnClick>
+										</Scripts>
+									</Button>
+									##减数量按钮
+									<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="60" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollDown_OnClick();</OnClick>
+										</Scripts>
+									</Button>-->
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+					<Button name="$parentList5" inherits="$parentListInfoTemplate" id="12">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentList4" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="$parentNum">
+								<Size>
+									<AbsDimension x="43" y="21" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="1" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer>
+										<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+											<Size>
+												<AbsDimension x="43" y="21" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									##输入框
+									<EditBox name="$parentEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+										<Size>
+											<AbsDimension x="40" y="15" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="1" y="3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="0">
+											<Color r="255" g="255" b="190" />
+										</FontString>
+										<Scripts>
+											<onfocuslost>ClanBoonFrameEdit_OnFocusLost();</onfocuslost>
+											<OnTabPressed>ClanBoonFrameEdit_OnTabPressed();</OnTabPressed>
+										</Scripts>
+									</EditBox>
+									<!--##加数量按钮
+									<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="42" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollUp_OnClick();</OnClick>
+										</Scripts>
+									</Button>
+									##减数量按钮
+									<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="60" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollDown_OnClick();</OnClick>
+										</Scripts>
+									</Button>-->
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+					<Button name="$parentList6" inherits="$parentListInfoTemplate" id="13">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentList5" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="$parentNum">
+								<Size>
+									<AbsDimension x="43" y="21" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="1" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer>
+										<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+											<Size>
+												<AbsDimension x="43" y="21" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									##输入框
+									<EditBox name="$parentEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+										<Size>
+											<AbsDimension x="40" y="15" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="1" y="3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="0">
+											<Color r="255" g="255" b="190" />
+										</FontString>
+										<Scripts>
+											<onfocuslost>ClanBoonFrameEdit_OnFocusLost();</onfocuslost>
+											<OnTabPressed>ClanBoonFrameEdit_OnTabPressed();</OnTabPressed>
+										</Scripts>
+									</EditBox>
+									<!--##加数量按钮
+									<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="42" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollUp_OnClick();</OnClick>
+										</Scripts>
+									</Button>
+									##减数量按钮
+									<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="60" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollDown_OnClick();</OnClick>
+										</Scripts>
+									</Button>-->
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+					<Button name="$parentList7" inherits="$parentListInfoTemplate" id="14">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentList6" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							<Button name="$parentNum">
+								<Size>
+									<AbsDimension x="43" y="21" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentMoneyBkg" relativePoint="topleft" >
+										<Offset>
+											<AbsDimension x="1" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer>
+										<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+											<Size>
+												<AbsDimension x="43" y="21" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									##输入框
+									<EditBox name="$parentEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+										<Size>
+											<AbsDimension x="41" y="15" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="1" y="3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="right" text="0">
+											<Color r="255" g="255" b="190" />
+										</FontString>
+										<Scripts>
+											<onfocuslost>ClanBoonFrameEdit_OnFocusLost();</onfocuslost>
+											<OnTabPressed>ClanBoonFrameEdit_OnTabPressed();</OnTabPressed>
+										</Scripts>
+									</EditBox>
+									<!--##加数量按钮
+									<Button name="$parentScrollUp" inherits="ScrollUpBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="42" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollUp_OnClick();</OnClick>
+										</Scripts>
+									</Button>
+									##减数量按钮
+									<Button name="$parentScrollDown" inherits="ScrollDownBtnTemplate">
+										<Anchors>
+											<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+												<Offset>
+													<AbsDimension x="60" y="0"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Scripts>
+											<OnClick>ClanBoonFrameScrollDown_OnClick();</OnClick>
+										</Scripts>
+									</Button>-->
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnHide>ClanBoonFrameAssignBtn_Hide();</OnHide>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ClanBoonFrame_Show();</OnShow>
+			<OnHide>ClanBoonFrame_Hide();</OnHide>
+			<OnLoad>ClanBoonFrame_OnLoad();</OnLoad>
+			<OnEvent>ClanBoonFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<Ui>
+	<Script file="uires\ArmLevelUpFrame.lua" />
+
+	<Frame name="ArmLevelUpFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="283" y="426" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer >
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentDescBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="266" y="97" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCostMoneyTex" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="130" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="104" y="332" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHaveMoneyTex" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="130" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="104" y="356" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="278" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="389" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSignTex1" file="uires\\ZhuJieMian\\1.dds" x="325" y="48" w="14" h="14">
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="94" y="178" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSignTex2" file="uires\\ZhuJieMian\\1.dds" x="325" y="48" w="14" h="14">
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="176" y="178" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSignTex3" file="uires\\ZhuJieMian\\1.dds" x="746" y="390" w="18" h="36" >
+					<Size>
+						<AbsDimension x="18" y="36" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="130" y="212" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Angle value="90"/>
+				</Texture>
+				<FontString name="$parentCaption" fonttype="TeenyFZYBlackFont" justifyH="center" text="装备进阶">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset >
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCostLabel" fonttype="LittleFZYBlackFont" text="需要消耗">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="47" y="335" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentHaveLabel" fonttype="LittleFZYBlackFont" text="可用货币">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="47" y="359" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCostMoney" fonttype="LittleFZYBlackFont" justifyH="right" text="asd">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="112" y="335" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentHaveMoney" fonttype="LittleFZYBlackFont" justifyH="right" text="asd">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="112" y="358" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTips1" fonttype="NormalBlackFont" text="放入装备">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="100" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="40" y="149" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTips2" fonttype="NormalBlackFont" text="需要合金">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="100" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="117" y="149" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTips3" fonttype="NormalBlackFont" text="需要水晶">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="100" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="202" y="149" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTips4" fonttype="TeenyBlackFont" text="进阶后装备">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="112" y="244" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<RichText name="$parentRichText" fonttype="LittleFZYBlackFont" input_transparent="true">
+				<Size>
+					<AbsDimension x="260" y="95" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset >
+							<AbsDimension x="18" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentArmBtn" inherits="ItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="38" y="165" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnReceiveDrag>ArmLevelUpFrameArmBtn_OnReceiveDrag()</OnReceiveDrag>
+					<OnBeginDrag>ArmLevelUpFrameArmBtn_OnBeginDrag()</OnBeginDrag>
+					<OnClick>ArmLevelUpFrameArmBtn_OnClick()</OnClick>
+					<OnEnter>ArmLevelUpFrameArmBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentStuff1Btn" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="120" y="165" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>ArmLevelUpFrameStuffBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentStuff2Btn" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="202" y="165" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>ArmLevelUpFrameStuffBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentGetBtn" >
+				<Size>
+					<AbsDimension x="52" y="52"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="116" y="263" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75" hidden="true"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="80" y="80"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-14" y="-14"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<Texture name="$parentBindTexture" file="uires\\ZhuJieMian\\1.dds" x="42" y="829" w="20" h="17" hidden="true" >
+							<Size>
+								<AbsDimension x="20" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="551" y="538" w="64" h="64" />
+				<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<Scripts>
+					<OnEnter>ArmLevelUpFrameGetBtn_OnEnter()</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentModel" input_transparent="true">
+				<Size>
+					<AbsDimension x="246" y="240" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentGetBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentView">
+							<Size>
+								<AbsDimension x="246" y="240" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+			<!--
+			<Button name="$parentTipsBtn">
+				<Size>
+					<AbsDismension x="300" y="80" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDismension x="20" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>ArmLevelUpFrameTipsBtn_OnEnter()</OnEnter>
+					<OnLeave>GameTooltipOnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+			-->
+			<Button name="$parentCostBtn">
+				<Size>
+					<AbsDimension x="17" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="214" y="334" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" />
+				<Scripts>
+					<OnLoad>this:SetClientUserData(0,3)</OnLoad>
+					<OnEnter>MoneyTex_OnEnter()</OnEnter>
+					<OnLeave>GameTooltipOnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentHaveBtn">
+				<Size>
+					<AbsDimension x="17" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="214" y="358" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" />
+				<Scripts>
+					<OnLoad>this:SetClientUserData(0,3)</OnLoad>
+					<OnEnter>MoneyTex_OnEnter()</OnEnter>
+					<OnLeave>GameTooltipOnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="开始进阶">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="391" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ArmLevelUpFrameOKBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ArmLevelUpFrame_OnLoad()</OnLoad>
+			<OnEvent>ArmLevelUpFrame_OnEvent()</OnEvent>
+			<OnShow>ArmLevelUpFrame_OnShow()</OnShow>
+			<OnHide>ArmLevelUpFrame_OnHide()</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

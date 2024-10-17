@@ -1,0 +1,1450 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Minimap.lua" />
+
+	<Frame name="MinimapFrame" parent="UIClient" frameStrata="BACKGROUND" hidden="true" framelevel="290">
+		<Size>
+			<AbsDimension x="179" y="186" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-28" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			#雷达区域
+			<Button name="MinimapCluster" >
+				<Size>
+					<AbsDimension x="146" y="146" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="45" y="23" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="MinimapEnvelopTextureMap" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="144" y="144" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-14" y="12" />
+									</Offset>
+								</Anchor>
+							</Anchors>							
+						</Texture>
+						<Texture name="MinimapBackground" file="uires\\ZhuJieMian\\1.dds" x="559" y="383" w="179" h="186">
+							<Size>
+								<AbsDimension x="179" y="186" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-29" y="-23" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level = "artwork">
+						## 方向遮罩
+						<Texture name="MinimapMainShowCamButton" file="uires\\ZhuJieMian\\1.dds" x="878" y="418" w="146" h="146">
+							<Size>
+								<AbsDimension x="146" y="146" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="20" y="30" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>					
+				</Layers>	
+				<Frames>
+					#显示场景名的按钮
+					<Button name="SceneNameBtn" >
+						<Layers>	
+							<Layer level="overlay">
+								<FontString name="MMMapName" fonttype="FZYBlackFont15" justifyH="center" text="地图名称地图名称地图名称地图名称地图名称地图名称">
+									<Size>
+										<AbsDimension x="115" y="17" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="-4" y="1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="254" b="191" />
+								</FontString>
+							</Layer>
+						</Layers>	
+						<Size>
+							<AbsDimension x="120" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOP" relativeTo="$parent" relativePoint="TOP">
+								<Offset>
+									<AbsDimension x="-7" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>SceneNameBtn_OnEnter();</OnEnter>
+							<OnLeave>WorldMapGameRegionTooltip:Hide();</OnLeave>
+						</Scripts>
+					</Button>
+					# 地图换线按钮
+					<Button name="MapServerSelectOpenBtn" hidden="true">
+						<Size>
+							<AbsDimension x="33" y="24" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="MMMapName" relativePoint="right">
+								<Offset>
+									<AbsDimension x="4" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="935" y="417" w="33" h="24" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="935" y="442" w="33" h="24" />
+						<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="935" y="467" w="33" h="24" />
+						<Scripts>
+							<OnClick>MapServerSelectOpenBtn_OnClick()</OnClick>
+							<OnEnter>MapServerSelectOpenBtn_OnEnter()</OnEnter>
+							<OnLeave>MapServerSelectOpenBtn_OnLeave()</OnLeave>
+							<OnUpdate>MapServerSelectOpenBtn_OnUpdate()</OnUpdate>
+						</Scripts>
+					</Button>					
+					#网络
+					<Button name="NetShowBtn" hidden="true">
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="851" y="0" w="28" h="28">
+									<Size>
+										<AbsDimension x="28" y="28" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>							
+								</Texture>
+							</Layer>
+						</Layers>
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-16" y="0"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<Scripts>
+							<OnClick>NetShowBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#成长之路
+					<Button name="HelpShowBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="128" y="47"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="839" y="703"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="868" y="703" w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="897" y="703" w="28" h="28" />
+						<Scripts>
+							<OnClick>HelpShowBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					##排行
+					<Button name="RangeBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-33" y="23"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="880" y="0"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="880" y="29"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="880" y="58"	w="28" h="28" />
+						<Scripts>
+							<OnClick>RangeBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+							<OnUpdate>MinimapFrameButton_OnUpdate();</OnUpdate>
+						</Scripts>
+					</Button>
+					#区域地图
+					<Button name="AreaMapShowBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-15" y="2"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="909" y="0"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="909" y="29"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="909" y="58"	w="28" h="28" />
+						<Scripts>
+							<OnClick>AreaMapShow_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#战争势力图
+					<Button name="WarForcesBtn" hidden="true">
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-44" y="74"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="880" y="87"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="880" y="116" w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="880" y="145" w="28" h="28" />
+						<Scripts>
+							<OnClick>WarForcesBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 自动辅助
+					<Button name="AutoAssistBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="130" y="74"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="238" y="34"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="267" y="34"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="296" y="34"	w="28" h="28" />
+						<Scripts>
+							<OnClick>AutoAssistBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					##BUG反馈
+					<Button name="NearBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="101" y="3"/>
+								</Offset>
+							</Anchor>                 
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="909" y="87"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="909" y="116"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="909" y="145"	w="28" h="28" />
+						<Scripts>
+							<OnClick>NearBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 自动组队
+					<Button name="AutoTeamBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="125" y="101"/>
+								</Offset>
+							</Anchor>                 
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<ModelView name="$parentModelView" hidden="true">
+									<Size>
+										<AbsDimension x="100" y="100" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>                    
+									</Anchors>
+								</ModelView>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="996" y="0"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="996" y="29"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="996" y="58"	w="28" h="28" />
+						<Scripts>
+							<OnLoad>AutoTeamBtn_OnLoad();</OnLoad>
+							<OnEvent>AutoTeamBtn_OnEvent();</OnEvent>
+							<OnClick>AutoTeamBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					
+					# 战场
+					<Button name="BattleOpenBtn" hidden="false">
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="110" y="125" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="597" y="34"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="626" y="34"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="655" y="34"	w="28" h="28" />
+						<Scripts>
+							<OnLoad>BattleOpenBtn_OnLoad()</OnLoad>
+							<OnEvent>BattleOpenBtn_OnEvent()</OnEvent>
+							<OnClick>BattleOpenBtn_OnClick()</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter()</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave()</OnLeave>
+						</Scripts>
+					</Button>
+					# 金币交易
+					<Button name="TradeBtn">
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors> 
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="90" y="143" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="828" y="237"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="857" y="237"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="886" y="237"	w="28" h="28" />
+						<Scripts>
+							<OnClick>TradeBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 商城
+					<Button name="MarketBtn">
+						<Size>
+							<AbsDimension x="38" y="38" />
+						</Size>
+						<Anchors> 
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="60" y="155" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="896" y="417"	w="38" h="38" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="896" y="456"	w="38" h="38" />
+						<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="896" y="495"	w="38" h="38" />
+						<Scripts>
+							<OnClick>MarketBtn_nClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					##委托
+					<Button name="TrustBtn" hidden="true">
+						<Size>
+							<AbsDimension x="30" y="30" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="70" y="150"/>
+								</Offset>
+							</Anchor>  
+						</Anchors>
+						<!--<NormalTexture		file="uires\\ui\\MianBan  1.dds" x="924" y="962" w="30" h="30" />
+						<HighlightTexture	file="uires\\ui\\MianBan  1.dds" x="924" y="993" w="30" h="30" />
+						<PushedTexture		file="uires\\ui\\MianBan  1.dds" x="955" y="993" w="30" h="30" />-->
+						<Scripts>
+							<OnClick>TrustBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 生存大考验副本中打开统计面板，副本外打开排队界面
+					<Button name="ExistenceExp_OpenBtn" hidden="true">
+						<Size>
+							<AbsDimension x="30" y="30" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+									<Size>
+										<AbsDimension x="47" y="47"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<UVAnimation texrows="4" texcols="4" />
+								</Texture>
+							</Layer>
+						</Layers>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="147" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="938" y="174" w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="967" y="174" w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="996" y="174" w="28" h="28" />
+						<Scripts>
+							<OnShow>ExistenceExp_OpenBtn_OnShow()</OnShow>
+							<OnClick>ExistenceExp_OpenBtn_OnClick()</OnClick>
+							<OnEnter>ExistenceExp_OpenBtn_OnEnter()</OnEnter>
+							<OnLeave>ExistenceExp_OpenBtn_OnLeave()</OnLeave>
+							<OnHide>HideMinimapOpenPworldXinShouBtn(this)</OnHide>
+						</Scripts>
+					</Button>
+					<Button name="ExistenceExp_WaitBtn" hidden="true">
+						<Size>
+							<AbsDimension x="30" y="30" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="ExistenceExp_OpenBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+									<Size>
+										<AbsDimension x="47" y="47"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<UVAnimation texrows="4" texcols="4" />
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="938" y="174" w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="967" y="174" w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="996" y="174" w="28" h="28" />
+						<Scripts>
+							<OnShow>ExistenceExp_WaitBtn_OnShow()</OnShow>
+							<OnUpdate>ExistenceExp_WaitBtn_OnUpdate()</OnUpdate>
+							<OnClick>ExistenceExp_WaitBtn_OnClick()</OnClick>
+							<OnEnter>ExistenceExp_WaitBtn_OnEnter()</OnEnter>
+							<OnLeave>ExistenceExp_WaitBtn_OnLeave()</OnLeave>
+							<OnHide>HideMinimapOpenPworldXinShouBtn(this)</OnHide>
+						</Scripts>
+					</Button>
+					# 百层塔小地图按钮
+					<Button name="HundredLevelTownOpenBtn" hidden="true" >
+						<Size>
+							<AbsDimension x="30" y="30" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-27" y="125" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+									<Size>
+										<AbsDimension x="47" y="47"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<UVAnimation texrows="4" texcols="4" />
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="938" y="174" w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="967" y="174" w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="996" y="174" w="28" h="28" />
+						<Scripts>
+							<OnClick>HundredLevelTownOpenBtn_OnClick()</OnClick>
+							<OnEnter>HundredLevelTownOpenBtn_OnEnter()</OnEnter>
+							<OnLeave>HundredLevelTownOpenBtn_OnLeave()</OnLeave>
+							<OnLoad>HundredLevelTownOpenBtn_OnLoad()</OnLoad>
+							<OnEvent>HundredLevelTownOpenBtn_OnEvent()</OnEvent>
+							<OnUpdate>HundredLevelTownOpenBtn_OnUpdate()</OnUpdate>
+							<OnShow>HundredLevelTownOpenBtn_OnShow()</OnShow>
+							<OnHide>HideMinimapOpenPworldXinShouBtn(this)</OnHide>
+						</Scripts>
+					</Button>
+					# 百层塔、生存大考验小地图标记的新手指引
+					<Button name="MinimapOpenPworldXinShouBtn" hidden="true" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="ExistenceExp_OpenBtn" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="35" y="5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="parent">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Shang  2.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="bottomright" relativePoint="topright" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-5" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+								<Size>
+									<AbsDimension x="112" y="35" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="5" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+						</Frames>
+					</Button>
+					<Button name="MiniMapXinShouBtn" hidden="true" input_transparent="true" frameStrata="dialog" framelevel="1">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="10" y="-17" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="parent">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\You.tga">
+									<Size>
+										<AbsDimension x="15" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="right" relativePoint="right" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="15" y="10" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+								<Size>
+									<AbsDimension x="112" y="35" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="5" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+							<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+								<Size>
+									<AbsDimension x="13" y="13" />
+								</Size>
+								<Anchors>
+									<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="-4" y="4" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+										<OnClick>HideUIFrame(this:GetParent());</OnClick>
+								</Scripts>
+							</Button>
+						</Frames>
+						<Scripts>
+								<OnShow>MiniMapXinShouBtn_OnShow();</OnShow>
+								<OnUpdate>MiniMapXinShouBtn_OnUpdate();</OnUpdate>
+						</Scripts>
+					</Button>
+					## 坐标显示区域
+					<!--<Button name="CoordShowBtn" >
+						<Size>
+							<AbsDimension x="48" y="20" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="CoordInfoFont" fonttype="MinimumBlackFont" justifyH="center" text="192,168">
+									<Size>
+										<AbsDimension x="43" y="25"/>
+									</Size>
+									<Color r="255" g="255" b="255"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="CoordShowBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="2" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NearBtn" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="-19" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\MianBan  1.dds" x="276" y="889" w="48" h="20" />
+					</Button>-->
+					##邮件
+					<Button name="MailBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="118" y="23"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentUVAnimationTex" file="uires\\ui\\Za\\YouJianShanShuo.tga" hidden="true">
+									<Size>
+										<AbsDimension x="40" y="40"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<UVAnimation texrows="3" texcols="3" />
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="967" y="87"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="967" y="116"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="967" y="145"	w="28" h="28" />
+						<Scripts>
+							<OnLoad>MailBtn_OnLoad();</OnLoad>
+							<OnEvent>MailBtn_OnEvent();</OnEvent>
+							<OnClick>MailBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+							<OnUpdate>MailBtn_OnUpdate();</OnUpdate>
+						</Scripts>
+					</Button>
+					##伤害统计
+					<Button name="DpsBtn" hidden="true">
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="135" y="52"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="938" y="87"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="938" y="116"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="938" y="145"	w="28" h="28" />
+						<Scripts>
+							<OnClick>DpsBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#雷达区域放大
+					<Button name="ZoomInBtn" >
+						<Size>
+							<AbsDimension x="41" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="59" y="4"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="977" y="484"	w="41" h="13" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="977" y="498"	w="41" h="13" />
+						<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="977" y="512"	w="41" h="13" />
+						<!--<DisabledTexture	file="uires\\ZhuJieMian\\1.dds" x="938" y="58"	w="28" h="28" />-->
+						<Scripts>
+							<OnClick>ZoomInBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#雷达区域缩小
+					<Button name="ZoomOutBtn" >
+						<Size>
+							<AbsDimension x="41" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="18" y="4"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="935" y="492"	w="41" h="13" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="935" y="506"	w="41" h="13" />
+						<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="935" y="520"	w="41" h="13" />
+						<!--<DisabledTexture	file="uires\\ZhuJieMian\\1.dds" x="967" y="58"	w="28" h="28" />-->
+						<Scripts>
+							<OnClick>ZoomOutBtn_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					## 指北标志
+					<Button name="PointNorthButton" >
+						<Size>
+							<AbsDimension x="24" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="MMMapName" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="18" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="231" y="407" w="24" h="20" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="464" y="788" w="24" h="20" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="489" y="788" w="24" h="20" />
+						<Scripts>
+							<OnClick>PointNorthButton_OnClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#活动 -- 教程!
+					<Button name="ActivityShowBtn" >
+						<Size>
+							<AbsDimension x="28" y="28" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-42" y="48"/>
+								</Offset>
+							</Anchor>                    
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ShanShuoTiShi 97X96.tga" hidden="true">
+									<Size>
+										<AbsDimension x="97" y="96" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="996" y="87"	w="28" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="996" y="116"	w="28" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="996" y="145"	w="28" h="28" />
+						<Scripts>
+							<OnClick>ActivityShowBtn_nClick();</OnClick>
+							<OnEnter>MinimapFrameButton_OnEnter();</OnEnter>
+							<OnLeave>MinimapFrameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#附近NPC点
+					<Button name="MinimapNpcPosBtnTemplate" virtual="true" hidden="true" framelevel="330">
+						<Size>
+							<AbsDimension x="17" y="22" />
+						</Size>
+						<Layers>
+							<Layer level="PARENT">
+								<Texture name="$parentNpcTypeTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+									<Size>
+										<AbsDimension x="22" y="22" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentTaskNpcTex" file="uires\\ZhuJieMian\\1.dds" x="472" y="45" w="17" h="22" >		
+									<Size>
+										<AbsDimension x="17" y="22" />
+									</Size>
+									<Anchors>
+										<Anchor point="right" relativeTo="$parent" relativePoint="right">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+							<OnEnter>MinimapNpcPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapNpcPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="MinimapNpcPosBtn1" inherits="MinimapNpcPosBtnTemplate" id="1" />
+					<Button name="MinimapNpcPosBtn2" inherits="MinimapNpcPosBtnTemplate" id="2" />
+					<Button name="MinimapNpcPosBtn3" inherits="MinimapNpcPosBtnTemplate" id="3" />
+					<Button name="MinimapNpcPosBtn4" inherits="MinimapNpcPosBtnTemplate" id="4" />
+					<Button name="MinimapNpcPosBtn5" inherits="MinimapNpcPosBtnTemplate" id="5" />
+					<Button name="MinimapNpcPosBtn6" inherits="MinimapNpcPosBtnTemplate" id="6" />
+					<Button name="MinimapNpcPosBtn7" inherits="MinimapNpcPosBtnTemplate" id="7" />
+					<Button name="MinimapNpcPosBtn8" inherits="MinimapNpcPosBtnTemplate" id="8" />
+					<Button name="MinimapNpcPosBtn9" inherits="MinimapNpcPosBtnTemplate" id="9" />
+					<Button name="MinimapNpcPosBtn10" inherits="MinimapNpcPosBtnTemplate" id="10" />
+					<Button name="MinimapNpcPosBtn11" inherits="MinimapNpcPosBtnTemplate" id="11" />
+					<Button name="MinimapNpcPosBtn12" inherits="MinimapNpcPosBtnTemplate" id="12" />
+					<Button name="MinimapNpcPosBtn13" inherits="MinimapNpcPosBtnTemplate" id="13" />
+					<Button name="MinimapNpcPosBtn14" inherits="MinimapNpcPosBtnTemplate" id="14" />
+					<Button name="MinimapNpcPosBtn15" inherits="MinimapNpcPosBtnTemplate" id="15" />
+					<Button name="MinimapNpcPosBtn16" inherits="MinimapNpcPosBtnTemplate" id="16" />
+					<Button name="MinimapNpcPosBtn17" inherits="MinimapNpcPosBtnTemplate" id="17" />
+					<Button name="MinimapNpcPosBtn18" inherits="MinimapNpcPosBtnTemplate" id="18" />
+					<Button name="MinimapNpcPosBtn19" inherits="MinimapNpcPosBtnTemplate" id="19" />
+					<Button name="MinimapNpcPosBtn20" inherits="MinimapNpcPosBtnTemplate" id="20" />
+					<Button name="MinimapNpcPosBtn21" inherits="MinimapNpcPosBtnTemplate" id="21" />
+					<Button name="MinimapNpcPosBtn22" inherits="MinimapNpcPosBtnTemplate" id="22" />
+					<Button name="MinimapNpcPosBtn23" inherits="MinimapNpcPosBtnTemplate" id="23" />
+					<Button name="MinimapNpcPosBtn24" inherits="MinimapNpcPosBtnTemplate" id="24" />
+					<Button name="MinimapNpcPosBtn25" inherits="MinimapNpcPosBtnTemplate" id="25" />
+					<Button name="MinimapNpcPosBtn26" inherits="MinimapNpcPosBtnTemplate" id="26" />
+					<Button name="MinimapNpcPosBtn27" inherits="MinimapNpcPosBtnTemplate" id="27" />
+					<Button name="MinimapNpcPosBtn28" inherits="MinimapNpcPosBtnTemplate" id="28" />
+					<Button name="MinimapNpcPosBtn29" inherits="MinimapNpcPosBtnTemplate" id="29" />
+					<Button name="MinimapNpcPosBtn30" inherits="MinimapNpcPosBtnTemplate" id="30" />
+					<Button name="MinimapNpcPosBtn31" inherits="MinimapNpcPosBtnTemplate" id="31" />
+					<Button name="MinimapNpcPosBtn32" inherits="MinimapNpcPosBtnTemplate" id="32" />
+					<Button name="MinimapNpcPosBtn33" inherits="MinimapNpcPosBtnTemplate" id="33" />
+					<Button name="MinimapNpcPosBtn34" inherits="MinimapNpcPosBtnTemplate" id="34" />
+					<Button name="MinimapNpcPosBtn35" inherits="MinimapNpcPosBtnTemplate" id="35" />
+					<Button name="MinimapNpcPosBtn36" inherits="MinimapNpcPosBtnTemplate" id="36" />
+					<Button name="MinimapNpcPosBtn37" inherits="MinimapNpcPosBtnTemplate" id="37" />
+					<Button name="MinimapNpcPosBtn38" inherits="MinimapNpcPosBtnTemplate" id="38" />
+					<Button name="MinimapNpcPosBtn39" inherits="MinimapNpcPosBtnTemplate" id="39" />
+					<Button name="MinimapNpcPosBtn40" inherits="MinimapNpcPosBtnTemplate" id="40" />
+					<Button name="MinimapNpcPosBtn41" inherits="MinimapNpcPosBtnTemplate" id="41" />
+					<Button name="MinimapNpcPosBtn42" inherits="MinimapNpcPosBtnTemplate" id="42" />
+					# 矿石标记
+					<Button name="MinimapOreBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+						<Size>
+							<AbsDimension x="17" y="17" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="747" y="371" w="17" h="17">
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+							<OnEnter>MinimapNpcPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapNpcPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 富矿标记
+					<Button name="MinimapBigOreBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+						<Size>
+							<AbsDimension x="24" y="22" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="740" y="348" w="24" h="22">
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+							<OnEnter>MinimapNpcPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapNpcPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#区域地图怪物集中区域标识按钮
+					<Button name="MinimapMonsterBtnTemplate" virtual="true" frameStrata="PARENT">
+						<Size>
+							<AbsDimension x="17" y="16" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="189" y="494" w="17" h="16" >
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+							<OnEnter>MinimapNpcPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapNpcPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#特殊地图标识按钮
+					<Button name="MinimapImportantBtnTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="16" y="16" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+							<OnEnter>MinimapNpcPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapNpcPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#特殊地图尖峰时刻boss按钮
+					<Button name="MinimapPworldBossBtnTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="27" y="23" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+							<OnEnter>MinimapNpcPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapNpcPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 宿敌所在点  FULLSCREEN
+					<Button name="MinimapSuDiBtnTemplate" virtual="true" frameStrata="PARENT">
+						<Size>
+							<AbsDimension x="27" y="24" />
+						</Size>
+						<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="559" y="319" w="27" h="24" />
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+							<OnEnter>MinimapNpcPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapNpcPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#队员方向标志
+					<Button name="MinimapTeamMemDirBtnTemplate" virtual="true" hidden="true" framelevel="330">
+						<Size>
+							<AbsDimension x="11" y="16" />
+						</Size>
+						<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="713" y="89" w="11" h="16" />
+						<Scripts>
+							<OnEnter>MinimapTeamMemDirBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapTeamMemDirBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="MinimapTeamMemDir1" inherits="MinimapTeamMemDirBtnTemplate" id="1">
+					</Button>
+					<Button name="MinimapTeamMemDir2" inherits="MinimapTeamMemDirBtnTemplate" id="2">
+					</Button>
+					<Button name="MinimapTeamMemDir3" inherits="MinimapTeamMemDirBtnTemplate" id="3">
+					</Button>
+					<Button name="MinimapTeamMemDir4" inherits="MinimapTeamMemDirBtnTemplate" id="4">
+					</Button>
+					<Button name="MinimapTeamMemDir5" inherits="MinimapTeamMemDirBtnTemplate" id="5">
+					</Button>	
+					<Button name="MinimapTeamMemDir6" inherits="MinimapTeamMemDirBtnTemplate" id="5">
+					</Button>	
+					#队伍队员点
+					<Button name="MinimapTeamMemPosBtnTemplate" virtual="true" hidden="true" framelevel="330">
+						<Size>
+							<AbsDimension x="17" y="16" />
+						</Size>
+						<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="153" y="494" w="17" h="16" />
+						<Scripts>
+							<OnEnter>MinimapTeamMemPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapTeamMemPosBtn_OnLeave();</OnLeave>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+						</Scripts>
+					</Button>
+					<Button name="MinimapTeamMemPos1" inherits="MinimapTeamMemPosBtnTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MinimapTeamMemPos2" inherits="MinimapTeamMemPosBtnTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MinimapTeamMemPos3" inherits="MinimapTeamMemPosBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MinimapTeamMemPos4" inherits="MinimapTeamMemPosBtnTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MinimapTeamMemPos5" inherits="MinimapTeamMemPosBtnTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MinimapTeamMemPos6" inherits="MinimapTeamMemPosBtnTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 摊位标记
+					<Button name="Minimap_StallBiaoJiBtnTemplate" virtual="true" frameStrata="FULLSCREEN" >
+						<Size>
+							<AbsDimension x="14" y="13" />
+						</Size>
+						<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="66" y="620" w="14" h="13" />
+						<Scripts>
+							<OnEnter>MinimapTeamMemPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapTeamMemPosBtn_OnLeave();</OnLeave>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+						</Scripts>
+					</Button>
+					<Button name="Minimap_StallBiaoJiBtn1" inherits="Minimap_StallBiaoJiBtnTemplate" id="1"/>
+					<Button name="Minimap_StallBiaoJiBtn2" inherits="Minimap_StallBiaoJiBtnTemplate" id="2"/>
+					<Button name="Minimap_StallBiaoJiBtn3" inherits="Minimap_StallBiaoJiBtnTemplate" id="3"/>
+					<Button name="Minimap_StallBiaoJiBtn4" inherits="Minimap_StallBiaoJiBtnTemplate" id="4"/>
+					<Button name="Minimap_StallBiaoJiBtn5" inherits="Minimap_StallBiaoJiBtnTemplate" id="5"/>
+					<Button name="Minimap_StallBiaoJiBtn6" inherits="Minimap_StallBiaoJiBtnTemplate" id="6"/>
+					<Button name="Minimap_StallBiaoJiBtn7" inherits="Minimap_StallBiaoJiBtnTemplate" id="7"/>
+					<Button name="Minimap_StallBiaoJiBtn8" inherits="Minimap_StallBiaoJiBtnTemplate" id="8"/>
+					<Button name="Minimap_StallBiaoJiBtn9" inherits="Minimap_StallBiaoJiBtnTemplate" id="9"/>
+					<Button name="Minimap_StallBiaoJiBtn10" inherits="Minimap_StallBiaoJiBtnTemplate" id="10"/>
+					<Button name="Minimap_StallBiaoJiBtn11" inherits="Minimap_StallBiaoJiBtnTemplate" id="11"/>
+					<Button name="Minimap_StallBiaoJiBtn12" inherits="Minimap_StallBiaoJiBtnTemplate" id="12"/>
+					<Button name="Minimap_StallBiaoJiBtn13" inherits="Minimap_StallBiaoJiBtnTemplate" id="13"/>
+					<Button name="Minimap_StallBiaoJiBtn14" inherits="Minimap_StallBiaoJiBtnTemplate" id="14"/>
+					<Button name="Minimap_StallBiaoJiBtn15" inherits="Minimap_StallBiaoJiBtnTemplate" id="15"/>
+					<Button name="Minimap_StallBiaoJiBtn16" inherits="Minimap_StallBiaoJiBtnTemplate" id="16"/>
+					<Button name="Minimap_StallBiaoJiBtn17" inherits="Minimap_StallBiaoJiBtnTemplate" id="17"/>
+					<Button name="Minimap_StallBiaoJiBtn18" inherits="Minimap_StallBiaoJiBtnTemplate" id="18"/>
+					<Button name="Minimap_StallBiaoJiBtn19" inherits="Minimap_StallBiaoJiBtnTemplate" id="19"/>
+					<Button name="Minimap_StallBiaoJiBtn20" inherits="Minimap_StallBiaoJiBtnTemplate" id="20"/>
+
+					#玩家自己所在点
+					<Button name="MinimapMainShowButton" framelevel="330">
+						<Size>
+							<AbsDimension x="26" y="29" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="MinimapCluster" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="944" y="889" w="26" h="29" />
+						<Scripts>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+						</Scripts>
+					</Button>
+					#队长点
+					<Button name="MinimapCaptainPosBtn" hidden="true" framelevel="330">
+						<Size>
+							<AbsDimension x="14" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="241" y="388" w="14" h="18" />
+						<Scripts>
+							<OnEnter>MinimapCaptainPosBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapCaptainPosBtn_OnLeave();</OnLeave>
+							<onmousedown>MinimapOnMouseDown();</onmousedown>
+						</Scripts>
+					</Button>
+					#队长方向
+					<Button name="MinimapCaptainDirBtn" hidden="true" framelevel="330">
+						<Size>
+							<AbsDimension x="14" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="MinimapCluster" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="68" y="68" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="241" y="388" w="14" h="18" />
+						<Scripts>
+							<OnEnter>MinimapCaptainDirBtn_OnEnter();</OnEnter>
+							<OnLeave>MinimapCaptainDirBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					#鼠标点击点
+					<Button name="MinimapMouseClickPosBtn" hidden="true">
+						<Size>
+							<AbsDimension x="10" y="10" />
+						</Size>
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="RefurbishBtn" relativePoint="BottomLeft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="MouseClickPosTexture" file="uires\\ZhuJieMian\\XiaoDiTu\\XiaoDiTu\\DuiYuanTeXiaoZhenDongHua\\4.tga">				
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnUpdate>MinimapMouseClickPosBtn_OnUpdate();</OnUpdate>
+						</Scripts>
+					</Button>
+					# 显示雷达坐标
+					<Button name="CoordShowBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="54" y="24" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="CoordInfoFont" fonttype="MinimumBlackFont" justifyH="center" text="192,168">
+									<Size>
+										<AbsDimension x="50" y="18"/>
+									</Size>
+									<Color r="255" g="255" b="255"/>
+									<Anchors>
+										<Anchor point="center" relativeTo="CoordShowBtn" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Anchors>
+							<Anchor point="top" relativeTo="MMMapName" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="13"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="MiniMapDrawLine">
+						<Layers>
+							<Layer>
+								<DrawLineFrame name="$parentFriendLine" file="uires\\ZhuJieMian\\1.dds" x="207" y="494" w="17" h="16">
+									<Size>
+										<AbsDimension x="144" y="144" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="MinimapEnvelopTextureMap" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="255"/>
+								</DrawLineFrame>
+								<DrawLineFrame name="$parentEnemyLine" file="uires\\ZhuJieMian\\1.dds" x="189" y="494" w="17" h="16">
+									<Size>
+										<AbsDimension x="144" y="144" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="MinimapEnvelopTextureMap" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="255"/>
+								</DrawLineFrame>
+							</Layer>
+						</Layers>
+					</Button>
+					## 公会标记
+					<Button name="MiniMapShowAttackPosBtn" hidden="true">
+						<Size>
+							<AbsDimension x="27" y="25" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="MinimapCluster">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="338" y="855" w="27" h="25" >
+									<Size>
+										<AbsDimension x="27" y="25" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentEffectTex" file="uires\\ui\\TeXiao\\JinGongBiaoShi 01.tga" >
+									<Size>
+										<AbsDimension x="64" y="64" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="MiniMapShowVenuePosBtn" hidden="true">
+						<Size>
+							<AbsDimension x="27" y="27" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="MinimapCluster">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="649" y="436" w="27" h="27">
+									<Size>
+										<AbsDimension x="27" y="27" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentEffectTex" file="uires\\ui\\TeXiao\\JinGongBiaoShi 01.tga" >
+									<Size>
+										<AbsDimension x="64" y="64" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnLoad>MinimapFrame_OnLoad();</OnLoad>
+					<OnEvent>MinimapFrame_OnEvent();</OnEvent>
+					<onshow>MinimapShow();</onshow>
+					<OnUpdate>MinimapOnUpdate();</OnUpdate>
+					<onmousedown>MinimapOnMouseDown();</onmousedown>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

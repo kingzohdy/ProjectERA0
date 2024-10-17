@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\InputFrame.lua"/>
+	##物品数量面板
+	<Frame name="InputFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parent_BackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parent_HeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="请输入物品数量">
+					<Size>
+						<AbsDimension x="150" y="20"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			##黑色底版
+			<Button name="$parentBackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			#数量输入框背景框
+			<Button name="$parent_EditBackBtn">
+				<Size>
+					<AbsDimension x="98" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBackButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>InputFrameEditBackButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##输入框
+			<EditBox name="$parent_Edit" letters="11" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="93" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_EditBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parent_EditFontNormal" fonttype="SongTiFont14" justifyH="center" text="100">
+					<Color r="255" g="229" b="189" />
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>InputFrame_ConfirmBtn_OnClick();</OnEnterPressed>
+					<OnUpdate>InputFrame_Edit_OnUpdate();</OnUpdate>
+				</Scripts>
+			</EditBox>
+			##确定
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>InputFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="$parent_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>InputFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>InputFrame_OnShow();</OnShow>
+			<OnHide>InputFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

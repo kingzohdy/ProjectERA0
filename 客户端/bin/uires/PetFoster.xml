@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/PetFoster.lua" />
+	<Button name="PetFosterFrameValueBtnTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="145" y="17"/>
+		</Size>
+		<Layers>
+			<Layer level="background"> 
+				## 底槽
+            	<Texture name="$parentBackTexture" inherits="FairyProgressBackTemplate" > 
+					<Size>
+						<AbsDimension x="145" y="17"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## 进度条
+				<Texture name="$parentTexture" inherits="FairyProgressTemplate" >
+					<Size>
+						<AbsDimension x="145" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+				<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="normal" justifyH="left" text="当前欢乐值：50">
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>PetFosterFrameValueBtnTemplate_OnEnter();</OnEnter>
+			<OnLeave>GameTooltip:Hide();</OnLeave>
+		</Scripts>
+	</Button>
+	# 宠物寄养界面
+	<Frame name="PetFosterFrame" frameStrata="dialog" parent="UIClient" hidden="true" movable="true" framelevel="200">
+		<Size>
+			<AbsDimension x="650" y="460" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="宠物寄养">
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="633" y="414" />
+					</Size>
+					<Anchors>	
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				# 宠物寄养背景图
+				<Texture name="$parentMaskTexture" file="uires\\TuPianLei\\MianBanDiTu\\ChongWuJiYang.tga">
+					<Size>
+						<AbsDimension x="629" y="410"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="11" y="39"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+				<Texture name="$parentBackTex2" inherits="RoleFrameBack4Template">
+					<Size>
+						<AbsDimension x="629" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="399" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!--关闭按钮 -->
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			
+			<Button name="$parentProgresBtn1" inherits = "PetFosterFrameValueBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="51" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentProgresBtn2" inherits = "PetFosterFrameValueBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="71" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentProgresBtn3" inherits = "PetFosterFrameValueBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<RichText name="$parentJiYangTimeFont" fonttype="TeenyBlackFont" justifyH="left" text="寄养剩余时间：" >
+				<Color r="255" g="255" b="190"/>  
+				 <Size>
+					<AbsDimension x="200" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="112" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentWorkTimeFont" fonttype="TeenyBlackFont" justifyH="left" text="打工剩余时间：" >
+				<Color r="255" g="255" b="190"/>  
+				 <Size>
+					<AbsDimension x="200" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="130" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 宠物寄养记录
+			<Button name="$parentRecordBtn" >
+				<Size>
+					<AbsDimension x="27" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="600" y="51" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\5.dds" x="995" y="31" w="27" h="31">
+							<Size>
+								<AbsDimension x="27" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>			
+					<OnClick>PetFosterFrameRecordBtn_OnClick();</OnClick>
+					<OnEnter>PetFosterFrameRecordBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 寄养历史信息
+			<Button name="$parentHistoryBtn" hidden="true">
+				<Size>
+					<AbsDimension x="201" y="460" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="寄养记录" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="100" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					##关闭窗口
+					<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />	
+					<Button name="$parentBackBtn">
+						<Size>
+							<AbsDimension x="188" y="424" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="14" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# 文本显示Rich
+					<RichText name="$parentRich" lineInterval ="3" multiLine="true" fonttype="TeenyBlackFont" input_transparent="true">
+						<Size>
+							<AbsDimension x="164" y="418" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentBackBtn" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="4" y="6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+>							<OnClick>StallSaleFrame_SaleHistoryBtnRich_OnClick();</OnClick>
+>							<OnLeave>StallSaleFrame_SaleHistoryBtnRich_OnLeave();</OnLeave>
+>						</Scripts>
+					</RichText>
+					# 滚动条背景
+					<Button name="$parentSliderBack" >
+						<Size>
+							<AbsDimension x="21" y="416" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parentBackBtn" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-3" y="3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">								
+								<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+									<Size>
+										<AbsDimension x="21" y="416" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentScrollCenter" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>						
+								<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+									<Anchors>
+										<Anchor point="BOTTOMRIGHT" relativeTo="$parentScrollCenter" relativePoint="BOTTOMRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					# 向上滚动按钮
+					<Button name="$parentScrollUpBtn" inherits="ScrollUpBtnTemplate" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSliderBack" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="1" y="1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>PetFosterFrameHistoryScrollUpBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 向下滚动按钮
+					<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate" >
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="$parentSliderBack" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="1" y="-1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>PetFosterFrameHistoryScrollDownBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 滚动条
+					<Slider name="PetFosterFrameHistoryBtnScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+						<Size>
+							<AbsDimension x="26" y="374" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativePoint="bottom" relativeTo="$parentScrollUpBtn">
+								<Offset>
+									<AbsDimension x="-1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ThumbTexture name="$parentThumbTexture"  file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+							<Size>
+								<AbsDimension x="17" y="42" />
+							</Size>
+						</ThumbTexture>
+						<Scripts>
+							<OnValueChanged>PetFosterFrameHistoryScrollBar_OnValueChanged();</OnValueChanged>
+							<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+						</Scripts>
+					</Slider>
+				</Frames>
+				<Scripts>
+					<OnShow>PetFosterFrameHistoryBtn_OnShow();</OnShow>
+					<OnClick>PetFosterFrameHistoryBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##  宠物模型
+			<Button name="$parentModelBtn" input_transparent="true">
+				<Size>
+					<AbsDimension x="125" y="145" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="155" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentView" background="toolres\fxeditor\arrx.omod">
+							<Size>
+								<AbsDimension x="220" y="200" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="玩家宠物" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="150" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="bottom">
+									<Offset>
+										<AbsDimension x="0" y="10" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			## 获得宝箱特效
+			<Button name="$parentAwardBtn" input_transparent="true">
+				<Size>
+					<AbsDimension x="125" y="145" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="510" y="270" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentView">
+							<Size>
+								<AbsDimension x="220" y="200" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+			## 欢乐值 特效图片
+			<Button name="$parentHappyBtn">
+				<Size>
+					<AbsDimension x="110" y="105" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentModelBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex1" file="uires\\ZhuJieMian\\5.dds" x="914" y="72" w="110" h="105">
+							<Size>
+								<AbsDimension x="110" y="105" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>	
+						<Texture name="$parentTex2" file="uires\\ZhuJieMian\\5.dds" x="936" y="512" w="81" h="79">
+							<Size>
+								<AbsDimension x="81" y="79" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="-1" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>	
+			## 冒泡回复提示
+			<Button name="$parentTalkBtn" hidden="true" >
+				<Size>
+					<AbsDimension x="110" y="105" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentModelBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex1" file="uires\\ZhuJieMian\\5.dds" x="914" y="72" w="110" h="105">
+							<Size>
+								<AbsDimension x="110" y="105" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>	
+					</Layer>
+				</Layers>
+				<Frames>
+					<RichText name="$parentRich" multiLine="true" fontStyle="normal" fonttype="FZYBlackFont12">
+						<Size>
+							<AbsDimension x="100" y="80"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="10" y="25"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+			## 寄养
+			<Button name="$parentConfirmBtn" inherits="GongYongAnNiuB1Template" text="取消寄养">
+				<Size>
+					<AbsDimension x="90" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="58" y="408"/>
+						</Offset>
+					</Anchor>
+				</Anchors> 
+				<Scripts>
+					<OnClick>PetFosterFrameConfirmBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			## 喂养
+			<Button name="$parentFeed">
+				<Size>
+					<AbsDimension x="90" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="274" y="408"/>
+						</Offset>
+					</Anchor>
+				</Anchors> 
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\5.dds" x="932" y="198" w="90" h="29">
+							<Size>
+								<AbsDimension x="90" y="29" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentBtn1">
+						<Size>
+							<AbsDimension x="40" y="25" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors> 
+						<Layers>
+							<Layer level="overlay">				
+								<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="喂食">
+									<Size>
+										<AbsDimension x="40" y="15"/>
+									</Size>
+									<Color r="255" g="255" b="189"/>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\5.dds" x="973" y="247" w="49" h="22" />
+						<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>PetFosterFrameFeedBtn1_OnClick();</OnClick>
+							<OnEnter>PetFosterFrameFeedBtn_OnEnter();</OnEnter>
+							<OnLeave>GameTooltip:Hide();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="$parentBtn2">
+						<Size>
+							<AbsDimension x="21" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="56" y="4"/>
+								</Offset>
+							</Anchor>
+						</Anchors> 
+						<NormalTexture		file="uires\\ZhuJieMian\\5.dds" x="960" y="269" w="32" h="31" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\5.dds" x="992" y="269" w="32" h="31" />
+						<PushedTexture		file="uires\\ZhuJieMian\\5.dds" x="960" y="269" w="32" h="31" />
+						<Scripts>
+							<OnClick>PetFosterFrameFeedBtn2_OnClick();</OnClick>
+							<OnEnter>PetFosterFrameFeedBtnSet_OnEnter();</OnEnter>
+							<OnLeave>GameTooltip:Hide();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+			## 玩耍
+			<Button name="$parentPlay">
+				<Size>
+					<AbsDimension x="90" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="380" y="408"/>
+						</Offset>
+					</Anchor>
+				</Anchors> 
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\5.dds" x="932" y="198" w="90" h="29">
+							<Size>
+								<AbsDimension x="90" y="29" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentBtn1">
+						<Size>
+							<AbsDimension x="40" y="25" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="10" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors> 
+						<Layers>
+							<Layer level="overlay">				
+								<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="玩耍">
+									<Size>
+										<AbsDimension x="40" y="15"/>
+									</Size>
+									<Color r="255" g="255" b="189"/>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\5.dds" x="973" y="247" w="49" h="22" />
+						<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>PetFosterFramePlayBtn1_OnClick();</OnClick>
+							<OnEnter>PetFosterFramePlayBtn_OnEnter();</OnEnter>
+							<OnLeave>GameTooltip:Hide();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="$parentBtn2">
+						<Size>
+							<AbsDimension x="21" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="56" y="4"/>
+								</Offset>
+							</Anchor>
+						</Anchors> 
+						<NormalTexture		file="uires\\ZhuJieMian\\5.dds" x="960" y="269" w="32" h="31" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\5.dds" x="992" y="269" w="32" h="31" />
+						<PushedTexture		file="uires\\ZhuJieMian\\5.dds" x="960" y="269" w="32" h="31" />
+						<Scripts>
+							<OnClick>PetFosterFramePlayBtn2_OnClick();</OnClick>
+							<OnEnter>PetFosterFramePlayBtnSet_OnEnter();</OnEnter>
+							<OnLeave>GameTooltip:Hide();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+			## 打工
+			<Button name="$parentWorkBtn" inherits="GongYongAnNiuB1Template" text="打 工">
+				<Size>
+					<AbsDimension x="90" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="500" y="408"/>
+						</Offset>
+					</Anchor>
+				</Anchors> 
+				<Scripts>
+					<OnClick>PetFosterFrameWorkBtn_OnClick();</OnClick>
+					<OnEnter>PetFosterFrameWorkBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>PetFosterFrame_OnShow();</OnShow>
+			<OnLoad>PetFosterFrame_OnLoad();</OnLoad>
+			<OnUpdate>PetFosterFrame_OnUpdate();</OnUpdate>
+			<OnEvent>PetFosterFrame_OnEvent();</OnEvent>
+			<OnHide>PetFosterFrame_OnHide();</OnHide>
+		</Scripts>		
+	</Frame>
+	# 喂养设置面板
+	<Frame name="PetFosterFeedFrame" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="224" y="165" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="寄养设置">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="设置“喂养”（默认优先消耗）">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="280" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="1" y="42" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="214" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="126" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			<Button name="$parentConfirmBtn" inherits="GongYongAnNiuB1Template" text="设 置">
+				<Size>
+					<AbsDimension x="80" y="29"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="20" y="132"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterFeedFrameConfirmBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button> 
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuB1Template" text="关 闭">
+				<Size>
+					<AbsDimension x="80" y="29"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="123" y="132"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterFeedFrameCancleBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentItemBtn1" inherits="CheckRewarBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="28" y="62"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterFeedFrameItemBtn_OnClick()</OnClick>
+					<OnBeginDrag>PetFosterFeedFrameItemBtnDrag();</OnBeginDrag>
+					<OnReceiveDrag>PetFosterFeedFrameItemBtnReceiveDrag();</OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentItemBtn2" inherits="CheckRewarBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="88" y="62"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterFeedFrameItemBtn_OnClick()</OnClick>
+					<OnBeginDrag>PetFosterFeedFrameItemBtnDrag();</OnBeginDrag>
+					<OnReceiveDrag>PetFosterFeedFrameItemBtnReceiveDrag();</OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentItemBtn3" inherits="CheckRewarBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="146" y="62"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterFeedFrameItemBtn_OnClick()</OnClick>
+					<OnBeginDrag>PetFosterFeedFrameItemBtnDrag();</OnBeginDrag>
+					<OnReceiveDrag>PetFosterFeedFrameItemBtnReceiveDrag();</OnReceiveDrag>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>PetFosterFeedFrame_OnShow()</OnShow>
+			<OnLoad>PetFosterFeedFrame_OnLoad();</OnLoad>
+			<OnEvent>PetFosterFeedFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+	# 玩耍设置面板
+	<Frame name="PetFosterPlayFrame" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="284" y="165" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="寄养设置">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="设置“玩耍”消耗方式（默认优先消耗）">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="280" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="1" y="42" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" justifyH="left" text="一起玩游戏（消耗一个宠物玩具）">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="280" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="60" y="71" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont2" fonttype="LittleFZYBlackFont" justifyH="left" text="给点零花钱（消耗1000银币）">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="280" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="60" y="91" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="274" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="126" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			<Button name="$parentConfirmBtn" inherits="GongYongAnNiuB1Template" text="设 置">
+				<Size>
+					<AbsDimension x="80" y="29"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="20" y="132"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterPlayFrameConfirmBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button> 
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuB1Template" text="取 消">
+				<Size>
+					<AbsDimension x="80" y="29"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-20" y="132"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterPlayFrameCancleBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="$parentCheckBtn1" inherits="CheckBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="39" y="68" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterPlayFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheckBtn2" inherits="CheckBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="39" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterPlayFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnShow>PetFosterPlayFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+	##  宠物寄养选择界面
+	<Button name="PetFosterChooseFrameTemplateBtn" virtual="true">
+		<Size>
+			<AbsDimension x="157" y="22" />
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				<FontString name="$parentFont" fonttype="FZYBlackFont12" text="机甲兽机甲兽">
+					<Color r="254" g="255" b="254"/>
+					<Size>
+						<AbsDimension x="200" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="40" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="$parent_CheckBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterChooseFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+	</Button>
+	
+	<Frame name="PetFosterChooseFrame" frameStrata="DIALOG" parent="UIClient"  movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="558" y="301" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				##标题
+				<FontString name="$parentNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="border" text="寄养选择" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBackTex1" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="528" y="217"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="15" y="39"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture> 
+				
+				<Texture name="$parentBackTex2" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="197" y="176"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="35" y="73"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture name="$parentBackTex3" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="285" y="58"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="237" y="73"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture> 
+				<Texture name="$parentBackTex4" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="285" y="113"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="237" y="136"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture> 
+				<FontString name="$parentChooseFont" fonttype="FZYBlackFont12" justifyH="left" text="请选择寄养的宠物">
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="125" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="44" y="79" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 选择寄养时间
+				<FontString name="$parentTimeFont" fonttype="FZYBlackFont12" justifyH="left" text="请选择寄养时间">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="125" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="248" y="143" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExtraFont" fonttype="FZYBlackFont16" justifyH="center" text="宠物已经达到最高资质，无需寄养！" hidden="true">
+					<Color r="0" g="255" b="0"/>
+						<Size>
+							<AbsDimension x="300" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="237" y="170"/>
+								</Offset>
+							</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			
+			## 栏位类型
+			<RichText name="$parentTypeRich" multiLine="false" fontStyle="normal" fonttype="FZYBlackFont12" text="栏位类型：">
+				<Size>
+					<AbsDimension x="135" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 费用
+			<RichText name="$parentCostRich" multiLine="false" fontStyle="normal" fonttype="FZYBlackFont12" text="费用：">
+				<Size>
+					<AbsDimension x="190" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="190" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 提示
+			<RichText name="$parentTipRich" multiLine="false" fontStyle="normal" fonttype="FZYBlackFont12" text="提示：">
+				<Size>
+					<AbsDimension x="160" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="357" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 宠物信息左边部分
+			<RichText name="$parentPetRich1" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="FZYBlackFont12">
+				<Size>
+					<AbsDimension x="145" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="248" y="80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 宠物信息右边边部分
+			<RichText name="$parentPetRich2" lineInterval ="2" multiLine="true" fontStyle="normal"  fonttype="FZYBlackFont12">
+				<Size>
+					<AbsDimension x="135" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="416" y="80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parent_Btn1" inherits="PetFosterChooseFrameTemplateBtn" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="50" y="100" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Btn2" inherits="PetFosterChooseFrameTemplateBtn" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_Btn1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Btn3" inherits="PetFosterChooseFrameTemplateBtn" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_Btn2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Btn4" inherits="PetFosterChooseFrameTemplateBtn" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_Btn3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Btn5" inherits="PetFosterChooseFrameTemplateBtn" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_Btn4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_Btn6" inherits="PetFosterChooseFrameTemplateBtn" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_Btn5" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_TimeBtn1" inherits="PetFosterChooseFrameTemplateBtn" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="248" y="158" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_TimeBtn2" inherits="PetFosterChooseFrameTemplateBtn" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_TimeBtn1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_TimeBtn3" inherits="PetFosterChooseFrameTemplateBtn" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_TimeBtn2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_TimeBtn4" inherits="PetFosterChooseFrameTemplateBtn" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_TimeBtn3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentHighLvBtn" >
+				<Size>
+					<AbsDimension x="157" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="45" y="222" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" text="高级寄养（每周一小时）">
+							<Color r="254" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="200" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="40" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<CheckButton name="$parent_CheckBtn" inherits="CheckBtnTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>PetFosterChooseFrameHighLv_OnClick();</OnClick>
+							<OnUpdate>PetFosterChooseFrameHighLv_OnUpdate();</OnUpdate>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+			</Button>
+			<Button name="$parentHighLvDesc" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="285" y="113" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="237" y="136"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate"/>
+						<FontString name="$parentFont" fonttype="FZYBlackFont16" justifyH="center" text="60分钟">
+							<Color r="0" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="200" y="25"/>
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="40"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<RichText name="$parentRich" lineInterval ="2" multiLine="true" fontStyle="normal"  fonttype="FZYBlackFont12">
+						<Size>
+							<AbsDimension x="260" y="110"/>
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="10"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+			##确认选择
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="确认选择">
+				<Size>
+					<AbsDimension x="100" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="98" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetFosterChooseFrameOKBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			## 取消
+			<Button name="$parentCancleBtn" inherits="GongYongAnNiuB1Template" text="取 消">
+				<Size>
+					<AbsDimension x="100" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="323" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>
+			</Button>
+			
+		</Frames>
+		<Scripts>
+			<OnLoad>PetFosterChooseFrame_OnLoad();</OnLoad>
+			<OnEvent>PetFosterChooseFrame_OnEvent();</OnEvent>
+			<OnShow>PetFosterChooseFrame_OnShow();</OnShow>
+			<OnUpdate>PetFosterChooseFrame_OnUpdate();</OnUpdate>
+			<OnHide>PetFosterChooseFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

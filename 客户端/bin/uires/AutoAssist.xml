@@ -1,0 +1,2375 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\AutoAssist.lua"/>
+	<Frame name="AutoAssistFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true"  framelevel="198">
+		<Size>
+			<AbsDimension x="283" y="473"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="自动辅助">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<Texture name="$parentAddSkill" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="268" y="124" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentAddSkillFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="自动释放技能：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentAddSkill" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="14" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="278" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="432" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentAutoRecovery" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="268" y="116" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="163" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentAutoRecoveryFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="自动使用食物：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentAutoRecovery" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="14" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<Texture name="$parentAutoColect" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="268" y="72" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="282" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentAutoColectFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="自动拾取：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentAutoColect" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="14" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<Texture name="$parentOtherOpt" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="268" y="72" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="357" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentOtherOptFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="其他设置：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentOtherOpt" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="14" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+			</Layer>
+		</Layers>
+		<Frames>
+			<!--关闭按钮 -->
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			
+			<Button name="AutoAssistFrame_SkillBtnTemplate" frameStrata="Dialog" virtual="true" >
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Layers>
+					<Layer level="background"> 
+		            	<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture"file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" hidden="true">
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>		
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="472" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="607" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" />
+				<Scripts>	
+						<OnBeginDrag>AutoAssistSkillDrag();</OnBeginDrag>
+						<OnReceiveDrag>AutoAssistSkillReceiveDrag();</OnReceiveDrag>
+						<OnEnter>AutoAssistFrameSkill_OnEnter();</OnEnter>
+						<OnLeave>AutoAssistFrame_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="AutoAssistFrame_MedicineBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="30" y="30" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44"> 
+							<Size>
+								<AbsDimension x="28" y="28" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="26" y="26"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture"file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" hidden="true">
+							<Size>
+								<AbsDimension x="28" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>		
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnReceiveDrag>AutoAssist_RecoveryReceiveDrag();</OnReceiveDrag>
+					<OnEnter>AutoAssistFrameItem_OnEnter();</OnEnter>
+					<OnLeave>AutoAssistFrame_OnLeave();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="472" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="607" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" />
+			</Button>
+			
+			--  AutoAssistFrame_Skill
+			<Button name="AutoAssistFrame_SkillBtn11" inherits = "AutoAssistFrame_SkillBtnTemplate" id="11" hidden="true">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="21" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn1" inherits = "AutoAssistFrame_SkillBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn2" inherits = "AutoAssistFrame_SkillBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn3" inherits = "AutoAssistFrame_SkillBtnTemplate" id="3">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="120" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn4" inherits = "AutoAssistFrame_SkillBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="168" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn5" inherits = "AutoAssistFrame_SkillBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="216" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn6" inherits = "AutoAssistFrame_SkillBtnTemplate" id="6">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn7" inherits = "AutoAssistFrame_SkillBtnTemplate" id="7">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn8" inherits = "AutoAssistFrame_SkillBtnTemplate" id="8">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="120" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn9" inherits = "AutoAssistFrame_SkillBtnTemplate" id="9">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="168" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="AutoAssistFrame_SkillBtn10" inherits = "AutoAssistFrame_SkillBtnTemplate" id="10">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="216" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="AutoAssistFrame_PetRecovery" inherits="GongYongAnNiuA1ButtonTemplate" text="自动恢复" >
+				<Size>
+					<AbsDimension x="60" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="200" y="169" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>AutoAssistFrame_PetRecovery_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="AutoAssistFrame_LimitHPRecoveryBtn" hidden="false" >
+				<Size>
+					<AbsDimension x="160" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="22" y="189"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="normal" justifyH="left" text="生命值低于0%时使用食物">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="AutoAssistFrame_LimitHPRecoveryDownHeadBtn" >
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="209" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer >
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="center" text="0%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="AutoAssistFrame_LimitHPRecoveryUpHeadBtn" >
+				<Size>
+					<AbsDimension x="45" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="184" y="209" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="100%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="45" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="AutoAssistFrame_LimitHPRecoveryBarBtn" >
+				<Size>
+					<AbsDimension x="137" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="214" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentLimitHPRecoveryBarBkgTemplate" virtual="true" file="uires\\ZhuJieMian\\3.dds" x="288" y="241" w="137" h="8">
+							<Size>
+								<AbsDimension x="137" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Slider name="AutoAssistFrame_LimitHPRecoveryBar" orientation="HORIZONTAL" minValue="0" maxValue="100" valueStep="5" defaultValue="0" >
+				<Size>
+					<AbsDimension x="137" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="205" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" hidden="true" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>AutoAssistFrame_LimitHPRecoveryBarValueChange();</OnValueChanged>
+				</Scripts>
+			</Slider>
+			
+			<Button name="AutoAssistFrame_LimitMPRecoveryBtn" hidden="false" >
+				<Size>
+					<AbsDimension x="160" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="22" y="235"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="normal" justifyH="left" text="魔法值低于0%时使用食物">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="AutoAssistFrame_LimitMPRecoveryDownHeadBtn" >
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer >
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="center" text="0%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="AutoAssistFrame_LimitMPRecoveryUpHeadBtn" >
+				<Size>
+					<AbsDimension x="45" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="184" y="255" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="100%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="45" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="AutoAssistFrame_LimitMPRecoveryBarBtn" >
+				<Size>
+					<AbsDimension x="137" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="260" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentLimitMPRecoveryBarBkgTemplate" virtual="true" file="uires\\ZhuJieMian\\3.dds" x="288" y="241" w="137" h="8">
+							<Size>
+								<AbsDimension x="137" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Slider name="AutoAssistFrame_LimitMPRecoveryBar" orientation="HORIZONTAL" minValue="0" maxValue="100" valueStep="5" defaultValue="0" >
+				<Size>
+					<AbsDimension x="137" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="250" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" hidden="true" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>AutoAssistFrame_LimitMPRecoveryBarValueChange();</OnValueChanged>
+				</Scripts>
+			</Slider>
+			
+			##HP药物
+			<Button name="AutoAssistFrame_HPMedicineBtn" inherits = "AutoAssistFrame_MedicineBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="222" y="195" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			##MP药物
+			<Button name="AutoAssistFrame_MPMedicineBtn" inherits = "AutoAssistFrame_MedicineBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="222" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 白装勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="306" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 白装物品
+			<Button name="AutoAssistFrame_HeadBtn1" id="1">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="45" y="310" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="白装" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 绿装勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="77" y="306" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			# 绿装物品
+			<Button name="AutoAssistFrame_HeadBtn2" id="2">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="99" y="310" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="绿装" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 蓝装勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn3" inherits="CheckBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="134" y="306" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 蓝装物品
+			<Button name="AutoAssistFrame_HeadBtn3" id="3">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="310" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="蓝装" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 紫装勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn4" inherits="CheckBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="191" y="306" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 紫装物品
+			<Button name="AutoAssistFrame_HeadBtn4" id="4">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="213" y="310" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="紫装" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 食物勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn5" inherits="CheckBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="328" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 食物物品
+			<Button name="AutoAssistFrame_HeadBtn5" id="5">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="45" y="332" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="食物" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 任务勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn6" inherits="CheckBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="77" y="328" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 任务物品
+			<Button name="AutoAssistFrame_HeadBtn6" id="6">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="99" y="332" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="任务" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 其他勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn7" inherits="CheckBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="134" y="328" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 其他物品
+			<Button name="AutoAssistFrame_HeadBtn7" id="7">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="332" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="其他" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 火焰徽章
+			<Button name="AutoAssistFrame_VIPBtn">
+				<Size>
+					<AbsDimension x="80" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="330" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTipTexture" file="uires\\ui\\Za\\TeQuanHuiZhang\\2.tga" >
+							<Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="火焰徽章" >
+							<Color r="255" g="180" b="0"/>  
+							 <Size>
+								<AbsDimension x="100" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="22" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<Scripts>
+					<OnClick>AutoAssistFrame_VIPBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 接受组队勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn8" inherits="CheckBtnTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="381" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 接受组队邀请
+			<Button name="AutoAssistFrame_HeadBtn8" id="8">
+				<Size>
+					<AbsDimension x="78" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="45" y="385" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="接受组队邀请" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="78" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 自动召唤宠物勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn9" inherits="CheckBtnTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="148" y="381" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 自动召唤宠物
+			<Button name="AutoAssistFrame_HeadBtn9" id="9">
+				<Size>
+					<AbsDimension x="78" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="171" y="385" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="自动召唤宠物" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="78" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 禁止攻击可捕捉宠物勾选框
+			<CheckButton name="AutoAssistFrame_ChkBtn10" inherits="CheckBtnTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="403" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AutoAssistFrameCheckButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 禁止攻击可捕捉宠物
+			<Button name="AutoAssistFrame_HeadBtn10" id="10">
+				<Size>
+					<AbsDimension x="118" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="45" y="407" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="不攻击可捕捉的宠物" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="118" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoAssistFrameHeadButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="AssistBeginBtn" inherits="GongYongAnNiuB1Template" text="开始辅助">
+				<Size>
+					<AbsDimension x="100" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				 	<OnClick>AutoAssistFrame_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>AutoAssistFrame_OnShow();</OnShow>
+			<OnLoad>AutoAssistFrame_OnLoad();</OnLoad>
+		 	<OnEvent>AutoAssistFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+	<Frame name="AutoAssistHintFrame" parent="UIClient" input_transparent="true" frameStrata="LOW" hidden="true">
+		<Size>
+			<AbsDimension x="129" y="31"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="-100" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" file="uires\\ZhuJieMian\\3.dds" x="710" y="266" w="146" h="35" >
+					<Size>
+						 <RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>this:setUpdateTime(1);</OnLoad>
+			<OnUpdate>AutoAssistHintFrame_OnUpdate();</OnUpdate>
+		</Scripts>	
+	</Frame>
+	##vip食物选择
+	<Button name="VipAutoAssistFoodSelectBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="88" y="21"/>
+		</Size>	
+		<!--
+		<Layers>
+			<Layer level="overlay">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="人生啊！！">
+					<Color r="255" g="255" b="190"/>  
+					<Size>
+						<AbsDimension x="110" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="0" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>	
+		-->
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<PushedTexture		inherits="PushedTextureTemplate" />
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<Scripts>
+			<OnClick>VipAutoAssistFoodSelectBtn_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+	<Frame name="VipAutoAssistFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true"  framelevel="198">
+		<Size>
+			<AbsDimension x="283" y="315"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="高级辅助">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##选项背景
+				<Texture name="$parentOptBack" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="266" y="234" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##分隔条
+				<Texture name="$parentLine1" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="39" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine2" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="62" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine3" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="85" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine4" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="108" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine5" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="131" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine6" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="154" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine7" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="177" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine8" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="200" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine9" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="223" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine10" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="246" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="278" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="276" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTimebackTex" inherits="EditBoxBkgTemplate" >
+					<Size>
+						<AbsDimension x="40" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="72" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="每隔">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="42" y="43" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				
+				<FontString name="$parentHpNumArrivalFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="至">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="20" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="186" y="67" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##回血物品数量
+				<Texture name="$parentHpNumBackTex" inherits="EditBoxBkgTemplate" >
+					<Size>
+						<AbsDimension x="45" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="206" y="63" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentHpNumFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="个">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="254" y="67" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##回蓝物品数量
+				<FontString name="$parentMpNumArrivalFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="至">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="20" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="186" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentMpNumBackTex" inherits="EditBoxBkgTemplate" >
+					<Size>
+						<AbsDimension x="45" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="206" y="86" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentMpNumFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="个">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="254" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<!--
+				#计时器设置
+				<Texture name="$parentWarningTex" file="uires\\ZhuJieMian\\1.dds" x="256" y="402" w="30" h="22" >		
+					<Size>
+						<AbsDimension x="21" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="42" y="226" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				-->
+				<FontString name="$parentTimeFont" fonttype="LittleFZYBlackFont" text="运行中，剩余17分钟 ">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="160" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="65" y="228"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!--关闭按钮 -->
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			
+			<RichText name="$parentRich" lineInterval ="1" multiLine="true" fontStyle="normal" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="180" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="115" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 相隔时间勾选框
+			<CheckButton name="$parent_ChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<EditBox name="$parentTimesEdit" letters="3" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="40" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="72" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" >
+					<Color r="255" g="255" b="190" />
+				</FontString>
+				<Scripts>
+					<onfocuslost>vipAssistEdit_onFocusLost();</onfocuslost>
+				</Scripts>
+			</EditBox>
+			# 回血食物勾选框
+			<CheckButton name="$parent_ChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="补充">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="30" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			##回血食物选择框
+			<Button name="VipAutoAssistHpChooseBtn" >
+				<Size>
+					<AbsDimension x="88" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="94" y="63"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" />
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="三文鱼块">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="125" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="2" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VipAutoAssistHpScrollDownBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##回血食物-下拉按钮
+			<Button name="VipAutoAssistHpScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="right" relativeTo="VipAutoAssistHpChooseBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VipAutoAssistHpScrollDownBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<EditBox name="$parentHpNumEdit" letters="3" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="45" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="206" y="66" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" >
+					<Color r="255" g="255" b="190" />
+				</FontString>
+				<Scripts>
+					<onfocuslost>vipAssistEdit_onFocusLost();</onfocuslost>
+				</Scripts>
+			</EditBox>
+			# 回蓝食物勾选框
+			<CheckButton name="$parent_ChkBtn3" inherits="CheckBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="86" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="补充">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="30" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			##回蓝食物选择框
+			<Button name="VipAutoAssistMpChooseBtn" >
+				<Size>
+					<AbsDimension x="88" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="94" y="86"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" />
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="香草雪糕">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="125" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="2" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VipAutoAssistMpScrollDownBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##回蓝食物-下拉按钮
+			<Button name="VipAutoAssistMpScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="right" relativeTo="VipAutoAssistMpChooseBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VipAutoAssistMpScrollDownBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<EditBox name="$parentMpNumEdit" letters="3" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="45" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="206" y="88" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" >
+					<Color r="255" g="255" b="190" />
+				</FontString>
+				<Scripts>
+					<onfocuslost>vipAssistEdit_onFocusLost();</onfocuslost>
+				</Scripts>
+			</EditBox>
+			## 修理装备
+			<CheckButton name="$parent_ChkBtn4" inherits="CheckBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="90" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="109"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="修理装备">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			## 出售白装
+			<CheckButton name="$parent_ChkBtn5" inherits="CheckBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="90" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="132"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="出售白装">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			## 出售绿装
+			<CheckButton name="$parent_ChkBtn6" inherits="CheckBtnTemplate" id="6">
+				<Size>
+					<AbsDimension x="90" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="161" y="132"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="出售绿装">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			## 出售蓝装
+			<CheckButton name="$parent_ChkBtn7" inherits="CheckBtnTemplate" id="7">
+				<Size>
+					<AbsDimension x="90" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="155"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="出售蓝装">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!--
+			## 分解装备
+			<CheckButton name="$parent_ChkBtn8" inherits="CheckBtnTemplate" id="8">
+				<Size>
+					<AbsDimension x="90" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="155"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="分解装备">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			-->
+			## 分解绿装
+			<CheckButton name="$parent_ChkBtn8" inherits="CheckBtnTemplate" id="8">
+				<Size>
+					<AbsDimension x="90" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="178"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="分解绿装">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			## 分解蓝装
+			<CheckButton name="$parent_ChkBtn9" inherits="CheckBtnTemplate" id="9">
+				<Size>
+					<AbsDimension x="90" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="161" y="178"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="分解蓝装">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			## 不分解带有完美星的装备
+			<CheckButton name="$parent_ChkBtn10" inherits="CheckBtnTemplate" id="10">
+				<Size>
+					<AbsDimension x="200" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="201"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="不分解带有完美星的装备">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="200" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+				## 挂机时死亡自动返回挂机点
+			<CheckButton name="$parent_ChkBtn11" inherits="CheckBtnTemplate" id="11">
+				<Size>
+					<AbsDimension x="200" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="247"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="角色死亡后返回战斗位置(副本无效)">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="210" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VIPAutoAssistFrameOptCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			##回血食物-下拉菜单按钮
+			<Button name="VipAutoAssistHpSelectBtn" hidden="true" >	
+				<Size>
+					<AbsDimension x="88" y="105" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="VipAutoAssistHpChooseBtn" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="0"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Frames>
+					<Button name="VipAutoAssistHpSelectBtn1" inherits="VipAutoAssistFoodSelectBtnTemplate" id="1" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="明火烤肉">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistHpSelectBtn2" inherits="VipAutoAssistFoodSelectBtnTemplate" id="2" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistHpSelectBtn1" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="三文鱼块">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistHpSelectBtn3" inherits="VipAutoAssistFoodSelectBtnTemplate" id="3" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistHpSelectBtn2" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="新鲜牛扒">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistHpSelectBtn4" inherits="VipAutoAssistFoodSelectBtnTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistHpSelectBtn3" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="碳烧脆骨">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistHpSelectBtn5" inherits="VipAutoAssistFoodSelectBtnTemplate" id="5" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistHpSelectBtn4" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="烟熏火腿">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+				</Frames>
+			</Button>
+			##回蓝食物-下拉菜单按钮
+			<Button name="VipAutoAssistMpSelectBtn" hidden="true">	
+				<Size>
+					<AbsDimension x="88" y="105" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="VipAutoAssistMpChooseBtn" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="0"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Frames>
+					<Button name="VipAutoAssistMpSelectBtn1" inherits="VipAutoAssistFoodSelectBtnTemplate" id="1" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="奶油冰棒">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistMpSelectBtn2" inherits="VipAutoAssistFoodSelectBtnTemplate" id="2" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistMpSelectBtn1" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="香草雪糕">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistMpSelectBtn3" inherits="VipAutoAssistFoodSelectBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistMpSelectBtn2" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="混合甜筒">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistMpSelectBtn4" inherits="VipAutoAssistFoodSelectBtnTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistMpSelectBtn3" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="奶油蛋糕">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+					<Button name="VipAutoAssistMpSelectBtn5" inherits="VipAutoAssistFoodSelectBtnTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="VipAutoAssistMpSelectBtn4" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="芝士布丁">
+							<Color r="255" g="255" b="190" />
+						</FontString>
+					</Button>
+				</Frames>
+			</Button>
+			#计时器设置
+			<Button name="VipAssistFrameWarningBtn" >
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="42" y="226" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="256" y="402" w="30" h="22" >		
+							<Size>
+								<AbsDimension x="21" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>VipAssistFrameWarningBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="VipAssistApplyBtn" inherits="GongYongAnNiuB1Template" text="应 用">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="21" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				 	<OnClick>VipAssistApplyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="VipAssistCancelBtn" inherits="GongYongAnNiuB1Template" text="取 消">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-21" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				 	<OnClick>VipAssistCancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>VIPAutoAssistFrame_OnShow();</OnShow>
+			<OnLoad>VIPAutoAssistFrame_OnLoad();</OnLoad>
+		 	<OnEvent>VIPAutoAssistFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

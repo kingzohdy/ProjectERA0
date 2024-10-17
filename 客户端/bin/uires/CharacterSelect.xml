@@ -1,0 +1,3481 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\CharacterSelect.lua" />
+	<Script file="uires\Scripts\Login\SelectRoleFrame.lua" />
+
+	## 普通状态	界面底板->次底层衬底
+	<Texture name="CSChangeButtonNormalTemplate" virtual="true" file="uires\\ZhuJieMian\\1.dds" x="408" y="61" w="63" h="7" DrawType="tile">
+		<Tile>
+			<TileSize>
+				<AbsValue val="7" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="7" right="7" top="7" bottom="7" />
+			</BackgroundInsets>
+		</Tile>
+	</Texture>
+	## 高亮状态
+	<Texture name="CSChangeButtonType1HighTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" x="452" y="516" w="180" h="20" DrawType="tile" >
+		<Tile>
+			<TileSize>
+				<AbsValue val="20" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="20" right="20" top="20" bottom="20" />
+			</BackgroundInsets>
+		</Tile>
+	</Texture>
+	## 按下状态
+	<Texture name="CSChangeButtonType1PushedTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" x="452" y="537" w="180" h="20" DrawType="tile" >
+		<Tile>
+			<TileSize>
+				<AbsValue val="20" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="20" right="20" top="20" bottom="20" />
+			</BackgroundInsets>
+		</Tile>
+	</Texture>
+
+	<Frame name="CharacterSelectFrame" frameStrata="LOW" parent="UIClient" hidden="true" messageoff="false">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkgTex" hidden="true">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				##Texture name="$parentTopZheZhaoTex" inherits="DengLuJieMianZheZhaoShangTemplate">
+				<Texture name="$parentTopZheZhaoTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						 <AbsDimension x="1024" y="77" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBottomZheZhaoTex" inherits="DengLuJieMianZheZhaoXiaTemplate">
+					<Size>
+						 <AbsDimension x="1024" y="92" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftZheZhaoChiLunTex" file="uires\\ZhuJieMian\\3.dds" x="389" y="729" w="65" h="50">
+					<Size>
+						 <AbsDimension x="65" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentBottomZheZhaoTex" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="-46" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightZheZhaoChiLunTex" file="uires\\ZhuJieMian\\3.dds" x="389" y="729" w="65" h="50" UVType="mirroeu" >
+					<Size>
+						<AbsDimension x="65" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentBottomZheZhaoTex" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="-46" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>CharSelectFrame_OnLoad();</OnLoad>
+			<OnEvent>CharSelectFrame_OnEvent();</OnEvent>
+			<OnUpdate>CharacterSelectFrame_OnUpdate();</OnUpdate>
+			<OnShow>CharacterSelectFrame_OnShow();</OnShow>
+		</Scripts>
+		<Frames>
+			<!--选人角色-->
+			<Button name="SelectFrame" hidden="true" >
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					# 左铁链
+					<Button name="$parentLeftTieLianBtn">
+						<Size>
+							<AbsDimension x="12" y="54" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="98" y="69" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						##NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="539" y="506" w="11" h="96" />
+					</Button>
+					# 右铁链
+					<Button name="$parentRightTieLianBtn">
+						<Size>
+							<AbsDimension x="12" y="54" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="240" y="69" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						##NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="539" y="506" w="11" h="96" />
+					</Button>
+					# 底板
+					<Button name="$parentBackGround">
+						<Size>
+							<AbsDimension x="252" y="541" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="46" y="109" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="SelectFrameServerName"  fonttype="FZYBlackFont15" justifyH="center" fontStyle="normal">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="200" y="17" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="49" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="SelectFrameAreaName"  fonttype="NormalBlackFont" justifyH="center" fontStyle="normal">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="200" y="12" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="69" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="SelectFrameCreateTip"  fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal">
+									<Color r="160" g="160" b="90" />
+									<Size>
+										<AbsDimension x="250" y="30" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="469" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								# 分隔条
+								<Texture name="$parentFirstPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2" >
+									<Size>
+										<AbsDimension x="184" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="90" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 分隔条
+								<Texture name="$parentSecondPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2" >
+									<Size>
+										<AbsDimension x="184" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="449" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 顶部齿轮装饰
+								<!--<Texture name="$parentTopChiLunTex" file="uires\\ZhuJieMian\\3.dds" x="389" y="690" w="65" h="38" >
+									<Size>
+										<AbsDimension x="65" y="38" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 底部齿轮装饰
+								<Texture name="$parentBottomChiLunTex" file="uires\\ZhuJieMian\\3.dds" x="389" y="690" w="65" h="38" >
+									<Size>
+										<AbsDimension x="65" y="38" />
+									</Size>
+									<Anchors>
+										<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>-->
+							</Layer>
+						</Layers>
+						<NormalTexture		inherits="DengLuJieMianDiBanTemplate"	r="255" g="255" b="190" />
+					</Button>
+					# 顶部齿轮装饰
+					<Button name="$parentTopChiLunBtn">
+						<Size>
+							<AbsDimension x="65" y="38" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="389" y="690" w="65" h="38" />
+					</Button>
+					# 底部齿轮装饰
+					<Button name="$parentBottomChiLunBtn">
+						<Size>
+							<AbsDimension x="65" y="38" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parentBackGround" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="389" y="690" w="65" h="38" />
+					</Button>
+					
+					<Button name="CSChangeButtonTemplate" hidden="true" virtual="true" >
+						<Size>
+							<AbsDimension x="217" y="84" />
+						</Size>
+						<Layers>
+							<Layer level="background">
+								# 头像
+								<Texture name="$parentPhotoBodyTex">
+									<Size>
+										<AbsDimension x="79" y="79" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentPhotoTex">
+									<Size>
+										<AbsDimension x="79" y="79" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentPhotoBodyTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentPhotoHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga" alphaMode="ADD">
+									<Size>
+										<AbsDimension x="79" y="79" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentPhotoBodyTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parenthairPhotoTex" >
+									<Size>
+										<AbsDimension x="79" y="79" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentPhotoBodyTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+							<Layer level="overlay">
+								<FontString name="$parentCSName"  fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal">
+									<Color r="255" g="255" b="0" />
+									<Size>
+										<AbsDimension x="160" y="15" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												# 向左移动9个像素
+												<AbsDimension x="87" y="10" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentCSLevel" fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal" >
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="37" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="87" y="27" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentCSRace" fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="60" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="131" y="27" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentDelTime" fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal" text="">
+									<Color r="255" g="0" b="0" />
+									<Size>
+										<AbsDimension x="120" y="15" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="87" y="46" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentCSMap"  fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal" text="">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="120" y="15" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="87" y="46" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>						
+						<Frames>
+							<Button name="$parentCancelDelBtn" text="取消删除" hidden="true">
+								<Size>
+									<AbsDimension x="56" y="14" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="87" y="60" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<FontString name="$parentFont" fonttype="MinimumBlackFont" fontStyle="normal" justifyH="center" >									
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="1"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<NormalTexture		inherits="SelectRoleNormalTemplate" r="255" g="255" b="190" />
+								<HighlightTexture	inherits="SelectRoleHighlighTemplate" r="255" g="255" b="255" />
+								<PushedTexture		inherits="SelectRolePushedTemplate" r="160" g="160" b="90" />
+								<Scripts>
+									<OnClick>SelectFrameRoleBtnCancelDel_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+						</Frames>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="0"	y="318" w="217" h="84"	r="255" g="255" b="190" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="218" y="318" w="217" h="84"	r="255" g="255" b="255" />
+						<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="0"	y="403" w="217" h="84"	r="120" g="120" b="120" />
+						<Scripts>
+							<OnClick>SelectFrame_RoleBtn_OnClick();</OnClick>
+							<OnDoubleClick>SelectFrame_RoleBtn_OnDoubleClick();</OnDoubleClick>
+						</Scripts>
+					</Button>
+
+					<Button name="CSChangeButton1" inherits="CSChangeButtonTemplate" id = "1">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="16" y="99" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CSChangeButton2" inherits="CSChangeButtonTemplate" id = "2">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="16" y="185" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CSChangeButton3" inherits="CSChangeButtonTemplate" id = "3">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="16" y="271" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="CSChangeButton4" inherits="CSChangeButtonTemplate" id = "4">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="16" y="357" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					# 创建角色
+					<Button name="SelectFrame_CreateButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="创建角色">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="110" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGround">
+								<Offset>
+									<AbsDimension x="71" y="466" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+									<Size>
+										<AbsDimension x="165" y="44" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="topleft" relativeTo="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<UVAnimation texrows="4" texcols="4" />
+								</Texture>	
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>SelectFrame_CreateButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					# 更改账号
+					<Button name="SelectFrame_ReturnButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="更改账号">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="110" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="41" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>SelectFrame_ReturnButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 删除角色
+					<Button name="SelectFrame_DeleteButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="删除角色">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="110" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="154" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>SelectFrame_DeleteButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 开始游戏
+					<Button name="SelectFrame_EnterGameButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="开始游戏">
+						<FontString name="$parentFont" fonttype="FZYBlackFont15" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="13"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="165" y="42" />
+						</Size>
+						<Anchors>
+							<Anchor point="Bottom" relativeTo="$parent" relativePoint="Bottom">
+								<Offset>
+									<AbsDimension x="0" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>SelectFrame_EnterGameButton_OnLoad();</OnLoad>
+							<OnEvent>SelectFrame_EnterGameButton_OnEvent();</OnEvent>	
+							<OnClick>SelectFrame_EnterGameButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 退出游戏
+					<Button name="$parentExitGameButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="退出游戏" >
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="110" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="BottomRight" relativePoint="BottomRight" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-41" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSQuitGameButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 选择服务器
+					<Button name="SelectFrame_SelectServerButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="选择服务器">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="110" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="BottomRight" relativePoint="BottomRight" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-154" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>SelectFrame_SelectServerButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="SelectFrame_OtherRolesButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="其他区中的角色">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="174" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="BottomRight" relativePoint="BottomRight" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-124" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>SelectFrame_OtherRolesButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="SelectFrameOtherRoles" hidden="true">
+						<Size>
+							<AbsDimension x="176" y="424" />
+						</Size>
+						<Anchors>
+							<Anchor point="BottomRight" relativePoint="BottomRight" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-196" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<Texture name="$parentBkg" inherits="LoginSelectBackTexture">
+									<Size>
+										<AbsDimension x="176" y="424" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+									<Size>
+										<AbsDimension x="21" y="366" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="146" y="48" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentScrollDown" inherits="ScrollBkgDown">
+									<Anchors>
+										<Anchor point="bottom" relativePoint="bottom" relativeTo="$parentScrollCenter">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentScrollUp" inherits="ScrollBkgUp">								
+									<Anchors>
+										<Anchor point="top" relativePoint="top" relativeTo="$parentScrollCenter">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentCaption" fonttype="FZYBlackFont15" justifyH="center" text="其他区中的角色">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="151" y="366" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativePoint="top" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="17" /> 
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="SelectFrameOtherRolesInfoTemplate" virtual="true">
+								<Size>
+									<AbsDimension x="135" y="45" />
+								</Size>								
+								<Layers>
+									<Layer level="overlay">
+										<FontString name="$parentWorld" fonttype="LittleFZYBlackFont" justifyH="center" text="服务器">
+											<Color r="255" g="255" b="190" />
+											<Size>
+												<AbsDimension x="151" y="366" />
+											</Size>
+											<Anchors>
+												<Anchor point="top" relativePoint="top" relativeTo="$parent">
+													<Offset>
+														<AbsDimension x="0" y="7" /> 
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+										<FontString name="$parentName" fonttype="LittleFZYBlackFont" justifyH="center" text="名字">
+											<Color r="160" g="160" b="90" />
+											<Size>
+												<AbsDimension x="151" y="366" />
+											</Size>
+											<Anchors>
+												<Anchor point="top" relativePoint="top" relativeTo="$parent">
+													<Offset>
+														<AbsDimension x="0" y="23" /> 
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnDoubleClick>SelectFrameOtherRoleInfo_OnDoubleClick()</OnDoubleClick>
+								</Scripts>
+								<NormalTexture		inherits="LoginSelectNormalTexture" />
+								<HighlightTexture	inherits="LoginSelectHighTexture" />
+								<PushedTexture		inherits="LoginSelectPushTexture" />
+							</Button>
+
+							<Button name="$parentScrollUpBtn" inherits="ScrollUpBtnTemplate">
+								<Anchors>
+									<Anchor point="top" relativeTo="$parentScrollCenter" relativePoint="top">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>SelectFrameOtherRoleInfoScrollUpBtn_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+							#向下滚动方向键
+							<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+								<Anchors>
+									<Anchor point="bottom" relativeTo="$parentScrollCenter" relativePoint="bottom">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>SelectFrameOtherRoleInfoScrollDownBtn_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+							#滚动条
+							<Slider name="$parentScrollBar"  orientation="VERTICAL" minValue="0" maxValue="300" valueStep="1" defaultValue="0">
+								<Size>
+									<AbsDimension x="17" y="324" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentScrollCenter" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="2" y="21"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+									<Size>
+										<AbsDimension x="17" y="42" />
+									</Size>
+								</ThumbTexture>
+								<Scripts>
+									<OnValueChanged>SelectFrameOtherRoleInfo_OnValueChanged();</OnValueChanged>
+									<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+								</Scripts>
+							</Slider>
+							<Button name="$parentInfo1" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="47" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="$parentInfo2" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="93" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="$parentInfo3" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="139" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="$parentInfo4" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="185" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="$parentInfo5" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="231" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="$parentInfo6" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="277" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="$parentInfo7" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="323" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="$parentInfo8" inherits="SelectFrameOtherRolesInfoTemplate">
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="8" y="369" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+						</Frames>
+						<Scripts>
+							<OnShow>SelectFrameOtherRoles_OnShow()</OnShow>
+						</Scripts>
+					</Button>
+					
+					# 左旋转按钮
+					<Button name="SelectFrame_TurnLeftButton" inherits="DengLuJieMianTurnLeftButtonTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="-40" y="-117" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<onbuttonclick>SelectFrame_TurnLeftButton_OnMouseDown();</onbuttonclick>
+						</Scripts>
+					</Button>
+					# 右旋转按钮
+					<Button name="SelectFrame_TurnRightButton" inherits="DengLuJieMianTurnRighttButtonTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="40" y="-117" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<onbuttonclick>SelectFrame_TurnRightButton_OnMouseDown();</onbuttonclick>
+						</Scripts>
+					</Button>
+					
+					# 向前翻一页
+					<Button name="$parent_TurnPrePageBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="上一页">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="70" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="55" y="466" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>SelectFrame_TurnPrePageBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 向后翻一页
+					<Button name="$parent_TurnNextPageBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="下一页">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="70" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="128" y="466" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>SelectFrame_TurnNextPageBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 显示当前页数
+					<Button name="$parent_PageBtn" input_transparent="true" hidden="true">
+						<Size>
+							<AbsDimension x="44" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parent_TurnPrePageBtn" relativePoint="right">
+								<Offset>
+									<AbsDimension x="4" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont12" justifyH="center" fontStyle="normal">
+									<Color r="255" g="255" b="0" />
+									<Size>
+										<AbsDimension x="44" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnLoad>SelectFrame_OnLoad();</OnLoad>
+					<OnShow>SelectFrame_OnShow();</OnShow>
+					<OnHide>SelectFrame_OnHide();</OnHide>
+					<OnUpdate>SelectFrame_OnUpdate();</OnUpdate>
+					<OnMouseDown>SelectFrame_OnMouseDown();</OnMouseDown>
+					<OnMouseMove>SelectFrame_OnMouseMove();</OnMouseMove>
+				</Scripts>
+			</Button>
+
+			# 角色选择
+			<Button name="CSSelectRoleFrame" hidden="true">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" />
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						##战士
+						<Texture name="$parentWarriorTex" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" >
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="CSWarriorMaleButton" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="10" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentWarriorTex1" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" UVType="mirroeu">
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentWarriorTex" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						##牧师
+						<Texture name="$parentChurchTex" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" >
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="CSChurchMaleButton" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="10" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentChurchTex1" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" UVType="mirroeu">
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentChurchTex" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						##枪手
+						<Texture name="$parentGunnerTex" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" >
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="CSGunnerMaleButton" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="10" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentGunnerTex1" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" UVType="mirroeu">
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentGunnerTex" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						##法师
+						<Texture name="$parentMagicianTex" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" >
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="CSMagicianMaleButton" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="10" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentMagicianTex1" file="uires\\ZhuJieMian\\3.dds" x="359" y="517" w="55" h="58" UVType="mirroeu">
+							<Size>
+								<AbsDimension x="55" y="58" />
+							</Size>	
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentMagicianTex" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>  
+				</Layers>
+				<Frames>
+					<!--战士-->				
+					<Button name="CSWarriorMaleButton_Select">
+						<Size>
+							<AbsDimension x="121" y="380" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSWarriorFeMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-125" y="-110" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<HighlightTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSWarriorMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+
+					<Button name="CSWarriorMaleButton" text="战士（男）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSWarriorFeMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-125" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSWarriorMaleButton_OnClick();</OnClick>
+						</Scripts>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+					</Button>			
+
+					<Button name="CSWarriorFeMaleButton_Select">
+						<Size>
+							<AbsDimension x="110" y="430" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSChurchMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-115" y="-110" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSWarriorFeMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+
+					<Button name="CSWarriorFeMaleButton" text="战士（女）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSGunnerMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-102" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+						<Scripts>
+							<OnClick>CSWarriorFeMaleButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					
+					<Button name="CSWarriorRaceTexButton">
+						<Size>
+							<AbsDimension x="61" y="94" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="$parentWarriorTex" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="32" y="27" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="415" y="595" w="61" h="94" />
+					</Button>
+
+					<Button name="CSChurchMaleButton_Select">
+						<Size>
+							<AbsDimension x="90" y="340" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSChurchFeMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-110" y="-140" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSChurchMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					
+					<Button name="CSChurchFeMaleButton_Select">
+						<Size>
+							<AbsDimension x="145" y="405" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSGunnerMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-95" y="10" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSChurchFeMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+
+					<Button name="CSChurchMaleButton" text="祭司（男）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="Bottom">
+								<Offset>
+									<AbsDimension x="60" y="-160" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+						<Scripts>
+							<OnClick>CSChurchMaleButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="CSChurchFeMaleButton" text="祭司（女）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="CSChurchMaleButton" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="125" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+						<Scripts>
+							<OnClick>CSChurchFeMaleButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="CSChurchRaceTexButton">
+						<Size>
+							<AbsDimension x="61" y="94" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="$parentChurchTex" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="32" y="27" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="415" y="500" w="61" h="94" />
+						<Scripts>
+						</Scripts>
+					</Button>
+					
+					<Button name="CSGunnerMaleButton_Select">
+						<Size>
+							<AbsDimension x="125" y="255" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="Bottom">
+								<Offset>
+									<AbsDimension x="120" y="-380" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSGunnerMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+
+					<Button name="CSGunnerFeMaleButton_Select">
+						<Size>
+							<AbsDimension x="75" y="325" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="CSGunnerMaleButton" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="150" y="-165" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSGunnerFeMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+
+					<Button name="CSGunnerMaleButton" text="枪手（男）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSGunnerFeMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-125" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+						<Scripts>
+							<OnClick>CSGunnerMaleButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="CSGunnerFeMaleButton" text="枪手（女）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="CSChurchMaleButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="-102" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+						<Scripts>
+							<OnClick>CSGunnerFeMaleButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="CSGunnerRaceTexButton">
+						<Size>
+							<AbsDimension x="61" y="94" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="$parentGunnerTex" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="32" y="27" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="477" y="599" w="61" h="94" />
+						<Scripts>
+						</Scripts>
+					</Button>
+					<Button name="CSMagicianMaleButton_Select">
+						<Size>
+							<AbsDimension x="190" y="320" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="CSGunnerFeMaleButton" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="200" y="-50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSMagicianMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+
+					
+					<Button name="CSMagicianFeMaleButton_Select">
+						<Size>
+							<AbsDimension x="150" y="380" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="CSMagicianMaleButton" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="230" y="-127" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+						<Scripts>
+							<OnClick>CSMagicianFeMaleButton_OnClick();</OnClick>
+							<OnEnter>CSSelectButton_OnEnter();</OnEnter>
+							<OnLeave>CSSelectButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+
+					<Button name="CSMagicianMaleButton" text="法师（男）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="CSChurchFeMaleButton" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="115" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+						<Scripts>
+							<OnClick>CSMagicianMaleButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="CSMagicianFeMaleButton" text="法师（女）">
+						<Size>
+							<AbsDimension x="100" y="44" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="CSMagicianMaleButton" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="125" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuB3NormalTemplate"	r="255" g="255" b="190" />
+						<HighlightTexture	inherits="GongYongAnNiuB3HighTemplate"		r="255" g="255" b="255" />
+						<PushedTexture		inherits="GongYongAnNiuB3PushedTemplate"	r="150" g="150" b="90" />
+						<DisabledTexture	inherits="GongYongAnNiuB3DisabledTemplate"	r="120"	g="120"	b="120" />
+						<Scripts>
+							<OnClick>CSMagicianFeMaleButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					
+					<Button name="CSMagicianRaceTexButton">
+						<Size>
+							<AbsDimension x="61" y="94" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="$parentMagicianTex" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="37" y="27" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="477" y="504" w="61" h="94" />
+					</Button>
+				</Frames>  
+				<Scripts>
+					<OnUpdate>CSSelectRoleFrame_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+
+			# 角色选择背景
+			<Button name="CSSelectRoleBackGroundFrame" hidden="true">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" />
+				</Anchors>
+				<Frames>
+					# 确定
+					<Button name="CSSelectNextStepButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确  定" hidden="true">
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="150" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="Bottom" relativeTo="$parent" relativePoint="Bottom">
+								<Offset>
+									<AbsDimension x="-50" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSSelectNextStepButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					## 返回
+					<Button name="CSSelectPerStepButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="返  回">
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="150" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="Bottom">
+								<Offset>
+									<AbsDimension x="0" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSSelectPerStepButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>					
+				</Frames>
+			</Button>
+
+			# 职业描述
+			<Button name="CSSelectRaceDescFrame" hidden="true">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" />
+				</Anchors>	
+				<Frames>
+					# 左铁链
+					<Button name="$parentLeftTieLianBtn">
+						<Size>
+							<AbsDimension x="12" y="54" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-234" y="69" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						##NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="625" y="751" w="12" h="54" />
+					</Button>
+					# 右铁链
+					<Button name="$parentRightTieLianBtn">
+						<Size>
+							<AbsDimension x="12" y="54" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-92" y="69" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						##NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="625" y="751" w="12" h="54" />
+					</Button>
+					# 底板
+					<Button name="$parentBackGround">
+						<Size>
+							<AbsDimension x="252" y="541" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-46" y="109" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		inherits="DengLuJieMianDiBanTemplate"	r="255" g="255" b="190" />
+					</Button>
+					# 顶部齿轮装饰
+					<Button name="$parentTopChiLunBtn">
+						<Size>
+							<AbsDimension x="65" y="38" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="389" y="690" w="65" h="38" />
+					</Button>
+					# 底部齿轮装饰
+					<Button name="$parentBottomChiLunBtn">
+						<Size>
+							<AbsDimension x="65" y="38" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parentBackGround" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="389" y="690" w="65" h="38" />
+					</Button>
+					# 职业描述内容
+					<RichText name="$parentRich" lineInterval ="2" fontStyle="normal" multiLine="true" fonttype="TeenyBlackFont" input_transparent="false" id="2">
+						<Size>
+							<AbsDimension x="170" y="318" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="40" y="47" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+
+					<Button name="RaceAttrButtonTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="160" y="20"/>
+						</Size>
+						<Layers>
+							<Layer>
+								<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justifyH="left" text="力量" >		
+									 <Size>
+										<AbsDimension x="30" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="190"/>
+								</FontString> 
+								<Texture name="$parentbackground" inherits="BarBackTexTemplate" >
+									<Size>
+										<AbsDimension x="140" y="11" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parentNameFont" relativePoint="right">
+											<Offset>
+												<AbsDimension x="1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentvalue" inherits="GreenBarTexTemplate">
+									<Size>
+										<AbsDimension x="136" y="9" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentbackground" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="2" y="1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>	
+								<FontString name="$parentValueFont" fonttype="LittleFZYBlackFont" justifyH="left" text="20" hidden="true">		
+									 <Size>
+										<AbsDimension x="15" y="16" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentbackground" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="10" y="-7" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="255" g="255" b="255"/>
+								</FontString> 
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnter>RaceAttrButton_OnEnter();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>		
+					</Button>
+					<Button name="RaceAttrButton1" inherits="RaceAttrButtonTemplate" id="1" >
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="41" y="370" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="RaceAttrButton2" inherits="RaceAttrButtonTemplate" id="2" >
+						<Anchors>
+							<Anchor point="top" relativeTo="RaceAttrButton1" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="RaceAttrButton3" inherits="RaceAttrButtonTemplate" id="3" >
+						<Anchors>
+							<Anchor point="top" relativeTo="RaceAttrButton2" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="RaceAttrButton4" inherits="RaceAttrButtonTemplate" id="4" >
+						<Anchors>
+							<Anchor point="top" relativeTo="RaceAttrButton3" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="RaceAttrButton5" inherits="RaceAttrButtonTemplate" id="5" >
+						<Anchors>
+							<Anchor point="top" relativeTo="RaceAttrButton4" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="RaceAttrButton6" inherits="RaceAttrButtonTemplate" id="6" >
+						<Anchors>
+							<Anchor point="top" relativeTo="RaceAttrButton5" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>	
+					<OnLoad>CSSelectRaceDescFrame_OnLoad();</OnLoad>
+					<OnShow>CSSelectRaceDescFrame_OnShow();</OnShow>
+					<OnHide>CSSelectRaceDescFrame_OnHide();</OnHide>
+					<OnUpdate>CSSelectRaceDescFrame_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+
+			# 创建角色框架
+			<Button name="CSCreateFrame" hidden="true">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					# 左铁链
+					<Button name="$parentLeftTieLianBtn">
+						<Size>
+							<AbsDimension x="12" y="54" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="98" y="69" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						##NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="625" y="751" w="12" h="54" />
+					</Button>
+					# 右铁链
+					<Button name="$parentRightTieLianBtn">
+						<Size>
+							<AbsDimension x="12" y="54" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="240" y="69" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						##NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="625" y="751" w="12" h="54" />
+					</Button>
+					<Button name="$parentBackGround">
+						<Size>
+							<AbsDimension x="252" y="541" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="46" y="109" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 第一分隔条
+								<Texture name="$parentFirstPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2">
+									<Size>
+										<AbsDimension x="184" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="86" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 第二分隔条
+								<Texture name="$parentSecondPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2">
+									<Size>
+										<AbsDimension x="184" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="166" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 第三分隔条
+								<Texture name="$parentThirdPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2">
+									<Size>
+										<AbsDimension x="184" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="top" relativeTo="$parent" relativePoint="top">
+											<Offset>
+												<AbsDimension x="0" y="396" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		inherits="DengLuJieMianDiBanTemplate"	r="255" g="255" b="190" />
+					</Button>
+					# 角色职业描述
+					<Button name="$parentRaceDescBtn">
+						<Size>
+							<AbsDimension x="220" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="CSCreateFrameBackGroundRaceName"  fonttype="SeventeenFont" justifyH="center" text="战士">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="220" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+
+					# 角色名字抬头
+					<Button name="$parentRoleNameHeadBtn">
+						<Size>
+							<AbsDimension x="220" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="103" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 角色名抬头
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="角色名">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="220" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 名字输入框底板
+					<Button name="CSCreateNameEditBackBtn">
+						<Size>
+							<AbsDimension x="144" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="54" y="122" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" />
+					</Button>
+					# 名字输入框
+					<EditBox name="CSCreateName" letters="15" historyLines="1" multiLine="false" text="">
+						<Size># 22
+							<AbsDimension x="140" y="16" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="CSCreateNameEditBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont14">
+							<Color r="255" g="255" b="0" />
+						</FontString>
+					</EditBox>
+					
+					# 发型抬头
+					<Button name="$parentHairStyleHeadBtn">
+						<Size>
+							<AbsDimension x="220" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="181" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="发型">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="220" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 发型输入框底版
+					<Button name="CSCreateHairStyleEditBackBtn">
+						<Size>
+							<AbsDimension x="144" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="54" y="198" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="脸型">
+									<Color r="160" g="160" b="160" />
+									<Size>
+										<AbsDimension x="100" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" r="255" g="255" b="190" />
+					</Button>
+					# 发型减
+                    <Button name="CSHairstyleReduceButton" inherits="LeftArrowButtonTemplate">
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="CSCreateHairStyleEditBackBtn" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>temp_HairstyleReduceClick();</OnClick>
+						</Scripts>						
+					</Button>
+                    # 发型加
+                    <Button name="CSHairstyleAddButton" inherits="RightArrowButtonTemplate">
+						<Anchors>
+							<Anchor point="TopRight" relativeTo="CSCreateHairStyleEditBackBtn" relativePoint="TopRight">
+								<Offset>
+									<AbsDimension x="-1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>temp_HairstyleAddClick();</OnClick>
+						</Scripts>				
+					</Button>  
+					
+					# 发色抬头
+					<Button name="$parentHairColorHeadBtn">
+						<Size>
+							<AbsDimension x="220" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="232" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="发色">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="220" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 发色输入框底版
+					<Button name="CSCreateHairColorEditBackBtn">
+						<Size>
+							<AbsDimension x="144" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="54" y="249" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="发色">
+									<Color r="160" g="160" b="160" />
+									<Size>
+										<AbsDimension x="100" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" r="255" g="255" b="190" />
+					</Button>
+					# 发色减
+                    <Button name="CSHairColorReduceButton" inherits="LeftArrowButtonTemplate">
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="CSCreateHairColorEditBackBtn" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>temp_HairColorReduceClick();</OnClick>
+						</Scripts>						
+					</Button>
+                    # 发色加
+                    <Button name="CSHairColorAddButton" inherits="RightArrowButtonTemplate">
+						<Anchors>
+							<Anchor point="TopRight" relativeTo="CSCreateHairColorEditBackBtn" relativePoint="TopRight">
+								<Offset>
+									<AbsDimension x="-1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>temp_HairColorAddClick();</OnClick>
+						</Scripts>				
+					</Button>  
+					
+					# 脸型抬头
+					<Button name="$parentFaceStyleHeadBtn">
+						<Size>
+							<AbsDimension x="220" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="284" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="脸型">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="220" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 脸型框底版
+					<Button name="CSCreateFaceEditBackBtn" >
+						<Size>
+							<AbsDimension x="144" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="54" y="301" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="脸型">
+									<Color r="160" g="160" b="160" />
+									<Size>
+										<AbsDimension x="100" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" r="255" g="255" b="190" />
+					</Button>
+					# 脸型减
+                    <Button name="CSFaceReduceButton" inherits="LeftArrowButtonTemplate" >
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="CSCreateFaceEditBackBtn" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>temp_FaceReduceClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 脸型加
+                    <Button name="CSFaceAddButton" inherits="RightArrowButtonTemplate" >
+						<Anchors>
+							<Anchor point="TopRight" relativeTo="CSCreateFaceEditBackBtn" relativePoint="TopRight">
+								<Offset>
+									<AbsDimension x="-1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>temp_FaceAddClick();</OnClick>
+						</Scripts>
+					</Button>
+					<!--
+					# 着装抬头
+					<Button name="$parentClothesStyleHeadBtn" >
+						<Size>
+							<AbsDimension x="220" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="336" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 着装
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="着装" >
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="220" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 着装选择框底版
+					<Button name="$parentClothesStyleBackBtn" >
+						<Size>
+							<AbsDimension x="144" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="54" y="353" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="着装">
+									<Color r="160" g="160" b="160" />
+									<Size>
+										<AbsDimension x="100" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" r="255" g="255" b="190" />
+					</Button>
+					# 着装减
+                    <Button name="CSCreateClothesReduceButton" inherits="LeftArrowButtonTemplate" >
+						<Anchors>
+							<Anchor point="TopLeft" relativeTo="$parentClothesStyleBackBtn" relativePoint="TopLeft">
+								<Offset>
+									<AbsDimension x="1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>CSCreateClothesReduceButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 着装加
+                    <Button name="CSCreateClothesAddButton" inherits="RightArrowButtonTemplate" >
+						<Anchors>
+							<Anchor point="TopRight" relativeTo="$parentClothesStyleBackBtn" relativePoint="TopRight">
+								<Offset>
+									<AbsDimension x="-1" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+						<Scripts>
+							<OnClick>CSCreateClothesAddButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>-->
+					# 头像
+					<Button name="$parentPhotoBtn">
+						<Size>
+							<AbsDimension x="90" y="90" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="83" y="407" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								# 头像身体贴图 
+								<Texture name="CreateHeadBodyTex">
+									<Size>
+										<AbsDimension x="78" y="78" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											 <Offset>
+												 <AbsDimension x="0" y="0" />
+											 </Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 头像贴图
+								<Texture name="CreateHeadTexture" >
+									<Size>
+										<AbsDimension x="78" y="78" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											 <Offset>
+												 <AbsDimension x="0" y="0" />
+											 </Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 头像发影贴图
+								<Texture name="CreateHeadHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga" alphaMode="ADD">
+									<Size>
+										<AbsDimension x="78" y="78" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											 <Offset>
+												 <AbsDimension x="0" y="0" />
+											 </Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								# 头像头发贴图
+								<Texture name="CreateHeadHairTexture" >
+									<Size>
+										<AbsDimension x="78" y="78" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											 <Offset>
+												 <AbsDimension x="0" y="0" />
+											 </Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="539" y="603" w="90" h="90" />
+					</Button>
+					
+					# 随机外观
+                    <Button name="CSRandomButton" inherits="GongYongAnNiuC2ButtonTemplate" text="随机外观" hidden="true">
+						<Size>
+							<AbsDimension x="86" y="27" />
+						</Size>
+						<Anchors>
+							<Anchor point="Center" relativeTo="CSCreateFrameBackGroundRaceName" relativePoint="Center">
+								<Offset>
+									<AbsDimension x="0" y="295" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>temp_CSRandomButton();</OnClick>
+						</Scripts>
+					</Button>
+					# 创建
+					<Button name="CSGenderAcceptButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="创  建">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="150" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="-80" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>CSGenderAcceptButton_OnLoad();</OnLoad>						    
+							<OnEvent>CSGenderAcceptButton_OnEvent();</OnEvent>						    
+							<OnClick>CSGenderAcceptButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+
+					# 返回
+					<Button name="CSGenderCancelButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="返  回">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="7"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="150" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="80" y="-24" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSGenderCancelButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					
+					# 退出游戏
+					<Button name="CSGenderExitGameButton" inherits="GongYongAnNiuC2ButtonTemplate" text="退出游戏" hidden="true">
+						<Size>
+							<AbsDimension x="86" y="27" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="CSGenderAcceptButton" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="100" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSQuitGameButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 左转
+					<Button name="CSCreatRoleTurnLeftButton" inherits="DengLuJieMianTurnLeftButtonTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="-75" y="-117" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<onbuttonclick>CSCreatRoleTurnLeftButtonOnMouseDown();</onbuttonclick>
+						</Scripts>
+					</Button>
+					# 右转
+					<Button name="CSCreatRoleTurnRightButton" inherits="DengLuJieMianTurnRighttButtonTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="75" y="-117" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<onbuttonclick>CSCreatRoleTurnRightButtonOnMouseDown();</onbuttonclick>
+						</Scripts>
+					</Button>	
+					# 放大
+					<Button name="CSCreatRoleFangDaButton" inherits="DengLuJieMianFangDaButtonTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="-19" y="-120" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSCreatRoleFangDaButton_OnClick();</OnClick>
+							<OnEnter>CSCreatRoleFangDaButton_OnEnter();</OnEnter>
+							<OnLeave>CSCreatRoleFangDaButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 缩小
+					<Button name="CSCreatRoleSuoXiaoButton" inherits="DengLuJieMianSuoXiaoButtonTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="19" y="-120" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSCreatRoleSuoXiaoButton_OnClick();</OnClick>
+							<OnEnter>CSCreatRoleSuoXiaoButton_OnEnter();</OnEnter>
+							<OnLeave>CSCreatRoleSuoXiaoButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnLoad>CSCreateFrame_OnLoad();</OnLoad>
+					<OnShow>CSCreateFrame_OnShow();</OnShow>
+					<OnHide>CSCreateFrame_OnHide();</OnHide>
+					<OnUpdate>CSCreateFrame_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="BirthPlaceFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" messageoff="false">
+		<Size>
+			<AbsDimension x="280" y="286" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="DIALOG">
+				<Texture name="BirthPlaceFramebackground" inherits="DengLuJieMianXuanZeFuWuQiZiJieMianTemplate" />
+				<Texture name="$parentLeftHeadTex" file="uires\\ZhuJieMian\\3.dds" x="156" y="705" w="125" h="30" >
+					<Size>
+						<AbsDimension x="125" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightHeadTex" file="uires\\ZhuJieMian\\3.dds"  x="156" y="705" w="125" h="30" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="125" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="出生地选择" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="-15" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>  		
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" hidden="true">
+				<Scripts>
+					<OnClick>BirthPlaceCanceBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# hidden="true"
+			<Button name="TBirthBtnTemplate" virtual="true" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Size>
+						<AbsDimension x="120" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="115" y="14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="264" y="25" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">		
+						<FontString name="$parentMapNameFont" fonttype="TeenyBlackFont" text="" hidden="true">
+							<Color r="255" g="246" b="226"/>
+							<Size>
+								<AbsDimension x="120" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="110" y="16"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentBusyStateFont" fonttype="LittleFZYBlackFont" text="">
+							<Color r="0" g="125" b="0"/>
+							<Size>
+								<AbsDimension x="40" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="122" y="24"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="630" y="538" w="264" h="25"	r="50" g="30" b="10" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="630" y="564" w="264" h="25"	r="100" g="70" b="30" />
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="630" y="590" w="264" h="25"	r="255" g="255" b="190" />
+				<Scripts>
+					<OnClick>BirthFrame_OnClickBirthBtn();</OnClick>
+					<OnDoubleClick>BirthFrame_OnDoubleClick();</OnDoubleClick>
+				</Scripts>
+			</Button>	
+			<Button name="BirthBtn1" inherits="TBirthBtnTemplate" id="1">
+				<Layers>
+					<Layer level="overlay">		
+						<Texture name="$parentRecomendTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="514" w="96" h="23">	
+							<Size>
+								<AbsDimension x="96" y="23" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="34"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BirthBtn2" inherits="TBirthBtnTemplate"  id="2">
+				<Anchors>
+					<Anchor point="top" relativeTo="BirthBtn1" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>	
+			<Button name="BirthBtn3" inherits="TBirthBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="BirthBtn2" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BirthBtn4" inherits="TBirthBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="top" relativeTo="BirthBtn3" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BirthBtn5" inherits="TBirthBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="top" relativeTo="BirthBtn4" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BirthBtn6" inherits="TBirthBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="top" relativeTo="BirthBtn5" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BirthBtn7" inherits="TBirthBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="top" relativeTo="BirthBtn6" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BirthBtn8" inherits="TBirthBtnTemplate" id="8">
+				<Anchors>
+					<Anchor point="top" relativeTo="BirthBtn7" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="BirthPlaceEnterBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确 定">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="22" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BirthPlaceEnterBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BirthPlaceCanceBtn"  inherits="GongYongAnNiuB1NoFontNormalTemplate" text="取 消">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-22" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BirthPlaceCanceBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>BirthPlaceFrame_OnLoad();</OnLoad>
+			<OnEvent>BirthPlaceFrame_OnEvent();</OnEvent>
+			<OnShow>BirthPlaceFrame_OnShow();</OnShow>	 
+			<OnHide>BirthPlaceFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	<!--造型變更卷-->
+	<Frame name="CSFashionFrame" frameStrata="dialog" parent="UIClient" hidden="true">
+		<Size>
+			<AbsDimension x="252" y="541" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="46" y="100" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+		# 左鐵鏈
+			<Button name="$parentLeftTieLianBtn">
+				<Size>
+					<AbsDimension x="12" y="54" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="98" y="69" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+				# 右鐵鏈
+				<Button name="$parentRightTieLianBtn">
+					<Size>
+						<AbsDimension x="12" y="54" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="240" y="69" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Button>
+				<Button name="$parentBackGround">
+					<Size>
+						<AbsDimension x="252" y="541" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							# 第一分隔條
+							<Texture name="$parentFirstPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2">
+								<Size>
+									<AbsDimension x="184" y="2" />
+								</Size>
+								<Anchors>
+									<Anchor point="top" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="0" y="86" />											</Offset>
+										</Anchor>
+								</Anchors>
+							</Texture>
+							# 第二分隔條
+							<Texture name="$parentSecondPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2">
+								<Size>
+									<AbsDimension x="184" y="2" />
+								</Size>
+								<Anchors>
+									<Anchor point="top" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="0" y="260" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+							# 第三分隔條
+							<Texture name="$parentThirdPartionTex" file="uires\\ZhuJieMian\\3.dds" x="630" y="616"  w="184" h="2">
+								<Size>
+									<AbsDimension x="184" y="2" />
+								</Size>
+								<Anchors>
+									<Anchor point="top" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="0" y="360" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+						</Layer>
+					</Layers>
+					<NormalTexture		inherits="DengLuJieMianDiBanTemplate"	r="255" g="255" b="190" />
+				</Button>
+
+				# 角色名字抬頭
+				<Button name="$parentRoleNameBtn">
+					<Size>
+						<AbsDimension x="220" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="50" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							# 角色名抬頭
+							<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="角色名">
+								<Color r="255" g="255" b="190" />
+								<Size>
+									<AbsDimension x="220" y="18" />
+								</Size>
+								<Anchors>
+									<Anchor point="left" relativeTo="$parent" relativePoint="left">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+							<FontString name="$parentNameFont"  fonttype="FZYBlackFont14" justifyH="center" text="XXXX">
+								<Color r="255" g="255" b="190" />
+								<Size>
+									<AbsDimension x="220" y="18" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parentFont" relativePoint="bottomleft">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+				</Button>
+					
+				# 髮型抬頭
+				<Button name="$parentHairStyleHeadBtn">
+					<Size>
+						<AbsDimension x="220" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="100" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="发型">
+								<Color r="255" g="255" b="190" />
+								<Size>
+									<AbsDimension x="220" y="18" />
+								</Size>
+								<Anchors>
+									<Anchor point="left" relativeTo="$parent" relativePoint="left">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+				</Button>
+				# 髮型輸入框底版
+				<Button name="CSFashionHairStyleEditBackBtn">
+					<Size>
+						<AbsDimension x="144" y="26" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+							<Offset>
+								<AbsDimension x="54" y="120" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="发型">
+								<Color r="160" g="160" b="160" />
+								<Size>
+									<AbsDimension x="100" y="20" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										<Offset>
+											<AbsDimension x="0" y="4" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+					<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" r="255" g="255" b="190" />
+				</Button>
+				# 髮型減
+                <Button name="CSFashionHairstyleReduceButton" inherits="LeftArrowButtonTemplate">
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="CSFashionHairStyleEditBackBtn" relativePoint="TopLeft">
+							<Offset>
+								<AbsDimension x="1" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Scripts>	
+						<OnClick>Fashion_HairstyleReduceClick();</OnClick>
+					</Scripts>						
+				</Button>
+                # 髮型加
+                <Button name="CSFashionHairstyleAddButton" inherits="RightArrowButtonTemplate">
+					<Anchors>
+						<Anchor point="TopRight" relativeTo="CSFashionHairStyleEditBackBtn" relativePoint="TopRight">
+							<Offset>
+								<AbsDimension x="-1" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Scripts>
+						<OnClick>Fashion_HairstyleAddClick();</OnClick>
+					</Scripts>				
+				</Button>  
+					
+				# 髮色抬頭
+				<Button name="$parentHairColorHeadBtn">
+					<Size>
+						<AbsDimension x="220" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="150" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="发色">
+								<Color r="255" g="255" b="190" />
+								<Size>
+									<AbsDimension x="220" y="18" />
+								</Size>
+								<Anchors>
+									<Anchor point="left" relativeTo="$parent" relativePoint="left">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+				</Button>
+				# 髮色輸入框底版
+				<Button name="CSFashionHairColorEditBackBtn">
+					<Size>
+						<AbsDimension x="144" y="26" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+							<Offset>
+								<AbsDimension x="54" y="170" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="发色">
+								<Color r="160" g="160" b="160" />
+								<Size>
+									<AbsDimension x="100" y="20" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										<Offset>
+											<AbsDimension x="0" y="4" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+					<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" r="255" g="255" b="190" />
+				</Button>
+				# 髮色減
+                <Button name="CSFashionHairColorReduceButton" inherits="LeftArrowButtonTemplate">
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="CSFashionHairColorEditBackBtn" relativePoint="TopLeft">
+							<Offset>
+								<AbsDimension x="1" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Scripts>
+						<OnClick>Fashion_HairColorReduceClick();</OnClick>
+					</Scripts>						
+				</Button>
+                # 髮色加
+                <Button name="CSFashionHairColorAddButton" inherits="RightArrowButtonTemplate">
+					<Anchors>
+						<Anchor point="TopRight" relativeTo="CSFashionHairColorEditBackBtn" relativePoint="TopRight">
+							<Offset>
+								<AbsDimension x="-1" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Scripts>
+						<OnClick>Fashion_HairColorAddClick();</OnClick>
+					</Scripts>				
+				</Button>  
+					
+				# 臉型抬頭
+				<Button name="$parentFaceStyleHeadBtn">
+					<Size>
+						<AbsDimension x="220" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="200" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="脸型">
+								<Color r="255" g="255" b="190" />
+								<Size>
+									<AbsDimension x="220" y="18" />
+								</Size>
+								<Anchors>
+									<Anchor point="left" relativeTo="$parent" relativePoint="left">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+				</Button>
+				# 臉型框底版
+				<Button name="CSFashionFaceEditBackBtn" >
+					<Size>
+						<AbsDimension x="144" y="26" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parentBackGround" relativePoint="TopLeft">
+							<Offset>
+								<AbsDimension x="54" y="220" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							<FontString name="$parentFont"  fonttype="FZYBlackFont14" justifyH="center" text="脸型">
+								<Color r="160" g="160" b="160" />
+								<Size>
+									<AbsDimension x="100" y="20" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										<Offset>
+											<AbsDimension x="0" y="4" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</FontString>
+						</Layer>
+					</Layers>
+					<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" r="255" g="255" b="190" />
+				</Button>
+				# 臉型減
+                <Button name="CSFashionFaceReduceButton" inherits="LeftArrowButtonTemplate" >
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="CSFashionFaceEditBackBtn" relativePoint="TopLeft">
+							<Offset>
+								<AbsDimension x="1" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Scripts>
+						<OnClick>Fashion_FaceReduceClick();</OnClick>
+					</Scripts>
+				</Button>
+				# 臉型加
+                <Button name="CSFashionFaceAddButton" inherits="RightArrowButtonTemplate" >
+					<Anchors>
+						<Anchor point="TopRight" relativeTo="CSFashionFaceEditBackBtn" relativePoint="TopRight">
+							<Offset>
+								<AbsDimension x="-1" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Scripts>
+						<OnClick>Fashion_FaceAddClick();</OnClick>
+					</Scripts>
+				</Button>
+				# 頭像
+				<Button name="$parentPhotoBtn">
+					<Size>
+						<AbsDimension x="90" y="90" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="83" y="265" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="background">
+							# 頭像身體貼圖 
+							<Texture name="FashionHeadBodyTex">
+								<Size>
+									<AbsDimension x="78" y="78" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										 <Offset>
+											 <AbsDimension x="0" y="0" />
+										 </Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+							# 頭像貼圖
+							<Texture name="FashionHeadTexture" >
+								<Size>
+									<AbsDimension x="78" y="78" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										 <Offset>
+											 <AbsDimension x="0" y="0" />
+										 </Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+							# 頭像發影貼圖
+							<Texture name="FashionHeadHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga" alphaMode="ADD">
+								<Size>
+									<AbsDimension x="78" y="78" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										 <Offset>
+											 <AbsDimension x="0" y="0" />
+										 </Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+							# 頭像頭發貼圖
+							<Texture name="FashionHeadHairTexture" >
+								<Size>
+									<AbsDimension x="78" y="78" />
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center">
+										 <Offset>
+											 <AbsDimension x="0" y="0" />
+										 </Offset>
+									</Anchor>
+								</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="539" y="603" w="90" h="90" />
+					</Button>
+					# 确认修改
+					<Button name="CSFashionChangeButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确认修改">
+						<FontString name="$parentFont" fonttype="FZYBlackFont15" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="13"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="150" y="42" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="370" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSFashionChangeButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 取消
+					<Button name="CSFashionCancelButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="取消">
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="75" y="36" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="28" y="430" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSFashionCancelButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 重置
+					<Button name="CSFashionResetButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="重置">
+						<FontString name="$parentFont" fonttype="FZYBlackFont14" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Size>
+							<AbsDimension x="75" y="36" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="154" y="430" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>CSFashionResetButtonOnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>CSFashionFrame_OnShow();</OnShow>
+					<OnHide>CSFashionFrame_OnHide();</OnHide>
+					<OnUpdate>CSFashionFrame_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Frame>
+</Ui>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\QuestHelperFrame.lua" />
+	
+	## 可接任务界面
+	<Frame name="QuestHelperFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="false" framelevel="500">
+		<Size>
+			<AbsDimension x="216" y="46" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright" >
+				<Offset>
+					<AbsDimension x="-1" y="-63" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\3.dds" x="0" y="197" w="216" h="46">
+					<Size>
+						<AbsDimension x="216" y="46" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentRich1" lineInterval="1" fontStyle="shadow" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="216" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">  
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TaskTraceFrameTaskTraceRich_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="$parentRich2" lineInterval="1" fontStyle="shadow" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="216" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="21" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>QuestHelpFrameRich2_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<Button name="$parentEffect" input_transparent="true">
+				<Size>
+					<AbsDimension x="216" y="46" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="330" y="74"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-40" y="-13"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentHideBtn">
+				<Size>
+					<AbsDimension x="9" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="200" y="15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="993" y="697" w="9" h="18" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="993" y="716" w="9" h="18" />
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="993" y="735" w="9" h="18" />
+				<Scripts>
+					<OnClick>QuestHelperFrameHideBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentShowBtn" hidden="true">
+				<Size>
+					<AbsDimension x="9" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="0" y="15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ui\\TeXiao\\ZhanKaiTeXiao.tga">
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="993" y="640" w="9" h="18" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="993" y="659" w="9" h="18" />
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="993" y="678" w="9" h="18" />
+				<Scripts>
+					<OnClick>QuestHelperFrameShowBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>QuestHelperFrame_OnLoad();</OnLoad>
+			<OnEvent>QuestHelperFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

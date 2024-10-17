@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/CostMoneyConfirmFrame.lua"/>
+	<Frame name="CostMoneyConfirmFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "false" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMessageFont" fonttype="TeenyFZYBlackFont" lineInterval="2" multiLine="true" justifyH="center">
+					<Size>
+						<AbsDimension x="307" y="35"/>
+					</Size>
+					<Color r="255" g="229" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="25" y="46"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			# 确定
+			<Button name="$parentConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>CostMoneyConfirmFrameConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 取消
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>CostMoneyConfirmFrameCancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 勾选框
+			<CheckButton name="$parentHideBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="140" y="100"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" text="不再提示">
+							<Size>
+								<AbsDimension x="80" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="26" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnShow>CostMoneyConfirmFrame_OnShow();</OnShow>
+			<OnHide>CostMoneyConfirmFrame_OnHide();</OnHide>
+			<OnUpdate>CostMoneyConfirmFrame_OnUpdate();</OnUpdate>
+			<OnLoad>CostMoneyConfirmFrame_OnLoad();</OnLoad>
+			<OnEvent>CostMoneyConfirmFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ImportantItemConfirmFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "false" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="180" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentEditBkg" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="130" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="120" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+            </Layer>
+        </Layers>
+		<Frames>
+			<RichText name="$parentMessageFont" fonttype="TeenyFZYBlackFont" lineInterval="2" multiLine="true">
+				<Size>
+					<AbsDimension x="307" y="75"/>
+				</Size>
+				<Color r="255" g="229" b="189"/>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="25" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<EditBox name="$parentEdit" letters="10">
+				<Size>
+					<AbsDimension x="125" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentEditBkg">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="Left" >
+					<Color r="160" g="160" b="90" />
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>ImportantItemConfirmFrameConfirmBtn_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+			# 确定
+			<Button name="$parentConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft" >
+                        <Offset>
+                            <AbsDimension x="60" y="-5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ImportantItemConfirmFrameConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 取消
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright" >
+                        <Offset>
+                            <AbsDimension x="-60" y="-5"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>ImportantItemConfirmFrameCancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ImportantItemConfirmFrame_OnShow();</OnShow>
+			<OnHide>ImportantItemConfirmFrame_OnHide();</OnHide>
+			<OnUpdate>ImportantItemConfirmFrame_OnUpdate();</OnUpdate>
+			<OnLoad>ImportantItemConfirmFrame_OnLoad();</OnLoad>
+			<OnEvent>ImportantItemConfirmFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

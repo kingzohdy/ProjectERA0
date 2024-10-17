@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ArmSkillActiveFrame.lua" />
+	<Frame name="ArmSkillActiveFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="283" y="426" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentLayer1" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="266" y="76" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLayer2" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="266" y="95" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="226" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSignTex" file="uires\\ZhuJieMian\\2.dds" x="0" y="1005" w="58" h="19">
+					<Size>
+						<AbsDimension x="58" y="19" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="113" y="168" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="278" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="389"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="技能属性激活">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset >
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDesc" fonttype="LittleFZYBlackFont" text="激活说明：">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="80" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="15" y="43" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<RichText name="$parentRich" fonttype="TeenyBlackFont" lineInterval ="3" input_transparent="true" >
+				<Size>
+					<AbsDimension x="260" y="70" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="15" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+
+			<Button name="$parentStuffItemBtn">
+				<Size>
+					<AbsDimension x="52" y="52"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="151" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right" fontStyle="border" text="">
+							<Color r="204" g="128" b="51"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-3" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="80" y="80"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-15" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<Texture name="$parentBindTexture" file="uires\\ZhuJieMian\\1.dds" x="42" y="829" w="20" h="17" hidden="true" >
+							<Size>
+								<AbsDimension x="20" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentArmItemFont" fonttype="LittleFZYBlackFont" justifyH="center" text="放入激活石">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset >
+										<AbsDimension x="0" y="-20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="551" y="538" w="64" h="64" />
+				<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<Scripts>
+					<OnClick>ArmSkillActiveFrameItemBtn_OnClick();</OnClick>
+					<OnEnter>ArmSkillActiveFrameItemBtn_OnEnter();</OnEnter>
+					<OnReceiveDrag>ArmSkillActiveFrameItemBtn_OnRecive();</OnReceiveDrag>
+					<OnBeginDrag>ArmSkillActiveFrameItemBtn_OnBeginDrag();</OnBeginDrag>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentArmItemBtn">
+				<Size>
+					<AbsDimension x="52" y="52"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="151" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right" fontStyle="border" text="">
+							<Color r="204" g="128" b="51"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-3" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="80" y="80"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-15" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<Texture name="$parentBindTexture" file="uires\\ZhuJieMian\\1.dds" x="42" y="829" w="20" h="17" hidden="true" >
+							<Size>
+								<AbsDimension x="20" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentArmItemFont" fonttype="LittleFZYBlackFont" justifyH="center" text="放入激活装备">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset >
+										<AbsDimension x="0" y="-20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+					<Layer level="overlay" >
+						<ModelView name="$parentModelView" background="">
+							<Size>
+								<AbsDimension x="180" y="180" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="551" y="538" w="64" h="64" />
+				<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<Scripts>
+					<OnClick>ArmSkillActiveFrameItemBtn_OnClick();</OnClick>
+					<OnEnter>ArmSkillActiveFrameItemBtn_OnEnter();</OnEnter>
+					<OnReceiveDrag>ArmSkillActiveFrameItemBtn_OnRecive();</OnReceiveDrag>
+					<OnBeginDrag>ArmSkillActiveFrameItemBtn_OnBeginDrag();</OnBeginDrag>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentStep">
+				<Size>
+					<AbsDimension x="260" y="90"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="17" y="233" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentNowActiveFont" fonttype="LittleFZYBlackFont" text="本次激活属性：">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="100" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset >
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNowStateFont" fonttype="LittleFZYBlackFont" text="（未激活）">
+							<Color r="255" g="150" b="0" />
+							<Size>
+								<AbsDimension x="60" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset >
+										<AbsDimension x="88" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNowFont" fonttype="LittleFZYBlackFont" text="">
+							<Color r="61" g="109" b="168" />
+							<Size>
+								<AbsDimension x="260" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentNowActiveFont" relativePoint="bottomleft">
+									<Offset >
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNextActiveFont" fonttype="LittleFZYBlackFont" text="下次可激活属性：">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="100" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset >
+										<AbsDimension x="0" y="42" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNextStateFont" fonttype="LittleFZYBlackFont" text="（未激活）">
+							<Color r="160" g="155" b="130" />
+							<Size>
+								<AbsDimension x="60" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset >
+										<AbsDimension x="100" y="42" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNextFont" fonttype="LittleFZYBlackFont" text="">
+							<Color r="160" g="155" b="130" />
+							<Size>
+								<AbsDimension x="260" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentNextActiveFont" relativePoint="bottomleft">
+									<Offset >
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parentNeed">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="104" y="332" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentNeedFont" fonttype="LittleFZYBlackFont" text="需要激活石">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="66" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-70" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFont" justifyH="right" fonttype="LittleFZYBlackFont" text="激活石3个">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="124" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="1" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture  inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			<Button name="$parentCost">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="104" y="357" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentNeedFont" fonttype="LittleFZYBlackFont" text="需要消耗">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="54" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-57" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFont" justifyH="right" fonttype="LittleFZYBlackFont" text="0">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="108" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="1" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentMoneyBtn">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-4" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture  inherits="MoneyTypeTextureTemplate" />
+						<Scripts>
+							<OnEnter>MoneyTex_OnEnter();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+							<OnLoad>this:SetClientUserData(0,3);</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+				<NormalTexture  inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="激活属性">
+				<Size>
+					<AbsDimension x="85" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="99" y="391" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ArmSkillActiveFrameOKBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ArmSkillActiveFrame_OnLoad();</OnLoad>
+			<OnShow>ArmSkillActiveFrame_OnShow();</OnShow>
+			<OnHide>ArmSkillActiveFrame_OnHide();</OnHide>
+			<OnEvent>ArmSkillActiveFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

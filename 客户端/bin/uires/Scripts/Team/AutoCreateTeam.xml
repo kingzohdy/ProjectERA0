@@ -1,0 +1,4165 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Team\AutoCreateTeam.lua"/>
+	# 先创建队伍的请求面板
+	<Frame name="ApplyCreateTeamFirstFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="阿布拉莫奇希望先创建队伍,是否同意？">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+						<FontString name="$parentTimeDownFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="30s后不响应默认同意该完成创建请求">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="17"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>			
+            </Button>
+			#同意邀请按钮
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="接受">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ApplyCreateTeamFirstFrame_AcceptButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 拒绝邀请按钮
+			<Button name="$parentRufuseOneButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ApplyCreateTeamFirstFrame_RufuseOneButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnLoad>ApplyCreateTeamFirstFrame_OnLoad();</OnLoad>
+			<OnEvent>ApplyCreateTeamFirstFrame_OnEvent();</OnEvent>
+			<OnShow>ApplyCreateTeamFirstFrame_OnShow();</OnShow>
+			<OnUpdate>ApplyCreateTeamFirstFrame_OnUpdate();</OnUpdate>
+			<OnHide>ApplyCreateTeamFirstFrame_OnHide();</OnHide>
+		</Scripts>	
+    </Frame>
+
+	#提示为选择副本难度的面板
+	<Frame name="WarnNotSelectDiffFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="请选择你想参加的副本难度">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="15"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>			
+            </Button>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="center" relativeTo="$parent" relativePoint="center" >
+                        <Offset>
+                            <AbsDimension x="0" y="45"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>WarnNotSelectDiffFrame:Hide();</OnClick>
+				</Scripts>
+            </Button> 
+        </Frames>
+ 		<Scripts>
+			<OnShow>WarnNotSelectDiffFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+	
+	# 确定所选择的副本难度或提示选择的必有职业太多
+	<Frame name="ConfirmDifficultyFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			<RichText name="$parent_DescRich" multiLine="false" fonttype="LittleFZYBlackFont" fontStyle="normal" lineInterval="4" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="300" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center" >
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmDifficultyFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmDifficultyFrame:Hide();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnShow>ConfirmDifficultyFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+	
+	# 同时显示确定所选择的副本难度和提示选择的必有职业太多
+	<Frame name="ConfirmDifficultyAndCareerFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			<RichText name="$parent_DescRich" multiLine="false" fonttype="TeenyBlackFont" fontStyle="normal" lineInterval="4" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="300" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmDifficultyAndCareerFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmDifficultyAndCareerFrame:Hide();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnShow>ConfirmDifficultyAndCareerFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+
+	# 提示取消自动组队的可能原因
+	<Frame name="WarnAutoTeamFailFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			<RichText name="$parent_DescRich" multiLine="true" fonttype="LittleFZYBlackFont" fontStyle="normal" lineInterval="4" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="300" y="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="center" relativeTo="$parent" relativePoint="center" >
+                        <Offset>
+                            <AbsDimension x="0" y="45"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>WarnAutoTeamFailFrame:Hide();</OnClick>
+				</Scripts>
+            </Button> 
+        </Frames>
+ 		<Scripts>
+			<OnShow>WarnAutoTeamFailFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+
+	# 副本提示倒计时开始
+	<Frame name="WarnTimeCountDownFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			<RichText name="$parent_DescRich" multiLine="false" fonttype="LittleFZYBlackFont" fontStyle="normal" lineInterval="4" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="300" y="55"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="center" relativeTo="$parent" relativePoint="center" >
+                        <Offset>
+                            <AbsDimension x="0" y="45"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>WarnTimeCountDownFrame:Hide();</OnClick>
+				</Scripts>
+            </Button> 
+        </Frames>
+ 		<Scripts>
+			<OnShow>WarnTimeCountDownFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+	
+	# 确定退出自动组队
+	<Frame name="ConfirmQuitAutoTeamFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="你确定要退出自动组队请求吗？">
+							<Color r="255" g="229" b="189"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="15"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>			
+            </Button>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmQuitAutoTeamFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmQuitAutoTeamFrame:Hide();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnShow>ConfirmQuitAutoTeamFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+
+	# 自动组队队友的信息tips		TOOLTIP
+	<Frame  name="AutoTeamMemberTipsFrame" frameStrata="TOOLTIP"  hidden="true" parent="UIClient">
+		<Size>
+			<!--<AbsDimension x="244" y="245" />-->
+			<AbsDimension x="244" y="182" />
+		</Size>		
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+				# 名字
+				<FontString name="$parentNameFont" fonttype="NormalBlackFont" justifyH="left" text="名字：爱吃西瓜的皮" >
+					<Size>
+						<AbsDimension x="116" y="13"/>
+					</Size>
+					<Color r="91" g="174" b="209"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="93" y="31"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 等级
+				<FontString name="$parentLevelFont" fonttype="NormalBlackFont" justifyH="left" text="等级：99" >
+					<Size>
+						<AbsDimension x="116" y="13"/>
+					</Size>
+					<Color r="91" g="174" b="209"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="93" y="48"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 职业
+				<FontString name="$parentRaceFont" fonttype="NormalBlackFont" justifyH="left" text="职业：牧师" >
+					<Size>
+						<AbsDimension x="116" y="13"/>
+					</Size>
+					<Color r="91" g="174" b="209"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="93" y="69"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 性别
+				<FontString name="$parentSexFont" fonttype="NormalBlackFont" justifyH="left" text="性别：男" >
+					<Size>
+						<AbsDimension x="160" y="13"/>
+					</Size>
+					<Color r="221" g="196" b="159"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="101"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 准备状态
+				<!--<FontString name="$parentReadyStateFont" fonttype="NormalBlackFont" justifyH="left" text="状态：准备" >
+					<Size>
+						<AbsDimension x="160" y="13"/>
+					</Size>
+					<Color r="221" g="196" b="159"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="120"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>-->
+				# 组队要求
+				<FontString name="$parentPreRequestFont" fonttype="NormalBlackFont" justifyH="left" text="组队要求：战士 队长战士 队长战士 队长战士 队长" >
+					<Size>
+						<AbsDimension x="220" y="13"/>
+					</Size>
+					<Color r="221" g="196" b="159"/>
+					<!--<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="137"/>
+							</Offset>
+						</Anchor>
+					</Anchors>-->
+
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="120"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 组队项目
+				<FontString name="$parentContentFont" fonttype="NormalBlackFont" justifyH="left" text="组队项目：战士村 困难战士村 困难战士村 困难战士村 困难" >
+					<Size>
+						<AbsDimension x="220" y="13"/>
+					</Size>
+					<Color r="221" g="196" b="159"/>
+					<!--<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="154"/>
+							</Offset>
+						</Anchor>
+					</Anchors>-->
+					
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="137"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			#头像
+			<Button name="$parentPhotoBtn">
+				<Size>
+					<AbsDimension x="73" y="73"/>
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBodyTex" >
+							<Size>
+								<AbsDimension x="63" y="63" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentFaceTex" >
+							<Size>
+								<AbsDimension x="63" y="63" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga">
+							<Size>
+								<AbsDimension x="63" y="63" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHairTex" >
+							<Size>
+								<AbsDimension x="63" y="63" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="13" y="19" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75" />
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>AutoTeamMemberTipsFrame_OnUpdate();</OnUpdate>
+			<OnShow>AutoTeamMemberTipsFrame_OnShow();</OnShow>
+			<OnHide>AutoTeamMemberTipsFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="CreatingAutoTeamRightMenuFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel="195">
+		<Size>
+			<AbsDimension x="99" y="56" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>		
+		<Frames>
+			<Button name="CreatingAutoTeamRightMenuFrame_RightBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="54" y="16" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="92" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>FriendFrame_RightBtn_OnClick();</OnClick>
+					<OnEnter>FriendFrame_RightBtn_OnEnter();</OnEnter>
+					<OnLeave>FriendFrame_RightBtn_OnLeave();</OnLeave>
+				</Scripts>		
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<DisabledTexture	inherits="TransTextureTemplate" />
+			</Button>
+			<Button name="CreatingAutoTeamRightMenuFrame_RightBtn1" inherits="FriendFrame_RightBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="2" y="7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="CreatingAutoTeamRightMenuFrame_RightBtn2" inherits="FriendFrame_RightBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CreatingAutoTeamRightMenuFrame_RightBtn1" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="CreatingAutoTeamRightMenuFrame_RightBtn3" inherits="FriendFrame_RightBtnTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CreatingAutoTeamRightMenuFrame_RightBtn2" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>CreatingAutoTeamRightMenuFrame_OnShow();</OnShow>
+		</Scripts>		
+	</Frame>
+
+	# 队伍创建中面板
+	<Frame name="CreatingAutoTeamFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="660" y="404"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="队伍创建中">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNotifyFont" fonttype="LittleFZYBlackFont" text="在等待队伍组建期间，如果下副本、下线，加入其他队伍，系统会自动取消自动组队请求。">
+					<Color r="235" g="65" b="65"/>
+					<Size>
+						<AbsDimension x="600" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="14" y="173" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBkgTex" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="645" y="140" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="193" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="655" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="362" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parent_ScrollBackGroundTex" inherits="ScrollBkgCenter">
+					<Size>
+						<AbsDimension x="21" y="136" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="194"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentScrollBkgTexUp" inherits="ScrollBkgUp">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ScrollBackGroundTex">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentScrollBkgTexDown" inherits="ScrollBkgDown">
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent_ScrollBackGroundTex">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEditTex" inherits="ShuRuBackTexTemplate">
+					<Size>
+						<AbsDimension x="619" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="337" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentChannelTex" file="uires\\ZhuJieMian\\1.dds" x="777" y="321" w="31" h="17">
+					<Size>
+						<AbsDimension x="31" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="11" y="339" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentChannelFont" fonttype="TeenyBlackFont" justifyH="center" text="临时">
+					<Color r="255" g="240" b="220" />
+					<Size>
+						<AbsDimension x="31" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentChannelTex" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			# 缩小按钮
+			<Button name="$parent_MinizeBtn">
+				<Size>
+					<AbsDimension x="22" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-12" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="34" w="22" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="759" y="57" w="22" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="80" w="22" h="22" />
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_MinizeBtn_OnClick();</OnClick>
+					<OnEnter>CreatingAutoTeamFrame_MinizeBtn_OnEnter();</OnEnter>
+					<OnLeave>CreatingAutoTeamFrame_MinizeBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>			
+			# 共同项目提示
+			<Button name="$parentCommonCopyBtn">
+				<Size>
+					<AbsDimension x="300" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="380"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="共同项目：盘山道副本" justifyH="left">
+							<Color r="120" g="234" b="50"/>
+							<Size>
+								<AbsDimension x="300" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="CreatingAutoTeamMemberBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="105" y="130" />
+				</Size>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkgTex" inherits="LayerBlackBkgTemplate"/>
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+							<Size>
+								<AbsDimension x="103" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="1" y="23" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentServerNameFont" fonttype="LittleFZYBlackFont" justifyH="center" text="test">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="103" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="6" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNameFont" fonttype="LittleFZYBlackFont" justifyH="center" text="test">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="103" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="30" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentRaceLvFont" fonttype="LittleFZYBlackFont" justifyH="center" text="test">
+							<Color r="255" g="200" b="0"/>
+							<Size>
+								<AbsDimension x="103" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="46" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentCaptionTex" file="uires\\ZhuJieMian\\1.dds" x="173" y="288" w="19" h="12">
+							<Size>
+								<AbsDimension x="19" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="61"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBodyTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male_body.tga">
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="27" y="72" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\5520001.tga">
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="27" y="72" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga" alphaMode="add">
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="27" y="72" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parenthairPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_3.tga">
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="27" y="72" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\2.dds" x="549" y="676" w="51" h="51" >
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="-1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>AutoTeamRaceButton_OnEnter();</OnEnter>
+					<OnLeave>AutoTeamRaceButton_OnLeave();</OnLeave>
+					<OnClick>AutoTeamRaceButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentMemberBtn1" inherits="CreatingAutoTeamMemberBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="8" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberBtn2" inherits="CreatingAutoTeamMemberBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="116" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberBtn3" inherits="CreatingAutoTeamMemberBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="224" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberBtn4" inherits="CreatingAutoTeamMemberBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="332" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberBtn5" inherits="CreatingAutoTeamMemberBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="440" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberBtn6" inherits="CreatingAutoTeamMemberBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="548" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 准备提示抬头
+			<Button name="$parentReadyHeadTitleBtn" hidden="true">
+				<Size>
+					<AbsDimension x="300" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="120"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFirstTitleFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="同意时间进度条，超时将默认同意" justifyH="left">
+							<Color r="255" g="229" b="189"/>
+							<Size>
+								<AbsDimension x="280" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+			# 进度条
+			<Button name="$parentProcessBtn" hidden="true">
+				<Size>
+					<AbsDimension x="444" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="19" y="140"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" inherits="GreenBarTexTemplate" >
+							<Size>
+								<AbsDimension x="440" y="10"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture inherits="BarBackTexTemplate" />
+			</Button>
+			# 完成创建
+			<Button name="$parent_FinishCreatingBtn" inherits="GongYongAnNiuB1Template" text="完成创建">
+				<Size>
+					<AbsDimension x="100" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="452" y="366" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_FinishCreatingBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 同意
+			<Button name="$parent_AcceptBtn" inherits="GongYongAnNiuB1Template" text="同意" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="452" y="366" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_AcceptBtn_OnClick();</OnClick>
+					<OnEnter>CreatingAutoTeamFrame_AcceptBtn_OnEnter();</OnEnter>
+					<OnLeave>CreatingAutoTeamFrame_AcceptBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 拒绝
+			<Button name="$parent_RefuseBtn"  inherits="GongYongAnNiuB1Template" text="取消" >
+				<Size>
+					<AbsDimension x="100" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="553" y="366" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_RefuseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<RichText name="$parentChatRich" lineInterval ="2" multiLine="true" fonttype="LittleFZYBlackFont" input_transparent="true" >
+				<Size>
+					<AbsDimension x="600" y="135" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="32" y="196" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<EditBox name="$parentInputEdit" letters="128" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="500" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="47" y="340" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont14" />
+				<Scripts>
+					<OnEnterPressed>CreatingAutoTeamFrame_SendMessageBtn_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			<Button name="$parent_SendMessageBtn">
+				<Size>
+					<AbsDimension x="19" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="606" y="338"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="117" y="388" w="19" h="19" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="137" y="388" w="19" h="19" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="157" y="388" w="19" h="19" />
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_SendMessageBtn_OnClick();</OnClick>
+					<OnEnter>ChatInsertFrame_SendMessageBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parent_SetTextColorBtn" hidden="true">
+				<Size>
+					<AbsDimension x="19" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="587" y="338"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="117" y="408" w="19" h="19" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="137" y="408" w="19" h="19" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="157" y="408" w="19" h="19" />
+				<Scripts>
+					<OnEnter>ChatInsertFrame_SetTextColorBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parent_FaceBtn" inherits="TeYouAnNiuBiaoQingTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="587" y="338"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_FaceBtn_OnClick();</OnClick>
+					<OnEnter>CreatingAutoTeamFrame_FaceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollFirstBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ScrollBackGroundTex">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollLastBtnTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent_ScrollBackGroundTex">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CreatingAutoTeamFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="100" valueStep="1" defaultValue="0">	
+				<Size>
+					<AbsDimension x="16" y="98" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>CreatingAutoTeamFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnLoad>CreatingAutoTeamFrame_OnLoad();</OnLoad>
+			<OnEvent>CreatingAutoTeamFrame_OnEvent();</OnEvent>
+			<OnHide>CreatingAutoTeamFrame_OnHide();</OnHide>
+			<OnShow>CreatingAutoTeamFrame_OnShow();</OnShow>
+			<!--<OnUpdate>CreatingAutoTeamFrame_OnUpdate();</OnUpdate> -->
+		</Scripts>	
+	</Frame>
+		<Frame name="CreatingAutoTeamFaceFrame" hidden="true" input_transparent="false" frameStrata="DIALOG" movable="false"  framelevel="600" >
+		<Size>
+			<AbsDimension x="291" y="175" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="$parentBackGround" file="uires\ZhuJieMian\LiaoTian\LiaoTianMianBan\BiaoQingMianBan.tga">				
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>		
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentShowFaceRich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" input_transparent="false">
+				<Size>
+					<AbsDimension x="291" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="7" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CreatingAutoTeamFaceFrameShowFaceRich_OnClick();</OnClick>	 
+					<OnEnter>CreatingAutoTeamFaceFrameShowFaceRich_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnLoad>CreatingAutoTeamFaceFrame_OnLoad();</OnLoad>
+			<OnShow>CreatingAutoTeamFaceFrame_OnShow();</OnShow>
+			<OnUpdate>CreatingAutoTeamFaceFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	# 队员信息
+	<Button name="AutoTeamMemberInfoButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="227" y="15"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<FontString name="$parentNameFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="名字名字名字名字名字名字名字名字名字名字名字名字">
+					<Color r="147" g="130" b="89"/>
+					<Size>
+						<AbsDimension x="122" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRaceFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="职业职业职业职业职业职业职业职业职业职业职业职业职业职业职业职业">
+					<Color r="147" g="130" b="89"/>
+					<Size>
+						<AbsDimension x="61" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentNameFont" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLevelFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="等级等级等级等级等级等级等级等级等级等级等级等级">
+					<Color r="147" g="130" b="89"/>
+					<Size>
+						<AbsDimension x="40" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentRaceFont" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	# 副本队伍创建成功的提示   此为  任务  而弹出
+	<Frame name="SuccessCreatTaskAutoTeamFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="324" y="362"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="-168" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>SuccessCreatTaskAutoTeamFrame_CloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="318" y="328"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 成员描述栏底版
+			<Button name="$parentMemberInfoBackGroundButton">
+				<Size>
+					<AbsDimension x="312" y="230"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="7" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			# 恭喜队伍创建成功抬头
+			<Button name="$parentSuccessCreateTeamTitleBtn">
+				<Size>
+					<AbsDimension x="200" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-94"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="恭喜，队伍组建成功！" justifyH="center">
+							<Color r="120" g="234" b="50"/>
+							<Size>
+								<AbsDimension x="180" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 成员信息抬头
+			<Button name="$parentMemberInfoHeadBtn">
+				<Size>
+					<AbsDimension x="80" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="23" y="41"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						# TODO: 没给RGB值
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="成员有：" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="78" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentMemberInfoBtn1" inherits="AutoTeamMemberInfoButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="66" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn2" inherits="AutoTeamMemberInfoButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="87" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn3" inherits="AutoTeamMemberInfoButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="108" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn4" inherits="AutoTeamMemberInfoButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn5" inherits="AutoTeamMemberInfoButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="150" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn6" inherits="AutoTeamMemberInfoButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="171" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 队长图标
+			<Button name="$parent_CaptainBtn">
+				<Size>
+					<AbsDimension x="14" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topleft" relativeTo="$parentMemberInfoBtn1">
+						<Offset>
+							<AbsDimension x="-11" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="241" y="388" w="14" h="18" />
+			</Button>
+			# 职位描述
+			<Button name="$parentSelfPositionBtn">
+				<Size>
+					<AbsDimension x="250" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="23" y="200"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="你是小队队长" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="250" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# NPC描述底板
+			<Button name="$parentNPCInfoBackGroundButton">
+				<Size>
+					<AbsDimension x="312" y="94"/>
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />			
+			</Button>
+			<RichText name="$parent_DescRich" multiLine="true" fonttype="LittleFZYBlackFont" fontStyle="normal" lineInterval="4" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="287" y="40"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNPCInfoBackGroundButton" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="16" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SuccessCreatTaskAutoTeamFrame_OnClick();</OnClick>	
+				</Scripts>
+			</RichText>
+			# 前往参加按钮
+			<Button name="$parent_JoinBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="知道了，我马上去集合">
+				<Size>
+					<AbsDimension x="172" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentNPCInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="68" y="59" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SuccessCreatTaskAutoTeamFrame_JoinBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>	
+		<Scripts>
+			<OnLoad>SuccessCreatTaskAutoTeamFrame_OnLoad();</OnLoad>
+			<OnEvent>SuccessCreatTaskAutoTeamFrame_OnEvent();</OnEvent>
+			<OnHide>SuccessCreatTaskAutoTeamFrame_OnHide();</OnHide>
+			<OnShow>SuccessCreatTaskAutoTeamFrame_OnShow();</OnShow>
+		</Scripts>	
+	</Frame>
+
+	# 活动队伍创建成功的提示  此为  活动  而弹出
+	<Frame name="SuccessCreatActiveAutoTeamFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="324" y="362"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>SuccessCreatActiveAutoTeamFrame_CloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="318" y="328"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			# 成员描述栏底版
+			<Button name="$parentMemberInfoBackGroundButton">
+				<Size>
+					<AbsDimension x="312" y="230"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="7" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			# 恭喜队伍创建成功抬头
+			<Button name="$parentSuccessCreateTeamTitleBtn">
+				<Size>
+					<AbsDimension x="200" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-94"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="恭喜，队伍组建成功！" justifyH="center">
+							<Color r="120" g="234" b="50"/>
+							<Size>
+								<AbsDimension x="180" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 成员信息抬头
+			<Button name="$parentMemberInfoHeadBtn">
+				<Size>
+					<AbsDimension x="80" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="23" y="41"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						# TODO: 没给RGB值
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="成员有：" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="78" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentMemberInfoBtn1" inherits="AutoTeamMemberInfoButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="66" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn2" inherits="AutoTeamMemberInfoButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="87" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn3" inherits="AutoTeamMemberInfoButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="108" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn4" inherits="AutoTeamMemberInfoButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn5" inherits="AutoTeamMemberInfoButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="150" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMemberInfoBtn6" inherits="AutoTeamMemberInfoButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMemberInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="48" y="171" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 队长图标
+			<Button name="$parent_CaptainBtn">
+				<Size>
+					<AbsDimension x="12" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topleft" relativeTo="$parentMemberInfoBtn1">
+						<Offset>
+							<AbsDimension x="-11" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="241" y="388" w="14" h="18" />
+			</Button>
+			# 职位描述
+			<Button name="$parentSelfPositionBtn">
+				<Size>
+					<AbsDimension x="250" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="23" y="200"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="你是小队队长" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="250" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# NPC描述底板
+			<Button name="$parentSecondCInfoBackGroundButton">
+				<Size>
+					<AbsDimension x="312" y="94"/>
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentMemberInfoBackGroundButton" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			<Button name="$parentDescBtn">
+				<Size>
+					<AbsDimension x="265" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentSecondCInfoBackGroundButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="20" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentTimeFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="120" justifyH="left" hidden="true">
+							<Color r="255" g="98" b="21"/>
+							<Size>
+								<AbsDimension x="24" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDescFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="" justifyH="left">
+							<Color r="255" g="184" b="0"/>
+							<Size>
+								<AbsDimension x="240" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTimeFont" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCopyInfoFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="~" justifyH="left">
+							<Color r="255" g="184" b="0"/>
+							<Size>
+								<AbsDimension x="265" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="16" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+			
+			# 退出队列按钮
+			<Button name="$parent_ExitAutoTeamBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="退出队列">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondCInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="25" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SuccessCreatTaskAutoTeamFrame_ExitAutoTeamBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 马上传送按钮
+			<Button name="$parent_NowTransBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="马上传送">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parentSecondCInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="0" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SuccessCreatTaskAutoTeamFrame_NowTransBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 一会再去按钮
+			<Button name="$parent_WaitMinutesBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="一会再去">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parentSecondCInfoBackGroundButton">
+						<Offset>
+							<AbsDimension x="-25" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SuccessCreatTaskAutoTeamFrame_WaitMinutesBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>	
+		<Scripts>
+			<OnLoad>SuccessCreatActiveAutoTeamFrame_OnLoad();</OnLoad>
+			<OnEvent>SuccessCreatActiveAutoTeamFrame_OnEvent();</OnEvent>
+			<OnHide>SuccessCreatActiveAutoTeamFrame_OnHide();</OnHide>
+			<OnShow>SuccessCreatActiveAutoTeamFrame_OnShow();</OnShow>
+			<OnUpdate>SuccessCreatActiveAutoTeamFrame_OnUpdate();</OnUpdate>
+		</Scripts>	
+	</Frame>
+
+	# 自动组队
+	<Frame name="SearchTeamFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="486" y="414"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="自动组队">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />				
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="480" y="380"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Button>
+			# 成员信息抬头
+			<Button name="$parentRaceRequestHeadBtn">
+				<Size>
+					<AbsDimension x="200" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="25" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="请选择你要求队伍中必有职业：" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="190" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentRaceRequestBackGroundButton">
+				<Size>
+					<AbsDimension x="468" y="78"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="6" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			# 战士
+			<Button name="SearchTeamFrame_AutoTeamRaceButton1" id="1">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentRaceRequestBackGroundButton">
+						<Offset>
+							<AbsDimension x="32" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\zhanshi-1.tga" />
+				<HighlightTexture	file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\zhanshi-2.tga" />
+				<PushedTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\zhanshi-3.tga" />
+			</Button>
+			<CheckButton name="SearchTeamFrame_AutoTeamRaceChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceButton1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-12" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="SearchTeamFrame_RaceDescBtn1" id="1" >
+				<Size>
+					<AbsDimension x="38" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceChkBtn1" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="战士系" justifyH="left">
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="38" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>			
+			# 法师
+			<Button name="SearchTeamFrame_AutoTeamRaceButton2" id="2">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentRaceRequestBackGroundButton">
+						<Offset>
+							<AbsDimension x="106" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\fashi-1.tga" />
+				<HighlightTexture	file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\fashi-2.tga" />
+				<PushedTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\fashi-3.tga" />
+			</Button>
+			<CheckButton name="SearchTeamFrame_AutoTeamRaceChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceButton2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-12" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="SearchTeamFrame_RaceDescBtn2" id="2" >
+				<Size>
+					<AbsDimension x="38" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceChkBtn2" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="法师系" justifyH="left">
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="38" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>			
+			# 枪手
+			<Button name="SearchTeamFrame_AutoTeamRaceButton3" id="3">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentRaceRequestBackGroundButton">
+						<Offset>
+							<AbsDimension x="180" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\qiangshou-1.tga" />
+				<HighlightTexture	file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\qiangshou-2.tga" />
+				<PushedTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\qiangshou-3.tga" />
+			</Button>
+			<CheckButton name="SearchTeamFrame_AutoTeamRaceChkBtn3" inherits="CheckBtnTemplate" id="3">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceButton3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-12" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="SearchTeamFrame_RaceDescBtn3" id="3" >
+				<Size>
+					<AbsDimension x="38" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceChkBtn3" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="枪手系" justifyH="left">
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="38" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>			
+			# 祭师
+			<Button name="SearchTeamFrame_AutoTeamRaceButton4" id="4">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentRaceRequestBackGroundButton">
+						<Offset>
+							<AbsDimension x="254" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\jisi-1.tga" />
+				<HighlightTexture	file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\jisi-2.tga" />
+				<PushedTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\jisi-3.tga" />
+			</Button>
+			<CheckButton name="SearchTeamFrame_AutoTeamRaceChkBtn4" inherits="CheckBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceButton4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-12" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="SearchTeamFrame_RaceDescBtn4" id="4" >
+				<Size>
+					<AbsDimension x="38" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceChkBtn4" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="祭司系" justifyH="left">
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="38" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_AutoTeamRaceBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_AutoTeamRaceBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>			
+			# 我想当队长
+			<Button name="SearchTeamFrame_AutoTeamRaceButton5" id="5">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentRaceRequestBackGroundButton">
+						<Offset>
+							<AbsDimension x="377" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\duizhang-1.tga" />
+				<HighlightTexture	file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\duizhang-2.tga" />
+				<PushedTexture		file="uires\\TuPianLei\\ZiDongZuDuiAnNiuTuBiao\\duizhang-3.tga" />
+			</Button>
+			<CheckButton name="SearchTeamFrame_AutoTeamRaceChkBtn5" inherits="CheckBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceButton5" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-28" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="SearchTeamFrame_RaceDescBtn5" id="5" >
+				<Size>
+					<AbsDimension x="70" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFrame_AutoTeamRaceChkBtn5" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="我想当队长" justifyH="left">
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="68" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_AutoTeamRaceBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 选择要参加的副本信息
+			<Button name="$parentCopyRequestHeadBtn">
+				<Size>
+					<AbsDimension x="300" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="25" y="117"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="请选择你想要参加的副本及副本难度：" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="290" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentCopyRequestBackGroundButton">
+				<Size>
+					<AbsDimension x="468" y="218"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="6" y="138" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			<Button name="$parentCopyRequestSecondBackGroundButton">
+				<Size>
+					<AbsDimension x="468" y="194"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="6" y="162" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>			
+			# 全选
+			<CheckButton name="SearchTeamFrame_SelectAllChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAllChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parent_SelectAllHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="41" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="全选" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="25" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAllHeadBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 简单
+			<CheckButton name="SearchTeamFrame_SelectAllSimpleChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAllSimpleChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parent_SelectAll_SimpleBtn">
+				<Size>
+					<AbsDimension x="25" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="181" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="简单" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="25" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAll_SimpleBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 普通
+			<CheckButton name="SearchTeamFrame_SelectAllNormalChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAllNormalChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parent_SelectAll_NormalBtn">
+				<Size>
+					<AbsDimension x="25" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="252" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="普通" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="25" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAll_NormalBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 困难
+			<CheckButton name="SearchTeamFrame_SelectAllHardChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAllHardChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parent_SelectAll_HardBtn">
+				<Size>
+					<AbsDimension x="25" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="326" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="困难" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="25" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAll_HardBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 专家
+			<CheckButton name="SearchTeamFrame_SelectAllProfessionalChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAllProfessionalChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parent_SelectAll_ProfessionalBtn">
+				<Size>
+					<AbsDimension x="25" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="398" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="专家" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="25" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SearchTeamFrame_SelectAll_ProfessionalBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 副本信息条
+			<Button name="SearchTeamFram_CopyInfoBtnTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="444" y="24" />
+				</Size>			
+				<Layers>
+					<Layer level = "BACKGROUND">
+						<FontString name="$parentNameFont" fonttype="TeenyFZYBlackFont" justifyH="left" lineInterval="3" text="副本名字副本名字副本名字副本名字副本名字副本名字副本名字副本名字副本名字" >	
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="175" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="41" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</FontString>
+						<FontString name="$parentSimpleFont" fonttype="TeenyFZYBlackFont" justifyH="left" lineInterval="3" text="简单" >
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="30" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="181" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNormalFont" fonttype="TeenyFZYBlackFont" justifyH="left" lineInterval="3" text="普通" >	
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="30" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="252" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentHardFont" fonttype="TeenyFZYBlackFont" justifyH="left" lineInterval="3" text="困难" >		
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="30" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="326" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentProfessionalFont" fonttype="TeenyFZYBlackFont" justifyH="left" lineInterval="3" text="专家" >		
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="30" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="398" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentEventFont" fonttype="TeenyFZYBlackFont" justifyH="left" lineInterval="3" text="活动副本" >		
+							<Color r="0" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="70" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="252" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLvFont" fonttype="TeenyFZYBlackFont" justifyH="left" lineInterval="3" text="45级副本" >		
+							<Color r="255" g="0" b="0"/>
+							<Size>
+								<AbsDimension x="70" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="252" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentPartionTex" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+							<Size>
+								<AbsDimension x="444" y="2" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<DisabledTexture	inherits="TransTextureTemplate" />
+				<Scripts>
+					<OnClick>SearchTeamFram_CopyInfoBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 选中某副本所有难度
+			<Button name="SearchTeamFram_CopyInfoBtn1" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="1">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCopyRequestSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn1" inherits="CheckBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SearchTeamFram_CopyInfoBtn2" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="2">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn2" inherits="CheckBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SearchTeamFram_CopyInfoBtn3" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="3">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn3" inherits="CheckBtnTemplate" id="3">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn3" inherits="CheckBtnTemplate" id="3">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn3" inherits="CheckBtnTemplate" id="3" >
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn3" inherits="CheckBtnTemplate" id="3">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn3" inherits="CheckBtnTemplate" id="3">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SearchTeamFram_CopyInfoBtn4" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="4">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn4" inherits="CheckBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn4" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn4" inherits="CheckBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn4" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn4" inherits="CheckBtnTemplate" id="4" >
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn4" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn4" inherits="CheckBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn4" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn4" inherits="CheckBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn4" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SearchTeamFram_CopyInfoBtn5" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="5">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn5" inherits="CheckBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn5" inherits="CheckBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn5" inherits="CheckBtnTemplate" id="5" >
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn5" inherits="CheckBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn5" inherits="CheckBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SearchTeamFram_CopyInfoBtn6" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="6">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn5" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn6" inherits="CheckBtnTemplate" id="6">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn6" inherits="CheckBtnTemplate" id="6">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn6" inherits="CheckBtnTemplate" id="6" >
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn6" inherits="CheckBtnTemplate" id="6">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn6" inherits="CheckBtnTemplate" id="6">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SearchTeamFram_CopyInfoBtn7" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="7">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn6" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn7" inherits="CheckBtnTemplate" id="7">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn7" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn7" inherits="CheckBtnTemplate" id="7">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn7" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn7" inherits="CheckBtnTemplate" id="7" >
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn7" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn7" inherits="CheckBtnTemplate" id="7">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn7" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn7" inherits="CheckBtnTemplate" id="7">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn7" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SearchTeamFram_CopyInfoBtn8" inherits="SearchTeamFram_CopyInfoBtnTemplate" id="8">	
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn7" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<CheckButton name="SearchTeamFrame_CopyInfoAllDifficultyChkBtn8" inherits="CheckBtnTemplate" id="8">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn8" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoAllDifficultyChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoSimpleChkBtn8" inherits="CheckBtnTemplate" id="8">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn8" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="156" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoSimpleChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoNormalChkBtn8" inherits="CheckBtnTemplate" id="8" >
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn8" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="227" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoNormalChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoHardChkBtn8" inherits="CheckBtnTemplate" id="8">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn8" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="298" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoHardChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="SearchTeamFrame_CopyInfoProfessionalChkBtn8" inherits="CheckBtnTemplate" id="8">
+				<Size>
+					<AbsDimension x="30" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SearchTeamFram_CopyInfoBtn8" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="372" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_CopyInfoProfessionalChkBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFrame_CopyInfoChkBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFrame_CopyInfoChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+			
+			# 滚动条背景
+			<Button name="$parent_SliderBack">
+				<Size>
+					<AbsDimension x="22" y="194" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentCopyRequestSecondBackGroundButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+							<Size>
+								<AbsDimension x="22" y="194" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 向上滚动按钮
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_SliderBack" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-2" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 向下滚动按钮
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate">				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ScrollUpBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="173"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="26" y="150" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>SearchTeamFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 战场报名
+			<Button name="$parent_BattleSignUpBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="战场报名">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="19" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFram_BattleSignUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 活动助手
+			<Button name="$parent_ActivityAssistBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="活动助手">
+				<Size>
+					<AbsDimension x="90" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFram_ActivityAssistBtn_OnClick();</OnClick>
+					<OnEnter>SearchTeamFram_ActivityAssistBtn_OnEnter();</OnEnter>
+					<OnLeave>SearchTeamFram_ActivityAssistBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 寻求组队
+			<Button name="$parent_SearchTeamBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="寻求组队">
+				<Size>
+					<AbsDimension x="71" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="398" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SearchTeamFram_SearchTeamBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		 <Scripts>
+			<OnLoad>SearchTeamFrame_OnLoad();</OnLoad>
+			<OnEvent>SearchTeamFram_OnEvent();</OnEvent>
+			<OnShow>SearchTeamFram_OnShow();</OnShow>
+        </Scripts>
+	</Frame>
+
+	# 进入副本倒计时
+	# 先创建队伍的请求面板
+	<Frame name="AutoTeamEnterPworldTimeDownFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="阿布拉莫奇希望先创建队伍,是否同意？">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="20"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>AutoTeamEnterPworldTimeDownFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>AutoTeamEnterPworldTimeDownFrame_CancelButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnLoad>AutoTeamEnterPworldTimeDownFrame_OnLoad();</OnLoad>
+			<OnEvent>AutoTeamEnterPworldTimeDownFrame_OnEvent();</OnEvent>
+			<OnUpdate>AutoTeamEnterPworldTimeDownFrame_OnUpdate();</OnUpdate>
+			<OnHide>AutoTeamEnterPworldTimeDownFrame_OnHide();</OnHide>
+			<OnShow>AutoTeamEnterPworldTimeDownFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+</Ui>

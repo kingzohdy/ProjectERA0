@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\SkillLevelUpFrame.lua"/>
+	<Frame name="SkillLevelUpFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="10">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			 <Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+				<Offset>
+					<AbsDimension x="0" y="-100" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="DIALOG">
+				<Texture name="SkillLevelUpFramebackground" inherits="MainBkgTemplate" />                
+				##界面标题
+				<FontString name="$parentFrameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="获得技能" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>  
+		</Layers>	
+		<Scripts>
+			<OnShow>SkillLevelUpFrame_OnShow();</OnShow>
+			<OnHide>SkillLevelUpFrame_OnHide();</OnHide>
+			<OnLoad>SkillLevelUpFrame_OnLoad();</OnLoad>
+			<OnUpdate>SkillLevelUpFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />			
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="349" y="90"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="4" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="DIALOG">
+						<FontString name="SkillLevelUpText" fonttype="TeenyFZYBlackFont" justifyH="center" lineInterval="2" text="">
+							<Color r="255" g="229" b="189"/>
+							<Size>
+								<AbsDimension x="357" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="SkillLevelUpFrame">
+									<Offset>
+										<AbsDimension x="0" y="36"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</FontString>
+						<FontString name="SkillLevelUpGetText" fonttype="TeenyBlackFont" justifyH="center" lineInterval="2" text="你将获得以下技能（可直接拖至快捷栏）"> 
+							<Color r="147" g="130" b="89"/>
+							<Size>
+								<AbsDimension x="357" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="SkillLevelUpText">
+									<Offset>
+										<AbsDimension x="0" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</FontString>
+						<FontString name="SkillLevelUpDescText" fonttype="TeenyBlackFont" justifyH="center" lineInterval="2" text="快捷键“K”键打开技能面板查看"> 
+							<Color r="27" g="192" b="43"/>
+							<Size>
+								<AbsDimension x="357" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="SkillLevelUpText">
+									<Offset>
+										<AbsDimension x="0" y="19"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</FontString>						
+					</Layer>  
+				</Layers>	
+			</Button>
+			<Button name="SkillLevelUpButtonTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBoxTex" file="uires\\ZhuJieMian\\1.dds" x="749" y="472" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSkillIcon"  file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="34" y="34"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" />
+				<Scripts>
+					<OnEnter>SkillLevelUpButton_OnEnter();</OnEnter>
+					<OnLeave>SpellTipsFrame:Hide();</OnLeave>
+					<OnBeginDrag>SkillLevelUpButton_Drag();</OnBeginDrag>
+				</Scripts>
+			</Button>
+
+			<Button name="SkillLevelUpButton1" inherits="SkillLevelUpButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="57" y="-12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>					
+			<Button name="SkillLevelUpButton2" inherits="SkillLevelUpButtonTemplate"  id="2">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="SkillLevelUpButton1">
+						<Offset>
+							<AbsDimension x="66" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SkillLevelUpButton3" inherits="SkillLevelUpButtonTemplate"  id="3">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="SkillLevelUpButton2">
+						<Offset>
+							<AbsDimension x="66" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SkillLevelUpButton4" inherits="SkillLevelUpButtonTemplate"  id="4">
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="SkillLevelUpButton3">
+						<Offset>
+							<AbsDimension x="66" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>	
+			
+			# 新手指引提示
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="57" y="57" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SkillLevelUpButton1">
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="57" y="57" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true" hidden="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" hidden="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="NewSkillEffectToFrame1" parent="UIClient" frameStrata="TOOLTIP" movable="true" hidden="true" framelevel="419" input_transparent="true">
+		<Size>
+			<AbsDimension x="255" y="255" />
+		</Size>
+		<Anchors> 
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="122" y="249" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<ModelView name="$parentFairyModel" >
+					<Size>
+						<AbsDimension x="55" y="55"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>this:setUpdateTime(0)</OnLoad>
+			<OnShow>NewSkillEffectToFrame_onShow();</OnShow>
+			<OnUpdate>NewSkillEffectToFrame_onUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="NewSkillEffectToFrame2" parent="UIClient" frameStrata="TOOLTIP" movable="true" hidden="true" framelevel="419" input_transparent="true">
+		<Size>
+			<AbsDimension x="255" y="255" />
+		</Size>
+		<Anchors> 
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="122" y="249" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<ModelView name="$parentFairyModel" >
+					<Size>
+						<AbsDimension x="55" y="55"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>this:setUpdateTime(0)</OnLoad>
+			<OnShow>NewSkillEffectToFrame_onShow();</OnShow>
+			<OnUpdate>NewSkillEffectToFrame_onUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="NewSkillEffectToFrame3" parent="UIClient" frameStrata="TOOLTIP" movable="true" hidden="true" framelevel="419" input_transparent="true">
+		<Size>
+			<AbsDimension x="255" y="255" />
+		</Size>
+		<Anchors> 
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="122" y="249" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<ModelView name="$parentFairyModel" >
+					<Size>
+						<AbsDimension x="55" y="55"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>this:setUpdateTime(0)</OnLoad>
+			<OnShow>NewSkillEffectToFrame_onShow();</OnShow>
+			<OnUpdate>NewSkillEffectToFrame_onUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="NewSkillEffectToFrame4" parent="UIClient" frameStrata="TOOLTIP" movable="true" hidden="true" framelevel="419" input_transparent="true">
+		<Size>
+			<AbsDimension x="255" y="255" />
+		</Size>
+		<Anchors> 
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="122" y="249" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<ModelView name="$parentFairyModel" >
+					<Size>
+						<AbsDimension x="55" y="55"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</ModelView>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>this:setUpdateTime(0)</OnLoad>
+			<OnShow>NewSkillEffectToFrame_onShow();</OnShow>
+			<OnUpdate>NewSkillEffectToFrame_onUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<UI>
+	<Script file="uires/MapServerSelect.lua" />
+	# 选择按钮模板
+	<Button name="MapServerSelectButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="175" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentSelect" inherits="PushedTextureTemplate" hidden="true">
+					<Size>
+						 <RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<Texture name="$parentHighlight" inherits="HighlightTextureTemplate" hidden="true">
+					<Size>
+						 <RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentText1" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="120" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText2" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="45" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="120" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+		<Scripts>
+			<OnEnter>MapServerSelectButton_OnEnter()</OnEnter>
+			<OnClick>MapServerSelectButton_OnClick()</OnClick>
+			<OnLeave>MapServerSelectButton_OnLeave()</OnLeave>
+			<OnDoubleClick>MapServerSelectButton_OnDBClick()</OnDoubleClick>
+		</Scripts>
+	</Button>
+	
+	<Frame name="MapServerSelectFrame" parent="UIClient" movable="true" frameStrata="DIALOG" hidden="true">
+		<Size>
+			<AbsDimension x="191" y="281"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentTexture" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="切换线路">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="186" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			
+			# 底板
+			<Button name="$parentLayer">
+				<Size>
+					<AbsDimension x="185" y="247"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					# 选择
+					<Button name="$parentSelect" inherits="GongYongAnNiuC1ButtonTemplate" text="选择">
+						<Size>
+							<AbsDimension x="67" y="27"/>
+						</Size>
+		                <Anchors>
+		                    <Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+		                        <Offset>
+		                            <AbsDimension x="0" y="-2"/>
+		                        </Offset>
+		                    </Anchor>
+		                </Anchors>
+						<Scripts>
+							<OnClick>MapServerSelectFrame_OnSelect()</OnClick>
+						</Scripts>
+					</Button>
+					# 中间底板
+					<Button name="$parentLayer">
+						<Size>
+							<AbsDimension x="175" y="213"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentTitle1" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="线路">
+									<Color r="255" g="254" b="189"/>
+									<Size>
+										<AbsDimension x="120" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentTitle2" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="状态">
+									<Color r="255" g="254" b="189"/>
+									<Size>
+										<AbsDimension x="45" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="120" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								##分隔线1
+								<Texture name="$parent_Line1" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="25" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								##分隔线2
+								<Texture name="$parent_Line2" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="50" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								##分隔线3
+								<Texture name="$parent_Line3" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="75" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								##分隔线4
+								<Texture name="$parent_Line4" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="100" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								##分隔线5
+								<Texture name="$parent_Line5" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="125" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								##分隔线6
+								<Texture name="$parent_Line6" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="150" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								##分隔线7
+								<Texture name="$parent_Line7" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="175" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								##分隔线8
+								<Texture name="$parent_Line8" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="171" y="2" />
+									</Size>
+									<Anchors> 
+										<Anchor point="left" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="2" y="200" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="MapServerSelectFrameClause1" inherits="MapServerSelectButtonTemplate" id="1">
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="25" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="MapServerSelectFrameClause2" inherits="MapServerSelectButtonTemplate" id="2">
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="50" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="MapServerSelectFrameClause3" inherits="MapServerSelectButtonTemplate" id="3">
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="75" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="MapServerSelectFrameClause4" inherits="MapServerSelectButtonTemplate" id="4">
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="100" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="MapServerSelectFrameClause5" inherits="MapServerSelectButtonTemplate" id="5">
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="125" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="MapServerSelectFrameClause6" inherits="MapServerSelectButtonTemplate" id="6">
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="150" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="MapServerSelectFrameClause7" inherits="MapServerSelectButtonTemplate" id="7">
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="175" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+						</Frames>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>MapServerSelectFrame_OnLoad()</OnLoad>
+			<OnShow>MapServerSelectFrame_OnShow()</OnShow>
+			<OnEvent>MapServerSelectFrame_OnEvent()</OnEvent>
+		</Scripts>
+	</Frame>	
+</UI>

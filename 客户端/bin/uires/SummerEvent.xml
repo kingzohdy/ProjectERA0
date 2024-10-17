@@ -1,0 +1,1665 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\SummerEvent.lua" />
+	<Frame name="HangHaiFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="398" y="362" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="航海大亨名单" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />			
+
+			##成绩列表数据模板
+			<Button name="HangHaiRankInfoTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="381" y="22" />
+				</Size>
+				<Layers>
+					<Layer level = "overlay">
+						<FontString name="$parentSortIndexFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="20">
+							<Size>
+								<AbsDimension x="40" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="2" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNameFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="无忧天地">
+							<Size>
+								<AbsDimension x="152" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentSortIndexFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLvFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="67">
+							<Size>
+								<AbsDimension x="40" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCareerFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="征服者">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="58" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTimeFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="3分5秒">
+							<Size>
+								<AbsDimension x="90" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentCareerFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<PushedTexture		inherits="PushedTextureTemplate" />				
+			</Button>
+
+			<Button name="$parent_ListBackBtn">
+				<Size>
+					<AbsDimension x="383" y="244" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="38"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="393" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="-6" y="30" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<FontString name="HangHaiFrameHelpFont" fonttype="FZYBlackFont14" justifyH="center" text="请在活动结束24小时内领奖，千万不要错过哟！">
+							<Size>
+								<AbsDimension x="383" y="20" />
+							</Size>
+							<Color r="255" g="120" b="0" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="4" y="8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="HangHaiFramePlayerRankFont" fonttype="FZYBlackFont14" justifyH="left" text="你当前暂未上榜">
+							<Size>
+								<AbsDimension x="240" y="16" />
+							</Size>
+							<Color r="255" g="255" b="190" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="HangHaiFrameHelpFont" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="3" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentRankInfoTitle">
+						<Size>
+							<AbsDimension x="381" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="1" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level = "overlay">
+								<FontString name="$parentSortIndexFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="排行">
+									<Size>
+										<AbsDimension x="40" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="2" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine1" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentSortIndexFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentNameFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="玩家">
+									<Size>
+										<AbsDimension x="152" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentSortIndexFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine2" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentLvFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="等级">
+									<Size>
+										<AbsDimension x="40" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine3" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentCareerFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="职业">
+									<Color r="255" g="254" b="189" />
+									<Size>
+										<AbsDimension x="58" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="2" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine4" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentCareerFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentTimeFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="活动用时">
+									<Size>
+										<AbsDimension x="90" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentCareerFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture inherits="BlackCategoryBkg"/>
+					</Button>
+					<Button name="$parentRankInfo1" inherits="HangHaiRankInfoTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfoTitle" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo2" inherits="HangHaiRankInfoTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo3" inherits="HangHaiRankInfoTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo4" inherits="HangHaiRankInfoTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo5" inherits="HangHaiRankInfoTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo6" inherits="HangHaiRankInfoTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo7" inherits="HangHaiRankInfoTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo8" inherits="HangHaiRankInfoTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo7" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo9" inherits="HangHaiRankInfoTemplate" id="9">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo8" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo10" inherits="HangHaiRankInfoTemplate" id="10">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo9" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					#领取奖励
+					<Button name="HangHaiFrameGetAwardBtn" inherits="GongYongAnNiuB1Template" text="领取排名奖励">
+						<Size>
+							<AbsDimension x="110" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright"  relativeTo="$parentSepTex" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="-10" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>HangHaiFrameGetAwardBtn_OnClick();</OnClick>
+						</Scripts>		
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>HangHaiFrame_OnShow();</OnShow>
+			<OnEvent>HangHaiFrame_OnEvent();</OnEvent>
+			<OnLoad>HangHaiFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="YangHaiBangFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="281" y="224" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="海 蚌" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="80" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 提示
+				<FontString name="$parentTipsFont" fonttype="LittleFZYBlackFont" justifyH="left" text="喂养程度满，收获时间到，就可“取珠”了" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="255" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="42" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 生存时间
+				<FontString name="$parentLiveFont" fonttype="LittleFZYBlackFont" justifyH="left" text="生存时间：2小时20分" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="180" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="66" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 收获时间
+				<FontString name="$parentTimeFont" fonttype="LittleFZYBlackFont" justifyH="left" text="收获时间：4/600秒" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="180" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="86" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				#成长等级
+				<FontString name="$parentLevelFont" fonttype="LittleFZYBlackFont" justifyH="left" text="成长等级：1" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="150" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="106" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 喂养程度
+				<FontString name="$parentDegreeFont" fonttype="LittleFZYBlackFont" justifyH="left" text="喂养程度：29/30" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="150" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="126" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 喂养数量
+				<FontString name="$parentNumFont" fonttype="LittleFZYBlackFont" justifyH="left" text="喂养数量" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="150" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="157" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentNumBkg" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="110" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="78" y="153" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="276" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="185" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />	
+			##喂养
+			<Button name="$parentFeedBtn" inherits="GongYongAnNiuB1Template" text="喂 养">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="30" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>YangHaiBangFrameFeedBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			## 取珠
+			<Button name="$parentTakeBtn" inherits="GongYongAnNiuB1Template" text="取 珠">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="171" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>YangHaiBangFrameTakeBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			## 喂养数量 选择模版
+			<Button name="FeedNumSelectBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="110" y="20"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="NormalBlackFont" justifyH="left" text="1000">
+							<Color r="255" g="255" b="255"/>  
+							<Size>
+								<AbsDimension x="110" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="2" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>	
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<Scripts>
+					<OnClick>HaiBangFrameFeedNumSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentChosenNumBtn">
+				<Size>
+					<AbsDimension x="85" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="80" y="155"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="琼枝玉露：70个" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="100" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>YangHaiBangFrameScrollDownBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			## 下拉按钮
+			<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="167" y="153"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>YangHaiBangFrameScrollDownBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			## 喂养数量-下拉菜单
+			<Button name="YangHaiBangFrameFeedNumBtn" hidden="true"  frameStrata="FULLSCREEN">	
+				<Size>
+					<AbsDimension x="110" y="80" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentChosenNumBtn" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="-2" y="0"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Frames>
+					<Button name="$parentSelectBtn1" inherits="FeedNumSelectBtnTemplate"  >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentSelectBtn2" inherits="FeedNumSelectBtnTemplate"  >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSelectBtn1" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentSelectBtn3" inherits="FeedNumSelectBtnTemplate" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSelectBtn2" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentSelectBtn4" inherits="FeedNumSelectBtnTemplate" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSelectBtn3" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>YangHaiBangFrame_OnShow();</OnShow>
+			<OnEvent>YangHaiBangFrame_OnEvent();</OnEvent>
+			<OnLoad>YangHaiBangFrame_OnLoad();</OnLoad>
+			<OnUpdate>YangHaiBangFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	## 熔岩巨兽选择倍数
+	<Frame name="RongYanSelectFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="336" y="250" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="熔岩巨兽" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 选择提示
+				<FontString name="$parentTipFont" fonttype="SmallBlackFont" justifyH="center" text="请选择你需要召唤的熔岩巨兽" >
+					<Color r="100" g="254" b="130"/>
+					 <Size>
+						<AbsDimension x="240" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSelectBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="319" y="132" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="109" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />	
+			
+			<RichText name="$parentTipRich" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="280" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="68" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="RongYanSelectTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="315" y="32" />
+				</Size>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Frames>
+					<Button name="$parentChooseBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="召唤">
+						<Size>
+							<AbsDimension x="60" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="right" relativePoint="right" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-7" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>RongYanSelectBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" 	r="160" g="160" b="90"/>			
+			</Button>
+			<Button name="$parentMonInfo1" inherits="RongYanSelectTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="111" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMonInfo2" inherits="RongYanSelectTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMonInfo1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMonInfo3" inherits="RongYanSelectTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMonInfo2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentMonInfo4" inherits="RongYanSelectTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMonInfo3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>RongYanSelectFrame_OnShow();</OnShow>
+			<OnHide>RongYanSelectFrame_OnHide();</OnHide>
+			<OnEvent>RongYanSelectFrame_OnEvent();</OnEvent>
+			<OnLoad>RongYanSelectFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+	#缩小标示
+	<Button name="RongYanMiniFrame" parent="UIClient" frameStrata="background" hidden="true" movable="false">
+		<Size>
+			<AbsDimension x="25" y="28" />
+		</Size>
+		<Anchors>
+			<Anchor point="topright" relativeTo="UIClient" relativePoint="topright">
+				<Offset>
+					<AbsDimension x="-60" y="225" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+					<Size>
+						<AbsDimension x="42" y="42"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-8" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="4" texcols="4" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="970" y="220"  w="25" h="28" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="970" y="249"  w="25" h="28" />
+		<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="970" y="278"  w="25" h="28" />
+		<Scripts>
+			<OnClick>RongYanMiniFrame_OnClick();</OnClick>
+			<OnEnter>RongYanMiniFrame_OnEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+			<OnShow>RongYanMiniFrame_OnShow();</OnShow>
+			<OnHide>RongYanMiniFrame_OnHide();</OnHide>
+		</Scripts>
+	</Button>
+	## 熔岩巨兽开始UI
+	<Frame name="RongYanStartFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="285" y="215" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="熔岩巨兽" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 选择提示
+				<FontString name="$parentTipFont" fonttype="SmallBlackFont" justifyH="center" text="已接受消灭熔岩巨兽的重任" >
+					<Color r="100" g="254" b="130"/>
+					 <Size>
+						<AbsDimension x="280" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSelectBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="268" y="132" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="74" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_MiniBtn">
+				<Size>
+					<AbsDimension x="22" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-10" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="34" w="22" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="759" y="57" w="22" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="80" w="22" h="22" />
+				<Scripts>
+					<OnClick>RongYanStartFrame_MiniBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		
+			<Button name="RongYanSelectTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="264" y="32" />
+				</Size>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" 	r="160" g="160" b="90"/>
+			</Button>
+			<Button name="$parentInfoBtn1" inherits="RongYanSelectTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="76" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentInfoBtn2" inherits="RongYanSelectTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInfoBtn1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentInfoBtn3" inherits="RongYanSelectTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInfoBtn2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentInfoBtn4" inherits="RongYanSelectTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInfoBtn3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>RongYanStartFrame_OnShow();</OnShow>
+			<OnLoad>RongYanStartFrame_OnLoad();</OnLoad>
+			<OnEvent>RongYanStartFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+	## 熔岩巨兽真假boss
+	<Frame name="RongYanGuessFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="336" y="234" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="熔岩巨兽" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 选择提示
+				<FontString name="$parentTipFont" fonttype="SmallBlackFont" justifyH="center" text="恭喜你成功击杀熔岩巨兽！" >
+					<Color r="100" g="254" b="130"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSelectBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="319" y="110" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="116" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## 真假boss提示
+				<FontString name="$parentTipFont1" fonttype="LittleFZYBlackFont" justifyH="center" text="真假熔岩巨兽大抉择，选择真boss可进入下一阶" >
+					<Color r="255" g="160" b="90"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="65" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipFont2" fonttype="LittleFZYBlackFont" justifyH="center" text="下一阶熔岩巨兽的经验奖励为：256倍" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="82" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipFont3" fonttype="LittleFZYBlackFont" justifyH="center" text="注：如3分钟内队长无任何操作，系统将自动选择" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="99" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="GuessMonBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="74" y="74" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="11" y="11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\4.dds" x="369" y="0" w="74" h="74"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\4.dds" x="444" y="0" w="74" h="74"/>
+				<PushedTexture		file="uires\\ZhuJieMian\\4.dds" x="519" y="0" w="74" h="74"/>
+				<Scripts>
+					<OnClick>RongYanGuessSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMonBtn1" inherits="GuessMonBtnTemplate">
+				<Size>
+					<AbsDimension x="74" y="74" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="76" y="118" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentChooseBtn1" inherits="GongYongAnNiuC1ButtonTemplate" text="选择">
+				<Size>
+					<AbsDimension x="60" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentMonBtn1">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RongYanGuessSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMonBtn2" inherits="GuessMonBtnTemplate">
+				<Size>
+					<AbsDimension x="74" y="74" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="187" y="118" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentChooseBtn2" inherits="GongYongAnNiuC1ButtonTemplate" text="选择">
+				<Size>
+					<AbsDimension x="60" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentMonBtn2">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RongYanGuessSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>RongYanGuessFrame_OnShow();</OnShow>
+			<OnLoad>RongYanGuessFrame_OnLoad();</OnLoad>
+			<OnUpdate>RongYanGuessFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	##高级熔岩巨兽召唤面版
+	<Frame name="RongYanHighLvCallFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="336" y="250" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 选择提示
+				<FontString name="$parentTipFont" fonttype="SmallBlackFont" justifyH="center" text="终极熔岩巨兽" >
+					<Color r="100" g="254" b="130"/>
+					 <Size>
+						<AbsDimension x="240" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSelectBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="319" y="35" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="170" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />	
+			
+			<RichText name="$parentTipRich" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="280" y="130" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="85" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentCall">
+				<Size>
+					<AbsDimension x="315" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="170" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" text="需要一个赤炎之血">
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" 	r="160" g="160" b="90"/>			
+			</Button>
+			<Button name="$parentCallBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="召唤">
+				<Size>
+					<AbsDimension x="60" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentCall">
+						<Offset>
+							<AbsDimension x="-7" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RongYanHighLvCallFrameCallBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>RongYanHighLvCallFrame_OnLoad();</OnLoad>
+			<OnHide>RongYanHighLvCallFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	## 高级熔岩巨兽开始UI
+	<Frame name="RongYanHighLvStartFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="285" y="215" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="终极熔岩巨兽" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 选择提示
+				<FontString name="$parentTipFont" fonttype="SmallBlackFont" justifyH="center" text="已接受消灭熔岩巨兽的重任" >
+					<Color r="100" g="254" b="130"/>
+					 <Size>
+						<AbsDimension x="280" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSelectBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="268" y="132" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="74" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_MiniBtn">
+				<Size>
+					<AbsDimension x="22" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-10" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="34" w="22" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="759" y="57" w="22" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="80" w="22" h="22" />
+				<Scripts>
+					<OnClick>RongYanHighLvStartFrame_MiniBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		
+			<Button name="RongYanSelectTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="264" y="32" />
+				</Size>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" 	r="160" g="160" b="90"/>
+			</Button>
+			<Button name="$parentInfoBtn1" inherits="RongYanSelectTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="76" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentInfoBtn2" inherits="RongYanSelectTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInfoBtn1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentInfoBtn3" inherits="RongYanSelectTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInfoBtn2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentInfoBtn4" inherits="RongYanSelectTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInfoBtn3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>RongYanHighLvStartFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	## 高级熔岩巨兽真假boss
+	<Frame name="HighLvRongYanGuessFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="336" y="234" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="终极熔岩巨兽" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 选择提示
+				<FontString name="$parentTipFont" fonttype="SmallBlackFont" justifyH="center" text="恭喜你成功击杀熔岩巨兽！" >
+					<Color r="100" g="254" b="130"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSelectBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="319" y="110" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="116" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## 真假boss提示
+				<FontString name="$parentTipFont1" fonttype="LittleFZYBlackFont" justifyH="center" text="真假熔岩巨兽大抉择，选择真boss可进入下一阶" >
+					<Color r="255" g="160" b="90"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="65" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipFont2" fonttype="LittleFZYBlackFont" justifyH="center" text="下一阶熔岩巨兽的经验奖励为：256倍" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="82" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipFont3" fonttype="LittleFZYBlackFont" justifyH="center" text="注：如3分钟内队长无任何操作，系统将自动选择" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="300" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="99" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="GuessMonBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="74" y="74" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="11" y="11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\4.dds" x="369" y="0" w="74" h="74"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\4.dds" x="444" y="0" w="74" h="74"/>
+				<PushedTexture		file="uires\\ZhuJieMian\\4.dds" x="519" y="0" w="74" h="74"/>
+				<Scripts>
+					<OnClick>HighLvRongYanGuessSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMonBtn1" inherits="GuessMonBtnTemplate">
+				<Size>
+					<AbsDimension x="74" y="74" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="76" y="118" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentChooseBtn1" inherits="GongYongAnNiuC1ButtonTemplate" text="选择">
+				<Size>
+					<AbsDimension x="60" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentMonBtn1">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HighLvRongYanGuessSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentMonBtn2" inherits="GuessMonBtnTemplate">
+				<Size>
+					<AbsDimension x="74" y="74" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="187" y="118" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentChooseBtn2" inherits="GongYongAnNiuC1ButtonTemplate" text="选择">
+				<Size>
+					<AbsDimension x="60" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentMonBtn2">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HighLvRongYanGuessSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>HighLvRongYanGuessFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

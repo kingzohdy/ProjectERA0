@@ -1,0 +1,27 @@
+#include "header.fx"
+
+texture g_DiffuseTex;
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = linear;
+    MinFilter = linear;
+    MagFilter = linear;
+	AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+
+float4x4 g_WorldViewProj : WORLDVIEWPROJ;
+
+struct VS_OUTPUT
+{
+    float4 pos      : POSITION;
+    float4 color0   : COLOR0;
+    float2 uv0      : TEXCOORD0;
+};
+
+float4 PSMain(VS_OUTPUT	input):COLOR0
+{
+	float4 color = tex2D(s_DiffuseSampler, input.uv0);
+	color.xyz = lerp(float3(1.0,1.0,1.0), color.xyz, input.color0.a);
+	return color;
+}

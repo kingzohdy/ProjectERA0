@@ -1,0 +1,1102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Stall\StallBuyerFrame.lua" />
+
+	# 买家购买物品面板
+	<Frame name="StallBuyerBuyItemFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="true" framelevel="210">
+		<Size>
+			<AbsDimension x="293" y="163" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				 <Texture name="$parentbackground" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="购买确认" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />				
+			# 提示窗口?
+			<Button name="$parentRecommendBtn" inherits="HelpBtnTemplate" />				
+			# 面板背景
+			<Button name="$parentItemBackBtn" >
+				<Size>
+					<AbsDimension x="108" y="68" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			
+			# 图标按钮
+			<Button name="$parent_ItemBtn" >
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="$parentItemBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIconTexture"  file="uires\\ZhuJieMian\\1.dds" x="749" y="517"  w="44" h="44">
+							<Size>
+								<AbsDimension x="38" y="38" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+						<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="562"  w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>StallBuyerBuyItemFrame_ItemBtn_OnEnter();</OnEnter>
+					<OnLeave>StallSellerShangJiaItemFrame_ItemBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 物品名字
+			<Button name="$parent_ItemNameBtn" >
+				<Size>
+					<AbsDimension x="100" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentItemBackBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="51"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyBlackFont" text="物品名字物品名字物品名字物品名字物品名字" justifyH="center">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 价格显示框
+			<Button name="$parent_ShowPriceBackBtn" >
+				<Size>
+					<AbsDimension x="158" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="125" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# 价格显示框标识
+			<Button name="$parent_ShowPriceHeadBtn" text="单价">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="38" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+			</Button>
+			<Button name="$parent_ShowPriceBtn">
+				<Size>
+					<AbsDimension x="118" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="41" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					 <Layer level="overlay">
+						<Texture name="$parent_moneyTypeTex"  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<FontString name="$parentFont"  fonttype="LittleFZYBlackFont" justifyH="right" text="1558899155889915588991558899">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-29" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					 </Layer>
+				</Layers>
+			</Button>
+
+			# 数量显示框
+			<Button name="$parent_ShowNumBackBtn" >
+				<Size>
+					<AbsDimension x="158" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="125" y="59" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# 数量显示框标识
+			<Button name="$parent_ShowNumHeadBtn" text="数量">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="38" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowNumBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+			</Button>
+			# 减少物品数量按钮
+			<Button name="$parent_DelNumBtn" inherits="ScrollDownBtnTemplate" >
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent_ShowNumBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyerBuyItemFrame_DelNumBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 增加物品数量按钮
+			<Button name="$parent_AddNumBtn" inherits="ScrollUpBtnTemplate" >
+				<Anchors>
+					<Anchor point="right" relativeTo="$parent_DelNumBtn" relativePoint="left">
+						<Offset>
+							<AbsDimension x="3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyerBuyItemFrame_AddNumBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 数量输入编辑框
+			<EditBox name="$parent_ShowNumEdit" letters="5" multiLine="false" editMethod="2" >
+				<Size>
+					<AbsDimension x="80" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowNumBackBtn">
+						<Offset>
+							<AbsDimension x="41" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13" justifyH="right" >
+					<Color r="255" g="255" b="190"/>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>StallBuyerBuyItemFrame_ConfirmBtn_OnClick();</OnEnterPressed>
+					<OnUpdate>StallBuyerBuyItemFrame_ShowNumEdit_OnUpdate();</OnUpdate>
+				</Scripts>
+			</EditBox>
+
+			# 总价显示框
+			<Button name="$parent_TotalPriceBackBtn" >
+				<Size>
+					<AbsDimension x="158" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="125" y="82" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# 总价显示框标识
+			<Button name="$parent_TotalPriceHeadBtn" text="总价">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="38" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_TotalPriceBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+			</Button>
+			<Button name="$parent_TotalPriceBtn">
+				<Size>
+					<AbsDimension x="118" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_TotalPriceBackBtn">
+						<Offset>
+							<AbsDimension x="41" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					 <Layer level="overlay">
+						<Texture name="$parent_moneyTypeTex"  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<FontString name="$parentFont"  fonttype="LittleFZYBlackFont" justifyH="right" text="1558899155889915588991558899">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-29" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					 </Layer>
+				</Layers>
+			</Button>
+
+			# 时效提示
+			<Button name="$parent_ShiXiaoTiShiBtn" >
+				<Size>
+					<AbsDimension x="200" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="11" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					 <Layer level="overlay">
+						<Texture name="$parent_IconTex"  file="uires\\ZhuJieMian\\1.dds" x="167" y="370" w="16" h="17" >
+							<Size>
+								<AbsDimension x="16" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<FontString name="$parentFont"  fonttype="TeenyBlackFont" justifyH="left" text="时效物品，请留意物品有效期">
+							<Color r="255" g="125" b="0"/>  
+							<Size>
+								<AbsDimension x="179" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="26" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					 </Layer>
+				</Layers>
+			</Button>
+
+			# 分割线
+			<Button name="$parent_PartionBtn" >
+				<Size>
+					<AbsDimension x="290" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="1" y="-22" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 确定按钮
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确  定">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="24" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyerBuyItemFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消按钮
+			<Button name="$parent_CancleBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消" >
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-24" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyerBuyItemFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>StallBuyerBuyItemFrame_OnShow();</OnShow>
+			<OnHide>StallBuyerBuyItemFrame_OnHide();</OnHide>
+			<OnUpdate>StallBuyerBuyItemFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	# 买家购买宠物面板
+	<Frame name="StallBuyerBuyPetFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="true" framelevel="210">
+		<Size>
+			<AbsDimension x="293" y="163" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				 <Texture name="$parentbackground" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="购买确认" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			#关闭按钮
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			
+			#提示窗口?
+			<Button name="$parentRecommendBtn" inherits="HelpBtnTemplate" />
+			
+			# 面板背景
+			<Button name="$parentItemBackBtn" >
+				<Size>
+					<AbsDimension x="108" y="68" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			
+			# 宠物头像图标按钮
+			<Button name="$parent_PetPhotoBtn" >
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="$parentItemBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIconTexture"  file="uires\\ZhuJieMian\\1.dds" x="749" y="517"  w="44" h="44">
+							<Size>
+								<AbsDimension x="38" y="38" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="562"  w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 宠物名字
+			<Button name="$parent_PetNameBtn" >
+				<Size>
+					<AbsDimension x="100" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentItemBackBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="51"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyBlackFont" text="物品名字物品名字物品名字物品名字物品名字" justifyH="center">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 价格显示框
+			# 价格显示框
+			<Button name="$parent_ShowPriceBackBtn" >
+				<Size>
+					<AbsDimension x="158" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="125" y="82" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# 价格显示框标识
+			<Button name="$parent_ShowPriceHeadBtn" text="单价">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="38" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+			</Button>
+			<Button name="$parent_ShowPriceBtn">
+				<Size>
+					<AbsDimension x="118" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="41" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					 <Layer level="overlay">
+						<Texture name="$parent_moneyTypeTex"  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="20" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<FontString name="$parentFont"  fonttype="LittleFZYBlackFont" justifyH="right" text="1558899155889915588991558899">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-29" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					 </Layer>
+				</Layers>
+			</Button>
+
+			# 分割线
+			<Button name="$parent_PartionBtn" >
+				<Size>
+					<AbsDimension x="290" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="1" y="-22" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 确定按钮
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确  定">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="24" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyerBuyPetFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消按钮
+			<Button name="$parent_CancleBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消" >
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-24" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyerBuyPetFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>StallBuyerBuyPetFrame_OnShow();</OnShow>
+			<OnHide>StallBuyerBuyPetFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="StallBuyFrame"  inherits="StallFrameTemplate" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="377" y="470" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors> 
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentStallFramebackground" inherits="MainBkgTemplate" />
+				# 界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="摊    位" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="55" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate"/>	
+			# 显示摊位名字抬头
+			<Button name="$parentStallNameHeadBtn">
+				<Size>
+					<AbsDimension x="56" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="17" y="47" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="摊位名字" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="56" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 商店输入框常规背景框
+			<Button name="$parent_StallNameBackBtn" >
+				<Size>
+					<AbsDimension x="200" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="78" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  inherits="EditBoxBkgTemplate" />
+			</Button>
+			<Button name="$parent_StallNameBtn" >
+				<Size>
+					<AbsDimension x="200" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="78" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="请输入商店名字">
+							<Color r="174" g="221" b="159"/>
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="14" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 摊主名字
+			<Button name="$parent_StallOwnerNameHeadBtn">
+				<Size>
+					<AbsDimension x="56" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="17" y="74" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="摊主名字" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="56" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<RichText name="$parent_StallOwnerNameRich" lineInterval ="2" multiLine="true" fonttype="LittleFZYBlackFont" input_transparent="true">
+				<Size>
+					<AbsDimension x="200" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="78" y="74" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SellerNameRichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+
+			# 摆摊道具标签按钮
+			<Button name="$parent_ItemLabelBtn" inherits="GongYongAnNiuD1NoFontTemplate" text="道  具" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="65" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="11" y="138" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyFrame_ItemLabelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 摆摊宠物标签按钮
+			<Button name="$parent_PetLabelBtn" inherits="GongYongAnNiuD1NoFontTemplate" text="宠  物" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="65" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="76" y="138" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyFrame_PetLabelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 标记摊位按钮
+			<Button name="$parent_BiaoJiBtn" inherits="GongYongAnNiuA3Template" text="标记摊位" >
+				<Size>
+					<AbsDimension x="70" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="290" y="44" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyFrame_BiaoJiBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_CancelBiaoJiBtn" inherits="GongYongAnNiuA3Template" text="取消标记" >
+				<Size>
+					<AbsDimension x="70" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="290" y="44" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyFrame_CancelBiaoJiBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 购买按钮
+			<Button name="$parent_BuyBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="购  买" >
+				<Size>
+					<AbsDimension x="86" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="29" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyFrame_BuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 查看资料按钮
+			<Button name="StallBuyFrame_SeePetInfoBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="查看资料">
+				<Size>
+					<AbsDimension x="86" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-29" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallBuyFrame_SeePetInfoBtn_OnClick();</OnClick>
+					<OnEnter>StallBuyFrame_SeePetInfoBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 价格显示框
+			<Button name="$parent_ShowPriceBackBtn" >
+				<Size>
+					<AbsDimension x="158" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="18" y="-47" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnEnter>StallSaleFrame_ShowPriceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 价格显示框标识
+			<Button name="$parent_ShowPriceHeadBtn" text="单价">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="38" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+				<Scripts>
+					<OnEnter>StallSaleFrame_ShowPriceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parent_ShowPriceBtn">
+				<Size>
+					<AbsDimension x="118" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="41" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					 <Layer level="overlay">
+						<Texture name="$parent_moneyTypeTex"  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<FontString name="$parentFont"  fonttype="LittleFZYBlackFont" justifyH="right" text="1558899155889915588991558899">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-29" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					 </Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>StallSaleFrame_ShowPriceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>StallBuyFrame_Test_OnShow();</OnShow>-->
+			<OnLoad>StallBuyFrame_OnLoad();</OnLoad>
+			<OnEvent>StallBuyFrame_OnEvent();</OnEvent>
+			<OnShow>StallBuyFrame_OnShow();</OnShow>
+			<OnHide>StallBuyFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

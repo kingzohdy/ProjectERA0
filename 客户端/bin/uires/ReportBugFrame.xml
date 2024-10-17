@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ReportBugFrame.lua"/>
+	<Frame name="ReportBugFrame" frameStrata="DIALOG" parent="UIClient" hidden="true"  movable="true"  framelevel="10">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGroundTex" inherits="MainBkgTemplate" />
+				<FontString name="$parentHeadTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="意见反馈">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="392" y="466"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 我有建议
+			<Button name="$parent_HaveAdviseBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="我有建议">
+				<Size>
+					<AbsDimension x="76" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="73" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReportBugFrame_HaveAdviseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# BUG提交
+			<Button name="$parent_ReportBugBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="BUG提交" >
+				<Size>
+					<AbsDimension x="76" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="160" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReportBugFrame_ReportBugBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 我要举报
+			<Button name="$parent_JuBaoBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="我要举报">
+				<Size>
+					<AbsDimension x="76" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="247" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReportBugFrame_JuBaoBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<RichText name="$parentDescRichText" lineInterval ="4" multiLine="true" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="334" y="53" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="26" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentInputEditBackGroundButton">
+				<Size>
+					<AbsDimension x="364" y="327"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="15" y="97"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 输入框
+			<MultiEditBox name="$parentInpuMultiEditBox" fonttype="TeenyMSYHFont" letters="1000" multiLine="true" lineInterval="2">
+				<textcolor r="120" g="235" b="50" />
+				<Size>
+					<AbsDimension x="356" y="319"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInputEditBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<ontextset>ReportBugFrameInpuMultiEditBox_OnChar();</ontextset>
+				</Scripts>
+			</MultiEditBox>
+
+			# 举报输入框抬头
+			<Button name="$parent_InputEditHeadBtn">
+				<Size>
+					<AbsDimension x="121" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInputEditBackGroundButton" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="2" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="内容（限500字内）" justifyH="left">
+							<Color r="241" g="174" b="67"/>
+							<Size>
+								<AbsDimension x="121" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parent_InputEditNumLimitHeadBtn">
+				<Size>
+					<AbsDimension x="42" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInputEditBackGroundButton" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="155" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="0/500" justifyH="right">
+							<Color r="241" g="174" b="67"/>
+							<Size>
+								<AbsDimension x="52" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="10" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 提交按钮
+			<Button name="$parent_CommitBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="提  交">
+				<Size>
+					<AbsDimension x="76" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="$parentInputEditBackGroundButton">
+						<Offset>
+							<AbsDimension x="-8" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReportBugFrame_CommitBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ReportBugFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame  name="ReportBugConfirmFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentFrameground" inherits="MainBkgTemplate" />
+				<FontString name="$parentHeadTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentMessageFont" fonttype="TeenyFZYBlackFont" autowrap="false" lineInterval="2" justifyH="center"
+						text="确认提交所填写的意见吗？">
+							<Size>
+								<AbsDimension x="280" y="15"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 确定
+			<Button name="ReportBugConfirmFrame_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="40" y="97"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReportBugConfirmFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消
+			<Button name="ReportBugConfirmFrame_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="-40" y="97"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReportBugConfirmFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ReportBugConfirmFrame_OnShow();</OnShow>
+			<OnHide>ReportBugConfirmFrame_OnHide();</OnHide>
+			<OnLoad>ReportBugConfirmFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

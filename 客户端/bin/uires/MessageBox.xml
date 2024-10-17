@@ -1,0 +1,1504 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\MessageBox.lua"/>
+	<Frame name="MessageBoxFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="199" toplevel="true">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="MessageBoxBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="MessageTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="技能" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>		
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<RichText name="MessageText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="6" y="-28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="MessageBoxAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MessageBoxCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-15"  y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxCancelBtnOnClick();</OnClick>
+					<onevent>MessageBoxOnEvent();</onevent>
+					<onload>MessageBoxOnLoad();</onload>
+				</Scripts>
+			</Button>
+			# 勾选框
+			<CheckButton name="MessageBoxHideBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="140" y="98"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" text="不再提示">
+							<Size>
+								<AbsDimension x="80" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="26" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnShow>MessageBoxFrame_OnShow();</OnShow>
+			<OnHide>MessageBoxFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	<Frame name="MessageBoxForPetFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel="199">
+		<Size>
+			<AbsDimension x="357" y="140" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="MessageBoxBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="MessageBoxForPetTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="技能" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSep" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="350" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="103"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>		
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			# 信息标识按钮 
+			<Button name="$parent_TipsBtn">
+				<Size>
+					<AbsDimension x="32" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentWarningTex" file="uires\\ZhuJieMian\\1.dds" x="564" y="34" w="32" h="27" >
+							<Size>
+								<AbsDimension x="32" y="27" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>MessageBoxForPetFrame_TipsBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<RichText name="MessageBoxForPetText" fonttype="TeenyFZYBlackFont" input_transparent="true" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="325" y="45" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="MessageBoxForPetConfirmText" fonttype="TeenyFZYBlackFont" input_transparent="true" lineInterval ="3" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="-37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="MessageBoxForPetAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="80" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="25" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForPetAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MessageBoxForPetCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="80" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-25"  y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForPetCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>MessageBoxForPetFrame_OnHide();</OnHide>
+			<onload>MessageBoxForPetOnLoad();</onload>
+		</Scripts>
+	</Frame>
+	<Frame name="MessageBoxForGameFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="199">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="MessageBoxForGameBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="MessageForGameTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="技能" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>		
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<RichText name="MessageForGameText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="6" y="-50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="MessageBoxForGameAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForGameAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MessageBoxForGameCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-15"  y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForGameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>MessageBoxForGameFrame_OnUpdate();</OnUpdate>
+			<OnHide>MessageBoxForGameFrame_onHide();</OnHide>
+			<OnLoad>MessageBoxForGameFrame_OnLoad()</OnLoad>
+		</Scripts>
+	</Frame>
+
+	##物品数量面板
+	<Frame name="ItemSplitInputFrame" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="CommoditySplitInputFrame_BackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="ItemSplitInputFrame_HeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="请输入物品数量">
+					<Size>
+						<AbsDimension x="150" y="20"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			##黑色底版
+			<Button name="ItemSplitInputFrameBackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>		
+            </Button>
+			#数量输入框背景框
+			<Button name="ItemSplitInputFrame_EditBackBtn">
+				<Size>
+					<AbsDimension x="98" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="ItemSplitInputFrameBackButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>ItemSplitInputFrameBackButton_EditBackBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##输入框
+			<EditBox name="ItemSplitInputFrame_Edit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="93" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ItemSplitInputFrame_EditBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="CommoditySplitInputFontNormal" fonttype="SongTiFont14" justifyH="center" text="100">
+					<Color r="255" g="229" b="189" />
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>ItemSplitInputFrame_ConfirmBtn_OnClick();</OnEnterPressed>
+					<OnUpdate>ItemSplitInputFrame_Edit_OnUpdate();</OnUpdate>
+				</Scripts>
+			</EditBox>
+			##确定
+			<Button name="ItemSplitInputFrame_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ItemSplitInputFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="ItemSplitInputFrame_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ItemSplitInputFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ItemSplitInputFrame_OnShow();</OnShow>
+			<OnHide>ItemSplitInputFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	##输入金钱数面板
+	<Frame name="InputMoneyFrame" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true" toplevel="true" >
+		<Size>
+			<AbsDimension x="206" y="107" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="InputMoneyFrameBackGround" inherits="MainBkgTemplate" />				
+			</Layer>
+		</Layers>
+		<Frames>
+			##确定按钮	
+			<Button name="InputMoneyFrame_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="InputMoneyFrame">
+						<Offset>
+							<AbsDimension x="16" y="-16" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>InputMoneyFrame_AcceptBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>	
+			##取消按钮	
+			<Button name="InputMoneyFrame_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="InputMoneyFrame_ConfirmBtn">
+						<Offset>
+							<AbsDimension x="47" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>InputMoneyFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>	
+			##金钱输入框
+			<EditBox name="InputMoneyFrame_Edit" letters="24" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="140" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="InputMoneyFrame" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="28" y="46" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="TradeInputFontNormal" fonttype="SongTiFont13"></FontString>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="145" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="InputMoneyFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-2" y="-1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnterPressed>InputMoneyFrame_AcceptBtn_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+		</Frames>
+		<Scripts>
+			<OnShow>InputMoneyFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	##切磋对话框
+	<Frame name="PKMessageBoxFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="100" toplevel="true">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Button>
+			<RichText name="$parentText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="6" y="-44" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PKMessageBoxFrameAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-5"  y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PKMessageBoxFrameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>		
+	</Frame>
+	## T 人投票
+	<Frame name="TeamKickVoteFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="100" toplevel="true">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="请离投票" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>			
+			<RichText name="$parentText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="6" y="-44" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamKickVoteFrameAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-5"  y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamKickVoteFrameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>TeamKickVoteFrame_OnLoad();</OnLoad>
+			<OnEvent>TeamKickVoteFrame_OnEvent();</OnEvent>
+			<OnShow>TeamKickVoteFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	## 队伍T人信息显示 临时放在这里
+	<Frame name="TeamVoteInfoFrame" frameStrata="FS_TOOLTIP" parent="UIClient" hidden="true" input_transparent="true" toplevel="true">
+		<Layers>
+			<Layer>
+				<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" justifyH="center">
+					<Color r="255" g="0" b="255" />
+					<Size>
+						<AbsDimension x="700" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom" relativeTo="UIClient">
+							<Offset>
+								<AbsDimension x="0"  y="-110" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	##队友召唤卷轴
+	<Frame name="TeamMemberSummonFrame" frameStrata="DIALOG" parent="UIClient" hidden="true"  framelevel= "200" movable="true">
+		<Size>
+			<AbsDimension x="351" y="122" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="提示" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescFont2" justifyH="center" fonttype="TeenyFZYBlackFont" text="（此提示持续30秒）">
+					<Color r="160" g="160" b="90"/>
+						<Size>
+							<AbsDimension x="300" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+								<Offset>
+									<AbsDimension x="0" y="63"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="346" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentDescRich" justifyH="center" fonttype="TeenyFZYBlackFont" multiLine="false">
+				<Color r="255" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="340" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="45"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+			</RichText>
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="21" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberSummonFrameAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="266"  y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeamMemberSummonFrameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>TeamMemberSummonFrame_OnLoad();</OnLoad>
+			<OnUpdate>TeamMemberSummonFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	##公会成员召唤卷轴
+	<Frame name="ClanMemberSummonFrame" frameStrata="DIALOG" parent="UIClient" hidden="true"  framelevel= "200" movable="true">
+		<Size>
+			<AbsDimension x="351" y="122" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="提示" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescFont2" justifyH="center" fonttype="TeenyFZYBlackFont" text="（此提示持续30秒）">
+					<Color r="160" g="160" b="90"/>
+						<Size>
+							<AbsDimension x="300" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+								<Offset>
+									<AbsDimension x="0" y="63"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="346" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentDescRich" justifyH="center" fonttype="TeenyFZYBlackFont">
+				<Color r="255" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="340" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="45"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+			</RichText>
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="同意">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="21" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanMemberSummonFrameAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="266"  y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanMemberSummonFrameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ClanMemberSummonFrame_OnLoad();</OnLoad>
+			<OnUpdate>ClanMemberSummonFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	##空间记忆器
+	<Frame name="MapRecorderMessageFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel=180>
+		<Size>
+			<AbsDimension x="351" y="122" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="提示" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescFont1" justifyH="center" fonttype="TeenyFZYBlackFont" text="">
+					<Color r="255" g="255" b="0"/>
+						<Size>
+							<AbsDimension x="300" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+								<Offset>
+									<AbsDimension x="0" y="45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+				</FontString>
+				<FontString name="$parentDescFont2" justifyH="center" fonttype="TeenyFZYBlackFont" text="">
+					<Color r="255" g="255" b="190"/>
+						<Size>
+							<AbsDimension x="300" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+								<Offset>
+									<AbsDimension x="0" y="63"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="346" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!--关闭按钮 -->
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentLocateButton" inherits="GongYongAnNiuC1ButtonTemplate" text="定位">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="21" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MapRecorderMessageFrameLocationBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="266"  y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MapRecorderMessageFrameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>MapRecorderFrame_OnLoad();</OnLoad>
+			<OnEvent>MapRecorderFrame_OnEvent();</OnEvent>
+			<OnUpdate>MapRecorderFrame_OnUpdate();</OnUpdate>
+			<OnHide>MapRecorderMessageFrameCancelBtnOnClick();</OnHide>
+		</Scripts>
+	</Frame>
+	##空间记忆器
+	<Frame name="MapRecorderFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="230"  movable="true" >
+		<Size>
+			<AbsDimension x="290" y="235" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+				
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="空间记忆器" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLocation" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="273" y="112" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentLocationFont" justifyH="left" fonttype="LittleFZYBlackFont"  text="已定位：">
+					<Color r="255" g="255" b="190"/>
+						<Size>
+							<AbsDimension x="50" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+								<Offset>
+									<AbsDimension x="25" y="44"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+				</FontString>
+				<FontString name="$parentFont1" justifyH="center" fonttype="LittleFZYBlackFont"  text="xxxxxxxxx">
+					<Color r="255" g="255" b="190"/>
+						<Size>
+							<AbsDimension x="300" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+								<Offset>
+									<AbsDimension x="0" y="52"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+				</FontString>
+				<FontString name="$parentFont2" justifyH="center" fonttype="TeenyBlackFont"  text="xxxxxxxxx">
+					<Color r="160" g="160" b="90"/>
+						<Size>
+							<AbsDimension x="300" y="25"/>
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+								<Offset>
+									<AbsDimension x="0" y="74"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="285" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="204" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!--关闭按钮 -->
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="MapRecorderFrameBtnTemplate" frameStrata="Dialog" virtual="true">
+				<Size>
+					<AbsDimension x="180" y="20"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentText" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" multiline="false" text="jiyiqi">
+							<Color r="160" g="159" b="129"/>
+							<Size>
+								<AbsDimension x="180" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+									<Offset>
+										<AbsDimension x="14" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<DisabledTexture	inherits="TransTextureTemplate" />
+				<Scripts>
+					<OnClick>MapRecorderFrameTrans_OnClick();</OnClick>
+				</Scripts>	
+			</Button>
+			
+			<Button name="MapRecorderFrameBtn1" inherits="MapRecorderFrameBtnTemplate" hidden= "true" id= "1">
+				<Anchors>
+	                <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+	                    <Offset>
+	                        <AbsDimension x="74" y="42"/>
+	                    </Offset>
+	                </Anchor>
+	            </Anchors>
+			</Button>
+		
+			<Button name="MapRecorderFrameBtn2" inherits="MapRecorderFrameBtnTemplate" hidden= "true" id= "2">
+				<Anchors>
+	                <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+	                    <Offset>
+	                        <AbsDimension x="74" y="62"/>
+	                    </Offset>
+	                </Anchor>
+	            </Anchors>
+			</Button>
+		
+			<Button name="MapRecorderFrameBtn3" inherits="MapRecorderFrameBtnTemplate" hidden= "true" id ="3">
+				<Anchors>
+	                <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+	                    <Offset>
+	                        <AbsDimension x="74" y="82"/>
+	                    </Offset>
+	                </Anchor>
+	            </Anchors>
+			</Button>
+		
+			<Button name="MapRecorderFrameBtn4" inherits="MapRecorderFrameBtnTemplate" hidden= "true" id ="4">
+				<Anchors>
+	                <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+	                    <Offset>
+	                        <AbsDimension x="74" y="102"/>
+	                    </Offset>
+	                </Anchor>
+	            </Anchors>
+			</Button>
+			<Button name="MapRecorderFrameBtn5" inherits="MapRecorderFrameBtnTemplate" hidden= "true" id ="5">
+				<Anchors>
+	                <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+	                    <Offset>
+	                        <AbsDimension x="74" y="122"/>
+	                    </Offset>
+	                </Anchor>
+	            </Anchors>
+			</Button>
+			<Button name="$parentLocationButton" inherits="GongYongAnNiuC1ButtonTemplate" text="定位">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="21" y="207" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MapRecorderFrameLocationBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定" hidden= "true">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="21" y="207" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MapRecorderFrameConfirmBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="207"  y="207" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MapRecorderFrameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>MapRecorderFrame_OnLoad();</OnLoad>
+			<OnEvent>MapRecorderFrame_OnEvent();</OnEvent>
+			<OnUpdate>MapRecorderFrame_OnUpdate();</OnUpdate>
+			<OnHide>MapRecorderFrameCancelBtnOnClick();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="MessageBoxFrameForVip" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="999">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="MessageBoxBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="技能" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<RichText name="$parentText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="6" y="-32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="87" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForVipAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="关  闭">
+				<Size>
+					<AbsDimension x="87" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-15"  y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForVipCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>MessageBoxFrameForVip_OnHide();</OnHide>
+			<OnLoad>MessageBoxFrameForVip_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="MessageBoxForItemFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="999">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="MessageBoxForItemBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="MessageBoxForItemTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="技能" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>		
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<RichText name="MessageBoxForItemText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="6" y="-50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="MessageBoxForItemAcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="快速购买">
+				<Size>
+					<AbsDimension x="87" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForItemAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MessageBoxForItemCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="关  闭">
+				<Size>
+					<AbsDimension x="87" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-15"  y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageBoxForItemCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>MessageBoxForItemFrame_OnHide();</OnHide>
+			<OnLoad>MessageBoxForItemFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

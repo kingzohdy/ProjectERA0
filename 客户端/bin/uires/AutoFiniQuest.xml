@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\AutoFiniQuest.lua"/>
+	<Frame name="AutoFiniQuestFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="155" y="78" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="118" y="318" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentShortCut" input_transparent="true">
+				<Size>
+					<AbsDimension x="155" y="78" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="Tips3BkgTemplate" />
+						<Texture name="$parentStopTex" file="uires\\ui\\Za\\ZiDongRenWuWeiKaiQi.tga">
+							<Size>
+								<AbsDimension x="120" y="18"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="18" y="17"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentActiveTex" file="uires\\ui\\Za\\ZiDongRenWuJinXingZhong.tga" alphamode="add" hidden="true">
+							<Size>
+								<AbsDimension x="120" y="18"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="18" y="17"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="2" texcols="2" />
+						</Texture>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="[未开启任务]" >
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="150" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="3" y="36" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentDwindleBtn">
+						<Size>
+							<AbsDimension x="22" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-4" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="34" w="22" h="22" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="759" y="57" w="22" h="22" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="759" y="80" w="22" h="22" />
+						<Scripts>
+							<OnClick>AutoFiniQuestFrameDwindleBtn_OnClick();</OnClick>
+							<OnEnter>AutoFiniQuestFrameDwindleBtn_OnEnter();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="$parentControlBtn" inherits="GongYongAnNiuH1Template" text="开始">
+						<Size>
+							<AbsDimension x="47" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="30" y="53" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>AutoFiniQuestFrameControlBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentHideBtn" inherits="GongYongAnNiuH1Template" text="设置">
+						<Size>
+							<AbsDimension x="47" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="79" y="53" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>AutoFiniQuestFrameHideBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>AutoFiniQuestFrameShortCut_OnShow()</OnShow>
+					<OnHide>AutoFiniQuestFrameShortCut_OnHide()</OnHide>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>AutoFiniQuestFrame_OnLoad()</OnLoad>
+			<OnEvent>AutoFiniQuestFrame_OnEvent()</OnEvent>
+			<OnShow>AutoFiniQuestFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+
+	#缩小标示
+	<Button name="AutoFiniQuestMiniFrame" parent="UIClient" frameStrata="background" hidden="true" movable="false">
+		<Size>
+			<AbsDimension x="25" y="28" />
+		</Size>
+		<Anchors>
+			<Anchor point="topright" relativeTo="UIClient" relativePoint="topright">
+				<Offset>
+					<AbsDimension x="-11" y="182" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+					<Size>
+						<AbsDimension x="42" y="42"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-7" y="-7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="4" texcols="4" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="944" y="222"  w="25" h="28" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="944" y="251"  w="25" h="28" />
+		<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="944" y="280"  w="25" h="28" />
+		<Scripts>
+			<OnClick>AutoFiniQuestMiniFrame_OnClick();</OnClick>
+			<OnEnter>AutoFiniQuestMiniFrame_OnEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+			<OnShow>AutoFiniQuestMiniFrame_OnShow();</OnShow>
+		</Scripts>
+	</Button>
+
+	##次数选择
+	<Button name="AutoFiniQuestConfigSelectBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="58" y="20"/>
+		</Size>	
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<PushedTexture		inherits="PushedTextureTemplate" />
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<Scripts>
+			<OnClick>AutoFiniQuestConfigSelectBtn_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+	#自动任务设置界面
+	<Frame name="AutoFiniQuestConfigFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="283" y="271" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="118" y="318" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentSecondLayer" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="266" y="188" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="278" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="230" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="自动任务设置" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentListTex1" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="39" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentListTex2" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex1" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentListTex3" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex2" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentListTex4" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex3" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentListTex5" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex4" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentListTex6" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex5" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentListTex7" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex6" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentListTex8" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="262" y="23" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex7" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWarnTex" file="uires\\ZhuJieMian\\2.dds" x="168" y="999" w="24" h="24">
+					<Size>
+						<AbsDimension x="21" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="16" y="201" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" text="请选择以下自动进行的任务：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="220" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex1" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont2" fonttype="LittleFZYBlackFont" text="以上只进行能接取的任务">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="220" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentListTex8" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="30" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="$parentOption1" inherits="CheckBtnTemplate" id="1">
+				<Size>
+					<AbsDimension x="118" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentListTex2">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="别针换别墅任务">
+							<Size>
+								<AbsDimension x="120" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoFiniQuestConfigFrameOption_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentOption2" inherits="CheckBtnTemplate" id="2">
+				<Size>
+					<AbsDimension x="78" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentListTex3">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="环组任务">
+							<Size>
+								<AbsDimension x="120" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentChooseBtn" >
+						<Size>
+							<AbsDimension x="60" y="21" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="118" y="1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" />
+								<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="1">
+									<Color r="255" g="255" b="190"/>  
+									<Size>
+										<AbsDimension x="50" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="7" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" justifyH="left" text="次">
+									<Color r="255" g="255" b="190"/>  
+									<Size>
+										<AbsDimension x="20" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topright" >
+											<Offset>
+												<AbsDimension x="2" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>AutoFiniQuestConfigScrollDownBtnOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+						<Anchors>
+							<Anchor point="right" relativeTo="$parentChooseBtn" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>AutoFiniQuestConfigScrollDownBtnOnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnClick>AutoFiniQuestConfigFrameOption_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentOption3" inherits="CheckBtnTemplate" id="3">
+				<Size>
+					<AbsDimension x="78" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentListTex4">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="日常任务">
+							<Size>
+								<AbsDimension x="120" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoFiniQuestConfigFrameOption_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentOption4" inherits="CheckBtnTemplate" id="4">
+				<Size>
+					<AbsDimension x="78" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentListTex5">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="商运任务">
+							<Size>
+								<AbsDimension x="120" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoFiniQuestConfigFrameOption_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentOption5" inherits="CheckBtnTemplate" id="5">
+				<Size>
+					<AbsDimension x="103" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentListTex6">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="赏善罚恶任务">
+							<Size>
+								<AbsDimension x="120" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentChooseBtn" >
+						<Size>
+							<AbsDimension x="60" y="21" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="118" y="1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" />
+								<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="1">
+									<Color r="255" g="255" b="190"/>  
+									<Size>
+										<AbsDimension x="50" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="7" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" justifyH="left" text="次">
+									<Color r="255" g="255" b="190"/>  
+									<Size>
+										<AbsDimension x="20" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topright" >
+											<Offset>
+												<AbsDimension x="2" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>AutoFiniQuestConfigScrollDownBtnOnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+						<Anchors>
+							<Anchor point="right" relativeTo="$parentChooseBtn" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>AutoFiniQuestConfigScrollDownBtnOnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnClick>AutoFiniQuestConfigFrameOption_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentOption6" inherits="CheckBtnTemplate" id="6">
+				<Size>
+					<AbsDimension x="118" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topLeft" relativeTo="$parentListTex7">
+						<Offset>
+							<AbsDimension x="5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="阳光海滩获取经验1小时">
+							<Size>
+								<AbsDimension x="140" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoFiniQuestConfigFrameOption_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<!--
+			<CheckButton name="$parentOption7" inherits="CheckBtnTemplate" id="7">
+				<Size>
+					<AbsDimension x="78" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentListTex8">
+						<Offset>
+							<AbsDimension x="5" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="快捷面板">
+							<Size>
+								<AbsDimension x="120" y="20"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>AutoFiniQuestConfigFrameOption_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			-->
+			# 确定
+			<Button name="$parentControlBtn" inherits="GongYongAnNiuB1Template" text="开 启">
+				<Size>
+					<AbsDimension x="80" y="31"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="21" y="235"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>AutoFiniQuestFrameControlBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 取消
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuB1Template" text="关 闭">
+				<Size>
+					<AbsDimension x="80" y="31"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="183" y="235"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>AutoFiniQuestConfigFrame_OnLoad()</OnLoad>
+			<OnEvent>AutoFiniQuestConfigFrame_OnEvent()</OnEvent>
+			<OnShow>AutoFiniQuestConfigFrame_OnShow()</OnShow>
+			<OnHide>AutoFiniQuestConfigFrame_OnHide()</OnHide>
+			<OnClick>AutoFiniQuestConfigFrame_OnClick()</OnClick>
+		</Scripts>
+	</Frame>
+	下拉菜单按钮
+	<Frame name="AutoFiniQuestConfigSelectFrame" hidden="true" frameStrata="DIALOG">	
+		<Size>
+			<AbsDimension x="60" y="211" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+				<offset>
+					<AbsDimension x="0" y="0"/>
+				</offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentSelectBtn1" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<offset>
+							<AbsDimension x="1" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="1">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn2" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn1" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="2">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn3" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn2" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="3">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn4" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn3" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="4">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn5" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn4" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="5">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn6" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn5" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="6">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn7" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn6" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="7">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn8" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn7" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="8">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn9" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn8" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="9">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+			<Button name="$parentSelectBtn10" inherits="AutoFiniQuestConfigSelectBtnTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectBtn9" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="10">
+					<Color r="255" g="255" b="190" />
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="7" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>AutoFiniQuestConfigSelectBtn_OnShow();</OnShow> 
+		</Scripts>
+	</Frame>
+</Ui>

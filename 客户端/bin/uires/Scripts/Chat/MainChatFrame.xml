@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Chat\MainChatFrame.lua" />
+
+	#  主聊天信息窗口	BackGround	DIALOG
+	<Frame name="MainChatFrame" frameStrata="BackGround" parent="UIClient" hidden="true" input_transparent="true">
+		<Size>
+			<AbsDimension x="326" y="205" />
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parent">
+				<Offset>
+					# 437
+					<AbsDimension x="0" y="-126" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			# 聊天信息栏背景
+			<Button name="$parent_ChatBackBtn" input_transparent="true">
+				<Size>
+					<AbsDimension x="304" y="186" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentTex"	inherits="ChatMMainBkg" >
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="22" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 综合信息频道
+			<RichText name="$parent_ZongHeRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" >
+				<Size>
+					<AbsDimension x="295" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ChatBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			# 世界信息频道
+			<RichText name="$parent_ChatWorldRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="295" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ChatBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			# 公会频道
+			<RichText name="$parent_ChatClanRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="295" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ChatBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			# 队伍频道
+			<RichText name="$parent_ChatTeamRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="295" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ChatBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			# 附近频道
+			<RichText name="$parent_ChatNearRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="295" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ChatBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			# 私聊频道
+			<RichText name="$parent_ChatPrivateRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="295" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ChatBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			# 信息频道
+			<RichText name="$parent_ChatXinXiRich" lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="295" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ChatBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			
+			# 玩家聊天信息滚动至末尾一行按钮
+			<!--<Button name="$parent_ScrollLastBtn" inherits="ScrollBottomBtnTemplate">
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parent_ChatBackBtn">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_ScrollLastBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>-->
+			
+			# 玩家聊天信息向上滚动一行按钮	21	ScrollUpBtnTemplate
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_ScrollUpBtn_OnClick();</OnClick>
+					<!--<OnMouseDown>MainChatFrame_ScrollUpBtn_OnMouseDown();</OnMouseDown>
+					<OnUpdate>MainChatFrame_ScrollUpBtn_OnUpdate();</OnUpdate>-->
+				</Scripts>
+			</Button>
+			# 玩家聊天信息向下滚动一行按钮	ScrollDownBtnTemplate
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollLastBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="144"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\LiaoTianLanXiaLaJian.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="19" y="19"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MainChatFrame_ScrollDownBtn_OnClick();</OnClick>
+					<!--<OnMouseDown>MainChatFrame_ScrollDownBtn_OnMouseDown();</OnMouseDown>
+					<OnUpdate>MainChatFrame_ScrollDownBtn_OnUpdate();</OnUpdate>-->
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="100" valueStep="1" defaultValue="0">	
+				<Size>
+					<AbsDimension x="16" y="148" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>MainChatFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 最小化按钮
+			<Button name="$parent_MinimizeBtn">
+				<Size>
+					<AbsDimension x="13" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="7" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="177" y="388" w="13" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="191" y="388" w="13" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="205" y="388" w="13" h="17" />
+				<Scripts>
+					<OnClick>MainChatFrame_MinimizeBtn_OnClick();</OnClick>
+					<OnEnter>MainChatFrame_MinimizeBtn_OnEnter()</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 清空聊天信息按钮
+			<!--<Button name="$parent_ScrollClearBtn" hidden="true">
+				<Size>
+					<AbsDimension x="19" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="Top" relativePoint="Bottom" relativeTo="$parent_ScrollLastBtn">
+						<Offset>
+							<AbsDimension x="0" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="117" y="408" w="19" h="19" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="137" y="408" w="19" h="19" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="157" y="408" w="19" h="19" />
+				<Scripts>
+					<OnClick>MainChatFrame_ScrollClearBtn_OnClick();</OnClick>
+					<OnEnter>MainChatFrame_ScrollClearBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>-->
+
+			# 屏蔽按钮	19
+			<Button name="$parent_PingBiBtn" inherits="TeYouAnNiuChatSetTemplate">
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollDownBtn">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_PingBiBtn_OnClick();</OnClick> 
+					<OnEnter>MainChatFrame_PingBiBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 综合按钮
+			<Button name="$parent_ZongHeBtn" inherits="TeYouAnNiuPinDaoTemplate" text="综合" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_PingBiBtn">
+						<Offset>
+							<AbsDimension x="2" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_ZongHeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 世界
+			<Button name="$parent_WorldBtn" inherits="TeYouAnNiuPinDaoTemplate" text="世界" >
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\LiaoTianLanYeKa-1.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="36" y="25"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_ZongHeBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_WorldBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 公会
+			<Button name="$parent_ClanBtn" inherits="TeYouAnNiuPinDaoTemplate" text="公会" >
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\LiaoTianLanYeKa-1.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="36" y="25"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_WorldBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_ClanBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 队伍
+			<Button name="$parent_TeamBtn" inherits="TeYouAnNiuPinDaoTemplate" text="队伍" >
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\LiaoTianLanYeKa-1.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="36" y="25"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_ClanBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_TeamBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 附近
+			<Button name="$parent_NearBtn" inherits="TeYouAnNiuPinDaoTemplate" text="附近" >
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\LiaoTianLanYeKa-1.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="36" y="25"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_TeamBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_NearBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 私聊
+			<Button name="$parent_PrivateBtn" inherits="TeYouAnNiuPinDaoTemplate" text="私聊" >
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\LiaoTianLanYeKa-1.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="36" y="25"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_NearBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_PrivateBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 向右扩长
+			<Button name="$parent_HorizonalLongerBtn" inherits="TeYouAnNiuHorizonalLongerTemplate" >
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_PrivateBtn">
+						<Offset>
+							<AbsDimension x="4" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_HorizonalLongerBtn_OnClick();</OnClick>
+					<OnEnter>MainChatFrame_HorizonalLongerBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			#向上扩高
+			<Button name="$parent_VerticalLongerBtn" inherits="TeYouAnNiuVerticalLongerTemplate" >
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_HorizonalLongerBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_VerticalLongerBtn_OnClick();</OnClick>
+					<OnEnter>MainChatFrame_VerticalLongerBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 设置快捷发言按钮
+			<!--<Button name="$parent_ShortcutSendMsgBtn" inherits="TeYouAnNiuShortCutTemplate" >
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_VerticalLongerBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_ShortcutSendMsgBtn_OnClick();</OnClick> 
+					<OnEnter>MainChatFrame_ShortcutSendMsgBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>-->
+			# 信息频道切换按钮
+			<Button name="$parent_XinXiBtn" inherits="TeYouAnNiuShortCutTemplate" >
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_VerticalLongerBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_XinXiBtn_OnClick();</OnClick> 
+					<OnEnter>MainChatFrame_XinXiBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 历史记录按钮
+			<Button name="$parent_HistoryBtn" inherits="TeYouAnNiuHistoryTemplate" >
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_XinXiBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_HistoryBtn_OnClick();</OnClick> 
+					<OnEnter>MainChatFrame_HistoryBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 笑脸表情按钮
+			<Button name="$parent_FaceBtn" inherits="TeYouAnNiuBiaoQingTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_TeamBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_FaceBtn_OnClick();</OnClick>
+					<OnEnter>MainChatFrame_FaceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 动作按钮
+			<Button name="$parent_ActBtn" inherits="TeYouAnNiuActTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_FaceBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_ActBtn_OnClick();</OnClick>
+					<OnEnter>MainChatFrame_ActBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 小喇叭					
+			<Button name="$parent_BugleBtn" inherits="TeYouAnNiuBugleTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_HistoryBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFrame_BugleBtn_OnClick();</OnClick>  
+					<OnEnter>MainChatFrame_BugleBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>MainChatFrame_OnLoad();</OnLoad>
+			<OnEvent>MainChatFrame_OnEvent();</OnEvent>	 
+			<OnShow>MainChatFrame_OnShow();</OnShow>
+			<OnHide>MainChatFrame_OnHide();</OnHide>
+			<OnUpdate>MainChatFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	# 缩放聊天面板
+	<Frame name="ChatControlFrame" frameStrata="HIGH" parent="UIClient" hidden="true">
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="5" y="-103" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="ChatControlRestoreBtn" >
+				<Size>
+					<AbsDimension x="17" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="177" y="408" w="17" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="195" y="408" w="17" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="213" y="408" w="17" h="20" />
+				<Scripts>
+					<OnClick>ChatControlRestoreBtn_OnClick();</OnClick>
+					<OnEnter>ChatControlRestoreBtn_OnEnter()</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>  
+			<OnLoad>ChatControlFrame_OnLoad();</OnLoad>
+			<OnShow>ChatControlFrame_OnShow();</OnShow>
+			<OnUpdate>ChatControlFrame_OnUpdate();</OnUpdate>	
+		</Scripts>							   
+	</Frame>
+</Ui>

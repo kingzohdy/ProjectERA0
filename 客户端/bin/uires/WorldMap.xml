@@ -1,0 +1,2369 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires\WorldMap.lua" />
+	<Texture name="WorldMapBackTextureTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" DrawType="ninesquare">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<NineSquare>
+			<Topleft		x="187"	y="1"	w="90"	h="90"/>
+			<Top			x="280"	y="1"	w="474" h="90"/>
+			<Topright		x="757"	y="1"	w="90"	h="90"/>
+			<Left			x="1"	y="1"	w="90"	h="444"/>
+			<Center			x="712" y="946"	w="18"	h="18"/>
+			<Right			x="94"	y="1"	w="90"	h="444"/>
+			<Bottomleft		x="187" y="94"	w="90"	h="90"/>
+			<Bottom			x="280"	y="94"	w="474"	h="90"/>
+			<Bottomright	x="757" y="94"	w="90"	h="90"/>
+			<OffSet x="90" y="90" />
+		</NineSquare>
+	</Texture>
+	<Frame name="WorldMapFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel = "21" movable = "true" >
+		<Size>
+			<AbsDimension x="907" y="687" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="-55" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="WorldMapFrameMapButtonTex" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="WorldMapFrameHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" justifyH="center" text="区域地图">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="WorldMapFrame" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString> 
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="WorldMapFrame_CloseButton" inherits="CloseBtnTemplate" />			
+			# 提示窗口?
+			<Button name="WorldMapFrame_RecommendBtn" inherits="HelpBtnTemplate" />			
+			# 区域地图面板底版
+			<Button name="WorldMapFrameBackBtn">
+				<Size>
+					<AbsDimension x="906" y="653" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 大陆下拉菜单栏
+			<Button name="WorldMapFrame_MainlandSelectBtn" hidden="true">
+				<Size>
+					<AbsDimension x="180" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrameBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="WorldMapFrame_MainlandSelectFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="大陆" justifyH="left">
+							<Color r="129" g="127" b="109"/>
+							<Size>
+								<AbsDimension x="150" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="15" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+				</Scripts>
+			</Button>
+			# 大陆下拉按钮 
+			<Button name="WorldMapFrame_MainlandDownBtn" inherits="ScrollDownBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topright" relativeTo="WorldMapFrame_MainlandSelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 地区下拉菜单栏
+			<Button name="WorldMapFrame_AreaSelectBtn">
+				<Size>
+					<AbsDimension x="180" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrameBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="WorldMapFrame_AreaSelectFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="地区" justifyH="left">
+							<Color r="129" g="127" b="109"/>
+							<Size>
+								<AbsDimension x="150" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="15" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>WorldMapFrame_AreaDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 地区下拉按钮 
+			<Button name="WorldMapFrame_AreaDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="WorldMapFrame_AreaSelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldMapFrame_AreaDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 副本下拉菜单栏
+			<Button name="WorldMapFrame_CopySelectBtn">
+				<Size>
+					<AbsDimension x="180" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_AreaSelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="WorldMapFrame_CopySelectFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="副本" justifyH="left">
+							<Color r="129" g="127" b="109"/>
+							<Size>
+								<AbsDimension x="150" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="15" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate"/>
+				<Scripts>
+					<OnClick>WorldMapFrame_CopyDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 副本下拉按钮 
+			<Button name="WorldMapFrame_CopyDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="WorldMapFrame_CopySelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldMapFrame_CopyDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示主角当前坐标
+			<Button name="WorldMapFrame_MainCoordBtn">
+				<Size>
+					<AbsDimension x="90" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_CopySelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="180" y="9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="WorldMapFrame_MainCoordFont" lineInterval ="2" multiLine="false" fonttype="MinimumBlackFont" text="" justifyH="left">
+							<Color r="129" g="127" b="109"/>
+							<Size>
+								<AbsDimension x="100" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 显示世界地图的按钮
+			<Button name="WorldMapFrame_ShowWorldBtn" hidden="true">
+				<Size>
+					<AbsDimension x="897" y="619" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_AreaSelectBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-6" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentGround" file="uires\\DiTuLei\\ShiJieDiTu\\ShiJieDiTu.jpg" >
+							<Size>
+							   <AbsDimension x="897" y="619" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="$parentLeftClickFont" lineInterval ="2" multiLine="false" fonttype="TeenyBlackFont" text="左键点击查看区域地图" justifyH="left" fontStyle="shadow">
+							<Color r="177" g="169" b="139"/>
+							<Size>
+								<AbsDimension x="120" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="92" y="28" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>	
+					<Button name="WorldmapAreaPosBtnTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="24" y="25" />
+						</Size>
+						<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="684" y="34" w="24" h="25" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="709" y="34" w="24" h="25" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="734" y="34" w="24" h="25" />
+						<Scripts>
+							<OnClick>WorldmapAreaPosBtn_OnClick();</OnClick>
+							<OnEnter>WorldmapAreaPosBtn_OnEnter();</OnEnter>
+							<OnLeave>WorldmapAreaPosBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					# 13号矿洞
+					<Button name="WorldmapAreaPosBtn1" inherits="WorldmapAreaPosBtnTemplate"  id="1">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="132" y="258"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 落日荒野
+					<Button name="WorldmapAreaPosBtn2" inherits="WorldmapAreaPosBtnTemplate"  id="2" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="194" y="252"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 天空岛
+					<Button name="WorldmapAreaPosBtn3" inherits="WorldmapAreaPosBtnTemplate"  id="3">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="334" y="178"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 时间城
+					<Button name="WorldmapAreaPosBtn4" inherits="WorldmapAreaPosBtnTemplate"  id="4">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="344" y="285"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 银风雪原
+					<Button name="WorldmapAreaPosBtn5" inherits="WorldmapAreaPosBtnTemplate"  id="5" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="442" y="186"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 风回裂谷
+					<Button name="WorldmapAreaPosBtn6" inherits="WorldmapAreaPosBtnTemplate"  id="6">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="531" y="162"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 牢城
+					<Button name="WorldmapAreaPosBtn7" inherits="WorldmapAreaPosBtnTemplate"  id="7">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="608" y="206"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 普罗圣地
+					<Button name="WorldmapAreaPosBtn8" inherits="WorldmapAreaPosBtnTemplate"  id="8" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="654" y="267"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 荫川林地
+					<Button name="WorldmapAreaPosBtn9" inherits="WorldmapAreaPosBtnTemplate"  id="9">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="605" y="300"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 流金沙漠
+					<Button name="WorldmapAreaPosBtn10" inherits="WorldmapAreaPosBtnTemplate" id="10">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="406" y="337"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 阿努比斯神殿
+					<Button name="WorldmapAreaPosBtn11" inherits="WorldmapAreaPosBtnTemplate" id="11">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="462" y="410"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 阿努比斯废墟
+					<Button name="WorldmapAreaPosBtn12" inherits="WorldmapAreaPosBtnTemplate" id="12">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="412" y="441"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 越雾雨林
+					<Button name="WorldmapAreaPosBtn13" inherits="WorldmapAreaPosBtnTemplate" id="13" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="256" y="378"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 越雾甬道
+					<Button name="WorldmapAreaPosBtn14" inherits="WorldmapAreaPosBtnTemplate" id="14" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="188" y="396"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 西部荒野
+					<Button name="WorldmapAreaPosBtn15" inherits="WorldmapAreaPosBtnTemplate" id="15" hidden="true">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="161" y="187"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 细语丘陵
+					<Button name="WorldmapAreaPosBtn16" inherits="WorldmapAreaPosBtnTemplate" id="16" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="498" y="282"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 鸣沙陷地
+					<Button name="WorldmapAreaPosBtn17" inherits="WorldmapAreaPosBtnTemplate" id="17" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="461" y="326"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 法老陵
+					<Button name="WorldmapAreaPosBtn18" inherits="WorldmapAreaPosBtnTemplate" id="18" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="516" y="365"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 阿努比斯祭坛
+					<Button name="WorldmapAreaPosBtn19" inherits="WorldmapAreaPosBtnTemplate" id="19" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="492" y="466"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 冰岛
+					<Button name="WorldmapAreaPosBtn20" inherits="WorldmapAreaPosBtnTemplate" id="20" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="444" y="268"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 碎金矿坑 
+					<Button name="WorldmapAreaPosBtn21" inherits="WorldmapAreaPosBtnTemplate" id="21" hidden="true">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="141" y="165"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 迈阿荒原 
+					<Button name="WorldmapAreaPosBtn22" inherits="WorldmapAreaPosBtnTemplate" id="22">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="168" y="199"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 鲜血庇护所
+					<Button name="WorldmapAreaPosBtn23" inherits="WorldmapAreaPosBtnTemplate" id="23" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="164" y="300"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 莫名遗迹
+					<Button name="WorldmapAreaPosBtn24" inherits="WorldmapAreaPosBtnTemplate" id="24" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="186" y="358"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 祈妙神坛
+					<Button name="WorldmapAreaPosBtn25" inherits="WorldmapAreaPosBtnTemplate" id="25" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="685" y="228"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 牢城审讯室 
+					<Button name="WorldmapAreaPosBtn26" inherits="WorldmapAreaPosBtnTemplate" id="26" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="626" y="146"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 失落之域
+					<Button name="WorldmapAreaPosBtn27" inherits="WorldmapAreaPosBtnTemplate" id="27" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="695" y="186"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 钢铁要塞
+					<Button name="WorldmapAreaPosBtn28" inherits="WorldmapAreaPosBtnTemplate" id="28" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="708" y="478"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>
+			# 显示地图的区域按钮
+			<Button name="WorldMapFrame_ShowMapBtn" >
+				<Size>
+					<AbsDimension x="666" y="620" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_AreaSelectBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-2" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="WorldMapFrameButtonEnvelopTex" inherits="WorldMapBackTextureTemplate" >
+							<Size>
+								<AbsDimension x="652" y="625" />
+							</Size>
+							<Anchors>
+								 <Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+									<Offset>
+										<AbsDimension x="0" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>						
+						</Texture>
+						<Texture name="WorldMapFrameMapTexture">
+							<Size>
+								<AbsDimension x="578" y="578" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WorldMapFrameButtonEnvelopTex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="58" y="27" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WorldMapFrameMapwarfogTexture" file="uires\\DiTuLei\\QuYuDiTu\\yangpi.tga"  hidden="true" >
+							<Size>
+								<AbsDimension x="578" y="578" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="WorldMapFrameButtonEnvelopTex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="58" y="27" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<DrawLineFrame name="MapLine" file="uires\\UIresources\\XunLuLuJingDian.tga" >
+							<Size>
+								<AbsDimension x="578" y="578" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WorldMapFrameMapTexture" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255"/>
+						</DrawLineFrame>
+						<DrawLineFrame name="WorldMapFrameClanCityMemberLine" file="uires\\ZhuJieMian\\1.dds" x="207" y="494" w="17" h="16" >
+							<Size>
+								<AbsDimension x="578" y="578" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WorldMapFrameMapTexture" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="255" b="255"/>
+						</DrawLineFrame>
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="$parentRightClickFont" lineInterval ="2" multiLine="false" fonttype="TeenyBlackFont" text="右键点击查看世界地图" justifyH="left" fontStyle="shadow" >
+							<Color r="255" g="255" b="255"/>
+							<Size>
+								<AbsDimension x="120" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="92" y="28" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<onmousedown>Maxmap_OnMouseDown();</onmousedown>
+					<OnMouseMove>WorldMapFrame_ShowMapBtn_OnMouseMove();</OnMouseMove>
+					<OnLeave>WorldMapFrame_ShowMapBtn_OnLeave();</OnLeave>
+					<OnEnter>WorldMapFrame_ShowMapBtn_OnEnter();</OnEnter>
+					<OnClick>WorldMapFrame_ShowMapBtn_OnClick();</OnClick>
+					<OnReceiveDrag>WorldMapFrame_ShowMapBtn_ReceiveDrag();</OnReceiveDrag>
+				</Scripts>
+			</Button>
+			# 矿产资源按钮
+			<Button name="WorldMapFrame_ResourceBtn">
+				<Size>
+					<AbsDimension x="24" y="22" />
+				</Size>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="740" y="348" w="24" h="22">
+							<Size>
+								<AbsDimension x="24" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_CopySelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="164" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>WorldMapFrame_ResourceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 世界地图按钮 
+			<Button name="WorldMapFrame_WorldBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="世界地图">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_CopySelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="192" y="44"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldMapFrame_WorldBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="WorldMapFrameButtonTemplate" virtual="true" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuD1NormalTemplate"	r="140" g="140" b="140"	/>
+				<HighlightTexture	inherits="GongYongAnNiuD1HighTemplate"		r="255" g="255" b="255"	/>
+				<PushedTexture		inherits="GongYongAnNiuD1PushedTemplate"	r="255" g="255" b="190"	/>
+				<DisabledTexture	inherits="GongYongAnNiuD1PushedTemplate"	r="255"	g="255"	b="190"	/>
+			</Button>
+			# 全部
+			<Button name="WorldMapFrame_AllButton" inherits="WorldMapFrameButtonTemplate" text="全部">
+				<Size>
+					<AbsDimension x="48" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_CopySelectBtn" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="291" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Maxmap_NPC_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 功能
+			<Button name="WorldMapFrame_FunctionButton" inherits="WorldMapFrameButtonTemplate" text="功能">
+				<Size>
+					<AbsDimension x="48" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="WorldMapFrame_AllButton" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Maxmap_NPC_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 任务
+			<Button name="WorldMapFrame_QuestButton" inherits="WorldMapFrameButtonTemplate" text="任务" hidden="true">
+				<Size>
+					<AbsDimension x="48" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="WorldMapFrame_FunctionButton" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Maxmap_NPC_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 活动
+			<Button name="WorldMapFrame_ActivityButton" inherits="WorldMapFrameButtonTemplate" text="活动">
+				<Size>
+					<AbsDimension x="48" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="WorldMapFrame_FunctionButton" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Maxmap_NPC_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 传送
+			<Button name="WorldMapFrame_TransmitButton" inherits="WorldMapFrameButtonTemplate" text="传送" hidden="true">
+				<Size>
+					<AbsDimension x="42" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="WorldMapFrame_ActivityButton" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Maxmap_NPC_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 怪物
+			<Button name="WorldMapFrame_MonsterButton" inherits="WorldMapFrameButtonTemplate" text="怪物">
+				<Size>
+					<AbsDimension x="48" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="WorldMapFrame_ActivityButton" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Maxmap_Monster_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 名字列表背景
+			<Button name="WorldMapFrame_NamesBackBtn" >
+				<Size>
+					<AbsDimension x="232" y="460" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_AllButton" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-3" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 此为用于在地图右边显示的一系列NPC名字
+			<Button name="NpcNameButtonTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="200" y="26"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentDescText" fonttype="FZYBlackFont15" justifyH="left" fontStyle="shadow" multiline="false" text="密码">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="200" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="18" y="9"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentText" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" multiline="false" text="密码">
+							<Color r="160" g="159" b="129"/>
+							<Size>
+								<AbsDimension x="90" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+									<Offset>
+										<AbsDimension x="-14" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<DisabledTexture	inherits="TransTextureTemplate" />
+				<Scripts>
+					<OnDoubleClick>WorldMapFrame_NpcName_OnDoubleClick();</OnDoubleClick>
+					<OnClick>WorldMapFrame_NpcName_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="NpcNameButton1" inherits="NpcNameButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_NamesBackBtn" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton2" inherits="NpcNameButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton1" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton3" inherits="NpcNameButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton2" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton4" inherits="NpcNameButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton3" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton5" inherits="NpcNameButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton4" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton6" inherits="NpcNameButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton5" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton7" inherits="NpcNameButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton6" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton8" inherits="NpcNameButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton7" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton9" inherits="NpcNameButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton8" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton10" inherits="NpcNameButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton9" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton11" inherits="NpcNameButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton10" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton12" inherits="NpcNameButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton11" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton13" inherits="NpcNameButtonTemplate" id="13">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton12" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton14" inherits="NpcNameButtonTemplate" id="14">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton13" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton15" inherits="NpcNameButtonTemplate" id="15">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton14" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton16" inherits="NpcNameButtonTemplate" id="16">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton15" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton17" inherits="NpcNameButtonTemplate" id="17">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton16" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="NpcNameButton18" inherits="NpcNameButtonTemplate" id="18">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcNameButton17" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 滚动条背景
+			<Button name="WorldMapFrame_SliderBack">
+				<Size>
+					<AbsDimension x="22" y="460" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="WorldMapFrame_NamesBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">						 
+						<Texture name="$parent_MiddleGround" inherits="ScrollBkgCenter" >
+							<Size>
+							   <AbsDimension x="21" y="460" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="WorldMapFrame_SliderBack" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parent_TopGround" inherits="ScrollBkgUp" >							
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parent_BottomGround" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 向上滚动按钮
+			<Button name="WorldMapFrame_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="WorldMapFrame_SliderBack" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-1" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MaxMapFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 向下滚动按钮
+			<Button name="WorldMapFrame_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_ScrollUpBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="441"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MaxMapFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="WorldMapFrame_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="26" y="420" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="WorldMapFrame_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture"  file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>MaxMapFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# X坐标输入框抬头
+			<Button name="WorldMapFrame_CoordInputHeadBtn" >
+				<Size>
+					<AbsDimension x="140" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_NamesBackBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="8" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="WorldMapFrame_CoordInputHeadFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="输入地图坐标：">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="140" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# X坐标输入框抬头
+			<Button name="WorldMapFrame_XCoordInputHeadBtn" >
+				<Size>
+					<AbsDimension x="15" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_CoordInputHeadBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="WorldMapFrame_XCoordInputHeadFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="X">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="15" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			#X坐标输入框
+			<Button name="WorldMapFrame_XCoordInputBtn" >
+				<Size>
+					<AbsDimension x="55" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_XCoordInputHeadBtn" relativePoint="TopRight" >
+						<Offset>
+							<AbsDimension x="-4" y="-13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# X坐标输入框
+			<EditBox name="WorldMapFrame_XCoordInputEdit" multiLine="false" editMethod="2" letters="4" >
+				<Size>
+					<AbsDimension x="60" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_XCoordInputBtn" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="3" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="WorldMapFrame_XCoord" fonttype="SongTiFont14">
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("WorldMapFrame_YCoordInputEdit");</OnTabPressed>
+					<OnEnterPressed>Maxmap_AutoFindPath_OnClick();</OnEnterPressed>
+					<OnUpdate>WorldMapFrame_XCoordInputEdit_OnUpdate();</OnUpdate>
+					<OnEscapePressed>WorlMapFrame_EditBox_OnEscapePressed();</OnEscapePressed>
+				</Scripts>
+			</EditBox>
+			# Y坐标输入框抬头
+			<Button name="WorldMapFrame_YCoordInputHeadBtn" >
+				<Size>
+					<AbsDimension x="15" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_XCoordInputBtn" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="6" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="WorldMapFrame_YCoordInputHeadFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="Y">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="15" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# Y坐标输入框
+			<Button name="WorldMapFrame_YCoordInputBtn" >
+				<Size>
+					<AbsDimension x="55" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_YCoordInputHeadBtn" relativePoint="TopRight" >
+						<Offset>
+							<AbsDimension x="-6" y="-13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# Y坐标输入框
+			<EditBox name="WorldMapFrame_YCoordInputEdit" multiLine="false" editMethod="2" letters="4" >
+				<Size>
+					<AbsDimension x="60" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_YCoordInputBtn" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="3" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="WorldMapFrame_YCoord" fonttype="SongTiFont14">
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("WorldMapFrame_XCoordInputEdit");</OnTabPressed>
+					<OnEnterPressed>Maxmap_AutoFindPath_OnClick();</OnEnterPressed>
+					<OnUpdate>WorldMapFrame_YCoordInputEdit_OnUpdate();</OnUpdate>
+					<OnEscapePressed>WorlMapFrame_EditBox_OnEscapePressed();</OnEscapePressed>
+				</Scripts>
+			</EditBox>
+			# 自动寻径
+			<Button name="WorldMapFrame_AutoFindPathButton" inherits="GongYongAnNiuA1ButtonTemplate" text="前往">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="WorldMapFrame_YCoordInputBtn" relativePoint="center" >
+						<Offset>
+							<AbsDimension x="74" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Maxmap_AutoFindPath_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# NPC名字输入框抬头
+			<Button name="WorldMapFrame_NpcNameInputHeadBtn" >
+				<Size>
+					<AbsDimension x="140" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_XCoordInputBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="-11" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentInputHeadFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="输入NPC名称：">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="140" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# NPC名字输入框
+			<Button name="WorldMapFrame_NpcNameInputBtn" >
+				<Size>
+					<AbsDimension x="129" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_NpcNameInputHeadBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="10" y="-13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+			# NPC名字输入框
+			<EditBox name="WorldMapFrame_NpcNameInputEdit" multiLine="false" letters="20" >
+				<Size>
+					<AbsDimension x="125" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_NpcNameInputBtn" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="3" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentCoord" fonttype="SongTiFont14">
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>WorldMapFrame_AutoFindPathByNameButton_OnClick();</OnEnterPressed>
+					<OnEscapePressed>WorlMapFrame_EditBox_OnEscapePressed();</OnEscapePressed>
+				</Scripts>
+			</EditBox>
+			# 通过NPC名字进行自动寻径
+			<Button name="WorldMapFrame_AutoFindPathByNameButton" inherits="GongYongAnNiuA1ButtonTemplate" text="前往">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="WorldMapFrame_NpcNameInputBtn" relativePoint="center" >
+						<Offset>
+							<AbsDimension x="107" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldMapFrame_AutoFindPathByNameButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示任务追踪
+			<CheckButton name="WorldMapFrame_ShowTaskBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WorldMapFrame_XCoordInputHeadBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="55" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldMapFrame_ShowTaskBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="WorldMapFrame_NpcTaskInputBtn" >
+				<Size>
+					<AbsDimension x="129" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldMapFrame_ShowTaskBtn" relativePoint="TopRight" >
+						<Offset>
+							<AbsDimension x="2" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="left" text="显示可接任务">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="140" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 此为点击地图上的NPC后,会在地图上被选中的NPC周围闪动的特效
+			<Button name="Maxmap_SelectNpcButton" hidden="true">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="Maxmap_SelectNpcTexture" file="uires\\TeXiaoLei\\JieMianTeXiao\\npc XianShiTeXiao\\1.tga">				
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>				
+			</Button>
+			# 此为自动寻路路线图的目标点闪动的特效
+			<Button name="Maxmap_LastAutoLineButton" hidden="true">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTexture" file="uires\\TeXiaoLei\\JieMianTeXiao\\npc XianShiTeXiao\\1.tga">				
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnUpdate>Maxmap_AutoEffect_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			# 区域地图上的同阵营玩家
+			<Button name="WorldmapCampPlayerPosBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+				<Size>
+					<AbsDimension x="17" y="16" />
+				</Size>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="207" y="494" w="17" h="16" />
+				<Scripts>
+					<!--<onmousedown>Maxmap_OnMouseDown();</onmousedown>-->
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="WorldmapCampPosBtn1" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn2" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn3" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn4" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn5" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn6" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn7" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn8" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn9" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn10" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn11" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn12" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn13" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn14" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn15" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn16" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn17" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn18" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn19" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn20" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn21" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn22" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn23" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn24" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn25" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn26" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn27" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn28" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn29" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			<Button name="WorldmapCampPosBtn30" inherits="WorldmapCampPlayerPosBtnTemplate" />
+			# 区域地图上的全部NPC	TODO:换texture
+			<Button name="WorldmapNpcPosBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+				<Size>
+					<AbsDimension x="17" y="22" />
+				</Size>
+				<Layers>
+					<Layer level="PARENT">
+						<Texture name="$parentNpcTypeTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="22" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTaskNpcTex" file="uires\\ZhuJieMian\\1.dds" x="472" y="45" w="17" h="22" >		
+							<Size>
+								<AbsDimension x="17" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<onmousedown>Maxmap_OnMouseDown();</onmousedown>-->
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="WorldmapNpcPosBtn1" inherits="WorldmapNpcPosBtnTemplate"  id="1"/>
+			<Button name="WorldmapNpcPosBtn2" inherits="WorldmapNpcPosBtnTemplate"  id="2"/>
+			<Button name="WorldmapNpcPosBtn3" inherits="WorldmapNpcPosBtnTemplate"  id="3"/>
+			<Button name="WorldmapNpcPosBtn4" inherits="WorldmapNpcPosBtnTemplate"  id="4"/>
+			<Button name="WorldmapNpcPosBtn5" inherits="WorldmapNpcPosBtnTemplate"  id="5"/>
+			<Button name="WorldmapNpcPosBtn6" inherits="WorldmapNpcPosBtnTemplate"  id="6"/>
+			<Button name="WorldmapNpcPosBtn7" inherits="WorldmapNpcPosBtnTemplate"  id="7"/>
+			<Button name="WorldmapNpcPosBtn8" inherits="WorldmapNpcPosBtnTemplate"  id="8"/>
+			<Button name="WorldmapNpcPosBtn9" inherits="WorldmapNpcPosBtnTemplate"  id="9"/>
+			<Button name="WorldmapNpcPosBtn10" inherits="WorldmapNpcPosBtnTemplate" id="10"/>
+			<Button name="WorldmapNpcPosBtn11" inherits="WorldmapNpcPosBtnTemplate" id="11"/>
+			<Button name="WorldmapNpcPosBtn12" inherits="WorldmapNpcPosBtnTemplate" id="12"/>
+			<Button name="WorldmapNpcPosBtn13" inherits="WorldmapNpcPosBtnTemplate" id="13"/>
+			<Button name="WorldmapNpcPosBtn14" inherits="WorldmapNpcPosBtnTemplate" id="14"/>
+			<Button name="WorldmapNpcPosBtn15" inherits="WorldmapNpcPosBtnTemplate" id="15"/>
+			<Button name="WorldmapNpcPosBtn16" inherits="WorldmapNpcPosBtnTemplate" id="16"/>
+			<Button name="WorldmapNpcPosBtn17" inherits="WorldmapNpcPosBtnTemplate" id="17"/>
+			<Button name="WorldmapNpcPosBtn18" inherits="WorldmapNpcPosBtnTemplate" id="18"/>
+			<Button name="WorldmapNpcPosBtn19" inherits="WorldmapNpcPosBtnTemplate" id="19"/>
+			<Button name="WorldmapNpcPosBtn20" inherits="WorldmapNpcPosBtnTemplate" id="20"/>
+			<Button name="WorldmapNpcPosBtn21" inherits="WorldmapNpcPosBtnTemplate" id="21"/>
+			<Button name="WorldmapNpcPosBtn22" inherits="WorldmapNpcPosBtnTemplate" id="22"/>
+			<Button name="WorldmapNpcPosBtn23" inherits="WorldmapNpcPosBtnTemplate" id="23"/>
+			<Button name="WorldmapNpcPosBtn24" inherits="WorldmapNpcPosBtnTemplate" id="24"/>
+			<Button name="WorldmapNpcPosBtn25" inherits="WorldmapNpcPosBtnTemplate" id="25"/>
+			<Button name="WorldmapNpcPosBtn26" inherits="WorldmapNpcPosBtnTemplate" id="26"/>
+			<Button name="WorldmapNpcPosBtn27" inherits="WorldmapNpcPosBtnTemplate" id="27"/>
+			<Button name="WorldmapNpcPosBtn28" inherits="WorldmapNpcPosBtnTemplate" id="28"/>
+			<Button name="WorldmapNpcPosBtn29" inherits="WorldmapNpcPosBtnTemplate" id="29"/>
+			<Button name="WorldmapNpcPosBtn30" inherits="WorldmapNpcPosBtnTemplate" id="30"/>
+			<Button name="WorldmapNpcPosBtn31" inherits="WorldmapNpcPosBtnTemplate" id="31"/>
+			<Button name="WorldmapNpcPosBtn32" inherits="WorldmapNpcPosBtnTemplate" id="32"/>
+			<Button name="WorldmapNpcPosBtn33" inherits="WorldmapNpcPosBtnTemplate" id="33"/>
+			<Button name="WorldmapNpcPosBtn34" inherits="WorldmapNpcPosBtnTemplate" id="34"/>
+			<Button name="WorldmapNpcPosBtn35" inherits="WorldmapNpcPosBtnTemplate" id="35"/>
+			<Button name="WorldmapNpcPosBtn36" inherits="WorldmapNpcPosBtnTemplate" id="36"/>
+			<Button name="WorldmapNpcPosBtn37" inherits="WorldmapNpcPosBtnTemplate" id="37"/>
+			<Button name="WorldmapNpcPosBtn38" inherits="WorldmapNpcPosBtnTemplate" id="38"/>
+			<Button name="WorldmapNpcPosBtn39" inherits="WorldmapNpcPosBtnTemplate" id="39"/>
+			<Button name="WorldmapNpcPosBtn40" inherits="WorldmapNpcPosBtnTemplate" id="40"/>
+			<Button name="WorldmapNpcPosBtn41" inherits="WorldmapNpcPosBtnTemplate" id="41"/>
+			<Button name="WorldmapNpcPosBtn42" inherits="WorldmapNpcPosBtnTemplate" id="42"/>
+			# 自动寻路出现的点
+			<Button name="MainPlayerPathPoint" virtual="true" hidden="true" >
+				<Size>
+					<AbsDimension x="17" y="16" />
+				</Size>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="207" y="494" w="17" h="16"/>
+			</Button>
+			# 特殊地图标记
+			<Button name="WordmapImportantBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<onmousedown>Maxmap_OnMouseDown();</onmousedown>-->
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 特殊副本跨服公会张
+			<Button name="WordmapClanCampBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<onmousedown>Maxmap_OnMouseDown();</onmousedown>-->
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 特殊副本尖峰时刻标记
+			<Button name="WordmapPworldBossBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+				<Size>
+					<AbsDimension x="27" y="23" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 矿石标记
+			<Button name="WordmapOreBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+				<Size>
+					<AbsDimension x="17" y="17" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="747" y="371" w="17" h="17">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<onmousedown>Maxmap_OnMouseDown();</onmousedown>-->
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 富矿标记
+			<Button name="WordmapBigOreBtnTemplate" virtual="true"  hidden="true" frameStrata="FULLSCREEN">
+				<Size>
+					<AbsDimension x="24" y="22" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="740" y="348" w="24" h="22">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<onmousedown>Maxmap_OnMouseDown();</onmousedown>-->
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 区域地图怪物集中区域标识按钮
+			<Button name="SceneAreaNameBtnTemplate" virtual="true" frameStrata="FULLSCREEN" >
+				<Size>
+					<AbsDimension x="15" y="15" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex"  file="uires\\ZhuJieMian\\1.dds" x="390" y="35" w="17" h="16" >
+							<Size>
+							   <AbsDimension x="17" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<!--<onmousedown>Maxmap_OnMouseDown();</onmousedown>-->
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SceneAreaNameBtn1" inherits="SceneAreaNameBtnTemplate" id="1">
+			</Button>
+			<Button name="SceneAreaNameBtn2" inherits="SceneAreaNameBtnTemplate" id="2">
+			</Button>
+			<Button name="SceneAreaNameBtn3" inherits="SceneAreaNameBtnTemplate" id="3">
+			</Button>
+			<Button name="SceneAreaNameBtn4" inherits="SceneAreaNameBtnTemplate" id="4">
+			</Button>
+			<Button name="SceneAreaNameBtn5" inherits="SceneAreaNameBtnTemplate" id="5">
+			</Button>
+			<Button name="SceneAreaNameBtn6" inherits="SceneAreaNameBtnTemplate" id="6">
+			</Button>
+			<Button name="SceneAreaNameBtn7" inherits="SceneAreaNameBtnTemplate" id="7">
+			</Button>
+			<Button name="SceneAreaNameBtn8" inherits="SceneAreaNameBtnTemplate" id="8">
+			</Button>
+			<Button name="SceneAreaNameBtn9" inherits="SceneAreaNameBtnTemplate" id="9">
+			</Button>
+			<Button name="SceneAreaNameBtn10" inherits="SceneAreaNameBtnTemplate" id="10">
+			</Button>
+			# 摊位标记
+			<Button name="StallBiaoJiBtnTemplate" virtual="true" frameStrata="FULLSCREEN" >
+				<Size>
+					<AbsDimension x="14" y="13" />
+				</Size>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="66" y="620" w="14" h="13" />
+				<Scripts>
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>Maxmap_PosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="StallBiaoJiBtn1" inherits="StallBiaoJiBtnTemplate" id="1"/>
+			<Button name="StallBiaoJiBtn2" inherits="StallBiaoJiBtnTemplate" id="2"/>
+			<Button name="StallBiaoJiBtn3" inherits="StallBiaoJiBtnTemplate" id="3"/>
+			<Button name="StallBiaoJiBtn4" inherits="StallBiaoJiBtnTemplate" id="4"/>
+			<Button name="StallBiaoJiBtn5" inherits="StallBiaoJiBtnTemplate" id="5"/>
+			<Button name="StallBiaoJiBtn6" inherits="StallBiaoJiBtnTemplate" id="6"/>
+			<Button name="StallBiaoJiBtn7" inherits="StallBiaoJiBtnTemplate" id="7"/>
+			<Button name="StallBiaoJiBtn8" inherits="StallBiaoJiBtnTemplate" id="8"/>
+			<Button name="StallBiaoJiBtn9" inherits="StallBiaoJiBtnTemplate" id="9"/>
+			<Button name="StallBiaoJiBtn10" inherits="StallBiaoJiBtnTemplate" id="10"/>
+			<Button name="StallBiaoJiBtn11" inherits="StallBiaoJiBtnTemplate" id="11"/>
+			<Button name="StallBiaoJiBtn12" inherits="StallBiaoJiBtnTemplate" id="12"/>
+			<Button name="StallBiaoJiBtn13" inherits="StallBiaoJiBtnTemplate" id="13"/>
+			<Button name="StallBiaoJiBtn14" inherits="StallBiaoJiBtnTemplate" id="14"/>
+			<Button name="StallBiaoJiBtn15" inherits="StallBiaoJiBtnTemplate" id="15"/>
+			<Button name="StallBiaoJiBtn16" inherits="StallBiaoJiBtnTemplate" id="16"/>
+			<Button name="StallBiaoJiBtn17" inherits="StallBiaoJiBtnTemplate" id="17"/>
+			<Button name="StallBiaoJiBtn18" inherits="StallBiaoJiBtnTemplate" id="18"/>
+			<Button name="StallBiaoJiBtn19" inherits="StallBiaoJiBtnTemplate" id="19"/>
+			<Button name="StallBiaoJiBtn20" inherits="StallBiaoJiBtnTemplate" id="20"/>
+
+			# 区域地图上的队友图标	
+			<Button name="WorldmapTeamPosBtnTemplate" virtual="true"  hidden="true" >
+				<Size>
+					<AbsDimension x="17" y="16" />
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\DiTuGuangQuan-Zi.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="28" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="153" y="494" w="17" h="16" />
+				<Scripts>
+					<OnShow>WorldmapTeamPosBtn_OnShow();</OnShow>
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>WorldmapTeamPosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="WorldmapTeamPosBtn1" inherits="WorldmapTeamPosBtnTemplate" id="1">
+			</Button>
+			<Button name="WorldmapTeamPosBtn2" inherits="WorldmapTeamPosBtnTemplate" id="2">
+			</Button>
+			<Button name="WorldmapTeamPosBtn3" inherits="WorldmapTeamPosBtnTemplate" id="3">
+			</Button>
+			<Button name="WorldmapTeamPosBtn4" inherits="WorldmapTeamPosBtnTemplate" id="4">
+			</Button>
+			<Button name="WorldmapTeamPosBtn5" inherits="WorldmapTeamPosBtnTemplate" id="5">
+			</Button>
+			<Button name="WorldmapTeamPosBtn6" inherits="WorldmapTeamPosBtnTemplate" id="6">
+			</Button>
+			# 队长点
+			<Button name="WorldmapCaptainPosBtn" hidden="true">
+				<Size>
+					<AbsDimension x="14" y="18" />
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\DiTuGuangQuan-Zi.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="28" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-4" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="241" y="388" w="14" h="18" />
+				<Scripts>
+					<OnShow>WorldmapCaptainPosBtn_OnShow();</OnShow>
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+					<OnClick>WorldmapTeamPosBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 玩家自己所在点	
+			<Button name="WorldmapMainShowButton">
+				<Size>
+					<AbsDimension x="26" y="29" />
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\DiTuoGuangQuan-Lv.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="28" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="944" y="889" w="26" h="29"/>
+				<Scripts>
+					<OnShow>WorldmapMainShowButton_OnShow();</OnShow>
+					<onmousedown>Maxmap_OnMouseDown();</onmousedown>
+					<OnEnter>WorldmapMainShowButton_OnEnter();</OnEnter>
+				</Scripts>
+			</Button>
+			# 宿敌所在点  FULLSCREEN
+			<Button name="WorldmapSuDiBtnTemplate" virtual="true" frameStrata="PARENT">
+				<Size>
+					<AbsDimension x="27" y="24" />
+				</Size>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="559" y="319" w="27" h="24" />
+				<Scripts>
+					<OnClick>Maxmap_WorldmapSuDiBtn_OnClick();</OnClick>
+					<OnEnter>Maxmap_PosBtn_OnEnter();</OnEnter>
+					<OnLeave>Maxmap_PosBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 下拉选择框
+			<Button name="WorldmapSelectNameFrame" hidden="true" frameStrata="FULLSCREEN_DIALOG" >
+				<Size>
+					<AbsDimension x="180" y="205" />
+				</Size>
+				<NormalTexture	inherits="LayerBkgTemplate" />
+				<Frames>
+					# 滚动条背景
+					<Button name="WorldmapSelectNameBtn_SliderBack">
+						<Size>
+							<AbsDimension x="21" y="207" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentGround" inherits="ScrollBkgCenter" >
+									<Size>
+									   <AbsDimension x="21" y="207" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="-1" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentGroundTop" inherits="ScrollBkgUp" >
+									<Size>
+									   <AbsDimension x="21" y="207" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentGround" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+								<Texture name="$parentGroundBottom" inherits="ScrollBkgDown" >
+									<Size>
+									   <AbsDimension x="21" y="207" />
+									</Size>
+									<Anchors>
+										<Anchor point="bottomleft" relativeTo="$parentGround" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 向上滚动按钮
+					<Button name="WorldmapSelectNameFrame_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WorldmapSelectNameBtn_SliderBack" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-2 " y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WorldmapSelectNameFrame_ScrollUpBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 向下滚动按钮
+					<Button name="WorldmapSelectNameFrame_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WorldmapSelectNameFrame_ScrollUpBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="184"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WorldmapSelectNameFrame_ScrollDownBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 滚动条
+					<Slider name="WorldmapSelectNameFrame_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+						<Size>
+							<AbsDimension x="23" y="162" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativePoint="bottom" relativeTo="WorldmapSelectNameFrame_ScrollUpBtn">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+							<Size>
+								<AbsDimension x="17" y="42" />
+							</Size>
+						</ThumbTexture>
+						<Scripts>
+							<OnValueChanged>WorldmapSelectNameFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+							<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+						</Scripts>
+					</Slider>
+					<Button name="WorldmapSelectNameBtnTemplate" virtual="true" >
+						<Size>
+							<AbsDimension x="155" y="20" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentAreaName" fonttype="TeenyFZYBlackFont" justifyH="left" fontStyle="border" text="">
+									<Color r="237" g="235" b="187" />
+									<Size>
+										<AbsDimension x="150" y="17"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="5" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>					
+								</FontString>		
+							</Layer>
+						</Layers>
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="HighlightTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+						<Scripts>
+							<OnClick>WorldmapSelectNameBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="WorldmapSelectNameBtn1" inherits="WorldmapSelectNameBtnTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn2" inherits="WorldmapSelectNameBtnTemplate" id="2">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn1" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn3" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn2" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn4" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn3" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn5" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn4" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn6" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn5" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn7" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn6" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn8" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn7" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn9" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn8" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="WorldmapSelectNameBtn10" inherits="WorldmapSelectNameBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="top" relativeTo="WorldmapSelectNameBtn9" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>WorldmapSelectNameFrame_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+			<Button name="$parentBuffBtn" hidden="true" >
+				<Size>
+					<AbsDimension x="16" y="22" />
+				</Size>
+				<Layers>
+					<Layer>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\DiTuoGuangQuan-Lv.tga" alphamode="add">
+							<Size>
+								<AbsDimension x="28" y="28"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="414" y="778" w="16" h="22" />
+				<Scripts>
+					<OnEnter>WorldMapFrameBuffBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentCityAttackBtn">
+				<Size>
+					<AbsDimension x="27" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="WorldMapFrameMapTexture">
+						<Offset>
+							<AbsDimension x="520" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="338" y="855" w="27" h="25" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="366" y="855" w="27" h="25" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="338" y="881" w="27" h="25" />
+				<DisabledTexture	file="uires\\ZhuJieMian\\2.dds"	x="574" y="947" w="27" h="25" />
+				<Scripts>
+					<OnClick>WorldMapFrameCityAttackBtn_OnClick();</OnClick>
+					<OnEnter>WorldMapFrameCityAttackBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentCityVenueBtn">
+				<Size>
+					<AbsDimension x="27" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="WorldMapFrameMapTexture">
+						<Offset>
+							<AbsDimension x="520" y="70"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="649" y="436" w="27" h="27" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="649" y="464" w="27" h="27" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="663" y="492" w="27" h="27" />
+				<DisabledTexture	file="uires\\ZhuJieMian\\2.dds"	x="808" y="912" w="27" h="27" />
+				<Scripts>
+					<OnClick>WorldMapFrameCityVenueBtn_OnClick();</OnClick>
+					<OnEnter>WorldMapFrameCityVenueBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentShowAttackPosBtn" hidden="true" input_transparent="true" frameStrata="FULLSCREEN_DIALOG">
+				<Size>
+					<AbsDimension x="27" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="WorldMapFrameMapTexture">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="338" y="855" w="27" h="25" >
+							<Size>
+								<AbsDimension x="27" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentEffectTex" file="uires\\ui\\TeXiao\\JinGongBiaoShi 01.tga" >
+							<Size>
+								<AbsDimension x="64" y="64" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnUpdate>WorldMapFrameShowAttackPosBtn_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			<Button name="$parentShowVenuePosBtn" hidden="true" input_transparent="true" frameStrata="FULLSCREEN_DIALOG">
+				<Size>
+					<AbsDimension x="27" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="WorldMapFrameMapTexture">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="649" y="436" w="27" h="27">
+							<Size>
+								<AbsDimension x="27" y="27" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentEffectTex" file="uires\\ui\\TeXiao\\JinGongBiaoShi 01.tga" >
+							<Size>
+								<AbsDimension x="64" y="64" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnUpdate>WorldMapFrameShowVenuePosBtn_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+		</Frames>			
+		<Scripts>
+			<OnUpdate>Maxmap_OnUpdate();</OnUpdate>  
+			<OnLoad>Maxmap_OnLoad();</OnLoad>
+			<OnEvent>Maxmap_OnEvent();</OnEvent>
+			<onshow>MaxmapOnShow();</onshow>
+			<onhide>MaxmapOnHide();</onhide>
+		</Scripts>				
+	</Frame>
+</Ui>

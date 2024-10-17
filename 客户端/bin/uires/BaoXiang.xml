@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\BaoXiang.lua"/>
+	<Frame name="BaoXiangFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500" >
+		<Size>
+			<AbsDimension x="355" y="354" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				
+				<Texture name="$parentSepTex1" file="uires\\TuPianLei\\DaKaiBaoXiang.jpg">
+					<Size>
+						<AbsDimension x="346" y="279" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="33" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex2" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="350" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="315" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="技能" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentGetItemNum" fonttype="TeenyFZYBlackFont" text="数量" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="90" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="191" y="106" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentHideItemNum" fonttype="TeenyFZYBlackFont" text="数量" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="90" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="191" y="254" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescFont1" fonttype="TeenyMSYHFont" justifyH="center" text="所得物品已自动放入背包" >
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="310" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="147" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentDescFont2" fonttype="LittleFZYBlackFont" justifyH="center" text="黄金大礼包箱子中，有几率获得以下稀有东东哦！" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="290" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="214" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentGetItemBtn" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="93" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameGetItemBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentModel" input_transparent="true">
+				<Size>
+					<AbsDimension x="246" y="240" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentGetItemBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentView">
+							<Size>
+								<AbsDimension x="246" y="240" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentShowItemBtn1" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameShowItemBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentShowItemBtn2" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameShowItemBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentShowItemBtn3" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameShowItemBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentShowItemBtn4" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameShowItemBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentShowItemBtn5" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameShowItemBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentShowItemBtn6" inherits="ItemButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="241" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameShowItemBtn_OnEnter()</OnEnter>
+				</Scripts>
+			</Button>
+			<Button name="$parentOkBtn" inherits="GongYongAnNiuB1Template" text="再开一次">
+				<Size>
+					<AbsDimension x="120" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="118" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BaoXiangFrameOkBtn_OnEnter()</OnEnter>
+					<OnLeave>BaoXiangFrameOkBtn_OnLeave()</OnLeave>
+					<OnClick>BaoXiangFrameOkBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>BaoXiangFrame_OnLoad()</OnLoad>
+			<OnEvent>BaoXiangFrame_OnEvent()</OnEvent>
+			<OnShow>BaoXiangFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Button name="CardBoxTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" file="uires\\ZhuJieMian\\4.dds" x="65" y="102" w="64" h="64" > 
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga"> 
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="7" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBox" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44">
+					<Size>
+						 <AbsDimension x="58" y="58" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" justifyH="right" fontStyle="border" text="" >
+					<Color r="204" g="128" b="51"/>
+					<Size>
+						<AbsDimension x="40" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright">
+							<Offset>
+								<AbsDimension x="-10" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentUVAnimation" hidden="true">
+					<Size>
+						<AbsDimension x="80" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="6" texcols="5" />
+				</Texture>
+				<Texture name="$parentSelect" file="uires\\ZhuJieMian\\3.dds" x="193" y="736" w="33" h="33">
+					<Size>
+						 <AbsDimension x="33" y="33" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="-8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHightCenter" file="uires\\ZhuJieMian\\4.dds" x="130" y="102" w="64" h="64" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHightAnim" file="uires\\ZhuJieMian\\4.dds" x="77" y="167" w="64" h="5" hidden="true">
+					<Size>
+						<AbsDimension x="62" y="5" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="1" y="24" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentModel" input_transparent="true">
+				<Size>
+					<AbsDimension x="70" y="70" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentView">
+							<Size>
+								<AbsDimension x="70" y="70" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\4.dds" x="130" y="102" w="64" h="64" />
+		<PushedTexture		file="uires\\ZhuJieMian\\4.dds" x="65" y="102" w="64" h="64" />
+		<DisabledTexture	file="uires\\ui\\mask\\TouMingTongDao.tga" />
+		<Scripts>
+			<OnClick>CardBoxItem_OnClick();</OnClick>
+			<OnEnter>CardBoxItem_OnEnter();</OnEnter>
+			<OnLeave>ItemButton_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	<Frame name="CardBoxFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500" >
+		<Size>
+			<AbsDimension x="586" y="207" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentLayer1" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="571" y="127" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLayer2" file="uires\\TuPianLei\\TeShuBeiJing\\ChouJiangLiuCheng.jpg">
+					<Size>
+						<AbsDimension x="567" y="123" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="581" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="168" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="宝箱" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate">
+				<Scripts>
+					<OnClick>CardBoxFrameCloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem1" inherits="CardBoxTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="27" y="57" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="CardBoxTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="CardBoxTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="CardBoxTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="CardBoxTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem4" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem6" inherits="CardBoxTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem7" inherits="CardBoxTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem8" inherits="CardBoxTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem7" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<RichText name="$parentRich" lineInterval="1" fontStyle="normal" fonttype="TeenyFZYBlackFont" >
+				<Size>
+					<AbsDimension x="360" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="130" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentRefurbishBtn" inherits="GongYongAnNiuB1Template" text="更新奖励">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="139" y="171" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CardBoxFrameRefurbishBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentWashBtn" inherits="GongYongAnNiuB1Template" text="开始洗牌">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="318" y="171" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CardBoxFrameWashBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>CardBoxFrame_OnShow();</OnShow>
+			<OnHide>CardBoxFrame_OnHide();</OnHide>
+			<OnLoad>CardBoxFrame_OnLoad();</OnLoad>
+			<OnEvent>CardBoxFrame_OnEvent();</OnEvent>
+			<OnUpdate>CardBoxFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="CardBoxExtendFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500" >
+		<Size>
+			<AbsDimension x="327" y="392" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentLayer1" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="312" y="312" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLayer2" file="uires\\TuPianLei\\TeShuBeiJing\\ChouJiangLiuCheng.jpg">
+					<Size>
+						<AbsDimension x="308" y="308" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="322" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="353" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="宝箱" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate">
+				<Scripts>
+					<OnClick>CardBoxFrameCloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem1" inherits="CardBoxTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="CardBoxTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="CardBoxTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem2" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="CardBoxTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem3" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="CardBoxTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem1" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="72" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem6" inherits="CardBoxTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem7" inherits="CardBoxTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem6" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem8" inherits="CardBoxTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem7" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem9" inherits="CardBoxTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem5" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="72" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem10" inherits="CardBoxTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem9" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem11" inherits="CardBoxTemplate" id="11">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem10" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem12" inherits="CardBoxTemplate" id="12">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem11" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem13" inherits="CardBoxTemplate" id="13">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem9" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="72" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem14" inherits="CardBoxTemplate" id="14">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem13" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem15" inherits="CardBoxTemplate" id="15">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem14" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem16" inherits="CardBoxTemplate" id="16">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem15" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="72" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentWashBtn" inherits="GongYongAnNiuB1Template" text="开始洗牌">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="99" y="356" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CardBoxFrameWashBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>CardBoxFrame_OnShow();</OnShow>
+			<OnLoad>CardBoxExtendFrame_OnLoad();</OnLoad>
+			<OnUpdate>CardBoxFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

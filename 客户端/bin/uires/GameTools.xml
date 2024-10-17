@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires/GameTools.lua" />
+    #GM弹窗工具
+    <Frame name="MessageWindowFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="false" framelevel="197">
+		<Size>
+			<AbsDimension x="283" y="158"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentText" fonttype="LittleFZYBlackFont" >
+				<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="260" y="100" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>MessageWindowFrameRichText_OnClick();</OnClick>
+					</Scripts>
+			</RichText>
+			<Button name="$parentCloseBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="关闭">
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MessageWindowFrameCloseBtn_onClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	#VIP网吧
+	<Frame name="VIPBarMessageFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="198">
+		<Size>
+			<AbsDimension x="441" y="304"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentPictureBack" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="147" y="224"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="8" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentPicture" file="uires\\TuPianLei\\HuoDongTiShi.jpg">
+					<Size>
+						<AbsDimension x="143" y="220"/>
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="10" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentInfoBack" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="276" y="224"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parent" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-8" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEdgeTex" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="436" y="10"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="活动提示">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>		 
+			<RichText name="$parentInfo" lineInterval ="2" multiLine="true" fonttype="LittleFZYBlackFont" input_transparent="true">
+				<Size>
+					<AbsDimension x="276" y="224" />
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT" >
+						<Offset>
+							<AbsDimension x="-8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentHelpBtn" inherits="HelpBtnTemplate"/>
+			<Button name="$parentKnownBtn" inherits="GongYongAnNiuB1Template" text="我知道了">
+				<Size>
+					<AbsDimension x="100" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="160" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VIPBarMessageFrameCloseBtn_onClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>	
+	<Button name="GMGiftTemplate" frameStrata="Dialog" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="44" y="44"/>
+		</Size>
+		<Layers>
+			<Layer level="background"> 
+            	<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44" > 
+					<Size>
+						<AbsDimension x="44" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentIconTexture" file="uires\\TuPianLei\\WuPin\\293041.tga">
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+				<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right"  fontStyle="border" text="">
+					<Color r="204" g="128" b="51"/>
+					<Size>
+						<AbsDimension x="40" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-3" y="6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentUVAnimationTex" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-11" y="-11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<UVAnimation texrows="6" texcols="5" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+		<Scripts>
+			<OnClick>GMGiftsFrameItemBtn_OnClick();</OnClick>
+			<OnEnter>GMGiftsFrameItemBtn_OnEnter();</OnEnter>
+			<OnLeave>ItemButton_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	#媒体礼包
+	<Frame name="GMGiftsFrame"  parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="199">
+		<Size>
+			<AbsDimension x="390" y="439"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentGiftsBack" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="370" y="363"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentCaptionFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentScrollBackGroundTex" inherits="ScrollBkgCenter">		
+					<Size>
+						<AbsDimension x="21" y="363" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="topright" relativeTo="$parentGiftsBack">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentScrollBackGroundTexTop" inherits="ScrollBkgUp">		
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentScrollBackGroundTex">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture name="$parentScrollBackGroundTexBottom" inherits="ScrollBkgDown">
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentScrollBackGroundTex">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+			</Layer>
+		</Layers>
+		<Frames>		 
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentHelpBtn" inherits="HelpBtnTemplate"/>
+			<Button name="$parentOpenBtn" inherits="GongYongAnNiuB1Template" text="打开">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="40" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GMGiftsFrameOpenBtn_onClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCloseFrameBtn" inherits="GongYongAnNiuB1Template" text="关闭">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="140" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this);</OnClick>
+				</Scripts>
+			</Button>
+			<ScrollFrame name="$parentScrollFrame">
+				<Size>
+					<AbsDimension x="370" y="361"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="10" y="38" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<RichText name="GMGiftsFrameAllRich" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+						<Color r="255" g="255" b="190"/>
+						<Size>
+							<AbsDimension x="356" y="100" />
+						</Size>
+						<Anchors>	
+							<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+								<Offset>
+									<AbsDimension x="15" y="-165" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="GMGiftsFrameSelectRich" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+						<Color r="255" g="255" b="190"/>
+						<Size>
+							<AbsDimension x="356" y="100" />
+						</Size>
+						<Anchors>	
+							<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+								<Offset>
+									<AbsDimension x="15" y="-50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="GMGiftsFrameNextRich" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+						<Color r="255" g="255" b="190"/>
+						<Size>
+							<AbsDimension x="356" y="100" />
+						</Size>
+						<Anchors>	
+							<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+								<Offset>
+									<AbsDimension x="15" y="64" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="GMGiftsFrameDescRich" fonttype="LittleFZYBlackFont">
+						<Size>
+							<AbsDimension x="356" y="100" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="16" y="50"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</ScrollChild>
+				<Scripts>
+					<OnScrollRangeChanged>GMGiftsFrameScrollFrameOnScrollRangeChanged();</OnScrollRangeChanged>
+				</Scripts>
+			</ScrollFrame>
+			<Button name="$parentScrollUpBtn" inherits="ScrollUpBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentScrollBackGroundTex">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GMGiftsFrameScrollUpBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate" >
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentScrollBackGroundTex">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GMGiftsFrameScrollDownBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="1" defaultValue="0">
+				<Size>
+					<AbsDimension x="26" y="321" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>GMGiftsFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnShow>GMGiftsFrame_OnShow();</OnShow>
+			<OnHide>GMGiftsFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="GMMessageTipsFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="false" framelevel="197">
+		<Size>
+			<AbsDimension x="32" y="32" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+				<Offset>
+					<AbsDimension x="-100" y="-100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentBtn">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="849" y="0" w="32" h="32" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="882" y="0" w="32" h="32" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="915" y="0" w="32" h="32" />
+				<Scripts>
+					<OnClick>GMMessageTipsFrameBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<Frame name="GMWebFrame" parent="UIClient" frameStrata="DIALOG" movable="false" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="851" y="626" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate"/>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<WebBrowerFrame name="$parentWeb">
+				<Size>
+					<AbsDimension x="846" y="591" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+			</WebBrowerFrame>						
+		</Frames>
+		<Scripts>
+			<OnShow>GMWebFrame_OnShow();</OnShow>
+			<OnHide>GMWebFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="GMWatchPetFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="false" framelevel="195">
+		<Size>
+			<AbsDimension x="254" y="218"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				<Texture name="$parentModelBkgTex" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="249" y="184"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="宠物" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentNameFont" fonttype="FZYBlackFont14" justifyH="left" text="名字" >
+					<Color r="250" g="150" b="0"/>
+					 <Size>
+						<AbsDimension x="105" y="19" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLvFont" fonttype="LittleFZYBlackFont" justifyH="left" text="召唤等级" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="60" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="197" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLvValue" fonttype="LittleFZYBlackFont" justifyH="left" text="召唤等级" >
+					<Color r="255" g="255" b="255"/>
+					 <Size>
+						<AbsDimension x="60" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentLvFont" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentModelBtn">
+				<Size>
+					<AbsDimension x="125" y="145" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="toolres\fxeditor\arrx.omod">
+							<Size>
+								<AbsDimension x="121" y="152" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parent_TurnLeftBtn" inherits="TurnRightButtonTemplate">
+				<Size>
+					<AbsDimension x="23" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="78" y="-25" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>GMWatchPetFrame_TurnLeftBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+			# 向右边转	
+			<Button name="$parent_TurnRightBtn" inherits="TurnLeftButtonTemplate">
+				<Size>
+					<AbsDimension x="23" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-78" y="-25" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>GMWatchPetFrame_TurnRightBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

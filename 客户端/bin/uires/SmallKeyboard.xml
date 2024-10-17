@@ -1,0 +1,479 @@
+<?xml version="1\0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\SmallKeyboard.lua" />
+	## 普通状态
+	<Texture name="SmallKeyboardButtonType1NormalTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" DrawType="center" >
+		<Center>
+			<Left			x="598"	y="429" w="12"	h="28"	/>
+			<Center			x="611" y="429" w="8"	h="28"	/>
+			<Right			x="620" y="429" w="12"	h="28" />
+		</Center>
+	</Texture>
+	## 高亮状态
+	<Texture name="SmallKeyboardButtonType1HighTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" DrawType="center" >
+		<Center>
+			<Left			x="598"	y="458" w="12"	h="28"	/>
+			<Center			x="611" y="458" w="8"	h="28"	/>
+			<Right			x="620" y="458" w="12"	h="28" />
+		</Center>
+	</Texture>
+	## 按下状态
+	<Texture name="SmallKeyboardButtonType1PushedTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" DrawType="center" >
+		<Center>
+			<Left			x="598"	y="487" w="12"	h="28"	/>
+			<Center			x="611" y="487" w="8"	h="28"	/>
+			<Right			x="620" y="487" w="12"	h="28" />
+		</Center>
+	</Texture>
+
+	<Frame name="SmallKeyboardFrame" frameStrata="FULLSCREEN" parent="UIClient"  movable="false" hidden="true">
+		<Size>
+			<AbsDimension x="278" y="124" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="290" y="30" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentground"  inherits="DengLuJieMianJianPanTanChuKuangDiBanTemplate" >
+                    <Size>
+                       <AbsDimension x="278" y="124" />
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+				<FontString name="PlayerSmallTip" fonttype="TeenyBlackFont" fontStyle="shadow" justifyH="center" text="建议交替使用真实键盘和软键盘输入密码">
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="235" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-7" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="KeyboardKeyTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="32" y="28"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentKeyValue" fonttype="TeenyBlackFont" justifyH="center" text="" hidden="true">
+							<Color r="245" g="217" b="164"/>  
+							 <Size>
+								<AbsDimension x="32" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>Key_OnEnter();</OnEnter>
+					<OnLeave>Key_OnLeave();</OnLeave>
+					<OnClick>Key_OnClick();</OnClick>
+					<OnMouseUp>BigKey_OnMouseUp();</OnMouseUp>
+				</Scripts>
+				<NormalTexture		inherits="SmallKeyboardButtonType1NormalTemplate"	/>
+				<HighlightTexture	inherits="SmallKeyboardButtonType1HighTemplate"		/>
+				<PushedTexture		inherits="SmallKeyboardButtonType1PushedTemplate"	/>
+			</Button>
+
+			<Button name="KeyboardBigKeyTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="46" y="28"/>
+				</Size>
+				<Layers>
+					<Layer level="highlight">
+						<FontString name="$parentKeyValue" fonttype="TeenyBlackFont" justifyH="center" text="大写" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="33" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="8" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>BigKey_OnClick();</OnClick>
+					<OnMouseUp>BigKey_OnMouseUp();</OnMouseUp>
+				</Scripts>
+				<NormalTexture		inherits="SmallKeyboardButtonType1NormalTemplate"	/>
+				<HighlightTexture	inherits="SmallKeyboardButtonType1HighTemplate"		/>
+				<PushedTexture		inherits="SmallKeyboardButtonType1PushedTemplate"	/>
+			</Button>
+
+			<Button name="Key_1"  inherits="KeyboardKeyTemplate" id="1">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SmallKeyboardFrame">
+						<Offset>
+							<AbsDimension x="3" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_2"  inherits="KeyboardKeyTemplate" id="2">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_1">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_3"  inherits="KeyboardKeyTemplate" id="3">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_2">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_4"  inherits="KeyboardKeyTemplate" id="4">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_3">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_5"  inherits="KeyboardKeyTemplate" id="5">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_4">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_6"  inherits="KeyboardKeyTemplate" id="6">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_5">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_7"  inherits="KeyboardKeyTemplate" id="7">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_6">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_8"  inherits="KeyboardKeyTemplate" id="8">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_7">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_9"  inherits="KeyboardKeyTemplate" id="9">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_8">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_10"  inherits="KeyboardKeyTemplate" id="10">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_9">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_11"  inherits="KeyboardKeyTemplate" id="11">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SmallKeyboardFrame">
+						<Offset>
+							<AbsDimension x="18" y="26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_12"  inherits="KeyboardKeyTemplate" id="12">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_11">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_13"  inherits="KeyboardKeyTemplate" id="13">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_12">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_14"  inherits="KeyboardKeyTemplate" id="14">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_13">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_15"  inherits="KeyboardKeyTemplate" id="15">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_14">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_16"  inherits="KeyboardKeyTemplate" id="16">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_15">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_17"  inherits="KeyboardKeyTemplate" id="17">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_16">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_18"  inherits="KeyboardKeyTemplate" id="18">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_17">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_19"  inherits="KeyboardKeyTemplate" id="19">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_18">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_20"  inherits="KeyboardKeyTemplate" id="20">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_19">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_21"  inherits="KeyboardKeyTemplate" id="21">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SmallKeyboardFrame">
+						<Offset>
+							<AbsDimension x="30" y="48"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_22"  inherits="KeyboardKeyTemplate" id="22">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_21">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_23"  inherits="KeyboardKeyTemplate" id="23">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_22">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_24"  inherits="KeyboardKeyTemplate" id="24">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_23">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_25"  inherits="KeyboardKeyTemplate" id="25">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_24">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_26"  inherits="KeyboardKeyTemplate" id="26">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_25">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_27"  inherits="KeyboardKeyTemplate" id="27">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_26">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_28"  inherits="KeyboardKeyTemplate" id="28">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_27">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_29"  inherits="KeyboardKeyTemplate" id="29">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_28">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_30"  inherits="KeyboardKeyTemplate" id="30">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SmallKeyboardFrame">
+						<Offset>
+							<AbsDimension x="37" y="70"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_31"  inherits="KeyboardKeyTemplate" id="31">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_30">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_32"  inherits="KeyboardKeyTemplate" id="32">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_31">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_33"  inherits="KeyboardKeyTemplate" id="33">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_32">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_34"  inherits="KeyboardKeyTemplate" id="34">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_33">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_35"  inherits="KeyboardKeyTemplate" id="35">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_34">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_36"  inherits="KeyboardKeyTemplate" id="36">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_35">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_37"  inherits="KeyboardKeyTemplate" id="37">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_10">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="Key_38"  inherits="KeyboardBigKeyTemplate" id="38">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="Key_36">
+						<Offset>
+							<AbsDimension x="-9" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>SmallKeyboardFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

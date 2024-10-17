@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ChangeCareer.lua"/>
+	<Button name="ChangeCareerRaceAttrButtonTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="220" y="20"/>
+		</Size>
+		<Layers>
+			<Layer>
+				<FontString name="$parentNameFont" fonttype="NormalBlackFont" justifyH="left" text="力量" >		
+					 <Size>
+						<AbsDimension x="30" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255"/>
+				</FontString> 
+				<Texture name="$parentbackTex" inherits="BarBackTexTemplate" >
+					<Size>
+						<AbsDimension x="167" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentvalueTex" inherits="GreenBarTexTemplate" >
+					<Size>
+						<AbsDimension x="165" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentbackTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentMaskTex" file="uires\\ui\\mask\\ZhuangZhiJieMianJueSeNengLi  mask.tga" >
+					<Size>
+						<AbsDimension x="167" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentbackTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentValueFont" fonttype="NormalBlackFont" justifyH="left" text="20" hidden="true">		
+					 <Size>
+						<AbsDimension x="15" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentbackTex" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="7" y="-7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255"/>
+				</FontString> 
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>ChangeCareerRaceAttrButton_OnEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+		</Scripts>		
+	</Button>
+
+	<Frame name="ChangeCareerFrame" frameStrata="FULLSCREEN" hidden="true" parent="UIClient" framelevel="500" movable="false">
+		<Size>
+			 <RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				#  file="uires\\TuPianLei\\DiBan.png"
+				<Texture name="$parentBackTex">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />		
+			<Button name="$parentModelBackBtn">
+				<Size>
+					<AbsDimension x="604" y="830" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="-95" y="-85" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\TuPianLei\\ZhuanZhiJueSeChenDi.tga">
+							<Size>
+								<AbsDimension x="604" y="830" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 职业描述抬头
+			<Button name="$parentCareerDescHeadBtn">
+				<Size>
+					<AbsDimension x="268" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-109" y="-479"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="SmallBlackFont" text="法师法师法师法师法师法师法师法师法师法师法师法师" justifyH="center">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="268" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 职业描述抬头分割线
+			<Button name="$parentCareerDescHeadPartionBtn">
+				<Size>
+					<AbsDimension x="257" y="2" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-109" y="-471"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\2.dds" x="186" y="428" w="261" h="2" />
+			</Button>
+			
+			# 职业详细描述
+			<RichText name="$parentCareerDesRich" lineInterval ="4" multiLine="true" fonttype="TeenyMSYHFont" input_transparent="false" id="2" >
+				<Size>
+					<AbsDimension x="268" y="197" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-109" y="-265"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>return;</OnClick>
+				</Scripts>
+			</RichText>
+
+			# 属性描述抬头分割线
+			<Button name="$parentAttrDescHeadPartionBtn" >
+				<Size>
+					<AbsDimension x="257" y="2" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-109" y="-243"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\2.dds" x="186" y="428" w="261" h="2" />
+			</Button>
+
+			<Button name="$parentRaceAttrButton1" inherits="ChangeCareerRaceAttrButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-132" y="-347"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRaceAttrButton2" inherits="ChangeCareerRaceAttrButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentRaceAttrButton1" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRaceAttrButton3" inherits="ChangeCareerRaceAttrButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentRaceAttrButton2" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRaceAttrButton4" inherits="ChangeCareerRaceAttrButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentRaceAttrButton3" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRaceAttrButton5" inherits="ChangeCareerRaceAttrButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentRaceAttrButton4" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRaceAttrButton6" inherits="ChangeCareerRaceAttrButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentRaceAttrButton5" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			# 属性描述底部分割线
+			<Button name="$parentAttrDescBottomPartionBtn" hidden="true">
+				<Size>
+					<AbsDimension x="257" y="2" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-109" y="-248"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\2.dds" x="186" y="428" w="261" h="2" />
+			</Button>
+			 
+			# 职业1按钮
+			<Button name="$parentCareer1Btn">
+				<Size>
+					<AbsDimension x="122" y="42" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="91" y="-431"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ui\\MianBan  16.dds" x="369" y="793" w="122" h="42" />
+				<HighlightTexture	file="uires\\ui\\MianBan  16.dds" x="492" y="793" w="122" h="42" />
+				<PushedTexture		file="uires\\ui\\MianBan  16.dds" x="615" y="793" w="122" h="42" />
+				<Scripts>
+					<OnClick>ChangeCareerFrameCareerBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 职业2按钮
+			<Button name="$parentCareer2Btn">
+				<Size>
+					<AbsDimension x="122" y="42" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="91" y="-263"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				
+				<NormalTexture		file="uires\\ui\\MianBan  16.dds" x="0" y="793" w="122" h="42" />
+				<HighlightTexture	file="uires\\ui\\MianBan  16.dds" x="123" y="793" w="122" h="42" />
+				<PushedTexture		file="uires\\ui\\MianBan  16.dds" x="246" y="793" w="122" h="42" />
+				<Scripts>
+					<OnClick>ChangeCareerFrameCareerBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 向左转按钮
+			<Button name="$parent_TurnLeftBtn" inherits="ChangeCareer_TurnLeftButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentModelBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="210" y="-65" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>ChangeCareerFrame_TurnLeftBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+
+			# 向右转按钮
+			<Button name="$parent_TurnRightBtn" inherits="ChangeCareer_TurnRightButtonTemplate" >
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentModelBackBtn" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-210" y="-65" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>ChangeCareerFrame_TurnRightBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+
+			# 转职按钮
+			<Button name="$parent_ChangeCareerBtn" inherits="GongYongAnNiuB3Template" text="加 入 职 业">
+				<Size>
+					<AbsDimension x="235" y="52" />
+				</Size>
+				<FontString name="$parentFont" fonttype="EighteenFont" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-109" y="-117"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChangeCareerFrame_ChangeCareerBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 角色模型
+			<Button name="$parentRoleModelBtn" input_transparent="true">
+				<Size>
+					<AbsDimension x="750" y="430" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentModelBackBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="-40" y="160"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView">
+							<Size>
+								<AbsDimension x="750" y="430" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnUpdate>ChangeCareerFrame_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>ChangeCareerFrame_Test_OnShow();</OnShow>-->
+			<OnShow>ChangeCareerFrame_OnShow();</OnShow>
+			<OnHide>ChangeCareerFrame_OnHide();</OnHide>
+			<OnLoad>ChangeCareerFrame_OnLoad();</OnLoad>
+			<OnEvent>ChangeCareerFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+
+	# 确认转职面板
+	<Frame name="ConfirmChangeCareerFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true" framelevel="199" movable="true">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="提示" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="348" y="58"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="4" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<RichText name="$parentRich" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parent_AcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ConfirmChangeCareerFrame_AcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_CancelButton"  inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-5"  y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ConfirmChangeCareerFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ConfirmChangeCareerFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	
+	# 禁止切换职业选项
+	<Frame name="ForbitChgSelectCareerFrame" parent="UIClient" frameStrata="FULLSCREEN_DIALOG" hidden="true" movable="true" framelevel="199">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>
+			# 确定按钮
+			<Button name="$parentConfirmButton"  inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="center" relativeTo="$parent" relativePoint="center" >
+                        <Offset>
+                            <AbsDimension x="0" y="45"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ForbitChgSelectCareerFrame:Hide();</OnClick>
+				</Scripts>
+            </Button> 
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="348" y="66"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="请先完成确认选择职业操作">
+							<Color r="255" g="254" b="189"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="15"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="bottomleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="4" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>			
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnShow>ForbitChgSelectCareerFrame_OnShow();</OnShow>
+		</Scripts>	
+    </Frame>
+</Ui>

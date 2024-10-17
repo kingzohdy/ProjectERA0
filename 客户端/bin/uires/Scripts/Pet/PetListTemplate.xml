@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+ <Ui>
+	<Script file="uires\Scripts\Pet\PetListTemplate.lua"/>
+ 	<Button name="PetListTemplate" virtual="true" hidden="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentPetListBackGround" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="宠物列表" >
+					<Color r="255" g="254" b="189"/>  
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Size>
+			<AbsDimension x="239" y="358" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="-20" y="-3" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			#关闭按钮
+			<Button name="$parentPetListTemplate_CloseBtn" inherits="CloseBtnTemplate" />				
+			#提示窗口?
+			<Button name="$parentPetListTemplate_RecommendBtn" inherits="HelpBtnTemplate" />
+			
+			##侍卫标签按钮	幻兽
+			<Button name="$parentPetShiLabel_Btn" inherits="GongYongAnNiuD1Template" text="宠物">
+				<Size>
+					<AbsDimension x="49" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="6" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>					
+				<Scripts>
+					<OnClick>PetShiLabel_Btn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##仙子标签按钮	精灵
+			<!--<Button name="$parentPetXianLabel_Btn" inherits="GongYongAnNiuD1Template" text="精灵" checked="true">
+				<Size>
+					<AbsDimension x="49" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentPetShiLabel_Btn">
+						<Offset>
+							<AbsDimension x="-4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnClick>PetXianLabel_Btn_OnClick();</OnClick>
+				</Scripts>
+			</Button>-->
+			#面板背景
+			<Button name="$parentBackBtn">
+				<Size>
+					<AbsDimension x="235" y="299" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPetShiLabel_Btn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-4" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<!--
+				<Backdrop edgeFile="uires\\ui\\tips\\HeiDi  67.tga" bgFile="uires\\ui\\tips\\HeiDi  67  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="67" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="32" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="67" right="67" top="67" bottom="67" />
+					</BackgroundInsets>
+				</Backdrop>
+				-->
+			</Button>
+			#名字列表背景
+			<Button name="$parentNameBackBtn">
+				<Size>
+					<AbsDimension x="208" y="245" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="13" y="6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			<Button name="PetNameButtonTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="208" y="24" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentNameFont"	fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+							<Color r="255" g="254" b="189"/>  
+							<Size>
+								<AbsDimension x="210" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLoveLevelFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="可交易两次">
+							<Color r="131" g="128" b="108"/>  
+							<Size>
+								<AbsDimension x="69" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-17" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentPartionTex" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2">
+							<Size>
+								<AbsDimension x="206" y="2"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+						<Texture name="$parentStateTex"		file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="13" y="13"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-3" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+						<Texture name="$parentLoveLevelTex" file="uires\\ZhuJieMian\\3.dds" x="952" y="627" w="20" h="17">
+							<Size>
+								<AbsDimension x="20" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-85" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentLoveLevelBtn">
+						<Size>
+							<AbsDimension x="20" y="17"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="-85" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>StallPetItemLoveLevelBtn_OnEnter();</OnEnter>
+							<OnLeave>StallPetItemLoveLevelBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<DisabledTexture	inherits="TransTextureTemplate" />
+				<Scripts>
+					<OnClick>PetNameButton_OnClick();</OnClick>
+					<OnDoubleClick>PetNameButton_OnDoubleClick();</OnDoubleClick>
+				</Scripts>
+			</Button>
+			##己方宠物栏的宠物名字按钮
+			<Button name="$parentPetNameButton1" inherits="PetNameButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentNameBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton2" inherits="PetNameButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton1">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton3" inherits="PetNameButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton2">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton4" inherits="PetNameButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton3">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton5" inherits="PetNameButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton4">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton6" inherits="PetNameButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton5">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton7" inherits="PetNameButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton6">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton8" inherits="PetNameButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton7">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton9" inherits="PetNameButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton8">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPetNameButton10" inherits="PetNameButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPetNameButton9">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			##查看资质按钮
+			<Button name="$parentPetList_SeeIntelligenceBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="查看资质">
+				<Size>
+					<AbsDimension x="54" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentNameBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetList_SeeIntelligenceBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##选择按钮
+			<Button name="$parentPetList_SelectBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="选择">
+				<Size>
+					<AbsDimension x="54" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="$parentNameBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetList_SelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>PetListTemplate_OnLoad();</OnLoad>
+			<OnEvent>PetListTemplate_OnEvent();</OnEvent>
+			<OnShow>PetListTemplate_OnShow();</OnShow>
+			<OnHide>PetListTemplate_OnHide();</OnHide>
+		</Scripts>
+	</Button>
+</Ui>

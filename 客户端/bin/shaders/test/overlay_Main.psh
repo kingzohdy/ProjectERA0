@@ -1,0 +1,54 @@
+
+
+#include "header.fx"
+
+float4x4 g_WorldViewProj : WORLDVIEWPROJ;
+
+texture g_DiffuseTex;
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = POINT;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+};
+
+struct VS_INPUT
+{
+    float4 pos        : POSITION;
+    float3 normal        : NORMAL;
+    
+#if SKIN_MAXINFL > 0
+    float4 blendweights : BLENDWEIGHT;
+    float4 blendindices : BLENDINDICES;
+#endif
+
+    float2 uv0            : TEXCOORD0;
+};
+
+struct VS_OUTPUT
+{
+    float4 pos            : POSITION;
+    float2 uv0            : TEXCOORD0;
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD2;
+#endif
+};
+
+float4 PSMain(VS_OUTPUT input):COLOR0
+{
+	float4 color  = tex2D(s_DiffuseSampler,input.uv0);
+
+#ifdef MODEL_TRANSPARENT
+	color.a *= g_ModelTransparent;
+#endif
+	
+#if FOG_DISTANCE>0
+	color.a *= input.fogc.x;
+#endif
+#if FOG_HEIGHT > 0
+	color.a *= input.fogc.y;
+#endif
+    
+	return color;
+}

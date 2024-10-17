@@ -1,0 +1,173 @@
+#include "header.fx"
+
+texture g_DiffuseTex;
+#if DIFFUSE_SAMPLEMODE > 0
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = linear;
+    MinFilter = linear;
+    MagFilter = linear;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+#else
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = linear;
+    MinFilter = linear;
+    MagFilter = linear;
+    AddressU = WRAP;
+    AddressV = WRAP;
+};
+#endif
+
+#if MASK_TEXTURE == 1
+texture g_MaskTex;
+#if MASK_SAMPLEMODE > 0
+sampler s_MaskSampler = sampler_state{
+    Texture = <g_MaskTex>;
+    MipFilter = linear;
+    MinFilter = linear;
+    MagFilter = linear;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
+#else
+sampler s_MaskSampler = sampler_state{
+    Texture = <g_MaskTex>;
+    MipFilter = linear;
+    MinFilter = linear;
+    MagFilter = linear;
+    AddressU = WRAP;
+    AddressV = WRAP;
+};
+#endif //MASK_SAMPLEMODE
+#endif
+
+float4x4 g_WorldViewProj : WORLDVIEWPROJ;
+
+struct VS_OUTPUT
+{
+    float4 pos      : POSITION;
+    float4 color0   : COLOR0;
+    float2 uv0      : TEXCOORD0;
+#if MASK_TEXTURE == 1
+    float2 uv1		: TEXCOORD1;
+#endif
+};
+
+VS_OUTPUT VSMain0( float4 pos : POSITION,
+                   float4 color0 : COLOR,
+                   float2 uv0 : TEXCOORD0,
+                   float2 uv1 : TEXCOORD1
+                          )
+{
+	VS_OUTPUT output;
+    
+	output.pos = mul( float4(pos.xyz,1.0f), g_WorldViewProj);
+    
+	output.color0 = color0;
+
+    
+	output.uv0 = uv0;
+#if MASK_TEXTURE == 1
+	output.uv1 = uv1;
+#endif
+	return output;
+}
+
+
+float4 PSMain0(VS_OUTPUT	input):COLOR0
+{
+	return (tex2D(s_DiffuseSampler,input.uv0)-128.0f/255.0f)*input.color0.a + 128.0f/255.0f;
+}
+
+technique Basic
+<
+	int usage = RENDER_USAGE_UI|RENDER_USAGE_GENERAL|RENDER_USAGE_REFLECT|RENDER_USAGE_REFRACT;
+	int lod = 0;
+>
+{
+    pass P0
+    {
+#if BLEND_MODE == 0
+        AlphaBlendEnable = FALSE;
+	AlphaTestEnable = FALSE;
+#elif BLEND_MODE == 1
+	AlphaBlendEnable = FALSE;
+	AlphaTestEnable = TRUE;
+	AlphaRef = 85;
+	AlphaFunc = GREATEREQUAL;
+#elif BLEND_MODE == 2
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = TRUE;
+	AlphaRef = 0;
+	AlphaFunc = GREATER;
+	SrcBlend = SRCALPHA;
+	DestBlend = INVSRCALPHA;
+#elif BLEND_MODE == 3
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = FALSE;
+	SrcBlend = ONE;
+	DestBlend = INVSRCALPHA;
+#elif BLEND_MODE == 4
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = FALSE;
+	SrcBlend = ONE;
+	DestBlend = ONE;
+#elif BLEND_MODE == 5
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = FALSE;
+	SrcBlend = DESTCOLOR;
+	DestBlend = ZERO;
+#elif BLEND_MODE == 6
+	AlphaBlendEnable = TRUE;
+	AlphaTestEnable = FALSE;
+	SrcBlend = DESTCOLOR;
+	DestBlend = SRCCOLOR;
+#endif
+
+#if BLEND_MODE==0 || BLEND_MODE==1
+	CullMode = None;
+	ZWriteEnable = TRUE;
+	ZEnable = TRUE;
+#else
+	CullMode = None;
+	ZWriteEnable = FALSE;
+	ZEnable = TRUE;
+#endif
+
+	VertexShader = compile vs_2_0 VSMain0();
+	PixelShader = Null;
+        
+	Sampler[0] = (s_DiffuseSampler);
+	ColorOp[0] = MODULATE;
+	AlphaOp[0] = MODULATE;
+#if MASK_TEXTURE==1
+	Sampler[1] = (s_MaskSampler);
+	ColorOp[1] = MODULATE;
+	AlphaOp[1] = MODULATE;
+	ColorOp[2] = DISABLE;
+	Sampler[2] = NULL;
+#else
+	Sampler[1] = NULL;
+	ColorOp[1] = DISABLE;
+#endif
+    }
+}
+
+
+technique Distort
+<
+	int usage = RENDER_USAGE_DISTORT;
+	int lod = 0;
+>
+{
+	pass P0
+    {
+		CullMode = None;
+		VertexShader = compile vs_2_0 VSMain0();
+		PixelShader	 = compile ps_2_0 PSMain0();
+	}
+
+}

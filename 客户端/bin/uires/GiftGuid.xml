@@ -1,0 +1,1674 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/GiftGuid.lua" />
+	<Button name="ActivityListBtnTemplate" frameStrata="Dialog" virtual="true" >
+		<Size>
+			<AbsDimension x="345" y="45"/>
+		</Size>
+		<Layers>
+			<Layer level="overlay"> 
+				<Texture name="$parentIcon" file="uires\\ZhuJieMian\\3.dds" x="225" y="135" w="69" h="32">
+					<Size>
+						<AbsDimension x="69" y="32"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-30" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+				<Texture name="$parentStarTex1" inherits="YellowLittleStarTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="157" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+				<Texture name="$parentStarTex2" inherits="YellowLittleStarTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="172" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+				<Texture name="$parentStarTex3" inherits="YellowLittleStarTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="187" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+				<Texture name="$parentStarTex4" inherits="YellowLittleStarTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="202" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+				<Texture name="$parentStarTex5" inherits="YellowLittleStarTemplate">
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="217" y="16"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNameFont" fonttype="FZYBlackFont14" text="时间城争霸战">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="130" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="40" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTimeFont" fonttype="FZYBlackFont12" text="20:00-21:30">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="130" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="265" y="8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLevelFont" fonttype="FZYBlackFont12" text="等级：≥20级">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="130" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="265" y="23" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>  
+	# 活动日志面板
+	<Frame name="ActivityLogFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" framelevel="500" movable="true">
+		<Size>
+			<AbsDimension x="575" y="330"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="活动日志">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##左侧游戏活动背景
+				<Texture name="$parentLeftBack" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="354" y="286" />
+					</Size>
+					<Anchors>	
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##右侧运营活动背景
+				<Texture name="$parentRightBack" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="202" y="286" />
+					</Size>
+					<Anchors>	
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="366" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentActivityTex1" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="345" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentActivityTex2" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="345" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="104" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentActivityTex3" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="345" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="149" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentActivityTex4" inherits="WhiterCategoryBkg">
+					<Size>
+						<AbsDimension x="345" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="194" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentActivityTex5" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="345" y="45" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="239" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="352" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="285" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			<Button name="$parentLeftTitleBtn">
+				<Size>
+					<AbsDimension x="346" y="21"/>
+				</Size>
+				<Anchors>	
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="38" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="游戏活动">
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture	inherits="GongYongAnNiuListTopNormalTemplate" 	r="160" g="160" b="90"/>
+			</Button>  
+			<Button name="$parentActivityListBtn1" inherits = "ActivityListBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="59" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentActivityListBtn2" inherits = "ActivityListBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="104" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentActivityListBtn3" inherits = "ActivityListBtnTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="149" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentActivityListBtn4" inherits = "ActivityListBtnTemplate" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="194" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentActivityListBtn5" inherits = "ActivityListBtnTemplate" id="5" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="239" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRightTitleBtn">
+				<Size>
+					<AbsDimension x="198" y="21"/>
+				</Size>
+				<Anchors>	
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="368" y="38" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="运营活动">
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture	inherits="GongYongAnNiuListTopNormalTemplate" 	r="160" g="160" b="90"/>
+			</Button> 
+			<Button name="$parentBusynessListBtn1" id="1">
+				<Size>
+					<AbsDimension x="196" y="128"/>
+				</Size>
+				<Anchors>	
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="369" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="196" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<Scripts>
+					<OnClick>BusynessListBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			<Button name="$parentBusynessListBtn2" id="2">
+				<Size>
+					<AbsDimension x="196" y="128"/>
+				</Size>
+				<Anchors>	
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="369" y="191" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="196" y="128" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<Scripts>
+					<OnClick>BusynessListBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentLogBtn" inherits="GongYongAnNiuB1Template" text="详细信息">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="117" y="288"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ActivityLogFrameLogBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ActivityLogFrame_OnLoad()</OnLoad>
+			<OnEvent>ActivityLogFrame_OnEvent()</OnEvent>
+			<OnShow>ActivityLogFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+	# 翻牌奖励
+	<Button name="FlopRewardOpenTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="76" y="101"/>
+        </Size>
+        <Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\4.dds" x="0" y="0" w="76" h="101">
+					<Size>
+						<AbsDimension x="76" y="101" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+        	</Layer>
+        </Layers>
+    	<Frames>
+    		<Button name="$parentItem">
+				<Size>
+					<AbsDimension x="52" y="52" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="12" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="49" y="49" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ZhuangBei  1.tga" hidden="true">
+							<Size>
+								<RelDimension x="1.27" y="1.27" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<Texture name="$parentTexiao" file="uires\\ui\\TeXiao\\FanPai 1.tga" x="0" y="0" w="128" h="128" alphamode="add">
+							<Size>
+								<RelDimension x="2" y="2" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>FlopRewardOpenTemplateItemBtn_OnEnter()</OnEnter>
+					<OnLeave>FlopRewardOpenTemplateItemBtn_OnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+			<RichText name="$parentItemFont" lineInterval ="1" multiLine="true" fonttype="TeenyBlackFont" fontStyle="normal" >
+				<Size>
+					<AbsDimension x="60" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 反面卡片
+			<Button name="$parentOpenBackBtn">
+				<Size>
+					<AbsDimension x="76" y="101"/>
+		        </Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\4.dds" x="77" y="0" w="76" h="101" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\4.dds" x="154" y="0" w="76" h="101" />
+				<PushedTexture		file="uires\\ZhuJieMian\\4.dds" x="77" y="0" w="76" h="101" />
+				<Scripts>
+    				<OnClick>FlopRewardOpenTemplateOpenBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentOpenUvBtn" hidden="true">
+				<Size>
+					<AbsDimension x="76" y="101"/>
+		        </Size>
+		        <Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentHightCenter" file="uires\\ZhuJieMian\\4.dds" x="154" y="0" w="76" h="101">
+							<Size>
+								<AbsDimension x="76" y="101" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHightAnim" file="uires\\ZhuJieMian\\4.dds" x="0" y="167" w="64" h="5" >
+							<Size>
+								<AbsDimension x="72" y="5" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="96" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+    	</Frames>
+	</Button>
+	<Frame name="FlopRewardFrame" parent="UIClient" frameStrata="DIALOG" framelevel="500" hidden="true">
+		<Size>
+			<AbsDimension x="1200" y="408" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackgroundTex" file="uires\\TuPianLei\\TeShuBeiJing\\FanPaiJiangLi.tga">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentTitleFont"fonttype="TwentyFont" fontStyle="shadow" justifyH="center" text="翻牌奖励" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCheckFont"fonttype="FZYBlackFont15" fontStyle="shadow" justifyH="center" text="连续签到5天有机会获得极品大奖" >
+					<Color r="0" g="230" b="0"/>
+					<Size>
+						<AbsDimension x="250" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="91" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNumFont"fonttype="FZYBlackFont15" fontStyle="shadow" justifyH="center" text="已签到天数 1/5" >
+					<Color r="255" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="250" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="157" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentCheckTex1" file="uires\\ZhuJieMian\\3.dds" x="156" y="736" w="36" h="36">
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="488" y="117"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCheckTex2" file="uires\\ZhuJieMian\\3.dds" x="156" y="736" w="36" h="36">
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="534" y="117"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCheckTex3" file="uires\\ZhuJieMian\\3.dds" x="156" y="736" w="36" h="36">
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="580" y="117"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCheckTex4" file="uires\\ZhuJieMian\\3.dds" x="156" y="736" w="36" h="36">
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="626" y="117"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCheckTex5" file="uires\\ZhuJieMian\\3.dds" x="156" y="736" w="36" h="36">
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="672" y="117"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentTipFont"fonttype="FZYBlackFont14" text="" >
+				<Size>
+					<AbsDimension x="300" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="303" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>>
+			<Button name="$parentCloseBtn" inherits="GongYongAnNiuB1Template" text="关 闭">
+				<Size>
+					<AbsDimension x="120" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="538" y="337"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>FlopRewardFrameCloseBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentItemBtn1" inherits="FlopRewardOpenTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="358" y="183"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn2" inherits="FlopRewardOpenTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="459" y="183"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn3" inherits="FlopRewardOpenTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="560" y="183"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn4" inherits="FlopRewardOpenTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="661" y="183"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn5" inherits="FlopRewardOpenTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="762" y="183"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>FlopRewardFrame_OnLoad()</OnLoad>
+			<OnEvent>FlopRewardFrame_OnEvent()</OnEvent>
+			<OnShow>FlopRewardFrame_OnShow()</OnShow>
+			<OnHide>FlopRewardFrame_OnHide()</OnHide>
+			<OnUpdate>FlopRewardFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Button name="CheckRewarBtnTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="52" y="52"/>
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+					<Size>
+						<AbsDimension x="52" y="52"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="50" y="50"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="1" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+				<Texture name="$parentUVAnimationTex" hidden="true">
+					<Size>
+						<AbsDimension x="80" y="80"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-14" y="-14"/>
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<UVAnimation texrows="6" texcols="5" />
+				</Texture>
+				<Texture name="$parentBindTexture" file="uires\\ZhuJieMian\\1.dds" x="42" y="829" w="20" h="17" hidden="true" >
+					<Size>
+						<AbsDimension x="20" y="17"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="5" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right"  fontStyle="border" text="">
+					<Color r="204" g="128" b="51"/>
+					<Size>
+						<AbsDimension x="40" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-3" y="6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="551" y="538" w="64" h="64" />
+		<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+		<Scripts>
+			<OnEnter>CheckRewarBtnTemplate_OnEnter()</OnEnter>
+			<OnLeave>ItemButton_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	# 查看奖励面板
+	<Frame name="CheckInRewardFrame" parent="UIClient" frameStrata="Dialog" hidden="true">
+		<Size>
+			<AbsDimension x="342" y="237" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="查看奖励">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" text="连续在线4天，有几率获得以下物品哦！">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="280" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="45" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="332" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="195" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			<Button name="$parentCancleBtn" inherits="GongYongAnNiuB1Template" text="好的，我知道了">
+				<Size>
+					<AbsDimension x="130" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="107" y="201"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CheckInRewardFrameCancleBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentItemBtn1" inherits="CheckRewarBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="30" y="72"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn2" inherits="CheckRewarBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="88" y="72"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn3" inherits="CheckRewarBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="146" y="72"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn4" inherits="CheckRewarBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="204" y="72"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn5" inherits="CheckRewarBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="262" y="72"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn6" inherits="CheckRewarBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="30" y="130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn7" inherits="CheckRewarBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="88" y="130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn8" inherits="CheckRewarBtnTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="146" y="130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn9" inherits="CheckRewarBtnTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="204" y="130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn10" inherits="CheckRewarBtnTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="262" y="130"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>CheckInRewardFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+	# 领取神秘奖励面板  
+	<Frame name="DrawMysRewardFrame" parent="UIClient" hidden="true" frameStrata="MEDIUM" framelevel="500" movable="true">
+		<Size>
+			<AbsDimension x="73" y="100" />
+		</Size>
+		<Anchors>
+			 <Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+				<Offset>
+					<AbsDimension x="-180" y="-100" />
+				</Offset>
+			</Anchor> 
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				## 请点击图片
+				<Texture name="$parentTexture" file="uires\\ZhuJieMian\\3.dds" x="927" y="686" w="31" h="50"> 
+					<Size>
+						<AbsDimension x="31" y="50"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+				## 手型图片
+				<Texture name="$parentHandTexture" file="uires\\ZhuJieMian\\3.dds" x="710" y="100" w="29" h="29"> 
+					<Size>
+						<AbsDimension x="29" y="29"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="36" y="40"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentTimeBtn">
+				<Size>
+					<AbsDimension x="150" y="42"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="38" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">  
+						<Texture name="$parentTexture1" file="uires\\ZhuJieMian\\4.dds" x="0" y="173" w="75" h="42"> 
+							<Size>
+								<AbsDimension x="75" y="42"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentTexture2" file="uires\\ZhuJieMian\\4.dds" x="0" y="173" w="75" h="42"> 
+							<Size>
+								<AbsDimension x="75" y="42"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentTexture1">
+									<Offset>
+										<AbsDimension x="75" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Angle value="180" />				
+						</Texture>
+						<FontString name="$parentFont" fonttype="NormalBlackFont" justifyH="CENTER" text="领取神秘礼物剩余时间">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="150" y="50" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTimeFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="34分34秒">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="150" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnUpdate>DrawMysRewardFrameTimeBtn_OnUpdate()</OnUpdate>
+					<OnLoad>this:setUpdateTime(1);</OnLoad>
+				</Scripts>
+			</Button>
+			<Button name="$parentGiftBtn">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">  
+						<Texture name="$parentUVTexture" file="uires\\ui\\TeXiao\\ShenMiLiWu.tga" hidden="true"> 
+							<Size>
+								<RelDimension x="1.27" y="1.27" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+						<ModelView name="$parentModelView" >
+							<Size>
+								<AbsDimension x="164" y="164" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				## 神秘礼物
+				<NormalTexture		file="uires\\ZhuJieMian\\4.dds" x="230" y="0" w="45" h="52" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\4.dds" x="278" y="0" w="45" h="52" />
+				<PushedTexture		file="uires\\ZhuJieMian\\4.dds" x="324" y="0" w="45" h="52" />
+				<Scripts>
+					<OnClick>DrawMysRewardFrameGiftBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>DrawMysRewardFrame_OnShow()</OnShow>
+			<OnHide>DrawMysRewardFrame_OnHide();</OnHide>
+			<OnUpdate>DrawMysRewardFrameOnUpdate()</OnUpdate>
+			<OnLoad>DrawMysRewardFrame_OnLoad();</OnLoad>
+			<OnEvent>DrawMysRewardFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+	# 查看神秘奖励面板
+	<Frame name="MysRewardFrame" parent="UIClient" frameStrata="Dialog" hidden="true">
+		<Size>
+			<AbsDimension x="342" y="180" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="新手礼包">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="150" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="332" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="5" y="138" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="领取奖励">
+				<Size>
+					<AbsDimension x="130" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="107" y="143"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MysRewardFrameOKBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentItemBtn1" inherits="CheckRewarBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="30" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn2" inherits="CheckRewarBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="88" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn3" inherits="CheckRewarBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="146" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn4" inherits="CheckRewarBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="204" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn5" inherits="CheckRewarBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="262" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>MysRewardFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+	## 下方礼包按钮
+	<Frame name="GiftCenterGuideFrame" frameStrata="DIALOG" parent="UIClient" hidden="false" movable="false" framelevel="100" input_transparent="true">
+        <Size>
+            <AbsDimension x="90" y="44" />
+        </Size>
+		<Anchors>
+			 <Anchor point="bottomleft" relativeTo="TestWarnFrame" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="0" y="6" />
+				</Offset>
+			</Anchor> 
+		</Anchors>
+		<Frames>
+			## 签到礼包
+			<Button name="GiftCenterGuideCheckInButton" id="1" hidden="true">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<Layers>
+					<Layer level="background">  
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44"> 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						<Texture name="$parentIconTexture" file="uires\\ui\\Za\\QianDaoLiBao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						##外框
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-9" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>GiftCenterGuideCheckInButton_OnShow();</OnShow>
+					<OnClick>GiftCenterGuideCheckInButton_OnClick();</OnClick>
+					<OnEnter>GiftCenterGuideButtonTemplate_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+			</Button>
+			## 等级礼包
+			<Button name="GiftCenterGuideLevelButton" id="2" hidden="true"> 
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">  
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44"> 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						<Texture name="$parentIconTexture" file="uires\\ui\\Za\\DengJiLiBao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						##外框
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-9" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GiftCenterGuideLevelButton_OnClick();</OnClick>
+					<OnEnter>GiftCenterGuideButtonTemplate_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />		
+			</Button>
+			## 每日成长基金
+			<Button name="GiftCenterGuideAwardMTButton" id="3" hidden="true"> 
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="88" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">  
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44"> 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						<Texture name="$parentIconTexture" file="uires\\ui\\Za\\JiJinTeQuan.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						##外框
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-9" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GiftCenterGuideAwardMTButton_OnClick();</OnClick>
+					<OnUpdate>GiftCenterGuideAwardMTButton_OnUpdate();</OnUpdate> 
+					<OnEnter>GiftCenterGuideButtonTemplate_OnEnter();</OnEnter>
+					<OnLoad>this:setUpdateTime(10);</OnLoad>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />		
+			</Button>
+			## 死亡之星礼包/跨服公会战礼包
+			<Button name="GiftCenterGuideClanWarButton" id="4" hidden="true"> 
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">  
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44"> 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						<Texture name="$parentIconTexture" file="uires\\ui\\Za\\JiJinTeQuan2.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="background">
+						##外框
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-9" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GiftCenterGuideClanWarButton_OnClick();</OnClick>
+					<OnEnter>GiftCenterGuideClanWarButton_OnClick_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>GiftCenterGuideFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

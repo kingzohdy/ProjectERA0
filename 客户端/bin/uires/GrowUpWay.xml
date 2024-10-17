@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\GrowUpWay.lua" />
+	<Button name="GrowUpWayLevelBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="52" y="70" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentLevel" file="uires\\ShuZiXiangGuanZiYuan\\new\\ChenZhangZhiLuDengJi.tga" x="0" y="0" w="50" h="15" >
+					<Size>
+						<RelDimension x="1.0" y="0.242" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentIconTexture" file="uires\\TuPianLei\\WuPin\\234001.tga">
+					<Size>
+						<RelDimension x="1.0" y="0.714" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<RelDimension x="0" y="0.114" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentDescBkg" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75" >
+					<Size>
+						<RelDimension x="1.1" y="0.8" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentIsFineshFont" fonttype="LessTeenyBlackFont" justifyH="center" fontStyle="border" text="已完成">
+					<Color r="255" g="255" b="0"/>
+					<Size>
+						<RelDimension x="1.0" y="0.3" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<RelDimension x="0" y="0.285" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNameFont" fonttype="LessTeenyBlackFont" justifyH="center" fontStyle="border" text="浩劫与重生">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<RelDimension x="1.0" y="0.3" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+							<Offset>
+								<RelDimension x="0" y="0.028" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentIsFineshBigFont" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="border" text="已完成" hidden="true">
+					<Color r="255" g="255" b="0"/>
+					<Size>
+						<RelDimension x="1.0" y="0.3" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<RelDimension x="0" y="0.285" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNameBigFont" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="border" text="浩劫与重生" hidden="true">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<RelDimension x="1.0" y="0.3" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+							<Offset>
+								<RelDimension x="0" y="0.028" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>GrowUpWayLevelBtn_onClick();</OnClick>
+			<OnEnter>GrowUpWayLevelBtn_onEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="GrowUpWayTaskBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="51" y="51" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentIconTexture" file="uires\\TuPianLei\\TouXiang\\GuaiWuTouXiang\\20001.tga">
+					<Size>
+						<RelDimension x="0.9" y="0.9" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentDescBkg" file="uires\\ZhuJieMian\\2.dds" x="549" y="676" w="51" h="51" >
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>GrowUpWayTaskBtn_OnClick();</OnClick>
+			<OnEnter>GrowUpWayTaskBtn_OnEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	#成长之路面板
+	<Frame name="GrowUpWayFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="420">
+		<Size>
+			<AbsDimension x="463" y="380" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="成长之路">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentDescBkg" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="438" y="80" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="13" y="163" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentAttrBkg" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="438" y="117" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="13" y="250" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentArrowTex1" file="uires\\ZhuJieMian\\1.dds" x="297" y="302" w="12" h="9">
+					<Size>
+						<AbsDimension x="12" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="78" y="313" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentArrowTex2" file="uires\\ZhuJieMian\\1.dds" x="297" y="302" w="12" h="9">
+					<Size>
+						<AbsDimension x="12" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentArrowTex1" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="65" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentArrowTex3" file="uires\\ZhuJieMian\\1.dds" x="297" y="302" w="12" h="9">
+					<Size>
+						<AbsDimension x="12" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentArrowTex2" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="65" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentArrowTex4" file="uires\\ZhuJieMian\\1.dds" x="297" y="302" w="12" h="9">
+					<Size>
+						<AbsDimension x="12" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentArrowTex3" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="65" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentCurFont" fonttype="LittleFZYBlackFont" justifyH="left" text="当前加成：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentAttrBkg" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="0" y="-35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCurInfoFont" fonttype="LittleFZYBlackFont" justifyH="left" text="暴击等级+200">
+					<Color r="255" g="125" b="0"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentCurFont" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="13" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFinalFont" fonttype="LittleFZYBlackFont" justifyH="left" text="全部激活后：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="350" y="300" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFinalInfoFont" fonttype="LittleFZYBlackFont" justifyH="left" text="暴击等级+800">
+					<Color r="151" g="45" b="249"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="363" y="315" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTaskInfoFont" fonttype="LittleFZYBlackFont" justifyH="left" text="攻击+500">
+					<Color r="255" g="125" b="0"/>
+					<Size>
+						<AbsDimension x="160" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="180" y="344" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentLeftPageBtn" inherits="LeftPageTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="53" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GrowUpWayFrameLeftPageBtn_onClick();</OnClick>
+					<OnUpdate>GrowUpWayFrameLeftPageBtn_onUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			<Button name="$parentRightPageBtn" inherits="RightPageTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="392" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GrowUpWayFrameRightPageBtn_onClick();</OnClick>
+					<OnUpdate>GrowUpWayFrameRightPageBtn_onUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			<RichText name="$parentDescRich"  fonttype="LittleFZYBlackFont" lineInterval="2" multiLine="false" fontStyle="normal" input_transparent="true">
+				<Size>
+					<AbsDimension x="420" y="70" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDescBkg" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GrowUpWayFrameDescRich_onClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<Button name="$parentLevelBtn1" inherits="GrowUpWayLevelBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="102" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentLevelBtn2" inherits="GrowUpWayLevelBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="207" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentLevelBtn3" inherits="GrowUpWayLevelBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="312" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTaskBtn1" inherits="GrowUpWayTaskBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="62" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTaskBtn2" inherits="GrowUpWayTaskBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="117" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTaskBtn3" inherits="GrowUpWayTaskBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="184" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTaskBtn4" inherits="GrowUpWayTaskBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="247" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTaskBtn5" inherits="GrowUpWayTaskBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="312" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCurTipsBtn">
+				<Size>
+					<AbsDimension x="125" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="55" y="260" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentTipsBack" inherits="JieMianDiBanTips2Template"> 
+							<Size>
+								<RelDimension x="1.0" y="1.0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTipsArrow" inherits="JieMianDiBanTips2ArrowTemplate"> 
+							<Size>
+								<AbsDimension x="6" y="6"/>
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="bottom" relativeTo="$parentTipsBack">
+									<Offset>
+										<AbsDimension x="-25" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentDescFont" fonttype="TeenyBlackFont" justifyH="center" text="拥有80%速度的坐骑">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="120" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>GrowUpWayFrame_onShow();</OnShow>
+			<OnUpdate>GrowUpWayFrame_onUpdate();</OnUpdate>
+			<OnHide>GrowUpWayFrame_onHide();</OnHide>
+		</Scripts>
+	</Frame>
+	#成长之路升级提示按钮
+	<Button name="GrowUpWayAttentionBtnTemplate" inherits="GrowUpWayAttentionTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="370" y="70" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="240" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<RichText name="$parentDescRich"  fonttype="LittleFZYBlackFont" lineInterval="2" text="" fontStyle="normal" input_transparent="true">
+				<Size>
+					<AbsDimension x="345" y="45" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnClick>GrowUpWayAttentionBtn_onClick();</OnClick>
+			<OnShow>GrowUpWayAttentionBtn_onShow();</OnShow>
+			<OnUpdate>GrowUpWayAttentionBtn_onUpdate();</OnUpdate>
+			<OnHide>GrowUpWayAttentionBtn_onHide();</OnHide>
+		</Scripts>
+	</Button>
+		
+	#成长之路升级提示面板
+	<Frame name="GrowUpWayAttentionFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="209">
+		<Size>
+			<AbsDimension x="370" y="1" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="240" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentBtn1" inherits="GrowUpWayAttentionBtnTemplate" hidden="true" id="1">
+				<Size>
+					<AbsDimension x="370" y="70"/>
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn2" inherits="GrowUpWayAttentionBtnTemplate" hidden="true" id="2">
+				<Size>
+					<AbsDimension x="370" y="70"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentBtn1" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn3" inherits="GrowUpWayAttentionBtnTemplate" hidden="true" id="3">
+				<Size>
+					<AbsDimension x="370" y="70"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentBtn2" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>GrowUpWayAttentionFrame_onShow();</OnShow>
+			<OnHide>GrowUpWayAttentionFrame_onHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

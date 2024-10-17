@@ -1,0 +1,2867 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/TmpShortCut.lua" />
+	# NPC对话面板上面的新手tips
+	<Frame name="TempShortCutEffectFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="true" framelevel="200">
+		<Size>
+			<AbsDimension x="60" y="60" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentGuide" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="132" y="39"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="parent">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentFont" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" hidden="true" />					
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>TipsEffectFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	
+	# TODO: background	DIALOG
+	<Frame name="TempShortCutFrame" parent="UIClient" frameStrata="background" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="1014" y="91" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="-1" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<!--能量条-->
+				<Texture name="TmpEnerge_Texture"  file="uires\\ui\\xp LinShiJiXieXueTiao DiBan\\LinShiJiXieXueTiao1.tga">
+					<Size>
+						<AbsDimension x="69" y="69" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="85" y="-13" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="TempShortCutFrame_IconTex" file="uires\\TuPianLei\\LinShiWuPin\\1420000.tga">
+					<Size>
+						<AbsDimension x="69" y="69" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="85" y="-13" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>		
+				<Texture name="$parentBackGround1"  file="uires\\ZhuJieMian\\2.dds" x="1" y="729" w="437" h="94" >
+					<Size>
+						<AbsDimension x="437" y="94" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround2"  file="uires\\ZhuJieMian\\2.dds" x="441" y="729" w="121" h="94" >
+					<Size>
+						<AbsDimension x="121" y="94" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround3"  file="uires\\ZhuJieMian\\1.dds" x="562" y="964" w="454" h="59" >
+					<Size>
+						<AbsDimension x="454" y="59" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parentBackGround2" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+
+				<Texture name="$parentGearBackTexure" file="uires\\ZhuJieMian\\3.dds" x="602" y="146" w="141" h="44">
+					<Size>
+						<AbsDimension x="146" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-90" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentGearTexture" file="uires\\ZhuJieMian\\3.dds" x="562" y="146" w="39" h="44">
+					<Size>
+						<AbsDimension x="39" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="758" y="34" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentTmpEnerge_TipsBtn">
+				<Size>
+					<AbsDimension x="69" y="69" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="85" y="-13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>TempShortCutFrameEnergeTips()</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentAttackXinShouBtn" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="132" y="39"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="190" y="-80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="parent">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" hidden="true" />					
+				</Frames>
+				<Scripts>
+				</Scripts>
+			</Button>
+			
+			<Button name="TempShorCutTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="42" y="42" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBack" file="uires\\ZhuJieMian\\1.dds" x="794" y="472" w="44" h="44" >
+							<Size>
+								<AbsDimension x="42" y="42"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="34" y="34"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>							
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="472" w="44" h="44">
+							<Size>
+								<AbsDimension x="42" y="42"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="HIGHLIGHT">
+						<FontString name="$parentText" fonttype="MinimumBlackFont" fontStyle="border" justifyH="CENTER" text="">
+							<Color r="243" g="245" b="218" />
+							<Size>
+								<AbsDimension x="34" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-4" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCollectText" fonttype="MinimumBlackFont" fontStyle="border" justifyH="right" text="">
+							<Color r="204" g="128" b="51" />
+							<Size>
+								<AbsDimension x="30" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-11" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="472" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" />
+				<Scripts>
+					<OnLoad>TempShortcutOnLoad();</OnLoad>
+					<OnClick>TempShortcutOnClick();</OnClick>
+					<OnEnter>TempShortcutOnEnter();</OnEnter>
+					<OnLeave>TempShortcutOnLeave();</OnLeave>
+					<OnEvent>TempShortcutOnEvent();</OnEvent>		
+					<OnUpdate>TempShortcutOnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			<Button name="TempMagicShortcut1" inherits="TempShorCutTemplate" id="1">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="180" y="-17" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TempMagicShortcut2" inherits="TempShorCutTemplate" id="2">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="TempMagicShortcut1">
+						<Offset>
+							<AbsDimension x="-4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TempMagicShortcut3" inherits="TempShorCutTemplate" id="3">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="TempMagicShortcut2">
+						<Offset>
+							<AbsDimension x="-4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TempMagicShortcut4" inherits="TempShorCutTemplate" id="4">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="TempMagicShortcut3">
+						<Offset>
+							<AbsDimension x="-4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TempMagicShortcut9" inherits="TempShorCutTemplate" id="9">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="TempMagicShortcut1">
+						<Offset>
+							<AbsDimension x="142" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TempMagicShortcut10" inherits="TempShorCutTemplate" id="10">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="TempMagicShortcut9">
+						<Offset>
+							<AbsDimension x="-4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TmpShowHPShortCutBtn" >
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="365" y="20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TmpShowHpShortCutBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			<Button name="TmpShowMpShortCutBtn" >
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="406" y="20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+				<Scripts>
+					<OnClick>TmpShowMpShortCutBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##HP快捷栏
+			<Button name="TmpHPShortCut" hidden="true">
+				<Frames>
+					<Button name="TempMagicShortcut5" inherits="TempShorCutTemplate" id="5">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TmpShowHPShortCutBtn">
+								<Offset>
+									<AbsDimension x="0" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TempMagicShortcut6" inherits="TempShorCutTemplate" id="6">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TempMagicShortcut5">
+								<Offset>
+									<AbsDimension x="0" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TempMagicShortcut7" inherits="TempShorCutTemplate" id="7">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TempMagicShortcut6">
+								<Offset>
+									<AbsDimension x="0" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TempMagicShortcut8" inherits="TempShorCutTemplate" id="8">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TempMagicShortcut7">
+								<Offset>
+									<AbsDimension x="0" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>TmpHPShortCut_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+			
+			##MP快捷栏
+			<Button name="TmpMPShortCut" hidden="true">
+				<Frames>
+					<Button name="TempMagicShortcut11" inherits="TempShorCutTemplate" id="11">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TmpShowMpShortCutBtn">
+								<Offset>
+									<AbsDimension x="-2" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TempMagicShortcut12" inherits="TempShorCutTemplate" id="12">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TempMagicShortcut11">
+								<Offset>
+									<AbsDimension x="0" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TempMagicShortcut13" inherits="TempShorCutTemplate" id="13">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TempMagicShortcut12">
+								<Offset>
+									<AbsDimension x="0" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TempMagicShortcut14" inherits="TempShorCutTemplate" id="14">
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TempMagicShortcut13">
+								<Offset>
+									<AbsDimension x="0" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>TmpMPShortCut_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+
+			##丢弃按钮
+			<Button name="TmpDropButton">
+				<Size>
+					<AbsDimension x="57" y="57" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="482" y="-9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\JiNengTiaoXiTongAnNiuTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="92" y="72"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-15" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>	
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="375" y="670" w="57" h="57" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="433" y="670" w="57" h="57" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="491" y="670" w="57" h="57" />
+				<Scripts>
+					<OnClick>DropTempPropButton_OnClick();</OnClick>
+					<OnEnter>DropTempPropButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentGuide" input_transparent="true" >
+				<Size>
+					<AbsDimension x="122" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="510" y="-35" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="parent">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentRich" lineInterval ="2" multiLine="true" fonttype="MinimumBlackFont" fontStyle="normal" autoextend="true" input_transparent="true" >
+						<Size>
+							<AbsDimension x="112" y="38" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+			<Button name="$parentEnergeGuide" input_transparent="true" >
+				<Size>
+					<AbsDimension x="160" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="125" y="-45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="parent">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentRich" lineInterval ="2" multiLine="true" fonttype="MinimumBlackFont" fontStyle="normal" autoextend="true" input_transparent="true" >
+						<Size>
+							<AbsDimension x="150" y="38" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>util.closeParent(this);</OnClick>
+						</Scripts>
+					</Button>	
+				</Frames>
+				<Scripts>
+					<OnShow>TempShortCutFrameEnergeGuide_OnShow();</OnShow>  
+					<OnUpdate>TempShortCutFrameEnergeGuide_OnUpdate();</OnUpdate>  
+					<OnHide>TempShortCutFrameEnergeGuide_OnHide();</OnHide>  
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>TempShortCutFrame_OnLoad();</OnLoad>  
+			<OnEvent>TempShortCutFrame_OnEvent();</OnEvent>  
+			<OnShow>TempShortCutFrame_OnShow();</OnShow>  
+			<OnUpdate>TempShortCutFrame_OnUpdate();</OnUpdate> 
+			<OnHide>TempShortCutFrame_OnHide();</OnHide>  
+			<OnEndMove>TempShortCutFrame_OnEndMove();</OnEndMove>
+		</Scripts>
+	</Frame>
+	# background
+	<!--精灵动作条-->
+	# TODO: background	DIALOG
+	<Frame name="TempFairyShortCutFrame" parent="UIClient" frameStrata="background" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="1014" y="77" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="-1" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<!--能量条-->
+				<Texture name="TempFairyEnerge_Texture" file="uires\\ZhuJieMian\\1.dds" x="104" y="813" w="327" h="69" >
+					<Size>
+						<AbsDimension x="327" y="69" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="61" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<!--头像-->
+				<Texture name="TempFairyPetTex_Texture" >
+					<Size>
+						<AbsDimension x="56" y="56" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<!--<AbsDimension x="67" y="-9" />-->
+								<AbsDimension x="78" y="-6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftBackGround"  file="uires\\ZhuJieMian\\1.dds" x="1" y="883" w="558" h="77" >
+					<Size>
+						<AbsDimension x="558" y="77" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="-2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+				<Texture name="$parentRightBackGround" file="uires\\ZhuJieMian\\1.dds" x="562" y="964" w="454" h="59" >
+					<Size>
+						<AbsDimension x="454" y="59" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parentLeftBackGround" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="0" y="19" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+				<Texture name="$parentGearBackTexure" file="uires\\ZhuJieMian\\3.dds" x="602" y="146" w="141" h="44">
+					<Size>
+						<AbsDimension x="146" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-90" y="23" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentGearTexture" file="uires\\ZhuJieMian\\3.dds" x="562" y="146" w="39" h="44">
+					<Size>
+						<AbsDimension x="39" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="758" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="TempFairyShorCutTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBack" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="HIGHLIGHT">
+						<FontString name="$parentText" fonttype="MinimumBlackFont" fontStyle="border" justifyH="CENTER" text="">
+							<Color r="243" g="245" b="218" />
+							<Size>
+								<AbsDimension x="34" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-5" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCollectText" fonttype="MinimumBlackFont" fontStyle="border" justifyH="right" text="">
+							<Color r="204" g="128" b="51" />
+							<Size>
+								<AbsDimension x="30" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-6" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighLightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="607" w="44" h="44" />
+				<Scripts>
+					<OnLoad>TempFairyShortcutOnLoad();</OnLoad>
+					<OnClick>TempFairyShortcutClick();</OnClick>
+					<OnEnter>TempShortcutOnEnter();</OnEnter>
+					<OnLeave>TempShortcutOnLeave();</OnLeave>
+					<OnEvent>TempFairyShortcutOnEvent();</OnEvent>
+				</Scripts>
+			</Button>
+			<Button name="TempFairyMagicShortcut1" inherits="TempFairyShorCutTemplate" id="1">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="431" y="-17" />
+						</Offset>
+					</Anchor>>
+				</Anchors>
+			</Button>
+			<Button name="TempFairyMagicShortcut2" inherits="TempFairyShorCutTemplate" id="2">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="481" y="-17" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEffectFrame" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="60" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ShengJi  1.tga" alphamode="add">
+							<Size>
+								<AbsDimension x="100" y="100"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-10" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="2" texcols="4" />
+						</Texture>	
+						<Texture name="$parent_Texture" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuide" hidden="true" input_transparent="true">
+						<Size>
+							<AbsDimension x="122" y="44"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="-50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="parent">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<RichText name="$parentFont" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true" input_transparent="true">
+								<Size>
+									<AbsDimension x="112" y="35" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="5" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+						</Frames>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>FairyShortCutFrame_OnShow();</OnShow>
+			<OnUpdate>FairyShortCutFrame_OnUpdate();</OnUpdate>
+			<OnEndMove>TempFairyShortCutFrame_OnEndMove();</OnEndMove>
+		</Scripts>	
+	</Frame>
+
+	<Frame name="TempFairyShortCutUpdateFrame" parent="UIClient" frameStrata="background" >
+		<Scripts>
+			<OnUpdate>TmpShortCutUpdateFrame_OnUpdate();</OnUpdate>
+			<OnLoad>TmpShortCutUpdateFrameOnLoad();</OnLoad>
+			<OnEvent>TmpShortCutUpdateFrameOnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+	
+	## 怪物机械快捷栏物品扩展
+	<Button name="ClanShortcutItemExpandTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="42" y="171" />
+		</Size>
+		<Frames>
+			<Button name="$parentItemTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="42" y="42" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="34" y="34"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>							
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="472" w="44" h="44">
+							<Size>
+								<AbsDimension x="42" y="42"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="HIGHLIGHT">
+						<FontString name="$parentText" fonttype="MinimumBlackFont" fontStyle="border" justifyH="right" text="">
+							<Color r="204" g="128" b="51" />
+							<Size>
+								<AbsDimension x="30" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-11" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="472" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" />
+				<Scripts>
+					<OnClick>ClanShortcutItemExpandItem_OnClick()</OnClick>
+					<OnEnter>ClanShortcutItemExpandItem_OnEnter()</OnEnter>
+					<OnLeave>ClanShortcutItemExpandItem_OnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+		
+			<Button name="$parentItem1" inherits="$parentItemTemplate" id="1">
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="$parentItemTemplate" id="2">
+				<Anchors>
+					<Anchor point="bottom" relativePoint="top" relativeTo="$parentItem1">
+						<Offset>
+							<AbsDimension x="0" y="-1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="$parentItemTemplate" id="3">
+				<Anchors>
+					<Anchor point="bottom" relativePoint="top" relativeTo="$parentItem2">
+						<Offset>
+							<AbsDimension x="0" y="-1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="$parentItemTemplate" id="4">
+				<Anchors>
+					<Anchor point="bottom" relativePoint="top" relativeTo="$parentItem3">
+						<Offset>
+							<AbsDimension x="0" y="-1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ClanShortcutItemExpand_OnLoad()</OnLoad>
+			<OnEvent>ClanShortcutItemExpand_OnEvent()</OnEvent>
+		</Scripts>
+	</Button>
+
+	##采集临时机械面板
+	<Frame name="ClanCollectTmpFrame" frameStrata="background" parent="UIClient" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="1014" y="91" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="-1" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">				
+				<Texture name="$parentBackGround1" file="uires\\ZhuJieMian\\2.dds" x="1" y="729" w="437" h="94" >
+					<Size>
+						<AbsDimension x="437" y="94" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround2" file="uires\\ZhuJieMian\\2.dds" x="565" y="729" w="121" h="94" >
+					<Size>
+						<AbsDimension x="121" y="94" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHPBackGround" file="uires\\ZhuJieMian\\2.dds" x="688" y="752" w="72" h="72" >
+					<Size>
+						<AbsDimension x="72" y="72" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="83" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentButtonBkg" file="uires\\ZhuJieMian\\2.dds" x="808" y="824" w="140" h="30" >
+					<Size>
+						<AbsDimension x="140" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="163" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround3" file="uires\\ZhuJieMian\\1.dds" x="562" y="964" w="454" h="59" >
+					<Size>
+						<AbsDimension x="454" y="59" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parentBackGround2" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentGearBackTexure" file="uires\\ZhuJieMian\\3.dds" x="602" y="146" w="141" h="44">
+					<Size>
+						<AbsDimension x="146" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-90" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentGearTexture" file="uires\\ZhuJieMian\\3.dds" x="562" y="146" w="39" h="44">
+					<Size>
+						<AbsDimension x="39" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="758" y="34" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentHP">
+				<Size>
+					<AbsDimension x="16" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="102" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="728" y="692" w="16" h="60">
+							<Size>
+								<AbsDimension x="16" y="60" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>ClanCollectTmpFrameHP_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentNP">
+				<Size>
+					<AbsDimension x="16" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="122" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="745" y="692" w="16" h="60">
+							<Size>
+								<AbsDimension x="16" y="60" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>ClanCollectTmpFrameNP_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentCollectShortCut1" inherits="TempShorCutTemplate" id="1" >
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="175" y="-14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut2" inherits="TempShorCutTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut1" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut3" inherits="TempShorCutTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut2" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut4" inherits="TempShorCutTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut3" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut5" inherits="TempShorCutTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut4" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="15" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut6" inherits="TempShorCutTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut5" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut7" inherits="TempShorCutTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut6" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut8" inherits="TempShorCutTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut7" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentRepairExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="383" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentEnergyExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="426" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentFoodExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="469" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentHPExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="512" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentRepairExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentRepairExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentEnergyExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentEnergyExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentFoodExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentFoodExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentHPExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentHPExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			##下车按钮
+			<Button name="$parentDownBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="下车">
+				<FontString name="$parentFont" fonttype="MinimumBlackFont" fontStyle="normal" justifyH="center">
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="32" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="181" y="-64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\JiNengTiaoXiTongAnNiuTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="68" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-17" y="-6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>	
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>coroutine.wrap(DropMonsterMachine)();</OnClick>
+				</Scripts>
+			</Button>
+			##资源按钮
+			<Button name="$parentResourceBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="资源">
+				<FontString name="$parentFont" fonttype="MinimumBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="32" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="213" y="-64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer >
+						<Texture name="$parentTexture" inherits="HighlightTextureTemplate" hidden="true">
+							<Size>
+								<AbsDimension x="32" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>ClanCollectTmpFrameResourceBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##资源条目模板
+			<Button name="ClanCollectMachineResourceItemTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="191" y="20" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<FontString name="$parentTitle" fonttype="TeenyBlackFont" justifyH="center" text="">
+							<Color r="210" g="190" b="130"/>
+							<Size>
+								<AbsDimension x="60" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSlot" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="124" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativeTo="$parent" relativePoint="right">
+									<Offset>
+										<AbsDimension x="-9" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSlip" inherits="BlueBarTexTemplate">
+							<Size>
+								<AbsDimension x="120" y="9" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentSlot" relativePoint="left">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentText" fonttype="NormalBlackFont" justifyH="center" text="">
+							<Color r="255" g="255" b="255"/>
+							<Size>
+								<AbsDimension x="120" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentSlip" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			##资源面板
+			<Frame name="ClanCollectMachineResourceFrame" frameStrata="DIALOG" movable="true" hidden="true">
+				<Size>
+					<AbsDimension x="203" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="UIClient">
+						<Offset>
+							<AbsDimension x="328" y="540" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+						<Texture name="$parentTex" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="191" y="100" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="54" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="采集量">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTotalTitle" fonttype="LittleFZYBlackFont" justifyH="center" text="总容量">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="60" y="16"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="8" y="35"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTotalSlot" inherits="BarBackTexTemplate">
+							<Size>
+								<AbsDimension x="124" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-15" y="34" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTotalSlip" inherits="GreenBarTexTemplate">
+							<Size>
+								<AbsDimension x="120" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTotalSlot" relativePoint="left">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTotalText" fonttype="NormalBlackFont" justifyH="center" fontStyle="shadow" text="">
+							<Color r="255" g="255" b="255"/>
+							<Size>
+								<AbsDimension x="120" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTotalSlip" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					# 关闭按钮
+					<Button name="$parentClose" inherits="CloseBtnTemplate" />
+					
+					<Button name="$parentItem1" inherits="ClanCollectMachineResourceItemTemplate">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentTex" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem2" inherits="ClanCollectMachineResourceItemTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentItem1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem3" inherits="ClanCollectMachineResourceItemTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentItem2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem4" inherits="ClanCollectMachineResourceItemTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentItem3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem5" inherits="ClanCollectMachineResourceItemTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentItem4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					##提示信息
+					<RichText name="$parentRichInfo" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="TeenyBlackFont" >
+						<Size>
+							<AbsDimension x="186" y="40" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="10" y="158" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>ClanCollectMachineResourceFrameRich_OnClick();</OnClick>
+						</Scripts>
+					</RichText>
+				</Frames>
+				<Scripts>
+					<OnLoad>ClanCollectMachineResourceFrame_OnLoad()</OnLoad>
+					<OnEvent>ClanCollectMachineResourceFrame_OnEvent()</OnEvent>
+					<OnShow>ClanCollectMachineResourceFrame_OnShow()</OnShow>
+					<OnHide>ClanCollectMachineResourceFrame_OnHide()</OnHide>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>ClanCollectTmpFrameOnLoad();</OnLoad>
+			<OnEvent>ClanCollectTmpFrameOnEvent();</OnEvent>
+			<OnShow>ClanCollectTmpFrame_OnShow();</OnShow>
+			<OnUpdate>ClanCollectTmpFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	##
+	<Frame name="ClanTankTmpFrame" frameStrata="background" parent="UIClient" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="1014" y="91" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="-1" />
+				</Offset>
+			</Anchor>
+		</Anchors>		
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround1" file="uires\\ZhuJieMian\\2.dds" x="1" y="729" w="437" h="94" >
+					<Size>
+						<AbsDimension x="437" y="94" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround2" file="uires\\ZhuJieMian\\2.dds" x="565" y="729" w="121" h="94" >
+					<Size>
+						<AbsDimension x="121" y="94" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHPBackGround" file="uires\\ZhuJieMian\\2.dds" x="688" y="752" w="72" h="72" >
+					<Size>
+						<AbsDimension x="72" y="72" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="83" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				<Texture name="$parentButtonBkg" file="uires\\ZhuJieMian\\2.dds" x="0" y="697" w="108" h="30" >
+					<Size>
+						<AbsDimension x="108" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="163" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCurrSitBkg" file="uires\\ZhuJieMian\\2.dds" x="0" y="665" w="98" h="31">
+					<Size>
+						<AbsDimension x="98" y="31" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround1" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="255" y="8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parentBackGround3" file="uires\\ZhuJieMian\\1.dds" x="562" y="964" w="454" h="59" >
+					<Size>
+						<AbsDimension x="454" y="59" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parentBackGround2" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>		
+				<Texture name="$parentGearBackTexure" file="uires\\ZhuJieMian\\3.dds" x="602" y="146" w="141" h="44">
+					<Size>
+						<AbsDimension x="146" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-90" y="38" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentGearTexture" file="uires\\ZhuJieMian\\3.dds" x="562" y="146" w="39" h="44">
+					<Size>
+						<AbsDimension x="39" y="44" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="758" y="34" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				<FontString name="$parentCurrSitFont" fonttype="LittleFZYBlackFont" fontStyle="border" justifyH="center" text="驾驶位">
+					<Color r="240" g="190" b="100"/>
+					<Size>
+						<AbsDimension x="78" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentCurrSitBkg" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentHP">
+				<Size>
+					<AbsDimension x="16" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="102" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="728" y="692" w="16" h="60">
+							<Size>
+								<AbsDimension x="16" y="60" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>ClanCollectTmpFrameHP_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentNP">
+				<Size>
+					<AbsDimension x="16" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="122" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="745" y="692" w="16" h="60">
+							<Size>
+								<AbsDimension x="16" y="60" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>ClanCollectTmpFrameNP_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentCollectShortCut1" inherits="TempShorCutTemplate" id="1" >
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="175" y="-14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut2" inherits="TempShorCutTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut1" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut3" inherits="TempShorCutTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut2" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut4" inherits="TempShorCutTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut3" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut5" inherits="TempShorCutTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut4" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="15" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut6" inherits="TempShorCutTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut5" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut7" inherits="TempShorCutTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut6" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentCollectShortCut8" inherits="TempShorCutTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCollectShortCut7" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentRepairExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="383" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentEnergyExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="426" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentFoodExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="469" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentHPExpandBtn">
+				<Size>
+					<AbsDimension x="36" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="512" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ClanShortcutItemExpand_OnClick()</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="99"  y="660" w="36" h="8" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="136" y="660" w="36" h="8" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="164" y="668" w="36" h="8" />
+			</Button>
+			
+			<Button name="$parentRepairExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentRepairExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentEnergyExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentEnergyExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentFoodExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentFoodExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentHPExpand" inherits="ClanShortcutItemExpandTemplate">
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parentHPExpandBtn" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			##下车按钮
+			<Button name="$parentDownBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="下车">
+				<FontString name="$parentFont" fonttype="MinimumBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="32" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="181" y="-64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\JiNengTiaoXiTongAnNiuTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="68" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-17" y="-6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>	
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>coroutine.wrap(DropMonsterMachine)();</OnClick>
+				</Scripts>
+			</Button>
+			##座位
+			<Button name="$parentSitBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="座位">
+				<FontString name="$parentFont" fonttype="MinimumBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="32" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="213" y="-64" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnClick>ClanTankTmpFrameSitBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ClanTankTmpFrame_OnLoad();</OnLoad>
+			<OnEvent>ClanTankTmpFrame_OnEvent();</OnEvent>
+			<OnShow>ClanTankTmpFrame_OnShow();</OnShow>
+			<OnUpdate>ClanTankTmpFrame_OnUpdate();</OnUpdate>
+			<OnLoad>ClanTankTmpFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+
+	##选择座位面板
+	<Frame name="SelectSitFrame" frameStrata="dialog" parent="UIClient" movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="208" y="223" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentLayerBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="196" y="155" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="6" y="34" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>				
+				<FontString name="$parentName" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="shadow" text="座位图">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont" fonttype="FZYBlackFont12" justifyH="center" text="操作提示：鼠标右键点击请离乘客">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="-9" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>			
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="SelectSitFrameSitBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="51" y="51" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">						
+						<Texture name="$parentBodyTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male_body.tga">
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\5520001.tga">
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga">
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHairPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_3.tga" >
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\2.dds" x="549" y="676" w="51" h="51" >
+							<Size>
+								<AbsDimension x="51" y="51" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						##座位号
+						<FontString name="$parentNameFont" fonttype="MinimumBlackFont" justifyH="center" text="1号座位">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="70" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+									<Offset>
+										<AbsDimension x="-2" y="16" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="112" y="480" w="51" h="51" />
+				<HighLightTexture	file="uires\\ZhuJieMian\\2.dds" x="112" y="532" w="51" h="51" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="112" y="584" w="51" h="51" />
+				<Scripts>
+					<OnClick>SelectSitFrameSitBtn_OnClick();</OnClick>
+					<OnEnter>SelectSitFrameSitBtn_OnEnter();</OnEnter>
+					<OnLeave>SelectSitTipsFrame:Hide();</OnLeave>
+				</Scripts>
+			</Button>		
+			<Button name="$parentSitBtn1" inherits="SelectSitFrameSitBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLayerBkg" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentDriveFont" fonttype="LittleFZYBlackFont" justifyH="center" text="驾驶">
+							<Color r="255" g="200" b="100" />
+							<Size>
+								<AbsDimension x="40" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentSitBtn2" inherits="SelectSitFrameSitBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSitBtn1" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="13" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSitBtn3" inherits="SelectSitFrameSitBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSitBtn2" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="13" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSitBtn4" inherits="SelectSitFrameSitBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSitBtn1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="24" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSitBtn5" inherits="SelectSitFrameSitBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSitBtn4" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="13" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSitBtn6" inherits="SelectSitFrameSitBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSitBtn5" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="13" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>			
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="20" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SelectSitFrameOKBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-20" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this);</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>SelectSitFrame_OnShow();</OnShow>
+			<OnHide>SelectSitFrame_OnHide();</OnHide>
+			<OnUpdate>SelectSitFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="SelectSitTipsFrame" frameStrata="TOOLTIP"  hidden="true" >
+		<Size>
+			<AbsDimension x="286" y="86" />
+		</Size>		
+		<Anchors>
+			<Anchor point="topleft" >
+				<Offset>
+					<AbsDimension x="20" y="80" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+				<FontString name="$parentName" fonttype="SmallBlackFont" justifyH="left" text="爱吃西瓜的皮" >
+					<Size>
+						<AbsDimension x="114" y="25"/>
+					</Size>
+					<Color r="91" g="174" b="209"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="12" y="9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLevel" fonttype="TeenyFZYBlackFont" justifyH="left" text="99" >
+					<Size>
+						<AbsDimension x="60" y="20"/>
+					</Size>
+					<Color r="221" g="196" b="159"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentName" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRace" fonttype="TeenyFZYBlackFont" justifyH="left" text="牧师" >
+					<Size>
+						<AbsDimension x="90" y="20"/>
+					</Size>
+					<Color r="221" g="196" b="159"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentLevel" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="30" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentClanName" fonttype="TeenyFZYBlackFont" justifyH="left" text="" >
+					<Size>
+						<AbsDimension x="153" y="15"/>
+					</Size>
+					<Color r="221" g="196" b="159"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentLevel" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBodyTex" >
+					<Size>
+						<AbsDimension x="63" y="63" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-10" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentPhoto" >
+					<Size>
+						<AbsDimension x="63" y="63" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga">
+					<Size>
+						<AbsDimension x="63" y="63" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHairPhoto" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_3.tga">
+					<Size>
+						<AbsDimension x="63" y="63" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBodyTex" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+            </Layer>
+        </Layers>		
+	</Frame>
+
+	##怪物机械buf 显示
+	<Frame name="TmpMachineBuffFrame" frameStrata="BACKGROUND" parent="UIClient" framelevel="200" hidden="true">
+		<Size>
+			<AbsDimension x="185" y="5"/>
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentBuff1" inherits="PhotoBuffButtonTemplate" id="1" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff2" inherits="PhotoBuffButtonTemplate" id="2" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff1" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff3" inherits="PhotoBuffButtonTemplate" id="3" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff2" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff4" inherits="PhotoBuffButtonTemplate" id="4" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff3" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff5" inherits="PhotoBuffButtonTemplate" id="5" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff4" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff6" inherits="PhotoBuffButtonTemplate" id="6" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff5" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff7" inherits="PhotoBuffButtonTemplate" id="7" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff6" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff8" inherits="PhotoBuffButtonTemplate" id="8" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff7" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentBuff9" inherits="PhotoBuffButtonTemplate" id="9" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff8" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff10" inherits="PhotoBuffButtonTemplate" id="10" frameStrata="dialog">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff9" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>TmpMachineBuffFrame_OnLoad();</OnLoad>
+			<OnShow>TmpMachineBuffFrame_OnShow();</OnShow>
+			<!--<OnHide></OnHide> -->
+			<OnEvent>TmpMachineBuffFrame_OnEvent();</OnEvent>			
+		</Scripts>
+	</Frame>
+
+	## 查看资源，面板
+	<Frame name="WatchMachineResourceFrame" frameStrata="DIALOG" movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="203" y="163" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="328" y="540" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentTex" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="191" y="100" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="54" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="采集量">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTotalTitle" fonttype="LittleFZYBlackFont" justifyH="center" text="总容量">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTotalSlot" inherits="BarBackTexTemplate">
+					<Size>
+						<AbsDimension x="124" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-15" y="34" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTotalSlip" inherits="GreenBarTexTemplate">
+					<Size>
+						<AbsDimension x="120" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTotalSlot" relativePoint="left">
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTotalText" fonttype="NormalBlackFont" justifyH="center" fontStyle="shadow" text="">
+					<Color r="255" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="120" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTotalSlip" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			
+			<Button name="$parentItem1" inherits="ClanCollectMachineResourceItemTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentTex" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="ClanCollectMachineResourceItemTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="ClanCollectMachineResourceItemTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="ClanCollectMachineResourceItemTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="ClanCollectMachineResourceItemTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>WatchMachineResourceFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

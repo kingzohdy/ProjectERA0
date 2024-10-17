@@ -1,0 +1,74 @@
+
+#include "header.fx"
+
+float4x4 g_WorldViewProj : WORLDVIEWPROJ;
+
+texture g_DiffuseTex;
+sampler s_DiffuseSampler = sampler_state{
+    Texture = <g_DiffuseTex>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+texture g_SelfIllumTex;
+sampler s_SelfIllumSampler = sampler_state{
+    Texture = <g_SelfIllumTex>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
+
+struct VS_INPUT
+{
+    float4 pos        : POSITION;
+    float3 normal     : NORMAL;
+    float2 uv0            : TEXCOORD0;
+    float2 uv1            : TEXCOORD1;
+};
+
+struct VS_OUTPUT
+{
+    float4 pos            : POSITION;
+	float4 color0     : COLOR0;
+    float2 uv0            : TEXCOORD0;
+    float2 uv1            : TEXCOORD1;
+
+#ifdef LIGHT_SHADOW
+    float4 color1        : COLOR1; //color1.xyz=shadowed_lighting,  color1.w=specular lighting
+    float4 uv2            : TEXCOORD2;
+#endif
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD3;
+#endif
+};
+
+float4 PSMain(VS_OUTPUT input):COLOR0
+{
+	float4 color0  = tex2D(s_DiffuseSampler,input.uv0);
+	float4 color1 = tex2D(s_SelfIllumSampler, input.uv1);
+
+     float4 lighting = input.color0;
+#ifdef LIGHT_SHADOW
+	float shadow = DoHardShadow(s_DepthMapSampler, input.uv2, input.uv2.z/input.uv2.w); 
+	shadow = 1.0f - (1.0f - shadow)*g_shadowdensity;
+	lighting += shadow*input.color1;
+#endif
+
+	float4 color = float4(lighting.rgb*color0.rgb + color1.rgb, color0.a);
+#if FOG_DISTANCE>0
+	color.rgb = lerp(g_DistFogColor, color.rgb, input.fogc.x);
+#endif
+#if FOG_HEIGHT > 0
+	color.rgb = lerp(g_HeightFogColor, color.rgb, input.fogc.y);
+#endif
+
+	return color;
+}

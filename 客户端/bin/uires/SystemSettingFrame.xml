@@ -1,0 +1,4356 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\SystemSettingFrame.lua" />
+	# 效果设置
+	<Frame name="SystemSettingFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel = "21" movable = "true" >
+		<Size>
+			<AbsDimension x="484" y="474" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackTex" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" justifyH="center" text="系统设置">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="70" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString> 
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseButton" inherits="CloseBtnTemplate" />
+			
+			<Button name="$parentLeftBackGroundButton" >
+				<Size>
+					<AbsDimension x="108" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			# 
+			<Button name="$parent_ShiPinSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="视频设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				</Scripts>
+			</Button>
+
+			<Button name="$parent_XianShiSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="信息设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrame_XianShiSettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parent_MouseSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="鼠标设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="88" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrame_MouseSettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_KeySettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="按键设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="112" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrame_KeySettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentRightBackGroundButton" >
+				<Size>
+					<AbsDimension x="355" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="120" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			<Button name="$parentRightFirstBackGroundButton" >
+				<Size>
+					<AbsDimension x="346" y="102"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="125" y="41" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+
+			<Button name="SystemSettingFrameMusicHeadBtn" >
+				<Size>
+					<AbsDimension x="45" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="29" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="left" text="音量" >
+							<Color r="255" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="45" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+
+			# 背景音乐	--	游戏音乐	抬头按钮
+			<Button name="SystemSettingFrameBackgroundMusicHeadBtn" >
+				<Size>
+					<AbsDimension x="60" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">	# 背景音乐
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="游戏音乐" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="60" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="SystemSettingFrameBackgroundMusicDownHeadBtn" >
+				<Size>
+					<AbsDimension x="12" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="小" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="12" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="SystemSettingFrameBackgroundMusicUpHeadBtn" >
+				<Size>
+					<AbsDimension x="12" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="306" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="right" text="大" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="12" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="SystemSettingFrameBackgroundMusicBarBtn" >
+				<Size>
+					<AbsDimension x="188" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="239" y="78" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentTex1" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex2" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex1" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex3" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex2" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex4" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex3" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Slider name="SystemSettingFrameBackgroundMusic_ScrollBar" orientation="HORIZONTAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0" >
+				<Size>
+					<AbsDimension x="188" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="SystemSettingFrameBackgroundMusicBarBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" hidden="true" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>SystemSettingFrameBackgroundMusic_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 音效设置--游戏音效
+			<Button name="SystemSettingFrameEffectMusicHeadBtn" >
+				<Size>
+					<AbsDimension x="60" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="游戏音效" >
+							<Color r="255" g="254" b="189"/>  
+							<Size>
+								<AbsDimension x="60" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="SystemSettingFrameEffectMusicDownHeadBtn" >
+				<Size>
+					<AbsDimension x="12" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="小" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="12" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="SystemSettingFrameEffectMusicUpHeadBtn" >
+				<Size>
+					<AbsDimension x="12" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="306" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="right" text="大" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="12" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="SystemSettingFrameEffectMusicBarBtn" >
+				<Size>
+					<AbsDimension x="188" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="239" y="100" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentTex1" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex2" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex1" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex3" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex2" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex4" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex3" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Slider name="SystemSettingFrameEffectMusic_ScrollBar" orientation="HORIZONTAL" minValue="0" maxValue="80" valueStep="5" 
+				defaultValue="0" >
+				<Size>
+					<AbsDimension x="188" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="SystemSettingFrameEffectMusicBarBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" hidden="true" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>SystemSettingFrameEffectMusic_ScrollBa_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			# 全部静音
+			<CheckButton name="SystemSettingFrameForbitAllNoiseChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="236" y="76" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameForbitAllNoiseChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="SystemSettingFrameForbitAllNoiseHeadBtn" >
+				<Size>
+					<AbsDimension x="56" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightFirstBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="261" y="79" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="全部静音" >
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="56" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 第二层窗口
+			<Button name="$parentRightSecondBackGroundButton" >
+				<Size>
+					<AbsDimension x="346" y="56"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="125" y="147" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="SystemSettingFrameWindowHeadBtn" >
+				<Size>
+					<AbsDimension x="45" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="29" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="left" text="窗口" >
+							<Color r="255" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="45" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 分辨率抬头
+			<Button name="SystemSettingFrameSolutionHeadBtn" >
+				<Size>
+					<AbsDimension x="40" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="14" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="分辨率" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="40" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameSolutionDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 分辨率选择按钮常规状态
+			<Button name="SystemSettingFrameSolutionSelect_OneLayerBtn" >
+				<Size>
+					<AbsDimension x="125" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="63" y="27" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="SystemSettingFrameSolutionSelect_OneLayerName" fonttype="NormalBlackFont" text="1024*768" justifyH="center">
+							<Color r="255" g="254" b="189"/>  
+							<Size>
+								<AbsDimension x="65" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>SystemSettingFrameSolutionDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 分辨率下拉按钮
+			<Button name="SystemSettingFrameSolutionDownBtn" inherits="ScrollDownBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="167" y="27" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameSolutionDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 窗口模式
+			<CheckButton name="SystemSettingFrameWindowedChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="191" y="27" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameWindowedChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 窗口模式抬头按钮
+			<Button name="SystemSettingFrameWindowedHeadBtn" >
+				<Size>
+					<AbsDimension x="50" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="213" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="窗口模式" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="50" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameWindowedHeadBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 全屏模式
+			<CheckButton name="SystemSettingFrameFullScreenChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="265" y="27" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameFullScreenChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 全屏模式抬头按钮		全屏模式
+			<Button name="SystemSettingFrameFullScreenHeadBtn" >
+				<Size>
+					<AbsDimension x="50" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="285" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="全屏模式" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="50" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameFullScreenHeadBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 第三层窗口
+			<Button name="$parentRightThirdBackGroundButton">
+				<Size>
+					<AbsDimension x="346" y="106"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="125" y="207" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 效果抬头
+			<Button name="SystemSettingFrameRightBottomBackEffectHeadBtn" >
+				<Size>
+					<AbsDimension x="45" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="29" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="left" text="效果" >
+							<Color r="255" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="45" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 阴影质量
+			<CheckButton name="SystemSettingFrameShadowQualityChkBtn" inherits="CheckBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="65" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameShadowQualityChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			
+			# 屏幕泛光勾选框
+			<CheckButton name="SystemSettingFrameLightChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="33" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>SystemSettingFrameLightChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 屏幕泛光抬头按钮	屏幕泛光
+			<Button name="SystemSettingFrameLightHeadBtn" >
+				<Size>
+					<AbsDimension x="53" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="58" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="屏幕泛光" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="53" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameLightHeadBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 水面质量
+			<CheckButton name="SystemSettingFrameOpenWaterQualityChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="135" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameOpenWaterQualityChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 开启水面质量抬头按钮	反射水面
+			<Button name="SystemSettingFrameOpenWaterQualityHeadBtn" >
+				<Size>
+					<AbsDimension x="53" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="159" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="反射水面" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="53" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameOpenWaterQualityHeadBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 屏幕特效勾选框
+			<CheckButton name="SystemSettingFrameEffectChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="236" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameEffectChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 屏幕特效抬头按钮		屏幕特效
+			<Button name="SystemSettingFrameEffectHeadBtn" >
+				<Size>
+					<AbsDimension x="53" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="260" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="left" text="屏幕特效" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="53" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameEffectHeadBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 阴影质量抬头
+			<Button name="SystemSettingFrameShadowQualityHeadBtn" >
+				<Size>
+					<AbsDimension x="25" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="27" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="阴影" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="25" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<!--<OnClick>SystemSettingFrameShadowQualityHeadBtn_OnClick();</OnClick>-->
+					<OnClick>SystemSettingFrameShadowQualityBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>			
+				</Scripts>
+			</Button>
+			# 阴影质量选择按钮常规状态
+			<Button name="SystemSettingFrameShadowQualitySelect_OneLayerBtn" >
+				<Size>
+					<AbsDimension x="65" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="60" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="SystemSettingFrameShadowQualitySelect_OneLayerName" fonttype="TeenyBlackFont" text="无" justifyH="center">
+							<Color r="255" g="254" b="189"/>  
+							<Size>
+								<AbsDimension x="42" y="13"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+									<Offset>
+										<AbsDimension x="-10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>SystemSettingFrameShadowQualityBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 阴影质量下拉按钮
+			<Button name="SystemSettingFrameShadowQualityDownBtn" inherits="ScrollDownBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="104" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameShadowQualityBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 全屏抗锯齿抬头按钮
+			<Button name="SystemSettingFrameAtialiaseHeadBtn" >
+				<Size>
+					<AbsDimension x="66" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="174" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="全屏抗锯齿" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="66" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameAtialiaseDownBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 全屏抗锯齿选择按钮常规状态
+			<Button name="SystemSettingFrameAtialiaseSelect_OneLayerBtn" >
+				<Size>
+					<AbsDimension x="65" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="249" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="SystemSettingFrameAtialiaseSelect_OneLayerName" fonttype="TeenyBlackFont" text="无" justifyH="center">
+							<Color r="255" g="254" b="189"/>  
+							<Size>
+								<AbsDimension x="42" y="13"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+									<Offset>
+										<AbsDimension x="-10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>SystemSettingFrameAtialiaseDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 全屏抗锯齿下拉按钮
+			<Button name="SystemSettingFrameAtialiaseDownBtn" inherits="ScrollDownBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="293" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameAtialiaseDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 视野大小抬头
+			<Button name="SystemSettingFrameViewSizeHeadBtn" >
+				<Size>
+					<AbsDimension x="86" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="83" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="视野大小" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="86" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="SystemSettingFrameViewSizeMinHeadBtn">
+				<Size>
+					<AbsDimension x="24" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="87" y="85" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="近" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="24" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="SystemSettingFrameViewSizeMaxHeadBtn">
+				<Size>
+					<AbsDimension x="24" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="306" y="85" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="远" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="24" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="SystemSettingFrameViewSizeBarBtn">
+				<Size>
+					<AbsDimension x="188" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="115" y="91" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentTex1" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex2" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex1" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex3" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex2" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex4" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex3" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Slider name="SystemSettingFrameViewSize_ScrollBar" orientation="HORIZONTAL" minValue="0" maxValue="80" valueStep="5" 
+				defaultValue="0">
+				<Size>
+					<AbsDimension x="188" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="SystemSettingFrameViewSizeBarBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<!--<OnValueChanged>SystemSettingFrameJieMianSuoFangLv_ScrollBar_OnValueChanged();</OnValueChanged>-->
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			# 第四层窗口
+			<Button name="$parentRightForthBackGroundButton">
+				<Size>
+					<AbsDimension x="346" y="117"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="125" y="317" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 操作界面缩放率抬头
+			<Button name="SystemSettingFrameJieMianSuoFangLvHeadBtn" >
+				<Size>
+					<AbsDimension x="86" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="界面缩放率" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="86" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="SystemSettingFrameJieMianSuoFangLvMinHeadBtn">
+				<Size>
+					<AbsDimension x="24" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="87" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="0.50" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="24" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="SystemSettingFrameJieMianSuoFangLvMaxHeadBtn">
+				<Size>
+					<AbsDimension x="24" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="306" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="1.00" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="24" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="SystemSettingFrameJieMianSuoFangLvBarBtn">
+				<Size>
+					<AbsDimension x="188" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="115" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentTex1" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex2" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex1" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex3" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex2" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTex4" inherits="$parentHorizonalScrollBarBkgTemplate">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentTex3" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Slider name="SystemSettingFrameJieMianSuoFangLv_ScrollBar" orientation="HORIZONTAL" minValue="0" maxValue="80" valueStep="5" 
+				defaultValue="0">
+				<Size>
+					<AbsDimension x="188" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="SystemSettingFrameJieMianSuoFangLvBarBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<!--<OnValueChanged>SystemSettingFrameJieMianSuoFangLv_ScrollBar_OnValueChanged();</OnValueChanged>-->
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			
+			# FPS抬头
+			<Button name="SystemSettingFrameSetFPSHeadBtn" >
+				<Size>
+					<AbsDimension x="320" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="36" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="根据你的显卡性能选择适当的FPS锁定以达到最佳的流畅度" >
+							<Color r="0" g="255" b="185"/>  
+							 <Size>
+								<AbsDimension x="320" y="13" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 15fps
+			<CheckButton name="SystemSettingFrameFPS15ChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="19" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 15fps抬头按钮
+			<Button name="SystemSettingFrameFPS15HeadBtn" >
+				<Size>
+					<AbsDimension x="53" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="15fps" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="53" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 30fps
+			<CheckButton name="SystemSettingFrameFPS30ChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="102" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 30fps抬头按钮
+			<Button name="SystemSettingFrameFPS30HeadBtn" >
+				<Size>
+					<AbsDimension x="53" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="127" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="30fps" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="53" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 45fps
+			<CheckButton name="SystemSettingFrameFPS45ChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="185" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 45fps抬头按钮
+			<Button name="SystemSettingFrameFPS45HeadBtn" >
+				<Size>
+					<AbsDimension x="53" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="209" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="45fps" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="53" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 60fps
+			<CheckButton name="SystemSettingFrameFPS60ChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="267" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 60fps抬头按钮
+			<Button name="SystemSettingFrameFPS60HeadBtn" >
+				<Size>
+					<AbsDimension x="53" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="292" y="63" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="60fps" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="53" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameFPSBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 最低配置
+			<Button name="SystemSettingFrame_LowestConfigButton" inherits="GongYongAnNiuA1ButtonTemplate" text="最低配置" >
+				<Size>
+					<AbsDimension x="104" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="85" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>SystemSettingFrame_LowestConfigButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 最高配置
+			<Button name="SystemSettingFrame_HighestConfigButton" inherits="GongYongAnNiuA1ButtonTemplate" text="最高配置" >
+				<Size>
+					<AbsDimension x="104" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="123" y="85" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>SystemSettingFrame_HighestConfigButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 推荐配置
+			<Button name="SystemSettingFrameDefaultSettingBtn" inherits="GongYongAnNiuA1ButtonTemplate"  text="推荐配置">
+				<Size>
+					<AbsDimension x="106" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentRightForthBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="235" y="85"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameDefaultSettingBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 保存
+			<Button name="SystemSettingFrameSaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="应  用" >
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-93" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameSaveBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消
+			<Button name="SystemSettingFrameCancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消" >
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-12" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrame_CloseButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# TODO: hidden="true" 垂直同步勾选框
+			<CheckButton name="SystemSettingFrameVerticalChkBtn" inherits="CheckBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="65" y="58" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSettingFrameVerticalChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# TODO: hidden="true" 垂直同步
+			<Button name="SystemSettingFrameVerticalHeadBtn" hidden="true">
+				<Size>
+					<AbsDimension x="50" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="91" y="64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="垂直同步" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="50" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSettingFrameVerticalHeadBtn_OnClick();</OnClick>
+					<OnEnter>SystemSettingFrameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## TODO
+			
+			# 选择阴影质量选项框
+			<Button name="SystemSettingFrame_SelectShadowQualityBtn" hidden="true" >
+				<Size>
+					<AbsDimension x="26" y="66" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SystemSettingFrameShadowQualitySelect_OneLayerBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="TipsBkgTemplate" />
+				<Frames>
+					<Button name="SystemSettingFrame_ShadowQualityOptTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="26" y="22"/>
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="NormalBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级">
+									<Color r="255" g="254" b="189"/>  
+									<Size>
+										<AbsDimension x="24" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+											<Offset>
+												<AbsDimension x="0" y="4"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>SystemSettingFrame_ShadowQualityOptBtn_OnClick();</OnClick>
+						</Scripts>		
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="HighlightTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+					</Button>
+					<Button name="SystemSettingFrame_ShadowQualityOptBtn1" inherits="SystemSettingFrame_ShadowQualityOptTemplate" id="1" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_ShadowQualityOptBtn2" inherits="SystemSettingFrame_ShadowQualityOptTemplate" id="2" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_ShadowQualityOptBtn1" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_ShadowQualityOptBtn3" inherits="SystemSettingFrame_ShadowQualityOptTemplate" id="3" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_ShadowQualityOptBtn2" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>SystemSettingFrame_SelectShadowQualityBtn_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+
+			# 选择分辨率选项框
+			<Button name="SystemSettingFrame_SelectBtn" hidden="true" >
+				<Size>
+					<AbsDimension x="120" y="110" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SystemSettingFrameSolutionSelect_OneLayerBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="SystemSettingFrame_SoluOpBtnTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="120" y="22"/>
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentLayerName" fonttype="NormalBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级">
+									<Color r="255" g="254" b="189"/>  
+									<Size>
+										<AbsDimension x="115" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+											<Offset>
+												<AbsDimension x="0" y="4"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>SystemSettingFrame_LayerBtn_OnClick();</OnClick>
+						</Scripts>		
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="HighlightTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+					</Button>
+					<Button name="SystemSettingFrame_SoluOpBtn1" inherits="SystemSettingFrame_SoluOpBtnTemplate" id="1" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_SoluOpBtn2" inherits="SystemSettingFrame_SoluOpBtnTemplate" id="2" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_SoluOpBtn1" relativePoint="bottomleft">
+													<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_SoluOpBtn3" inherits="SystemSettingFrame_SoluOpBtnTemplate" id="3" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_SoluOpBtn2" relativePoint="bottomleft">
+													<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_SoluOpBtn4" inherits="SystemSettingFrame_SoluOpBtnTemplate" id="4" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_SoluOpBtn3" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="SystemSettingFrame_SoluOpBtn5" inherits="SystemSettingFrame_SoluOpBtnTemplate" id="5" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_SoluOpBtn4" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="SystemSettingFrame_SoluOpBtn6" inherits="SystemSettingFrame_SoluOpBtnTemplate" id="6" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_SoluOpBtn5" relativePoint="bottomleft" >
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>SystemSettingFrame_SelectBtn_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+			# 选择全屏抗锯齿选项框
+			<Button name="SystemSettingFrame_SelectAtialiaseBtn" hidden="true" >
+				<Size>
+					<AbsDimension x="26" y="88" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SystemSettingFrameAtialiaseSelect_OneLayerBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="TipsBkgTemplate" />
+				<Frames>
+					<Button name="SystemSettingFrame_ShadowOpBtnTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="26" y="22"/>
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="NormalBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级">
+									<Color r="255" g="254" b="189"/>  
+									<Size>
+										<AbsDimension x="24" y="20"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+											<Offset>
+												<AbsDimension x="0" y="4"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>SystemSettingFrame_AtialiaseOpBtn_OnClick();</OnClick>
+						</Scripts>		
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="HighlightTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+					</Button>
+					<Button name="SystemSettingFrame_AtialiaseOpBtn1" inherits="SystemSettingFrame_ShadowOpBtnTemplate" id="1" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_AtialiaseOpBtn2" inherits="SystemSettingFrame_ShadowOpBtnTemplate" id="2" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_AtialiaseOpBtn1" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_AtialiaseOpBtn3" inherits="SystemSettingFrame_ShadowOpBtnTemplate" id="3" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_AtialiaseOpBtn2" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SystemSettingFrame_AtialiaseOpBtn4" inherits="SystemSettingFrame_ShadowOpBtnTemplate" id="3" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="SystemSettingFrame_AtialiaseOpBtn3" relativePoint="bottomleft">
+								<offset>
+									<AbsDimension x="0" y="0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>SystemSettingFrame_SelectAtialiaseBtn_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>SystemSettingFrame_OnHide();</OnHide>
+			<OnShow>SystemSettingFrame_OnShow();</OnShow>
+			<OnLoad>SystemSettingFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+
+	# 游戏设置
+	<Frame name="GameSettingFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="21" movable="true" >
+		<Size>
+			<AbsDimension x="484" y="474" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackTex" inherits="MainBkgTemplate" />				
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" justifyH="center" text="系统设置">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="70" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString> 
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseButton" inherits="CloseBtnTemplate" />				
+			##面板底版
+			<Button name="$parentLeftBackGroundButton">
+				<Size>
+					<AbsDimension x="108" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />			
+			</Button>
+
+			<Button name="$parent_ShiPinSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="视频设置">
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrame_ShiPinSettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_XianShiSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="信息设置">
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				</Scripts>
+			</Button>
+			<Button name="$parent_MouseSettingButton" inherits="GongYongAnNiuA1ButtonTemplate"  text="鼠标设置">
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="88" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrame_MouseSettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_KeySettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="按键设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="112" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrame_KeySettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentRightBackGroundButton">
+				<Size>
+					<AbsDimension x="355" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="120" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			# 画面显示设置面板底版
+			<Button name="$parentGraphicBackBtn">
+				<Size>
+					<AbsDimension x="346" y="251"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="125" y="41" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />	
+			</Button>
+			# 画面显示设置抬头
+			<Button name="$parentGraphicSettingHeadBtn">
+				<Size>
+					<AbsDimension x="90" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="left" text="信息显示设置" >
+							<Color r="255" g="255" b="0"/>
+							 <Size>
+								<AbsDimension x="90" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 显示玩家名称勾选框
+			<CheckButton name="GameSettingFrameShowPlayerNameChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示玩家名称	
+			<Button name="GameSettingFrameShowPlayerNameHeadBtn">
+				<Size>
+					<AbsDimension x="105" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示玩家/宠物名字" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="105" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示玩家称号勾选框
+			<CheckButton name="GameSettingFrameShowTeamNameChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示玩家称号
+			<Button name="GameSettingFrameShowTeamNameHeadBtn">
+				<Size>
+					<AbsDimension x="102" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示称号" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="102" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示本人血量勾选框
+			<CheckButton name="GameSettingFrameShowMeHPChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示本人血量
+			<Button name="GameSettingFrameShowMeHPHeadBtn">
+				<Size>
+					<AbsDimension x="110" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示本人/队友生命值" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="110" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示其他玩家血量勾选框
+			<CheckButton name="GameSettingFrameShowOtherPlayerHPChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示其他玩家血量
+			<Button name="GameSettingFrameShowOtherPlayeHPHeadBtn">
+				<Size>
+					<AbsDimension x="100" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示其他玩家生命值" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="100" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示怪物名勾选框
+			<CheckButton name="GameSettingFrameShowMonsterNameChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="83" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示怪物名		显示怪物名称
+			<Button name="GameSettingFrameShowMonsterNameHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示怪物名字" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示怪物生命值勾选框
+			<CheckButton name="GameSettingFrameShowMonsterHPChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="83" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 显示怪物生命值
+			<Button name="GameSettingFrameShowMonsterHPHeadBtn">
+				<Size>
+					<AbsDimension x="80" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示怪物生命值" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="80" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示本人公会名字勾选框
+			<CheckButton name="GameSettingFrameShowSelfClanNameChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="110" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示本人公会名字		显示本人公会名
+			<Button name="GameSettingFrameSelfClanNameHeadBtn">
+				<Size>
+					<AbsDimension x="100" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="116" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示己方公会的名称" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="100" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示其他玩家公会名字勾选框
+			<CheckButton name="GameSettingFrameShowOtherPlayerClanNameChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="110" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示其他玩家公会名字		显示其他玩家公会名
+			<Button name="GameSettingFrameOtherPlayerClanNameHeadBtn">
+				<Size>
+					<AbsDimension x="110" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="116" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示其它公会的名称" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="110" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示玩家气泡勾选框
+			<CheckButton name="GameSettingFrameShowPlayerTalkChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="137" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示玩家气泡		显示玩家发言气泡
+			<Button name="GameSettingFrameShowPlayerTalkHeadBtn">
+				<Size>
+					<AbsDimension x="90" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="143" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示玩家/宠物发言气泡" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="120" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示伤害飘字勾选框
+			<CheckButton name="GameSettingFrameShowDamageChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="137" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示伤害飘字		显示伤害飘字
+			<Button name="GameSettingFrameShowDamageHeadBtn">
+				<Size>
+					<AbsDimension x="68" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="143" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示伤害数字" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="68" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 显示装备比较勾选框
+			<CheckButton name="GameSettingFrameShowCompareEquipChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="164" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 显示装备比较		显示装备比较
+			<Button name="GameSettingFrameShowCompareEquipgeHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="170" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示装备对比" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 锁定技能栏勾选框
+			<CheckButton name="GameSettingFrameLockShortCutChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="191" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 锁定技能栏
+			<Button name="GameSettingFrameLockShortCutHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="197" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="锁定快捷栏" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 禁止选中宠物勾选框
+			<CheckButton name="GameSettingFrameForbitSelectPetChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="164" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 禁止选中宠物
+			<Button name="GameSettingFrameForbitSelectPetHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="170" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="禁止选中宠物" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 自动技能释放勾选框
+			<CheckButton name="GameSettingFrameAutoSkillReleaseChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="191" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 自动技能释放
+			<Button name="GameSettingFrameAutoSkillReleaseHeadBtn">
+				<Size>
+					<AbsDimension x="110" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="197" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="施放技能自动选取目标" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="110" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 完美星特效勾选框
+			<CheckButton name="GameSettingFramePerfectStarChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="218" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 完美星特效
+			<Button name="GameSettingFramePerfectStarHeadBtn">
+				<Size>
+					<AbsDimension x="110" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="224" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示完美星特效" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="110" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 3D解锁功能
+			<CheckButton name="GameSettingFrameLookUpDownChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="218" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 3D解锁功能
+			<Button name="GameSettingFrameLookUpDownHeadBtn">
+				<Size>
+					<AbsDimension x="110" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="224" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="使用3D解锁功能" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="110" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 特权徽章勾选框
+			<CheckButton name="GameSettingFrameStarStoneChkBtn" inherits="CheckBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="218" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 特权徽章
+			<Button name="GameSettingFrameStarStoneHeadBtn" hidden="true">
+				<Size>
+					<AbsDimension x="110" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="224" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="显示特权徽章" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="110" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 显示召唤兽名勾选框
+			<!--<CheckButton name="GameSettingFrameShowPetNameChkBtn" >
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="85" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 显示召唤兽名
+			<Button name="GameSettingFrameShowPetNameHeadBtn">
+				<Size>
+					<AbsDimension x="93" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="30" y="90" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="显示召唤兽名称" >
+							<Color r="254" g="243" b="225"/>  
+							 <Size>
+								<AbsDimension x="91" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>-->
+
+			# 显示其他召唤兽血量勾选框
+			<!--<CheckButton name="GameSettingFrameShowOtherPetHPChkBtn" >
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="135" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			#  显示其他召唤兽血量
+			<Button name="GameSettingFrameShowOtherPetHPHeadBtn">
+				<Size>
+					<AbsDimension x="108" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentGraphicBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="160" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="显示其他召唤兽血量" >
+							<Color r="254" g="243" b="225"/>  
+							 <Size>
+								<AbsDimension x="108" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>-->
+
+			# 信息屏蔽设置面板底版
+			<Button name="$parentPingBiInfoBackBtn">
+				<Size>
+					<AbsDimension x="346" y="120" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="125" y="287"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			# 信息屏蔽设置抬头
+			<Button name="$parentPingBiInfoHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="left" text="信息过滤设置" >
+							<Color r="255" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="100" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 显示拒绝好友申请勾选框
+			<CheckButton name="GameSettingFrameRefuseFriendReqChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 显示拒绝好友申请	拒绝好友申请
+			<Button name="GameSettingFrameRefuseFriendReqHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="拒绝好友申请" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示拒绝组队邀请勾选框
+			<CheckButton name="GameSettingFrameRefuseTeamInviteChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="29" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 显示拒绝组队邀请	拒绝组队邀请
+			<Button name="GameSettingFrameRefuseTeamInviteHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="拒绝组队邀请" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			# 显示拒绝公会邀请勾选框
+			<CheckButton name="GameSettingFrameRefuseClanInviteChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 显示拒绝公会邀请		拒绝公会邀请
+			<Button name="GameSettingFrameRefuseClanInviteHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="拒绝公会邀请" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示拒绝查看装备勾选框
+			<CheckButton name="GameSettingFrameRefuseSeeEquipChkBtn" inherits="CheckBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 显示拒绝查看装备		拒绝查看装备
+			<Button name="GameSettingFrameRefuseSeeEquipHeadBtn" hidden="true">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="拒绝查看装备" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示拒绝交易申请勾选框
+			<CheckButton name="GameSettingFrameRefuseTradeInviteChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="31" y="83" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 拒绝交易申请		拒绝交易申请
+			<Button name="GameSettingFrameRefuseTradeInviteHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="57" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="拒绝交易申请" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示拒绝切磋邀请勾选框
+			<CheckButton name="GameSettingFrameRefusePKInviteChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="83" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 显示拒绝切磋邀请		拒绝切磋邀请
+			<Button name="GameSettingFrameRefusePKInviteHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="拒绝切磋邀请" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 显示拒绝骑乘邀请勾选框
+			<CheckButton name="GameSettingFrameRefuseRideInviteChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="192" y="56" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			# 拒绝骑乘邀请		拒绝骑乘邀请
+			<Button name="GameSettingFrameRefuseRideInviteHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<!--<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="56" y="116" />
+						</Offset>
+					</Anchor>
+				</Anchors>-->
+				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPingBiInfoBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="218" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="拒绝骑乘邀请" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GameSettingFrameOptButton_OnClick();</OnClick>
+					<OnEnter>GameSettingFrameOptButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 默认设置
+			<Button name="GameSettingFrameDefaultSettingBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="恢复默认设置">
+				<Size>
+					<AbsDimension x="106" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="123" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrameDefaultSettingBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 保存
+			<Button name="GameSettingFrameSaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="应  用">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-93" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrameSaveBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消
+			<Button name="GameSettingFrameCancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-12" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSettingFrameCancelBtn_CloseButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>GameSettingFrame_OnShow();</OnShow>
+			<OnLoad>GameSettingFrame_OnLoad();</OnLoad>
+			<OnEvent>GameSettingFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+
+	# 鼠标设置
+	<Frame name="MouseSettingFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="21" movable="true" >
+		<Size>
+			<AbsDimension x="484" y="474" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackTex" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" justifyH="center" text="系统设置">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="70" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString> 
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseButton" inherits="CloseBtnTemplate" />				
+			##面板底版
+			<Button name="$parentFirstBackGroundButton">
+				<Size>
+					<AbsDimension x="438" y="382"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentLeftBackGroundButton">
+				<Size>
+					<AbsDimension x="108" y="376"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+
+			<Button name="$parent_ShiPinSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="视频设置">
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrame_ShiPinSettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_XianShiSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="信息设置">
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="64" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrame_XianShiSettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_MouseSettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="鼠标设置">
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="88" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+				</Scripts>
+			</Button> 
+			<Button name="$parent_KeySettingButton" inherits="GongYongAnNiuA1ButtonTemplate" text="按键设置" >
+				<Size>
+					<AbsDimension x="104" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="112" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrame_KeySettingButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentRightBackGroundButton">
+				<Size>
+					<AbsDimension x="355" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="120" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+
+			# 鼠标设置抬头
+			<Button name="$parentMouseSettingHeadBtn">
+				<Size>
+					<AbsDimension x="70" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="16" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="left" text="鼠标设置" >
+							<Color r="255" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="70" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parentMouseSettingOptionHeadBtn">
+				<Size>
+					<AbsDimension x="275" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="39" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="left" text="你可以再这个页面设置游戏中鼠标的控制方式" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="275" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 画面显示设置面板底版
+			<Button name="$parentMouseSettingOptionBackBtn">
+				<Size>
+					<AbsDimension x="287" y="105"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentRightBackGroundButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-77" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 移动抬头
+			<Button name="$parentMoveHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="移动" >
+							<Color r="120" g="235" b="50"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 选择左键勾选框
+			<CheckButton name="$parentLeftMoveChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="106" y="13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 左键抬头
+			<Button name="$parentLeftMoveHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="19" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="左键" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 选择右键勾选框
+			<CheckButton name="$parentRightMoveChkBtn" inherits="CheckBtnTemplate">
+				<Size>
+					<AbsDimension x="25" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="191" y="13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 右键抬头
+			<Button name="$parentRightMoveHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="217" y="19" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="右键" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 选中抬头
+			<Button name="$parentSelectHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="46" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="选中" >
+							<Color r="120" g="235" b="50"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 选择左键勾选框
+			<CheckButton name="$parentLeftSelectChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="106" y="39" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 左键抬头
+			<Button name="$parentLeftSelectHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="左键" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 选择右键勾选框
+			<CheckButton name="$parentRightSelectChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="191" y="39" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 右键抬头
+			<Button name="$parentRightSelectHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="217" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="右键" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 攻击抬头
+			<Button name="$parentAttackHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="72" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="攻击" >
+							<Color r="120" g="235" b="50"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 选择左键勾选框
+			<CheckButton name="$parentLeftAttackChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="106" y="65" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 左键抬头
+			<Button name="$parentLeftAttackHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="71" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="左键" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 选择右键勾选框
+			<CheckButton name="$parentRightAttackChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="191" y="65" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			# 右键抬头
+			<Button name="$parentRightAttackHeadBtn">
+				<Size>
+					<AbsDimension x="25" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="217" y="71" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="右键" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="25" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 类型1勾选框
+			<CheckButton name="$parentType1ChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrameType1ChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 类型1抬头
+			<Button name="$parentType1HeadBtn">
+				<Size>
+					<AbsDimension x="50" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="26" y="16" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="类型设置1" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="50" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MouseSettingFrameType1Btn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 类型1描述
+			<Button name="$parentType1DescBtn">
+				<Size>
+					<AbsDimension x="165" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="93" y="16" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="左键攻击、移动，右键选择目标" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="165" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MouseSettingFrameType1Btn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 类型2勾选框
+			<CheckButton name="$parentType2ChkBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrameType2ChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			# 类型2抬头
+			<Button name="$parentType2HeadBtn">
+				<Size>
+					<AbsDimension x="50" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="26" y="41" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="类型设置2" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="50" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MouseSettingFrameType2Btn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 类型2描述
+			<Button name="$parentType2DescBtn">
+				<Size>
+					<AbsDimension x="165" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMouseSettingOptionBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="93" y="41" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="左键选择目标，右键攻击">
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="165" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MouseSettingFrameType2Btn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 默认设置
+			<Button name="MouseSettingFrameDefaultSettingBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="恢复默认设置">
+				<Size>
+					<AbsDimension x="106" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="123" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrameDefaultSettingBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 保存
+			<Button name="MouseSettingFrameSaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="应  用">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-93" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrameSaveBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消
+			<Button name="MouseSettingFrameCancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright"  relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-12" y="-12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MouseSettingFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>MouseSettingFrame_OnShow();</OnShow>
+			<!--<OnLoad>MouseSettingFrame_OnLoad();</OnLoad>
+			<OnEvent>MouseSettingFrame_OnEvent();</OnEvent>-->
+		</Scripts>
+	</Frame>
+</Ui>

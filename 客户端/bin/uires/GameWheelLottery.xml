@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\GameWheelLottery.lua" />
+	<Frame name="GameWheelLotteryFrame" frameStrata="DIALOG" parent="UIClient" movable="true" hidden="true" framelevel="500">
+		<Size>
+			<AbsDimension x="394" y="495"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="抽奖轮盘">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 底板
+			<Button name="$parentFrame">
+				<Size>
+					<AbsDimension x="388" y="461"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>						
+				<Frames>
+					# 分隔底板
+					<Button name="$parentCenter">
+						<Size>
+							<AbsDimension x="386" y="393"/>
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="4" />
+								</Offset>
+							</Anchor>
+						</Anchors>						
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentBackGround" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164" >
+									<Size>
+										 <AbsDimension x="164" y="164"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="30" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentBackGround2" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164" UVType="mirroeu">
+									<Size>
+										 <AbsDimension x="164" y="164"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentBackGround3" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164"  UVType="mirroeu">
+									<Size>
+										 <AbsDimension x="164" y="164"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Angle value="180"/>
+								</Texture>
+								<Texture name="$parentBackGround4" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164" >
+									<Size>
+										 <AbsDimension x="164" y="164"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="bottomright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<Angle value="180"/>
+								</Texture>
+								<Texture name="GameWheelLotteryFramePoint" file="uires\\ZhuJieMian\\2.dds" x=" 1000" y="824" w="24" h="200" >
+									<Size>
+										 <AbsDimension x="24" y="200"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="GameWheelLotteryFrame" relativePoint="center" >
+											<Offset>
+												<AbsDimension x="0" y="-29" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="right" fontStyle="shadow" text="抽奖次数：">
+									<Color r="194" g="179" b="145"/>
+									<Size>
+										<AbsDimension x="85" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topright" relativeTo="$parent" relativePoint="topleft" >
+											<Offset>
+												<AbsDimension x="225" y="360" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="GameWheelLotteryFrameTimes" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="shadow" text="">
+									<Color r="120" g="230" b="50"/>
+									<Size>
+										<AbsDimension x="30" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="225" y="360" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="GameWheelLotteryFrameItem0" inherits="HundredLevelTownItemIconSmallTemplate" id="0">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="124" y="159" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem1" inherits="HundredLevelTownItemIconSmallTemplate" id="1">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="105" y="114" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem2" inherits="HundredLevelTownItemIconSmallTemplate" id="2">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="70" y="79" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem3" inherits="HundredLevelTownItemIconSmallTemplate" id="3">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="25" y="60" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem4" inherits="HundredLevelTownItemIconSmallTemplate" id="4">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-25" y="60" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem5" inherits="HundredLevelTownItemIconSmallTemplate" id="5">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-70" y="79" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem6" inherits="HundredLevelTownItemIconSmallTemplate" id="6">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-105" y="114" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem7" inherits="HundredLevelTownItemIconSmallTemplate" id="7">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-124" y="159" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem8" inherits="HundredLevelTownItemIconSmallTemplate" id="8">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-124" y="209" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem9" inherits="HundredLevelTownItemIconSmallTemplate" id="9">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-105" y="254" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem10" inherits="HundredLevelTownItemIconSmallTemplate" id="10">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-70" y="289" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem11" inherits="HundredLevelTownItemIconSmallTemplate" id="11">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="-25" y="308" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem12" inherits="HundredLevelTownItemIconSmallTemplate" id="12">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="25" y="308" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem13" inherits="HundredLevelTownItemIconSmallTemplate" id="13">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="70" y="289" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem14" inherits="HundredLevelTownItemIconSmallTemplate" id="14">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="105" y="254" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+							<Button name="GameWheelLotteryFrameItem15" inherits="HundredLevelTownItemIconSmallTemplate" id="15">
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top">
+										<Offset>
+											<AbsDimension x="124" y="209" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Button>
+						</Frames>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# 开始抽奖
+					<Button name="GameWheelLotteryFrameStart" inherits="GongYongAnNiuA1ButtonTemplate" text="开始抽奖">
+						<Size>
+							<AbsDimension x="71" y="24"/>
+						</Size>
+		                <Anchors>
+		                    <Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft" >
+		                        <Offset>
+		                            <AbsDimension x="119" y="-24"/>
+		                        </Offset>
+		                    </Anchor>
+		                </Anchors>
+						<Scripts>
+							<OnClick>GameWheelLotteryFrame_OnStart()</OnClick>
+						</Scripts>
+					</Button>
+					# 停止
+					<Button name="GameWheelLotteryFrameStop" inherits="GongYongAnNiuA1ButtonTemplate" text="停止" hidden="true">
+						<Size>
+							<AbsDimension x="71" y="24"/>
+						</Size>
+		                <Anchors>
+		                    <Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft" >
+		                        <Offset>
+		                            <AbsDimension x="119" y="-24"/>
+		                        </Offset>
+		                    </Anchor>
+		                </Anchors>
+						<Scripts>
+							<OnClick>GameWheelLotteryFrame_OnStop()</OnClick>
+						</Scripts>
+					</Button>
+					# 领取
+					<Button name="GameWheelLotteryFrameGet" inherits="GongYongAnNiuA1ButtonTemplate" text="领取" hidden="true">
+						<Size>
+							<AbsDimension x="71" y="24"/>
+						</Size>
+		                <Anchors>
+		                    <Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft" >
+		                        <Offset>
+		                            <AbsDimension x="119" y="-24"/>
+		                        </Offset>
+		                    </Anchor>
+		                </Anchors>
+						<Scripts>
+							<OnClick>GameWheelLotteryFrame_OnGet()</OnClick>
+						</Scripts>
+					</Button>
+					# 关闭
+					<Button name="GameWheelLotteryFrameClose"  inherits="GongYongAnNiuA1ButtonTemplate" text="关闭">
+						<Size>
+							<AbsDimension x="71" y="24"/>
+						</Size>
+		                <Anchors>
+		                    <Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft" >
+		                        <Offset>
+		                            <AbsDimension x="213" y="-24"/>
+		                        </Offset>
+		                    </Anchor>
+		                </Anchors>
+						<Scripts>
+							<OnClick>GameWheelLotteryFrame:Hide()</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>GameWheelLotteryFrame_OnShow()</OnShow>
+			<OnLoad>GameWheelLotteryFrame_OnLoad()</OnLoad>
+			<OnUpdate>GameWheelLotteryFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+	## 商城vip 抽奖
+	<Frame name="VipWheelLotteryFrame" frameStrata="DIALOG" parent="UIClient" movable="true" hidden="true" framelevel="500">
+		<Size>
+			<AbsDimension x="391" y="493"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="抽奖轮盘">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBackGround" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164" >
+					<Size>
+						 <AbsDimension x="164" y="164"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="32" y="49" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround2" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164" UVType="mirroeu">
+					<Size>
+						 <AbsDimension x="164" y="164"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround3" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164"  UVType="mirroeu">
+					<Size>
+						 <AbsDimension x="164" y="164"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Angle value="180"/>
+				</Texture>
+				<Texture name="$parentBackGround4" file="uires\\ZhuJieMian\\2.dds" x="835" y="860" w="164" h="164" >
+					<Size>
+						 <AbsDimension x="164" y="164"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentBackGround" relativePoint="bottomright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Angle value="180"/>
+				</Texture>
+				<Texture name="$parentPoint" file="uires\\ZhuJieMian\\2.dds" x=" 1000" y="824" w="24" h="200" >
+					<Size>
+						 <AbsDimension x="24" y="200"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="-29" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTimes" fonttype="TeenyFZYBlackFont" justifyH="center" text="剩余抽奖次数：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="155" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="382" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTimeText" fonttype="FZYBlackFont12" justifyH="center" text="（每天最多进行10次抽奖）">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="150" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="402" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentGold10Text" fonttype="TeenyFZYBlackFont" text="10金券">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="84" y="425" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentGold50Text" fonttype="TeenyFZYBlackFont" text="50金券">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="184" y="425" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentGold100Text" fonttype="TeenyFZYBlackFont" text="100金券">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="279" y="425" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSep" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="386" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="451" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate">
+				<Scripts>
+					<OnClick>VipWheelLotteryFrameCloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentHelpBtn" inherits="HelpBtnTemplate" />
+
+			<Button name="$parentItem0" inherits="HundredLevelTownItemIconSmallTemplate" id="0">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="126" y="188" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem1" inherits="HundredLevelTownItemIconSmallTemplate" id="1">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="107" y="143" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="HundredLevelTownItemIconSmallTemplate" id="2">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="72" y="108" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="HundredLevelTownItemIconSmallTemplate" id="3">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="27" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="HundredLevelTownItemIconSmallTemplate" id="4">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-23" y="89" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="HundredLevelTownItemIconSmallTemplate" id="5">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-68" y="108" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem6" inherits="HundredLevelTownItemIconSmallTemplate" id="6">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-103" y="143" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem7" inherits="HundredLevelTownItemIconSmallTemplate" id="7">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-122" y="188" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem8" inherits="HundredLevelTownItemIconSmallTemplate" id="8">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-122" y="238" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem9" inherits="HundredLevelTownItemIconSmallTemplate" id="9">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-103" y="283" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem10" inherits="HundredLevelTownItemIconSmallTemplate" id="10">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-68" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem11" inherits="HundredLevelTownItemIconSmallTemplate" id="11">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="-23" y="337" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem12" inherits="HundredLevelTownItemIconSmallTemplate" id="12">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="27" y="337" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem13" inherits="HundredLevelTownItemIconSmallTemplate" id="13">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="72" y="318" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem14" inherits="HundredLevelTownItemIconSmallTemplate" id="14">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="107" y="283" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem15" inherits="HundredLevelTownItemIconSmallTemplate" id="15">
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="126" y="238" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<CheckButton name="$parentCheckBtn1" inherits="CheckBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="58" y="422" />
+						</Offset>
+					</Anchor>
+				</Anchors>							
+				<Scripts>
+					<OnClick>VipWheelLotteryFrameCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheckBtn2" inherits="CheckBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="158" y="422" />
+						</Offset>
+					</Anchor>
+				</Anchors>						
+				<Scripts>
+					<OnClick>VipWheelLotteryFrameCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheckBtn3" inherits="CheckBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="253" y="422" />
+						</Offset>
+					</Anchor>
+				</Anchors>								
+				<Scripts>
+					<OnClick>VipWheelLotteryFrameCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>	
+			# 开始抽奖
+			<Button name="$parentStart" inherits="GongYongAnNiuB1Template" text="开始抽奖">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="90" y="456"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VipWheelLotteryFrame_OnStart()</OnClick>
+				</Scripts>
+			</Button>
+			# 停止
+			<Button name="$parentStop" inherits="GongYongAnNiuB1Template" text="停 止" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="90" y="456"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VipWheelLotteryFrame_OnStop()</OnClick>
+				</Scripts>
+			</Button>
+			# 领取
+			<Button name="$parentGet" inherits="GongYongAnNiuB1Template" text="领 取" hidden="true">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="90" y="456"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VipWheelLotteryFrame_OnGet()</OnClick>
+				</Scripts>
+			</Button>
+			# 关闭
+			<Button name="$parentClose"  inherits="GongYongAnNiuB1Template" text="关 闭">
+				<Size>
+					<AbsDimension x="100" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="202" y="456"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VipWheelLotteryFrame:Hide()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>VipWheelLotteryFrame_OnShow()</OnShow>
+			<OnLoad>VipWheelLotteryFrame_OnLoad()</OnLoad>
+			<OnUpdate>VipWheelLotteryFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

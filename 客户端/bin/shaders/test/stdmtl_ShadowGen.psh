@@ -1,0 +1,20 @@
+
+
+#include "header.fx"
+
+sampler s_DiffuseSampler : register(s0);
+
+struct VS_OUTPUT_ShadowGen
+{
+    float4 pos            : POSITION;
+    float2 uv0            : TEXCOORD0;
+};
+
+float4 PSMain(VS_OUTPUT_ShadowGen input) : COLOR0
+{
+	float4 color  = tex2D(s_DiffuseSampler,input.uv0);
+#ifdef MODEL_TRANSPARENT
+	color.a *= g_ModelTransparent;
+#endif
+	return float4(0, 0, 0, color.a);
+}

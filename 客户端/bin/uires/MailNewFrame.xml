@@ -1,0 +1,1951 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires\MailNewFrame.lua" />
+	##物品显示模板
+	<Button name="MailButtonTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="375" y="47" />
+		</Size>		
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBkgTexture" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="375" y="47" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentSendName" fonttype="LittleFZYBlackFont" text="">
+					<Color r="255" g="255" b="190"/>   
+					<Size>
+						<AbsDimension x="160" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="44" y="9"/>
+							</Offset>
+						</Anchor>
+					</Anchors>					
+				</FontString>		
+				<FontString name="$parentMailTitle" fonttype="LittleFZYBlackFont" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="200" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="44" y="23"/>
+							</Offset>
+						</Anchor>
+					</Anchors>					
+				</FontString>
+				<FontString name="$parentTipFont" fonttype="LittleFZYBlackFont" justifyH="right" text="（来自玩家的邮件）">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="200" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+							<Offset>
+								<AbsDimension x="-42" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>					
+				</FontString>				
+				<FontString name="$parentUsefulDate" fonttype="LittleFZYBlackFont" justifyH="left" text="" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="160" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="222" y="22"/>
+							</Offset>
+						</Anchor>
+					</Anchors>					
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentIconBtn" >
+				<Size>
+					<AbsDimension x="38" y="38"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="8" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>MailInfoIcon_OnEnter();</OnEnter>
+					<OnLeave>MailInfoIcon_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<CheckButton name="$parentCheckBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parent" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-10" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailInfoCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<PushedTexture		inherits="PushedTextureTemplate" />
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<DisabledTexture	inherits="TransTextureTemplate" />
+		<Scripts>
+			<OnClick>MailInfo_OnClick();</OnClick>
+			<OnDoubleClick>MailInfo_OnDoubleClick();</OnDoubleClick>
+		</Scripts>
+	</Button>
+	<Frame name="MailFrameTemplate" frameStrata="DIALOG" virtual="true">
+		<Size>
+			<AbsDimension x="398" y="504" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				 <Texture name="$parentbackground" inherits="MainBkgTemplate" />					
+				##界面标题
+				<FontString name="$parentFrameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="邮件" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+			<Scripts>
+				<OnClick>MailFramesCloseBtn_OnClick();</OnClick>
+			</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn"  inherits="HelpBtnTemplate" />
+		</Frames>
+	</Frame>
+	##邮件头列表
+	<Frame name="MailHeadFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="500" inherits="MailFrameTemplate">
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="-180" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors> 
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="379" y="380" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="10" y="58" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSep" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="393" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="458" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="MailListPageFont" fonttype="FZYBlackFont12" text="第1/1页" >
+					<Color r="255" g="240" b="145"/>  
+					 <Size>
+						<AbsDimension x="58" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="177" y="441" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>			
+			##收信箱按钮
+			<Button name="$parentMailHeadBtn" inherits="GongYongAnNiuD1Template" text="收件箱" >
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="13" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailHeadBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##发件箱按钮
+			<Button name="$parentMailSendBtn" inherits="GongYongAnNiuD1Template" text="写邮件" >
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="93" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailSendBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##全选按钮
+			<Button name="$parentSelectAllBtn" >
+				<Size>
+					<AbsDimension x="50" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="329" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="全部" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>	
+								<AbsDimension x="40" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<CheckButton name="$parentCheckBtn" inherits="CheckBtnTemplate">
+						<Anchors>
+							<Anchor point="right" relativeTo="$parent" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>MailHeadSelectAllCheckBtn_OnClick();</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+				<Scripts>
+					<OnClick>MailHeadSelectAllBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##普通邮箱已满
+			<Button  name="$parentMailNormalFullBtn" hidden="true" >
+				<Size>
+					<AbsDimension x="140" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="245" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="NormalMailsFullFont" fonttype="FZYBlackFont12" text="" >
+							<Color r="255" g="0" b="0"/> 
+							 <Size>
+								<AbsDimension x="140" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			##系统邮箱已满
+			<Button  name="$parentMailSysFullBtn" hidden="true">
+				<Size>
+					<AbsDimension x="140" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="195" y="32" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="SysMailsFullFont" fonttype="FZYBlackFont12" text="" >
+							<Color r="255" g="0" b="0"/> 
+							 <Size>
+								<AbsDimension x="140" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			##打开所有按钮
+			<Button name="Mail_OpenAllBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="打开所有" hidden="true">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-1" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_OpenAllBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##一键删除按钮
+			<Button name="Mail_DeleteBtn" inherits="GongYongAnNiuB1Template" text="一键删除">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="19" y="464"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_DeleteALLBtn_OnClick();</OnClick>
+					<OnEnter>Mail_DeleteALLBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+					<OnUpdate>Mail_DeleteALLBtn_OnUpdate();</OnUpdate>
+					<OnLoad>this:setUpdateTime(1);</OnLoad>
+				</Scripts>
+			</Button>
+			##删除邮件按钮
+			<Button name="Mail_ReplyBtn" inherits="GongYongAnNiuB1Template" text="删除邮件">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="100" y="464"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_DeleteBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##查看邮件按钮
+			<Button name="Mail_ReadBtn" inherits="GongYongAnNiuB1Template" text="查看邮件">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="219" y="464"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_ReadBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##一键收取按钮
+			<Button name="Mail_ReceiveBtn" inherits="GongYongAnNiuB1Template" text="一键收取">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="300" y="464"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_ReceiveAllBtn_OnClick();</OnClick>
+					<OnEnter>Mail_ReceiveAllBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+					<OnUpdate>Mail_ReceiveAllBtn_OnUpdate();</OnUpdate>
+					<OnLoad>this:setUpdateTime(1);</OnLoad>
+				</Scripts>
+			</Button>
+			##邮件列表首页按钮
+			<Button name="Mail_FirstPageBtn" inherits="FirstPageBtnTemplate" >						
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="140" y="442" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_FirstPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##邮件列表左翻页按钮
+			<Button name="Mail_LeftPageBtn" inherits="PrevPageBtnTemplate" >						
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="158" y="442" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_LeftPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##邮件列表右翻页按钮
+			<Button name="Mail_RightPageBtn" inherits="NextPageBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="442" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_RightPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##邮件列表末页按钮
+			<Button name="Mail_LastPageBtn" inherits="LastPageBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="246" y="442" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Mail_LastPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MailInfo1" inherits="MailButtonTemplate" id="1">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="MailInfo2"  inherits="MailButtonTemplate" id="2" >	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailInfo1">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="MailInfo3"  inherits="MailButtonTemplate" id="3" >	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailInfo2">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="MailInfo4"  inherits="MailButtonTemplate" id="4" >	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailInfo3">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="MailInfo5"  inherits="MailButtonTemplate" id="5">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailInfo4">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="MailInfo6"  inherits="MailButtonTemplate" id="6">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailInfo5">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="MailInfo7"  inherits="MailButtonTemplate" id="7">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailInfo6">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="MailInfo8"  inherits="MailButtonTemplate" id="8">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailInfo7">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+		</Frames>
+        <Scripts>
+			<OnLoad>MailHeadFrame_OnLoad();</OnLoad>
+			<OnShow>MailHeadFrame_OnShow();</OnShow>
+			<OnHide>MailHeadFrame_OnHide();</OnHide>
+			<OnUpdate>MailHeadFrame_OnUpadate();</OnUpdate>
+			<OnEvent>MailHeadFrame_OnEvent();</OnEvent>
+        </Scripts>
+	</Frame>
+	##邮件发送面板
+	<Frame name="MailSendItemFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="500" inherits="MailFrameTemplate">
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors> 
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="379" y="282" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="58" />
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</Texture>
+				<Texture name="$parentSendItemBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="379" y="108" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="348" />
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</Texture>
+				<Texture name="$parentSenderEditBack" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="216" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="82" y="68" />
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</Texture>				
+				<Texture name="$parentTitleEditBack" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="290" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="82" y="92" />
+							</Offset>
+						</Anchor>
+					</Anchors> 
+				</Texture>
+				
+				 <Texture name="$parentEditBkg" inherits="PaperBkgTemplate">
+					<Size>
+						<AbsDimension x="378" y="217" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="118" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				 <Texture name="$parentSep" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="393" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="458" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentSender" fonttype="TeenyFZYBlackFont" text="收件人：" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="65" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="27" y="69" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##主题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" text="主  题：" >
+					<Color r="255" g="255" b="190"/>  
+					<Size>
+						<AbsDimension x="65" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="27" y="94" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				##寄出物品
+				<FontString name="MailSendItemBoxSendItemFont" fonttype="LittleFZYBlackFont" justifyH="left" text="使用邮章" >
+				<Color r="255" g="255" b="190"/>  
+					<Size>
+						<AbsDimension x="70" y="15" />
+					</Size>
+					 <Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="49" y="354" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			
+			</Layer>
+		</Layers>
+		<Frames>
+			##收信箱按钮
+			<Button name="$parentMailHeadBtn" inherits="GongYongAnNiuD1Template" text="收件箱" frameStrata="DIALOG">
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="13" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailHeadBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##发件箱按钮
+			<Button name="$parentMailSendBtn" inherits="GongYongAnNiuD1Template" text="写邮件" frameStrata="DIALOG">
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="93" y="34" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailSendBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<MultiEditBox name="MailItemSender_EditBox" letters="23"  multiLine="false" text="">
+				<Color r="120" g="120" b="60"/>  
+				<Size>
+					<AbsDimension x="173" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="87" y="69" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+				<FontString name="MailItemSenderFontString" fonttype="SongTiFont13">
+					<Color r="255" g="255" b="190"/>
+				</FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame( "MailSendItemTitle_EditBox" );</OnTabPressed>
+				</Scripts>
+			</MultiEditBox>			
+			##联系人按钮
+			<Button name="MailItemSendBox_ContactBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="联系人">
+				<Size>
+					<AbsDimension x="70" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="303" y="65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailSendItemBox_ContactBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##发邮件——主题
+			<MultiEditBox name="MailSendItemTitle_EditBox" letters="20" multiLine="false" text="">
+				<Color r="160" g="160" b="90"/>  
+				<Size>
+					<AbsDimension x="255" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="87" y="93" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="MailSendItemTitleFontstring" fonttype="SongTiFont13">
+					<Color r="255" g="255" b="190"/>
+				</FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame( "MailSendItemContent_EditBox" );</OnTabPressed>
+				</Scripts>
+			</MultiEditBox>			
+			##附件物品
+			<CheckButton name="MailItemSendItemCheckBtn" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="352" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailItemSendItemCheckBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<MultiEditBox name="MailSendItemContent_EditBox" fonttype="SmallBlackFont" letters="255" lineInterval="2">
+				<Cursorcolor r="255" g="255" b="255" />
+					<Size>
+						<AbsDimension x="305" y="185" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="43" y="135" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+					<OnTabPressed>SetFocusFrame( "MailItemSender_EditBox" );</OnTabPressed>
+				</Scripts>
+			</MultiEditBox>			
+			##重置邮件按钮
+			<Button name="MailSendItemBox_ReSetBtn" inherits="GongYongAnNiuB1Template" text="重  置">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="49" y="464"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailSendItemBox_ReSetBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##发送邮件按钮
+			<Button name="MailSendItemBox_SendBtn" inherits="GongYongAnNiuB1Template" text="发  送">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="160" y="464" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailSendItemBox_SendBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##取消发送邮件按钮
+			<Button name="MailSendItemBox_CnacleBtn" inherits="GongYongAnNiuB1Template" text="取  消">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="271" y="464" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailSendItemBox_CanelBtn_Click();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MailSendBoxSendItem1" inherits="ItemButtonTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="24" y="375"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			
+			<Button name="MailSendBoxSendItem2" inherits="ItemButtonTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailSendBoxSendItem1">
+						<Offset>
+							<AbsDimension x="44" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			
+			<Button name="MailSendBoxSendItem3" inherits="ItemButtonTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailSendBoxSendItem2">
+						<Offset>
+							<AbsDimension x="44" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			
+			<Button name="MailSendBoxSendItem4" inherits="ItemButtonTemplate" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailSendBoxSendItem3">
+						<Offset>
+							<AbsDimension x="44" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			
+			<Button name="MailSendBoxSendItem5" inherits="ItemButtonTemplate" id="5" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailSendBoxSendItem4">
+						<Offset>
+							<AbsDimension x="44" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			
+			<Button name="MailSendBoxSendItem6" inherits="ItemButtonTemplate" id="6" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailSendBoxSendItem5">
+						<Offset>
+							<AbsDimension x="44" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			
+			<Button name="MailSendBoxSendItem7" inherits="ItemButtonTemplate" id="7" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailSendBoxSendItem6">
+						<Offset>
+							<AbsDimension x="44" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			
+			<Button name="MailSendBoxSendItem8" inherits="ItemButtonTemplate" id="8" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailSendBoxSendItem7">
+						<Offset>
+							<AbsDimension x="44" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+		</Frames>
+        <Scripts>
+			<OnShow>MailSendItemFrame_OnShow();</OnShow>
+			<OnHide>MailSendItemFrame_OnHide();</OnHide>
+			<OnLoad>MailSendItemFrame_OnLoad();</OnLoad>
+			<OnUpdate>MailFrame_OnUpdate();</OnUpdate>
+			<OnEvent>MailSendItemFrame_OnEvent();</OnEvent>
+        </Scripts>
+	</Frame>
+
+	##邮件读取面板
+	<Frame name="MailReadFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="500" inherits="MailFrameTemplate">
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="216" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors> 
+		<Frames>
+			<Button name="MailReadFrameInfo">
+				<Size>
+					<AbsDimension x="392" y="446"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						##发件人
+						<FontString name="MailGetBoxSender" fonttype="TeenyFZYBlackFont" justifyH="left" text="发件人：" >
+							<Color r="133" g="118" b="82"/>  
+							<Size>
+								<AbsDimension x="53" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="13" y="13" />
+									</Offset>
+								</Anchor>
+							</Anchors>		
+						</FontString>
+						<FontString name="MailGetBoxSenderFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="adasdfasfs" >
+							<Color r="255" g="255" b="255"/>  
+							<Size>
+								<AbsDimension x="295" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="right" relativeTo="MailGetBoxSender">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MailGetBoxSenderTipFont" fonttype="TeenyFZYBlackFont" justifyH="right" text="" >
+							<Color r="0" g="255" b="0"/>  
+							<Size>
+								<AbsDimension x="200" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-15" y="13" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##主题
+						<FontString name="MailGetBoxTitle" fonttype="TeenyFZYBlackFont" justifyH="left" text="主  题：" >
+							<Color r="133" g="118" b="82"/>  
+							<Size>
+								<AbsDimension x="53" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="bottomleft" relativeTo="MailGetBoxSender">
+									<Offset>
+										<AbsDimension x="0" y="9" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="MailGetBoxTitleFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="afdsfsd" >
+							<Color r="198" g="176" b="124"/>  
+							<Size>
+								<AbsDimension x="295" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="right" relativeTo="MailGetBoxTitle">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						
+					</Layer>
+				</Layers>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="MailReadFrame" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MailReadFrame_WanYou" hidden="true">
+				<Size>
+					<AbsDimension x="118" y="41" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="250" y="50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentLogo" file="uires\\TuPianLei\\WangYou Logo.tga">
+							<Size>
+								<AbsDimension x="118" y="41" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors> 
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="MailReadFrame_FraudWarning" hidden="true">
+				<Size>
+					<AbsDimension x="24" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="346" y="70" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentLogo" file="uires\\ZhuJieMian\\1.dds" x="256" y="402" w="30" h="22">
+							<Size>
+								<AbsDimension x="24" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors> 
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>MailReadFrame_FraudWarning_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="MailFrameContentRead">
+				<Size>
+					<AbsDimension x="376" y="255" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="MailReadFrameInfo" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="7" y="66" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+						<Texture name="$parentBkg1" inherits="PaperBkgTemplate" >
+							<Size>
+								<AbsDimension x="390" y="255" />
+							</Size>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>			
+			##邮件内容
+			<RichText name="MailContent_Rich" fonttype="TeenyFZYBlackFont" lineInterval="2" text="" fontStyle="normal" > 
+				<Size>
+					<AbsDimension x="330" y="200" />
+				</Size>
+				 <Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MailFrameContentRead" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="26" y="28" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</RichText>
+			##银币信息框
+			<Button name="MailReceiveMoneyBtn">
+				<Size>
+					<AbsDimension x="167" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="MailReadFrameInfo" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="204" y="-51" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="MailReceiveMoney_EditBackBtn">
+						<Size>
+							<AbsDimension x="167" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="MailReadFrameInfo" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="204" y="-51" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="MailGetBoxMoneysCountFont" fonttype="TeenyFZYBlackFont" justifyH="right" text="" >
+									<Color r="198" g="176" b="124"/> 
+									<Size>
+										<AbsDimension x="99" y="15" />
+									</Size>
+									 <Anchors>
+										<Anchor point="TOPLEFT" relativeTo="MailReceiveMoney_EditBackBtn" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="40" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture  inherits="EditBoxBkgTemplate" />
+					</Button>
+					<Button name="MailMoneyButton1_EditBackBtn" text="银币">
+						<Size>
+							<AbsDimension x="34" y="21" />
+						</Size>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="MailReceiveMoney_EditBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="-1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture  inherits="GongYongAnNiuA1NormalTemplate" r="255" g="255" b="190" />
+					</Button>
+					<Button name="MailMoneyIcon1_EditBackBtn">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="MailReceiveMoney_EditBackBtn" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="0" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" />
+						<Scripts>
+							<OnEnter>MoneyTex_OnEnter();</OnEnter>	 
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+							<OnLoad>this:SetClientUserData(0,3);</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>			
+			
+			##删除邮件按钮
+			<Button name="MailRead_DeleteBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="删除邮件" >
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="53" y="-17"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailRead_DeleteBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##回复邮件按钮
+			<Button name="MailRead_ReplyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="回复邮件">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="MailRead_DeleteBtn">
+						<Offset>
+							<AbsDimension x="34" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailRead_ReplyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			##领取按钮
+			<Button name="MailRead_GetGoodsBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="全部领取">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="MailRead_ReplyBtn">
+						<Offset>
+							<AbsDimension x="34" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MailRead_GetAllGoodsBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="MailGetBoxSendItem1"  inherits="ItemButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="24" y="-105"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>
+			</Button>			
+			<Button name="MailGetBoxSendItem2" inherits="ItemButtonTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailGetBoxSendItem1">
+						<Offset>
+							<AbsDimension x="43" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>		
+			</Button>			
+			<Button name="MailGetBoxSendItem3"  inherits="ItemButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailGetBoxSendItem2">
+						<Offset>
+							<AbsDimension x="43" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>	
+			</Button>			
+			<Button name="MailGetBoxSendItem4" inherits="ItemButtonTemplate" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailGetBoxSendItem3">
+						<Offset>
+							<AbsDimension x="43" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>	
+			</Button>
+			
+			<Button name="MailGetBoxSendItem5" inherits="ItemButtonTemplate" id="5" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailGetBoxSendItem4">
+						<Offset>
+							<AbsDimension x="43" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>	
+			</Button>
+			
+			<Button name="MailGetBoxSendItem6" inherits="ItemButtonTemplate" id="6" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailGetBoxSendItem5">
+						<Offset>
+							<AbsDimension x="43" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>	
+			</Button>
+			
+			<Button name="MailGetBoxSendItem7" inherits="ItemButtonTemplate" id="7" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailGetBoxSendItem6">
+						<Offset>
+							<AbsDimension x="43" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>	
+			</Button>
+			
+			<Button name="MailGetBoxSendItem8" inherits="ItemButtonTemplate" id="8" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="MailGetBoxSendItem7">
+					<Offset>
+						<AbsDimension x="43" y="0"/>
+					</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnLoad>this:SetClientUserData( 0, DRAG_GETMAILITEM );</OnLoad>
+				</Scripts>	
+			</Button>
+		</Frames>	
+		<Scripts>
+			<OnShow>MailReadFrame_OnShow();</OnShow>
+			<OnLoad>MailReadFrame_OnLoad();</OnLoad>
+			<OnEvent>MailReadFrame_OnEvent();</OnEvent>
+			<OnHide>MailReadFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ContactListTipsFrame" hidden="true" frameStrata="DIALOG">
+		<Size>
+			<AbsDimension x="150" y="307" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			##关闭窗口
+			<Button name="ContactListTipsFrame_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="ContactButtonTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="50" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center">
+						<Offset>
+							<AbsDimension x="4" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" fonttype="TeenyBlackFont" justifyH="center" text="">
+							<Color r="211" g="202" b="185"/>  
+							<Size>
+								<AbsDimension x="115" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>					
+						</FontString>	
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentHighlightBtn" >
+						<Size>
+							<AbsDimension x="120" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="-5" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>		
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="PushedTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+						<Scripts>
+							<OnClick>ContactButton_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+
+			<Button name="ContactButton1" inherits="ContactButtonTemplate" id="1">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="25"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton2" inherits="ContactButtonTemplate" id="2">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton1">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton3" inherits="ContactButtonTemplate" id="3">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton2">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton4" inherits="ContactButtonTemplate" id="4">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton3">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="ContactButton5" inherits="ContactButtonTemplate" id="5">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton4">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton6" inherits="ContactButtonTemplate" id="6">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton5">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton7" inherits="ContactButtonTemplate" id="7">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton6">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="ContactButton8" inherits="ContactButtonTemplate" id="8">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton7">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton9" inherits="ContactButtonTemplate" id="9">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton8">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton10" inherits="ContactButtonTemplate" id="10">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton9">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="ContactButton11" inherits="ContactButtonTemplate" id="11">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton10">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton12" inherits="ContactButtonTemplate" id="12">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton11">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton13" inherits="ContactButtonTemplate" id="13">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton12">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton14" inherits="ContactButtonTemplate" id="14">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton13">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="ContactButton15" inherits="ContactButtonTemplate" id="15">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton14">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton16" inherits="ContactButtonTemplate" id="16">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton15">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton17" inherits="ContactButtonTemplate" id="17">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton16">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="ContactButton18" inherits="ContactButtonTemplate" id="18">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton17">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton19" inherits="ContactButtonTemplate" id="19">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton18">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+
+			<Button name="ContactButton20" inherits="ContactButtonTemplate" id="20">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ContactButton19">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ContactListTipsFrame_OnShow();</OnShow>	
+			<OnHide>ContactListTipsFrame_OnHide();</OnHide>		
+			<OnUpdate>ContactListTipsFrame_OnUpdate();</OnUpdate>	
+			<onfocuslost>ContactListTipsFrame:Hide();</onfocuslost>
+		</Scripts>
+	</Frame>
+	<Frame name="MailOperationTipsFrame" hidden="true" frameStrata="DIALOG">
+		<Size>
+			<AbsDimension x="100" y="90" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			##关闭窗口
+			<Button name="MailOperationTipsFrame_CloseBtn" inherits="CloseBtnTemplate">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-3" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="MailOperationBrowseButton" >
+				<Size>
+					<AbsDimension x="80" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" fonttype="TeenyBlackFont" justifyH="center" text="查看邮件">
+							<Color r="211" g="202" b="185"/>  
+							<Size>
+								<AbsDimension x="60" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>					
+						</FontString>	
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentHighlightBtn" >
+						<Size>
+							<AbsDimension x="80" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>		
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="PushedTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+						<Scripts>
+							<OnClick>Mail_ReadBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+			<Button name="MailOperationDeleteButton"  >
+				<Size>
+					<AbsDimension x="80" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="38" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" fonttype="TeenyBlackFont" justifyH="center" text="删除邮件">
+							<Color r="211" g="202" b="185"/>  
+							<Size>
+								<AbsDimension x="60" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>					
+						</FontString>	
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentHighlightBtn" >
+						<Size>
+							<AbsDimension x="80" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>		
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="PushedTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+						<Scripts>
+							<OnClick>Mail_DeleteBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+			<Button name="MailOperationCancelButton" >
+				<Size>
+					<AbsDimension x="80" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="58" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" fonttype="TeenyBlackFont" justifyH="center" text="取 消">
+							<Color r="211" g="202" b="185"/>  
+							<Size>
+								<AbsDimension x="60" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>					
+						</FontString>	
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentHighlightBtn" >
+						<Size>
+							<AbsDimension x="80" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>		
+						<NormalTexture		inherits="TransTextureTemplate"/>
+						<PushedTexture		inherits="PushedTextureTemplate" />
+						<HighlightTexture	inherits="HighlightTextureTemplate" />
+						<Scripts>
+							<OnClick>MailOperationTipsFrame:Hide();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>	
+			<onfocuslost>MailOperationTipsFrame:Hide();</onfocuslost>
+		</Scripts>
+	</Frame>
+	<Frame  name="DelAllMailConfirmFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentFrameground" inherits="MainBkgTemplate" />
+                  
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="全部删除">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="DelAllMailConfirmFrameLongMessageFont" fonttype="LittleFZYBlackFont" autowrap="true" lineInterval="2" justifyH="center" >
+							<Size>
+								<AbsDimension x="280" y="35"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="DelAllMailConfirmFrameShortMessageFont" fonttype="TeenyFZYBlackFont"  justifyH="center" >
+							<Size>
+								<AbsDimension x="280" y="30"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="-22"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			# 确定
+			<Button name="DelAllMailConfirmFrame_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>DeleteAllMail();</OnClick>
+				</Scripts>		
+			</Button>
+			# 取消
+			<Button name="DelAllMailConfirmFrame_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+	</Frame>
+</Ui>

@@ -1,0 +1,1983 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/GemFrames.lua"/>
+	# 准备开孔界面
+	<Frame name="PrepareOpenHoleFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="准备开孔">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />				
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+               </Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyMSYHFont" fontStyle="shadow" text="是否花费银币开启宝石孔？">
+							<Color r="110" g="250" b="0"/>
+								<Size>
+									<AbsDimension x="300" y="14"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top" >
+										<Offset>
+											<AbsDimension x="0" y="8"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+						<FontString name="$parentSuccessGaiLVFont" justifyH="center" fonttype="TeenyMSYHFont" fontStyle="shadow" text="成功率：100%">
+							<Color r="110" g="250" b="0"/>
+								<Size>
+									<AbsDimension x="300" y="14"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="top" >
+										<Offset>
+											<AbsDimension x="0" y="22"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>			
+            </Button>
+			# 需求银币抬头显示
+			<Button name="$parentNeedBullTitleBtn">
+				<Size>
+					<AbsDimension x="54" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBlackButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="48"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentSecondTitleFont" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" text="需求银币" justifyH="center">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="54" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 银币显示框
+			<Button name="$parentBullBackButton">
+				<Size>
+					<AbsDimension x="103" y="19"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topleft" relativeTo="$parentBlackButton" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="64" y="46"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+            </Button> 
+			# 银币图标
+			<Button name="$parentBullButton">
+				<Size>
+					<AbsDimension x="17" y="18"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topright" relativeTo="$parentBullBackButton" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-4" y="3"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18"/>
+            </Button> 
+			# 所用银币具体数值
+			<Button name="$parentBullCostBtn">
+				<Size>
+					<AbsDimension x="78" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentBullBackButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-20" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" text="" justifyH="right">
+							<Color r="210" g="185" b="100"/>
+							<Size>
+								<AbsDimension x="78" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 可用货币显示
+			<Button name="$parentNowHaveBullTitleBtn">
+				<Size>
+					<AbsDimension x="54" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBlackButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="177" y="48"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentSecondTitleFont" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" text="可用银币" justifyH="center">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="54" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 可用货币显示框
+			<Button name="$parentNowHaveBullBackButton" >
+				<Size>
+					<AbsDimension x="103" y="19"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topleft" relativeTo="$parentBlackButton" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="231" y="46"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+            </Button> 
+			# 可用货币图标
+			<Button name="$parentNowHaveBullBullButton">
+				<Size>
+					<AbsDimension x="17" y="18"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topright" relativeTo="$parentNowHaveBullBackButton" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-4" y="3"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18"/>
+            </Button> 
+			# 可用货币具体数值
+			<Button name="$parentNowHaveBullBtn">
+				<Size>
+					<AbsDimension x="78" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentNowHaveBullBackButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-20" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" text="55555555555555555555555555555555555555555555" justifyH="right">
+							<Color r="210" g="185" b="100"/>
+							<Size>
+								<AbsDimension x="78" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 开孔按钮
+			<Button name="$parentOpenHoleButton" inherits="GongYongAnNiuA1ButtonTemplate" text="开孔">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+                 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>PrepareOpenHoleFrameOpenHoleButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+			# 确定按钮
+			<Button name="$parentConfirmButton" inherits="GongYongAnNiuA1ButtonTemplate" text="确定" hidden="true">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+                 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>PrepareOpenHoleFrame:Hide();</OnClick>
+				</Scripts>
+            </Button> 
+			# 取消按钮
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuA1ButtonTemplate" text="取消" >
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>PrepareOpenHoleFrame:Hide();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnLoad>PrepareOpenHoleFrame_OnLoad();</OnLoad>
+			<OnEvent>PrepareOpenHoleFrame_OnEvent();</OnEvent>
+			<OnShow>PrepareOpenHoleFrame_OnShow();</OnShow>
+			<OnHide>PrepareOpenHoleFrame_OnHide();</OnHide>
+		</Scripts>	
+    </Frame>
+
+	# 宝石镶嵌界面
+	<Frame name="BaoShiXiangQianFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="205">
+		<Size>
+			<AbsDimension x="278" y="394"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="-320" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentGemInfoBack" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="263" y="153"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentGemsBack" inherits="RoleFrameBack4Template" >
+					<Size>
+						<AbsDimension x="263" y="86"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="8" y="-5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEdgeTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="273" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="宝石镶嵌">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />				
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="282" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#显示装备Icon
+			<Button name="$parentEquipShowBtn">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="21" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background"> 
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-11" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>	
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>BaoShiXiangQianFrameEquipShowBtn_onEnter();</OnEnter>
+					<OnLeave>BaoShiXiangQianFrameEquipShowBtn_onLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 显示装备名字
+			<Button name="$parentEquipNameBtn">
+				<Size>
+					<AbsDimension x="220" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="76" y="12"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="装备名字装备名字装备名字装备名字装备名字装备名字装备名字装备名字装备名字装备名字" justifyH="left">
+							<Color r="0" g="225" b="245"/>
+							<Size>
+								<AbsDimension x="220" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 宝石镶嵌状态抬头
+			<Button name="$parentBaoShiStateHeadBtn">
+				<Size>
+					<AbsDimension x="120" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="76" y="39"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="宝石镶嵌状态" justifyH="left">
+							<Color r="221" g="196" b="159"/>
+							<Size>
+								<AbsDimension x="120" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 宝石信息栏
+			<Button name="BaoShiXiangQianFrame_BaoShiLanBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="223" y="21" />
+				</Size>
+				<Layers>
+					<Layer level="overlay"> 
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="300" w="21" h="21">
+							<Size>
+								<!--<AbsDimension x="25" y="25"/>-->
+								<AbsDimension x="21" y="21"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\TuPianLei\\WuPin\\5210000.tga">
+							<Size>
+								<!--<AbsDimension x="13" y="13"/>-->
+								<AbsDimension x="18" y="18"/>
+							</Size>
+							<!--<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="6" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>-->	
+							
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parentBackTexture">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</Texture>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" fontStyle="shadow" justifyH="left" text="宝石名字宝石名字宝石名字宝石名字宝石名字" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="72" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="28" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="$parentDescFont" fonttype="TeenyBlackFont" fontStyle="shadow" justifyH="left" text="宝石描述宝石描述宝石描述宝石描述宝石描述宝石描述" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="120" y="14" />
+							</Size>
+							<!--<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="6" />
+									</Offset>
+								</Anchor>
+							</Anchors>-->
+							
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentNameFont" relativePoint="right">
+									<Offset>
+										<AbsDimension x="6" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</FontString>
+						<Texture name="$parentMaxTexture" file="uires\\ZhuJieMian\\1.dds"  x="897" y="667" w="15" h="15" hidden="true">
+							<Size>
+								<AbsDimension x="15" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativePoint="right" relativeTo="$parentDescFont">
+									<Offset>
+										<AbsDimension x="-4" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 宝石栏信息
+			<Button name="BaoShiXiangQianFrame_BaoShiLanBtn1" inherits="BaoShiXiangQianFrame_BaoShiLanBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="24" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiLanBtn2" inherits="BaoShiXiangQianFrame_BaoShiLanBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="24" y="81" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiLanBtn3" inherits="BaoShiXiangQianFrame_BaoShiLanBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="24" y="102" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiLanBtn4" inherits="BaoShiXiangQianFrame_BaoShiLanBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="24" y="123" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 宝石格位
+			<Button name="BaoShiXiangQianFrame_BaoShiGridBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="43" y="43" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						# file="uires\\ui\\MianBan  11.dds" x="972" y="247"  w="41" h="40"
+						<Texture name="$parentIconTexture" file="uires\\ZhuJieMian\\1.dds" x="749" y="517"  w="44" h="44" >
+							<Size>
+								<AbsDimension x="39" y="39"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="749" y="652" w="44" h="44"> 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						# hidden="true"		alphamode="add"
+						<Texture name="$parentGetGemUVAnimationTex" file="uires\\ui\\TeXiao\\BaoShiXiangQian 01.tga" alphamode="add" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\XiangQian  01.tga" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+						<Texture name="$parentWanMeiUVAnimationTex" file="uires\\ui\\TeXiao\\WanMeiXiangQian  01.tga" alphamode="add" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+						<Texture name="$parentBindTexture" file="uires\\ZhuJieMian\\1.dds" x="42" y="829" w="20" h="17" hidden="true" >
+							<Size>
+								<AbsDimension x="20" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentXinShouUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>BaoShiXiangQianFrame_BaoShiGridBtn_OnEnter();</OnEnter>
+					<OnLeave>BaoShiXiangQianFrame_BaoShiGridBtn_OnLeave();</OnLeave>
+					<!--<OnBeginDrag>BaoShiXiangQianFrame_BaoShiGridBtn_Drag();</OnBeginDrag>-->
+					<OnReceiveDrag>BaoShiXiangQianFrame_BaoShiGridBtn_ReceiveDrag();</OnReceiveDrag>
+					<OnClick>BaoShiXiangQianFrame_BaoShiGridBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiGridBtn1" inherits="BaoShiXiangQianFrame_BaoShiGridBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="39" y="177" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiGridBtn2" inherits="BaoShiXiangQianFrame_BaoShiGridBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="93" y="177" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiGridBtn3" inherits="BaoShiXiangQianFrame_BaoShiGridBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="144" y="177" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiGridBtn4" inherits="BaoShiXiangQianFrame_BaoShiGridBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackGroundButton">
+						<Offset>
+							<AbsDimension x="198" y="177" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#宝石重置属性
+			<Button name="BaoShiXiangQianFrame_BaoShiResetTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="18" y="17" />
+				</Size>	
+				<Scripts>
+					<OnClick>BaoShiXiangQianFrameResetBtn_onClick();</OnClick>
+					<OnEnter>BaoShiXiangQianFrameResetBtn_onEnter();</OnEnter>
+					<OnLeave>BaoShiXiangQianFrameResetBtn_onLeave();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="911" y="311" w="18" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="930" y="311" w="18" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="81" y="647" w="18" h="17" />
+				<DisabledTexture	file="uires\\ZhuJieMian\\2.dds" x="911" y="311" w="18" h="17" />
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiResetBtn1" inherits="BaoShiXiangQianFrame_BaoShiResetTemplate" id="1">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="BaoShiXiangQianFrame_BaoShiLanBtn1">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>			
+			<Button name="BaoShiXiangQianFrame_BaoShiResetBtn2" inherits="BaoShiXiangQianFrame_BaoShiResetTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="BaoShiXiangQianFrame_BaoShiLanBtn2">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiResetBtn3" inherits="BaoShiXiangQianFrame_BaoShiResetTemplate" id="3">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="BaoShiXiangQianFrame_BaoShiLanBtn3">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiResetBtn4" inherits="BaoShiXiangQianFrame_BaoShiResetTemplate" id="4">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="BaoShiXiangQianFrame_BaoShiLanBtn4">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>			
+			#宝石充能属性
+			<Button name="BaoShiXiangQianFrame_BaoShiChargeTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="18" y="17" />
+				</Size>	
+				<Scripts>
+					<OnClick>BaoShiXiangQianFrameChargeBtn_onClick();</OnClick>
+					<OnEnter>BaoShiXiangQianFrameChargeBtn_onEnter();</OnEnter>
+					<OnLeave>BaoShiXiangQianFrameChargeBtn_onLeave();</OnLeave>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="968" y="311" w="18" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="987" y="311" w="18" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="1006" y="311" w="18" h="17" />
+			</Button>	
+			<Button name="BaoShiXiangQianFrame_BaoShiChargeBtn1" inherits="BaoShiXiangQianFrame_BaoShiChargeTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn1">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>	
+			<Button name="BaoShiXiangQianFrame_BaoShiChargeBtn2" inherits="BaoShiXiangQianFrame_BaoShiChargeTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn2">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>	
+			<Button name="BaoShiXiangQianFrame_BaoShiChargeBtn3" inherits="BaoShiXiangQianFrame_BaoShiChargeTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn3">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>	
+			<Button name="BaoShiXiangQianFrame_BaoShiChargeBtn4" inherits="BaoShiXiangQianFrame_BaoShiChargeTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn4">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			#宝石摘取属性
+			<Button name="BaoShiXiangQianFrame_BaoShiPickTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="18" y="17" />
+				</Size>	
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="968" y="293" w="18" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="987" y="293" w="18" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="1006" y="293" w="18" h="17" />
+				<Scripts>
+					<OnClick>BaoShiXiangQianFramePickBtn_onClick();</OnClick>
+					<OnEnter>BaoShiXiangQianFramePickBtn_onEnter();</OnEnter>
+					<OnLeave>BaoShiXiangQianFramePickBtn_onLeave();</OnLeave>
+				</Scripts>
+			</Button>	
+			<Button name="BaoShiXiangQianFrame_BaoShiPickBtn1" inherits="BaoShiXiangQianFrame_BaoShiPickTemplate" id="1">
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn1">
+						<Offset>
+							<AbsDimension x="-3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="BaoShiXiangQianFrame_BaoShiPickBtn2" inherits="BaoShiXiangQianFrame_BaoShiPickTemplate" id="2">
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn2">
+						<Offset>
+							<AbsDimension x="-3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>	
+			<Button name="BaoShiXiangQianFrame_BaoShiPickBtn3" inherits="BaoShiXiangQianFrame_BaoShiPickTemplate" id="3">
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn3">
+						<Offset>
+							<AbsDimension x="-3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>	
+			<Button name="BaoShiXiangQianFrame_BaoShiPickBtn4" inherits="BaoShiXiangQianFrame_BaoShiPickTemplate" id="4">
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="BaoShiXiangQianFrame_BaoShiGridBtn4">
+						<Offset>
+							<AbsDimension x="-3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			# 需求银币抬头
+			<Button name="$parentCostBullHeadBtn">
+				<Size>
+					<AbsDimension x="58" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="26" y="265"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="需求银币" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="58" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 花费银币显示框
+			<Button name="$parentCostBullBackButton">
+				<Size>
+					<AbsDimension x="170" y="23"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="86" y="262"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+            </Button> 
+			# 银币图标
+			<Button name="$parentBullButton">
+				<Size>
+					<AbsDimension x="17" y="18"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topright" relativeTo="$parentCostBullBackButton" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-4" y="5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18"/>
+            </Button> 
+			# 所用银币具体数值
+			<Button name="$parentBullCostBtn">
+				<Size>
+					<AbsDimension x="140" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentCostBullBackButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-20" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" text="55555555555555555555555555555555555555555555" justifyH="right">
+							<Color r="210" g="185" b="100"/>
+							<Size>
+								<AbsDimension x="140" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 可用货币抬头
+			<Button name="$parentHaveBullHeadBtn">
+				<Size>
+					<AbsDimension x="58" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="26" y="294"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="可用银币" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="58" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 花费银币显示框
+			<Button name="$parentHaveBullBackButton">
+				<Size>
+					<AbsDimension x="170" y="23"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="86" y="288"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+            </Button> 
+			# 银币图标
+			<Button name="$parentHaveBullButton">
+				<Size>
+					<AbsDimension x="17" y="18"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topright" relativeTo="$parentHaveBullBackButton" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-4" y="5"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18"/>
+            </Button> 
+			# 所用银币具体数值
+			<Button name="$parentBullNowHaveBtn">
+				<Size>
+					<AbsDimension x="140" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentHaveBullBackButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-20" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" text="55555555555555555555555555555555555555555555" justifyH="right">
+							<Color r="210" g="185" b="100"/>
+							<Size>
+								<AbsDimension x="140" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 镶嵌按钮
+			<Button name="$parent_XiangQianBtn" inherits="GongYongAnNiuB1Template" text="镶  嵌">
+				<Size>
+					<AbsDimension x="88" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BaoShiXiangQianFrame_XiangQianBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="92" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="RideFrameRideBtn">
+						<Offset>
+							<AbsDimension x="-9" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich"  lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" input_transparent="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnBlackBackTemplate">
+						<Size>
+							<AbsDimension x="13" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>XinShouBtn_CloseBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>BaoShiXiangQianFrame_Test_OnShow();</OnShow>-->
+			<OnLoad>BaoShiXiangQianFrame_OnLoad();</OnLoad>
+			<OnEvent>BaoShiXiangQianFrame_OnEvent();</OnEvent>
+			<OnShow>BaoShiXiangQianFrame_OnShow();</OnShow>
+			<OnUpdate>BaoShiXiangQianFrame_onUpdate();</OnUpdate>
+			<OnHide>BaoShiXiangQianFrame_OnHide();</OnHide>
+		</Scripts>	
+	</Frame>
+
+	# 宝石合成界面
+	<Frame name="BaoShiHeChengFrame" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="288" y="417"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="宝石合成">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="282" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSecondBackGroundButton">
+				<Size>
+					<AbsDimension x="268" y="244"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="7" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parent_EffectBackBtn">
+				<Size>
+					<AbsDimension x="246" y="240" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="11" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentIconTexture" file="uires\\ZhuJieMian\\2.dds" x="186" y="186"  w="246" h="240" >
+							<Size>
+								<AbsDimension x="246" y="240"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="" hidden="true">
+							<Size>
+								<AbsDimension x="246" y="240" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parent_HeChengTiShiButton">
+				<Size>
+					<AbsDimension x="28" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-25" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="683" y="340" w="56" h="42" />
+				<Scripts>
+					<OnEnter>BaoShiHeChengFrame_HeChengTiShiButton_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>	
+			</Button>
+			# 宝石格位
+			<Button name="BaoShiHeChengFrame_BaoShiGridBtnTemplate" frameStrata="Dialog" virtual="true">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentIconTexture" file="uires\\ZhuJieMian\\1.dds" x="749" y="517"  w="44" h="44" >
+							<Size>
+								<AbsDimension x="39" y="39"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44"> 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-11" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>BaoShiHeChengFrame_BaoShiGridBtn_OnEnter();</OnEnter>
+					<OnLeave>BaoShiHeChengFrame_BaoShiGridBtn_OnLeave();</OnLeave>	
+					<!--<OnBeginDrag>BaoShiHeChengFrame_BaoShiGridBtn_Drag();</OnBeginDrag>-->
+					<OnReceiveDrag>BaoShiHeChengFrame_BaoShiGridBtn_ReceiveDrag();</OnReceiveDrag>
+					<OnClick>BaoShiHeChengFrame_BaoShiGridBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+			</Button>
+			<Button name="BaoShiHeChengFrame_BaoShiGridBtn1" inherits="BaoShiHeChengFrame_BaoShiGridBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="111" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_BaoShiGridBtn2" inherits="BaoShiHeChengFrame_BaoShiGridBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="208" y="82" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_BaoShiGridBtn3" inherits="BaoShiHeChengFrame_BaoShiGridBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="171" y="188" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_BaoShiGridBtn4" inherits="BaoShiHeChengFrame_BaoShiGridBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="53" y="188" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_BaoShiGridBtn5" inherits="BaoShiHeChengFrame_BaoShiGridBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="15" y="82" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="BaoShiHeChengFrame_CenterGridBtn" inherits="BaoShiHeChengFrame_BaoShiGridBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentThirdBackGroundButton">
+				<Size>
+					<AbsDimension x="268" y="81"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBackgroundTexture1" inherits="WhiterCategoryBkg">
+							<Size>
+								<AbsDimension x="131" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="23"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBackgroundTexture2" inherits="WhiterCategoryBkg">
+							<Size>
+								<AbsDimension x="131" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="right" relativeTo="$parentBackgroundTexture1">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBackgroundTexture3" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="131" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="bottom" relativeTo="$parentBackgroundTexture1">
+									<Offset>
+										<AbsDimension x="0" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBackgroundTexture4" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="131" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="right" relativeTo="$parentBackgroundTexture3">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBackgroundTexture5" inherits="WhiterCategoryBkg">
+							<Size>
+								<AbsDimension x="131" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="bottom" relativeTo="$parentBackgroundTexture3">
+									<Offset>
+										<AbsDimension x="0" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBackgroundTexture6" inherits="WhiterCategoryBkg">
+							<Size>
+								<AbsDimension x="131" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="right" relativeTo="$parentBackgroundTexture5">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parentSuccessProbabilityHeadBtn">
+				<Size>
+					<AbsDimension x="268" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentThirdBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyBlackFont" text="宝石产出率" justifyH="center">
+							<Color r="255" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="268" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						# 分割线
+						<Texture name="$parentPartionTex"	file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2">
+							<Size>
+								<AbsDimension x="266" y="2" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="1" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 宝石概率信息栏
+			<Button name="BaoShiHeChengFrame_SuccessProbabilityLanBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="133" y="19" />
+				</Size>
+				<Layers>
+					<Layer level="overlay"> 
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" >
+							<Size>
+								<AbsDimension x="17" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="left" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="3" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentIconTexture">
+							<Size>
+								<AbsDimension x="15" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="left" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentNameFont" fonttype="NormalBlackFont" fontStyle="shadow" justifyH="center" text="宝石名字宝石名字宝石名字宝石名字宝石名字" >
+							<Color r="15" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="72" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentIconTexture" relativePoint="right">
+									<Offset>
+										<AbsDimension x="1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="$parentValueFont" fonttype="NormalBlackFont" fontStyle="shadow" justifyH="right" text="222222222222222222222222222222222222222222222" >
+							<Color r="15" g="255" b="0"/>  
+							 <Size>
+								<AbsDimension x="28" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parentNameFont" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="BaoShiHeChengFrame_SuccessProbabilityLanBtn1" inherits="BaoShiHeChengFrame_SuccessProbabilityLanBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentSuccessProbabilityHeadBtn">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_SuccessProbabilityLanBtn2" inherits="BaoShiHeChengFrame_SuccessProbabilityLanBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="BaoShiHeChengFrame_SuccessProbabilityLanBtn1">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_SuccessProbabilityLanBtn3" inherits="BaoShiHeChengFrame_SuccessProbabilityLanBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="BaoShiHeChengFrame_SuccessProbabilityLanBtn1">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_SuccessProbabilityLanBtn4" inherits="BaoShiHeChengFrame_SuccessProbabilityLanBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="BaoShiHeChengFrame_SuccessProbabilityLanBtn3">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BaoShiHeChengFrame_SuccessProbabilityLanBtn5" inherits="BaoShiHeChengFrame_SuccessProbabilityLanBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="BaoShiHeChengFrame_SuccessProbabilityLanBtn3">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			##保险费
+			<Button name="BaoShiHeChengFrame_GodCoinBtn" >
+				<Size>
+					<AbsDimension x="133" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="BaoShiHeChengFrame_SuccessProbabilityLanBtn4" relativePoint="bottomleft">
+						<offset>
+							<AbsDimension x="0" y="0"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="NormalBlackFont" text="购买保险：25">
+							<Color r="255" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="200" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="24" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="99" y="494" w="17" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-2" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<CheckButton name="$parent_CheckBtn" inherits="CheckBtnTemplate">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parent" relativePoint="left">
+								<Offset>
+									<AbsDimension x="2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>BaoShiHeChengGodCostSelect();</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+				<Scripts>
+					<OnEnter>BaoShiHeChengFrame_GodCoinBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# $parent_EffectBackBtn
+			<Button name="$parent_ResultBtn" input_transparent="true">
+				<Size>
+					<AbsDimension x="246" y="240" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGroundButton">
+						<Offset>
+							<AbsDimension x="11" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" background="" hidden="true">
+							<Size>
+								<AbsDimension x="246" y="240" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 合成按钮
+			<Button name="$parent_HeChengBtn" inherits="GongYongAnNiuB1Template" text="合  成">
+				<Size>
+					<AbsDimension x="88" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<!--<OnClick>BaoShiHeChengFrame_HeChengBtn_Test_OnClick();</OnClick>-->
+					<OnClick>BaoShiHeChengFrame_HeChengBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##高级保险
+			<Button name="BaoShiHeChengFrame_VIPGodCoinBtn" >
+				<Size>
+					<AbsDimension x="150" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent_HeChengBtn" relativePoint="top">
+						<offset>
+							<AbsDimension x="0" y="1"/>
+						</offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="NormalBlackFont" text="高级保险：999999（100%成功）">
+							<Color r="255" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="200" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="24" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="99" y="494" w="17" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-2" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<CheckButton name="$parent_CheckBtn" inherits="CheckBtnTemplate">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parent" relativePoint="left">
+								<Offset>
+									<AbsDimension x="2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>BaoShiHeChengGodCostSelect();</OnClick>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+				<Scripts>
+					<OnEnter>BaoShiHeChengFrame_VIPGodCoinBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 关闭按钮
+			<Button name="$parent_BigCloseBtn" inherits="GongYongAnNiuB1Template" text="关  闭">
+				<Size>
+					<AbsDimension x="88" y="31" />
+				</Size>				
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BaoShiHeChengFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>BaoShiHeChengFrame_Test_OnShow();</OnShow>-->
+			<OnLoad>BaoShiHeChengFrame_OnLoad();</OnLoad>
+			<OnEvent>BaoShiHeChengFrame_OnEvent();</OnEvent>
+			<OnShow>BaoShiHeChengFrame_OnShow();</OnShow>
+			<OnHide>BaoShiHeChengFrame_OnHide();</OnHide>
+			<OnUpdate>BaoShiHeChengFrame_OnUpdate();</OnUpdate>
+		</Scripts>	
+	</Frame>
+
+	# 确认覆盖镶嵌某个格位的宝石
+	<Frame  name="ReplaceBaoShi_ConfirmFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentFrameground" inherits="MainBkgTemplate" />
+                  
+				<FontString name="$parentBoxHeadFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" justifyH="center" autowrap="true" text="测试测试测试测试测" hidden="true">
+							<Size>
+								<AbsDimension x="330" y="30"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			<RichText name="$parentDescRich" lineInterval="2" multiLine="true" fonttype="TeenyFZYBlackFont" >
+				<Size>
+					<AbsDimension x="330" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 确定
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ReplaceBaoShi_ConfirmFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			## 取消
+			<Button name="$parent_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>ReplaceBaoShi_ConfirmFrame:Hide();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>ReplaceBaoShi_ConfirmFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

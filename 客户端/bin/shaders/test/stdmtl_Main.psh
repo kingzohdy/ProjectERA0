@@ -1,0 +1,131 @@
+
+
+#include "header.fx"
+
+#ifdef MODEL_TRANSPARENT
+	#if BLEND_MODE <= 1
+		#undef BLEND_MODE
+		#define BLEND_MODE 2
+		#define ORIGIN_BLEND_OPAQUE
+	#endif
+#endif
+
+sampler s_DiffuseSampler : register(s0);
+
+float3	g_SelfPower;
+
+float4 g_ClothParam;
+
+#ifdef LIGHT_SHADOW
+sampler s_DepthMapSampler : register(s1);
+#endif
+
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX||USE_SELFILLUM_TEX==SELFILLUM_ALL
+sampler s_SpecSelfSampler : register(s2);
+#endif
+
+#if USE_CLOTHMASK == 1 || USE_CLOTHMASK == 2
+sampler s_LiuGuangSampler : register(s3);
+#endif
+
+struct VS_OUTPUT
+{
+    float4 pos            : POSITION;
+    float4 color0        : COLOR0; //color0.xyz=ambient lighting,  color0.w=specular lighting
+    float2 uv0            : TEXCOORD0;
+
+#ifdef LIGHT_SHADOW
+    float4 color1        : COLOR1; //color1.xyz=shadowed_lighting,  color1.w=specular lighting
+    float4 uv1            : TEXCOORD1;    
+#endif
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD2;
+#endif
+
+#if USE_SELFILLUM_TEX==SELFILLUM_ALL
+	float2 uv2 : TEXCOORD3;
+#endif
+	float2 fogh: TEXCOORD5;
+};
+
+float4 PSMain(VS_OUTPUT input):COLOR0
+{
+	float4 color  = tex2D(s_DiffuseSampler,input.uv0);
+
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX
+	float4 selfspec = tex2D(s_SpecSelfSampler, input.uv0);
+#elif USE_SELFILLUM_TEX==SELFILLUM_ALL
+	float4 selfspec = tex2D(s_SpecSelfSampler, input.uv2);
+#endif
+
+     float4 lighting = input.color0;
+
+#ifdef LIGHT_SHADOW
+	float shadow = DoHardShadow(s_DepthMapSampler, input.uv1, input.uv1.z/input.uv1.w); 
+	shadow = 1.0f - (1.0f - shadow)*g_shadowdensity;
+	lighting += shadow*input.color1;
+#endif
+
+#if USE_SELFILLUM_TEX==SELFILLUM_ALPHA||USE_SELFILLUM_TEX==SELFILLUM_ALL
+	lighting.rgb = lerp(lighting.rgb, 1.1, color.a); 
+#else
+	lighting = clamp(lighting, 0, 1.1);
+#endif
+	
+#ifdef LIGHT_SPECULAR
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX||USE_SELFILLUM_TEX==SELFILLUM_ALL
+	color.rgb = lighting.rgb*color.rgb + g_SpecularColor*lighting.a*0.2f + selfspec.rgb*g_SelfPower;
+#else
+	color.rgb = lighting.rgb*color.rgb + g_SpecularColor*lighting.a;
+#endif//USE_SELFILLUM_TEX
+
+#else
+#if USE_SELFILLUM_TEX==SELFILLUM_TEX||USE_SELFILLUM_TEX==SELFILLUM_ALL
+	color.rgb = lighting.rgb*color.rgb + selfspec.rgb*g_SelfPower;
+#else
+	color.rgb = lighting.rgb*color.rgb;
+#endif//USE_SELFILLUM_TEX
+#endif //LIGHT_SPECULAR
+
+
+
+#ifdef MODEL_TRANSPARENT
+#if BLEND_MODE==2
+	color.a *= g_ModelTransparent;
+#else
+	color *= g_ModelTransparent;
+#endif
+#endif
+
+#if USE_CLOTHMASK == 1
+	float4 maskColor = tex2D(s_LiuGuangSampler, 1.5f*input.uv0+float2(g_ClothParam.w, g_ClothParam.w));
+	maskColor.rgb *= g_ClothParam.xyz;
+	color.rgb += maskColor.rgb;
+#elif USE_CLOTHMASK == 2
+	float value0 = clamp(g_ClothParam.x, 0.0f, 0.78f);
+
+	float4 destColor = tex2D(s_DiffuseSampler, input.uv0);
+	
+	float judge = destColor.g -value0*0.65f;
+	if (judge < 0.02f && judge > 0.0f)
+	{
+	  color.r += 0.3f;
+	}
+	else if (judge < 0)
+	{
+	  color.rgb *= 0.35f;		
+	}
+
+	clip(destColor.g -value0*0.45f);
+#endif
+	
+#if FOG_DISTANCE>0
+	color.rgb = lerp(g_DistFogColor, color.rgb, input.fogc.x);
+#endif
+#if FOG_HEIGHT > 0
+	color.rgb = lerp(g_HeightFogColor, color.rgb, input.fogc.y);
+#endif
+	
+	return color;
+}

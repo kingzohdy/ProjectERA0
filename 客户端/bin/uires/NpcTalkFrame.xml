@@ -1,0 +1,4753 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\NpcTalkFrame.lua" />
+	<Button name="NpcSelectTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="320" y="31"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentSelectTex" file="uires\\ZhuJieMian\\1.dds" x="880" y="732" w="30" h="30" hidden="true" >
+					<Size>
+						<AbsDimension x="30" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">				
+				<FontString name="$parentSelectFont" fonttype="FZYBlackFont12" text="" justifyH="left">
+					<Color r="63" g="49" b="28"/> 
+					<Size>
+						<AbsDimension x="280" y="31"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="36" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<PushedTexture		inherits="PushedTextureTemplate" />
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<Scripts>
+			<OnClick>NpcTalkOpt_OnClick();</OnClick>
+			<OnEnter>NpcTalkOpt_OnEnter();</OnEnter>
+			<OnLeave>NpcTalkOpt_OnLeave();</OnLeave>
+		</Scripts>		
+	</Button>
+	
+	# 提交物品对话框(单个)
+	<Frame name="NpcCommitItemFrame" frameStrata="DIALOG" parent="UIClient"  movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBkg" inherits="LayerYellowBkgTemplate" >
+					<Size>
+						<AbsDimension x="391" y="439" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+        </Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>Close_NpcDialog("NpcCommitItemFrame");</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			##滚动条
+			<Slider name="$parent_ScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0" >	
+				<Size>
+					<AbsDimension x="16" y="383" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-18" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>NpcCommitItemFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			<ScrollFrame name="NpcCommitItemScrollFrame">
+				<Size>
+					<AbsDimension x="330" y="400"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							# -30
+							<AbsDimension x="-30" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<RichText name="$parentContentRich" lineInterval ="7" multiLine="true" fonttype="TeenyFZYBlackFont" fontStyle="normal" input_transparent="false" autoextend="true">
+						<Size>
+							<AbsDimension x="320" y="250" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>	  
+					# 分割线
+					<Button name="$parentPartionBtn">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentContentRich">
+								<Offset>
+									<AbsDimension x="0" y="20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTex" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+
+					# 要提交的道具图标
+					<Button name="$parent_ItemBtn" >
+						<Size>
+							<AbsDimension x="42" y="42" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parentPartionBtn" relativePoint="center" >
+								<Offset>
+									<AbsDimension x="0" y="35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentIconTexture" file="uires\\ZhuJieMian\\1.dds" x="749" y="472" w="44" h="44" >
+									<Size>
+										<AbsDimension x="36" y="36"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="3" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>				
+								</Texture>
+								<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" >
+									<Size>
+										<AbsDimension x="42" y="42"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>				
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+						<Scripts>
+							<OnBeginDrag>NpcCommitItemScrollFrame_ItemBtn_Drag();</OnBeginDrag>
+							<OnReceiveDrag>NpcCommitItemScrollFrame_ItemBtn_ReceiveDrag();</OnReceiveDrag>
+							<OnEnter>NpcCommitItemScrollFrame_ItemBtn_OnEnter();</OnEnter>
+							<OnLeave>NpcCommitItemScrollFrame_ItemBtn_OnLeave();</OnLeave>
+							<OnClick>NpcCommitItemScrollFrame_ItemBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</ScrollChild>
+				<Scripts>
+					<OnVerticalScroll>NpcCommitItemFrame_OnVerticalScroll();</OnVerticalScroll>
+					<OnScrollRangeChanged>NpcCommitItemFrameOnScrollRangeChanged();</OnScrollRangeChanged>
+				</Scripts>
+			</ScrollFrame>
+
+			# 确定	GongYongAnNiuC1ButtonTemplate
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="3" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>NpcCommitItemFrame_Confirm_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			##离开
+			<Button name="$parent_LeaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="离开">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-72" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Close_NpcDialog("NpcCommitItemFrame");</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>	
+		<Scripts>
+			<OnLoad>NpcCommitItemFrame_OnLoad();</OnLoad>
+			<OnEvent>NpcCommitItemFrame_OnEvent();</OnEvent>
+			<OnShow>NpcCommitItemFrame_OnShow();</OnShow>
+			<OnUpdate>NpcCommitItemFrame_OnUpdate();</OnUpdate>
+			<OnHide>NpcCommitItemFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	
+	# 提交物品对话框(10个)
+	<Frame name="MultiCommitItemFrame" frameStrata="DIALOG" parent="UIClient"  movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="left" relativeTo="$parent" relativePoint="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBkg" inherits="LayerYellowBkgTemplate" >
+					<Size>
+						<AbsDimension x="391" y="439" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+        </Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>Close_NpcDialog("MultiCommitItemFrame");</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			##滚动条
+			<Slider name="$parentScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0" >	
+				<Size>
+					<AbsDimension x="16" y="383" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-18" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>MultiCommitItemFrameScrollBar_OnValueChanged()</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			<ScrollFrame name="$parentScrollFrame">
+				<Size>
+					<AbsDimension x="330" y="400"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							# -30
+							<AbsDimension x="-30" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<RichText name="$parentContent" lineInterval ="7" multiLine="true" fonttype="TeenyFZYBlackFont" fontStyle="normal" input_transparent="false" autoextend="true">
+						<Size>
+							<AbsDimension x="320" y="250" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>	  
+					# 分割线
+					<Button name="$parentPartionBtn">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentContentRich">
+								<Offset>
+									<AbsDimension x="0" y="20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTex" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>								
+							</Layer>
+						</Layers>
+					</Button>
+
+					# 要提交的道具图标
+					<Button name="$parentItemBtnTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="42" y="42" />
+						</Size>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="749" y="472" w="44" h="44" >
+									<Size>
+										<AbsDimension x="36" y="36"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="3" y="3"/>
+											</Offset>
+										</Anchor>
+									</Anchors>				
+								</Texture>
+								<Texture name="$parentBox" file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44" >
+									<Size>
+										<AbsDimension x="42" y="42"/>
+									</Size>
+									<Anchors>
+										<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentCount" fonttype="TeenyBlackFont"  justifyH="right" fontStyle="border" text="">
+									<Color r="204" g="128" b="51"/>
+									<Size>
+										<AbsDimension x="40" y="12"/>
+									</Size>
+									<Anchors>
+										<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-5" y="-5"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+						<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+						<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+						<Scripts>
+							<OnBeginDrag>MultiCommitItemFrameItem_OnDrag()</OnBeginDrag>
+							<OnReceiveDrag>MultiCommitItemFrameItem_OnReceive()</OnReceiveDrag>
+							<OnEnter>MultiCommitItemFrameItem_OnEnter()</OnEnter>
+							<OnLeave>MultiCommitItemFrameItem_OnLeave()</OnLeave>
+							<OnClick>MultiCommitItemFrameItem_OnClick()</OnClick>
+						</Scripts>
+					</Button>
+					
+					<Button name="$parentItem3" inherits="$parentItemBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parentPartionBtn" relativePoint="center" >
+								<Offset>
+									<AbsDimension x="0" y="35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem2" inherits="$parentItemBtnTemplate" id="2">
+						<Anchors>
+							<Anchor point="right" relativeTo="$parentItem3" relativePoint="left">
+								<Offset>
+									<AbsDimension x="-15" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem4" inherits="$parentItemBtnTemplate" id="4">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentItem3" relativePoint="right">
+								<Offset>
+									<AbsDimension x="15" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem1" inherits="$parentItemBtnTemplate" id="1">
+						<Anchors>
+							<Anchor point="right" relativeTo="$parentItem2" relativePoint="left">
+								<Offset>
+									<AbsDimension x="-15" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem5" inherits="$parentItemBtnTemplate" id="5">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentItem4" relativePoint="right">
+								<Offset>
+									<AbsDimension x="15" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem6" inherits="$parentItemBtnTemplate" id="6">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentItem1" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem7" inherits="$parentItemBtnTemplate" id="7">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentItem2" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem8" inherits="$parentItemBtnTemplate" id="8">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentItem3" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem9" inherits="$parentItemBtnTemplate" id="9">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentItem4" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentItem10" inherits="$parentItemBtnTemplate" id="10">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentItem5" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="15"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</ScrollChild>
+				<Scripts>
+					<OnVerticalScroll>MultiCommitItemFrame_OnVerticalScroll()</OnVerticalScroll>
+					<OnScrollRangeChanged>MultiCommitItemFrame_OnScrollRangeChanged()</OnScrollRangeChanged>
+				</Scripts>
+			</ScrollFrame>
+
+			# 确定
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="3" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MultiCommitItemFrameItem_OnConfirm()</OnClick>
+				</Scripts>
+			</Button>
+
+			##离开
+			<Button name="$parent_LeaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="离开">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-72" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Close_NpcDialog("MultiCommitItemFrame");</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>MultiCommitItemFrame_OnLoad()</OnLoad>
+			<OnEvent>MultiCommitItemFrame_OnEvent()</OnEvent>
+			<OnShow>MultiCommitItemFrame_OnShow()</OnShow>
+			<OnUpdate>MultiCommitItemFrame_OnUpdate()</OnUpdate>
+			<OnHide>MultiCommitItemFrame_OnHide()</OnHide>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="NpcTalkFrame" frameStrata="DIALOG" parent="UIClient"  movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				<Texture name="$parentSecondbackground" inherits="LayerYellowBkgTemplate" >
+					<Size>
+						<AbsDimension x="391" y="439" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="3" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##界面标题
+				<FontString name="NpcNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+        </Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>Close_NpcDialog("NpcTalkFrame");</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+
+			##离开
+			<Button name="$parent_LeaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="离开">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-72" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Close_NpcDialog("NpcTalkFrame");</OnClick>
+				</Scripts>
+			</Button>
+
+			##滚动条
+			<Slider name="NpcDialogFrame_ScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0"  hidden="true">	
+				<Size>
+					<AbsDimension x="16" y="383" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="173" y="-447"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>NpcTalkFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			<ScrollFrame name="NpcDialogScrollFrame">
+				<Size>
+					<AbsDimension x="330" y="400"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							# -30
+							<AbsDimension x="-30" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					# 任务描述	 fonttype="TeenyFZYBlackFont"
+					<RichText name="NpcTalkContentRich" lineInterval ="7" multiLine="true" fonttype="TeenyFZYBlackFont" fontStyle="normal" input_transparent="false"  autoextend="true">
+						<Size>
+							<AbsDimension x="320" y="390" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>TaskTraceFrameTaskTraceRich_OnClick();</OnClick>
+						</Scripts>
+					</RichText>	  
+					# 分割线
+					<Button name="$parentPartionBtn">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="30" y="350"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTex" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >		
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentLinePartionTex1" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentLinePartionTex2" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentLinePartionTex3" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentLinePartionTex4" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentLinePartionTex5" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentLinePartionTex6" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">
+									<Size>
+										<AbsDimension x="320" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="NpcTalkSelectSelectItem1" inherits="NpcSelectTemplate" id="1"/>
+					<Button name="NpcTalkSelectSelectItem2" inherits="NpcSelectTemplate" id="2"/>
+					<Button name="NpcTalkSelectSelectItem3" inherits="NpcSelectTemplate" id="3"/>
+					<Button name="NpcTalkSelectSelectItem4" inherits="NpcSelectTemplate" id="4"/>
+					<Button name="NpcTalkSelectSelectItem5" inherits="NpcSelectTemplate" id="5"/>
+					<Button name="NpcTalkSelectSelectItem6" inherits="NpcSelectTemplate" id="6"/>
+					<Button name="NpcTalkSelectSelectItem7" inherits="NpcSelectTemplate" id="7"/>
+					<Button name="NpcTalkSelectSelectItem8" inherits="NpcSelectTemplate" id="8"/>
+					<Button name="NpcTalkSelectSelectItem9" inherits="NpcSelectTemplate" id="9"/>
+					<Button name="NpcTalkSelectSelectItem10" inherits="NpcSelectTemplate" id="10"/>
+					<Button name="NpcTalkSelectSelectItem11" inherits="NpcSelectTemplate" id="11"/>
+					<Button name="NpcTalkSelectSelectItem12" inherits="NpcSelectTemplate" id="12"/>
+					<Button name="NpcTalkSelectSelectItem13" inherits="NpcSelectTemplate" id="13"/>
+					<Button name="NpcTalkSelectSelectItem14" inherits="NpcSelectTemplate" id="14"/>
+					<Button name="NpcTalkSelectSelectItem15" inherits="NpcSelectTemplate" id="15"/>
+				</ScrollChild>
+				<Scripts>
+					<OnVerticalScroll>NpcTalkFrame_OnVerticalScroll();</OnVerticalScroll>
+					<OnScrollRangeChanged>NpcTalkFrameOnScrollRangeChanged();</OnScrollRangeChanged>
+				</Scripts>
+			</ScrollFrame>
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true" frameStrata="DIALOG">
+				<Size>
+					<AbsDimension x="340" y="75"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="NpcTalkSelectSelectItem1">
+						<Offset>
+							<AbsDimension x="-10" y="-22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\RenWuMianBanTeXiao  1.tga" >
+							<Size>
+								<AbsDimension x="380" y="61"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-30" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="8" texcols="2" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="207" y="-15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>NpcTalkFrame_OnLoad();</OnLoad>
+			<OnEvent>NpcTalkFrame_OnEvent();</OnEvent>
+			<OnShow>NpcTalkFrame_OnShow();</OnShow>
+			<OnUpdate>NpcTalkFrame_OnUpdate();</OnUpdate>
+			<OnHide>NpcTalkFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	##任务接取框
+	<Frame name="NpcDialogFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="198">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+					
+				<Texture name="$parentSecondbackground" inherits="LayerYellowBkgTemplate" >
+					<Size>
+						<AbsDimension x="391" y="439" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="3" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>Close_NpcDialog("NpcDialogFrame");</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			##滚动条
+			<Slider name="$parent_TaskAcceptFrame_ScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0"  hidden="true">	
+				<Size>
+					<AbsDimension x="16" y="383" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="173" y="-447"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>NpcTalkFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			<RichText name="$parent_DlgTextRich" lineInterval ="7" multiLine="true" fonttype="TeenyFZYBlackFont" fontStyle="normal">
+				<Size>
+					<AbsDimension x="320" y="390" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="28" y="75" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>	  
+
+			<Button name="$parent_NextBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="下一步">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="5" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>NpcDialogFrame_NextBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			##离开
+			<Button name="$parent_LeaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="离开">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-72" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Close_NpcDialog("NpcDialogFrame");</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>NpcDialogFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	# NPC对话面板上面的新手tips
+	<Button name="NpcXinShouEffectBtnTeamplate" hidden="true" virtual="true" movable="false">
+		<Size>
+			<!--<AbsDimension x="160" y="60" />-->
+			<AbsDimension x="154" y="47" />
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\JiNengTiaoXiTongAnNiuTeXiao.tga" alphamode="add">
+					<Size>
+						<!--<AbsDimension x="187" y="47" />-->
+						<AbsDimension x="154" y="47" />
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="4" texcols="4" />
+				</Texture>	
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentGuideBtn" input_transparent="true">
+				<Size>
+					<AbsDimension x="132" y="39"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-60" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+			</Button>
+			<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		
+						autoextend="true" >
+				<Size>
+					<AbsDimension x="112" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentGuideBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" hidden="true" />				
+		</Frames>
+		<Scripts>
+			<OnShow>NpcXinShouEffectBtn_OnShow();</OnShow>
+			<OnHide>NpcXinShouEffectBtn_OnHide();</OnHide>
+		</Scripts>
+	</Button>
+
+	##任务接取框
+	<Frame name="TaskAcceptFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="198">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground"  inherits="MainBkgTemplate" />
+					
+				<Texture name="$parentSecondbackground" inherits="LayerYellowBkgTemplate" >
+					<Size>
+						<AbsDimension x="391" y="439" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="3" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##界面标题
+				<FontString name="TaskAcceptFrameNpcNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				##滚动条底版
+				<Texture name="$parent_ScrollBackGroundTexCenter" file="uires\\ZhuJieMian\\1.dds" x="298" y="199" w="11" h="16" DrawType="height">		
+					<Size>
+						<AbsDimension x="11" y="348" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="367" y="69"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Height>
+						<Center			x="298"	y="199" w="11"	h="16"	/>
+					</Height>
+				</Texture>
+				<Texture name="$parent_ScrollBackGroundTexTop" file="uires\\ZhuJieMian\\1.dds" x="298" y="182" w="11" h="16">		
+					<Size>
+						<AbsDimension x="11" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parent_ScrollBackGroundTexCenter">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture name="$parent_ScrollBackGroundTexBottom" file="uires\\ZhuJieMian\\1.dds" x="298" y="216" w="11" h="16">		
+					<Size>
+						<AbsDimension x="11" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parent_ScrollBackGroundTexCenter">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>TaskAcceptFrame_LeaveBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+
+			<Slider name="TaskAcceptFrame_ScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0"  hidden="true">	
+				<Size>
+					<AbsDimension x="16" y="383" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="173" y="-447"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>NpcTalkFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			<ScrollFrame name="TaskAcceptScrollFrame">
+				<Size>
+					<AbsDimension x="330" y="400"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-30" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					# 任务描述
+					<RichText name="TaskAcceptFrame_DlgTextRich" lineInterval ="4" multiLine="true" fonttype="FZYBlackFont14" input_transparent="false"  autoextend="true">
+						<Size>
+							<AbsDimension x="320" y="400" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>TaskTraceFrameTaskTraceRich_OnClick()</OnClick>
+						</Scripts>
+					</RichText>	
+					# 分割线
+					<Button name="$parentPartionBtn">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="30" y="350"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTex" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >		
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务奖励
+					<Button name="$parentTaskAwardBtn">
+						<Size>
+							<AbsDimension x="250" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogDescFrame" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="30" y="360"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentTaskAwardFont" fonttype="FZYBlackFont15" justifyH="left"  text="奖励">
+									<Size>
+										<AbsDimension x="40" y="16"/>
+									</Size>
+									<Color r="67" g="29" b="9"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentExtraAwardFont" fonttype="FZYBlackFont15" justifyH="left"  text="奖励">
+									<Size>
+										<AbsDimension x="200" y="16"/>
+									</Size>
+									<Color r="25" g="100" b="10"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="30" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务经验
+					<Button name="$parentTaskExpBtn">
+						<Size>
+							<AbsDimension x="150" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="20" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameExpFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励经验:">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务金钱
+					<Button name="$parentTaskMoneyBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameMoneyFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励金钱:1">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务银币图标
+					<Button name="$parentTaskMoneyTexBtn">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="TaskAcceptFrameExpFont" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-40" y="-17" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="TaskAcceptFrameMoneySignTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">	
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 称号奖励
+					<Button name="$parentTaskDesignationBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskAcceptFrameExpFont" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameDesignationFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskItemGetDescBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameItemGetDesc" fonttype="FZYBlackFont14" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="350" y="16"/>
+									</Size>
+									<Color r="88" g="73" b="53"/>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 分割线
+					<Button name="$parentPartionBtnRecycle">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="30" y="350"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTexRecycle" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >		
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务经验
+					<Button name="$parentTaskExpBtnRecycle">
+						<Size>
+							<AbsDimension x="150" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="20" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameExpFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励经验:">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务金钱
+					<Button name="$parentTaskMoneyBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameMoneyFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励金钱:1">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务银币图标
+					<Button name="$parentTaskMoneyTexBtnRecycle">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="TaskAcceptFrameExpFontRecycle" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-40" y="-17" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="TaskAcceptFrameMoneySignTexRecycle" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">	
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 称号奖励
+					<Button name="$parentTaskDesignationBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskAcceptFrameExpFontRecycle" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameDesignationFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 声望奖励
+					<Button name="$parentTaskRespactBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameRespactFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 生活技能奖励
+					<Button name="$parentTaskSecondarySkillBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameSecondaryFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会资金奖励
+					<Button name="$parentTaskClanMoneyBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameClanMoneyFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会安定度奖励
+					<Button name="$parentTaskClanAnDingBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameClanAnDingFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会贡献度奖励
+					<Button name="$parentTaskClanContributeBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameClanContributeFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会科技点奖励
+					<Button name="$parentTaskClanTechPointBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameClanTechPointFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="公会科技点：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 声望奖励
+					<Button name="$parentTaskRespactBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameRespactFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会资源奖励
+					<Button name="$parentTaskResource1">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource2">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource3">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource4">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskItemGetDescBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAcceptFrameItemGetDescRecycle" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="350" y="16"/>
+									</Size>
+									<Color r="67" g="29" b="9"/>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn1" inherits="TaskNormalItemTemplate" id="1">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="28" y="-150" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn2" inherits="TaskNormalItemTemplate" id="2">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn1">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn3" inherits="TaskNormalItemTemplate" id="3">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="TaskAcceptFrameItemBtn1">
+								<Offset>
+									<AbsDimension x="0" y="44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn4" inherits="TaskNormalItemTemplate" id="4">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn3">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn5" inherits="TaskNormalItemTemplate" id="5">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="TaskAcceptFrameItemBtn3">
+								<Offset>
+									<AbsDimension x="0" y="44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn6" inherits="TaskNormalItemTemplate" id="6">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn5">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn7" inherits="TaskNormalItemTemplate" id="7">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn6">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn8" inherits="TaskNormalItemTemplate" id="8">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn7">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn9" inherits="TaskNormalItemTemplate" id="9">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn8">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn10" inherits="TaskNormalItemTemplate" id="10">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn9">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn11" inherits="TaskNormalItemTemplate" id="11">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn10">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAcceptFrameItemBtn12" inherits="TaskNormalItemTemplate" id="12">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAcceptFrameItemBtn11">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<RichText name="TaskAcceptFrameItemBtn1AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn2AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn3AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn4AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn5AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn6AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn7AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn6AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn8AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn7AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn9AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn8AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn10AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn9AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn11AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn10AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAcceptFrameItemBtn12AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn11AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</ScrollChild>
+				<Scripts>
+					<OnVerticalScroll>NpcTalkFrame_OnVerticalScroll();</OnVerticalScroll>
+					<OnScrollRangeChanged>NpcTalkFrameOnScrollRangeChanged();</OnScrollRangeChanged>
+				</Scripts>
+			</ScrollFrame>
+			
+			<Button name="TaskAcceptFrame_AcceptBtnXinShouBtn" inherits="NpcXinShouEffectBtnTeamplate" >
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-34" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			##接受
+			<Button name="TaskAcceptFrame_AcceptBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="接受">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="3" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TaskAcceptFrame_AcceptBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			##离开
+			<Button name="TaskAcceptFrame_LeaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="离开">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-72" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TaskAcceptFrame_LeaveBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>TaskAcceptFrame_OnShow();</OnShow>
+			<OnHide>TaskAcceptFrame_OnHide();</OnHide>
+			<OnLoad>TaskAcceptFrame_OnLoad();</OnLoad>
+			<OnEvent>TaskAcceptFrame_OnEvent();</OnEvent>
+			<OnUpdate>TaskAcceptFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	##未完成任务提示框
+	<Frame name="TaskNotFinishFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="198">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground"	inherits="MainBkgTemplate" />
+				
+				<Texture name="$parentSecondbackground" inherits="LayerYellowBkgTemplate" >
+					<Size>
+						<AbsDimension x="391" y="439" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="3" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				##界面标题
+				<FontString name="TaskNotFinishFrameNpcNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##滚动条底版
+				<Texture name="$parent_ScrollBackGroundTexCenter" file="uires\\ZhuJieMian\\1.dds" x="298" y="199" w="11" h="16" DrawType="height">		
+					<Size>
+						<AbsDimension x="11" y="348" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="367" y="69"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parent_ScrollBackGroundTexTop" file="uires\\ZhuJieMian\\1.dds" x="298" y="182" w="11" h="16">		
+					<Size>
+						<AbsDimension x="11" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parent_ScrollBackGroundTexCenter">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture name="$parent_ScrollBackGroundTexBottom" file="uires\\ZhuJieMian\\1.dds" x="298" y="216" w="11" h="16">		
+					<Size>
+						<AbsDimension x="11" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parent_ScrollBackGroundTexCenter">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>Close_NpcDialog("TaskNotFinishFrame");</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />			
+			##滚动条
+			<Slider name="TaskNotFinishFrame_ScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0" hidden="true">	
+				<Size>
+					<AbsDimension x="16" y="383" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="173" y="-447"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>NpcTalkFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			
+			<ScrollFrame name="TaskNotFinishScrollFrame">
+				<Size>
+					<AbsDimension x="330" y="400"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-30" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					# 任务描述
+					<RichText name="TaskNotFinishFrame_DlgTextRich" lineInterval ="4" multiLine="true" fonttype="TeenyFZYBlackFont" input_transparent="false" autoextend="true">
+						<Size>
+							<AbsDimension x="320" y="400" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>TaskTraceFrameTaskTraceRich_OnClick()</OnClick>
+						</Scripts>
+					</RichText>	
+					# 分割线
+					<Button name="$parentPartionBtn">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="30" y="350"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTex" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >		
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务奖励
+					<Button name="$parentTaskAwardBtn">
+						<Size>
+							<AbsDimension x="250" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogDescFrame" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="30" y="360"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentTaskAwardFont" fonttype="FZYBlackFont15" justifyH="left"  text="奖励">
+									<Size>
+										<AbsDimension x="250" y="16"/>
+									</Size>
+									<Color r="67" g="29" b="9"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentExtraAwardFont" fonttype="FZYBlackFont15" justifyH="left"  text="奖励">
+									<Size>
+										<AbsDimension x="200" y="16"/>
+									</Size>
+									<Color r="25" g="100" b="10"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="30" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务经验
+					<Button name="$parentTaskExpBtn">
+						<Size>
+							<AbsDimension x="150" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="20" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameExpFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励经验:">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务金钱
+					<Button name="$parentTaskMoneyBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameMoneyFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励金钱:1">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务银币图标
+					<Button name="$parentTaskMoneyTexBtn">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parent" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-40" y="-17" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="TaskNotFinishFrameMoneySignTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">	
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 称号奖励
+					<Button name="$parentTaskDesignationBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogFrameTaskAwardFont" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameDesignationFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 生活技能奖励
+					<Button name="$parentTaskSecondarySkillBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogFrameTaskAwardFont" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameSecondaryFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会资金奖励
+					<Button name="$parentTaskClanMoneyBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogFrameTaskAwardFont" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameClanMoneyFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会安定度奖励
+					<Button name="$parentTaskClanAnDingBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogFrameTaskAwardFont" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameClanAnDingFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会贡献度奖励
+					<Button name="$parentTaskClanContributeBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogFrameTaskAwardFont" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameClanContributeFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会科技点奖励
+					<Button name="$parentTaskClanTechPointBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameClanTechPointFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="公会科技点：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会资源奖励
+					<Button name="$parentTaskResource1">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource2">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource3">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource4">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskItemGetDescBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameItemGetDesc" fonttype="FZYBlackFont14" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="350" y="16"/>
+									</Size>
+									<Color r="88" g="73" b="53"/>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 分割线
+					<Button name="$parentPartionBtnRecycle">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="30" y="350"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTexRecycle" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >		
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务经验
+					<Button name="$parentTaskExpBtnRecycle">
+						<Size>
+							<AbsDimension x="150" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="20" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameExpFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励经验:">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务金钱
+					<Button name="$parentTaskMoneyBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameMoneyFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励金钱:1">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务银币图标
+					<Button name="$parentTaskMoneyTexBtnRecycle">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="TaskNotFinishFrameExpFontRecycle" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-40" y="-17" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="TaskNotFinishFrameMoneySignTexRecycle" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">	
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 称号奖励
+					<Button name="$parentTaskDesignationBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskNotFinishFrameExpFontRecycle" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameDesignationFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 声望奖励
+					<Button name="$parentTaskRespactBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameRespactFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 声望奖励
+					<Button name="$parentTaskRespactBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameRespactFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskItemGetDescBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskNotFinishFrameItemGetDescRecycle" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="350" y="16"/>
+									</Size>
+									<Color r="67" g="29" b="9"/>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn1" inherits="TaskNormalItemTemplate" id="1">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="28" y="-150" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn2" inherits="TaskNormalItemTemplate" id="2">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn1">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn3" inherits="TaskNormalItemTemplate" id="3">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="TaskNotFinishFrameItemBtn1">
+								<Offset>
+									<AbsDimension x="0" y="44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn4" inherits="TaskNormalItemTemplate" id="4">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn3">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn5" inherits="TaskNormalItemTemplate" id="5">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="TaskNotFinishFrameItemBtn3">
+								<Offset>
+									<AbsDimension x="0" y="44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn6" inherits="TaskNormalItemTemplate" id="6">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn5">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn7" inherits="TaskNormalItemTemplate" id="7">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn6">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn8" inherits="TaskNormalItemTemplate" id="8">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn7">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn9" inherits="TaskNormalItemTemplate" id="9">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn8">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn10" inherits="TaskNormalItemTemplate" id="10">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn9">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn11" inherits="TaskNormalItemTemplate" id="11">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn10">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskNotFinishFrameItemBtn12" inherits="TaskNormalItemTemplate" id="12">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskNotFinishFrameItemBtn11">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<RichText name="TaskNotFinishFrameItemBtn1AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn2AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn3AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn4AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn5AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn6AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn7AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn6AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn8AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn7AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn9AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn8AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn10AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn9AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn11AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn10AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskNotFinishFrameItemBtn12AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn11AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</ScrollChild>
+				<Scripts>
+					<OnVerticalScroll>NpcTalkFrame_OnVerticalScroll();</OnVerticalScroll>
+					<OnScrollRangeChanged>NpcTalkFrameOnScrollRangeChanged();</OnScrollRangeChanged>
+				</Scripts>
+			</ScrollFrame>			
+			
+			##离开
+			<Button name="TaskNotFinishFrame_OKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="离开">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-72" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Close_NpcDialog("TaskNotFinishFrame");</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>TaskNotFinishFrame_OnShow();</OnShow>
+			<OnHide>TaskNotFinishFrame_OnHide();</OnHide>
+			<OnLoad>TaskNotFinishFrame_OnLoad();</OnLoad>
+			<OnEvent>TaskNotFinishFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+	##领取任务奖励框
+	<Frame name="TaskAwardFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="198">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+					
+				<Texture name="$parentSecondbackground" inherits="LayerYellowBkgTemplate" >
+					<Size>
+						<AbsDimension x="391" y="439" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="4" y="28" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				##界面标题
+				<FontString name="TaskAwardFrameNpcNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="18" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##滚动条底版
+				<Texture name="$parent_ScrollBackGroundTexCenter" file="uires\\ZhuJieMian\\1.dds" x="298" y="199" w="11" h="16" DrawType="height">		
+					<Size>
+						<AbsDimension x="11" y="380" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="367" y="69"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Height>
+						<Center			x="298"	y="199" w="11"	h="16"	/>
+					</Height>
+				</Texture>
+				<Texture name="$parent_ScrollBackGroundTexTop" file="uires\\ZhuJieMian\\1.dds" x="298" y="182" w="11" h="16">		
+					<Size>
+						<AbsDimension x="11" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parent_ScrollBackGroundTexCenter">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+				<Texture name="$parent_ScrollBackGroundTexBottom" file="uires\\ZhuJieMian\\1.dds" x="298" y="216" w="11" h="16">		
+					<Size>
+						<AbsDimension x="11" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parent_ScrollBackGroundTexCenter">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture> 
+			</Layer>
+        </Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>Close_NpcDialog("TaskAwardFrame");</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />				
+
+			##滚动条
+			<Slider name="TaskAwardFrame_ScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0"  hidden="true">	
+				<Size>
+					<AbsDimension x="16" y="383" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="173" y="-447"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>NpcTalkFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+			<ScrollFrame name="TaskAwardScrollFrame">
+				<Size>
+					<AbsDimension x="330" y="400"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-30" y="53" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					# 任务描述
+					<RichText name="TaskAwardFrame_DlgTextRich" lineInterval ="7" multiLine="true" fonttype="TeenyFZYBlackFont"  autoextend="true">
+						<ShadowColor r="255" g="229" b="189"/>
+						<Size>
+							<AbsDimension x="320" y="400" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>TaskTraceFrameTaskTraceRich_OnClick()</OnClick>
+						</Scripts>
+					</RichText>	
+					# 分割线
+					<Button name="$parentPartionBtn">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="30" y="350"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTex" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >		
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务奖励
+					<Button name="$parentTaskAwardBtn">
+						<Size>
+							<AbsDimension x="250" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogDescFrame" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="30" y="360"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentTaskAwardFont" fonttype="FZYBlackFont15" justifyH="left"  text="奖励">
+									<Size>
+										<AbsDimension x="250" y="16"/>
+									</Size>
+									<Color r="67" g="29" b="9"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentExtraAwardFont" fonttype="FZYBlackFont15" justifyH="left"  text="奖励">
+									<Size>
+										<AbsDimension x="200" y="16"/>
+									</Size>
+									<Color r="25" g="100" b="10"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="30" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务经验
+					<Button name="$parentTaskExpBtn">
+						<Size>
+							<AbsDimension x="150" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskLogFrameTaskMoneyFont" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="20" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameExpFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励经验:">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务金钱
+					<Button name="$parentTaskMoneyBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameMoneyFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励金钱:1">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务银币图标
+					<Button name="$parentTaskMoneyTexBtn">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="TaskAwardFrameExpFont" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-40" y="-17" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="TaskAwardFrameMoneySignTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">	
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 称号奖励
+					<Button name="$parentTaskDesignationBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameDesignationFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskItemGetDescBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameItemGetDesc" fonttype="FZYBlackFont14" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="350" y="16"/>
+									</Size>
+									<Color r="88" g="73" b="53"/>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 分割线
+					<Button name="$parentPartionBtnRecycle">
+						<Size>
+							<AbsDimension x="320" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="30" y="350"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								##分隔线
+								<Texture name="$parentLinePartionTexRecycle" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" >		
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务经验
+					<Button name="$parentTaskExpBtnRecycle">
+						<Size>
+							<AbsDimension x="150" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="20" y="-6"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameExpFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励经验:">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务金钱
+					<Button name="$parentTaskMoneyBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameMoneyFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励金钱:1">
+									<Size>
+										<AbsDimension x="120" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# 任务银币图标
+					<Button name="$parentTaskMoneyTexBtnRecycle">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="TaskAwardFrameExpFontRecycle" relativePoint="right">
+								<Offset>
+									<AbsDimension x="-40" y="-17" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="TaskAwardFrameMoneySignTexRecycle" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">	
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+							</Layer>
+						</Layers>
+					</Button>
+					# 称号奖励
+					<Button name="$parentTaskDesignationBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TaskAwardFrameExpFontRecycle" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameDesignationFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 声望奖励
+					<Button name="$parentTaskRespactBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameRespactFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 生活技能奖励
+					<Button name="$parentTaskSecondarySkillBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameSecondaryFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="生活技能:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会资金奖励
+					<Button name="$parentTaskClanMoneyBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameClanMoneyFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="公会资金：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会安定度奖励
+					<Button name="$parentTaskClanAnDingBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameClanAnDingFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="公会资金：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会贡献度奖励
+					<Button name="$parentTaskClanContributeBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameClanContributeFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="公会资金：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会科技点奖励
+					<Button name="$parentTaskClanTechPointBtn">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameClanTechPointFont" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="公会科技点：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 声望奖励
+					<Button name="$parentTaskRespactBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameRespactFontRecycle" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="奖励称号:">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					# 公会资源奖励
+					<Button name="$parentTaskResource1">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource2">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource3">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskResource4">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentText" fonttype="FZYBlackFont14" fontStyle="border" justifyH="left" text="资源：">
+									<Size>
+										<AbsDimension x="160" y="16"/>
+									</Size>
+									<Color r="253" g="255" b="211"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>	
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parentTaskItemGetDescBtnRecycle">
+						<Size>
+							<AbsDimension x="160" y="16"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="30" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TaskAwardFrameItemGetDescRecycle" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="350" y="16"/>
+									</Size>
+									<Color r="67" g="29" b="9"/>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn1" inherits="TaskAwardItemTemplate" id="1">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="28" y="-150" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn2" inherits="TaskAwardItemTemplate" id="2">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn1">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn3" inherits="TaskAwardItemTemplate" id="3">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="TaskAwardFrameItemBtn1">
+								<Offset>
+									<AbsDimension x="0" y="44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn4" inherits="TaskAwardItemTemplate" id="4">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn3">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn5" inherits="TaskAwardItemTemplate" id="5">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="TaskAwardFrameItemBtn3">
+								<Offset>
+									<AbsDimension x="0" y="44" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn6" inherits="TaskAwardItemTemplate" id="6">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn5">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn7" inherits="TaskAwardItemTemplate" id="7">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn6">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn8" inherits="TaskAwardItemTemplate" id="8">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn7">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn9" inherits="TaskAwardItemTemplate" id="9">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn8">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn10" inherits="TaskAwardItemTemplate" id="10">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn9">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn11" inherits="TaskAwardItemTemplate" id="11">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn10">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TaskAwardFrameItemBtn12" inherits="TaskAwardItemTemplate" id="12">
+						<Size>
+							<AbsDimension x="35" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskAwardFrameItemBtn11">
+								<Offset>
+									<AbsDimension x="116" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<RichText name="TaskAwardFrameItemBtn1AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn2AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn3AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn4AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn5AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn6AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn1AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn7AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn6AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn8AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn7AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn9AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn8AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn10AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn9AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn11AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn10AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<RichText name="TaskAwardFrameItemBtn12AwardItemFont" fonttype="LittleFZYBlackFont"  lineInterval ="2" fontStyle="normal" >
+						<Size>
+							<AbsDimension x="95" y="35"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="TaskLogFrameItemBtn11AwardItemFont">
+								<Offset>
+									<AbsDimension x="15" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</ScrollChild>
+				<Scripts>
+					<OnVerticalScroll>NpcTalkFrame_OnVerticalScroll();</OnVerticalScroll>
+					<OnScrollRangeChanged>NpcTalkFrameOnScrollRangeChanged();</OnScrollRangeChanged>
+				</Scripts>
+			</ScrollFrame>
+			
+			<Button name="TaskAwardFrame_GetBtnXinShouBtn" inherits="NpcXinShouEffectBtnTeamplate" >
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-34" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			# 领取奖励
+			<Button name="TaskAwardFrame_GetBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="完成">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="3" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TaskAwardFrame_GetBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			##离开
+			<Button name="TaskAwardFrame_LeaveBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="离开">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-72" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TaskAwardFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>TaskAwardFrame_OnShow();</OnShow>
+			<OnHide>TaskAwardFrame_OnHide();</OnHide>
+			<OnLoad>TaskAwardFrame_OnLoad();</OnLoad>
+			<OnEvent>TaskAwardFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

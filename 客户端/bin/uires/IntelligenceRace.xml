@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires\IntelligenceRace.lua" />    
+    
+	<Frame name="IntelligenceRaceJoinFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="210" hidden="true">
+		<Size>
+			<AbsDimension x="550" y="418" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer >
+				<Texture name="$parentbackground" inherits="QuestBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+       			<Texture name="$parentEdgeTex0" file="uires\\ZhuJieMian\\1.dds" x="1020" y="565" w="2" h="95">
+					<Size>
+						<AbsDimension x="2" y="302" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="245" y="72" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="FZYBlackFont16" justifyH="CENTER" text="智力大考场">
+					<Color r="255" g="254" b="190" />
+					<Size>
+						<AbsDimension x="120" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentRichInfoHead" fonttype="FZYBlackFont15" justifyH="left" text="·活动信息·" >
+					<Color r="255" g="60" b="0"/>  
+					 <Size>
+						<AbsDimension x="120" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="50" y="73" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentAwardFont" fonttype="FZYBlackFont15" justifyH="left" text="·活动奖励·" >
+					<Color r="255" g="60" b="0"/>  
+					 <Size>
+						<AbsDimension x="180" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="50" y="194" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentPlentyExpFont" fonttype="LittleFZYBlackFont" justifyH="left" text="大量经验值">
+					<Color r="70" g="30" b="10"/>  
+					 <Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="50" y="216" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentAttentionFont" fonttype="FZYBlackFont15" justifyH="left" text="·提醒·" >
+					<Color r="255" g="60" b="0"/>  
+					 <Size>
+						<AbsDimension x="180" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="50" y="248" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentEndTimeFont" fonttype="LittleFZYBlackFont" justifyH="left" text="竞赛倒计时：30秒">
+					<Color r="70" g="30" b="10"/>  
+					 <Size>
+						<AbsDimension x="120" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="50" y="270" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>	
+						
+				<FontString name="$parentRulesFont" fonttype="FZYBlackFont15" justifyH="left" text="·活动规则·" >
+					<Color r="255" g="60" b="0"/>  
+					 <Size>
+						<AbsDimension x="180" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="260" y="73" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>				 
+			##关闭
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-25" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>IntelligenceRaceJoinWaitBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##马上参加
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="马上参加">
+				<Size>
+					<AbsDimension x="130" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="50" y="300"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>IntelligenceRaceJoinOkBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##稍后参加
+			<Button name="$parentWaitBtn" inherits="GongYongAnNiuB1Template" text="稍后参加">
+				<Size>
+					<AbsDimension x="130" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="$parent" relativePoint="topLeft" >
+						<Offset>
+							<AbsDimension x="50" y="330"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>IntelligenceRaceJoinWaitBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##活动状态
+			<Button name="$parentState">
+				<Size>
+					<AbsDimension x="125" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="50" y="158"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentStateInfoFont" fonttype="LittleFZYBlackFont" justifyH="center" text="活动状态：" >
+							<Color r="70" g="30" b="10"/>  
+							 <Size>
+								<AbsDimension x="65" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+       					<Texture name="$parentRunning" inherits="RunningBkgTemplate">
+							<Size>
+								<AbsDimension x="60" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="right" relativeTo="$parent" relativePoint="right">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="进行中" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="60" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentRunning" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			##活动信息内容
+			<RichText name="$parentLeftRichInfo" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="200" y="192" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="50" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TaskTraceFrameTaskTraceRich_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			##活动规则内容
+			<RichText name="$parentRightRichInfo" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="280" y="300" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="260" y="94" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>IntelligenceRaceJoinFrame_OnShow();</OnShow>
+			<OnUpdate>IntelligenceRaceJoinFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="IntelligenceRaceFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="210" hidden="true">
+		<Size>
+			<AbsDimension x="537" y="474" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="全服智力竞赛">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentRankBkg" inherits="LayerBlackBkgTemplate" hidden="false">
+					<Size>
+						<AbsDimension x="186" y="382" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="343" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentInspireStarBkg" inherits="LayerBlackBkgTemplate" hidden="false">
+					<Size>
+						<AbsDimension x="330" y="42" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="423" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSelfRankBkg" inherits="LayerBlackBkgTemplate" hidden="false">
+					<Size>
+						<AbsDimension x="186" y="42" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="343" y="423" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentAnswerTimer" fonttype="LittleFZYBlackFont" text="倒计时：10秒" >
+					<Color r="160" g="160" b="90"/>  
+					 <Size>
+						<AbsDimension x="140" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="15" y="397" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentUnansweredNum" fonttype="LittleFZYBlackFont" text="剩余题数：xx" >
+					<Color r="160" g="160" b="90"/>  
+					 <Size>
+						<AbsDimension x="85" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="153" y="397" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentCorrectAnsweredNum" fonttype="LittleFZYBlackFont" text="答对题数：xx" >
+					<Color r="160" g="160" b="90"/>  
+					 <Size>
+						<AbsDimension x="85" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="247" y="397" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentSelfPointFont" fonttype="TeenyFZYBlackFont" text="个人得分：xxx" >
+					<Color r="255" g="255" b="0"/>  
+					 <Size>
+						<AbsDimension x="185" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="350" y="429" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentSelfRankFont" fonttype="TeenyFZYBlackFont" text="个人排名：200+" >
+					<Color r="255" g="255" b="0"/>  
+					 <Size>
+						<AbsDimension x="185" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="350" y="444" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+				<Scripts>
+					<OnClick>IntelligenceRaceFramesCloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn"  inherits="HelpBtnTemplate" />
+			
+			<Button name="RankWhiterBackGroundBtnTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="178" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentWhiterBackTexture" inherits="WhiterCategoryBkg">
+							<Size>
+								<AbsDimension x="179" y="18"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentTopNumberFont" fonttype="LittleFZYBlackFont" justifyH="center" text="排行" >
+							<Color r="160" g="160" b="90"/>  
+							 <Size>
+								<AbsDimension x="34" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<Texture name="$parentVerticalLine1" inherits="VerticalLineTemplate">
+							<Size>
+								<AbsDimension x="2" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="34" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTopNameFont" fonttype="LittleFZYBlackFont" justifyH="left" text="玩家" >
+							<Color r="160" g="160" b="90"/>  
+							 <Size>
+								<AbsDimension x="98" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="36" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<Texture name="$parentVerticalLine2" inherits="VerticalLineTemplate">
+							<Size>
+								<AbsDimension x="2" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="134" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTopPointFont" fonttype="LittleFZYBlackFont" justifyH="center" text="得分" >
+							<Color r="160" g="160" b="90"/>  
+							 <Size>
+								<AbsDimension x="39" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="136" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="RankBlackBackGroundBtnTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="178" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBlackBackTexture" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="179" y="18"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentSpecialText" hidden="true">
+							<Size>
+								<AbsDimension  x="34" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTopNumberFont" fonttype="LittleFZYBlackFont" justifyH="center" text="排行" >
+							<Color r="160" g="160" b="90"/>  
+							 <Size>
+								<AbsDimension x="34" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<Texture name="$parentVerticalLine1" inherits="VerticalLineTemplate">
+							<Size>
+								<AbsDimension x="2" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="34" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTopNameFont" fonttype="LittleFZYBlackFont" justifyH="left"text="玩家" >
+							<Color r="160" g="160" b="90"/>  
+							 <Size>
+								<AbsDimension x="98" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="36" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<Texture name="$parentVerticalLine2" inherits="VerticalLineTemplate">
+							<Size>
+								<AbsDimension x="2" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="134" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						
+						<FontString name="$parentTopPointFont" fonttype="LittleFZYBlackFont" justifyH="center" text="得分" >
+							<Color r="160" g="160" b="90"/>  
+							 <Size>
+								<AbsDimension x="40" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="136" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="QuestionOptionBtnTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="306" y="60"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<RichText name="$parentRichTxt" fonttype="LittleFZYBlackFont"  multiLine="true" lineInterval="2" text="测试的痛苦啊" autoextend="true" input_transparent="true"> 
+						<Size>
+							<AbsDimension x="250" y="46" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="45" y="22" />
+								</Offset>
+							</Anchor>
+						</Anchors>			
+					</RichText>
+				</Frames>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<Scripts>
+					<OnClick>IntelligenceRaceFrameOptionBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="RaceStarBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="32" y="31" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<ModelView name="$parentModelView" >
+							<Size>
+								<AbsDimension x="264" y="264" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="230" y="170" w="32" h="31" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="263" y="170" w="32" h="31" />
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="296" y="170" w="32" h="31" />
+				<DisabledTexture    file="uires\\ZhuJieMian\\3.dds" x="296" y="170" w="32" h="31" />
+				<Scripts>
+					<OnClick>InspireStarButtonOnClick();</OnClick>
+					<OnEnter>InspireStarButtonOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="StarBtnModelViewTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="32" y="31" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentModelView" >
+							<Size>
+								<AbsDimension x="263" y="264" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+			##竞赛未开始
+			<Button name="IntelligenceRaceFrame_TimerBtn" hidden="true">
+				<Size>
+					<AbsDimension x="330" y="352" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentTimerBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="330" y="352" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentEndingTimerFont" fonttype="TwentyFont" justifyH="center" text="距离竞赛开始时间" >
+							<Color r="255" g="150" b="0"/>  
+							 <Size>
+								<AbsDimension x="180" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="140" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="$parentEndTimer" fonttype="MiddleBlackFont" justifyH="center" text="30秒">
+							<Color r="255" g="150" b="0"/>  
+							 <Size>
+								<AbsDimension x="80" y="28" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="180" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			##答题结束
+			<Button name="IntelligenceRaceFrame_EndBtn" hidden="true">
+				<Size>
+					<AbsDimension x="330" y="352" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentEndBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="330" y="352" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentSelfTopFont" fonttype="TwentyFont" justifyH="center" text="竞赛排名" >
+							<Color r="255" g="150" b="0"/>  
+							 <Size>
+								<AbsDimension x="180" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="36" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="$parentSelfTopBack" fonttype="IntelligenceTopFont" justifyH="center" fontStyle="normal" text="J">
+							<Size>
+								<AbsDimension x="140" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="65" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentSelfTop" fonttype="IntelligenceTopFont" justifyH="center" fontStyle="normal" text="500+">
+							<Size>
+								<AbsDimension x="140" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="65" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentAwardFont" fonttype="TwentyFont" justifyH="center" text="奖励统计" >
+							<Color r="255" g="150" b="0"/>  
+							 <Size>
+								<AbsDimension x="180" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="120" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="$parentRankAward" fonttype="SmallBlackFont" justifyH="left" text="竞赛排名奖励：">
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="280" y="28" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="70" y="198" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentExtraAward" fonttype="SmallBlackFont" justifyH="left" text="活动人气奖励：">
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="280" y="28" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="70" y="150" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentBaseAward" fonttype="SmallBlackFont" justifyH="left" text="完成情况奖励：">
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="280" y="28" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="70" y="174" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTotalAwardTitle" fonttype="TwentyFont" justifyH="center" text="奖励总计" >
+							<Color r="255" g="150" b="0"/>  
+							 <Size>
+								<AbsDimension x="180" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="228" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="$parentTotalAwardNum" fonttype="IntelligenceAwardFont" justifyH="center" text="235235452J">
+							 <Size>
+								<AbsDimension x="300" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="257" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentModel">
+						<Size>
+							<AbsDimension x="263" y="264" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativePoint="center" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="-20"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<ModelView name="$parentView">
+									<Size>
+										<AbsDimension x="263" y="264" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</ModelView>
+							</Layer>
+						</Layers>						
+					</Button>
+				</Frames>
+			</Button>
+			##竞赛进行中
+			<Button name="IntelligenceRaceFrame_QuestionBtn" hidden="true">
+				<Size>
+					<AbsDimension x="330" y="352" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentQuestionBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="330" y="352" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentQuestionTitleBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="318" y="75" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="6" y="6" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						
+						<Texture name="$parentQuestionOptionBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="318" y="260" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="6" y="85" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<RichText name="$parentTitleFont" fonttype="LittleFZYBlackFont" multiLine="true" lineInterval="2" text="1.猪是怎么死的？" autoextend="true">
+							 <Size>
+								<AbsDimension x="299" y="70" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="16" y="14" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+					</RichText>
+					<Button name="$parentOption1" inherits="QuestionOptionBtnTemplate" id="5" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="12" y="93" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+					</Button>
+					<CheckButton name="$parentChkBtn1" inherits="CheckBtnTemplate" id="1">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentOption1" relativePoint="left">
+								<Offset>
+									<AbsDimension x="14" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>IntelligenceRaceFrameQuestionOption_OnClick();</OnClick>
+						</Scripts>
+					</CheckButton>
+					
+					<Button name="$parentOption2" inherits="QuestionOptionBtnTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="12" y="154" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+					</Button>
+					<CheckButton name="$parentChkBtn2" inherits="CheckBtnTemplate" id="2">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentOption2" relativePoint="left">
+								<Offset>
+									<AbsDimension x="14" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>IntelligenceRaceFrameQuestionOption_OnClick();</OnClick>
+						</Scripts>
+					</CheckButton>
+					<Button name="$parentOption3" inherits="QuestionOptionBtnTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="12" y="216" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						
+					</Button>
+					<CheckButton name="$parentChkBtn3" inherits="CheckBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentOption3" relativePoint="left">
+								<Offset>
+									<AbsDimension x="14" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>IntelligenceRaceFrameQuestionOption_OnClick();</OnClick>
+						</Scripts>
+					</CheckButton>
+					<Button name="$parentOption4" inherits="QuestionOptionBtnTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="12" y="278" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<CheckButton name="$parentChkBtn4" inherits="CheckBtnTemplate" id="4">
+						<Anchors>
+							<Anchor point="left" relativeTo="$parentOption4" relativePoint="left">
+								<Offset>
+									<AbsDimension x="14" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>IntelligenceRaceFrameQuestionOption_OnClick();</OnClick>
+						</Scripts>
+					</CheckButton>
+					<Button name="IntelligenceRaceFrame_QuestionBtnModel" input_transparent="true">
+						<Size>
+							<AbsDimension x="330" y="352" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="37" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<ModelView name="$parentView">
+									<Size>
+										<AbsDimension x="306" y="255" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</ModelView>
+							</Layer>
+						</Layers>
+					</Button>
+					
+				</Frames>
+			</Button>
+			<RichText name="$parentStarRich" fonttype="TeenyFZYBlackFont"  multiLine="true" lineInterval="2" text="测试的痛苦啊" > 
+				<Size>
+					<AbsDimension x="280" y="42" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="16" y="429" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</RichText>
+			<Button name="$parentStarButton1" inherits="RaceStarBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="242" y="429" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentStarButton2" inherits="RaceStarBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="272" y="429" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentStarButton3" inherits="RaceStarBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="302" y="429" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button> 
+			<Button name="IntelligenceRaceFrame_Top" >
+				<Size>
+					<AbsDimension x="178" y="18"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="347" y="39" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTopBackTexture" inherits="WhiterCategoryBkg">
+							<Size>
+								<AbsDimension x="179" y="18"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentTopNumberFont" fonttype="LittleFZYBlackFont" justifyH="center" text="排行" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="34" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<Texture name="$parentVerticalLine1" inherits="VerticalLineTemplate">
+							<Size>
+								<AbsDimension x="2" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="34" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTopNameFont" fonttype="LittleFZYBlackFont" justifyH="center" text="玩家" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="98" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="36" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<Texture name="$parentVerticalLine2" inherits="VerticalLineTemplate">
+							<Size>
+								<AbsDimension x="2" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="134" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTopPointFont" fonttype="LittleFZYBlackFont" justifyH="center" text="得分" >
+							<Color r="255" g="255" b="190"/>
+							 <Size>
+								<AbsDimension x="40" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="136" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top1" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top2" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top1" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top3" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top2" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top4" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top3" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top5" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top4" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top6" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top5" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top7" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top6" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top8" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top7" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top9" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top8" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top10" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top9" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top11" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top10" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top12" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top11" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="IntelligenceRaceFrame_Top13" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top12" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top14" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top13" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top15" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top14" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top16" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top15" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top17" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top16" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top18" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top17" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top19" inherits = "RankBlackBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top18" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="IntelligenceRaceFrame_Top20" inherits = "RankWhiterBackGroundBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="IntelligenceRaceFrame_Top19" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+		</Frames>
+		<Scripts>
+			<OnShow>IntelligenceRaceFrame_OnShow();</OnShow>
+			<OnHide>IntelligenceRaceFrame_OnHide();</OnHide>
+			<OnUpdate>IntelligenceRaceFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="IntelligenceRaceHintFrame" parent="UIClient" input_transparent="true" frameStrata="LOW" hidden="true">
+		<Size>
+			<AbsDimension x="146" y="31"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="-100" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" file="uires\\ZhuJieMian\\3.dds" x="743" y="172" w="146" h="21" >
+					<Size>
+						 <RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>	
+	</Frame>
+</Ui>

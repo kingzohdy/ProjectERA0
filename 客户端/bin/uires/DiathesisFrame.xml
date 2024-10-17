@@ -1,0 +1,1105 @@
+<?xml version = "1.0" encoding = "utf-8" standalone = "yes" ?>
+<Ui>
+	<Script file="uires/DiathesisFrame.lua" />
+	<Button name="DiathesisIconButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="44" y="44" />
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentIcon" >
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>
+				<Texture name="$parentBoxTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44">
+					<Size>
+						<AbsDimension x="44" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>
+				<Texture name="$parentColorBoxTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="427" w="44" h="44">
+					<Size>
+						<AbsDimension x="44" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>DiathesisButton_OnEnter();</OnEnter>
+			<OnLeave>SpellTipsFrame:Hide();</OnLeave>
+			<OnDoubleClick>DiathesisButton_OnDoubleClick();</OnDoubleClick>
+		</Scripts>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+	</Button>
+
+	<Button name="DiathesisNeedGeniusButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="21" y="21" />
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="2556">	
+					<Color r="255" g="254" b="189" />
+					<Size>
+						<AbsDimension x="17" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="105" y="300" w="21" h="21" />
+		<Scripts>
+			<OnEnter>DiathesisButton_OnEnter();</OnEnter>
+			<OnLeave>SpellTipsFrame:Hide();</OnLeave>
+		</Scripts>
+	</Button>
+	
+	<Button name="DiathesisNeedTreeArrowTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="20" y="32" />
+		</Size>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBody" file="uires\\ui\\tips\\ZhuangZhiJianTou\\Zhong.tga">
+					<Size>
+						<AbsDimension x="20" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTail" file="uires\\ui\\tips\\ZhuangZhiJianTou\\Shang.tga">
+					<Size>
+						<AbsDimension x="20" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHead" file="uires\\ui\\tips\\ZhuangZhiJianTou\\Xia.tga">
+					<Size>
+						<AbsDimension x="20" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+	</Button>
+
+	<Frame name="DiathesisFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="200">
+        <Size>
+            <AbsDimension x="398" y="500" />
+        </Size>
+        <Anchors>
+            <Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="55" y="163" />
+                </Offset>
+			</Anchor>
+        </Anchors>       
+        <Layers>
+            <Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />					
+				##界面标题
+				<FontString name="$parentFrameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="天  赋" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+        <Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />				
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />				
+			<Button name="$parentFirstBackGround">
+				<Size>
+					<AbsDimension x="392" y="466"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			# 技能标签按钮
+			<Button name="DiathesisFrame_SetRaceSkillBtn" inherits="GongYongAnNiuD1Template" text="技能">
+				<Size>
+					<AbsDimension x="62" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SkillFrame:Show()</OnClick>
+				</Scripts>
+			</Button>	
+			
+			# 素质标签按钮
+			<Button name="DiathesisFrame_SetGeniusBtn" text="天赋">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="62" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="67" y="26"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>DiathesisFrame_SetGeniusBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		inherits="GongYongAnNiuD1NormalTemplate"	r="140" g="140" b="140"	/>
+				<HighlightTexture	inherits="GongYongAnNiuD1HighTemplate"		r="255" g="255" b="255"	/>
+				<PushedTexture		inherits="GongYongAnNiuD1PushedTemplate"	r="255" g="255" b="190"	/>
+				<DisabledTexture	inherits="GongYongAnNiuD1PushedTemplate"	r="255" g="255" b="190"	/>
+			</Button>
+
+			<Button name="$parentSecondBackGround">
+				<Size>
+					<AbsDimension x="381" y="393"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="9" y="54" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			<Button name="$parentThirdBackGround">
+				<Size>
+					<AbsDimension x="379" y="391"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBackGround">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentTexture" file="uires\\TuPianLei\\TianFuShuDiTu\\FaShi.jpg">				
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 需要滚动显示的所有按钮
+			<Frame name="DiathesisFrameScrollFrame">
+				<Size>
+					<AbsDimension x="358" y="391"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentThirdBackGround">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentIconBtn1" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="28" y="19" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn1" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn1">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn2" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn1">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn2" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn2">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn3" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn2">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn3" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn3">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn4" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn3">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn4" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn4">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn5" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentIconBtn1">
+								<Offset>
+									<AbsDimension x="0" y="32" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn5" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn5">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn6" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn5">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn6" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn6">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn7" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn6">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn7" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn7">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn8" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn7">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn8" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn8">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn9" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentIconBtn5">
+								<Offset>
+									<AbsDimension x="0" y="32" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn9" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn9">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn10" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn9">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn10" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn10">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn11" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn10">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn11" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn11">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn12" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn11">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn12" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn12">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn13" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentIconBtn9">
+								<Offset>
+									<AbsDimension x="0" y="32" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn13" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn13">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn14" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn13">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn14" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn14">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn15" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn14">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn15" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn15">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn16" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn15">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn16" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn16">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn17" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentIconBtn13">
+								<Offset>
+									<AbsDimension x="0" y="32" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn17" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn17">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn18" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn17">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn18" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn18">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="$parentIconBtn19" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn18">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn19" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn19">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+
+					<Button name="$parentIconBtn20" inherits="DiathesisIconButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="$parentIconBtn19">
+								<Offset>
+									<AbsDimension x="43" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentGeniusValueBtn20" inherits="DiathesisNeedGeniusButtonTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentIconBtn20">
+								<Offset>
+									<AbsDimension x="31" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					
+					<Button name="$parentNeedTreeArrow1" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn1">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow2" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn2">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow3" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn3">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow4" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn4">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow5" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn5">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow6" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn6">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow7" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn7">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow8" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn8">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow9" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn9">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow10" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn10">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow11" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn11">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow12" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn12">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow13" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn13">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow14" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn14">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow15" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn15">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow16" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn16">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow17" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn17">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow18" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn18">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow19" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn19">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentNeedTreeArrow20" inherits="DiathesisNeedTreeArrowTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativePoint="top" relativeTo="$parentIconBtn20">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+
+			# 确定按钮
+			<Button name="DiathesisFrame_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定" hidden="true">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="BottomRight" relativeTo="$parent" relativePoint="BottomRight">
+						<Offset>
+							<AbsDimension x="-18" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DiathesisFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 普通天赋数值的显示框
+			<Button name="$parentShowNormalGeniusValueBackGround">
+				<Size>
+					<AbsDimension x="178" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="8" y="-17" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="DiathesisFrame_NormalGeniusValueFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="通用天赋点数：35通用天赋点数：35通用天赋点数：35">	
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="168" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="4" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+			</Button>
+
+			# 剩余天赋数值的显示框
+			<Button name="$parentShowLeaveGeniusValueBackGround">
+				<Size>
+					<AbsDimension x="178" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-8" y="-17" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="DiathesisFrame_CanUseGeniusValueFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="剩余天赋点数：35剩余天赋点数：35剩余天赋点数：35剩余天赋点数：35">	
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="168" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="4" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\JingLingLianHuaShiJianCao.tga" hidden="true" alphamode="add">
+							<Size>
+								<AbsDimension x="187" y="47" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-6" y="-8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="8" texcols="2" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture inherits="EditBoxBkgTemplate" />
+			</Button>
+
+			# 常规天赋标签
+			<Button name="$parentCommonSkillLabel">
+				<Size>
+					<AbsDimension x="33" y="34" />
+				</Size>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentIcon" >
+							<Size>
+								<AbsDimension x="31" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-6" y="49" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ui\\Za\\JiNengCeBianFenYeKa\\FenYeKa  1.tga" />
+				<HighlightTexture	file="uires\\ui\\Za\\JiNengCeBianFenYeKa\\GaoLiangKuang.tga" />
+				<PushedTexture		file="uires\\ui\\Za\\JiNengCeBianFenYeKa\\XuanZhong.tga" />
+				<Scripts>
+					<OnClick>DiathesisFrame_CommonSkillLabel_OnClick();</OnClick>	 
+					<OnEnter>DiathesisFrame_CommonSkillLabel_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 进阶职业天赋标签
+			<Button name="$parentSpecialSkillLabel">
+				<Size>
+					<AbsDimension x="33" y="34" />
+				</Size>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentIcon" >
+							<Size>
+								<AbsDimension x="31" y="30"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentCommonSkillLabel">
+						<Offset>
+							<AbsDimension x="0" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ui\\Za\\JiNengCeBianFenYeKa\\FenYeKa  1.tga" />
+				<HighlightTexture	file="uires\\ui\\Za\\JiNengCeBianFenYeKa\\GaoLiangKuang.tga" />
+				<PushedTexture		file="uires\\ui\\Za\\JiNengCeBianFenYeKa\\XuanZhong.tga" />
+				<Scripts>
+					<OnClick>DiathesisFrame_SpecialSkillLabel_OnClick();</OnClick>
+					<OnEnter>DiathesisFrame_SpecialSkillLabel_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentXinShouBlinkGeniusIconBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="400" y="90" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="DiathesisFrameScrollFrame">
+						<Offset>
+							<AbsDimension x="-20" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TianFu  01.tga" alphamode="add">
+							<Size>
+								<AbsDimension x="400" y="90" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="6" texcols="1" />
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentXinShouBtn" hidden="false" input_transparent="true">
+				<Size>
+					<AbsDimension x="132" y="39"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parentXinShouBlinkGeniusIconBtn">
+						<Offset>
+							<AbsDimension x="-100" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="parent">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+        </Frames>
+		<Scripts>
+			<!--<OnShow>DiathesisFrame_Test_OnShow();</OnShow>-->
+			<OnLoad>DiathesisFrame_OnLoad();</OnLoad>
+			<OnEvent>DiathesisFrame_OnEvent();</OnEvent>
+			<OnShow>DiathesisFrame_OnShow();</OnShow>
+			<OnHide>DiathesisFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/DamageCount.lua"/>	
+	<Button name="DamagePlayerBtn" virtual="true" >
+		<Size>
+            <AbsDimension x="177" y="18" />
+        </Size>
+		<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justifyH="left" >
+			<Color r="255" g="255" b="190"/>
+			<Size>
+				<RelDimension x="1.0" y="1.0" />
+			</Size>
+			<Anchors>
+				<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+					<Offset>
+						<AbsDimension x="4" y="2" />
+					</Offset>
+				</Anchor>
+			</Anchors>			
+		</FontString>
+		<Layers>
+			<Layer level="overlay">
+				<FontString name="$parentPercentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justifyH="right" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="50" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="125" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</FontString>
+			</Layer>
+			<Layer level="background">				
+				<Texture name="$parentRoleTex" file="uires\\ZhuJieMian\\1.dds" x="844" y="363" w="180" h="72" >
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture file="uires\\ui\\mask\\TouMingTongDao.tga" r="255" g="255" b="190" />
+		<Scripts>
+			<OnEnter>DamagePlayerBtn_OnEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Frame name="DamageCountFrame"  frameStrata="dialog" hidden="true" parent="UIClient" movable="true" input_transparent="false" >
+		<Size>
+			<AbsDimension x="184" y="138" />
+        </Size>
+		<Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="300" y="200"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="$parent_BackGround" inherits="SepicalBkgTemplate" />
+					
+				<FontString name="$parentTitle" fonttype="TeenyMSYHFont" fontstyle="shadow" justifyH="left" text="伤害量" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+			</Layer>			
+		</Layers>
+		<Frames>
+			##关闭按钮
+			<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="161" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="287" y="402" w="20" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="203" y="244" w="20" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="844" y="778" w="20" h="20" />
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+					<OnEnter>CloseBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			##清除按钮
+			<Button name="$parentClearBtn">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="142" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="276" y="248" w="20" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="276" y="269" w="20" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="276" y="290" w="20" h="20" />
+				<Scripts>
+					<OnClick>DamageCountFrameClearBtn_OnClick();</OnClick>
+					<OnEnter>DamageCountFrameClearBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			##分类按钮
+			<Button name="$parentChangeTypeBtn">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="123" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="255" y="248" w="20" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="255" y="269" w="20" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="255" y="290" w="20" h="20" />
+				<Scripts>
+					<OnClick>DamageCountFrameChangeTypeBtn_OnClick();</OnClick>
+					<OnEnter>DamageCountFrameChangeTypeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="TypeHurtBtn" hidden="true">
+				<Size>
+					<AbsDimension x="61" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentChangeTypeBtn">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="承受伤害">
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="7" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate" />
+				<HighlightTexture	inherits="GongYongAnNiuA1HighTemplate" />
+				<PushedTexture		inherits="GongYongAnNiuA1PushedTemplate" />
+				<Scripts>
+					<OnClick>TypeHurtBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="TypeDpsBtn" hidden="true">
+				<Size>
+					<AbsDimension x="61" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TypeHurtBtn">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="每秒伤害">
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="7" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate" />
+				<HighlightTexture	inherits="GongYongAnNiuA1HighTemplate" />
+				<PushedTexture		inherits="GongYongAnNiuA1PushedTemplate" />
+				<Scripts>
+					<OnClick>TypeDpsBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="TypeDamageBtn" hidden="true">
+				<Size>
+					<AbsDimension x="61" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topleft" relativeTo="TypeDpsBtn">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="总伤害量">
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="7" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate" />
+				<HighlightTexture	inherits="GongYongAnNiuA1HighTemplate" />
+				<PushedTexture		inherits="GongYongAnNiuA1PushedTemplate" />
+				<Scripts>
+					<OnClick>TypeDamageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##通知
+			<Button name="$parentSendDpsBtn">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="$parent" relativePoint="$parent" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="104" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="81" y="239" w="20" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="81" y="260" w="20" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="81" y="281" w="20" h="20" />
+				<Scripts>
+					<OnClick>DamageCountFrameSendDpsBtn_OnClick();</OnClick>
+					<OnEnter>DamageCountFrameSendDpsBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="SendNearBtn" hidden="true">
+				<Size>
+					<AbsDimension x="41" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topleft" relativeTo="$parentSendDpsBtn">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="附近">
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate" />
+				<HighlightTexture	inherits="GongYongAnNiuA1HighTemplate" />
+				<PushedTexture		inherits="GongYongAnNiuA1PushedTemplate" />
+				<Scripts>
+					<OnClick>SendNearBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SendTeamBtn" hidden="true">
+				<Size>
+					<AbsDimension x="41" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topleft" relativeTo="SendNearBtn">
+						<Offset>
+							<AbsDimension x="0" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="队伍">
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate" />
+				<HighlightTexture	inherits="GongYongAnNiuA1HighTemplate" />
+				<PushedTexture		inherits="GongYongAnNiuA1PushedTemplate" />
+				<Scripts>
+					<OnClick>SendTeamBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SendPrivateBtn" hidden="true">
+				<Size>
+					<AbsDimension x="41" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topleft" relativeTo="SendTeamBtn">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="私聊">
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate" />
+				<HighlightTexture	inherits="GongYongAnNiuA1HighTemplate" />
+				<PushedTexture		inherits="GongYongAnNiuA1PushedTemplate" />
+				<Scripts>
+					<OnClick>SendPrivateBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SendGuildBtn" hidden="true">
+				<Size>
+					<AbsDimension x="41" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="topleft" relativeTo="SendPrivateBtn">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="公会">
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="10" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate" />
+				<HighlightTexture	inherits="GongYongAnNiuA1HighTemplate" />
+				<PushedTexture		inherits="GongYongAnNiuA1PushedTemplate" />
+				<Scripts>
+					<OnClick>SendGuildBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>			
+
+			<Button name="$parentPlayer1" inherits="DamagePlayerBtn" hidden="true" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="4" y="26" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPlayer2" inherits="DamagePlayerBtn" hidden="true" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPlayer1">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPlayer3" inherits="DamagePlayerBtn" hidden="true" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPlayer2">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPlayer4" inherits="DamagePlayerBtn" hidden="true" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPlayer3">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPlayer5" inherits="DamagePlayerBtn" hidden="true" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPlayer4">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPlayer6" inherits="DamagePlayerBtn" hidden="true" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPlayer5">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>DamageCountFrame_OnLoad();</OnLoad>
+			<OnShow>DamageCountFrame_OnShow();</OnShow>
+			<OnHide>DamageCountFrame_OnHide();</OnHide>
+			<OnUpdate>DamageCountFrame_OnUpdate();</OnUpdate>
+			<OnEvent>DamageCountFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<Frame name="PrivateToFrame"  frameStrata="dialog" hidden="true" parent="UIClient" movable="false" toplevel="true">
+		<Size>
+			<AbsDimension x="206" y="107" />
+        </Size>
+		<Anchors>
+            <Anchor point="CENTER">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="PrivateToFrameBackGround"  inherits="MainBkgTemplate" />
+				
+				<Fontstring name="$parentTitle" fonttype="TeenyBlackFont" fontstyle="shadow" justfyH="center" text="输入你要通知的玩家名字" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="140" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="40" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Fontstring>
+				<Texture name="$parentEditBackTex" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="140" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox name="PrivateName_Edit" letters="15" historyLines="1" multiLine="false" >
+				<Size>
+					<AbsDimension x="120" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentEditBackTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="PrivateNameFont" fonttype="SongTiFont12">
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>PrivateNameAcceptBtnOnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			##确定按钮	
+			<Button name="$parentConfirmBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="PrivateToFrame">
+						<Offset>
+							<AbsDimension x="6" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PrivateNameAcceptBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>	
+			##取消按钮	
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="$parentConfirmBtn">
+						<Offset>
+							<AbsDimension x="59" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>
+			</Button>	
+		</Frames>
+	</Frame>
+</Ui>

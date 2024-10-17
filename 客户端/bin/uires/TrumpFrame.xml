@@ -1,0 +1,3263 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>	
+	<Script file="uires/TrumpFrame.lua"/>	
+	##精灵图标模板
+	<Button name="TrumpTextrueBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="44" y="44" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="40" y="40"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>				
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="548" y="888" w="44" h="44" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="593" y="888" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="638" y="888" w="44" h="44" />
+		<Scripts> 
+			<OnClick>TrumpTextrueBtn_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+	##精灵技能图标模板
+	<Button name="TrumpSkillBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="28" y="28" />
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="22" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>				
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="749" y="517" w="44" h="44" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="749" y="517" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="749" y="517" w="44" h="44" />
+		<Scripts>
+			<OnEnter>TrumpSkillBtn_OnEnter();</OnEnter>
+			<OnLeave>TrumpSkillBtn_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	# 人物装备中的精灵子面板
+	<Frame name="TrumpFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="377" y="514" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+					
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="精  灵" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				##精灵名
+				<FontString name="$parentNameFont" fonttype="FZYBlackFont16" justifyH="center" text="">
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="39" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSep" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="372" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="487" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$FairyModelTex" hidden="true">
+					<Size>
+						<AbsDimension x="387" y="322"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="33" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentFairyModelBtnLvBkg1" file="uires\\ZhuJieMian\\2.dds" x="433" y="186" w="181" h="181" >
+					<Size>
+						<AbsDimension x="181" y="181"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</Texture>
+				<Texture name="$parentFairyModelBtnLvBkg2" file="uires\\ZhuJieMian\\2.dds" x="433" y="186" w="181" h="181" UVType="mirroeu" >
+					<Size>
+						<AbsDimension x="181" y="181"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</Texture>
+				<Texture name="$parentFairyModelBtnLvBkg3" file="uires\\ZhuJieMian\\2.dds" x="433" y="186" w="181" h="181" UVType="mirroeu" >
+					<Size>
+						<AbsDimension x="181" y="181"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Angle value="180"/>
+				</Texture>
+				<Texture name="$parentFairyModelBtnLvBkg4" file="uires\\ZhuJieMian\\2.dds" x="433" y="186" w="181" h="181" >
+					<Size>
+						<AbsDimension x="181" y="181"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<Angle value="180"/>
+				</Texture>
+				
+				<Texture name="$parentFairyModelBtnLvTex1" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</Texture>						
+				
+				<Texture name="$parentFairyModelBtnLvTex2" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+						
+				<Texture name="$parentFairyModelBtnLvTex3" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+						
+				<Texture name="$parentFairyModelBtnLvTex4" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+						
+				<Texture name="$parentFairyModelBtnLvTex5" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+					
+				<Texture name="$parentFairyModelBtnLvTex6" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+								
+				<Texture name="$parentFairyModelBtnLvTex7" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+								
+				<Texture name="$parentFairyModelBtnLvTex8" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+							
+				<Texture name="$parentFairyModelBtnLvTex9" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+							
+				<Texture name="$parentFairyModelBtnLvTex10" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+							<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+					
+				<Texture name="$parentFairyModelBtnLvTex11" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+							<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>									
+				<Texture name="$parentFairyModelBtnLvTex12" file="uires\\ZhuJieMian\\2.dds" x="0" y="855" w="134" h="67" >
+					<Size>
+						<AbsDimension x="134" y="67"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentFairyModelBtnModelEffectTex" file="uires\\ui\\TeXiao\\JingLingGuangHuan 1.tga">
+					<Size>
+						<AbsDimension x="440" y="440"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$FairyModelTex" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-10" y="20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />			
+			
+			<Button name="$parentFairyModelBtn">
+				<Size>
+					<AbsDimension x="387" y="322"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>					
+					<Layer level="overlay">
+						<ModelView name="$parentFairyModel" >
+							<Size>
+								<AbsDimension x="371" y="362"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="-11" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>						
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnMouseDown>TrumpFrameModelBtn_OnMouseDown();</OnMouseDown>
+					<OnMouseMove>TrumpFrameModelBtn_OnDragStart();</OnMouseMove>
+				</Scripts>
+			</Button>
+			##前一个精灵
+			<Button name="$parentPreFairyBtn" inherits="FariyPrePageBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<OffSet>
+							<AbsDimension x="139" y="43" />
+						</OffSet>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnButtonClick>TrumpFramePreFairyBtn_OnClick();</OnButtonClick>
+					<OnEnter>TrumpFramePreFairyBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			##下一个精灵
+			<Button name="$parentNextFariyBtn" inherits="FariyNextPageBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<OffSet>
+							<AbsDimension x="230" y="43" />							
+						</OffSet>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnButtonClick>TrumpFrameNextFariyBtn_OnClick();</OnButtonClick>
+					<OnEnter>TrumpFrameNextFariyBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			##选择精灵
+			<Button name="$parentChangeFariyBtn">
+				<Size>
+					<AbsDimension x="29" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<OffSet>
+							<AbsDimension x="347" y="37" />
+						</OffSet>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="380" y="507" w="29" h="21" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="410" y="507" w="29" h="21" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="331" y="430" w="29" h="21" />
+				<Scripts>
+					<OnClick>TrumpFrameChangeFariyBtn_OnClick();</OnClick>
+					<OnEnter>TrumpFrameChangeFariyBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 宠物图标
+			<Button name="$parentPetBtn">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="12" y="339" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" text="宠物名">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="100" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="TrumpFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="64" y="370" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>						
+						<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\2.dds" x="554" y="585" w="50" h="50" >
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>PetButtonOnClick();</OnClick>
+					<OnEnter>TrumpFramePetBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 刻印图标
+			<Button name="$parentKeyInBtn">
+				<Size>
+					<AbsDimension x="50" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="319" y="339" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" text="电元素刻印">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="100" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="TrumpFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="251" y="370" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentEffectTex" file="uires\\ui\\TeXiao\\JingLingKeYin 1.tga">
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+					<Layer level="background">
+						<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" >
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ZhuJieMian\\2.dds" x="605" y="585" w="50" h="50" />
+				<Scripts>
+					<OnClick>TrumpFrameKeyInBtn_OnClick();</OnClick>
+					<OnEnter>TrumpFrameKeyInBtn_OnEnter();</OnEnter>
+					<OnLeave>TrumpKeyInTipsFrame:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="TrumpTexListBtn1" inherits="TrumpTextrueBtnTemplate" hidden="true" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="376" y="37"/>
+						</Offset>
+					</Anchor>
+				</Anchors> 				
+			 </Button> 
+		    <Button name="TrumpTexListBtn2" inherits="TrumpTextrueBtnTemplate" hidden="true" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="TrumpTexListBtn1">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			 </Button>
+		    <Button name="TrumpTexListBtn3" inherits="TrumpTextrueBtnTemplate" hidden="true" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="TrumpTexListBtn2">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TrumpTexListBtn4" inherits="TrumpTextrueBtnTemplate" hidden="true" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="TrumpTexListBtn3">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="TrumpTexListBtn5" inherits="TrumpTextrueBtnTemplate" hidden="true" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="TrumpTexListBtn4">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+		    <Button name="TrumpTexListBtn6" inherits="TrumpTextrueBtnTemplate" hidden="true" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="TrumpTexListBtn5">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="TrumpTexListBtn7" inherits="TrumpTextrueBtnTemplate" hidden="true" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="TrumpTexListBtn6">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="TrumpTexListBtn8" inherits="TrumpTextrueBtnTemplate" hidden="true" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="TrumpTexListBtn7">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			## 管制宠物
+			<Button name="$parentPetInfo">
+				<Size>
+					<AbsDimension x="132" y="90" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="8" y="392" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTextBkg" inherits="ListLabelBkgTemplate">
+							<Size>
+								<AbsDimension x="81" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="57" y="394" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentText" fonttype="LittleFZYBlackFont" justifyH="center" text="10级强化">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="81" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parentTextBkg">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Scripts>
+					<OnMouseMove>TrumpFramePetInfo_OnMouseMove();</OnMouseMove>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			## 强化按钮
+			<Button name="$parentStrengthBtn">
+				<Size>
+					<AbsDimension x="42" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="13" y="397" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBkg" inherits="ListLabelBkgTemplate" >
+							<Size>
+								<AbsDimension x="48" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="10" y="394" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="419" y="888" w="42" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="462" y="888" w="42" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="505" y="888" w="42" h="20" />
+				<Scripts>
+					<OnEnter>TrumpFrameStrengthBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+					<OnClick>TrumpFrameStrengthBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			## 灵性
+			<Button name="$parentChartBtn">
+				<Size>
+					<AbsDimension x="130" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentStrengthBtn">
+						<Offset>
+							<AbsDimension x="0" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="宠物灵性：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpFrameChartBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 属性
+			<Button name="$parentAttrBtn">
+				<Size>
+					<AbsDimension x="130" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentChartBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="宠物经验：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="宠物攻击+15%">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpFrameAttrBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 元素
+			<Button name="$parentInstBtn">
+				<Size>
+					<AbsDimension x="130" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentAttrBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="宠物伤害：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="电元素伤害+15%">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+
+						<Texture name="$parentSep1" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="130" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="9" y="421" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep2" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="130" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="9" y="441" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep3" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="130" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="9" y="461" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpFrameInstBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			##精灵技能
+			<Button name="$parentFairySkill">
+				<Size>
+					<AbsDimension x="91" y="90" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="143" y="392" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTextBkg" inherits="ListLabelBkgTemplate">
+							<Size>
+								<AbsDimension x="87" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="145" y="394" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentText" fonttype="LittleFZYBlackFont" justifyH="center" text="精灵技能">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="87" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parentTextBkg">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Scripts>
+					<OnMouseMove>TrumpFrameFairySkill_OnMouseMove();</OnMouseMove>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>			
+
+			<Button name="$parent_CampaignBtn" inherits="GongYongAnNiuB1Template" text="召 唤">
+				<Size>
+					<AbsDimension x="87" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="145" y="449" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TrumpCampaignBtn_OnClick();</OnClick>
+					<OnEnter>TrumpCampaignBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 召回
+			<Button name="$parent_InSupportBtn" inherits="GongYongAnNiuB1Template" text="召 回" hidden="true">
+				<Size>
+					<AbsDimension x="87" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_CampaignBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>TrumpInSupportBtn_OnClick();</OnClick>
+					<OnEnter>TrumpInSupportBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			##精灵技能
+			<Button name="TrumpSkillBtn1" inherits="TrumpSkillBtnTemplate" id="1">				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="145" y="421" />
+						</Offset>
+					</Anchor>
+				</Anchors> 				
+			</Button> 
+		    <Button name="TrumpSkillBtn2" inherits="TrumpSkillBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="174" y="421"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+			</Button>
+		    <Button name="TrumpSkillBtn3" inherits="TrumpSkillBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="203" y="421"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+			</Button>			
+			
+			# 精灵信息
+			<Button name="$parentFairyInfo">
+				<Size>
+					<AbsDimension x="132" y="90" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="237" y="392"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTextBkg" inherits="ListLabelBkgTemplate">
+							<Size>
+								<AbsDimension x="81" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="239" y="394" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentText" fonttype="LittleFZYBlackFont" justifyH="center" text="43级精灵">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="81" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parentTextBkg">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Scripts>
+					<OnMouseMove>TrumpFrameFairyInfo_OnMouseMove();</OnMouseMove>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			## 精灵升级
+			<Button name="$parentLvUpBtn">
+				<Size>
+					<AbsDimension x="42" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="322" y="397" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBkg" inherits="ListLabelBkgTemplate" >
+							<Size>
+								<AbsDimension x="48" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="319" y="394" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="419" y="909" w="42" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="462" y="909" w="42" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="505" y="909" w="42" h="20" />
+				<Scripts>
+					<OnClick>TrumpFrameLvUpBtn_OnClick();</OnClick>
+					<OnEnter>TrumpFrameLvUpBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			#魂能上限
+			<Button name="$parentMaxXPBtn">
+				<Size>
+					<AbsDimension x="130" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentFairyInfoTextBkg">
+						<Offset>
+							<AbsDimension x="2" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="魂能上限：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="8500">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpFrameMaxXPBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 变身时间
+			<Button name="$parentTimeBtn">
+				<Size>
+					<AbsDimension x="130" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentMaxXPBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="变身时间：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="30s">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpFrameTimeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			## 魂能获取几率
+			<Button name="$parentXPRateBtn">
+				<Size>
+					<AbsDimension x="130" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentTimeBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="魂能获取：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="25%几率">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSep1" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="130" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="238" y="421" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep2" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="130" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="238" y="441" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep3" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="130" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpFrame">
+									<Offset>
+										<AbsDimension x="238" y="461" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpFrameXPRateBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentAddSpeedBtn">
+				<Size>
+					<AbsDimension x="35" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="12" y="493"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="575" y="933" w="35" h="13" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="611" y="933" w="35" h="13" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="647" y="933" w="35" h="13" />
+				<Scripts>
+					<OnClick>TrumpFrameAddSpeedBtn_OnClick();</OnClick>
+					<OnEnter>TrumpFrameAddSpeedBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentEffectFrame" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="60" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ShengJi  1.tga" alphamode="add">
+							<Size>
+								<AbsDimension x="100" y="100"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-10" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="2" texcols="4" />
+						</Texture>	
+						<Texture name="$parent_Texture" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuide" hidden="true" input_transparent="true">
+						<Size>
+							<AbsDimension x="122" y="44"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="-50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="parent">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<RichText name="$parentFont" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true" input_transparent="true">
+								<Size>
+									<AbsDimension x="112" y="35" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="5" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+						</Frames>
+					</Button>
+				</Frames>
+			</Button>
+
+			# 升级时间
+			<Button name="$parentLastTime">
+				<Size>
+					<AbsDimension x="320" y="11" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="46" y="494"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="BarBackTexTemplate" >
+							<Size>
+								<AbsDimension x="320" y="11" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBackTex" inherits="GreenBarTexTemplate" >				
+							<Size>
+								<AbsDimension x="316" y="9" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="2" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					 </Layer>
+				 </Layers>
+				 <Scripts>
+					<OnEnter>TrumpFrameLastTime_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				 </Scripts>
+			</Button>		
+		</Frames>
+		<Scripts>
+			<OnLoad>TrumpFrame_OnLoad();</OnLoad>
+			<OnEvent>TrumpFrame_OnEvent();</OnEvent>
+			<OnShow>TrumpFrame_OnShow();</OnShow>
+			<OnHide>TrumpFrame_OnHide();</OnHide>
+			<OnUpdate>TrumpFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="TrumpRefiningClockFrame">
+		<Scripts>
+			<OnUpdate>TrumpRefiningClockFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	##精灵升级技能图标模板
+	<Button name="TrumpLeaveUpSkillBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="35" y="35" />
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBoxTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44">
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-2" y="-2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="30" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentUpTex" file="uires\\ZhuJieMian\\1.dds" x="613" y="622" w="11" h="12">
+					<Size>
+						<AbsDimension x="11" y="12"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parentIcon">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="749" y="517" w="44" h="44" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="749" y="517" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="749" y="517" w="44" h="44" />
+	</Button>
+
+
+	## 精灵升级面板
+	<Frame name="TrumpLevelUpFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="222" y="332" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentNeedBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="207" y="108" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentNeedTitleBkg" inherits="ListLabelBkgTemplate">
+					<Size>
+						<AbsDimension x="203" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="37"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="精灵升级" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentNeedTitleText" fonttype="LittleFZYBlackFont" justifyH="center" text="升级需要条件">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="203" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentNeedTitleBkg" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<Texture name="$parentNextNeedBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="207" y="150" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="146"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentNextLvTitleBkg" inherits="ListLabelBkgTemplate">
+					<Size>
+						<AbsDimension x="203" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="148"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNextLvTitleText" fonttype="LittleFZYBlackFont" justifyH="center" text="下一级效果">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="203" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentNextLvTitleBkg" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="$parentNextLvTitleText" fonttype="TeenyBlackFont" text="可学技能：">
+					<Color r="160" g="160" b="160" />
+					<Size>
+						<AbsDimension x="70" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="18" y="267"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentHelpBtn" inherits="HelpBtnTemplate" />
+
+			## 人物等级
+			<Button name="$parentNeedLvBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedTitleBkg" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="人物等级：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="50级">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameNeedLvBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			## 人物经验
+			<Button name="$parentNeedExpBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedLvBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="人物经验：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="2000000000">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameNeedExpBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 花费银币
+			<Button name="$parentNeedMoneyBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedExpBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="花费银币：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="2000000000">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameNeedMoneyBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			## 消耗时间
+			<Button name="$parentNeedTimeBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedMoneyBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="消耗时间：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSep1" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="62" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep2" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="82" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep3" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="102" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep4" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="122" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameNeedTimeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 精灵等级
+			<Button name="$parentTrumpLvBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNextLvTitleBkg" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="精灵等级：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameTrumpLvBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 魂能上限
+			<Button name="$parentMaxXpBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentTrumpLvBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="魂能上限：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameMaxXpBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 变身时间
+			<Button name="$parentTimeBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMaxXpBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="变身时间：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameTimeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 魂能获取
+			<Button name="$parentXpRateBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentTimeBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="魂能获取：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSep1" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="173" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep2" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="193" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep3" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="213" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep4" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="233" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep5" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpLevelUpFrame">
+									<Offset>
+										<AbsDimension x="9" y="253" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpLevelUpFrameXpRateBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			##精灵技能
+			<Button name="TrumpLevelUpSkillBtn1" inherits="TrumpLeaveUpSkillBtnTemplate" id="1">				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="90" y="257" />
+						</Offset>
+					</Anchor>
+				</Anchors> 
+				<Scripts>
+					<OnEnter>TrumpSkillBtn_OnEnter();</OnEnter>
+					<OnLeave>TrumpSkillBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button> 
+		    <Button name="TrumpLevelUpSkillBtn2" inherits="TrumpLeaveUpSkillBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="129" y="257"/>
+						</Offset>
+					</Anchor>
+				</Anchors> 
+				<Scripts>
+					<OnEnter>TrumpSkillBtn_OnEnter();</OnEnter>
+					<OnLeave>TrumpSkillBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		    <Button name="TrumpLevelUpSkillBtn3" inherits="TrumpLeaveUpSkillBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="168" y="257"/>
+						</Offset>
+					</Anchor>
+				</Anchors> 
+				<Scripts>
+					<OnEnter>TrumpSkillBtn_OnEnter();</OnEnter>
+					<OnLeave>TrumpSkillBtn_OnLeave();</OnLeave>	 
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentLvUpBtn" inherits="GongYongAnNiuB1Template" text="升 级">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="71" y="297"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TrumpLevelUpFrameLvUpBtn_OnClick();</OnClick>
+					<OnEnter>TrumpLevelUpFrameLvUpBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+						<Button name="$parentEffectFrame" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="60" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ShengJi  1.tga" alphamode="add">
+							<Size>
+								<AbsDimension x="100" y="100"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-10" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="2" texcols="4" />
+						</Texture>	
+						<Texture name="$parent_Texture" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuide" hidden="true" input_transparent="true">
+						<Size>
+							<AbsDimension x="122" y="44"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="-50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="parent">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<RichText name="$parentFont" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true" input_transparent="true">
+								<Size>
+									<AbsDimension x="112" y="35" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="5" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+						</Frames>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>TrumpLevelUpFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	## 精灵强化
+	<Frame name="TrumpStrengthFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="222" y="332" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="精灵强化" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentNeedBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="207" y="120" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="35"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentNeedTitleBkg" inherits="ListLabelBkgTemplate">
+					<Size>
+						<AbsDimension x="203" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="37"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentNeedTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="强化需要条件">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="203" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parentNeedTitleBkg">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentStrengthBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="207" y="112" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="158"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStrengthTitleBkg" inherits="ListLabelBkgTemplate">
+					<Size>
+						<AbsDimension x="203" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="10" y="160"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentStrengthTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="下一级效果">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="203" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parentStrengthTitleBkg">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentStarTex1" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="17" y="138" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex2" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex1">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex3" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex2">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex4" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex3">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex5" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex4">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex6" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex5">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex7" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex6">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex8" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex7">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex9" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex8">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex10" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex9">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex11" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex10">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex12" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="$parentStarTex11">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEffectTex" file="uires\\ui\\TeXiao\\JingLinQianHan 1.tga" hidden="true" alphamode="add">
+					<Size>
+						<AbsDimension x="48" y="48"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="4" texcols="4" />
+				</Texture>				
+				<Texture name="$parentSep1" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="205" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="62" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSep2" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="205" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="132" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentHelpBtn" inherits="HelpBtnTemplate" />
+			<Button name="$parentNeedItemBtn" inherits="ItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="14" y="76" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnEnter>TrumpStrengthFrameNeedItemBtn_OnEnter();</OnEnter>						
+				</Scripts>
+			</Button>
+
+			## 精灵等级
+			<Button name="$parentNeedLvBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedTitleBkg" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="60" y="7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="精灵等级：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpStrengthFrameNeedLvBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 消耗材料
+			<Button name="$parentNeedStuffBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedLvBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="消耗材料：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpStrengthFrameNeedStuffBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 花费银币
+			<Button name="$parentNeedMoneyBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedStuffBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="花费银币：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpStrengthFrameNeedMoneyBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			## 强化等级
+			<Button name="$parentStrengthLvBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentStrengthTitleBkg" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="强化星级：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpStrengthFrameStrengthLvBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			## 宠物灵性
+			<Button name="$parentPetChartBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentStrengthLvBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="宠物灵性：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpStrengthFramePetChartBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			## 宠物经验
+			<Button name="$parentPetExpBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPetChartBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="宠物经验：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpStrengthFramePetExpBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			## 宠物伤害
+			<Button name="$parentPetDamageBtn">
+				<Size>
+					<AbsDimension x="203" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPetExpBtn" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentLabel" fonttype="TeenyBlackFont" text="宠物伤害：">
+							<Color r="160" g="160" b="160" />
+							<Size>
+								<AbsDimension x="55" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentValue" fonttype="TeenyBlackFont" text="42级">
+							<Color r="0" g="255" b="0" />
+							<Size>
+								<AbsDimension x="90" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentLabel">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSep1" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpStrengthFrame">
+									<Offset>
+										<AbsDimension x="9" y="185" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep2" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpStrengthFrame">
+									<Offset>
+										<AbsDimension x="9" y="206" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep3" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpStrengthFrame">
+									<Offset>
+										<AbsDimension x="9" y="227" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentSep4" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="205" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpStrengthFrame">
+									<Offset>
+										<AbsDimension x="9" y="248" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>TrumpStrengthFramePetDamageBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentDescBtn">
+				<Size>
+					<AbsDimension x="36" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="274" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="NormalBlackFont" text="查看说明">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="60" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="TrumpStrengthFrame">
+									<Offset>
+										<AbsDimension x="46" y="279" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="683" y="340" w="56" h="42" />
+				<Scripts>
+					<OnEnter>TrumpStrengthFrameDescBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentStrengthBtn" inherits="GongYongAnNiuB1Template" text="强 化">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="71" y="294"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TrumpStrengthFrameStrengthBtn_OnClick();</OnClick>
+					<OnEnter>TrumpStrengthFrameStrengthBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentEffectFrame" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="60" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ShengJi  1.tga" alphamode="add">
+							<Size>
+								<AbsDimension x="100" y="100"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-10" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="2" texcols="4" />
+						</Texture>	
+						<Texture name="$parent_Texture" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuide" hidden="true" input_transparent="true">
+						<Size>
+							<AbsDimension x="122" y="44"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="-50" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="parent">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<RichText name="$parentFont" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true" input_transparent="true">
+								<Size>
+									<AbsDimension x="112" y="35" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="5" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+						</Frames>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>TrumpStrengthFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	## 刻印tips
+	<Frame name="TrumpKeyInTipsFrame" frameStrata="TOOLTIP" hidden="true" parent="UIClient" >
+		<Size>
+			<AbsDimension x="200" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+				<FontString name="$parentNameFont" fonttype="FZYBlackFont12" fontStyle="border" justifyH="left" text="刻印" >
+					<Color r="255" g="125" b="0"/>
+					<Size>
+						<AbsDimension x="40" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="20" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>			
+				<FontString name="$parentUseFont" fonttype="FZYBlackFont12" text="鼠标点击使用">					
+					<Color r="0" g="255" b="0" />
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="$parentLvFont" fonttype="FZYBlackFont12" text="刻印等级：10级" >
+					<Color r="255" g="255" b="255" />
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentUseFont" relativePoint="bottomleft">
+							   <Offset>
+									<AbsDimension x="0" y="0" />
+							   </Offset>
+						</Anchor>
+					</Anchors>					
+				</FontString>
+
+				<FontString name="$parentXPUseFont" fonttype="FZYBlackFont12" text="刻印消耗：100%魂能">
+					<Color r="255" g="255" b="255" />
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="bottomleft">
+							   <Offset>
+									<AbsDimension x="0" y="0" />
+							   </Offset>
+						</Anchor>
+					</Anchors>					
+				</FontString>
+				<FontString name="$parentItemUseFont" fonttype="FZYBlackFont12"  text="消耗材料：刻印卷轴10个">
+					<Color r="255" g="255" b="255" />
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentXPUseFont" relativePoint="bottomleft">
+							   <Offset>
+									<AbsDimension x="0" y="0" />
+							   </Offset>
+						</Anchor>
+					</Anchors>					
+				</FontString>
+
+				<FontString name="$parentNextLvFont" fonttype="FZYBlackFont12"text="下一级" >
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="$parentNextFariyLvFont" fonttype="FZYBlackFont12" text="精灵等级：20级">
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parent" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="0" b="0" />
+				</FontString>
+				<FontString name="$parentNextDescTitle" fonttype="FZYBlackFont12" text="<升级效果>">
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parent" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0" g="255" b="255" />
+				</FontString>
+				<FontString name="$parentNextDescFont" fonttype="FZYBlackFont12" text="	制造出具有更强大元素属性刻印" >
+					<Size>
+						<AbsDimension x="180" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parent" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0" g="255" b="255" />
+				</FontString>
+
+				<Texture name="$parentLineTex1" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2">				
+					<Size>
+						<AbsDimension x="197" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="1" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLineTex2" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >				
+					<Size>
+						<AbsDimension x="197" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>			
+			</Layer>
+		</Layers>		
+		<Frames>			
+			<RichText name="$parentRich" lineInterval ="3" multiLine="true" fonttype="FZYBlackFont12"  fontStyle="border" input_transparent="true" autoextend="true" >
+				<Size>
+					<AbsDimension x="170" y="100" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLineTex1" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="29" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>			
+		</Frames>
+	</Frame>
+</Ui>

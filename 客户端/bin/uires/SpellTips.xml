@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires/SpellTips.lua" />
+    <Button name="SpellTipsRuneTemplate" virtual="true" hidden="true">
+    	<Size>
+			<AbsDimension x="280" y="26" />
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				# 符文名字
+				<FontString name="$parentTitle" fonttype="TeenyBlackFont" justifyH="left" text="">
+					<Color r="255" g="204" b="0" />
+					<Size>
+						<AbsDimension x="120" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="10" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 符文效果说明
+				<FontString name="$parentText" fonttype="NormalBlackFont" autowrap="true" multiLine="true" lineInterval="2" justifyH="left" text="">
+					<Color r="255" g="204" b="0" />
+					<Size>
+						<AbsDimension x="135" y="26" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTitle" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="6" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+    </Button>
+    
+	<Frame name="SpellTipsFrame" hidden="true" frameStrata="TOOLTIP">	
+		<Size>
+			<AbsDimension x="280" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+				<Texture name="SpellTipsTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">				
+					<Size>
+						<AbsDimension x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="SpellTipsTextureRim" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75">				
+					<Size>
+						<AbsDimension x="54" y="54" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="SpellTipsTexture" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##技能TIP分隔条 
+				<Texture name="SpellTipsITItemLineTex1" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="280" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="SpellTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="SpellTipsITItemLineTex2" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="280" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="SpellTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="SpellTipsITItemLineTex3" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="280" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="SpellTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="SpellTipsITItemLineTex4" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="280" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="SpellTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="SpellTipsITItemLineTex5" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="280" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="SpellTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="SpellTipsITItemLineTex6" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="280" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="SpellTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="SpellTipsITItemLineTex7" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="280" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="SpellTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="SpellTipsCountFont" fonttype="FZYBlackFont12"  fontStyle="border"  justifyH="right" text="lv20"  hidden="true">
+					<Color r="204" g="128" b="51"/>
+					<Size>
+						<AbsDimension x="20" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="SpellTipsTexture" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>			
+				<FontString name="SpellTipsName" fonttype="TeenyFZYBlackFont" text="">
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="SpellTipsTexture" relativePoint="TOPRight">
+							   <Offset>
+									<AbsDimension x="10" y="0" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="254" g="108" b="28" />
+				</FontString>
+
+				<FontString name="SpellTipsfont1" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="1">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsTexture" relativePoint="TopRight">
+							   <Offset>
+									<AbsDimension x="10" y="17" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+
+				<FontString name="SpellTipsfont2" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="2">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="SpellTipsfont1" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont3" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="3">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="SpellTipsfont2" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont4" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="4">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="SpellTipsfont3" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont5" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="5">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont4" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont6" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="6">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont5" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont7" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="7">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont5" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont8" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="8">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont7" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont9" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="9">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont7" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsfont10" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="10">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont9" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ArmSkillTipsFont1" fonttype="FZYBlackFont12"  fontStyle="border" id="1">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont9" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ArmSkillTipsFont2" fonttype="FZYBlackFont12"  fontStyle="border" id="2">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont9" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ArmSkillTipsFont3" fonttype="FZYBlackFont12"  fontStyle="border" id="3">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont9" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ArmSkillTipsFont4" fonttype="FZYBlackFont12"  fontStyle="border" id="4">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont9" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ArmSkillTipsFont5" fonttype="FZYBlackFont12"  fontStyle="border" id="5">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="SpellTipsfont9" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="SpellTipsLearnMode" fonttype="TeenyBlackFont"  fontStyle="border" hidden="true" justifyH="left">
+					<Size>
+						<AbsDimension x="244" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="SpellTipsTexture" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="22" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="204" b="0" />
+				</FontString>
+				<FontString name="SpellTipsCanLevelUp" fonttype="FZYBlackFont12"  hidden="true" justifyH="left">
+					<Size>
+						<AbsDimension x="244" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="SpellTipsTexture" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="22" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0" g="220" b="0" />
+				</FontString>
+			</Layer>
+		</Layers>		
+		<Frames>
+			# 技能符文描述
+			<Button name="SpellTipsRune" inherits="SpellTipsRuneTemplate" id="1">
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="SpellTipsTexture" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="22" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<RichText name="SpellTipsRichText" lineInterval ="3" multiLine="true" fonttype="FZYBlackFont12"  fontStyle="border" input_transparent="true" autoextend="true" hidden="true">
+				<Size>
+					<AbsDimension x="245" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="SpellTipsTexture" relativePoint="BottomLEFT">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 下一等级描述
+			<Button name="SpellTipsNextLvBtn" hidden="true">
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="SpellTipsTexture" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="22" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNextFont" fonttype="FZYBlackFont12"  fontStyle="border" text="下一等级">
+							<Size>
+								<AbsDimension x="80" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									   <Offset>
+											<AbsDimension x="0" y="2" />
+									   </Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90" />
+						</FontString>
+						<FontString name="$parentNextLvTitleFont" fonttype="FZYBlackFont12"  fontStyle="border" text="学习等级：">
+							<Size>
+								<AbsDimension x="60" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parentNextFont" relativePoint="BottomLeft">
+									   <Offset>
+											<AbsDimension x="0" y="2" />
+									   </Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90" />
+						</FontString>
+						<FontString name="$parentNextLvNumFont" fonttype="FZYBlackFont12"  fontStyle="border" >
+							<Size>
+								<AbsDimension x="40" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parentNextLvTitleFont" relativePoint="TopRight">
+									   <Offset>
+											<AbsDimension x="-6" y="0" />
+									   </Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90" />
+						</FontString>
+						<FontString name="$parentNextCoolFont" fonttype="FZYBlackFont12"  fontStyle="border">
+							<Size>
+								<AbsDimension x="120" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parentNextLvTitleFont" relativePoint="TopRight">
+									   <Offset>
+											<AbsDimension x="85" y="0" />
+									   </Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90" />
+						</FontString>						
+						<FontString name="$parentNextCostFont" fonttype="FZYBlackFont12"  fontStyle="border">
+							<Size>
+								<AbsDimension x="120" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parentNextLvTitleFont" relativePoint="BottomLeft">
+									   <Offset>
+											<AbsDimension x="0" y="2" />
+									   </Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90" />
+						</FontString>
+						<FontString name="$parentNextDisFont" fonttype="FZYBlackFont12"  fontStyle="border">
+							<Size>
+								<AbsDimension x="120" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativeTo="$parentNextCostFont" relativePoint="TopRight">
+									   <Offset>
+											<AbsDimension x="25" y="0" />
+									   </Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="160" g="160" b="90" />
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<RichText name="SpellNextLevelRichText" lineInterval ="3" multiLine="true" fonttype="FZYBlackFont12"  fontStyle="border" input_transparent="true" autoextend="true">
+				<Size>
+					<AbsDimension x="245" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="SpellTipsTexture" relativePoint="BottomLEFT">
+						<Offset>
+							<AbsDimension x="0" y="50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText> 
+		</Frames>
+		<Scripts> 
+			<OnLoad>SpellTipsFrame_OnLoad();</OnLoad>
+			<OnShow>SpellTipsFrame_OnShow();</OnShow>
+			<OnHide>SpellTipsFrame_OnHide();</OnHide>
+			<OnUpdate>SpellTipsFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="GameTooltip" hidden="true" frameStrata="TOOLTIP" framelevel="220">	
+		<Size>
+			<AbsDimension x="250" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="GameTooltipRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true" >
+				<Size>
+					<AbsDimension x="230" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>    			
+		</Frames>
+		<Scripts>
+			<OnHide>GameTooltipOnHide();</OnHide>
+			<OnLoad>OnSpellTooltipOnLoad();</OnLoad>
+			<OnShow>GameTooltipOnShow();</OnShow>
+			<OnUpdate>GameTooltipOnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	
+	<Frame name="GameTooltipAddTexture" hidden="true" frameStrata="TOOLTIP" framelevel="220">	
+		<Size>
+			<AbsDimension x="250" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" inherits="TipsBkgTemplate" />
+				<Texture name="$parentMoneyTex" inherits="BullTypeTextureTemplate" hidden="true" >
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="GameTooltipAddTextureRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true" >
+				<Size>
+					<AbsDimension x="230" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>   			
+		</Frames>
+		<Scripts>
+		    <OnHide>GameTooltipOnHide();</OnHide>
+			<OnLoad>OnSpellTooltipOnLoad();</OnLoad>
+			<OnShow>GameTooltipAddTextureOnShow();</OnShow>
+			<OnUpdate>GameTooltipOnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="TempGameTooltip" hidden="true" frameStrata="TOOLTIP" framelevel="220">	
+		<Size>
+			<AbsDimension x="250" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="TempGameTooltipRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" >
+				<Size>
+					<AbsDimension x="230" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="12" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>    			
+		</Frames>
+		<Scripts>
+			<OnHide>OnSpellTipsOnHide();</OnHide>
+			<OnLoad>OnSpellTooltipOnLoad();</OnLoad>
+			<OnShow>TempGameTooltip_OnShow();</OnShow>
+			<OnUpdate>GameTooltipOnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="WorldMapGameTooltip" hidden="true" frameStrata="TOOLTIP" framelevel="220">	
+		<Size>
+			<AbsDimension x="250" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="WorldMapGameTooltipRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" >
+				<Size>
+					<AbsDimension x="230" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>    			
+		</Frames>
+		<Scripts>
+			<OnHide>OnSpellTipsOnHide();</OnHide>
+			<OnLoad>OnSpellTooltipOnLoad();</OnLoad>
+			<OnShow>WorldMapGameTooltip_OnShow();</OnShow>
+			<OnUpdate>GameTooltipOnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="WorldMapGameRegionTooltip" hidden="true" frameStrata="TOOLTIP" framelevel="220">	
+		<Size>
+			<AbsDimension x="250" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="WorldMapGameRegionTooltipRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" >
+				<Size>
+					<AbsDimension x="250" y="100" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>    			
+		</Frames>
+		<Scripts>
+			<OnShow>WorldMapGameRegionTooltip_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ClanSkillTipsFrame" hidden="true" frameStrata="TOOLTIP">	
+		<Size>
+			<AbsDimension x="220" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+				<Texture name="ClanSkillTipsTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">				
+					<Size>
+						<AbsDimension x="48" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="18" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ClanSkillTipsTextureRim" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75">				
+					<Size>
+						<AbsDimension x="54" y="54" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="ClanSkillTipsTexture" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##技能TIP分隔条 
+				<Texture name="ClanSkillTipsITItemLineTex1" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="217" y="1" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ClanSkillTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ClanSkillTipsITItemLineTex2" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="217" y="1" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ClanSkillTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ClanSkillTipsITItemLineTex3" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="217" y="1" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ClanSkillTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ClanSkillTipsITItemLineTex4" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="217" y="1" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ClanSkillTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ClanSkillTipsITItemLineTex5" file="uires\\ZhuJieMian\\1.dds" x="176" y="511" w="40" h="2" hidden="true">				
+					<Size>
+						<AbsDimension x="217" y="1" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ClanSkillTipsTexture" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="40" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="ClanSkillTipsCountFont" fonttype="FZYBlackFont12"  fontStyle="border"  justifyH="right" text="lv20"  hidden="true">
+					<Color r="204" g="128" b="51"/>
+					<Size>
+						<AbsDimension x="20" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="ClanSkillTipsTexture" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>			
+				<FontString name="ClanSkillTipsName" fonttype="TeenyFZYBlackFont" text="">
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="ClanSkillTipsTexture" relativePoint="TOPRight">
+							   <Offset>
+									<AbsDimension x="10" y="0" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="254" g="108" b="28" />
+				</FontString>
+
+				<FontString name="ClanSkillTipsfont1" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="1">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="ClanSkillTipsTexture" relativePoint="TopRight">
+							   <Offset>
+									<AbsDimension x="10" y="17" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+
+				<FontString name="ClanSkillTipsfont2" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="2">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="ClanSkillTipsfont1" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont3" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="3">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="ClanSkillTipsfont2" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont4" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="4">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="ClanSkillTipsfont3" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont5" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="5">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="ClanSkillTipsfont4" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont6" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="6">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="ClanSkillTipsfont5" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont7" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="7">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="ClanSkillTipsfont5" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont8" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="8">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="ClanSkillTipsfont7" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont9" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="9">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="ClanSkillTipsfont7" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<FontString name="ClanSkillTipsfont10" fonttype="FZYBlackFont12"  fontStyle="border" hidden="true" id="10">
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="ClanSkillTipsfont9" relativePoint="BottomLeft">
+							   <Offset>
+									<AbsDimension x="0" y="2" />
+							   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="255" />
+				</FontString>
+			</Layer>
+		</Layers>		
+		<Frames>			
+			<RichText name="ClanSkillTipsRichText" lineInterval ="3" multiLine="true" fonttype="FZYBlackFont12"  fontStyle="border" input_transparent="true" autoextend="true" hidden="true">
+				<Size>
+					<AbsDimension x="245" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ClanSkillTipsTexture" relativePoint="BottomLEFT">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="ClanSkillTipsResearchRichText" lineInterval ="3" multiLine="true" fonttype="FZYBlackFont12"  fontStyle="border" input_transparent="true" autoextend="true" hidden="true">
+				<Size>
+					<AbsDimension x="245" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ClanSkillTipsTexture" relativePoint="BottomLEFT">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="ClanSkillTipsLearnRichText" lineInterval ="3" multiLine="true" fonttype="FZYBlackFont12"  fontStyle="border" input_transparent="true" autoextend="true" hidden="true">
+				<Size>
+					<AbsDimension x="245" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ClanSkillTipsTexture" relativePoint="BottomLEFT">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>ClanSkillTipsFrame_OnShow();</OnShow>
+			<OnHide>ClanSkillTipsFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="WideGameTooltip" hidden="true" frameStrata="TOOLTIP" framelevel="220">	
+		<Size>
+			<AbsDimension x="300" y="400" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="WideGameTooltipRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" >
+				<Size>
+					<AbsDimension x="300" y="400" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>    			
+		</Frames>
+		<Scripts>
+			<OnShow>WideGameTooltip_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

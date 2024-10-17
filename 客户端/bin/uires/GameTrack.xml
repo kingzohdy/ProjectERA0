@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\GameTrack.lua" />
+	# 追踪宿敌面板
+	<Frame name="GameTrackSuDiFrame" frameStrata="DIALOG"  hidden="true" movable="true" parent="UIClient" >
+		<Size>
+			<AbsDimension x="258" y="239" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+				##界面标题
+				<FontString name="$parentFrameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="GPS定位" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Anchors>
+			<Anchor point="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />				
+
+			# 第一层面板底版
+			<Button name="$parentFirstBackGroundButton">
+				<Size>
+					<AbsDimension x="252" y="205"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Button>
+			# 第二层面板底版
+			<Button name="$parentSecondBackGroundButton">
+				<Size>
+					<AbsDimension x="240" y="200"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentFirstBackGroundButton" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+
+			# 头像
+			<Button name="$parentPhotoBtn">
+				<Size>
+					<AbsDimension x="64" y="64"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBodyTex">
+							<Size>
+								<AbsDimension x="54" y="54" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentFaceTex" >
+							<Size>
+								<AbsDimension x="54" y="54" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHairShadowTex">
+							<Size>
+								<AbsDimension x="54" y="54" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHairTex">
+							<Size>
+								<AbsDimension x="54" y="54" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75" />
+			</Button> 
+			
+			# 名字抬头
+			<Button name="$parentNamelHeadBtn">
+				<Size>
+					<AbsDimension x="28" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="left" text="名字" >
+							<Size>
+								<AbsDimension x="28" y="14"/>
+							</Size>
+							<Color r="255" g="254" b="189"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 名字
+			<Button name="$parentNameBtn" >
+				<Size>
+					<AbsDimension x="97" y="21"/>
+				</Size>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="129" y="9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="名字名字名字名字名字名字名字名字名字" >
+							<Size>
+								<AbsDimension x="90" y="12"/>
+							</Size>
+							<Color r="120" g="235" b="50"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 等级抬头
+			<Button name="$parentLevelHeadBtn">
+				<Size>
+					<AbsDimension x="28" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="36"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="left" text="等级" >
+							<Size>
+								<AbsDimension x="28" y="14"/>
+							</Size>
+							<Color r="255" g="254" b="189"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 等级
+			<Button name="$parentLevelBtn" >
+				<Size>
+					<AbsDimension x="97" y="21"/>
+				</Size>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="129" y="33"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="999999999999999999999999999999999999" >
+							<Size>
+								<AbsDimension x="90" y="12"/>
+							</Size>
+							<Color r="120" g="235" b="50"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 职业抬头
+			<Button name="$parentCareerHeadBtn">
+				<Size>
+					<AbsDimension x="28" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="96" y="62"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="left" text="职业" >
+							<Size>
+								<AbsDimension x="28" y="14"/>
+							</Size>
+							<Color r="255" g="254" b="189"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 职业
+			<Button name="$parentCareerBtn">
+				<Size>
+					<AbsDimension x="97" y="21"/>
+				</Size>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="129" y="57"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="战士战士战士战士战士战士战士战士" >
+							<Size>
+								<AbsDimension x="90" y="12"/>
+							</Size>
+							<Color r="120" g="235" b="50"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>			
+			# 公会抬头
+			<Button name="$parentClanHeadBtn">
+				<Size>
+					<AbsDimension x="55" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="91"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="left" text="所在公会" >
+							<Size>
+								<AbsDimension x="55" y="14"/>
+							</Size>
+							<Color r="255" g="254" b="189"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 公会
+			<Button name="$parentClanBtn">
+				<Size>
+					<AbsDimension x="147" y="20"/>
+				</Size>			
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="79" y="87"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="公会公会公会公会公会公会公会公会公会公会公会公会公会公会公会" >
+							<Size>
+								<AbsDimension x="142" y="12"/>
+							</Size>
+							<Color r="120" g="235" b="50"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 所在场景抬头
+			<Button name="$parentSceneHeadBtn">
+				<Size>
+					<AbsDimension x="55" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="115"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="left" text="所在场景" >
+							<Size>
+								<AbsDimension x="55" y="14"/>
+							</Size>
+							<Color r="255" g="254" b="189"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 所在场景
+			<Button name="$parentSceneBtn" >
+				<Size>
+					<AbsDimension x="147" y="20"/>
+				</Size>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="79" y="111"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="所在场景所在场景所在场景所在场景所在场景所在场景" >
+							<Size>
+								<AbsDimension x="142" y="12"/>
+							</Size>
+							<Color r="120" g="235" b="50"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 所在坐标抬头		
+			<Button name="$parentCoordHeadBtn">
+				<Size>
+					<AbsDimension x="55" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="140"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="left" text="所在坐标" >
+							<Size>
+								<AbsDimension x="55" y="14"/>
+							</Size>
+							<Color r="255" g="254" b="189"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 所在坐标
+			<Button name="$parentCoordBtn">
+				<Size>
+					<AbsDimension x="147" y="20"/>
+				</Size>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="79" y="136"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="所在坐标所在坐标所在坐标所在坐标所在坐标所在坐标" >
+							<Size>
+								<AbsDimension x="142" y="12"/>
+							</Size>
+							<Color r="120" g="235" b="50"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 是否组队抬头		
+			<Button name="$parentIsInTeamHeadBtn">
+				<Size>
+					<AbsDimension x="55" y="14"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="164"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="left" text="是否组队" >
+							<Size>
+								<AbsDimension x="55" y="14"/>
+							</Size>
+							<Color r="255" g="254" b="189"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 是否组队	
+			<Button name="$parentIsInTeamBtn">
+				<Size>
+					<AbsDimension x="147" y="20"/>
+				</Size>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSecondBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="79" y="161"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate" />
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="所在坐标所在坐标所在坐标所在坐标所在坐标所在坐标" >
+							<Size>
+								<AbsDimension x="142" y="12"/>
+							</Size>
+							<Color r="120" g="235" b="50"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>GameTrackSuDiFrame_OnLoad();</OnLoad>
+			<OnEvent>GameTrackSuDiFrame_OnEvent();</OnEvent>
+			<OnShow>GameTrackSuDiFrame_OnShow();</OnShow>
+			<OnHide>GameTrackSuDiFrame_OnHide();</OnHide>
+			<OnUpdate>GameTrackSuDiFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

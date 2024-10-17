@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\YinLiKongJian\guajiselectchatroom.lua"/>
+	<Texture name="guajiroomjianTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="245"	 y="0"	 w="10"	h="75"  />
+			<Center			x="245"	 y="0"	 w="10"	h="75"  />
+			<Right			x="245"	 y="0"	 w="10"	h="75"  />
+		</Center>
+	</Texture>
+		
+	<Frame name="guajiloginSelectRoomFrame"  hidden="true" frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199" >
+		<Size>
+			<AbsDimension x="249" y="632" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft"  relativePoint="topleft" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+			</Layer>
+			<Layer level="overlay">
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="loginSelectdiban">
+				<Size>
+					<AbsDimension x="249" y="632"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$patentdiban" inherits="FramedibanTemplate">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>	
+						<Texture name="$parentfontTex" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="255" y="96" w="58" h="16" >
+							<Size>
+								<AbsDimension x="58" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+									<AbsDimension x="10" y="5" />
+								</Offset>
+							</Anchor>
+							</Anchors>
+						</Texture>						
+						<Texture name="$parentfenge1" inherits="fengeTemplate" >
+							<size>
+								<AbsDimension x="242" y="5" />
+							</size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentjian1" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="23" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="loginSelectdiban">
+						<Offset>
+							<AbsDimension x="-7" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+				<Scripts>
+					<OnClick>System_Close();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="TouXiang">
+				<Size>
+					<AbsDimension x="48" y="48" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="10" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						
+						<Texture name="$parentHeadBodyTex">
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					
+						<Texture name="$parentHeadTexture" >
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					
+						<Texture name="$parentHeadHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga" alphaMode="ADD">
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					
+						<Texture name="$parentHeadHairTexture" >
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="366" y="34" w="48" h="48" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="419" y="34" w="48" h="48" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="464" y="34" w="48" h="48" />
+				<Scripts>
+					<OnEnter>TouXiang_OnEnter();</OnEnter>
+					<OnLeave>TouXiang_OnLeave();</OnLeave>
+					<OnMouseDown>TouXiang_OnLeave();</OnMouseDown>
+					<OnMouseUp>TouXiang_OnEnter();</OnMouseUp>
+					<OnClick>TouXiang_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="PlayerinfoArea">
+				<Size>
+					<AbsDimension x="150" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TouXiang" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentName" fonttype="NormalBlackFont"  justifyH="left"  >
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="150" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCareer" fonttype="MinimumBlackFont"  justifyH="left"  >
+							<Color r="80" g="255" b="30" />
+							<Size>
+								<AbsDimension x="150" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="18"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLevel" fonttype="MinimumBlackFont"  justifyH="left"  >
+							<Color r="80" g="255" b="30" />
+							<Size>
+								<AbsDimension x="150" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="34"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="xinqing">
+				<Size>
+					<AbsDimension x="232" y="40" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TouXiang">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentdiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="210" y="462" w="234"  h="42">
+							<Size>
+								<RelDimension x="1.0" y="1.0"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentfenge" inherits="hengfengge">
+							<Size>
+								<AbsDimension x="241" y="5"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-7" y="47"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<MultiEditBox name="$parentEdit" fonttype="TeenyMSYHFont" letters="50" historyLines="1" multiLine="true">
+						<textcolor r="255" g="255" b="190" />
+						<Size>
+							<AbsDimension x="232" y="40" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="3" y="3" />
+								</Offset>
+						</Anchor>
+						</Anchors>						
+						<Scripts>
+							<OnEnterPressed>xinqingEdit_OnEnterPressed();</OnEnterPressed>
+						</Scripts>
+					</MultiEditBox>
+				</Frames>
+			</Button>
+		<Button name="FaBuxinqing"	inherits="FaBuXinQingTemplate" text="发布">
+				<Size>
+					<AbsDimension x="35" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="xinqing" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-5" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>FaBuxinqingbtn_OnClick();</OnClick>
+				</Scripts>
+		</Button>
+		<Button name="XuanZeLiaoTianShi">
+				<Size>
+					<AbsDimension x="214" y="387" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="TouXiang">
+						<Offset>
+							<AbsDimension x="7" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentdiban" inherits="ChatselectdibanTemplate" />
+						<Texture name="$parentdiahua" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="360" y="0" w="152" h="33">
+							<Size>
+								<AbsDimension x="152" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="31" y="-16" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="GongYongAnNiuY1liaotianTemplate" inherits="LiaoTianShiAnNiuTemplate" virtual="true" >
+						<Size>
+							<AbsDimension x="94" y="25" />
+						</Size>
+						<Scripts>
+							<OnClick>GongYongAnNiuY1liaotianTemplate_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="liaotian1" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室1" id="1"/>
+					<Button name="liaotian2" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室2" id="2"/>
+					<Button name="liaotian3" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室3" id="3"/>
+					<Button name="liaotian4" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室4" id="4"/>
+					<Button name="liaotian5" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室5" id="5"/>
+					<Button name="liaotian6" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室6" id="6"/>
+					<Button name="liaotian7" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室7" id="7"/>
+					<Button name="liaotian8" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室8" id="8"/>
+					<Button name="liaotian9" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室9" id="9"/>
+					<Button name="liaotian10" inherits="GongYongAnNiuY1liaotianTemplate" text="聊天室10" id="10"/>
+				</Frames>
+			</Button>
+			<Button name="QiDongLITianShi"	inherits="FaBuXinQingTemplate" text="进入聊天室">
+				<Size>
+					<AbsDimension x="80" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="XuanZeLiaoTianShi" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="17" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>QiDongLITianShi_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="LoginoutBtn"	inherits="FaBuXinQingTemplate" text="返回登录">
+				<Size>
+					<AbsDimension x="80" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="QiDongLITianShi" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="20" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginoutBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTuodong">
+				<Size>
+					<AbsDimension x="224" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnMouseDown>TuodongOnMouseDonw();</OnMouseDown>
+					<OnMouseUp>TuodongOnMouseUp();</OnMouseUp>
+				</Scripts>	
+			</Button>
+			<Button name="$parent_minbtn" inherits="minwindowbtn"/>
+		</Frames>
+		<Scripts>
+			<OnLoad>guajiloginSelectRoomFrameOnLoad();</OnLoad>
+			<OnEvent>guajiloginSelectRoomFrameOnEvent();</OnEvent>
+			<OnShow>guajiloginSelectRoomFrameOnShow();</OnShow>
+			<OnUpdate>guajiloginSelectRoomFrameOnUpdate();</OnUpdate>
+			<OnHide>guajiloginSelectRoomFrameOnHide();</OnHide>
+		</Scripts>	
+	</Frame>
+
+</Ui>
+
+

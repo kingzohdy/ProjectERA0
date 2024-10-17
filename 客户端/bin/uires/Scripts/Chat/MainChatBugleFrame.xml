@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Chat\MainChatBugleFrame.lua" />
+	<Frame name="ChatShowBugleMsgFrame" parent="UIClient" frameStrata="DIALOG"  hidden="true" input_transparent="true">
+		<Size>
+			<AbsDimension x="515" y="53" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottomleft" relativePoint="topleft" relativeTo="MainChatFrame">
+				<Offset>
+					<AbsDimension x="27" y="20" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="BugleUVAnimationTex" file="uires\\ui\\TeXiao\\XiaoLaBa.tga" alphamode="add">
+					<Size>
+						<AbsDimension x="400" y="25"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-10" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="20" texcols="1" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="CSBMF_BugleMsgRich1" lineInterval ="2" multiLine="false" fonttype="FZYBlackFont14" input_transparent="true" hidden="false">
+				<Size>
+					<AbsDimension x="1000" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="CSBMF_BugleMsgRich2" lineInterval ="2" multiLine="false" fonttype="FZYBlackFont14" input_transparent="true" hidden="false">
+				<Size>
+					<AbsDimension x="1000" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="23" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnUpdate>ChatShowBugleMsgFrame_OnUpdate();</OnUpdate>
+			<OnShow>ChatShowBugleMsgFrame_OnShow();</OnShow>  
+			<OnHide>ChatShowBugleMsgFrame_OnHide();</OnHide>
+			<OnLoad>ChatShowBugleMsgFrame_OnLoad();</OnLoad>
+			<OnEvent>ChatShowBugleMsgFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+
+	# 现在是用来 炫耀频道 
+	<Frame name="ChatAllBugleMsgFrame" parent="UIClient" frameStrata="DIALOG"  hidden="true" input_transparent="true">
+		<Size>
+			<AbsDimension x="515" y="39" />
+		</Size>
+		<Anchors>
+			<Anchor point="top" relativePoint="top" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="0" y="122" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">	
+				<Texture name="$parentBackMidTex" inherits="ShowChannelTextureTemplate">
+					<Size>
+						<AbsDimension x="515" y="21"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+				<Texture name="$parentBackMidTex2" inherits="ShowChannelSecondTextureTemplate">
+					<Size>
+						<AbsDimension x="460" y="18"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentBackMidTex">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\XiaoLaBa.tga" alphamode="add">
+					<Size>
+						<AbsDimension x="515" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="20" texcols="1" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentMsgRich" lineInterval ="1" fonttype="FZYBlackFont16" input_transparent="true" hidden="false">
+				<Size>
+					<AbsDimension x="460" y="38" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnUpdate>ChatAllBugleMsgFrame_OnUpdate();</OnUpdate>
+			<OnEvent>ChatAllBugleMsgFrame_OnEvent();</OnEvent>
+			<OnShow>ChatAllBugleMsgFrame_OnShow();</OnShow>  
+			<OnHide>ChatAllBugleMsgFrame_OnHide();</OnHide>
+			<OnLoad>ChatAllBugleMsgFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,1725 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/login.lua" />
+	# 输入框
+	<Texture name="LoginInputEidtBackTemplate" virtual="true" file="uires\\ZhuJieMian\\2.dds" x="857" y="855" w="45" h="5" DrawType="tile">
+		<Tile>
+			<TileSize>
+				<AbsValue val="5" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5" /> 
+			</BackgroundInsets>
+		</Tile>
+	</Texture>
+
+	<Frame name="LoginBackFrame" parent="UIClient" frameStrata="background" hidden="true">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="$parentBackground">
+				<Size>
+					<AbsDimension x="1650" y="950"/>
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						#Texture name="$parentTex" file="uires\\TuPianLei\\DengLuBeiJing.jpg"
+						<Texture name="$parentTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont1" fonttype="MinimumBlackFont" justifyH="center" text="本游戏适合18岁以上玩家进入">
+							<Color r="200" g="200" b="200" />
+							<Size>
+								<AbsDimension x="1000" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="bottom" relativeTo="LoginBackFrame">
+									<Offset>
+										<AbsDimension x="0" y="-18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFont2" fonttype="MinimumBlackFont" justifyH="center" text="积极健康的游戏心态是健康游戏的开端，本游戏故事情节设置紧凑，请您合理控制游戏时间，避免沉溺游戏影响生活，注意自我保护，防范网络陷阱。">
+							<Color r="200" g="200" b="200" />
+							<Size>
+								<AbsDimension x="1000" y="30" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="bottom" relativeTo="LoginBackFrame">
+									<Offset>
+										<AbsDimension x="0" y="-2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>		
+		</Frames>	
+		<Scripts>
+			<OnUpdate>LoginBackFrame_OnUpdate();</OnUpdate>
+			<OnShow>LoginBackFrame_OnShow();</OnShow>
+			<OnHide>LoginBackFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="LoginFrame" parent="UIClient" frameStrata="dialog" hidden="true" framelevel="100">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			# 注册账号	LoginRegisterAccountBtn
+			<Button name="LoginRegisterAccountBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="注册账号">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="150" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM" relativePoint="BOTTOM" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-92" y="-39" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginRegisterAccountBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 快速试玩	LoginQuickStartBtn
+			<Button name="LoginQuickStartBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="快速试玩">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="150" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM" relativePoint="BOTTOM" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="81" y="-39" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginQuickStartBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 官网充值
+			<Button name="LoginFillAccountBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="官网充值">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="150" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="RIGHT" relativePoint="LEFT" relativeTo="LoginRegisterAccountBtn">
+						<Offset>
+							<AbsDimension x="-23" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginFillAccountBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 选择服务器
+			<Button name="LoginReturnBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="选择服务器">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="150" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="LoginRegisterAccountBtn">
+						<Offset>
+							<AbsDimension x="200" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginReturnBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 输入账号密码框的底板
+			<Button name="$parentInputAccountAndPasswordBackBtn" >
+				<Size>
+					<AbsDimension x="463" y="158" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentLeftHuaBianTex" file="uires\\ZhuJieMian\\3.dds" x="0" y="697" w="155" h="75">
+							<Size>
+								 <AbsDimension x="155" y="75" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentRightHuaBianTex" file="uires\\ZhuJieMian\\3.dds" x="0" y="697" w="155" h="75" UVType="mirroeu" >
+							<Size>
+								<AbsDimension x="155" y="75" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="DengLuJieMianZhangHaoShuRuJieMianDiBanTemplate"/>
+			</Button>
+			# 账号密码输入框的头部修饰
+			<Button name="$parentInputAccountAndPasswordTopXiuShiBtn" >
+				<Size>
+					<AbsDimension x="357" y="86" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM" relativePoint="CENTER" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-79" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND" >
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\3.dds" x="0" y="488" w="357" h="86">				
+							<Size>
+								<AbsDimension x="357" y="86" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentBackgroundLogo">
+				<Size>
+					<AbsDimension x="414" y="113"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="CENTER" relativeTo="$parentInputAccountAndPasswordTopXiuShiBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\3.dds" x="0" y="576" w="414" h="113">				
+							<Size>
+								<AbsDimension x="414" y="113"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>	
+			
+			# 账号输入框底板
+			<Button name="$parentAccountEditBackBtn" >
+				<Size>
+					<AbsDimension x="250" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInputAccountAndPasswordBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="92" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" />
+			</Button>
+			<EditBox name="LoginNameEdit" letters="32" historyLines="1" multiLine="false" >
+				<Size>
+					<AbsDimension x="228" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="Left" relativeTo="$parentAccountEditBackBtn" relativePoint="Left">
+						<Offset>
+							<AbsDimension x="5" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">		
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<Scripts>
+					<OnTabPressed>LoginNameEdit_OnTabPressed();</OnTabPressed>
+					<OnClick>LoginNameEdit_OnClick();</OnClick>
+				</Scripts>
+			</EditBox>
+			<Button name="$parent_AccountBtn" >
+				<Size>
+					<AbsDimension x="30" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentAccountEditBackBtn" relativePoint="left" >
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="FZYBlackFont15" justifyH="right" text="账号" fontStyle="normal">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="30" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 密码输入框底板
+			<Button name="$parentPasswordEditBackBtn" >
+				<Size>
+					<AbsDimension x="250" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInputAccountAndPasswordBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="92" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture inherits="DengLuJieMianZhangHaoShuRuJieMianShuRuTemplate" />
+			</Button>
+			<EditBox name="PassWordEdit" letters="16" historyLines="1" multiLine="false" password="true" editMethod="167" >
+				<Size>
+					<AbsDimension x="235" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="Left" relativeTo="$parentPasswordEditBackBtn" relativePoint="Left">
+						<Offset>
+							<AbsDimension x="5" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">		
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<Scripts>
+					<OnTabPressed>LoginFrame_OnLoginBtnTabPressed();</OnTabPressed>
+					<OnFocusGained>PassWordEdit_OnFocusGained();</OnFocusGained>
+				</Scripts>
+			</EditBox>
+			
+			<Button name="$parent_PassWordBtn" >
+				<Size>
+					<AbsDimension x="30" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentPasswordEditBackBtn" relativePoint="left" >
+						<Offset>
+							<AbsDimension x="-8" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="FZYBlackFont15" justifyH="right" text="密码" fontStyle="normal">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="30" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 确定
+			<Button name="LoginButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确  定" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="150" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentInputAccountAndPasswordBackBtn" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="156" y="100" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginFrame_OnLoginBtnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 记住账号
+			<CheckButton name="LoginSaveUserNameChkBtn" inherits="CheckBtnTemplate" checked="true" >
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentInputAccountAndPasswordBackBtn" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="350" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginSaveUserNameChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="LoginSaveUserHeadBtn" input_transparent="true" >
+				<Size>
+					<AbsDimension x="50" y="12" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="LoginSaveUserNameChkBtn">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentStateFont" fonttype="NormalBlackFont" fontStyle="normal" text="记住账号" justifyH="left">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="50" y="12" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 键盘
+			<Button name="LoginKeyBoardBtn">
+				<Size>
+					<AbsDimension x="21" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInputAccountAndPasswordBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="350" y="67" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="1003" y="691" w="21" h="20" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="1003" y="712" w="21" h="20" />
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="1003" y="733" w="21" h="20" />
+				<Scripts>
+					<OnClick>LoginKeyBoardBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 当前选择服务器
+			<Button name="LoginSelectServerBtn" >
+				<Size>
+					<AbsDimension x="440" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parentInputAccountAndPasswordBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="-12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" text="当前服务器" justifyH="center">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="440" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+					</Layer>
+				</Layers>
+			</Button>
+			
+			# 阅读协议
+			<CheckButton name="LoginAcceptUserProtocolChkBtn" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentInputAccountAndPasswordBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="113" y="16" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginAcceptUserProtocolChkBtn_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<RichText name="LoginAcceptDescRich" lineInterval="2" multiLine="true" fonttype="LittleFZYBlackFont" >
+				<Size>
+					<AbsDimension x="200" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="LoginAcceptUserProtocolChkBtn" relativePoint="right">
+						<Offset>
+							<AbsDimension x="6" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginAcceptDescRich_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<Button name="$parent_SelectUserNameBtn" inherits="ScrollBottomBtnTemplate">
+				<Anchors>
+					<Anchor point="left" relativeTo="LoginNameEdit" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-6" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>LoginFrame_SelectUserNameBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="LoginFrameUserNameBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="241" y="20" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentName" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+							<Color r="237" g="235" b="187" />
+							<Size>
+								<AbsDimension x="228" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="5" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>					
+						</FontString>		
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<Scripts>
+					<OnClick>LoginFrameUserNameBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_UserNameDropDownBtn" hidden="true">
+				<Size>
+					<AbsDimension x="245" y="70" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBkg" inherits="LayerBkgTemplate" />
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentName1" inherits="LoginFrameUserNameBtnTemplate" >	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentName2" inherits="LoginFrameUserNameBtnTemplate" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentName1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentName3" inherits="LoginFrameUserNameBtnTemplate" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentName2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>					
+				</Frames>
+				<Scripts>
+					<OnShow>LoginFrame_UserNameDropDownBtn_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>LoginFrame_OnLoad();</OnLoad>
+			<OnEvent>LoginFrame_OnEvent();</OnEvent>
+			<OnShow>LoginFrame_OnShow();</OnShow>	
+			<OnHide>LoginFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	##注册界面
+	<Frame name="RegisterUserFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true"  movable="false"  framelevel="2">
+		<Size>
+			<AbsDimension x="316" y="232" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="注册账号" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="100" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />				
+			<Button name="$parentBkgBtn">
+				<Size>
+					<AbsDimension x="311" y="199" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Layers>
+					<Layer level="overlay">						
+						<FontString name="$parentAccountFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="right" text="输入账号：" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="48" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentPwdFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="right" text="输入密码：" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentAccountFont" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="33" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentConfirmPwdFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="right" text="确认密码：" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentPwdFont" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="33" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+							<Size>
+								<AbsDimension x="310" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="1" y="159"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>			
+			##账号
+			<EditBox name="$parentAccountEdit" letters="30" historyLines="1" multiLine="false" editMethod="519">
+				<Size>
+					<AbsDimension x="204" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="81" y="77" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">
+					<Color r="160" g="160" b="90" />					
+				</FontString>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="206" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									 <Offset>
+										 <AbsDimension x="0" y="-3" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentStarFont" fonttype="TeenyFZYBlackFont" text="*">
+							<Color r="255" g="120" b="0"/>
+							<Size>
+								<AbsDimension x="10" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+									 <Offset>
+										 <AbsDimension x="6" y="6" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("RegisterUserFramePwdEdit");</OnTabPressed>
+					<OnEnterPressed>SetFocusFrame("RegisterUserFramePwdEdit");</OnEnterPressed>
+				</Scripts>
+			</EditBox>			
+			##密码
+			<EditBox name="$parentPwdEdit" letters="16" historyLines="1" multiLine="false" editMethod="167">
+				<Size>
+					<AbsDimension x="204" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentAccountEdit" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">
+					<Color r="160" g="160" b="90" />
+				</FontString>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="206" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									 <Offset>
+										 <AbsDimension x="0" y="-3" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentStarFont" fonttype="TeenyFZYBlackFont" text="*">
+							<Color r="255" g="120" b="0"/>
+							<Size>
+								<AbsDimension x="10" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+									 <Offset>
+										 <AbsDimension x="6" y="6" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>					
+					<OnTabPressed>SetFocusFrame("RegisterUserFrameConfirmPwdEdit");</OnTabPressed>
+					<OnEnterPressed>SetFocusFrame("RegisterUserFrameConfirmPwdEdit");</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			##确认密码
+			<EditBox name="$parentConfirmPwdEdit" letters="16" historyLines="1" multiLine="false" editMethod="167">
+				<Size>
+					<AbsDimension x="204" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentPwdEdit" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">
+					<Color r="160" g="160" b="90" />
+				</FontString>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="206" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									 <Offset>
+										 <AbsDimension x="0" y="-3" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentStarFont" fonttype="TeenyFZYBlackFont" text="*">
+							<Color r="255" g="120" b="0"/>
+							<Size>
+								<AbsDimension x="10" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+									 <Offset>
+										 <AbsDimension x="6" y="6" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("RegisterUserFrameAccountEdit");</OnTabPressed>
+					<OnEnterPressed>RegisterUserFrameOKBtn_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			<RichText name="$parentDescRich" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" >
+				<Size>
+					<AbsDimension x="100" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="213" y="48" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="完成注册">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="120" y="29" />
+				</Size>
+				<Anchors>					
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RegisterUserFrameOKBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>RegisterUserFrame_OnShow();</OnShow>
+			<OnHide>RegisterUserFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	##补填注册信息界面
+	<Frame name="ContinueRegisterUserFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="false"  framelevel="2">
+		<Size>
+			<AbsDimension x="316" y="232" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="补填信息" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="100" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />				
+			<Button name="$parentBkgBtn">
+				<Size>
+					<AbsDimension x="311" y="199" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Layers>
+					<Layer level="overlay">						
+						<FontString name="$parentAccountFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="right" text="身份证号：" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="48" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentPwdFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="right" text="真实姓名：" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentAccountFont" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="33" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentConfirmPwdFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="right" text="安全邮箱：" >
+							<Color r="255" g="254" b="189"/>
+							 <Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentPwdFont" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="33" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDescFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="right" text="请填写真实邮箱，用于取回密码" >
+							<Color r="255" g="50" b="50"/>
+							 <Size>
+								<AbsDimension x="160" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="75" y="136" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+							<Size>
+								<AbsDimension x="310" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="1" y="159"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>			
+			##身份证
+			<EditBox name="$parentCertEdit" letters="18" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="204" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="84" y="77" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">
+					<Color r="160" g="160" b="90" />					
+				</FontString>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="206" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									 <Offset>
+										 <AbsDimension x="-3" y="-3" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentStarFont" fonttype="TeenyFZYBlackFont" text="*">
+							<Color r="255" g="120" b="0"/>
+							<Size>
+								<AbsDimension x="10" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+									 <Offset>
+										 <AbsDimension x="6" y="6" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("ContinueRegisterUserFrameNameEdit");</OnTabPressed>
+					<OnEnterPressed>SetFocusFrame("ContinueRegisterUserFrameNameEdit");</OnEnterPressed>
+				</Scripts>
+			</EditBox>			
+			##真实姓名
+			<EditBox name="$parentNameEdit" letters="32" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="204" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentCertEdit" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">
+					<Color r="160" g="160" b="90" />
+				</FontString>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="206" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									 <Offset>
+										 <AbsDimension x="-3" y="-3" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentStarFont" fonttype="TeenyFZYBlackFont" text="*">
+							<Color r="255" g="120" b="0"/>
+							<Size>
+								<AbsDimension x="10" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+									 <Offset>
+										 <AbsDimension x="6" y="6" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>					
+					<OnTabPressed>SetFocusFrame("ContinueRegisterUserFrameMailEdit");</OnTabPressed>
+					<OnEnterPressed>SetFocusFrame("ContinueRegisterUserFrameMailEdit");</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			##安全邮箱
+			<EditBox name="$parentMailEdit" letters="32" historyLines="1" multiLine="false" editMethod="519">
+				<Size>
+					<AbsDimension x="204" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNameEdit" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont">
+					<Color r="160" g="160" b="90" />
+				</FontString>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="206" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									 <Offset>
+										 <AbsDimension x="-3" y="-3" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentStarFont" fonttype="TeenyFZYBlackFont" text="*">
+							<Color r="255" g="120" b="0"/>
+							<Size>
+								<AbsDimension x="10" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topright">
+									 <Offset>
+										 <AbsDimension x="6" y="6" />
+									 </Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("ContinueRegisterUserFrameCertEdit");</OnTabPressed>
+					<OnEnterPressed>ContinueRegisterUserFrameOKBtn_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			<RichText name="$parentDescRich" lineInterval ="2" multiLine="false" fonttype="TeenyMSYHFont" >
+				<Size>
+					<AbsDimension x="100" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="213" y="48" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="完成">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="120" y="29" />
+				</Size>
+				<Anchors>					
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-9"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ContinueRegisterUserFrameOKBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ContinueRegisterUserFrame_OnShow();</OnShow>
+			<OnHide>ContinueRegisterUserFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	#预创建手机验证
+	<Frame name="PrebuildMobileCheckFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="false"  framelevel="2">
+		<Size>
+			<AbsDimension x="327" y="165" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="322" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="132"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="手机验证" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" justifyH="right" text="手机号码：" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="64" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="48" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont2" fonttype="LittleFZYBlackFont" justifyH="right" text="验证码：" hidden="true">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="64" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="75" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont3" fonttype="LittleFZYBlackFont" text="验证手机号可获得创建礼包，更有机会获得iPhone5" >
+					<Color r="0" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="310" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="104" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCodeNum" fonttype="TeenyMSYHFont" text="验证码序号：250" >
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="100" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="217" y="76" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentMobileShowBtn">
+				<Size>
+					<AbsDimension x="140" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="74" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="点击填写手机号码">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="133" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>   
+					</Layer>
+				</Layers>
+				<NormalTexture  inherits="LayerBlackBkgTemplate" />
+				<Scripts>
+					<OnClick>PrebuildMobileCheckFrameMobileShowBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<EditBox name="$parentMobileEdit" letters="20" editMethod="2" multiLine="false" hidden="true">
+				<Size>
+					<AbsDimension x="128" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="80" y="48" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex"  inherits="LayerBlackBkgTemplate" >
+							<Size>
+								<AbsDimension x="140" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-7" y="-4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+				</Layers>
+				<FontString name="Font" fonttype="SongTiFont12">
+					<Color r="174" g="221" b="159"/>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>ClearFocus();</OnEnterPressed>
+					<OnFocusLost>PrebuildMobileCheckFrameMobileEdit_OnFocusLost();</OnFocusLost>
+				</Scripts>
+			</EditBox>
+			<EditBox name="$parentCodeEdit" letters="6" editMethod="2" multiLine="false" hidden="true">
+				<Size>
+					<AbsDimension x="61" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="81" y="75" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex"  inherits="LayerBlackBkgTemplate" >
+							<Size>
+								<AbsDimension x="63" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-7" y="-4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+				</Layers>
+				<FontString name="Font" fonttype="LittleFZYBlackFont">
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+			</EditBox>
+			<Button name="$parentRequestBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="获取验证码" hidden="true">
+				<Size>
+					<AbsDimension x="74" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="140" y="70"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PrebuildMobileCheckFrameRequestBtn_OnClick();</OnClick>
+					<OnUpdate>PrebuildMobileCheckFrameRequestBtn_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+			<Button name="$parentAcceptBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="18" y="137" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PrebuildMobileCheckFrameAcceptBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="80" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="230"  y="137" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>PrebuildMobileCheckFrame_OnShow();</OnShow>
+			<OnLoad>PrebuildMobileCheckFrame_OnLoad();</OnLoad>
+			<OnEvent>PrebuildMobileCheckFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="ReadUserProtocolFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="false" framelevel="2">
+		<Size>
+			<AbsDimension x="473" y="330"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTextBackTex" inherits="DengLuJieMianWenXinTiShiJieMianDiBanTemplate">
+					<Size>
+						<AbsDimension x="473" y="330"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" >
+					<Size>
+						<AbsDimension x="179" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" UVType="mirroeu" >
+					<Size>
+						<AbsDimension x="179" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="用户协议">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="-15" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<RichText name="$parentDescRich" lineInterval="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="normal" >
+				<Size>
+					<AbsDimension x="377" y="234" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="37" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parent_SliderBackBtn" >
+				<Size>
+					<AbsDimension x="11" y="235" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="431" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentScrollCenter" inherits="ScrollBar3BkgCenter">
+							<Size>
+								<AbsDimension x="11" y="208" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="17" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp"  inherits="ScrollBar3BkgUp">		
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parentScrollCenter">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 			
+						<Texture name="$parentScrollDown" inherits="ScrollBar3BkgDown" >
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 向上滚动按钮
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_SliderBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="1" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReadUserProtocolFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 向下滚动按钮
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate" hidden="true">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent_SliderBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="1" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReadUserProtocolFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0" >
+				<Size>
+					<AbsDimension x="21" y="219" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent_SliderBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>ReadUserProtocolFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			<Button name="$parent_ReadButton" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确	定" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="182" y="277" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReadUserProtocolFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ReadUserProtocolFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

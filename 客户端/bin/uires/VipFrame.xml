@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\VipFrame.lua" />
+
+	<Frame name="VipFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true"  framelevel="500">
+		<Size>
+			<AbsDimension x="545" y="446" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentBkg1" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="413" y="377" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="122" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBkg2" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="396" y="202" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="132" y="78" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="徽章特权" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNotic1" fonttype="LittleFZYBlackFont" text="点击购买按钮，立即成为特权玩家，享受非一般的服务。" >
+					<Color r="255" g="150" b="0"/>
+					<Size>
+						<AbsDimension x="460" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="167" y="392" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentNotic2" fonttype="LittleFZYBlackFont" text="注：购买同一种特权徽章，有效时间会进行叠加计算" >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="460" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="137" y="420" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<RichText name="$parentTime" fonttype="LittleFZYBlackFont" text="剩余时间" >
+				<Size>
+					<AbsDimension x="160" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="143" y="51" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+
+			<Button name="VipFrameTypeBtnTemplate" inherits="GongYongAnNiuD3Template" text="test" virtual="true" >
+				<Size>
+					<AbsDimension x="117" y="28" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" >
+							<Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="8" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>VipFrameTypeBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentTypeBtn1" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTypeBtn2" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="70" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTypeBtn3" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="98" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTypeBtn4" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="126" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTypeBtn5" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="154" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTypeBtn6" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="182" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTypeBtn7" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="210" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentTypeBtn8" inherits="VipFrameTypeBtnTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="238" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentChargeBtn" inherits="GongYongAnNiuB1Template" text="我要充值">
+				<Size>
+					<AbsDimension x="80" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="445" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>VipFrameChargeBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="VipFrameFuncBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="396" y="22" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentFuncBkg" inherits="BlackCategoryBkg" >
+							<Size>
+								<AbsDimension x="56" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentDescBkg" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="278" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="57" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBtnBkg" inherits="BlackCategoryBkg">
+							<Size>
+								<AbsDimension x="56" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="336" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentName" fonttype="LittleFZYBlackFont" text="功能1">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="56" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="11" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDesc" fonttype="LittleFZYBlackFont" text="功能ddd1">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="300" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="65" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>		
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentBtn" inherits="GongYongAnNiuH1Template" text="打开">
+						<Size>
+							<AbsDimension x="50" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="339" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>VipFrameFuncBtn_OnClick()</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentTips" frameStrata="dialog" hidden="true" >
+						<Size>
+							<AbsDimension x="194" y="38" />
+						</Size>
+						<Layers>
+							<Layer>
+								<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+								<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="使用xxx">
+									<Color r="255" g="255" b="190" />
+									<Size>
+										<AbsDimension x="182" y="40" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="6" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+				</Frames>
+			</Button>
+			<Button name="$parentFuncBtn1" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn2" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="102" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn3" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="124" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn4" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="146" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn5" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="168" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn6" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="190" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn7" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="212" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn8" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="234" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFuncBtn9" inherits="VipFrameFuncBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="132" y="256" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="VipFrameBuyBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="128" y="100" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="128" y="100" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentName" fonttype="FZYBlackFont15" justifyH="center" text="xxx天">
+							<Color r="0" g="230" b="0" />
+							<Size>
+								<AbsDimension x="128" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="10" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCost" fonttype="LittleFZYBlackFont" justifyH="center" text="xxx天">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="128" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="31" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTime" fonttype="LittleFZYBlackFont" justifyH="center" text="xxx天">
+							<Color r="255" g="255" b="190" />
+							<Size>
+								<AbsDimension x="128" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="47" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentBuyBtn" inherits="GongYongAnNiuB1Template" text="购 买">
+						<Size>
+							<AbsDimension x="120" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativePoint="top" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="65" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>coroutine.wrap(VipFrameBuyBtn_OnClick)()</OnClick>
+						</Scripts>
+					</Button>					
+				</Frames>				
+			</Button>
+
+			<Button name="$parentBuyBtn1" inherits="VipFrameBuyBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="130" y="286" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuyBtn2" inherits="VipFrameBuyBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="264" y="286" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuyBtn3" inherits="VipFrameBuyBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="398" y="286" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>VipFrame_OnLoad()</OnLoad>
+			<OnEvent>VipFrame_OnEvent()</OnEvent>
+			<OnShow>VipFrame_OnShow()</OnShow>
+			<OnHide>VipFrame_OnHide()</OnHide>
+		</Scripts>
+	</Frame>
+
+	#vip自动吃药
+	<Frame name="AutoRecoveryFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true"  framelevel="198">
+		<Size>
+			<AbsDimension x="283" y="160"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="LittleFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="自动恢复">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentBackGround" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentAutoRecovery" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="268" y="116" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentAutoRecoveryFont" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="shadow" text="自动使用食物：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentAutoRecovery" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="14" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentConflictFont" fonttype="TeenyBlackFont" justifyH="right" fontStyle="shadow" text="(自动辅助开启时此功能无效)">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="240" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parentAutoRecovery" relativePoint="topright" >
+							<Offset>
+								<AbsDimension x="-10" y="8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parentPetRecovery" inherits="GongYongAnNiuA1ButtonTemplate" text="宠物回复" hidden="true">
+				<Size>
+					<AbsDimension x="60" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="200" y="41" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>AutoAssistFrame_PetRecovery_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentLimitHPRecoveryBtn" hidden="false" >
+				<Size>
+					<AbsDimension x="160" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="22" y="61"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="normal" justifyH="left" text="生命值低于0%时使用食物">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="$parentLimitHPRecoveryDownHeadBtn" >
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="81" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer >
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="center" text="0%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parentLimitHPRecoveryUpHeadBtn" >
+				<Size>
+					<AbsDimension x="45" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="184" y="81" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="100%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="45" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="$parentLimitHPRecoveryBarBtn" >
+				<Size>
+					<AbsDimension x="137" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="86" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentBkg" virtual="true" file="uires\\ZhuJieMian\\3.dds" x="288" y="241" w="137" h="8">
+							<Size>
+								<AbsDimension x="137" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Slider name="$parentLimitHPRecoveryBar" orientation="HORIZONTAL" minValue="0" maxValue="100" valueStep="5" defaultValue="0" >
+				<Size>
+					<AbsDimension x="137" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="77" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" hidden="true" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>AutoRecoveryFrameLimitHPRecoveryBarValueChange();</OnValueChanged>
+				</Scripts>
+			</Slider>
+			
+			<Button name="$parentLimitMPRecoveryBtn" hidden="false" >
+				<Size>
+					<AbsDimension x="160" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="22" y="107"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="normal" justifyH="left" text="魔法值低于0%时使用食物">
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="$parentLimitMPRecoveryDownHeadBtn" >
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="24" y="127" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer >
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="center" text="0%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="20" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>	
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parentLimitMPRecoveryUpHeadBtn" >
+				<Size>
+					<AbsDimension x="45" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="184" y="127" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentHeadFont" fonttype="NormalBlackFont" fontStyle="normal" justifyH="left" text="100%" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="45" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="$parentLimitMPRecoveryBarBtn" >
+				<Size>
+					<AbsDimension x="137" y="8" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="132" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>	
+					<Layer level="overlay">
+						<Texture name="$parentBkg" virtual="true" file="uires\\ZhuJieMian\\3.dds" x="288" y="241" w="137" h="8">
+							<Size>
+								<AbsDimension x="137" y="8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Slider name="$parentLimitMPRecoveryBar" orientation="HORIZONTAL" minValue="0" maxValue="100" valueStep="5" defaultValue="0" >
+				<Size>
+					<AbsDimension x="137" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="44" y="122" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="992" y="897" w="14" h="21" hidden="true" >
+					<Size>
+						<AbsDimension x="14" y="21" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>AutoRecoveryFrameLimitMPRecoveryBarValueChange();</OnValueChanged>
+				</Scripts>
+			</Slider>
+
+			##HP药物
+			<Button name="$parentHPMedicineBtn" inherits = "AutoAssistFrame_MedicineBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="222" y="67" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			##MP药物
+			<Button name="$parentMPMedicineBtn" inherits = "AutoAssistFrame_MedicineBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="222" y="113" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>AutoRecoveryFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

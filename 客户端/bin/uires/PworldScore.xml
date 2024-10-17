@@ -1,0 +1,1245 @@
+<Ui>
+	<Script file="uires/PworldScore.lua" />
+	# 副本评价奖品(已翻牌)
+	<Button name="PworldScoreRewardOpenTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64"/>
+        </Size>
+        <Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="449" y="401" w="64" h="64">
+					<Size>
+						<AbsDimension x="0" y="0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+        		<FontString name="$parentName" fonttype="MinimumBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="90" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+        	</Layer>
+        </Layers>
+    	<Frames>
+    		<Button name="$parentItem">
+				<Size>
+					<AbsDimension x="60" y="60" />
+				</Size>
+		        <NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="449" y="401" w="64" h="64" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="449" y="466" w="64" h="64" />
+				<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="514" y="430" w="64" h="64" />
+				<DisabledTexture	file="uires\\ZhuJieMian\\2.dds" x="0" y="923" w="64" h="64" />
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="50" y="50" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentFrame" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75">
+							<Size>
+								<RelDimension x="50" y="50" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="SmallBlackFont" justifyH="right" fontStyle="border" text="">
+							<Color r="204" g="128" b="51"/>
+							<Size>
+								<AbsDimension x="48" y="18"/>
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="-6" y="-3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ZhuangBei  1.tga" hidden="true">
+							<Size>
+								<RelDimension x="1.27" y="1.27" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<Texture name="$parentHightCenter" file="uires\\ZhuJieMian\\2.dds" x="615" y="311" w="56" h="56">
+							<Size>
+								<AbsDimension x="50" y="50" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentHightAnim" file="uires\\ZhuJieMian\\2.dds" x="637" y="670" w="54" h="5" >
+							<Size>
+								<AbsDimension x="50" y="5" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="23" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTexiao" file="uires\\ui\\TeXiao\\FanPai 1.tga" x="0" y="0" w="128" h="128" alphamode="add">
+							<Size>
+								<RelDimension x="2" y="2" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>PworldScoreRewardCard_OnEnter()</OnEnter>
+					<OnLeave>PworldScoreRewardCard_OnLeave()</OnLeave>
+    				<OnClick>PworldScoreRewardCard_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+    	</Frames>
+	</Button>
+	
+	# VIP评价奖品
+	<Button name="PworldScoreVIPRewardOpenTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="64" y="64"/>
+        </Size>
+        <Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\3.dds" x="895" y="49" w="64" h="64">
+					<Size>
+						<AbsDimension x="0" y="0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+        		<FontString name="$parentName" fonttype="MinimumBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="90" y="12" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+        	</Layer>
+        </Layers>
+    	<Frames>
+    		<Button name="$parentItem">
+				<Size>
+					<AbsDimension x="60" y="60" />
+				</Size>
+		        <NormalTexture		file="uires\\ZhuJieMian\\3.dds" x="895" y="49" w="64" h="64" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="449" y="466" w="64" h="64" />
+				<PushedTexture		file="uires\\ZhuJieMian\\3.dds" x="960" y="49" w="64" h="64" />
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+				
+					<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+						<Size>
+							<AbsDimension x="50" y="50" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+					<Texture name="$parentFrame" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75">
+						<Size>
+							<RelDimension x="50" y="50" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+					<FontString name="$parentFont" fonttype="SmallBlackFont" justifyH="right" fontStyle="border" text="">
+						<Color r="204" g="128" b="51"/>
+						<Size>
+							<AbsDimension x="48" y="18"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="-6" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+					<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ZhuangBei  1.tga" hidden="true">
+						<Size>
+							<RelDimension x="1.27" y="1.27" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+							</Anchor>
+						</Anchors>
+						<UVAnimation texrows="6" texcols="5" />
+					</Texture>
+        			<Texture name="$parentHightCenter" file="uires\\ZhuJieMian\3.dds" x="838" y="49" w="56" h="56">
+						<Size>
+							<AbsDimension x="50" y="50" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+	        		<Texture name="$parentHightAnim" file="uires\\ZhuJieMian\\2.dds" x="637" y="670" w="54" h="5" >
+						<Size>
+							<AbsDimension x="54" y="5" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="23" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+	        		<Texture name="$parentTexiao" file="uires\\ui\\TeXiao\\FanPai 1.tga" x="0" y="0" w="128" h="128" alphamode="add">
+						<Size>
+							<RelDimension x="2" y="2" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>PworldScoreRewardCard_OnEnter()</OnEnter>
+					<OnLeave>PworldScoreRewardCard_OnLeave()</OnLeave>
+    				<OnClick>PworldScoreRewardCard_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+    	</Frames>
+	</Button>
+	# 副本评价主界面
+	<Frame name="PworldScoreFrame" parent="UIClient" frameStrata="Dialog" movable="false" hidden="true" framelevel="100">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+        </Size>
+        <Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" file="uires\\ui\\YinDaoHuaMian\\DiBan.tga">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentTex" file="uires\\TuPianLei\\FuBenPingJiaDiBan.tga">
+					<Size>
+						<RelDimension x="1.0" />
+						<AbsDimension y="768" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+       			<Texture name="$parentEdgeInFrame" file="uires\\ZhuJieMian\\2.dds" x="186" y="428" w="261" h="2">
+					<Size>
+						<AbsDimension x="500" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-90" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Angle value="90"/>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="MiddleBlackFont" justifyH="left" fontStyle="normal" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="625" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="-119" y="-325" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentInfo" input_transparent="true">
+				<Size>
+					<AbsDimension x="290" y="575" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="-112" y="-287"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentTitle1" fonttype="EighteenFont" justifyH="left" fontStyle="normal" text="战绩评分:">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="82" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="28" y="220" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitle2" fonttype="EighteenFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="88" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="87" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitle3" fonttype="EighteenFont" justifyH="left" fontStyle="normal" text="奖励金钱：">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="82" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="415" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitle4" fonttype="EighteenFont" justifyH="left" fontStyle="normal" text="奖励经验：">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="82" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="388" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFightInfo" fonttype="SmallBlackFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="68" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="323" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentExtraExp" fonttype="EighteenFont" justifyH="left" fontStyle="normal" text="额外增加">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="82" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="440" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitleKill" fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="150" g="150" b="90"/>
+							<Size>
+								<AbsDimension x="60" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="345" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitleTime" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="时间">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="45" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="40" y="328" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitleDeath" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="死亡">
+							<Color r="150" g="150" b="90"/>
+							<Size>
+								<AbsDimension x="45" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="40" y="353" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+      		  			<Texture name="$parentEdgeInInfo" file="uires\\ZhuJieMian\\2.dds" x="186" y="428" w="261" h="2">
+							<Size>
+								<AbsDimension x="250" y="2" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="-10" y="93" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleDifficulty" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="副本难度：">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="465" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitleFriend" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="好友组队：">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="60" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="180" y="465" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitleGrade" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="评价等级：">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="505" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTitleClan" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="公会组队：">
+							<Color r="150" g="150" b="90"/>
+							<Size>
+								<AbsDimension x="80" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="180" y="505" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTotal" fonttype="FightFont" justifyH="left" fontStyle="normal" text="">
+							--<Color r="255" g="255" b="0"/>
+							<Size>
+								<AbsDimension x="300" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="110" y="210" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMoney" fonttype="EighteenFont" justifyH="right" fontStyle="normal" text="">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="100" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="100" y="415" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentExp" fonttype="EighteenFont" justifyH="right" fontStyle="normal" text="">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="100" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="100" y="388" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillNormal" fonttype="LittleFZYBlackFont" justifyH="left" multiLine="true" fontStyle="normal" text="普通怪">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="50" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="40" y="250" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillNormalNumber" fonttype="LittleFZYBlackFont" justifyH="center" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="90" y="250" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillNormalScore" fonttype="LittleFZYBlackFont" justifyH="right" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="150" y="250" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillJingYing" fonttype="LittleFZYBlackFont" justifyH="left" multiLine="true" fontStyle="normal" text="精英怪">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="50" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="40" y="276" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillJingYingNumber" fonttype="LittleFZYBlackFont" justifyH="center" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="90" y="276" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillJingYingScore" fonttype="LittleFZYBlackFont" justifyH="right" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="150" y="276" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillBoss" fonttype="LittleFZYBlackFont" justifyH="left" multiLine="true" fontStyle="normal" text="Boss">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="50" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="40" y="302" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillBossNumber" fonttype="LittleFZYBlackFont" justifyH="center" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="90" y="302" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentKillBossScore" fonttype="LittleFZYBlackFont" justifyH="right" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="150" y="302" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTimeText" fonttype="LittleFZYBlackFont" justifyH="center" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="160" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="55" y="328" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTimeScore" fonttype="LittleFZYBlackFont" justifyH="right" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="150" y="328" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDeathNumber" fonttype="LittleFZYBlackFont" justifyH="center" multiLine="true" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="90" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="90" y="353" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDeathScore" fonttype="LittleFZYBlackFont" justifyH="right" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="100" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="140" y="353" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDifficulty" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="30" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="90" y="465" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentDifficultyExp" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="120" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="485" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFriendExp" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="120" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="180" y="485" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentGrade" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="30" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="90" y="505" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentGradeExp" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="120" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="525" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentClanExp" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="160" g="160" b="90" />
+							<Size>
+								<AbsDimension x="120" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="180" y="525" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentOffExp" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+							<Color r="250" g="160" b="90" />
+							<Size>
+								<AbsDimension x="200" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="50" y="545" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentGradeTex" file="uires\\ZhuJieMian\\2.dds" x="0" y="923" w="64" h="64">
+							<Size>
+								<AbsDimension x="134" y="124" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="147" y="117" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame name="$parentAward" input_transparent="true">
+				<Size>
+					<AbsDimension x="465" y="645" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="-67" y="-299"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<FontString name="$parentTitle" fonttype="FZYBlackFont16" justifyH="left" fontStyle="normal" text="奖励物品">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="25" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTimer" fonttype="LittleFZYBlackFont" justifyH="right" fontStyle="normal" text="选择剩余时间">
+							<Color r="255" g="0" b="0"/>
+							<Size>
+								<AbsDimension x="135" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="25" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMsg" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="背包已满，获得物品将以邮件形式发送给您">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="420" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="60" y="-15" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentMsgTip" file="uires\\ZhuJieMian\\1.dds" x="683" y="340" w="56" h="42">
+							<Size>
+								<AbsDimension x="36" y="27" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="25" y="-10" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentClose" inherits="GongYongAnNiuB1Template" text="离	开">
+						<Size>
+							<AbsDimension x="90" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+								<Offset>
+									<AbsDimension x="378" y="611"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>PworldScoreFrame_OnEsc()</OnClick>
+						</Scripts>
+					</Button>
+
+					<Button name="$parentCardOpen1" inherits="PworldScoreRewardOpenTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="25" y="55" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen2" inherits="PworldScoreRewardOpenTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen1" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen3" inherits="PworldScoreRewardOpenTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen2" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen4" inherits="PworldScoreRewardOpenTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen3" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen5" inherits="PworldScoreRewardOpenTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen4" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen6" inherits="PworldScoreRewardOpenTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="29" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen7" inherits="PworldScoreRewardOpenTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen6" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen8" inherits="PworldScoreRewardOpenTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen7" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen9" inherits="PworldScoreRewardOpenTemplate" id="9">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen8" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen10" inherits="PworldScoreRewardOpenTemplate" id="10">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen9" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen11" inherits="PworldScoreRewardOpenTemplate" id="11">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="29" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen12" inherits="PworldScoreRewardOpenTemplate" id="12">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen11" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen13" inherits="PworldScoreRewardOpenTemplate" id="13">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen12" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen14" inherits="PworldScoreRewardOpenTemplate" id="14">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen13" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen15" inherits="PworldScoreRewardOpenTemplate" id="15">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen14" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen16" inherits="PworldScoreRewardOpenTemplate" id="16">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen11" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="29" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen17" inherits="PworldScoreRewardOpenTemplate" id="17">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen16" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen18" inherits="PworldScoreRewardOpenTemplate" id="18">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen17" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen19" inherits="PworldScoreRewardOpenTemplate" id="19">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen18" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentCardOpen20" inherits="PworldScoreRewardOpenTemplate" id="20">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen19" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					#Vip报酬
+					<Button name="$parentVipCardOpen1" inherits="PworldScoreVIPRewardOpenTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentCardOpen16" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="29" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen2" inherits="PworldScoreVIPRewardOpenTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen1" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen3" inherits="PworldScoreVIPRewardOpenTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen2" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen4" inherits="PworldScoreVIPRewardOpenTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen3" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen5" inherits="PworldScoreVIPRewardOpenTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen4" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen6" inherits="PworldScoreVIPRewardOpenTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="29" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen7" inherits="PworldScoreVIPRewardOpenTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen6" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen8" inherits="PworldScoreVIPRewardOpenTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen7" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen9" inherits="PworldScoreVIPRewardOpenTemplate" id="9">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen8" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentVipCardOpen10" inherits="PworldScoreVIPRewardOpenTemplate" id="10">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentVipCardOpen9" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>PworldScoreFrame_OnLoad()</OnLoad>
+			<OnEvent>PworldScoreFrame_OnEvent()</OnEvent>
+			<OnShow>PworldScoreFrame_OnShow()</OnShow>
+			<OnHide>PworldScoreFrame_OnHide()</OnHide>
+			<OnUpdate>PworldScoreFrame_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

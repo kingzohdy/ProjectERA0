@@ -1,0 +1,4175 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>	
+	<Script file="uires/WatchPlayerFrame.lua"/>
+	## 这个修改，
+	<Frame name="WatchPlayerFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="490" y="480" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>        
+		<Layers>
+			<Layer level="background">
+				<Texture name="WatchPlayerFramebackground" inherits="MainBkgTemplate" >
+					<Size>
+						<AbsDimension x="283" y="456" />
+					</Size>
+				</Texture>
+				
+				<Texture name="$parentRoleNameBkg1" file="uires\\ZhuJieMian\\2.dds" x="605" y="971" w="134" h="53">
+					<Size>
+						<AbsDimension x="134" y="53" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRoleNameBkg2" file="uires\\ZhuJieMian\\2.dds" x="605" y="971" w="134" h="53" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="134" y="53" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentRoleNameBkg1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## 角色名
+				<FontString name="WPAttrNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="名字">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="160" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="-103" y="45" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 角色等级
+				<FontString name="WPAttrLvFont" fonttype="NormalBlackFont" text="等级">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="75" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="65" y="71" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 角色职业
+				<FontString name="WPAttrRaceFont" fonttype="NormalBlackFont" text="职业">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="75" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="154" y="71" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 天赋点
+				<FontString name="WPAttrGenuisFont" fonttype="NormalBlackFont" justifyH="center" text="天赋值" >
+					<Color r="255" g="150" b="0"/>
+					<Size>
+						<AbsDimension x="75" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="-98" y="92" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="WPAttrModelBkg1" file="uires\\ZhuJieMian\\3.dds" x="436" y="243" w="125" h="256">
+					<Size>
+						<AbsDimension x="125" y="256" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="16" y="93" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="WPAttrModelBkg2" file="uires\\ZhuJieMian\\3.dds" x="436" y="243" w="125" h="256" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="125" y="256" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="WPAttrModelBkg1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="-103" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+
+				<Texture name="$parentExpBkg" file="uires\\ZhuJieMian\\2.dds" x="336" y="976" w="268" h="48">
+					 <Size>
+						<AbsDimension x="268" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="400" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>	
+				<Texture name="$parentExpBkg1" file="uires\\ZhuJieMian\\2.dds" x="264" y="976" w="71" h="48">
+					 <Size>
+						<AbsDimension x="71" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentExpBkg" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="164" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="WatchPlayerFrame_CurExpDesc" fonttype="FZYBlackFont12" text="当前经验" >
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						   <Offset>
+								<AbsDimension x="21" y="407" />
+						   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="190" />
+				</FontString>				
+				<FontString name="WatchPlayerFrame_NextUpLvExpDesc" fonttype="FZYBlackFont12" text="升级经验">
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						   <Offset>
+								<AbsDimension x="21" y="427" />
+						   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="190" />
+				</FontString>		
+				<FontString name="WatchPlayerFrame_CurExp" fonttype="FZYBlackFont12" text="">
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="WatchPlayerFrame_CurExpDesc" relativePoint="right">
+						   <Offset>
+								<AbsDimension x="-8" y="0" />
+						   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="150" g="130" b="90" />
+				</FontString>
+				
+				<FontString name="WatchPlayerFrame_NextUpLvExp" fonttype="FZYBlackFont12" text="">
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="WatchPlayerFrame_NextUpLvExpDesc" relativePoint="right">
+						   <Offset>
+								<AbsDimension x="-8" y="0" />
+						   </Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="150" g="130" b="90" />
+				</FontString>
+
+				<Texture name="$parentFashionBkg" file="uires\\ZhuJieMian\\2.dds" DrawType="center" hidden="true">
+					<Size>
+						<AbsDimension x="268" y="66" />
+					</Size>
+					<Center>
+						<Left	x="135"	y="855" w="61"	h="66"	/>
+						<Center	x="197"	y="855" w="25"	h="66"	/>
+						<Right	x="223"	y="855" w="61"	h="66"	/>
+					</Center>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="381" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="background">
+				<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_Model" input_transparent="true">
+				<Size>
+					<AbsDimension x="490" y="480" />
+				</Size>
+				<Anchors>
+					<Anchor point="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>    
+				<Layers>
+					<Layer level="overlay">
+						<ModelView name="$parentView">
+							<Size>
+								<AbsDimension x="245" y="250" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="-105" y="-10" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentBackIconTexBtn">
+				<Layers>
+					<Layer>
+						<Texture name="WatchPlayerFrameLeftEquipbackground1" file="uires\\ZhuJieMian\\1.dds" x="130" y="666" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="84" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameLeftEquipbackground2" file="uires\\ZhuJieMian\\1.dds" x="175" y="666" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="129" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameLeftEquipbackground3" file="uires\\ZhuJieMian\\1.dds" x="220" y="666" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="174" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameLeftEquipbackground4" file="uires\\ZhuJieMian\\1.dds" x="265" y="666" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="219" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameLeftEquipbackground5" file="uires\\ZhuJieMian\\1.dds" x="310" y="666" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="264" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameLeftEquipbackground6" file="uires\\ZhuJieMian\\1.dds" x="355" y="666" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="309" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameLeftEquipbackground7" file="uires\\ZhuJieMian\\1.dds" x="355" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="354" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						
+						<Texture name="WatchPlayerFrameRightEquipbackground1" file="uires\\ZhuJieMian\\1.dds" x="130" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="84" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameRightEquipbackground2" file="uires\\ZhuJieMian\\1.dds" x="175" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="129" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameRightEquipbackground3" file="uires\\ZhuJieMian\\1.dds" x="220" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="174" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameRightEquipbackground4" file="uires\\ZhuJieMian\\1.dds" x="220" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="219" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameRightEquipbackground5" file="uires\\ZhuJieMian\\1.dds" x="265" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="264" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameRightEquipbackground6" file="uires\\ZhuJieMian\\1.dds" x="265" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="309" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameRightEquipbackground7" file="uires\\ZhuJieMian\\1.dds" x="310" y="711" w="44" h="44" >
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="WatchPlayerFrame" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="354" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg1" file="uires\\ZhuJieMian\\2.dds" x="619" y="368" w="52" h="52">
+							<Size>
+								<AbsDimension x="52" y="52" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="8" y="327" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg2" file="uires\\ZhuJieMian\\1.dds" x="214" y="317" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="12" y="331" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg3" file="uires\\ZhuJieMian\\2.dds" x="451" y="535" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="30" y="392" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg4" file="uires\\ZhuJieMian\\1.dds" x="839" y="613" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="75" y="392" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg5" file="uires\\ZhuJieMian\\1.dds" x="400" y="711" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="120" y="392" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg6" file="uires\\ZhuJieMian\\1.dds" x="839" y="658" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="165" y="392" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg7" file="uires\\ZhuJieMian\\1.dds" x="355" y="666" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="210" y="392" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg8" file="uires\\ZhuJieMian\\2.dds" x="619" y="368" w="52" h="52">
+							<Size>
+								<AbsDimension x="52" y="52" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="224" y="327" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="WatchPlayerFrameFashionItemBkg9" file="uires\\ZhuJieMian\\1.dds" x="400" y="666" w="44" h="44">
+							<Size>
+								<AbsDimension x="44" y="44" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="228" y="331" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 右手
+			<Button name="$parentEquip1" inherits="ItemButtonTemplate" id="1">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="84" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 头
+			<Button name="$parentEquip2" inherits="ItemButtonTemplate" id="2">		 
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 肩
+			<Button name="$parentEquip3" inherits="ItemButtonTemplate" id="7">		
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="174" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 面		
+			<Button name="$parentEquip4" inherits="ItemButtonTemplate" id="6">				
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="219" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 衣	  	
+			<Button name="$parentEquip5" inherits="ItemButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="264" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 足
+			<Button name="$parentEquip6" inherits="ItemButtonTemplate" id="15">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="309" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 翅膀	废弃
+			<Button name="$parentEquip7" inherits="ItemButtonTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="14" y="313" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 时装 胸
+			<Button name="$parentEquip8"  inherits="ItemButtonTemplate" id="8" hidden="true">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="120" y="392" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 左手
+			<Button name="$parentEquip9"  inherits="ItemButtonTemplate" id="5">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="84" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 项链 
+			<Button name="$parentEquip10" inherits="ItemButtonTemplate" id="17">	 
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 戒指
+			<Button name="$parentEquip11" inherits="ItemButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="174" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 戒指
+			<Button name="$parentEquip12" inherits="ItemButtonTemplate" id="13">	 
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="219" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 护符 1
+			<Button name="$parentEquip13" inherits="ItemButtonTemplate" id="20">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="264" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 护符 2	 	
+			<Button name="$parentEquip14" inherits="ItemButtonTemplate" id="21">		
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="309" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 圣怀
+			<Button name="$parentEquip15" inherits="ItemButtonTemplate" id="19">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="354" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 微章
+			<Button name="$parentEquip16" inherits="ItemButtonTemplate" id="9">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="354" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 时装 发型
+			<Button name="$parentEquip17" inherits="ItemButtonTemplate" hidden="true" id="23">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="12" y="331" />	
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 时装 帽子
+			<Button name="$parentEquip18" inherits="ItemButtonTemplate" hidden="true" id="22">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="30" y="392" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#时装 背
+			<Button name="$parentEquip19" inherits="ItemButtonTemplate" hidden="true" id="24">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="228" y="331" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			#时装 鞋子
+			<Button name="$parentEquip20" inherits="ItemButtonTemplate" hidden="true" id="25">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="210" y="392" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#时装 手套
+			<Button name="$parentEquip21" inherits="ItemButtonTemplate" hidden="true" id="26">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="75" y="392" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#时装 裤子
+			<Button name="$parentEquip22" inherits="ItemButtonTemplate" hidden="true" id="27">	
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="165" y="392" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="-217" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parent_HelpBtn" inhertis="HelpBtnTemplate" />
+
+			#完美星级
+			<Button name="$parentWearEquipAttrStarButton">
+				<Size>
+					<AbsDimension x="22" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="19" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="1002" y="147" w="22" h="20" >
+							<Size>
+								<AbsDimension x="22" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>WatchPlayerFrameWearEquipAttrStarButton_onEnter();</OnEnter>
+					<OnLeave>EquipFrameWearEquipAttrStarButton_onLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentIsOutSideBtn">
+				<Size>
+					<AbsDimension x="18" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="246" y="40" />
+						</Offset>
+					</Anchor>
+				</Anchors>    
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTexture" file="uires\\ZhuJieMian\\3.dds" x="422" y="172" w="18" h="24" >
+							<Size>
+								<AbsDimension x="18" y="24"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>WatchPlayerFrameIsOutSideBtn_OnClick();</OnClick>
+					<OnEnter>WatchPlayerFrameIsOutSideBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			#战勋
+			<Button name="$parentDaoBaBtn" hidden="true">
+				<Size>
+					<AbsDimension x="18" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="65" y="90" />
+						</Offset>
+					</Anchor>
+				</Anchors>    
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTexture" file="uires\\ui\\Za\\ZhanYun.tga">
+							<Size>
+								<AbsDimension x="18" y="21"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>WatchPlayerFrameDaoBaBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="WatchPlayerFrame_TurnLeftBtn" inherits="TurnRightButtonTemplate">
+				<Size>
+					<AbsDimension x="26" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="83" y="342" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>WatchPlayerFrame_TurnLeftBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+
+			<Button name="WatchPlayerFrame_TurnRightBtn" inherits="TurnLeftButtonTemplate">
+				<Size>
+					<AbsDimension x="26" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="176" y="342" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<onbuttonclick>WatchPlayerFrame_TurnRightBtn_OnMouseDown();</onbuttonclick>
+				</Scripts>
+			</Button>
+
+			<Button name="WPAttrBtn">
+				<Size>
+					<AbsDimension x="207" y="450" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="283" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+						<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="属性">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="173" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="top" >
+									<Offset>
+										<AbsDimension x="0" y="13" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>			
+				<Frames>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+					# 第一层大底板
+					<Button name="$parentFirstBaseAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="197" y="143"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="28" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# HP抬头
+					<Button name="$parentFirstBaseHeadLifeAttrButton">
+						<Size>
+							<AbsDimension x="34" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="NormalBlackFont" text="生命值" justifyH="left">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="34" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# HP条
+					<Button name="$parentFirstBaseLifeAttrButton">
+						<Size>
+							<AbsDimension x="152" y="11" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="42" y="7" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" inherits="RedBarTexTemplate" >
+									<Size>
+										<AbsDimension x="152" y="11" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="0" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+								<FontString name="$parentPercentFont" fonttype="MinimumBlackFont" justifyH="center" fontStyle="border" text="20000000000000000000/20000000000000000000" >
+									<Size>
+										<AbsDimension x="148" y="11" />
+									</Size>
+									<Color r="255" g="255" b="255"/>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# MP抬头
+					<Button name="$parentFirstBaseHeadMagicAttButton">
+						<Size>
+							<AbsDimension x="34" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="NormalBlackFont" text="魔法值" justifyH="left">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="34" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					
+					# 基础属性展示区
+					<Button name="$parentSecondBaseAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="189" y="121"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="4" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="106" >
+									<Size>
+										<AbsDimension x="189" y="106"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="基">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="22" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="础">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# MP条
+					<Button name="$parentFirstBaseMagicAttrButton">
+						<Size>
+							<AbsDimension x="152" y="11" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="42" y="20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">	
+								<Texture name="$parentTex" inherits="BlueBarTexTemplate" >
+									<Size>
+										<AbsDimension x="152" y="11" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="0" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+								<FontString name="$parentPercentFont" fonttype="MinimumBlackFont" justifyH="center" fontStyle="border" text="20000000000000000000/20000000000000000000" >
+									<Size>
+										<AbsDimension x="148" y="11" />
+									</Size>
+									<Color r="255" g="255" b="255"/>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="WPAttrBtn_NodeBtnTemplate" virtual="true" >
+						<Size>
+							<AbsDimension x="164" y="15" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentNameFont" fonttype="SongTi11Font" justifyH="left" text="物理攻击力物理攻击力物理攻击力物理攻击力物理攻击力">			
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="70" y="13" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentValueFont" fonttype="NormalBlackFont" justifyH="right" text="222222222222222222222222222222222222222">			
+									<Color r="255" g="254" b="189"/>
+									<Size>
+										<AbsDimension x="80" y="13" />
+									</Size>
+									<Anchors>
+										<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-5" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnter>WPAttrBtn_NodeBtn_OnEnter();</OnEnter>
+							<OnLeave>WPAttrBtn_NodeBtn_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="WPAttrBtn_BaseAttrBtn1" inherits="WPAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_BaseAttrBtn2" inherits="WPAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_BaseAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_BaseAttrBtn3" inherits="WPAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_BaseAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_BaseAttrBtn4" inherits="WPAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_BaseAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_BaseAttrBtn5" inherits="WPAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_BaseAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_BaseAttrBtn6" inherits="WPAttrBtn_NodeBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_BaseAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_BaseAttrBtn7" inherits="WPAttrBtn_NodeBtnTemplate" id="7">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_BaseAttrBtn6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					<Button name="$parentMainAttrFlagButton" input_transparent="true">
+						<Size>
+							<AbsDimension x="12" y="12"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="WPAttrBtn_BaseAttrBtn1" relativePoint="left">
+								<Offset>
+									<AbsDimension x="35" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="897" y="628" w="12" h="12" />
+					</Button>
+
+					# 高级属性标签页
+					<Button name="$parent_AdvanceAttrLabelBtn" inherits="GongYongAnNiuD1Template" text="高级属性">
+						<Size>
+							<AbsDimension x="86" y="23" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="13" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WPAttrBtn_AdvanceAttrLabelBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 特殊属性标签页
+					<Button name="$parent_SpecialAttrLabelBtn" inherits="GongYongAnNiuD1Template" text="特殊属性">
+						<Size>
+							<AbsDimension x="86" y="23" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="100" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WPAttrBtn_SpecialAttrLabelBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					
+					# 高级属性
+					# 第二层大底板
+					<Button name="$parentSecondBigAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="197" y="223"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="22" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# 第二大层第一个子层
+					<Button name="$parentSecondBig_FirstChildAttrBackGroundButton" >
+						<Size>
+							<AbsDimension x="191" y="123"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBigAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="3" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="121"  >
+									<Size>
+										<AbsDimension x="189" y="121"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="攻">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="22" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="击">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn1" inherits="WPAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_FirstChildAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn2" inherits="WPAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_AttackAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn3" inherits="WPAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_AttackAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn4" inherits="WPAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_AttackAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn5" inherits="WPAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_AttackAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn6" inherits="WPAttrBtn_NodeBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_AttackAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn7" inherits="WPAttrBtn_NodeBtnTemplate" id="7">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_AttackAttrBtn6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_AttackAttrBtn8" inherits="WPAttrBtn_NodeBtnTemplate" id="8">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_AttackAttrBtn7" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 第二大层第二个子层
+					<Button name="$parentSecondBig_SecondChildAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="191" y="93"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentSecondBig_FirstChildAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="91"  >
+									<Size>
+										<AbsDimension x="189" y="91"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="防">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="6" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="御">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="WPAttrBtn_DefendAttrBtn1" inherits="WPAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_SecondChildAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_DefendAttrBtn2" inherits="WPAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_DefendAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_DefendAttrBtn3" inherits="WPAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_DefendAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_DefendAttrBtn4" inherits="WPAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_DefendAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_DefendAttrBtn5" inherits="WPAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_DefendAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_DefendAttrBtn6" inherits="WPAttrBtn_NodeBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_DefendAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 特殊属性区域
+					# 元素攻击力
+					<Button name="$parentSecondBig_YuanSuAttackAttrBackGroundButton" >
+						<Size>
+							<AbsDimension x="189" y="76"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBigAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="3" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="76">
+									<Size>
+										<AbsDimension x="189" y="76"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="元">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="素">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="攻">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="击">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="力">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="WPAttrBtn_YuanSuAttackAttrBtn1" inherits="RoleAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_YuanSuAttackAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuAttackAttrBtn2" inherits="RoleAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuAttackAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuAttackAttrBtn3" inherits="RoleAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuAttackAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuAttackAttrBtn4" inherits="RoleAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuAttackAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuAttackAttrBtn5" inherits="RoleAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuAttackAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 元素防御力
+					<Button name="$parentSecondBig_YuanSuDefendAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="189" y="76"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentSecondBig_YuanSuAttackAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="76" >
+									<Size>
+										<AbsDimension x="189" y="76"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="元">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="素">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="防">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="御">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="力">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="WPAttrBtn_YuanSuDefendAttrBtn1" inherits="RoleAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_YuanSuDefendAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuDefendAttrBtn2" inherits="RoleAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuDefendAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuDefendAttrBtn3" inherits="RoleAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuDefendAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuDefendAttrBtn4" inherits="RoleAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuDefendAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_YuanSuDefendAttrBtn5" inherits="RoleAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_YuanSuDefendAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 辅助属性
+					<Button name="$parentSecondBig_FuZhuAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="189" y="61"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentSecondBig_YuanSuDefendAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="61" >
+									<Size>
+										<AbsDimension x="189" y="61"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="辅">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="助">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+
+					<Button name="WPAttrBtn_FuZhuAttrBtn1" inherits="RoleAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_FuZhuAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_FuZhuAttrBtn2" inherits="RoleAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_FuZhuAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_FuZhuAttrBtn3" inherits="RoleAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_FuZhuAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_FuZhuAttrBtn4" inherits="RoleAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_FuZhuAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 绿装显示区	
+					<Button name="$parentSuitBackGroundButton" hidden="true">
+						<Size>
+							<AbsDimension x="197" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBigAttrBackGroundButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTextrue	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					<Button name="WPAttrBtn_SuitBtnTemplate" virtual="true" hidden="true">
+						<Size>
+							<AbsDimension x="197" y="16" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentNameFont" fonttype="MinimumBlackFont" justifyH="right" text="物理攻击力物理攻击力物理攻击力物理攻击力物理攻击力">			
+									<Color r="255" g="254" b="189"/>
+									<Size>
+										<AbsDimension x="90" y="16" />
+									</Size>
+									<Anchors>
+										<Anchor point="topright" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-5" y="-8" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+
+								<FontString name="$parentValueFont" fonttype="MinimumBlackFont" justifyH="left" text="">			
+									<Color r="15" g="254" b="0"/>
+									<Size>
+										<AbsDimension x="80" y="13" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="-8" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+
+								# 分割线
+								<Texture name="$parentPartionTex" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" >
+									<Size>
+										<AbsDimension x="195" y="2" />
+									</Size>
+									<Anchors>
+										<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="1" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn1" inherits="WPAttrBtn_SuitBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSuitBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn2" inherits="WPAttrBtn_SuitBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn3" inherits="WPAttrBtn_SuitBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn4" inherits="WPAttrBtn_SuitBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn5" inherits="WPAttrBtn_SuitBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn6" inherits="WPAttrBtn_SuitBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn7" inherits="WPAttrBtn_SuitBtnTemplate" id="7">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn8" inherits="WPAttrBtn_SuitBtnTemplate" id="8">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn7" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn9" inherits="WPAttrBtn_SuitBtnTemplate" id="9">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn8" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn10" inherits="WPAttrBtn_SuitBtnTemplate" id="10">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn9" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn11" inherits="WPAttrBtn_SuitBtnTemplate" id="11">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn10" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn12" inherits="WPAttrBtn_SuitBtnTemplate" id="12">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn11" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn13" inherits="WPAttrBtn_SuitBtnTemplate" id="13">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn12" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn14" inherits="WPAttrBtn_SuitBtnTemplate" id="14">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn13" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn15" inherits="WPAttrBtn_SuitBtnTemplate" id="15">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn14" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="WPAttrBtn_SuitAttrBtn16" inherits="WPAttrBtn_SuitBtnTemplate" id="16">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="WPAttrBtn_SuitAttrBtn15" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>WPAttrBtn_OnShow();</OnShow>
+					<OnHide>WPAttrBtn_OnHide();</OnHide>
+				</Scripts>
+			</Button>
+
+			# 展开
+			<Button name="$parent_ZhanKaiBtn">
+				<Size>
+					<AbsDimension x="29" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="240" y="409" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="444" y="636" w="29" h="29" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="224" y="239" w="29" h="29" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="225" y="269" w="29" h="29" /> 
+				<Scripts>
+					<OnClick>WPAttrBtn:Show();</OnClick>
+				</Scripts>
+			</Button>
+			# 收缩
+			<Button name="$parent_ShouSuoBtn" hidden="true">
+				<Size>
+					<AbsDimension x="29" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="240" y="409" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="354" y="636" w="29" h="29" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="384" y="636" w="29" h="29" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="414" y="636" w="29" h="29" /> 
+				<Scripts>
+					<OnClick>WPAttrBtn:Hide();</OnClick>
+				</Scripts>
+			</Button>
+			#天赋tips
+			<Button name="WPAttrGenuisTips">
+				<Size>
+					<AbsDimension x="75" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="WPAttrGenuisFont" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>WPAttrGenuis_OnEnter();</OnEnter>
+					<OnLeave>TianFuLockTipsFrame:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 装备
+			<Button name="$parent_EquipBtn" inherits="GongYongAnNiuD2Template" text="装备" checked="true">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="7" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchPlayerFrameEquipBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 时装
+			<Button name="$parent_FashionBtn" inherits="GongYongAnNiuD2Template" text="时装">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="52" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchPlayerFrameFashionBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 能源
+			<Button name="$parent_NengYuanBtn" inherits="GongYongAnNiuD2Template" text="能源">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="97" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchPlayerFrameNengYuanBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>WatchPlayerFrameOnLoad();</OnLoad>
+			<OnEvent>WatchPlayerFrameOnEvent();</OnEvent>
+			<OnShow>WatchPlayerFrameOnShow();</OnShow>
+			<OnHide>WatchPlayerFrameOnHide();</OnHide>
+			<OnUpdate>WatchPlayerFrameOnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="WatchSparFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="490" y="480" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" >
+					<Size>
+						<AbsDimension x="283" y="456" />
+					</Size>
+				</Texture>
+				<Texture name="$parentRoleNameBkg1" file="uires\\ZhuJieMian\\2.dds" x="605" y="971" w="134" h="53">
+					<Size>
+						<AbsDimension x="134" y="53" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRoleNameBkg2" file="uires\\ZhuJieMian\\2.dds" x="605" y="971" w="134" h="53" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="134" y="53" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentRoleNameBkg1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				
+				<Texture name="$parentDescBkg" inherits="LayerBlackBkgTemplate">
+					 <Size>
+						<AbsDimension x="264" y="60" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="384" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="能 源" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="-103" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 角色名
+				<FontString name="$parentNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="名字">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="160" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="-103" y="45" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 角色等级
+				<FontString name="$parentLvFont" fonttype="NormalBlackFont" text="等级">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="75" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="65" y="71" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				## 角色职业
+				<FontString name="$parentRaceFont" fonttype="NormalBlackFont" text="职业">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="75" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="154" y="71" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentModelBkg1" file="uires\\ZhuJieMian\\3.dds" x="436" y="243" w="125" h="256">
+					<Size>
+						<AbsDimension x="125" y="256" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="16" y="93" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentModelBkg2" file="uires\\ZhuJieMian\\3.dds" x="436" y="243" w="125" h="256" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="125" y="256" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentModelBkg1" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentPlayerTex" file="uires\\TuPianLei\\NanMo 110X200.tga">
+					<Size>
+						<AbsDimension x="110" y="200" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="86" y="131" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex1" file="uires\\ZhuJieMian\\2.dds" x="612" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="142" y="170" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex2" file="uires\\ZhuJieMian\\2.dds" x="632" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="146" y="175" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex3" file="uires\\ZhuJieMian\\2.dds" x="652" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="146" y="184" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex4" file="uires\\ZhuJieMian\\2.dds" x="672" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="142" y="188" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex5" file="uires\\ZhuJieMian\\2.dds" x="662" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="133" y="188" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex6" file="uires\\ZhuJieMian\\2.dds" x="642" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="128" y="184" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex7" file="uires\\ZhuJieMian\\2.dds" x="622" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="128" y="175" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSparTex8" file="uires\\ZhuJieMian\\2.dds" x="602" y="960" w="9" h="9">
+					<Size>
+						<AbsDimension x="9" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="133" y="170" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="-217" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#完美星级
+			<Button name="$parentWearEquipAttrStarButton">
+				<Size>
+					<AbsDimension x="22" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="19" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\2.dds" x="1002" y="147" w="22" h="20" >
+							<Size>
+								<AbsDimension x="22" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>WatchPlayerFrameWearEquipAttrStarButton_onEnter();</OnEnter>
+					<OnLeave>EquipFrameWearEquipAttrStarButton_onLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentRoleAttrBtn">
+				<Size>
+					<AbsDimension x="207" y="450" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="283" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+						<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="属性">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="173" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="top" >
+									<Offset>
+										<AbsDimension x="0" y="13" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>			
+				<Frames>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+					
+					# 第一层大底板
+					<Button name="$parentFirstBaseAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="197" y="143"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="28" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# HP抬头
+					<Button name="$parentFirstBaseHeadLifeAttrButton">
+						<Size>
+							<AbsDimension x="34" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="NormalBlackFont" text="生命值" justifyH="left">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="34" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# HP条
+					<Button name="$parentFirstBaseLifeAttrButton">
+						<Size>
+							<AbsDimension x="152" y="11" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="42" y="7" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" inherits="RedBarTexTemplate" >
+									<Size>
+										<AbsDimension x="152" y="11" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="0" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+								<FontString name="$parentPercentFont" fonttype="MinimumBlackFont" justifyH="center" fontStyle="border" text="20000000000000000000/20000000000000000000" >
+									<Size>
+										<AbsDimension x="148" y="11" />
+									</Size>
+									<Color r="255" g="255" b="255"/>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# MP抬头
+					<Button name="$parentFirstBaseHeadMagicAttButton">
+						<Size>
+							<AbsDimension x="34" y="14" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="NormalBlackFont" text="魔法值" justifyH="left">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="34" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					
+					# 基础属性展示区
+					<Button name="$parentSecondBaseAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="189" y="121"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="4" y="31" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="106" >
+									<Size>
+										<AbsDimension x="189" y="106"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="基">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="22" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="础">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					# MP条
+					<Button name="$parentFirstBaseMagicAttrButton">
+						<Size>
+							<AbsDimension x="152" y="11" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="42" y="20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">	
+								<Texture name="$parentTex" inherits="BlueBarTexTemplate" >
+									<Size>
+										<AbsDimension x="152" y="11" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+											<Offset>
+												<AbsDimension x="0" y="-1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture> 
+								<FontString name="$parentPercentFont" fonttype="MinimumBlackFont" justifyH="center" fontStyle="border" text="20000000000000000000/20000000000000000000" >
+									<Size>
+										<AbsDimension x="148" y="11" />
+									</Size>
+									<Color r="255" g="255" b="255"/>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parent_BaseAttrBtn1" inherits="WPAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBaseAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_BaseAttrBtn2" inherits="WPAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_BaseAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_BaseAttrBtn3" inherits="WPAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_BaseAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_BaseAttrBtn4" inherits="WPAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_BaseAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_BaseAttrBtn5" inherits="WPAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_BaseAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_BaseAttrBtn6" inherits="WPAttrBtn_NodeBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_BaseAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_BaseAttrBtn7" inherits="WPAttrBtn_NodeBtnTemplate" id="7">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_BaseAttrBtn6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					<Button name="$parentMainAttrFlagButton" input_transparent="true">
+						<Size>
+							<AbsDimension x="12" y="12"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parent_BaseAttrBtn1" relativePoint="left">
+								<Offset>
+									<AbsDimension x="35" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="897" y="628" w="12" h="12" />
+					</Button>
+
+					# 高级属性标签页
+					<Button name="$parent_AdvanceAttrLabelBtn" inherits="GongYongAnNiuD1Template" text="高级属性">
+						<Size>
+							<AbsDimension x="86" y="23" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="13" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WatchSparFrameRoleAttrBtn_AdvanceAttrLabelBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 特殊属性标签页
+					<Button name="$parent_SpecialAttrLabelBtn" inherits="GongYongAnNiuD1Template" text="特殊属性">
+						<Size>
+							<AbsDimension x="86" y="23" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="100" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>WatchSparFrameRoleAttrBtn_SpecialAttrLabelBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					
+					# 高级属性
+					# 第二层大底板
+					<Button name="$parentSecondBigAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="197" y="223"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentFirstBaseAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="22" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# 第二大层第一个子层
+					<Button name="$parentSecondBig_FirstChildAttrBackGroundButton" >
+						<Size>
+							<AbsDimension x="191" y="123"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBigAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="3" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="121"  >
+									<Size>
+										<AbsDimension x="189" y="121"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="攻">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="22" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="击">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parent_AttackAttrBtn1" inherits="WPAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_FirstChildAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_AttackAttrBtn2" inherits="WPAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_AttackAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_AttackAttrBtn3" inherits="WPAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_AttackAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_AttackAttrBtn4" inherits="WPAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_AttackAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_AttackAttrBtn5" inherits="WPAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_AttackAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_AttackAttrBtn6" inherits="WPAttrBtn_NodeBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_AttackAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_AttackAttrBtn7" inherits="WPAttrBtn_NodeBtnTemplate" id="7">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_AttackAttrBtn6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_AttackAttrBtn8" inherits="WPAttrBtn_NodeBtnTemplate" id="8">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_AttackAttrBtn7" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 第二大层第二个子层
+					<Button name="$parentSecondBig_SecondChildAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="191" y="93"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentSecondBig_FirstChildAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="91"  >
+									<Size>
+										<AbsDimension x="189" y="91"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="防">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="6" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="御">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="2" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parent_DefendAttrBtn1" inherits="WPAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_SecondChildAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_DefendAttrBtn2" inherits="WPAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_DefendAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_DefendAttrBtn3" inherits="WPAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_DefendAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_DefendAttrBtn4" inherits="WPAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_DefendAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_DefendAttrBtn5" inherits="WPAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_DefendAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_DefendAttrBtn6" inherits="WPAttrBtn_NodeBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_DefendAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 特殊属性区域
+					# 元素攻击力
+					<Button name="$parentSecondBig_YuanSuAttackAttrBackGroundButton" >
+						<Size>
+							<AbsDimension x="189" y="76"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSecondBigAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="3" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="76">
+									<Size>
+										<AbsDimension x="189" y="76"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="元">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="素">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="攻">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="击">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="力">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parent_YuanSuAttackAttrBtn1" inherits="RoleAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_YuanSuAttackAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuAttackAttrBtn2" inherits="RoleAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuAttackAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuAttackAttrBtn3" inherits="RoleAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuAttackAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuAttackAttrBtn4" inherits="RoleAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuAttackAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuAttackAttrBtn5" inherits="RoleAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuAttackAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 元素防御力
+					<Button name="$parentSecondBig_YuanSuDefendAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="189" y="76"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentSecondBig_YuanSuAttackAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="76" >
+									<Size>
+										<AbsDimension x="189" y="76"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="元">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="素">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="防">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="御">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont5" fonttype="NormalBlackFont" text="力">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					<Button name="$parent_YuanSuDefendAttrBtn1" inherits="RoleAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_YuanSuDefendAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuDefendAttrBtn2" inherits="RoleAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuDefendAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuDefendAttrBtn3" inherits="RoleAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuDefendAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuDefendAttrBtn4" inherits="RoleAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuDefendAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_YuanSuDefendAttrBtn5" inherits="RoleAttrBtn_NodeBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_YuanSuDefendAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 辅助属性
+					<Button name="$parentSecondBig_FuZhuAttrBackGroundButton">
+						<Size>
+							<AbsDimension x="189" y="61"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentSecondBig_YuanSuDefendAttrBackGroundButton">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" x="473" y="635" w="189" h="61" >
+									<Size>
+										<AbsDimension x="189" y="61"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentFont1" fonttype="NormalBlackFont" text="辅">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentTex" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="10" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont2" fonttype="NormalBlackFont" text="助">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont3" fonttype="NormalBlackFont" text="属">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentFont4" fonttype="NormalBlackFont" text="性">
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="15" y="14" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+
+					<Button name="$parent_FuZhuAttrBtn1" inherits="RoleAttrBtn_NodeBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBig_FuZhuAttrBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="26" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_FuZhuAttrBtn2" inherits="RoleAttrBtn_NodeBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_FuZhuAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_FuZhuAttrBtn3" inherits="RoleAttrBtn_NodeBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_FuZhuAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_FuZhuAttrBtn4" inherits="RoleAttrBtn_NodeBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_FuZhuAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+
+					# 绿装显示区	
+					<Button name="$parentSuitBackGroundButton" hidden="true">
+						<Size>
+							<AbsDimension x="197" y="32"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBigAttrBackGroundButton" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTextrue	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					<Button name="$parent_SuitAttrBtn1" inherits="WPAttrBtn_SuitBtnTemplate" id="1">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSuitBackGroundButton" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn2" inherits="WPAttrBtn_SuitBtnTemplate" id="2">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn3" inherits="WPAttrBtn_SuitBtnTemplate" id="3">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn4" inherits="WPAttrBtn_SuitBtnTemplate" id="4">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn5" inherits="WPAttrBtn_SuitBtnTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn6" inherits="WPAttrBtn_SuitBtnTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn7" inherits="WPAttrBtn_SuitBtnTemplate" id="7">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn8" inherits="WPAttrBtn_SuitBtnTemplate" id="8">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn7" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn9" inherits="WPAttrBtn_SuitBtnTemplate" id="9">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn8" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn10" inherits="WPAttrBtn_SuitBtnTemplate" id="10">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn9" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn11" inherits="WPAttrBtn_SuitBtnTemplate" id="11">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn10" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn12" inherits="WPAttrBtn_SuitBtnTemplate" id="12">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn11" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn13" inherits="WPAttrBtn_SuitBtnTemplate" id="13">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn12" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn14" inherits="WPAttrBtn_SuitBtnTemplate" id="14">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn13" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn15" inherits="WPAttrBtn_SuitBtnTemplate" id="15">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn14" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+					<Button name="$parent_SuitAttrBtn16" inherits="WPAttrBtn_SuitBtnTemplate" id="16">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SuitAttrBtn15" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>	
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>WatchSparFrameRoleAttrBtn_OnShow();</OnShow>
+					<OnHide>WatchSparFrameRoleAttrBtn_OnHide();</OnHide>
+				</Scripts>
+			</Button>
+
+			<RichText name="$parentDescRich" fonttype="TeenyBlackFont" input_transparent="true">
+				<Size>
+					<AbsDimension x="254" y="55" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="17" y="391" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+
+			<Button name="$parentSparItemBtn1" inherits="SparFrameItemBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="174" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentSparItemBtn2" inherits="SparFrameItemBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="231" y="169" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+					<OnBeginDrag></OnBeginDrag>
+					<OnReceiveDrag></OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentSparItemBtn3" inherits="SparFrameItemBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="231" y="249" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+					<OnBeginDrag></OnBeginDrag>
+					<OnReceiveDrag></OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentSparItemBtn4" inherits="SparFrameItemBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="174" y="309" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+					<OnBeginDrag></OnBeginDrag>
+					<OnReceiveDrag></OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentSparItemBtn5" inherits="SparFrameItemBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="74" y="309" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+					<OnBeginDrag></OnBeginDrag>
+					<OnReceiveDrag></OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentSparItemBtn6" inherits="SparFrameItemBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="19" y="249" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+					<OnBeginDrag></OnBeginDrag>
+					<OnReceiveDrag></OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentSparItemBtn7" inherits="SparFrameItemBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="19" y="169" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+					<OnBeginDrag></OnBeginDrag>
+					<OnReceiveDrag></OnReceiveDrag>
+				</Scripts>
+			</Button>
+			<Button name="$parentSparItemBtn8" inherits="SparFrameItemBtnTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="74" y="109" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameItemBtn_OnClick()</OnClick>
+					<OnEnter>WatchSparFrameItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+					<OnBeginDrag></OnBeginDrag>
+					<OnReceiveDrag></OnReceiveDrag>
+				</Scripts>
+			</Button>
+			# 装备
+			<Button name="$parent_EquipBtn" inherits="GongYongAnNiuD2Template" text="装备">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="7" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameEquipBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 时装
+			<Button name="$parent_FashionBtn" inherits="GongYongAnNiuD2Template" text="时装">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="52" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WatchSparFrameFashionBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 能源
+			<Button name="$parent_NengYuanBtn" inherits="GongYongAnNiuD2Template" text="能源" checked="true">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="97" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+			</Button>		
+		</Frames>
+		<OnShowSound file="sounds\\UI\\dakaibaibao.wav" />
+		<OnHideSound file="sounds\\UI\\guanbibaibao.wav" />
+		<Scripts>
+			<OnLoad>WatchSparFrame_OnLoad();</OnLoad>
+			<OnShow>WatchSparFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

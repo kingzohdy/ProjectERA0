@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/IsBusy.lua"/>
+	<Frame name="IsBusyFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true">
+		<Size>
+			<AbsDimension x="385" y="240"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="我很忙" >
+					<Color r="255" g="254" b="191"/>
+					<Size>
+						<AbsDimension x="120" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTipBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="367" y="107" />	
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTipsFont1" fonttype="LittleFZYBlackFont" text="1.获得该活动所有奖励，包括宝石/经验/金钱/声望等">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="360" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="25" y="111"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipsFont2" fonttype="LittleFZYBlackFont" text="基尔特商会最新服务为您提供便利，忙得没时间做活动的朋">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="360" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="25" y="75"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTipsFont3" fonttype="LittleFZYBlackFont" text="友，现在可以雇佣替身机器人来帮你完成。">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="360" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="16" y="94"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentUseNumFont" fonttype="LittleFZYBlackFont" text="4.留一行文字，使用次数3次" hidden="true">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="360" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="16" y="120"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="380" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="201" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## 或者
+				<FontString name="$parentOrFont" fonttype="LittleFZYBlackFont" justifyH="left" text="或者">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="40" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="196" y="175"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##需要支付金钱  背景
+				<Texture name="$parentMoneyBkg" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="60" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="309" y="173" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				##支付金钱类型标志
+				<Texture name="$parentMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="99" y="494" w="17" h="18" >
+					<Size>
+						<AbsDimension x="17" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parentMoneyBkg" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-2" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentMoneyFont" fonttype="LittleFZYBlackFont" justifyH="right" text="9999999">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="90" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentMoneyBkg" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-23" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##需要免做券  背景
+				<Texture name="$parentItemBkg" inherits="EditBoxBkgTemplate">
+					<Size>
+						<AbsDimension x="49" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="139" y="173" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentItemFont" fonttype="LittleFZYBlackFont" justifyH="right" text="10">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="40" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentItemBkg" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-20" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItemUnitFont" fonttype="LittleFZYBlackFont" text="个">
+					<Color r="160" g="160" b="90"/>
+					<Size>
+						<AbsDimension x="17" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentItemBkg" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			# 信息标识按钮 
+			<Button name="$parent_TipsBtn">
+				<Size>
+					<AbsDimension x="103" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="266" y="35"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentWarningTex" file="uires\\ZhuJieMian\\1.dds" x="564" y="34" w="32" h="27" >		
+							<Size>
+								<AbsDimension x="28" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="今天第50次">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="32" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>IsBusyFrame_TipsBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			##活动名称
+			<RichText name="$parentFont" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="180" y="20"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="17" y="40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			## 1.5倍经验果
+			<CheckButton name="$parent_ItemBtn1" inherits="CheckBtnTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="40" y="139"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BusyFrame_ItemChkOneClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parentHalfExpBtn">
+				<Size>
+					<AbsDimension x="110" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="60" y="145"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="金币增加50%经验">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="110" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>HalfExpBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			## 2倍经验果
+			<CheckButton name="$parent_ItemBtn2" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="216" y="139"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BusyFrame_ItemChkTwoClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parentDoubleExpBtn">
+				<Size>
+					<AbsDimension x="119" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="236" y="145"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="金币增加100%经验">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="119" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>HalfExpBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			## 需要支付
+			<CheckButton name="$parent_NeedMoneyChk" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="224" y="173"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="支付金币：">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>BusyFrame_NeedMoneyClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			## 需要免费券
+			<CheckButton name="$parent_NeedItemChk" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="15" y="173"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" text="使用替身机器人：">
+							<Color r="255" g="255" b="189"/>
+							<Size>
+								<AbsDimension x="110" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="25" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>BusyFrame_NeedItemClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+
+			## 确定
+			<Button name="$parent_ConfirmButton" inherits="GongYongAnNiuB1Template" text="确定">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="36" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BusyFrame_ConfirmOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			## 取消
+			<Button name="$parent_CancelButton" inherits="GongYongAnNiuB1Template" text="取消">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-36"  y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BusyFrame_CancelOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>IsBusyFrame_OnShow();</OnShow>
+			<OnHide>IsBusyFrame_OnHide();</OnHide>
+		</Scripts>	
+	</Frame>
+</Ui>

@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ExchangeMoneyFrame.lua" />
+	<Frame name="ExchangeMoneyFrame" frameStrata="DIALOG" parent="UIClient" movable="true" hidden="true"  framelevel="199">
+		<Size>		
+			<AbsDimension x="326" y="364" />
+		</Size>
+		<Anchors>
+            <Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+                </Offset>
+			</Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+					
+				##界面标题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="兑换银币" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="80" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="18" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentbkg5" inherits="PaperBkgTemplate">
+					 <Size>
+						<AbsDimension x="337" y="333" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="31" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			##
+			<RichText name="$parentDescText" lineInterval ="4" multiLine="true" fontStyle="normal" fonttype="TeenyFZYBlackFont" >
+				<Size>
+					<AbsDimension x="260" y="70" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="40" y="60" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			##背景
+			<Button name="$parentBackBtn">
+				<Size>
+					<AbsDimension x="240" y="140" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="70"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>						
+						##换购价格
+						<FontString name="$parentTodayPriceHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="今日换购价格：">
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Color r="40" g="31" b="3"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="35" y="50"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTodayPrice" fonttype="TeenyFZYBlackFont" fontStyle="shadow" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="255" g="120" b="0"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="145" y="50"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTodayPriceTail" fonttype="TeenyBlackFont" justifyH="left" text="银币/绑银">
+							<Size>
+								<AbsDimension x="110" y="20"/>
+							</Size>
+							<Color r="40" g="31" b="3"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="195" y="50"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##换购税率
+						<FontString name="$parentTodayRateHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="今日换购税率：">
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Color r="40" g="31" b="3"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="35" y="80"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTodayRate" fonttype="TeenyFZYBlackFont" fontStyle="shadow" justifyH="left" text="0.1 %">
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="255" g="120" b="0"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="145" y="80"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##当前的数量
+						<FontString name="$parentMyMoneyHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="拥有绑银数量：">
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Color r="40" g="31" b="3"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="35" y="110"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMyMoney" fonttype="TeenyFZYBlackFont" fontStyle="shadow" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="110" y="20"/>
+							</Size>
+							<Color r="255" g="120" b="0"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="145" y="110"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##输入数量
+						<FontString name="$parentNumIputHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="输入兑换数量：">
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Color r="40" g="31" b="3"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="35" y="160"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##数量输入框底版
+						<Texture name="$parentNumIputTex" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="120" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentNumIputHead" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="100" y="-3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						##
+						<FontString name="$parentExchangeDesc1" fonttype="TeenyBlackFont" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="240" y="20"/>
+							</Size>
+							<Color r="0" g="53" b="0"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="35" y="180"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentExchangeDesc2" fonttype="TeenyBlackFont" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="240" y="20"/>
+							</Size>
+							<Color r="0" g="53" b="0"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="35" y="195"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			##关闭按钮
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			
+			##数量输入
+			<EditBox name="$parentNumIput" letters="7" editMethod="2">
+				<Size>
+					<AbsDimension x="80" y="16"/>
+				</Size>
+				<FontString name="$parentEditFontNormal" fonttype="SongTiFont14" justifyH="center" text="1">
+					<Color r="255" g="255" b="255" />
+				</FontString>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="ExchangeMoneyFrameBackBtnNumIputTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnterPressed>ExchangeMoneyFrameOKBtnOnClick();</OnEnterPressed>
+					<OnEscapePressed>NumIput_OnEscapePressed();</OnEscapePressed>	
+				</Scripts>
+			</EditBox>
+
+			<Button name="$parentOKButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定兑换">
+				<Size>
+					<AbsDimension x="96" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="45" y="-45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ExchangeMoneyFrameOKBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-30"  y="-45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ExchangeMoneyFrame_OnShow();</OnShow>
+			<OnHide>EcchangeMonetFrame_OnHide();</OnHide>
+			<OnLoad>ExchangeMoneyFrame_OnLoad();</OnLoad>
+			<OnUpdate>ExchangeMoneyFrame_OnUpdate();</OnUpdate>
+			<OnEvent>ExchangeMoneyFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ExchangeMoneyConfirmFrame" frameStrata="DIALOG" parent="UIClient" movable="true" hidden="true" framelevel="199">
+		<Size>	
+			<AbsDimension x="258" y="239" />
+		</Size>
+		<Anchors>
+            <Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+                </Offset>
+			</Anchor>
+        </Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="兑换银币确认" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="18" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentContent" fonttype="TeenyFZYBlackFont" justifyH="left" text="您确定要兑换以下数量的银币？" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="200" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="20" y="50" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeNumHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="兑换数量：" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="25" y="87" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeNum" fonttype="TeenyFZYBlackFont" justifyH="left" text="" >
+					<Color r="255" g="255" b="255"/>
+					 <Size>
+						<AbsDimension x="90" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="100" y="87" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangePriceHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="兑换单价：" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="25" y="114" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangePrice" fonttype="TeenyFZYBlackFont" justifyH="left" text="" >
+					<Color r="255" g="255" b="255"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="100" y="114" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangePriceTail" fonttype="TeenyBlackFont" justifyH="left" text="银币/绑银" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="80" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="145" y="114" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeTotalHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="兑换总价：" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="25" y="141" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeTotal" fonttype="TeenyFZYBlackFont" justifyH="left" text="" >
+					<Color r="255" g="255" b="255"/>
+					 <Size>
+						<AbsDimension x="90" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="100" y="141" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeTotalTail" fonttype="TeenyBlackFont" justifyH="left" text="银币" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="145" y="141" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeCostHead" fonttype="TeenyFZYBlackFont" justifyH="left" text="兑换税金：" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="25" y="168" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeCost" fonttype="TeenyFZYBlackFont" justifyH="left" text="" >
+					<Color r="255" g="255" b="255"/>
+					 <Size>
+						<AbsDimension x="95" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="100" y="168" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExchangeCostTail" fonttype="TeenyBlackFont" justifyH="left" text="银币" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="145" y="168" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			##关闭按钮
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+
+			<Button name="$parentOKButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定兑换">
+				<Size>
+					<AbsDimension x="96" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="10" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ExchangeMoneyConfirmFrameOKBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-15"  y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ExchangeMoneyConfirmFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

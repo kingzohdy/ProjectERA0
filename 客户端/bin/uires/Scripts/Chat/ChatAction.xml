@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Chat\ChatAction.lua" />
+
+	<Frame name="ChatActionFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="200">
+		<Size>
+			<AbsDimension x="191" y="281" />
+		</Size>
+		<Anchors>
+			<Anchor point="bottomleft" relativeTo="ChatInsertFrame" relativePoint="topright">
+				<Offset>
+					<AbsDimension x="23" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" lineInterval ="2" multiLine="false" justifyH="center" fonttype="TeenyFZYBlackFont" text="动 作">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="9" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString> 
+			</Layer>
+		</Layers>
+		<Frames>
+			##关闭窗口
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+				
+			<Button name="$parentBkgBtn">
+				<Size>
+					<AbsDimension x="185" y="247" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<Button name="$parentBkgBtn1">
+				<Size>
+					<AbsDimension x="180" y="220" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate"/>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parentItemBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentIcon">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentNameFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="center" text="dance">
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="120" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="31" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="27" y="32" w="1" h="1"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<Scripts>
+					<OnClick>ChatActionFrameItemBtnOnClick();</OnClick>
+					<OnEnter>ChatActionFrameItemBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentItem1" inherits="$parentItemBtnTemplate" id=1>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBkgBtn1">
+						<Offset>
+							<AbsDimension x="14" y="18"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="$parentItemBtnTemplate" id=2>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentItem1">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="$parentItemBtnTemplate" id=3>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentItem2">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="$parentItemBtnTemplate" id=4>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentItem1">
+						<Offset>
+							<AbsDimension x="0" y="22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="$parentItemBtnTemplate" id=5>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentItem4">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem6" inherits="$parentItemBtnTemplate" id=6>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentItem5">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem7" inherits="$parentItemBtnTemplate" id=7>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentItem4">
+						<Offset>
+							<AbsDimension x="0" y="22"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem8" inherits="$parentItemBtnTemplate" id=8>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentItem7">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem9" inherits="$parentItemBtnTemplate" id=9>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="$parentItem8">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentPageBkgBtn">
+				 <Size>
+				   <AbsDimension x="150" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="40" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<FontString name="$parentPageFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="第1页" >
+							<Color r="255" g="254" b="189"/>  
+							 <Size>
+								<AbsDimension x="120" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="-25" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>	
+					</Layer>
+				</Layers>
+			</Button>			
+			<Button name="$parentLeftPageBtn" inherits="PrevPageBtnTemplate" >				
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentPageBkgBtn">
+						<Offset>
+							<AbsDimension x="10" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>				
+				<Scripts>
+					<OnClick>ChatActionFrameLeftPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentRightPageBtn" inherits="NextPageBtnTemplate">				
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="$parentLeftPageBtn">
+						<Offset>
+							<AbsDimension x="48" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatActionFrameRightPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentToLastPageBtn" inherits="LastPageBtnTemplate">				
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomright" relativeTo="$parentRightPageBtn">
+						<Offset>
+							<AbsDimension x="3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatActionFrameToLastPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentToFirstPageBtn" inherits="FirstPageBtnTemplate">
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parentLeftPageBtn">
+						<Offset>
+							<AbsDimension x="-3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatActionFrameToFirstPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>		
+		</Frames>
+		<Scripts>
+			<OnShow>ChatActionFrameOnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

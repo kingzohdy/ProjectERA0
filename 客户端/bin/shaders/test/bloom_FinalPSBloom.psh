@@ -1,0 +1,108 @@
+
+#include "header.fx"
+
+float g_HighScene = 1.0f; //(0.1-1.0)
+
+// ¾¶ÏòÄ£ºý
+const float g_fSampleDist = 0.8f;
+const float g_fSampleStrength = 1.5f;
+
+// äöÎÐ
+float textureX = 1024.0f;
+float textureY = 768.0f;
+float radiusRate = 0.4f;
+float degree = 0.0f;
+
+// Gauss
+float gaussRate = 0.0f;
+
+sampler MeshTextureSampler : register(s0);
+sampler BlendTextureSampler : register(s1);
+sampler BloomSampler : register(s2);
+sampler BlurSampler : register(s3);
+
+struct VS_OUTPUT
+{
+    float4 Position   : POSITION;   // vertex position 
+    float3 TextureUV  : TEXCOORD0;  // vertex texture coords 
+};
+
+struct PS_OUTPUT
+{
+    float4 RGBColor : COLOR0;  // Pixel color    
+};
+
+float samples[10] =   
+{  
+   -0.05,  
+   -0.04,  
+   -0.03,  
+   -0.02,  
+   -0.01,  
+   0.01,  
+   0.02,  
+   0.03,  
+   0.04,  
+   0.05  
+}; 
+
+PS_OUTPUT PSMain(VS_OUTPUT In)
+{
+	PS_OUTPUT Output;
+
+	float2 texCoord = In.TextureUV.xy;
+
+#if BLUR_TYPE == 4
+	float2 texSize = float2(textureX, textureY);
+	float2 center = texSize * 0.5f;
+	float2 tc = texCoord * texSize;
+	tc -= center;
+	float distance = length(tc);
+
+	float radius = radiusRate * textureY;
+
+	if (distance < radius)
+	{
+		float percent = (radius - distance)/radius;
+		float theta = percent*percent*degree*8;
+		float s = sin(theta);
+		float c = cos(theta);
+		tc = float2(dot(tc, float2(c, -s)), dot(tc, float2(s, c)));
+	}
+	tc += center;
+	texCoord = tc/texSize;
+#endif
+
+#if BLUR_TYPE == 2
+	float4 vSample = tex2D(MeshTextureSampler, texCoord);
+	float4 vBloom	= tex2D(BloomSampler, texCoord);
+	float boomRate = 0.75f + gaussRate * 0.25f;
+	float sampRate = 0.25f - gaussRate * 0.25f;
+	Output.RGBColor = vSample*sampRate + vBloom*boomRate;
+#else
+	float4 vSample = tex2D(MeshTextureSampler, texCoord);
+    	float4 vBloom	= tex2D(BloomSampler, texCoord);	
+    	vSample += g_HighScene * vBloom;
+	Output.RGBColor = vSample;
+#endif
+	
+#if BLUR_TYPE == 3
+	float2 dir = float2(0.5, 0.5) - texCoord;
+	float dist = length(dir);
+	dir /= dist;
+
+	float4 sum = Output.RGBColor;
+   	for (int i = 0; i < 10; ++i)  
+   	{  
+      		sum += tex2D(MeshTextureSampler, texCoord + dir * samples[i] * g_fSampleDist);  
+   	}
+
+ 	sum /= 11.0;
+
+	float t = saturate(dist * g_fSampleStrength);  
+     
+   	Output.RGBColor = lerp(Output.RGBColor, sum, t);  
+#endif	
+
+    	return Output;   
+}

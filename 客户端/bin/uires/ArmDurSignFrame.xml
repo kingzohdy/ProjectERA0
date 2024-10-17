@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>	
+	<Script file="uires/ArmDurSignFrame.lua"/>
+	# Low
+	<Frame name="ArmDurSignFrame" parent="UIClient" frameStrata="Low" hidden="true" movable="false"  input_transparent="true">
+		<Size>
+			<AbsDimension x="88" y="99" />
+		</Size>
+		<Anchors>
+			<Anchor point="topright" relativeTo="MinimapFrame" relativePoint="bottomright">
+				<Offset>
+					<AbsDimension x="-185" y="-50" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="Low">
+				#右手武器
+				<Texture name="ArmDurSignFrameRight_Tex" file="uires\\ZhuJieMian\\1.dds" x="981" y="565" w="17" h="64" >
+					<Size>
+						<AbsDimension x="18" y="67" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ArmDurSignFrameBody_Tex" file="uires\\ZhuJieMian\\1.dds" x="839" y="514" w="39" h="98">
+					<Size>
+						<AbsDimension x="39" y="98" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ArmDurSignFrameRight_Tex" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				#左手武器
+				<Texture name="ArmDurSignFrameLeft_Tex" file="uires\\ZhuJieMian\\1.dds" x="879" y="565" w="26" h="37">
+					<Size>
+						<AbsDimension x="26" y="37" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ArmDurSignFrameBody_Tex" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="ArmDurSignFrameHead_Tex" file="uires\\ZhuJieMian\\1.dds" x="67" y="620" w="17" h="19">
+					<Size>
+						<AbsDimension x="17" y="19" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="ArmDurSignFrameBody_Tex" relativePoint="top">
+							<Offset>
+								<AbsDimension x="-2" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ArmDurSignFrameShoulder_Tex" file="uires\\ZhuJieMian\\1.dds" x="221" y="225" w="30" h="13">
+					<Size>
+						<AbsDimension x="30" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="ArmDurSignFrameHead_Tex" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ArmDurSignFrameMask_Tex" file="uires\\ZhuJieMian\\1.dds" x="739" y="440" w="9" h="13">
+					<Size>
+						<AbsDimension x="9" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="ArmDurSignFrameShoulder_Tex" relativePoint="right">
+							<Offset>
+								<AbsDimension x="10" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="ArmDurSignFrameClothing_Tex" file="uires\\ZhuJieMian\\1.dds" x="839" y="418" w="38" h="47">
+					<Size>
+						<AbsDimension x="38" y="47" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="ArmDurSignFrameHead_Tex" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="1" y="-10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="ArmDurSignFrameFoot_Tex" file="uires\\ZhuJieMian\\1.dds" x="933" y="565" w="23" h="37">
+					<Size>
+						<AbsDimension x="23" y="37" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="ArmDurSignFrameClothing_Tex" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 新手指引提示
+			<Button name="$parentXinShouBtn" input_transparent="true" hidden="true">
+				<Size>
+					<AbsDimension x="132" y="39"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="45" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="parent">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate">
+						<Size>
+							<AbsDimension x="13" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-4" y="4" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+								<OnClick>HideUIFrame(this:GetParent());</OnClick>
+						</Scripts>
+					</Button>						
+				</Frames>
+				<Scripts>
+					<!--<OnUpdate>ArmDurSignFrameXinShouBtn_OnUpdate();</OnUpdate>-->
+					<OnShow>ArmDurSignFrameXinShouBtn_OnShow();</OnShow>
+					<OnHide>ArmDurSignFrameXinShouBtn_OnHide();</OnHide>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ArmDurSignFrame_OnLoad();</OnLoad>
+			<OnEvent>ArmDurSignFrame_OnEvent();</OnEvent>
+			<OnShow>ArmDurSignFrame_OnShow();</OnShow>
+			<OnHide>ArmDurSignFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

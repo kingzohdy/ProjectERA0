@@ -1,0 +1,1672 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\SortLine.lua"/>
+	<Button name="SortLineFrame_CategoryBtnTemplate" inherits="GongYongAnNiuA1ButtonTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="92" y="26" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<!--分割线-->
+				<Texture name="$parentPartionTex" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" hidden="true">
+					<Size>
+						<AbsDimension x="90" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentType" fonttype="TeenyBlackFont" justifyH="center" text="">
+					<Size>
+						<AbsDimension x="90" y="20"/>
+					</Size>
+					<Color r="255" g="255" b="255"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentSubType" fonttype="TeenyBlackFont" justifyH="center" text="">
+					<Size>
+						<AbsDimension x="90" y="20"/>
+					</Size>
+					<Color r="152" g="139" b="116"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="6"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>SortLineFrame_CategoryBtn_OnClick();</OnClick>
+		</Scripts>
+	</Button>
+
+	<Frame name="SortLineFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="210" hidden="true" >
+		<Size>
+			<AbsDimension x="579" y="484" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="排 行 榜" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<!--关闭按钮 -->
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+
+			<Button name="$parentBackBtn">
+				<Size>
+					<AbsDimension x="573" y="450" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentRank" fonttype="TeenyMSYHFont" justifyH="RIGHT" text="你在排行榜上位列第15">
+							<Size>
+								<AbsDimension x="200" y="19"/>
+							</Size>
+							<Color r="255" g="150" b="25"/>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-15" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTimeFont" fonttype="TeenyMSYHFont" justifyH="left" >
+							<Size>
+								<AbsDimension x="300" y="19"/>
+							</Size>
+							<Color r="255" g="255" b="190"/>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="115" y="-10"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<!--区域列表背景-->
+			<Button name="$parent_CategoryBackBtn">
+				<Size>
+					<AbsDimension x="94" y="446" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+					</Layer>
+				</Layers>
+			</Button>
+
+			<!--列表区域背景-->
+			<Button name="$parent_ListBackBtn">
+				<Size>
+					<AbsDimension x="467" y="378" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent_CategoryBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+
+						<Texture name="$parentTitleBtn1Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="56" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn1Font" fonttype="HeiTiFont12" justifyH="center" text="排名">
+							<Size>
+								<AbsDimension x="56" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn1Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTitleBtn2Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="115" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn1Tex" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn2Font" fonttype="HeiTiFont12" justifyH="center" text="名字">
+							<Size>
+								<AbsDimension x="115" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn2Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTitleBtn3Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="56" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn2Tex" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn3Font" fonttype="HeiTiFont12" justifyH="center" text="等级">
+							<Size>
+								<AbsDimension x="56" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn3Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTitleBtn4Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="60" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn3Tex" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn4Font" fonttype="HeiTiFont12" justifyH="center" text="职业">
+							<Size>
+								<AbsDimension x="60" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn4Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTitleBtn5Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="116" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn4Tex" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn5Font" fonttype="HeiTiFont12" justifyH="center" text="公会">
+							<Size>
+								<AbsDimension x="116" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn5Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTitleBtn6Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="56" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn5Tex" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn6Font" fonttype="HeiTiFont12" justifyH="center" text="升降">
+							<Size>
+								<AbsDimension x="56" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn6Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTitleBtn7Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="0" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn6Tex" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn7Font" fonttype="HeiTiFont12" justifyH="center" text="逃跑">
+							<Size>
+								<AbsDimension x="0" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn7Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTitleBtn8Tex" inherits="GongYongAnNiuD1NormalTemplate" >
+							<Size>
+								<AbsDimension x="0" y="24" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn7Tex" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentTitleBtn8Font" fonttype="HeiTiFont12" justifyH="center" text="胜率">
+							<Size>
+								<AbsDimension x="0" y="19"/>
+							</Size>
+							<Color r="160" g="160" b="160"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentTitleBtn8Tex" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			<Button name="$parentSearchBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="搜索" >
+				<Size>
+					<AbsDimension x="39" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="Bottomleft" relativeTo="$parent_ListBackBtn" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="10" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_SearchBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentInputBtn">
+				<Size>
+					<AbsDimension x="106" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentSearchBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentPartionTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="106" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<EditBox name="$parentSearchText" letters="14" historyLines="1" multiLine="false" text="">
+						<Size>
+							<AbsDimension x="100" y="15" />
+						</Size>
+						<Anchors>
+							<Anchor point="Topleft" relativeTo="$parent" relativePoint="Topleft">
+								<Offset>
+									<AbsDimension x="3" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="SongTiFont12">
+							<Color r="254" g="255" b="177" />
+						</FontString>
+						<Scripts>
+							<OnEnterPressed>SortLineFrame_SearchBtn_OnClick();</OnEnterPressed>
+						</Scripts>
+					</EditBox>
+				</Frames>
+			</Button>
+
+			<Button name="$parentWatchBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="观察玩家">
+				<Size>
+					<AbsDimension x="64" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentInputBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_WatchBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentPrivateBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="私聊">
+				<Size>
+					<AbsDimension x="39" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentWatchBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_PrivateBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentAddFriendBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="加为好友">
+				<Size>
+					<AbsDimension x="64" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentPrivateBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_AddFriendBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentFirstPageBtn" inherits="FirstPageBtnTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentAddFriendBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="15" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_FirstPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentPrePageBtn" inherits="PrevPageBtnTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentFirstPageBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_PrePageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentCurPageBtn">
+				<Size>
+					<AbsDimension x="44" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentPrePageBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentPageFont" fonttype="TeenyBlackFont" justifyH="center" text="">
+							<Size>
+								<AbsDimension x="44" y="19"/>
+							</Size>
+							<Color r="228" g="227" b="109"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture inherits="EditBoxBkgTemplate" />
+			</Button>
+
+			<Button name="$parentNextPageBtn" inherits="NextPageBtnTemplate">
+
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentCurPageBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_NextPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentLastPageBtn" inherits="LastPageBtnTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentNextPageBtn" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortLineFrame_LastPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			##列表数据模板
+			<Button name="SortInfoTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="467" y="22" />
+				</Size>
+				<Layers>
+					<Layer level = "overlay">
+						<FontString name="$parentSortIndexFont" fonttype="TeenyMSYHFont" justifyH="left" lineInterval="3" >
+							<Size>
+								<AbsDimension x="56" y="20" />
+							</Size>
+							<Color r="255" g="254" b="189" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNameFont" fonttype="TeenyMSYHFont" justifyH="left" lineInterval="3" >
+							<Size>
+								<AbsDimension x="115" y="20" />
+							</Size>
+							<Color r="255" g="254" b="189" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentSortIndexFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLvFont" fonttype="TeenyMSYHFont" justifyH="left" lineInterval="3" >
+							<Size>
+								<AbsDimension x="56" y="20" />
+							</Size>
+							<Color r="255" g="254" b="189" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCareerFont" fonttype="TeenyMSYHFont" justifyH="left" lineInterval="3" >
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="60" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentClanNameFont" fonttype="TeenyMSYHFont" justifyH="left" lineInterval="3" >
+							<Size>
+								<AbsDimension x="116" y="20" />
+							</Size>
+							<Color r="255" g="254" b="189" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentCareerFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentSortAreaFont" fonttype="TeenyMSYHFont" justifyH="left" lineInterval="3" >
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="56" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentClanNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentRunAwayFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" >
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="0" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentSortAreaFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentVRateFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" >
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="0" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentRunAwayFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+				<HighlightTexture		inherits="HighlightTextureTemplate" />
+				<PushedTexture	inherits="PushedTextureTemplate" />
+				<Scripts>
+					<OnClick>SortInfo_OnClick();</OnClick>
+					<OnEnter>SortInfo_OnEnter();</OnEnter>
+					<OnLeave>SortInfo_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="SortInfo1" inherits="SortInfoTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ListBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="26" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo2" inherits="SortInfoTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo3" inherits="SortInfoTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo4" inherits="SortInfoTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo5" inherits="SortInfoTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo6" inherits="SortInfoTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo5" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo7" inherits="SortInfoTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo6" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo8" inherits="SortInfoTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo7" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo9" inherits="SortInfoTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo8" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo10" inherits="SortInfoTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo9" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo11" inherits="SortInfoTemplate" id="11">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo10" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo12" inherits="SortInfoTemplate" id="12">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo11" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo13" inherits="SortInfoTemplate" id="13">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo12" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo14" inherits="SortInfoTemplate" id="14">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo13" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo15" inherits="SortInfoTemplate" id="15">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo14" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfo16" inherits="SortInfoTemplate" id="16">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="SortInfo15" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn1HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_CategoryBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn2HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn1HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn3HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn2HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn4HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn3HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn5HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn4HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn6HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn5HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn7HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn6HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn8HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn7HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn9HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn8HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn10HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn9HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn11HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="11">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn10HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn12HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="12">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn11HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn13HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="13">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn12HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn14HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="14">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn13HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn15HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="15">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn14HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn16HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="16">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn15HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn17HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="17">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn16HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortLineFrame_CategoryBtn18HighlightBtn" inherits="SortLineFrame_CategoryBtnTemplate" id="18">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SortLineFrame_CategoryBtn17HighlightBtn">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>SortLineFrame_OnLoad();</OnLoad>
+			<OnEvent>SortLineFrame_OnEvent();</OnEvent>
+			<OnShow>SortLineFrame_OnShow();</OnShow>
+			<OnHide>SortLineFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="SortInfotip" hidden="true" frameStrata="TOOLTIP" framelevel="220">
+		<Size>
+			<AbsDimension x="250" y="100" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" >
+				<Size>
+					<AbsDimension x="230" y="200" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="3" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnHide>OnSpellTipsOnHide();</OnHide>
+			<OnLoad>OnSpellTooltipOnLoad();</OnLoad>
+			<OnShow>SortInfotipOnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	<Frame name="SortInfoMsgFrame" frameStrata="FULLSCREEN_DIALOG" hidden="true" movable="false">
+		<Size>
+			<AbsDimension x="165" y="100" />
+		</Size>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="SortInfoMsgFrameCloseBtn" inherits="CloseBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="2" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<RichText name="SortInfoMsgFrameTipRich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" input_transparent="false">
+				<Size>
+					<AbsDimension x="145" y="90" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="10" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SortInfoMsgFrameRich_OnClick();</OnClick>
+				</Scripts>
+
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>SortInfoMsgFrame_OnShow();</OnShow>
+			<OnLoad>SortInfoMsgFrame_OnLoad();</OnLoad>
+			<OnHide>SortInfoMsgFrame_OnHide();</OnHide>
+			<OnUpdate>SortInfoMsgFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="SortInfoListMenuFrame" hidden="true" frameStrata="DIALOG">
+		<Size>
+			<AbsDimension x="90" y="307" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="SortInfoListMenuTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="80" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center">
+						<Offset>
+							<AbsDimension x="4" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentName" fonttype="TeenyBlackFont" justifyH="center" text="">
+							<Color r="211" g="202" b="185"/>
+							<Size>
+								<AbsDimension x="75" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate" />
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<Scripts>
+					<OnClick>SortInfoListMenu_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="SortInfoListMenu1" inherits="SortInfoListMenuTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="5" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="SortInfoListMenu2" inherits="SortInfoListMenuTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu1">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="SortInfoListMenu3" inherits="SortInfoListMenuTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu2">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="SortInfoListMenu4" inherits="SortInfoListMenuTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu3">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfoListMenu5" inherits="SortInfoListMenuTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu4">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="SortInfoListMenu6" inherits="SortInfoListMenuTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu5">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="SortInfoListMenu7" inherits="SortInfoListMenuTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu6">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SortInfoListMenu8" inherits="SortInfoListMenuTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu7">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="SortInfoListMenu9" inherits="SortInfoListMenuTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu8">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="SortInfoListMenu10" inherits="SortInfoListMenuTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="SortInfoListMenu9">
+						<Offset>
+							<AbsDimension x="0" y="16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>SortInfoListMenuFrame_OnShow();</OnShow>
+			<onfocuslost>SortInfoListMenuFrame:Hide();</onfocuslost>
+		</Scripts>
+	</Frame>
+
+	<Frame name="CowboyRankFrame" frameStrata="DIALOG" parent="UIClient" movable="true" framelevel="200" hidden="true" >
+		<Size>
+			<AbsDimension x="398" y="362" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="TitleNameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="牛仔很忙决赛排行榜" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>	
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />			
+
+			##成绩列表数据模板
+			<Button name="RankInfoTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="381" y="22" />
+				</Size>
+				<Layers>
+					<Layer level = "overlay">
+						<FontString name="$parentSortIndexFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3">
+							<Size>
+								<AbsDimension x="40" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="2" y="4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentNameFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3">
+							<Size>
+								<AbsDimension x="152" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentSortIndexFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentLvFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3">
+							<Size>
+								<AbsDimension x="40" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentCareerFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3">
+							<Color r="255" g="255" b="255" />
+							<Size>
+								<AbsDimension x="58" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTimeFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3">
+							<Size>
+								<AbsDimension x="90" y="20" />
+							</Size>
+							<Color r="255" g="255" b="255" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentCareerFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<PushedTexture		inherits="PushedTextureTemplate" />				
+			</Button>
+
+			<Button name="$parent_ListBackBtn">
+				<Size>
+					<AbsDimension x="383" y="244" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="38"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate" >
+							<Size>
+								<AbsDimension x="393" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="-6" y="30" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<FontString name="RankInfoFrameHelpFont" fonttype="FZYBlackFont14" justifyH="center" text="请在活动结束24小时内领奖，千万不要错过哟！">
+							<Size>
+								<AbsDimension x="383" y="20" />
+							</Size>
+							<Color r="255" g="120" b="0" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="4" y="8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="RankInfoFramePlayerRankFont" fonttype="FZYBlackFont14" justifyH="left" text="你当前暂未上榜">
+							<Size>
+								<AbsDimension x="240" y="16" />
+							</Size>
+							<Color r="255" g="255" b="190" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="RankInfoFrameHelpFont" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="3" y="20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentRankInfoTitle">
+						<Size>
+							<AbsDimension x="381" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="1" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level = "overlay">
+								<FontString name="$parentSortIndexFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="排行">
+									<Size>
+										<AbsDimension x="40" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="2" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine1" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentSortIndexFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentNameFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="玩家">
+									<Size>
+										<AbsDimension x="152" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentSortIndexFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine2" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentLvFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="等级">
+									<Size>
+										<AbsDimension x="40" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine3" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentCareerFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="职业">
+									<Color r="255" g="254" b="189" />
+									<Size>
+										<AbsDimension x="58" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentLvFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="2" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentLine4" inherits="VerticalLineTemplate">
+									<Size>
+										<AbsDimension x="2" y="242" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentCareerFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentTimeFont" fonttype="TeenyMSYHFont" justifyH="center" lineInterval="3" text="活动用时">
+									<Size>
+										<AbsDimension x="90" y="20" />
+									</Size>
+									<Color r="255" g="254" b="189" />
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parentCareerFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture inherits="BlackCategoryBkg"/>
+					</Button>
+					<Button name="$parentRankInfo1" inherits="RankInfoTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfoTitle" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo2" inherits="RankInfoTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo3" inherits="RankInfoTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo4" inherits="RankInfoTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo5" inherits="RankInfoTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo6" inherits="RankInfoTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo7" inherits="RankInfoTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo8" inherits="RankInfoTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo7" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo9" inherits="RankInfoTemplate" id="9">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo8" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentRankInfo10" inherits="RankInfoTemplate" id="10">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentRankInfo9" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					#领取奖励
+					<Button name="RankInfoFrameGetAwardBtn" inherits="GongYongAnNiuB1Template">
+						<Size>
+							<AbsDimension x="110" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright"  relativeTo="$parentSepTex" relativePoint="bottomright">
+								<Offset>
+									<AbsDimension x="-10" y="-2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="领取排名奖励">	
+									<Size>
+										<AbsDimension x="90" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>   
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>RankInfoFrameGetAwardBtn_OnClick();</OnClick>
+						</Scripts>		
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>CowboyRankFrame_OnShow();</OnShow>
+			<OnEvent>CowboyRankFrame_OnEvent();</OnEvent>
+			<OnLoad>CowboyRankFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

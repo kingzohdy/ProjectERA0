@@ -1,0 +1,46 @@
+#include "header.fx"
+
+float4		g_DeepWaterColor;
+float4		g_ShallowWaterColor;
+float		g_NumTexRepeat;
+
+sampler BaseSampler : register(s0);
+sampler	DepthSampler : register(s1);
+
+struct VS_OUTPUT
+{
+    float4 pos          : POSITION;
+    float4 color0		: COLOR0;
+    float2 uv0          : TEXCOORD0;
+    float4 uv1			: TEXCOORD1;
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD2;
+#endif
+
+};
+
+float4 PSMain(VS_OUTPUT input) : COLOR0
+{
+	float4 basecolor = tex2D(BaseSampler, g_NumTexRepeat*input.uv0);
+	float t = tex2D(DepthSampler, input.uv0).a;
+	float4 color = lerp(g_ShallowWaterColor, g_DeepWaterColor, t)*float4(basecolor.xyz, 1.0);//use lerp alpha
+
+	float4 lighting = input.color0;
+
+  /*  
+#ifdef LIGHT_SPECULAR
+	color.rgb = lighting.rgb*color.rgb + lighting.a*basecolor.a*g_SpecularColor;
+#else
+	color.rgb = lighting.rgb*color.rgb;
+#endif
+*/
+
+#if FOG_DISTANCE>0
+	color.rgb = lerp(g_DistFogColor, color.rgb, input.fogc.x);
+#endif
+#if FOG_HEIGHT > 0
+	color.rgb = lerp(g_HeightFogColor, color.rgb, input.fogc.y);
+#endif
+	color.a += 0.05f;
+	return color;
+}

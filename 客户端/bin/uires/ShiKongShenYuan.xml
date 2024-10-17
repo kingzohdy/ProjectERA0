@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>	
+	<Script file="uires/ShiKongShenYuan.lua"/>
+	<Frame name="ShiKongInfoFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="199" toplevel="true">
+		<Size>
+			<AbsDimension x="160" y="55" />
+		</Size>
+		<Anchors>
+				<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+				<Offset>
+					<AbsDimension x="-115" y="185" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackGround" inherits="Tips3BkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="140" y="40" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentButton" inherits="GongYongAnNiuListTop2ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="35" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShiKongInfoFrameButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>ShiKongInfoFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	<Frame name="ShiKongQueueTimeFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="199" toplevel="true" movable="true">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="正在排队" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentChildBackGround">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			<RichText name="$parentText" fonttype="TeenyFZYBlackFont" lineInterval ="2" multiLine="true">
+				<Size>
+					<AbsDimension x="345" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="6" y="-28" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentEnterButton" inherits="GongYongAnNiuC1ButtonTemplate" text="立即进入">
+				<Size>
+					<AbsDimension x="130" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShiKongQueueTimeFrameEnterButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentWaitButton" inherits="GongYongAnNiuC1ButtonTemplate" text="稍候进入">
+				<Size>
+					<AbsDimension x="130" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-15"  y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShiKongQueueTimeFrameWaitButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>ShiKongQueueTimeFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

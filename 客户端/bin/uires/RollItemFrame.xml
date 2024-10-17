@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/RollItemFrame.lua" />
+	<Button name="RollItemButtonTemplate" input_transparent="true" virtual="true">
+		<Size>
+			<AbsDimension x="179" y="68" />
+		</Size>		
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />				
+				<FontString name="$parentNameFont" fonttype="NormalBlackFont" justifyH="center" text="物品名" >
+					<Color r="0" g="255" b="0" />
+					<Size>
+						<AbsDimension x="100" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="50" y="20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+				<Texture name="$parentProgressBkg" inherits="BarBackTexTemplate">
+					<Size>
+						<AbsDimension x="137" y="11" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="10" y="-20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentProgress" inherits="BlueBarTexTemplate" >
+					<Size>
+						<AbsDimension x="133" y="9" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentProgressBkg" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>			
+			<Button name="$parentItemBtn" inherits="ItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			##需求
+			<Button name="$parentNeedBtn">
+				<Size>
+					<AbsDimension x="29" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-10" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	 file="uires\\ZhuJieMian\\1.dds" x="881" y="737" w="29" h="28" />
+				<HighlightTexture file="uires\\ZhuJieMian\\1.dds" x="911" y="737" w="29" h="28" />
+				<PushedTexture	file="uires\\ZhuJieMian\\1.dds" x="911" y="766" w="29" h="28" />
+				<Scripts>
+					<OnClick>RollItemFrameNeedBtn_OnClick();</OnClick>
+				</Scripts>				
+			</Button>
+			##取消
+			<Button name="$parentCancelBtn">
+				<Size>
+					<AbsDimension x="29" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentNeedBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	 file="uires\\ZhuJieMian\\1.dds" x="63" y="662" w="29" h="28" />
+				<HighlightTexture file="uires\\ZhuJieMian\\1.dds" x="881" y="766" w="29" h="28" />
+				<PushedTexture	file="uires\\ZhuJieMian\\1.dds" x="851" y="749" w="29" h="28" />
+				<Scripts>
+					<OnClick>RollItemFrameCancelBtn_OnClick();</OnClick>
+				</Scripts>				
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>RollItemButton_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Button>
+	<Frame name="RollItemFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="true" framelevel="21">
+		<Size>
+			<AbsDimension x="219" y="210" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+				<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+					<Size>
+						<AbsDimension x="21" y="202" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentScrollCenter" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>						
+				<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentScrollCenter" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentRollItem1" inherits="RollItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRollItem2" inherits="RollItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRollItem1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRollItem3" inherits="RollItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRollItem2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-5" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RollItemFrameScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RollItemFrameScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Slider name="$parentScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="21" y="160" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>RollItemFrame_ScrollBarValueChange()</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel()</OnMouseWheel>
+				</Scripts>
+			</Slider>
+		</Frames>
+		<Scripts>
+			<OnUpdate>RollItemFrame_OnUpdate();</OnUpdate>
+			<OnShow>RollItemFrame_OnShow();</OnShow>
+			<OnLoad>RollItemFrame_OnLoad();</OnLoad>
+			<OnEvent>RollItemFrame_OnEvent();</OnEvent>
+			<OnHide>ClearRollInfo();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

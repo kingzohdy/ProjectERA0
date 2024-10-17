@@ -1,0 +1,1351 @@
+<?xml version = "1.0" encoding = "utf-8" standalone = "yes" ?>
+<Ui>
+	<Script file="uires\NpcLearnSkillFrame.lua" />
+	<Frame name="NpcLearnSkillFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable = "true" framelevel="210">
+		<Size>
+			<AbsDimension x="391" y="493" />
+		</Size>
+		<Anchors>
+			<Anchor point="left">
+				<Offset>
+					<AbsDimension x="50" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="NLS_SkillLearnInfoBtn">
+				<Size>
+					<AbsDimension x="391" y="493" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="NpcLearnSkillFrame" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						 <Texture name="NpcLearnSkillground" inherits="MainBkgTemplate" />
+						 <FontString name="NpcLearnSkillFrameHeadFont" lineInterval ="2" justifyH="center" fonttype="TeenyFZYBlackFont" text="技能学习">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+					</Layer>		
+				</Layers>
+				<Frames>
+					#关闭窗口
+					<Button name="NpcLearnSkillFrame_CloseBtn" inherits="CloseBtnTemplate" >
+						<Scripts>
+							<OnClick>NpcLearnSkillFrame:Hide();</OnClick>
+						</Scripts>
+					</Button>
+					
+					#帮助窗口!
+					<Button name="NpcLearnSkilFrame_HelpBtn" inherits="HelpBtnTemplate" />
+				
+					#技能学习切换按钮
+					<Button name="NpcLearnSkillFrame_SkillPanelBtn" text="技能学习">
+						<Size>
+							<AbsDimension x="80" y="26"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NpcLearnSkillFrame" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="18" y="38" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Size>
+								<RelDimension x="1.0" />
+								<AbsDimension y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center"  relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		inherits="GongYongAnNiuD1PushedTemplate"	r="255" g="255" b="190"	/>
+					</Button>
+					#过滤技能按钮常规状态
+					<Button name="NlsFrame_FilterNormalStateBtn">
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<offset>
+									<AbsDimension x="-14" y="38" />
+								</offset>
+							</Anchor>
+						</Anchors>
+						<Size>
+							<AbsDimension x="100" y="21"/>
+						</Size>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture name="$parentTex" inherits="EditBoxBkgTemplate">
+									<Size>
+										<RelDimension x="1.0" y="1.0" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<offset>
+												<AbsDimension x="0" y="0" />
+											</offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="NlsFrame_OneLayerName" fonttype="LittleFZYBlackFont" text="全部">
+									<Color r="160" g="160" b="115"/>  
+									<Size>
+										<AbsDimension x="80" y="15"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativeTo="$parent" relativePoint="center">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>NlsFrame_DownArrowBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					#下拉图标
+					<Button name="NlsFrame_DownArrowBtn" inherits="ScrollDownBtnTemplate">
+						<Anchors>
+							<Anchor point="topright" relativeTo="NlsFrame_FilterNormalStateBtn" relativePoint="topright">
+								<offset>
+									<AbsDimension x= "0" y = "0"/>
+								</offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>NlsFrame_DownArrowBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					
+					# 技能树选择底版
+					<Button name="$parentSecondBackBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="366" y="388"/>
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="62"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# 最下方分割线
+					<Button name="$parentSeparation" input_transparent="true">
+						<Size>
+							<AbsDimension x="386" y="10"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-24"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="HorizonalLineTemplate" />
+					</Button>
+					<Button name="$parentScrollTex" input_transparent="true">
+						<Size>
+							<AbsDimension x="21" y="388" />
+						</Size>
+						<Anchors>
+							<Anchor point="right" relativeTo="$parentSecondBackBtn" relativePoint="right">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>				
+						<NormalTexture inherits="ScrollBkgTemplate" />
+					</Button>
+					#向上滚动方向键
+					<Button name="NLS_ScrollUpBtn" inherits="ScrollUpBtnTemplate" >				
+						<Anchors>
+							<Anchor point="top" relativeTo="$parentScrollTex" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>NLS_ScrollUpBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					#向下滚动方向键
+					<Button name="NLS_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parentScrollTex" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>NLS_ScrollDownBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					#滚动条
+					<Slider name="NLS_ScrollBar"  orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">	
+						<Size>
+							<AbsDimension x="26" y="350" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parentScrollTex" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+							<Size>
+								<AbsDimension x="17" y="42" />
+							</Size>
+						</ThumbTexture>
+						<Scripts>
+							<OnValueChanged>NLS_ScrollBar_OnValueChanged();</OnValueChanged>
+							<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+						</Scripts>
+					</Slider>
+					
+					#此为控制下拉图标对应文字
+					<Button name="LearnSkillFrameLearnSkillInfoTemplate" virtual="true">
+						<Size>
+							<AbsDimension x="340" y="24" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentBackgroundTex" inherits="BlackCategoryBkg">	
+									<Size>
+										<AbsDimension x="340" y="24" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentLearnSkillRichSelectHighLightTex" inherits="PushedTextureTemplate" hidden="true">	
+									<Size>
+										<AbsDimension x="340" y="24" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentLearnSkillRich" fonttype="LittleFZYBlackFont" text="">
+									<Size>
+										<AbsDimension x="200" y="16" />
+									</Size>
+									<Anchors>
+										<Anchor point="left" relativeTo="$parent" relativePoint="left">
+											<Offset>
+												<AbsDimension x="34" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentSkillLevelFont" fonttype="LittleFZYBlackFont" text="">
+									<Size>
+										<AbsDimension x="90" y="16" />
+									</Size>
+									<Anchors>
+										<Anchor point="right" relativeTo="$parent" relativePoint="right">
+											<Offset>
+												<AbsDimension x="-20" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+							<Layer level="highlight">
+								<Texture name="$parentHighLightTex" inherits="HighlightTextureTemplate" hidden="true">	
+									<Size>
+										<AbsDimension x="340" y="24" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<CheckButton name="$parentTitleSignChk">
+								<Anchors>
+									<Anchor point="left" relativeTo="$parent" relativePoint="left">
+										<Offset>
+											<AbsDimension x="8" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Size>
+									<AbsDimension x="21" y="21" />
+								</Size>
+								<NormalTexture file="uires\\ZhuJieMian\\1.dds" x="145" y="322" w="21" h="21" />
+								<PushedTexture file="uires\\ZhuJieMian\\1.dds" x="203" y="428" w="21" h="21" />
+								<Scripts>
+									<OnClick>LearnSkillFrameTitleSignChk_OnClick();</OnClick>
+								</Scripts>
+							</CheckButton>
+						</Frames>
+						<Scripts>
+							<OnClick>NpcLearnSkillRich_OnClick();</OnClick>
+							<OnEnter>NpcLearnSkillRich_OnEnter();</OnEnter>
+							<OnLeave>NpcLearnSkillRich_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					
+					<Button name="LearnSkillFrameLearnSkillInfo1" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentSecondBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="4" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Frames>
+							##--新手指引提示--
+							<Button name="$parentEffectFrame" hidden="true">
+								<Size>
+									<AbsDimension x="60" y="60" />
+								</Size>
+								<Anchors>
+									<Anchor point="center">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="OVERLAY">
+										<Texture name="$parent_Texture">
+											<Size>
+												<AbsDimension x="60" y="60"/>
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+													<Offset>
+														<AbsDimension x="-6" y="-6"/>
+													</Offset>
+												</Anchor>
+											</Anchors>	
+										</Texture>
+									</Layer>
+								</Layers>
+								<Frames>
+									<Button name="$parentGuide" hidden="true">
+										<Size>
+											<AbsDimension x="102" y="44" />
+										</Size>
+										<Anchors>
+											<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="25" y="-11" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<Layers>
+											<Layer level="parent">
+												<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\You.tga">
+													<Size>
+														<AbsDimension x="22" y="22" />
+													</Size>
+													<Anchors>
+														<Anchor point="BottomRight" relativePoint="BottomRight" relativeTo="$parent">
+															<Offset>
+																<AbsDimension x="20" y="-11" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</Texture>
+											</Layer>
+										</Layers>
+										<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+											<EdgeSize>
+												<AbsValue val="10" />
+											</EdgeSize>
+											<TileSize>
+												<AbsValue val="1" />
+											</TileSize>
+											<BackgroundInsets>
+												<AbsInset left="10" right="10" top="10" bottom="10" />
+											</BackgroundInsets>
+										</Backdrop>
+										<Frames>
+											<RichText name="$parentFont" lineInterval ="1" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+												<Size>
+													<AbsDimension x="92" y="35" />
+												</Size>		
+												<Anchors>
+													<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+														<Offset>
+															<AbsDimension x="5" y="3" />
+														</Offset>
+													</Anchor>
+												</Anchors>
+											</RichText>
+										</Frames>
+									</Button>
+								</Frames>
+							</Button>
+						</Frames>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo2" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo3" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="3">		
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo4" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="4">		
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo5" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="5">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo6" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="6">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo5" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo7" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="7">		
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo6" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo8" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="8">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo7" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo9" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="9">		
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo8" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo10" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="10">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo9" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo11" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="11">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo10" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo12" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="12">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo11" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo13" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="13">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo12" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo14" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="14">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo13" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo15" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="15">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo14" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="LearnSkillFrameLearnSkillInfo16" inherits="LearnSkillFrameLearnSkillInfoTemplate" id="16">	
+						<Anchors>
+							<Anchor point="topleft" relativeTo="LearnSkillFrameLearnSkillInfo15" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					#选择过滤技能状态
+					<Frame name="NlsFrame_SkillOptBtn" hidden="true" >
+						<Size>
+							<AbsDimension x="101" y="72" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-14" y="60" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="highlight">
+								<Texture name="$parentBackground" inherits="TipsBkgTemplate" />
+								<Texture name="LearnSkillFrameSkillHighLightTex" inherits="HighlightTextureTemplate" hidden="true">
+									<Size>
+										<AbsDimension x="98" y="22" />
+									</Size>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="NlsFrame_FirstLayerBtn">
+								<Size>
+									<AbsDimension x="101" y="24"/>
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="NlsFrame_SkillOptBtn" relativePoint="topleft">
+										<offset>
+											<AbsDimension x="0" y="0"/>
+										</offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="highlight">
+										<FontString name="NlsFrame_FirstLayerName" fonttype="LittleFZYBlackFont" justifyH="left" text="全部">
+											<Color r="160" g="160" b="115"/>
+											<Size>
+												<AbsDimension x="80" y="15"/>
+											</Size>
+											<Anchors>
+												<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+													<Offset>
+														<AbsDimension x="0" y="0"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnEnter>NlsFrame_FirstLayerBtn_OnEnter();</OnEnter>
+									<OnClick>NlsFrame_FirstLayerBtn_OnClick();</OnClick>
+									<OnLeave>NlsFrame_FirstLayerBtn_OnLeave();</OnLeave>
+								</Scripts>
+							</Button>
+							<Button name="NlsFrame_SecondLayerBtn"  >
+								<Size>
+									<AbsDimension x="101" y="24"/>
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="NlsFrame_FirstLayerBtn" relativePoint="bottomleft">
+										<offset>
+											<AbsDimension x="0" y="0"/>
+										</offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="highlight">
+										<FontString name="NlsFrame_SecondLayerName" fonttype="LittleFZYBlackFont" justifyH="left" text="可学习">
+											<Color r="160" g="160" b="115"/>
+											<Size>
+												<AbsDimension x="80" y="15"/>
+											</Size>
+											<Anchors>
+												<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+													<Offset>
+														<AbsDimension x="0" y="0"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnEnter>NlsFrame_SecondLayerBtn_OnEnter();</OnEnter>
+									<OnClick>NlsFrame_SecondLayerBtn_OnClick();</OnClick>
+									<OnLeave>NlsFrame_SecondLayerBtn_OnLeave();</OnLeave>
+								</Scripts>
+							</Button>
+							<Button name="NlsFrame_ThirdLayerBtn"  >
+								<Size>
+									<AbsDimension x="101" y="24"/>
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="NlsFrame_SecondLayerBtn" relativePoint="bottomleft">
+										<offset>
+											<AbsDimension x="0" y="0"/>
+										</offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="highlight">
+										<FontString name="NlsFrame_ThirdLayerName" fonttype="LittleFZYBlackFont" justifyH="left" text="不可学习">
+											<Color r="160" g="160" b="115"/>
+											<Size>
+												<AbsDimension x="80" y="15"/>
+											</Size>
+											<Anchors>
+												<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+													<Offset>
+														<AbsDimension x="0" y="0"/>
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnEnter>NlsFrame_ThirdLayerBtn_OnEnter();</OnEnter>
+									<OnClick>NlsFrame_ThirdLayerBtn_OnClick();</OnClick>
+									<OnLeave>NlsFrame_ThirdLayerBtn_OnLeave();</OnLeave>
+								</Scripts>
+							</Button>
+						</Frames>
+					</Frame>
+				</Frames>			
+			</Frame>
+			# 技能详细信息描述栏
+			<Button name="NLS_SkillInfoBtn">
+				<Size>
+					<AbsDimension x="391" y="493" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="391" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBkg" inherits="MainBkgTemplate" />						
+						<FontString name="NLS_SkillInfoBtnHeadFont" lineInterval ="2" multiLine="false" justifyH="center" fonttype="TeenyFZYBlackFont" text="技能说明">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						# 技能名字描述
+						<FontString name="NlsFrameTechnologyNameFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="" >
+							<Size>
+								<AbsDimension x="130" y="20"/>
+							</Size>
+							<Color r="255" g="200" b="0"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="43" y="60"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="NlsFrameTechnologyLevelFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="" >
+							<Size>
+								<AbsDimension x="100" y="20"/>
+							</Size>
+							<Color r="255" g="200" b="0"/>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-13" y="60"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>								
+						# 学习等级
+						<FontString name="NlsFrameMinLevelFont" fonttype="LittleFZYBlackFont" justifyH="left" text="学习等级：">
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="190" g="170" b="100"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="43" y="100"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="NlsFrameMinLevelValueFont" fonttype="LittleFZYBlackFont" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="128" y="20"/>
+							</Size>
+							<Color r="152" g="60" b="60"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="NlsFrameMinLevelFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						## 消耗金钱
+						<FontString name="NlsMinMoneyFont" fonttype="LittleFZYBlackFont" justifyH="left" text="需要消耗：" >
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="190" g="170" b="100"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="43" y="119"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="NlsMinMoneyValueFont" fonttype="LittleFZYBlackFont" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="128" y="20"/>
+							</Size>
+							<Color r="237" g="235" b="187"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="NlsMinMoneyFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						# 前置技能
+						<FontString name="NlsFramePreTechFont" fonttype="LittleFZYBlackFont" justifyH="left" text="前置技能：" >
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="190" g="170" b="100"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="43" y="138"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						# 前置技能名称
+						<FontString name="NlsFramePreTechNameValueFont" fonttype="LittleFZYBlackFont" justifyH="left" text="" >
+							<Size>
+								<AbsDimension x="128" y="20"/>
+							</Size>
+							<Color r="237" g="235" b="187"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="NlsFramePreTechFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						# 前置天赋
+						<FontString name="NlsFramePreTianFuFont" fonttype="LittleFZYBlackFont" justifyH="left" text="前置天赋：">
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="190" g="170" b="100"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="43" y="157"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						# 前置天赋名字
+						<FontString name="NlsFramePreTianFuValueFont" fonttype="LittleFZYBlackFont" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="128" y="20"/>
+							</Size>
+							<Color r="152" g="60" b="60"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="NlsFramePreTianFuFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="10" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						
+						<FontString name="NlsCurrentMoneyFont" fonttype="LittleFZYBlackFont" justifyH="left" text="可用货币">
+							<Size>
+								<AbsDimension x="80" y="15"/>
+							</Size>
+							<Color r="190" g="170" b="100"/>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="24" y="-52"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="NlsFrameMoneyTipFont" fonttype="LittleFZYBlackFont" justifyH="left" text="提示">
+							<Size>
+								<AbsDimension x="300" y="15"/>
+							</Size>
+							<Color r="232" g="226" b="72"/>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="24" y="-12"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					#技能图标
+					<Button name="NpcLearnSkillItemBtn">
+						<Size>
+							<AbsDimension x="66" y="66" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-56" y="103" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="NpcLearnSkillItemBtnIcon" >
+									<Size>
+										<AbsDimension x="60" y="60"/>
+									</Size>
+									<Anchors>
+										<Anchor point="center" relativePoint="center" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentFrameTex" file="uires\\ZhuJieMian\\1.dds" x="765" y="351" w="73" h="75">
+									<Size>
+										<RelDimension x="1.0" y="1.0"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnEnter>NpcLearnSkillItemBtn_OnEnter();</OnEnter>
+							<OnLeave>NpcLearnSkillItemBtn_OnLeave();</OnLeave>
+							<OnClick>NpcLearnSkillItemBt_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					#技能详细信息描述
+					<Button name="NLS_SkillDescBackBtn">
+						<Size>
+							<AbsDimension x="344" y="217" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="189" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# 技能消耗
+					<Button name="NLS_SkillDesc_UseSkillPointBtn">
+						<Size>
+							<AbsDimension x="160" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NLS_SkillDescBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="19" y="27" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 技能消耗
+								<FontString name="NLS_SkillDesc_UseSkillPointHeadFont" fonttype="LittleFZYBlackFont" justifyH="left" text="技能消耗：">
+									<Size>
+										<AbsDimension x="70" y="20"/>
+									</Size>
+									<Color r="190" g="170" b="100"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								# 技能消耗点数
+								<FontString name="NLS_SkillDesc_UseSkillPointFont" fonttype="LittleFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="90" y="20"/>
+									</Size>
+									<Color r="237" g="235" b="187"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_SkillDesc_UseSkillPointHeadFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+						</Scripts>
+					</Button>
+					# 施放距离
+					<Button name="NLS_SkillDesc_ShiFangDistBtn">
+						<Size>
+							<AbsDimension x="160" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NLS_SkillDescBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="19" y="46"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 施放距离
+								<FontString name="NLS_SkillDesc_ShiFangDistHeadFont" fonttype="LittleFZYBlackFont" justifyH="left" text="施放距离：">
+									<Size>
+										<AbsDimension x="70" y="20"/>
+									</Size>
+									<Color r="190" g="170" b="100"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								# 施放距离点数
+								<FontString name="NLS_SkillDesc_ShiFangDistFont" fonttype="LittleFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="90" y="20"/>
+									</Size>
+									<Color r="237" g="235" b="187"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_SkillDesc_ShiFangDistHeadFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+						</Scripts>
+					</Button>
+					# 冷却时间
+					<Button name="NLS_SkillDesc_LengQueBtn">
+						<Size>
+							<AbsDimension x="150" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NLS_SkillDescBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="183" y="27" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 冷却时间
+								<FontString name="NLS_SkillDesc_LengQueHeadFont" fonttype="LittleFZYBlackFont" justifyH="left" text="冷却时间：">
+									<Size>
+										<AbsDimension x="70" y="20"/>
+									</Size>
+									<Color r="190" g="170" b="100"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								# 冷却时间耗时
+								<FontString name="NLS_SkillDesc_LengQueFont" fonttype="LittleFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="80" y="20" />
+									</Size>
+									<Color r="237" g="235" b="187"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_SkillDesc_LengQueHeadFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+						</Scripts>
+					</Button>
+					# 吟唱时间
+					<Button name="NLS_SkillDesc_YinChangTimeBtn">
+						<Size>
+							<AbsDimension x="150" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NLS_SkillDescBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="183" y="46"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 吟唱时间
+								<FontString name="NLS_SkillDesc_YinChangTimeHeadFont" fonttype="LittleFZYBlackFont" justifyH="left" text="吟唱时间：">
+									<Size>
+										<AbsDimension x="70" y="20"/>
+									</Size>
+									<Color r="190" g="170" b="100"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								# 吟唱时间耗时
+								<FontString name="NLS_SkillDesc_YinChangTimeFont" fonttype="LittleFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="80" y="20"/>
+									</Size>
+									<Color r="237" g="235" b="187"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_SkillDesc_YinChangTimeHeadFont" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+						</Scripts>
+					</Button>
+					# 技能描述
+					<Button name="NLS_SkillDesc_SkillDescBtn">
+						<Size>
+							<AbsDimension x="160" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NLS_SkillDescBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="19" y="65"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								# 技能描述
+								<FontString name="NLS_SkillDesc_SkillDescHeadFont" fonttype="LittleFZYBlackFont" justifyH="left" text="技能描述：">
+									<Size>
+										<AbsDimension x="70" y="20"/>
+									</Size>
+									<Color r="190" g="170" b="100"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+						</Scripts>
+					</Button>
+					#描述技能详细信息的富文本
+					<RichText name="NlsTechnologyDescText" lineInterval ="2" input_transparent="false" fonttype="LittleFZYBlackFont" text="" >
+						<Size>
+							<AbsDimension x="306" y="120" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="NLS_SkillDescBackBtn" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="83" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					#屏蔽RichText的BUTTON
+					<Button name="$parent_TechnologyDescTextBtn" >
+						<Size>
+							<AbsDimension x="306" y="120" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NlsTechnologyDescText" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					#当前金钱显示按钮
+					<Button name="NlsCurrentMoneyBtn">
+						<Size>
+							<AbsDimension x="130" y="21" />
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativePoint="left" relativeTo="NlsCurrentMoneyFont">
+								<Offset>
+									<AbsDimension x="68" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentBoolMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="78" y="494" w="20" h="18" >	
+									<Size>
+										<AbsDimension x="20" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="right" relativePoint="right" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-5" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="NlsCurrentMoneyValueFont" fonttype="LittleFZYBlackFont" justifyH="right" text="">
+									<Size>
+										<AbsDimension x="100" y="16"/>
+									</Size>
+									<Color r="190" g="170" b="100"/>
+									<Anchors>
+										<Anchor point="right" relativeTo="$parentBoolMoneyTex" relativePoint="left">
+											<Offset>
+												<AbsDimension x="-2" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture	inherits="EditBoxBkgTemplate" />
+					</Button>
+					#学习按钮
+					<Button name="NpcLearnSkillFrame_StudyBtn" inherits="GongYongAnNiuB1Template" text="学  习">
+						<Size>
+							<AbsDimension x="85" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-33" y="-45"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+									<Size>
+										<AbsDimension x="126" y="39"/>
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-18" y="-5"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<UVAnimation texrows="4" texcols="4" />
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>NpcLearnSkill_Study_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					#关闭窗口×
+					<Button name="NLS_SkillInfoBack_CloseBtn" inherits="CloseBtnTemplate" />
+						
+					# 最下方分割线
+					<Button name="$parentSeparation" input_transparent="true">
+						<Size>
+							<AbsDimension x="386" y="10"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="-24"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="HorizonalLineTemplate" />
+					</Button>
+					<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT" relativeTo="NpcLearnSkillFrame_StudyBtn">
+								<Offset>
+									<AbsDimension x="10" y="-23" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="parent">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Frames>
+							<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+								<Size>
+									<AbsDimension x="112" y="35" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+										<Offset>
+											<AbsDimension x="5" y="3" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</RichText>
+						</Frames>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnShow>NLS_SkillInfoBtn_OnShow();</OnShow>
+					<OnHide>NLS_SkillInfoBtn_OnHide();</OnHide>
+				</Scripts>				
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>NpcLearnSkillFrame_OnShow();</OnShow>
+			<OnLoad>NpcLearnSkillFrame_OnLoad();</OnLoad>
+			<OnEvent>NpcLearnSkillFrame_OnEvent();</OnEvent>
+			<OnHide>NpcLearnSkillFrame_OnHide();</OnHide>
+			<OnUpdate>NpcLearnSkillFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

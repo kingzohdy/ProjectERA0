@@ -1,0 +1,825 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/QuitGameFrame.lua" />
+	<Frame name="QuitGameFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="Center" relativePoint="Center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<FontString name="NLS_QuitGameBtnHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="退出游戏">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString> 
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="QuitGameFrame_BackGround" inherits="MainBkgTemplate" />					
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="HelpInformationButton" inherits="HelpBtnTemplate" />				
+			<Button name="CloseWindowButton" inherits="CloseBtnTemplate" />				
+			# 离开游戏底版
+			<Button name="NLS_QuitGameBtn">
+				<Size>
+					<AbsDimension x="392" y="466"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="QuitGameFrame" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="36"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentLock" hidden="true">
+							<Size>
+								<AbsDimension x="36" y="36"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>		
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="NLS_TaskBackBtn">
+						<Size>
+							<AbsDimension x="355" y="227" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="17" y="8" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">								
+								<Texture name="NLS_ScrollMiddle" inherits="ScrollBkgCenter" >
+									<Size>
+										<AbsDimension x="21" y="225" />
+									</Size>
+									<Anchors>
+										<Anchor point="topright" relativeTo="NLS_TaskBackBtn" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="NLS_ScrollTop" inherits="ScrollBkgUp" >									
+									<Anchors>
+										<Anchor point="topright" relativeTo="NLS_ScrollMiddle" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="NLS_ScrollDown" inherits="ScrollBkgDown" >									
+									<Anchors>
+										<Anchor point="bottomright" relativeTo="NLS_ScrollMiddle" relativePoint="bottomright">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+							<Layer>
+								<FontString name="TaskInfoFont1" fonttype="TeenyFZYBlackFont" justifyH="center" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_TaskBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="10"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont2" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont1" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont3" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont2" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont4" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont3" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont5" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont4" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont6" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont5" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont7" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont6" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont8" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont7" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont9" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont8" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont10" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont9" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TaskInfoFont11" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="330" y="22"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="TaskInfoFont10" relativePoint="bottomleft">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+						<Frames>
+							<Button name="EveryDayTaskInfoTemplate" virtual="true">
+								<Size>
+									<AbsDimension x="338" y="28" />
+								</Size>
+								<Layers>
+									<Layer level="overlay">
+										<Texture name="$parentLearnSkillRichSelectHighLightTex" inherits="HighlightTextureTemplate" hidden="true">	
+											<Size>
+												<AbsDimension x="338" y="28" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</Texture>
+										<FontString name="$parentLearnSkillRich" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" input_transparent="false" text = "">
+											<Size>
+												<AbsDimension x="338" y="28" />
+											</Size>
+											<Anchors>
+												<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+													<Offset>
+														<AbsDimension x="0" y="0" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Frames>
+								</Frames>
+								<NormalTexture	inherits="EditBoxBkgTemplate" />
+								<Scripts>
+								</Scripts>
+							</Button>
+							#向上滚动方向键
+							<Button name="NLS_QuitGameScrollUpBtn" inherits="ScrollUpBtnTemplate">
+								<Anchors>
+									<Anchor point="top" relativeTo="NLS_ScrollTop" relativePoint="top">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>NLS_QuitGameScrollUpBtn_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+							#向下滚动方向键
+							<Button name="NLS_QuitGameScrollDownBtn" inherits="ScrollDownBtnTemplate">
+								<Anchors>
+									<Anchor point="bottom" relativeTo="NLS_ScrollDown" relativePoint="bottom">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>NLS_QuitGameScrollDownBtn_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+							#滚动条
+							<Slider name="NLS_QuitGameScrollBar"  orientation="VERTICAL" minValue="0" maxValue="75" valueStep="5" defaultValue="0" hidden="true">	
+								<Size>
+									<AbsDimension x="26" y="184" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativeTo="NLS_QuitGameScrollUpBtn" relativePoint="bottomleft">
+										<Offset>
+											<AbsDimension x="-3" y="-4"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+									<Size>
+										<AbsDimension x="17" y="42" />
+									</Size>
+								</ThumbTexture>
+								<Scripts>
+									<OnValueChanged>NLS_QuitGameScrollBar_OnValueChanged();</OnValueChanged>
+									<OnClick>NLS_QuitGameScrollBar_OnClick();</OnClick>
+									<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+								</Scripts>
+							</Slider>
+						</Frames>
+					</Button>
+					<Button name="NLS_StatisticsThisLoginBackBtn">
+						<Size>
+							<AbsDimension x="355" y="112" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="NLS_TaskBackBtn" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer>
+								<FontString name="TimeStatistics" fonttype="TeenyFZYBlackFont" justifyH="right" text="">
+									<Size>
+										<AbsDimension x="196" y="18"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="21"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="HourStatistics" fonttype="TeenyFZYBlackFont" justifyH="center" text="">
+									<Size>
+										<AbsDimension x="32" y="18"/>
+									</Size>
+									<Color r="0" g="255" b="0"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="196" y="21"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="HourString" fonttype="TeenyFZYBlackFont" justifyH="center" text="">
+									<Size>
+										<AbsDimension x="29" y="18"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="228" y="21"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="MinuteStatistics" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="18" y="18"/>
+									</Size>
+									<Color r="0" g="255" b="0"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="257" y="21"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="MinuteString" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="75" y="18"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="275" y="21"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TianYuanStatistics" fonttype="TeenyFZYBlackFont" justifyH="right" text="">
+									<Size>
+										<AbsDimension x="197" y="18"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="39"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TianYuanStatisticsValue" fonttype="TeenyFZYBlackFont" justifyH="center" text="">
+									<Size>
+										<AbsDimension x="49" y="18"/>
+									</Size>
+									<Color r="0" g="255" b="0"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="197" y="39"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="TianYuanStatisticString" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+									<Size>
+										<AbsDimension x="104" y="18"/>
+									</Size>
+									<Color r="255" g="229" b="189"/>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="NLS_StatisticsThisLoginBackBtn" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="246" y="39"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					<Button name="AgreeQuitGameButton" inherits="GongYongAnNiuA1ButtonTemplate" text="同意">
+						<Size>
+							<AbsDimension x="73" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="67" y="-22" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>AgreeQuitGameButton_OnClick();</OnClick>
+							<OnEnter>AgreeQuitGameButton_OnEnter();</OnEnter>
+							<OnLeave>AgreeQuitGameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="DisagreeQuitGameButton" inherits="GongYongAnNiuA1ButtonTemplate" text="取消">
+						<Size>
+							<AbsDimension x="73" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="243" y="-22" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>DisagreeQuitGameButton_OnClick();</OnClick>
+							<OnEnter>DisagreeQuitGameButton_OnEnter();</OnEnter>
+							<OnLeave>DisagreeQuitGameButton_OnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>QuitGameFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ReallyQuitGameFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true" framelevel="201" >
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="Center" relativePoint="Center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="ReallyQuitGameFrame_BackGround" inherits="MainBkgTemplate" />				
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="NLS_QuitGameInfoShowBtn">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ReallyQuitGameFrame" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="NLS_ReallyQuitGameBtnHeadFontValue" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="" justifyH="right" >
+							<Color r="255" g="0" b="0"/>
+							<Size>
+								<AbsDimension x="118" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+						<FontString name="NLS_ReallyQuitGameBtnHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="20秒后你将退出游戏" justifyH="left" >
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="230" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="118" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="QuickllyQuitGameButton" inherits="GongYongAnNiuC1ButtonTemplate" text="立即退出">
+				<Size>
+					<AbsDimension x="94" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="ReallyQuitGameFrame">
+						<Offset>
+							<AbsDimension x="5" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>QuickllyQuitGameButtonOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="ReallyQuitGameCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ReallyQuitGameFrame">
+						<Offset>
+							<AbsDimension x="-7" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReallyQuitGameCancelButtonOnClick();</OnClick>
+					<OnEnter>ReallyQuitGameCancelButtonOnEnter();</OnEnter>
+					<OnLeave>ReallyQuitGameCancelButtonOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>NLS_QuitGameInfoShowBtn_OnLoad();</OnLoad>
+			<OnUpdate>NLS_QuitGameInfoShowBtn_OnUpdate();</OnUpdate>
+			<OnShow>NLS_QuitGameInfoShowBtn_OnShow();</OnShow>
+			<OnHide>NLS_QuitGameInfoShowBtn_OnHide();</OnHide>
+			<OnEvent>NLS_QuitGameInfoShowBtn_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ShowChangeRoleFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true" framelevel="202" >
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="Center" relativePoint="Center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="ShowChangeRoleFrame_BackGround" inherits="MainBkgTemplate" />				
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="NLS_ChangeRoleInfoShowBtn">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ShowChangeRoleFrame" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="NLS_ChangeRoleBtnHeadFontValue" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="" justifyH="right" >
+							<Color r="255" g="0" b="0"/>
+							<Size>
+								<AbsDimension x="110" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+						<FontString name="NLS_ChangeRoleBtnHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="20秒后你将返回角色选择界面" justifyH="left" >
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="238" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="110" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="ChangeRoleCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="ShowChangeRoleFrame">
+						<Offset>
+							<AbsDimension x="-7" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChangeRoleCancelButtonOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>NLS_ChangeRoleInfoShowBtn_OnLoad();</OnLoad>
+			<OnUpdate>NLS_ChangeRoleInfoShowBtn_OnUpdate();</OnUpdate>
+			<OnShow>NLS_ChangeRoleInfoShowBtn_OnShow();</OnShow>
+			<OnHide>NLS_ChangeRoleInfoShowBtn_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	## 
+	<Frame name="ViewLockFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true" messageoff="false">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentLock">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+			</Layer>
+		</Layers>		
+		<Scripts>
+			<OnLoad>ViewLockFrame_OnLoad();</OnLoad>
+			<OnUpdate>ViewLockFrame_OnUpdate();</OnUpdate>
+			<OnShow>ViewLockFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ChangeMouseHabitLockFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" messageoff="false">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>	
+		<Scripts>
+		</Scripts>
+	</Frame>
+
+	<Frame name="StartMudFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true" framelevel="202" >
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="Center" relativePoint="Center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="StartMudFrame_BackGround" inherits="MainBkgTemplate" />				
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="StartMudFrameShowBtn">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="StartMudFrame" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="StartMudFrameShowBtnHeadFontValue" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="" justifyH="right" >
+							<Color r="255" g="0" b="0"/>
+							<Size>
+								<AbsDimension x="110" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+						<FontString name="StartMudFrameShowBtnHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="20秒后你将返回角色选择界面" justifyH="left" >
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="238" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="110" y="18" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="StartMudFrameCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消" hidden="true">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="StartMudFrame">
+						<Offset>
+							<AbsDimension x="-7" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StartMudFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>StartMudFrame_OnLoad();</OnLoad>
+			<OnUpdate>StartMudFrame_OnUpdate();</OnUpdate>
+			<OnShow>StartMudFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

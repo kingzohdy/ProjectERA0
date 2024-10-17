@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>	
+	<Script file="uires/DesignationFrame.lua"/>																	 
+	# 人物装备中的称号子面板
+	<Frame name="EquipDesignationFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="283" y="480" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>  
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" >
+					<Size>
+						<AbsDimension x="283" y="456" />
+					</Size>
+				</Texture>
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="称号" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />			
+			# 面板底版
+			<Button name="$parentBackGroundButton">
+				<Size>
+					<AbsDimension x="282" y="428"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>			
+			</Button>
+			# 当前称号抬头显示
+			<Button name="$parentTitleBtn">
+				<Size>
+					<AbsDimension x="68" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="11"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFirstTitleFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="当前称号" justifyH="left">
+							<Color r="195" g="155" b="86"/>
+							<Size>
+								<AbsDimension x="65" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 当前称号显示
+			<Button name="$parent_CurDesignationBtn" >
+				<Size>
+					<AbsDimension x="170" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentBackGroundButton" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="78" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parent_CurFont" fonttype="TeenyBlackFont" justifyH="center" text="">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="166" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="3" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture inherits="EditBoxBkgTemplate" />
+			</Button>
+			# 使用/设置称号
+			<Button name="$parent_SetDesignationBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="使用称号">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentBackGroundButton" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="190" y="224"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SetDesignation_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消称号
+			<Button name="$parent_CancleDesignationBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="取消称号">
+				<Size>
+					<AbsDimension x="65" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopRight" relativeTo="$parent_SetDesignationBtn" relativePoint="TopLeft" >
+						<Offset>
+							<AbsDimension x="-35" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CancleDesignation_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 称号装备列表面板底版
+			<Button name="$parentListBlackBackGroundButton">
+				<Size>
+					<AbsDimension x="192" y="177"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentBackGroundButton" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="76" y="41" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="TipsBkgTemplate" />				
+			</Button>
+			# 称号装备列表面板底版
+			<Button name="$parentListTransparentBackGroundButton">
+				<Size>
+					<AbsDimension x="192" y="177"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentBackGroundButton" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="76" y="41" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			##滚动条背景
+			<Button name="$parent_SliderBack">
+				<Size>
+					<AbsDimension x="21" y="174" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentListBlackBackGroundButton" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+							<Size>
+								<AbsDimension x="21" y="174" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentScrollCenter" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>				
+						<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentScrollCenter" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+			</Button>
+			#向上滚动按钮
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_SliderBack" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-2" y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>EquipDesignationFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			#向下滚动按钮
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ScrollUpBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="156"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>EquipDesignationFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			#滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="1" defaultValue="0">
+				<Size>
+					<AbsDimension x="26" y="136" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+					<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+						<Size>
+							<AbsDimension x="17" y="42" />
+						</Size>
+					</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>EquipDesignationFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			# 称号列表按钮模板
+			<Button name="$parent_NameBtnTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="170" y="24" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						# 称号名字
+						<FontString name="$parentName" fonttype="TeenyBlackFont" justifyH="left" text="">
+							<Size>
+								<AbsDimension x="163" y="18"/>
+							</Size>
+							<Color r="255" g="254" b="189" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						# 分割线
+						<Texture name="$parentPartionTex" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2">
+							<Size>
+								<AbsDimension x="168" y="2" />
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="2" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					 </Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<DisabledTexture	inherits="TransTextureTemplate"  />
+				<Scripts>
+					<OnClick>DesignationNameBtn_OnClick();</OnClick>  
+					<OnEnter>DesignationNameBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 称号名字列表
+			<Button name="$parent_NameBtn1" inherits="$parent_NameBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentListBlackBackGroundButton" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="-1" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_NameBtn2" inherits="$parent_NameBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_NameBtn1" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_NameBtn3" inherits="$parent_NameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_NameBtn2" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_NameBtn4" inherits="$parent_NameBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_NameBtn3" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_NameBtn5" inherits="$parent_NameBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_NameBtn4" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_NameBtn6" inherits="$parent_NameBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_NameBtn5" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parent_NameBtn7" inherits="$parent_NameBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_NameBtn6" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>			
+			# 全部称号
+			<Button name="$parent_AllButton" inherits="GongYongAnNiuD3Template" text="全部称号" >
+				<Size>
+					<AbsDimension x="68" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopRight" relativeTo="$parentListBlackBackGroundButton" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="3" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AllDesignationButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="CategoryNameTemplate" inherits="GongYongAnNiuD3Template" virtual="true" >
+				<Size>
+					<AbsDimension x="68" y="29" />
+				</Size>
+			</Button>
+			# 剧情称号
+			<Button name="$parent_CategoryName1" inherits="CategoryNameTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_AllButton" relativePoint="BOTTOM" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>JuQinButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 声望称号
+			<Button name="$parent_CategoryName2" inherits="CategoryNameTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_CategoryName1" relativePoint="BOTTOM" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShengWangeButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 竞技称号
+			<Button name="$parent_CategoryName3" inherits="CategoryNameTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_CategoryName2" relativePoint="BOTTOM" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>JingJiButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 活动称号
+			<Button name="$parent_CategoryName4" inherits="CategoryNameTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_CategoryName3" relativePoint="BOTTOM" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HuoDongButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 特殊称号
+			<Button name="$parent_CategoryName5" inherits="CategoryNameTemplate" id="5">
+				<Size>
+					<AbsDimension x="68" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parent_CategoryName4" relativePoint="BOTTOM" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TeShuButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 称号装备描述面板底版
+			<Button name="$parentDescBackGroundButton">
+				<Size>
+					<AbsDimension x="256" y="125"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent_CategoryName5" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="35" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			# 称号描述
+			<RichText name="$parent_DescRich" multiLine="false" fonttype="TeenyBlackFont" lineInterval="3" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="236" y="125" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDescBackGroundButton" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="12" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 称号TIP描述
+			<RichText name="$parent_TipsDescRich" multiLine="false" fonttype="TeenyBlackFont" text="" input_transparent="false">
+				<Size>
+					<AbsDimension x="265" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT" >
+						<Offset>
+							<AbsDimension x="18" y="-13"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</RichText>
+			# 装备
+			<Button name="$parent_EquipBtn" inherits="GongYongAnNiuD2Template" text="装备" checked="true">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="7" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>EquipBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 时装
+			<Button name="$parent_FashionBtn" inherits="GongYongAnNiuD2Template" text="时装">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="52" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>FashionBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 能源
+			<Button name="$parent_NengYuanBtn" inherits="GongYongAnNiuD2Template" text="能源">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="97" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>NengYuanBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 称号
+			<Button name="$parent_ChengHaoBtn" inherits="GongYongAnNiuD2Template" text="称号">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="142" y="454" />							
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChengHaoBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 奖章
+			<Button name="$parent_ShengWangBtn" inherits="GongYongAnNiuD2Template" text="奖章">
+				<Size>
+					<AbsDimension x="45" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>							
+							<AbsDimension x="187" y="454" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShengWangBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示夫妻情侣头顶勾选
+			<Button name="$parent_LoveShowBtn">
+				<Size>
+					<AbsDimension x="180" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>							
+							<AbsDimension x="80" y="417" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="$parentCheck" inherits="CheckBtnTemplate">
+						<Anchors>
+							<Anchor point="right" relativeTo="$parent" relativePoint="left">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>LoveShowCheck_OnClick();</OnClick>
+							<OnUpdate>LoveShowCheck_OnUpdate();</OnUpdate>
+						</Scripts>
+					</CheckButton>
+				</Frames>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="left" text="显示情侣/伴侣称号">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="110" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="left" relativeTo="$parent">
+									<Offset>							
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>LoveShowBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 新手指引提示
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="90" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_SetDesignationBtn">
+						<Offset>
+							<AbsDimension x="-9" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="90" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true" hidden="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" hidden="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>EquipDesignationFrame_OnLoad();</OnLoad>
+			<OnEvent>EquipDesignationFrame_OnEvent();</OnEvent>
+			<OnShow>EquipDesignationFrame_OnShow();</OnShow>
+			<OnHide>EquipDesignationFrame_OnHide();</OnHide>  
+			<OnUpdate>EquipDesignationFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

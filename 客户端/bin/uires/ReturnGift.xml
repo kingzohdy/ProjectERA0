@@ -1,0 +1,902 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ReturnGift.lua" />
+	#领取装备
+	<Frame name="ReturnArmSelectFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="21" movable="true">
+		<Size>
+			<AbsDimension x="337" y="182" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBK" inherits="MainBkgTemplate"/>
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="领取道具" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />	
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentInfoFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="请选择一个装备部位" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="119" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem1Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="主手*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="40" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem2Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="副手*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem1Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem3Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="衣服*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem2Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem4Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="头盔*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem3Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem5Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="肩甲*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem4Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem6Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="鞋子*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem5Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSepLineTex" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="330" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="144"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentItem1" inherits="ItemButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="18" y="46" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnArmSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>ReturnArmSelectFrameItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem2" inherits="ItemButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem1">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnArmSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>ReturnArmSelectFrameItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem3" inherits="ItemButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem2">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnArmSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>ReturnArmSelectFrameItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem4" inherits="ItemButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem3">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnArmSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>ReturnArmSelectFrameItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem5" inherits="ItemButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem4">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnArmSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>ReturnArmSelectFrameItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem6" inherits="ItemButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem5">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnArmSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>ReturnArmSelectFrameItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentGetBtn" inherits="GongYongAnNiuB1Template" text="领取">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="120" y="148" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnArmSelectFrameGetBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ReturnArmSelectFrame_OnShow();</OnShow>
+			<OnLoad>ReturnArmSelectFrame_OnLoad();</OnLoad>
+			<OnHide>ReturnArmSelectFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	#回归礼包
+	<Frame name="ReturnGiftFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="501" movable="false">
+		<Size>
+			<AbsDimension x="342" y="236" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBK" inherits="MainBkgTemplate"/>
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="回归礼包" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItemName" fonttype="TeenyFZYBlackFont" justifyH="center" text="双倍经验果*2" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="105" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="230" y="162" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSepLineTex" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="337" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="195"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentItem" inherits="ItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="252" y="116" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>ReturnGiftFrameItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<RichText name="$parentInfo1" fonttype="LittleFZYBlackFont" lineInterval="2" multiLine="true">
+				<Size>
+					<AbsDimension x="315" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="15" y="45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentInfo2" fonttype="LittleFZYBlackFont" lineInterval="2" multiLine="true">
+				<Size>
+					<AbsDimension x="315" y="43" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="15" y="75" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentInfo3" fonttype="LittleFZYBlackFont" lineInterval="2" multiLine="true">
+				<Size>
+					<AbsDimension x="228" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="15" y="118" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentGetBtn" inherits="GongYongAnNiuB1Template" text="领取">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="202" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnGiftFrameGetBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>ReturnGiftFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	#领取经验
+	<Frame name="ReturnGiftExpFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="21" movable="true">
+		<Size>
+			<AbsDimension x="342" y="186" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBK" inherits="MainBkgTemplate"/>
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="领取经验" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCheck1Font" fonttype="TeenyFZYBlackFont" justifyH="left" text="免费领取    100%经验" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="275" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="50" y="76" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCheck1Font" fonttype="TeenyFZYBlackFont" justifyH="left" text="使用9999金币    200%经验" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="275" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="50" y="97" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSepLineTex" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="325" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="127"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<RichText name="$parentInfo" lineInterval="2" multiLine="true" fonttype="LittleFZYBlackFont" fontStyle="border" input_transparent="true">
+				<Size>
+					<AbsDimension x="297" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="29" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<CheckButton name="$parentCheck1" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="27" y="74" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnGiftExpFrameCheck_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCheck2" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="27" y="97" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnGiftExpFrameCheck_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parentGetBtn" inherits="GongYongAnNiuB1Template" text="领取">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="120" y="148" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ReturnGiftExpFrameGetBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ReturnGiftExpFrame_OnShow();</OnShow>
+			<OnLoad>ReturnGiftExpFrame_OnLoad();</OnLoad>
+			<OnHide>ReturnGiftExpFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	#宝石包道具
+	<Frame name="GemPackageSelectFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel="21" movable="true">
+		<Size>
+			<AbsDimension x="337" y="247" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="UIClient" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBK" inherits="MainBkgTemplate"/>
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="选取宝石" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />	
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentInfoFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="请选择一个喜欢的宝石" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="184" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem1Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="主手*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="40" y="90" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem2Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="副手*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem1Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem3Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="衣服*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem2Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem4Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="头盔*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem3Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem5Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="肩甲*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem4Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem6Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="鞋子*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem5Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem7Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="主手*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentItem1Name" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="65" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem8Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="副手*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem7Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem9Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="衣服*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem8Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem10Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="头盔*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem9Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem11Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="肩甲*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem10Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentItem12Name" fonttype="TeenyFZYBlackFont" justifyH="center" text="鞋子*1" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="44" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentItem11Name" relativePoint="left">
+							<Offset>
+								<AbsDimension x="52" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSepLineTex" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="330" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="209"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentItem1" inherits="ItemButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="18" y="46" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem2" inherits="ItemButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem1">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem3" inherits="ItemButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem2">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem4" inherits="ItemButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem3">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem5" inherits="ItemButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem4">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem6" inherits="ItemButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem5">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem7" inherits="ItemButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="top" relativePoint="top" relativeTo="$parentItem1">
+						<Offset>
+							<AbsDimension x="0" y="65" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem8" inherits="ItemButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem7">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem9" inherits="ItemButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem8">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem10" inherits="ItemButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem9">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem11" inherits="ItemButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem10">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentItem12" inherits="ItemButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="$parentItem11">
+						<Offset>
+							<AbsDimension x="52" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameItem_OnClick();</OnClick>
+					<OnEnter>GemPackageSelectFrameItem_OnClickItem_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentGetBtn" inherits="GongYongAnNiuB1Template" text="领取">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="120" y="213" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GemPackageSelectFrameGetBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>GemPackageSelectFrame_OnShow();</OnShow>
+			<OnLoad>GemPackageSelectFrame_OnLoad();</OnLoad>
+			<OnHide>GemPackageSelectFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

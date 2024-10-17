@@ -1,0 +1,22 @@
+#include "header.fx"
+
+sampler s_DiffuseSampler : register(s0);
+
+#if MASK_TEXTURE == 1
+sampler s_MaskSampler : register(s1);
+#endif
+
+struct VS_OUTPUT
+{
+    float4 pos      : POSITION;
+    float4 color0   : COLOR0;
+    float2 uv0      : TEXCOORD0;
+#if MASK_TEXTURE == 1
+    float2 uv1		: TEXCOORD1;
+#endif
+};
+
+float4 PSMain(VS_OUTPUT	input):COLOR0
+{
+	return (tex2D(s_DiffuseSampler,input.uv0)-128.0f/255.0f)*input.color0.a + 128.0f/255.0f;
+}

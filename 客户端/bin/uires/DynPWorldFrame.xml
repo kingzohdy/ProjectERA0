@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\DynPWorldFrame.lua" />
+	<Frame name="DynPWorldFrame" frameStrata="DIALOG" parent="UIClient"  movable="true" hidden="true">
+		<Size>
+			<AbsDimension x="486" y="245" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="-25" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="DynPWorldFrameground" inherits="MainBkgTemplate" />
+				<FontString name="DynPWorldt" fonttype="TeenyFZYBlackFont" justifyH="center" text="副本难度" >
+					<Color r="255" g="254" b="189"/>  
+					 <Size>
+						<AbsDimension x="63" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="top" relativeTo="DynPWorldFrame">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />				
+			<Button name="$parentBackground">
+				<Size>
+					<AbsDimension x="479" y="212"/>
+				</Size>				
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="2" y="29"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="DyPWorldInfoBackground">
+				<Size>
+					<AbsDimension x="465" y="33"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackground" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="7" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="DynCurrentLevel" fonttype="TeenyFZYBlackFont" justifyH="left" text="当前副本等级" >
+							<Color r="194" g="179" b="145"/>  
+							 <Size>
+								<AbsDimension x="84" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="7" y="10" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="DynCurrentLevelValue" fonttype="SmallBlackFont" justifyH="left" text="10级" >
+							<Color r="194" g="179" b="145"/>  
+							 <Size>
+								<AbsDimension x="40" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="129" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+						<FontString name="DynCurrentDiffculty" fonttype="TeenyFZYBlackFont" justifyH="left" text="副本难度：" >
+							<Color r="194" g="179" b="145"/>   
+							 <Size>
+								<AbsDimension x="62" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="307" y="10" />
+									</Offset>
+								</Anchor>
+							</Anchors>					
+						</FontString>
+						<FontString name="DynCurrentDiffcultyValue" fonttype="EighteenFont" justifyH="left" text="简单" >
+							<Color r="254" g="208" b="60"/>  
+							 <Size>
+								<AbsDimension x="40" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="402" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>						
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			# 分割线
+			<Button name="DyPWorldSplitLine">
+				<Size>
+					<AbsDimension x="465" y="2"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldInfoBackground" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentBackground" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2" />						
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="DyPWorldSecondBackground">
+				<Size>
+					<AbsDimension x="465" y="142"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldSplitLine" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			<Button name="$parentDifficultyHeadBtn">
+				<Size>
+					<AbsDimension x="41" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldSecondBackground" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="22" y="62"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentDifficultyHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="难度：" justifyH="left">
+							<Color r="194" g="179" b="145"/>  
+							<Size>
+								<AbsDimension x="38" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 副本难度简单
+			<Button name="DyPWorldHardSelect1" id="1">
+				<Size>
+					<AbsDimension x="43" y="43"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldSecondBackground" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="85" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="878" y="671" w="38" h="33" hidden="false" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="917" y="671" w="38" h="33" hidden="true" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds"	x="794" y="427" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds"	x="794" y="472" w="44" h="44" />
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			# 简单笑脸
+			<Button name="DyPWorldHardSelectFace1" id="1">
+				<Size>
+					<AbsDimension x="26" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="DyPWorldHardSelect1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-19" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="878" y="705" w="26" h="31" hidden="false" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="905" y="705" w="26" h="31" hidden="true" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			## 副本难度普通
+			<Button name="DyPWorldHardSelect2" id="2">
+				<Size>
+					<AbsDimension x="43" y="43"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldSecondBackground" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="210" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal" file="uires\\ZhuJieMian\\1.dds" x="879" y="603" w="38" h="33" hidden="false" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect" file="uires\\ZhuJieMian\\1.dds" x="918" y="603" w="38" h="33" hidden="true" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds"	x="794" y="427" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds"	x="794" y="472" w="44" h="44" />
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			# 普通笑脸
+			<Button name="DyPWorldHardSelectFace2" id="2">
+				<Size>
+					<AbsDimension x="26" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="DyPWorldHardSelect2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-15" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="932" y="705" w="26" h="31" hidden="false" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="284" y="635" w="26" h="31" hidden="true" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			## 副本难度困难
+			<Button name="DyPWorldHardSelect3" id="3">
+				<Size>
+					<AbsDimension x="43" y="43"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldSecondBackground" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="345" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="839" y="613" w="38" h="33" hidden="false" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="839" y="647" w="38" h="33" hidden="true" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds"	x="794" y="427" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds"	x="794" y="472" w="44" h="44" />
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			# 困难笑脸
+			<Button name="DyPWorldHardSelectFace3" id="3">
+				<Size>
+					<AbsDimension x="26" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="DyPWorldHardSelect3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-19" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="311" y="635" w="26" h="31" hidden="false" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="338" y="635" w="26" h="31" hidden="true" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			# 副本难度艰难
+			<Button name="DyPWorldHardSelect4" id="4" hidden="true">
+				<Size>
+					<AbsDimension x="43" y="43"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldSecondBackground" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="302" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="878" y="637" w="38" h="33" hidden="false" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="917" y="637" w="38" h="33" hidden="true" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds"	x="794" y="427" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds"	x="794" y="472" w="44" h="44" />
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			# 艰难笑脸
+			<Button name="DyPWorldHardSelectFace4" id="4" hidden="true">
+				<Size>
+					<AbsDimension x="26" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="DyPWorldHardSelect4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-22" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="365" y="635" w="26" h="31" hidden="false" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="392" y="635" w="26" h="31" hidden="true" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			# 副本难度地狱
+			<Button name="DyPWorldHardSelect5" id="5" hidden="true">
+				<Size>
+					<AbsDimension x="43" y="43"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="DyPWorldSecondBackground" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="374" y="46"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="839" y="681" w="38" h="33" hidden="false" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="839" y="715" w="38" h="33" hidden="true" >
+							<Size>
+								<AbsDimension x="38" y="33" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+				</Layers>
+				<NormalTexture file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds"	x="794" y="427" w="44" h="44" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds"	x="794" y="472" w="44" h="44" />
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+			# 地狱笑脸
+			<Button name="DyPWorldHardSelectFace5" id="5" hidden="true">
+				<Size>
+					<AbsDimension x="26" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="DyPWorldHardSelect5" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-22" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentNormal"  file="uires\\ZhuJieMian\\1.dds" x="419" y="635" w="26" h="31" hidden="false" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="$parentSelect"  file="uires\\ZhuJieMian\\1.dds" x="446" y="637" w="26" h="31" hidden="true" >
+							<Size>
+								<AbsDimension x="26" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>OnHardFaceSelect();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 离开按钮
+			<Button name="DynPWorldFrame_CancelBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="离  开">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="DyPWorldSecondBackground">
+						<Offset>
+							<AbsDimension x="0" y="6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Close_DynPWorldFrame();</OnClick>
+				</Scripts>
+			</Button>
+			# 进入按钮
+			<Button name="DynPWorldFrame_AcceptBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="进  入">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topleft" relativeTo="DynPWorldFrame_CancelBtn">
+						<Offset>
+							<AbsDimension x="-9" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Accept();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>DynPWorldFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<Frame name="DynLevelTips" hidden="true" frameStrata="TOOLTIP" framelevel="220">	
+		<Size>
+			<AbsDimension x="270" y="50" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="4" y="2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Frames>			
+			<RichText name="GameLeveltipRichText" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" >
+				<Size>
+					<AbsDimension x="260" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>    			
+		</Frames>
+		<Scripts>
+			<OnHide>GameLeveltipOnHide();</OnHide>
+			<OnShow>GameLeveltipOnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

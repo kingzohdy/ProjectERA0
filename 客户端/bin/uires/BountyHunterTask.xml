@@ -1,0 +1,1053 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\BountyHunterTask.lua" />
+	<Frame name="BountyHunterTask" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="36">
+		<Size>
+			<AbsDimension x="540" y="360"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="赏金猎人">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTodayFinishNum" fonttype="TeenyFZYBlackFont" justifyH="left" text="今日已完成次数：0/5">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="160" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="17" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTodayVipFinishNum" fonttype="TeenyFZYBlackFont" justifyH="left" text="翡翠徽章特权完成次数：0/2">
+					<Color r="255" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="17" y="52" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCanGetNum" fonttype="TeenyFZYBlackFont" justifyH="left" text="本周可获得碎块数量：25/50">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="180" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="276" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCurTaskStar" fonttype="TeenyFZYBlackFont" justifyH="left" text="当前任务星级：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="276" y="52" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentCurTaskStarTex1" inherits="GraySmallXingXingTemplate" >
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentCurTaskStar" relativePoint="left">
+							<Offset>
+								<AbsDimension x="95" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCurTaskStarTex2" inherits="GraySmallXingXingTemplate" >
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentCurTaskStarTex1" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCurTaskStarTex3" inherits="GraySmallXingXingTemplate" >
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentCurTaskStarTex2" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCurTaskStarTex4" inherits="GraySmallXingXingTemplate" >
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentCurTaskStarTex3" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentCurTaskStarTex5" inherits="GraySmallXingXingTemplate" >
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentCurTaskStarTex4" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround" inherits="LayerGrayGlassBkgTemplate" >
+					<Size>
+						<AbsDimension x="524" y="242" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="69"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentVerticalLine" inherits="VerticalLineTemplate" >
+					<Size>
+						<AbsDimension x="2" y="223" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="267" y="79"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTaskCondition" fonttype="TeenyBlackFont" justifyH="left" text="任务条件:">
+					<Color r="255" g="150" b="0"/>
+					<Size>
+						<AbsDimension x="80" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="277" y="78" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTaskName" fonttype="TeenyBlackFont" justifyH="left" text="名称：赏金猎人-击杀令">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentTaskCondition" relativePoint="bottomleft" >
+							<Offset>
+								<AbsDimension x="12" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTaskDes" fonttype="TeenyBlackFont" justifyH="left" text="目标：击杀-嘟嘟鸟">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentTaskName" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTaskNum" fonttype="TeenyBlackFont" justifyH="left" text="数量：100">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="200" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentTaskDes" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTaskReward" fonttype="TeenyBlackFont" justifyH="left" text="任务奖励：">
+					<Color r="255" g="150" b="0"/>
+					<Size>
+						<AbsDimension x="120" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="277" y="204" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTaskStar" fonttype="TeenyBlackFont" justifyH="left" text="星级：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentTaskReward" relativePoint="bottomleft" >
+							<Offset>
+								<AbsDimension x="12" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTaskStarTex1" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTaskStar" relativePoint="left">
+							<Offset>
+								<AbsDimension x="35" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTaskStarTex2" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTaskStarTex1" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTaskStarTex3" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTaskStarTex2" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTaskStarTex4" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTaskStarTex3" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTaskStarTex5" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentTaskStarTex4" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTaskExp" fonttype="TeenyBlackFont" justifyH="left" text="经验：999999">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentTaskStar" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTaskMoney" fonttype="TeenyBlackFont" justifyH="left" text="银币：999999">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentTaskExp" relativePoint="bottom" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentHorizonalLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="535" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="317"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentAwardItemBtn">
+				<Size>
+					<AbsDimension x="44" y="44"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="430" y="225"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background"> 
+   		  		       	<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture"file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" hidden="true">
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>		
+						</Texture>
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="64" y="64"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-11" y="-11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right"  fontStyle="border" text="">
+							<Color r="204" g="128" b="51"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-3" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<Scripts>
+					<OnEnter>BountyHunterTaskAwardItemBtn_OnEnter();</OnEnter>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentCurTaskStarTip">
+				<Size>
+					<AbsDimension x="70" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentCurTaskStar" relativePoint="left">
+						<Offset>
+							<AbsDimension x="95" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>BountyHunterCurTaskStarTip_onEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>	 
+			<RichText name="$parentTaskTraceTip" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true">
+				<Size>
+					<AbsDimension x="252" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="278" y="153" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>				 
+			<RichText name="$parentInfo" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true">
+				<Size>
+					<AbsDimension x="245" y="225" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="17" y="78" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>			 
+			<RichText name="$parentShowOtherStarInfo" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true">
+				<Size>
+					<AbsDimension x="100" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="425" y="203" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BountyHunterTaskShowOtherStarInfo_onClick();</OnClick>
+				</Scripts>
+			</RichText>		 
+			<RichText name="$parentGoToNpc" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true">
+				<Size>
+					<AbsDimension x="255" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="277" y="283" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BountyHunterTaskGoToNpc_onClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<Button name="$parentRefurbishStar" inherits="GongYongAnNiuB1Template" text="刷新星级">
+				<Size>
+					<AbsDimension x="105" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="20" y="322" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentOnTips" file="uires\\ZhuJieMian\\1.dds" x="0" y="0" w="1" h="1" >
+							<Size>
+								<AbsDimension x="1" y="1" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>BountyHunterTaskRefurbishStar_onClick();</OnClick>
+					<OnEnter>BountyHunterTaskRefurbishStar_onEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>	
+			</Button>
+			<Button name="$parentUseItemRefurbishStar" inherits="GongYongAnNiuB1Template" text="道具刷新星级">
+				<Size>
+					<AbsDimension x="105" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentRefurbishStar" relativePoint="right">
+						<Offset>
+							<AbsDimension x="30" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentOnTips" file="uires\\ZhuJieMian\\1.dds" x="0" y="0" w="1" h="1" >
+							<Size>
+								<AbsDimension x="1" y="1" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>BountyHunterTaskItemRefurbishStar_onClick();</OnClick>
+					<OnEnter>BountyHunterTaskItemRefurbishStar_onEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>	
+			</Button>
+			<Button name="$parentRefurbishTask" inherits="GongYongAnNiuB1Template" text="刷新任务">
+				<Size>
+					<AbsDimension x="105" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentUseItemRefurbishStar" relativePoint="right">
+						<Offset>
+							<AbsDimension x="30" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentOnTips" file="uires\\ZhuJieMian\\1.dds" x="0" y="0" w="1" h="1" >
+							<Size>
+								<AbsDimension x="1" y="1" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>BountyHunterTaskRefurbishTask_onClick();</OnClick>
+					<OnEnter>BountyHunterTaskRefurbishTask_onEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>			
+			</Button>
+			<Button name="$parentAcceptTask" inherits="GongYongAnNiuB1Template" text="接受任务">
+				<Size>
+					<AbsDimension x="105" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentRefurbishTask" relativePoint="right">
+						<Offset>
+							<AbsDimension x="30" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BountyHunterTaskAcceptTask_onClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>BountyHunterTask_onShow();</OnShow>
+			<OnUpdate>BountyHunterTask_onUpdate();</OnUpdate>
+			<OnHide>BountyHunterTask_onHide();</OnHide>
+		</Scripts>
+	</Frame>
+	<Button name="TaskStarInfoBtnTemplate" virtual="true" hidden="false">
+		<Size>
+			<AbsDimension x="265" y="20"/>
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+				<FontString name="$parentStarNum" fonttype="TeenyBlackFont" justifyH="left" text="5星：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="15" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentStarTex1" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentStarNum" relativePoint="left">
+							<Offset>
+								<AbsDimension x="25" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex2" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentStarTex1" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex3" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentStarTex2" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex4" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentStarTex3" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentStarTex5" inherits="GraySmallXingXingTemplate" >
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentStarTex4" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentStarExp" fonttype="TeenyBlackFont" justifyH="center" text="12345">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="70" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left" >
+							<Offset>
+								<AbsDimension x="120" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentStarMoney" fonttype="TeenyBlackFont" justifyH="center" text="45678">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="70" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentStarExp" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+	<Frame name="ShowOtherStarReward" parent="UIClient" frameStrata="DIALOG" hidden="true" movable="true" framelevel="37">
+		<Size>
+			<AbsDimension x="283" y="225"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="其它星级奖励">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentBackGround" inherits="LayerGrayGlassBkgTemplate" >
+					<Size>
+						<AbsDimension x="266" y="138" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="37"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentStarFont" fonttype="TeenyBlackFont" justifyH="center" text="星级">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="120" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="11" y="41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentExpFont" fonttype="TeenyBlackFont" justifyH="center" text="经验">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="70" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentStarFont" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMoneyFont" fonttype="TeenyBlackFont" justifyH="center" text="银币">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="70" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentExpFont" relativePoint="right" >
+							<Offset>
+								<AbsDimension x="1" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLine1StarBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="120" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="63"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine1ExpBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine1StarBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine1MoneyBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine1ExpBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine2StarBK" inherits="WhiteCategoryBkg" >
+					<Size>
+						<AbsDimension x="120" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="85"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine2ExpBK" inherits="WhiteCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine2StarBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine2MoneyBK" inherits="WhiteCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine2ExpBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine3StarBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="120" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="107"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine3ExpBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine3StarBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine3MoneyBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine3ExpBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine4StarBK" inherits="WhiteCategoryBkg" >
+					<Size>
+						<AbsDimension x="120" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="129"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine4ExpBK" inherits="WhiteCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine4StarBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine4MoneyBK" inherits="WhiteCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine4ExpBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine5StarBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="120" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="11" y="151"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine5ExpBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine5StarBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine5MoneyBK" inherits="BlackCategoryBkg" >
+					<Size>
+						<AbsDimension x="70" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine5ExpBK" relativePoint="right">
+							<Offset>
+								<AbsDimension x="1" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHorizonalLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="264" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="61"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentInfoFont" fonttype="TeenyBlackFont" justifyH="center" text="星级越高奖励越高,可通过刷星级来改变任务星级">
+					<Color r="255" g="150" b="0"/>
+					<Size>
+						<AbsDimension x="265" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="12" y="200" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentStarInfo1" inherits="TaskStarInfoBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="11" y="64"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentStarInfo2" inherits="TaskStarInfoBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentStarInfo1" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentStarInfo3" inherits="TaskStarInfoBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentStarInfo2" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentStarInfo4" inherits="TaskStarInfoBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentStarInfo3" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentStarInfo5" inherits="TaskStarInfoBtnTemplate">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentStarInfo4" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<RichText name="$parentAwardItemRimind" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border">
+				<Size>
+					<AbsDimension x="255" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="12" y="182" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShowOtherStarRewardAwardItemRimind_onClick();</OnClick>
+				</Scripts>
+			</RichText>	
+		</Frames>
+		<Scripts>
+			<OnShow>ShowOtherStarReward_onShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

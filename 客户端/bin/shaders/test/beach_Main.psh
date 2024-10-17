@@ -1,0 +1,21 @@
+#include "header.fx"
+
+sampler s_DiffuseSampler : register(s0);
+sampler s_MaskSampler : register(s1);
+
+struct VS_OUTPUT
+{
+    float4 pos      : POSITION;
+    float4 color0   : COLOR0;
+    float4 uv0      : TEXCOORD0;
+    float4 uv1      : TEXCOORD1;
+};
+
+float4 PSMain(VS_OUTPUT	input):COLOR0
+{
+	float4 color = tex2D(s_DiffuseSampler, input.uv0.xy);
+	float4 maskColor = tex2D(s_MaskSampler, input.uv1.xy);
+
+	color *= maskColor.a;
+	return color;
+}

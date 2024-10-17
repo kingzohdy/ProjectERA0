@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/Scripts/Gem/BaoShiXiangQian.lua"/>
+	<Frame name="ConfirmXiangQianNotBindEquipFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="195">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>	
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="$parentDescFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="确认镶嵌绑定宝石会将装备变成绑定的？">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="15"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>			
+            </Button>
+			# 确定邀请按钮
+			<Button name="$parent_ConfirmButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确  定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmXiangQianNotBindEquipFrame_ConfirmButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 取消按钮
+			<Button name="$parent_CancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ConfirmXiangQianNotBindEquipFrame:Hide();</OnClick>
+				</Scripts>
+            </Button> 
+        </Frames>
+ 		<Scripts>
+		</Scripts>	
+    </Frame>
+</Ui>

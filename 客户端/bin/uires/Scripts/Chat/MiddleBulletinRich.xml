@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Chat\MiddleBulletinRich.lua" />
+	<Frame name="GameBulletintTipsFrame" parent="UIClient" frameStrata="LOW"  input_transparent="true"  hidden="true">
+		<Size>
+			<AbsDimension x="515" y="19" />
+		</Size>
+		<Anchors>
+			<Anchor point="top" relativePoint="top" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="102" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="GBT_BackGround" file="uires\ui\XiTongGongGaoGunDongDiBan.tga">				
+					<Size>
+						<AbsDimension x="515" y="19" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>		
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="GBTips_Rich" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" fontStyle="border" input_transparent="true" hidden="false">
+				<Size>
+					<AbsDimension x="1050" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="800" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>GameBulletintTipsFrame_OnShow();</OnShow>	
+			<OnHide>GameBulletintTipsFrame_OnHide();</OnHide>
+			<OnUpdate>GameBulletint_OnUpdate();</OnUpdate>		
+		</Scripts>
+	</Frame>
+</Ui>

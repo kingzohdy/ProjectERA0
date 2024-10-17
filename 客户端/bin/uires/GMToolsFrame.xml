@@ -1,0 +1,1504 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\GMToolsFrame.lua" />
+	<Frame name="GMToolsFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="396" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />				
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="GM工具" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="60" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>			
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />			
+			##加速
+			<CheckButton name="$parent_AddSpeedChk" inherits="CheckBtnTemplate" >
+				<Size>
+					<AbsDimension x="80" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="28" y="38"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="加速">
+							<Color r="254" g="255" b="189"/> 
+							<Size>
+								<AbsDimension x="60" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="23" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>							
+						</FontString>						
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameAddSpeedChk_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			##隐身
+			<CheckButton name="$parent_HideChk" inherits="CheckBtnTemplate" >
+				<Size>
+					<AbsDimension x="80" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_AddSpeedChk" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="隐身">
+							<Color r="254" g="255" b="189"/> 
+							<Size>
+								<AbsDimension x="60" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="23" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>							
+						</FontString>						
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameHideChk_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			##收听
+			<CheckButton name="$parent_EraChk" inherits="CheckBtnTemplate">
+				<Size>
+					<AbsDimension x="80" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_HideChk" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="收听">
+							<Color r="254" g="255" b="189"/> 
+							<Size>
+								<AbsDimension x="60" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="23" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>							
+						</FontString>						
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameEraChk_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			##无敌
+			<CheckButton name="$parent_InvinChk" inherits="CheckBtnTemplate">
+				<Size>
+					<AbsDimension x="80" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_EraChk" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="10" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Layers>
+					<Layer>
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="无敌">
+							<Color r="254" g="255" b="189"/> 
+							<Size>
+								<AbsDimension x="60" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="$parent">
+									<Offset>
+										<AbsDimension x="23" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>							
+						</FontString>						
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameInvinChk_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="$parent_MoveBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="瞬移">
+				<Size>
+					<AbsDimension x="41" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parent_AddSpeedChk">
+						<Offset>
+							<AbsDimension x="0" y="20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentIDFont" fonttype="TeenyBlackFont" justfyH="center" text="地图：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="46" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentMapIDTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="135" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentIDFont" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentXFont" fonttype="TeenyBlackFont" justfyH="center" text="X：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="12" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentMapIDTex">
+									<Offset>
+										<AbsDimension x="2" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentPosXTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="50" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentXFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentYFont" fonttype="TeenyBlackFont" justfyH="center" text="Y：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="12" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentPosXTex">
+									<Offset>
+										<AbsDimension x="2" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentPosYTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="50" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentYFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameMoveBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 地图下拉菜单栏
+			<Button name="$parentSelectBtn">
+				<Size>
+					<AbsDimension x="135" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_MoveBtnMapIDTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" text="地图名" justifyH="left">
+							<Color r="129" g="127" b="109"/>
+							<Size>
+								<AbsDimension x="150" y="22" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="15" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 地区下拉按钮 
+			<Button name="$parentDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentSelectBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GMToolsFrameSelectBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<EditBox name="$parent_PosXEdit" letters="6" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="45" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_MoveBtnPosXTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_PosYEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			<EditBox name="$parent_PosYEdit" letters="6" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="45" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_MoveBtnPosYTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_PosXEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			## 跟踪
+			<Button name="$parent_NearBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="跟踪">
+				<Size>
+					<AbsDimension x="41" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parent_MoveBtn">
+						<Offset>
+							<AbsDimension x="0" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justfyH="center" text="玩家名：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="46" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentNameTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="164" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameNearBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>			
+			<EditBox name="$parent_NearNameEdit" letters="100" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="150" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_NearBtnNameTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>				
+			</EditBox>
+
+			##拉人
+			<Button name="$parent_CallBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="拉人">
+				<Size>
+					<AbsDimension x="41" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parent_NearBtn">
+						<Offset>
+							<AbsDimension x="0" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justfyH="center" text="玩家名：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="46" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentNameTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="164" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameCallBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>			
+			<EditBox name="$parent_CallNameEdit" letters="100" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="150" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_CallBtnNameTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>				
+			</EditBox>
+
+			## 骑乘临时机械
+			<Button name="$parentTmpMachineBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="骑乘临时机械">
+				<Size>
+					<AbsDimension x="91" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parent_CallBtn">
+						<Offset>
+							<AbsDimension x="-20" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justfyH="center" text="机械ID：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="96" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentNameTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="114" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameTmpMachineBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<EditBox name="$parent_TmpMachineIDEdit" letters="10" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="100" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentTmpMachineBtnNameTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>				
+			</EditBox>
+
+			## 刷怪
+			<Button name="$parentMonsterBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="刷怪">
+				<Size>
+					<AbsDimension x="41" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentTmpMachineBtn">
+						<Offset>
+							<AbsDimension x="20" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justfyH="center" text="怪物ID：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="46" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+						<Texture name="$parentNameTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="100" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentNumFont" fonttype="TeenyBlackFont" justfyH="center" text="数量：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="30" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentNameTex">
+									<Offset>
+										<AbsDimension x="2" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentNumTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="100" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNumFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameMonsterBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<EditBox name="$parent_MonsterIDEdit" letters="10" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="100" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMonsterBtnNameTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>	
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_MonsterNumEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			<EditBox name="$parent_MonsterNumEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="100" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentMonsterBtnNumTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_MonsyerIDEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			## 撒道具
+			<Button name="$parentDropItemBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="撒道具">
+				<Size>
+					<AbsDimension x="51" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentMonsterBtn">
+						<Offset>
+							<AbsDimension x="-10" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justfyH="center" text="道具ID：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="56" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+						<Texture name="$parentNameTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="70" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentNumFont" fonttype="TeenyBlackFont" justfyH="center" text="数量：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="30" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentNameTex">
+									<Offset>
+										<AbsDimension x="2" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentNumTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="60" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNumFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentCollectFont" fonttype="TeenyBlackFont" justfyH="center" text="采集时间：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="55" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentNumTex">
+									<Offset>
+										<AbsDimension x="2" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentCollectTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="40" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentCollectFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameDropItemBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<EditBox name="$parent_DropItemIDEdit" letters="10" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="70" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDropItemBtnNameTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>	
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_DropItemNumEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			<EditBox name="$parent_DropItemNumEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="60" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDropItemBtnNumTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_DropItemCollectEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			<EditBox name="$parent_DropItemCollectEdit" letters="2" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="40" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDropItemBtnCollectTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>	
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_DropItemIDEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			## 撒钱
+			<Button name="$parentDropMoneyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="撒钱">
+				<Size>
+					<AbsDimension x="41" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentDropItemBtn">
+						<Offset>
+							<AbsDimension x="10" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justfyH="center" text="银币：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="46" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+						<Texture name="$parentNameTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="100" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentNumFont" fonttype="TeenyBlackFont" justfyH="center" text="堆数：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="30" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentNameTex">
+									<Offset>
+										<AbsDimension x="2" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentNumTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="100" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNumFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameDropMoneyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<EditBox name="$parent_DropMoneyIDEdit" letters="10" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="100" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDropMoneyBtnNameTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_DropMoneyIDEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			<EditBox name="$parent_DropMoneyNumEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="100" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDropMoneyBtnNumTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>	
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_DropMoneyIDEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			## 创建道具
+			<Button name="$parentAddItemBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="创建道具">
+				<Size>
+					<AbsDimension x="56" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentDropMoneyBtn">
+						<Offset>
+							<AbsDimension x="-15" y="18" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<FontString name="$parentNameFont" fonttype="TeenyBlackFont" justfyH="center" text="道具ID：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="61" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>						
+						<Texture name="$parentNameTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="100" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNameFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentNumFont" fonttype="TeenyBlackFont" justfyH="center" text="数量：">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="30" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topright" relativeTo="$parentNameTex">
+									<Offset>
+										<AbsDimension x="2" y="7" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentNumTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="100" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentNumFont" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="2" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>GMToolsFrameAddItemBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			<EditBox name="$parent_AddItemIDEdit" letters="10" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="100" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentAddItemBtnNameTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>	
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_AddItemNumEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+
+			<EditBox name="$parent_AddItemNumEdit" letters="5" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="100" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentAddItemBtnNumTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13"></FontString>	
+				<Scripts>
+					<OnTabPressed>SetFocusFrame("GMToolsFrame_AddItemIDEdit");</OnTabPressed>
+				</Scripts>
+			</EditBox>
+		
+			## 颜色 Select Color 123  颜色编号 12
+			<!-- 2012.09.10 颜色 begin -->
+			<Button name="GMToolsFrameSelectColorBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" />
+					</Layer>
+				</Layers>
+					<NormalTexture		inherits="TransTextureTemplate"/>
+					<HighlightTexture	inherits="HighlightTextureTemplate" />
+					<PushedTexture		inherits="PushedTextureTemplate" />
+				<Scripts>
+					<OnClick>GMToolsFrameSelectColor_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentSelectColor1" inherits="GMToolsFrameSelectColorBtnTemplate">				
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="$parentAddItemBtn">
+						<Offset>
+							<AbsDimension x="10" y="15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor2" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor1">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor3" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor2">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor4" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor3">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor5" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor4">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor6" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor5">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor7" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor6">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor8" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor7">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor9" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor8">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor10" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor9">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor11" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor10">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor12" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor11">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor13" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor12">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor14" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor13">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor15" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="BottomLeft" relativeTo="$parentSelectColor1">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor16" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor15">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor17" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor16">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor18" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor17">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor19" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor18">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor20" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor19">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor21" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor20">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor22" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor21">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor23" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor22">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor24" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor23">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor25" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor24">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor26" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor25">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor27" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor26">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelectColor28" inherits="GMToolsFrameSelectColorBtnTemplate">
+				<Anchors>
+					<Anchor point="TopLeft" relativePoint="TopRight" relativeTo="$parentSelectColor27">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<!-- 2012.09.10 颜色 end -->
+		</Frames>
+		<Scripts>
+			<OnLoad>GMToolsFrame_OnLoad();</OnLoad>  <!-- 颜色选择按钮  2012.04.10 -->
+			<OnShow>GMToolsFrame_OnShow();</OnShow>
+			<OnHide>GMToolsFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	# 下拉选择框
+	<Frame name="GMSelectNameFrame" hidden="true" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" movable="false">
+		<Size>
+			<AbsDimension x="135" y="205" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="LayerBkgTemplate" />
+			</Layer>
+		</Layers>
+		<Anchors>
+			<Anchors>
+				<Anchor point="center">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</Anchors>
+		<Frames>
+			# 滚动条背景
+			<Button name="$parent_SliderBack">
+				<Size>
+					<AbsDimension x="21" y="207" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentGround" inherits="ScrollBkgCenter" >
+							<Size>
+							   <AbsDimension x="21" y="207" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentGroundTop" inherits="ScrollBkgUp" >
+							<Size>
+							   <AbsDimension x="21" y="207" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parentGround" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+						<Texture name="$parentGroundBottom" inherits="ScrollBkgDown" >
+							<Size>
+							   <AbsDimension x="21" y="207" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parentGround" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture> 
+					</Layer>
+				</Layers>
+			</Button>
+			# 向上滚动按钮
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_SliderBack" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-2 " y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GMSelectNameFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 向下滚动按钮
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ScrollUpBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="184"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GMSelectNameFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="23" y="162" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>GMSelectNameFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			<Button name="GMSelectNameBtnTemplate" virtual="true" >
+				<Size>
+					<AbsDimension x="113" y="20" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentAreaName" fonttype="TeenyFZYBlackFont" justifyH="left" fontStyle="border" text="">
+							<Color r="237" g="235" b="187" />
+							<Size>
+								<AbsDimension x="108" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="5" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>					
+						</FontString>		
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="PushedTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<Scripts>
+					<OnClick>GMSelectNameBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentBtn1" inherits="GMSelectNameBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn2" inherits="GMSelectNameBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn1" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn3" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn2" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn4" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn3" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn5" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn4" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn6" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn5" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn7" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn6" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn8" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn7" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn9" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn8" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBtn10" inherits="GMSelectNameBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentBtn9" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>GMSelectNameFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

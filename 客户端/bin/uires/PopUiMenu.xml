@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/PopUiMenu.lua"/>	
+	
+	<!--目标玩家右键菜单-->
+	<Frame name="PlayerMenu" inherits="UIMenuTemplate" frameStrata="dialog" hidden="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Scripts>
+			<onfocuslost>PlayerMenu_OnFocusLost();</onfocuslost>
+			<OnEnter>PlayerMenu_OnEnter();</OnEnter>
+			<OnShow>PlayerMenu_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!--玩家宠物右键菜单-->
+	<Frame name="PlayerPetMenu" inherits="UIMenuTemplate" frameStrata="dialog" hidden="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Scripts>
+			<onfocuslost>PlayerPetMenu_OnFocusLost();</onfocuslost>
+			<OnEnter>PlayerPetMenu_OnEnter();</OnEnter>
+			<OnShow>PlayerPetMenu_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!--队伍队员右键菜单-->
+	<Frame name="TeamMenu" inherits="UIMenuTemplate" frameStrata="dialog" hidden="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Scripts>
+			<onfocuslost>TeamMenu_OnFocusLost();</onfocuslost>
+			<OnEnter>TeamMenu_OnEnter();</OnEnter>
+			<OnShow>TeamMenu_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!--聊天窗口玩家右键菜单-->
+	<Frame name="ChatMenu" inherits="UIMenuTemplate" frameStrata="dialog" hidden="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Scripts>
+			<onfocuslost>ChatMenu_OnFocusLost();</onfocuslost>
+			<OnEnter>ChatMenu_OnEnter();</OnEnter>
+			<OnShow>ChatMenu_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	<!--聊天频道右键菜单-->
+	<Frame name="ChannelMenu" inherits="UIMenuTemplate" frameStrata="dialog" hidden="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Scripts>
+			<onfocuslost>ChannelMenu_OnFocusLost();</onfocuslost>
+			<OnEnter>ChannelMenu_OnEnter();</OnEnter>
+			<OnShow>ChannelMenu_OnShow();</OnShow>
+		</Scripts>
+	</Frame>	
+	##公会添加会员右键
+	<Frame name="ClanApplyMenu" inherits="UIMenuTemplate" frameStrata="dialog" hidden="true" >
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Scripts>
+			<onfocuslost>ClanApplyMenu_OnFocusLost();</onfocuslost>
+			<OnEnter>ClanApplyMenu_OnEnter();</OnEnter>
+			<OnShow>ClanApplyMenu_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	##公会主面板右键
+	<Frame name="ClanBasicMenu" inherits="UIMenuTemplate" frameStrata="dialog" hidden="true" >
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Scripts>
+			<OnShow>ClanBasicMenu_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	<Frame name="TeamBootyMenu" frameStrata="DIALOG" toplevel="true" hidden="true">
+		<Size>
+			<AbsDimension x="128" y="128"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBkg" inherits="TipsBkgTemplate" />
+
+				<Texture name="$parentHilightTexture" inherits="HighlightTextureTemplate" hidden="true">
+					<Size>
+						<AbsDimension x="96" y="21"/>
+					</Size>		
+					<Anchors>
+						<Anchor point="topleft"/>
+					</Anchors>		
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentButton1" inherits="UITeamMenuButtonTemplate" id="1" />
+			<Button name="$parentButton2" inherits="UITeamMenuButtonTemplate" id="2"/>
+			<Button name="$parentButton3" inherits="UITeamMenuButtonTemplate" id="3"/>
+		</Frames>
+        <Scripts>
+			<OnEscapePressed>this:Hide();</OnEscapePressed>
+			<OnLoad>TeamBootyMenu_OnLoad();</OnLoad>
+			<onfocuslost>TeamBootyMenu_OnFocusLost();</onfocuslost>
+			<OnShow>TeamBootyMenu_OnShow();</OnShow>
+        </Scripts>
+	</Frame>
+</Ui>
+	

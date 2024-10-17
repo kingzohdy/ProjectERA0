@@ -1,0 +1,994 @@
+<Ui>
+	<Script file="uires/PworldDifficulty.lua"/>
+	# 副本难度选择掉落物品框模板
+	<Button name="PworldDifficultyRewardTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="30" y="30"/>
+        </Size>
+        <Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44" >
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level = "overlay">
+				<Texture name="$parentFrame" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ZhuangBei  1.tga" hidden="true">
+					<Size>
+						<RelDimension x="1.5" y="1.5" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<UVAnimation texrows="6" texcols="5" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+		<Scripts>
+			<OnEnter>PworldDifficultyReward_OnEnter()</OnEnter>
+			<OnLeave>PworldDifficultyReward_OnLeave()</OnLeave>
+		</Scripts>
+	</Button>
+	
+	# 副本难度选择难度选择按钮模板
+	<Button name="PworldDifficultySelectTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="134" y="31" />
+		</Size>
+		<Frames>
+			<Button name="$parentBtn">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="center">
+					<Size>
+						<RelDimension x="1.0" />
+						<AbsDimension y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center"  relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits="GongYongAnNiuB2NormalTemplate"	r="255" g="255" b="190" />
+				<HighlightTexture	inherits="GongYongAnNiuB2HighTemplate"		r="255" g="255" b="255" />
+				<PushedTexture		inherits="GongYongAnNiuB2PushedTemplate"	r="255" g="255" b="255" />
+				<DisabledTexture	inherits="GongYongAnNiuB2DisabledTemplate"	r="120"	g="120"	b="120" />
+				<Scripts>
+					<OnClick>PworldDifficultySelect_OnClick()</OnClick>
+					<OnEnter>PworldDifficultySelect_OnEnter()</OnEnter>
+					<OnLeave>PworldDifficultySelect_OnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnEnter>PworldDifficultySelect_OnEnter()</OnEnter>
+			<OnLeave>PworldDifficultySelect_OnLeave()</OnLeave>
+		</Scripts>
+	</Button>
+	
+	# 副本难度选择主界面
+	<Frame name="PworldDifficultyFrame" parent="UIClient" frameStrata="DIALOG" movable="true" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="442" y="380"/>
+        </Size>
+        <Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentUp" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="428" y="174" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="34" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentDown" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="428" y="161" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="211" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentDownLine" inherits="VerticalLineTemplate" hidden="false">
+					<Size>
+						<AbsDimension x="2" y="159" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentDown" relativePoint="left">
+							<Offset>
+								<AbsDimension x="270" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="进入副本">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 副本名字
+				<FontString name="$parentName" fonttype="SmallBlackFont" justifyH="CENTER" fontStyle="normal" text="">
+					<Color r="0" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentUp" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="83" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 副本描述
+				<FontString name="$parentText" fonttype="NormalBlackFont" justifyH="left" fontStyle="normal" lineInterval ="2" autowrap="true" text="">
+					<Color r="170" g="170" b="100"/>
+					<Size>
+						<AbsDimension x="234" y="127" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentUp" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="15" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentMapGround" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="164" y="164" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentUp" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				# 副本地图
+				<Texture name="$parentMap" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="160" y="160" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parentUp" relativePoint="right">
+							<Offset>
+								<AbsDimension x="-7" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentLeftTitle1" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="选择难度：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="14" y="14" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLeftTitle2" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="推荐级别：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="14" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLeftTitle3" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="进入人数：队伍人数不能少于3人">
+					<Color r="0" g="255" b="0"/>
+					<Size>
+						<AbsDimension x="200" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="14" y="58" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLeftTitle4" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="副本掉落：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="60" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="14" y="80" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 难度标识
+				<Texture name="$parentDifficulty" file="uires\\ZhuJieMian\\2.dds" x="164" y="611" w="44" h="24">
+					<Size>
+						<AbsDimension x="44" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="75" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentDifficultyCostInfo" fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal" text="（需要消耗1000活力值）">
+					<Color r="0" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="140" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentDifficulty" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentDifficultyDyn" file="uires\\ZhuJieMian\\2.dds" x="451" y="580" w="44" h="24">
+					<Size>
+						<AbsDimension x="44" y="24" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="75" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentDifficultyDynLevel" fonttype="TeenyBlackFont" justifyH="left" fontStyle="normal" text="(100级副本)">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="80" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="120" y="14" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 难度描述
+				<FontString name="$parentDifficultyDesc" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" lineInterval ="9" autowrap="true" text="">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="190" y="40" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="80" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			# 帮助按钮
+			<Button name="$parentHelp" inherits="HelpBtnTemplate" />
+			# 掉落列表
+			<Button name="$parentItem1" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDown" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="80" y="80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem1" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem2" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem3" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem4" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem6" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem7" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem6" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem8" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem7" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem9" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem8" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem10" inherits="PworldDifficultyRewardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItem9" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="8" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSelect" input_transparent="true">
+				<Size>
+					<AbsDimension x="134" y="115" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentDown" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-12" y="11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					# 简单难度
+					<Button name="$parentEasy" inherits="PworldDifficultySelectTemplate" text="">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 普通难度
+					<Button name="$parentGeneral" inherits="PworldDifficultySelectTemplate" text="">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="28" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 困难难度
+					<Button name="$parentHard" inherits="PworldDifficultySelectTemplate" text="">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="56" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 专家难度
+					<Button name="$parentExpert" inherits="PworldDifficultySelectTemplate" text="">
+						<Anchors>
+							<Anchor point="top" relativeTo="$parent" relativePoint="top">
+								<Offset>
+									<AbsDimension x="0" y="84" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>
+			<Button name="$parentLock">
+				<Size>
+					<AbsDimension x="120" y="113" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentDown" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-17" y="12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentFrame" inherits="LayerBlackBkgTemplate">
+							<Size>
+								<AbsDimension x="120" y="113" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBottom" inherits="TableHeadBkg">
+							<Size>
+								<AbsDimension x="114" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+									<Offset>
+										<AbsDimension x="0" y="-4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentLeft" file="uires\\ZhuJieMian\\2.dds" x="496" y="554" w="57" h="81">
+							<Size>
+								<AbsDimension x="57" y="81" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="3" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentRight" file="uires\\ZhuJieMian\\2.dds" x="496" y="554" w="57" h="81" UVType="mirroeu">
+							<Size>
+								<AbsDimension x="57" y="81" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-4" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentText" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="shadow" text="动    态">
+							<Color r="83" g="80" b="75"/>
+							<Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentBottom" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentTextDyn" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="shadow" text="动    态">
+							<Color r="83" g="80" b="75"/>
+							<Size>
+								<AbsDimension x="80" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentBottom" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>PworldDifficultyFrameLock_OnEnter()</OnEnter>
+					<OnLeave>PworldDifficultyFrameLock_OnLeave()</OnLeave>
+				</Scripts>
+			</Button>
+			# 进入副本
+			<Button name="$parentEnter" inherits="GongYongAnNiuA3Template" text="进入副本">
+				<Size>
+					<AbsDimension x="80" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentDown" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-37" y="129" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center">
+					<Size>
+						<RelDimension x="1.0" />
+						<AbsDimension y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="center"  relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Scripts>
+					<OnClick>PworldDifficultyFrame_OnEnter()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>PworldDifficultyFrame_OnLoad()</OnLoad>
+			<OnShow>PworldDifficultyFrame_OnShow()</OnShow>
+			<OnHide>PworldDifficultyFrame_OnHide()</OnHide>
+		</Scripts>
+	</Frame>
+	
+	# 副本进入提示
+	<Frame name="PworldDifficultyTipsFrame" parent="UIClient" frameStrata="DIALOG" movable="true" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="308" y="214"/>
+        </Size>
+        <Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentInside" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="294" y="148" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHeadLeft" inherits="TableHeadBkg">
+					<Size>
+						<AbsDimension x="116" y="26" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentHeadRight" inherits="TableHeadBkg">
+					<Size>
+						<AbsDimension x="179" y="26" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="115" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleLeft" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="队员名称">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="116" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentHeadLeft" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTitleRight" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="无法进入副本的原因">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="179" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentHeadRight" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				# 队员名称和原因
+				<Texture name="$parentLine1" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="290" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="26" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine2" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="290" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="46" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine3" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="290" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="66" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine4" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="290" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="86" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine5" inherits="BlackCategoryBkg">
+					<Size>
+						<AbsDimension x="290" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="106" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLine6" inherits="WhiteCategoryBkg">
+					<Size>
+						<AbsDimension x="290" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="126" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentVerticalLine" inherits="VerticalLineTemplate">
+					<Size>
+						<AbsDimension x="1" y="118" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentInside" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="115" y="28" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine1Left" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="105" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine1" relativePoint="left">
+							<Offset>
+								<AbsDimension x="4" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine1Right" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="166" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine1" relativePoint="left">
+							<Offset>
+								<AbsDimension x="120" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine2Left" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="105" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine2" relativePoint="left">
+							<Offset>
+								<AbsDimension x="4" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine2Right" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="166" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine2" relativePoint="left">
+							<Offset>
+								<AbsDimension x="120" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine3Left" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="105" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine3" relativePoint="left">
+							<Offset>
+								<AbsDimension x="4" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine3Right" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="166" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine3" relativePoint="left">
+							<Offset>
+								<AbsDimension x="120" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine4Left" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="105" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine4" relativePoint="left">
+							<Offset>
+								<AbsDimension x="4" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine4Right" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="166" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine4" relativePoint="left">
+							<Offset>
+								<AbsDimension x="120" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine5Left" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="105" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine5" relativePoint="left">
+							<Offset>
+								<AbsDimension x="4" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine5Right" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="166" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine5" relativePoint="left">
+							<Offset>
+								<AbsDimension x="120" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine6Left" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="105" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine6" relativePoint="left">
+							<Offset>
+								<AbsDimension x="4" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLine6Right" fonttype="LittleFZYBlackFont" justifyH="left" fontStyle="normal" text="">
+					<Color r="255" g="0" b="0"/>
+					<Size>
+						<AbsDimension x="166" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentLine6" relativePoint="left">
+							<Offset>
+								<AbsDimension x="120" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			# 帮助按钮
+			<Button name="$parentHelp" inherits="HelpBtnTemplate" />
+			# 继续
+			<Button name="$parentContinue" inherits="GongYongAnNiuC1ButtonTemplate" text="继续进入">
+				<Size>
+					<AbsDimension x="75" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="21" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PworldDifficultyTipsFrame_OnContinue()</OnClick>
+				</Scripts>
+			</Button>
+			# 取消
+			<Button name="$parentCancel" inherits="GongYongAnNiuC1ButtonTemplate" text="取  消">
+				<Size>
+					<AbsDimension x="75" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-21" y="-6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this)</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>PworldDifficultyTipsFrame_OnShow()</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

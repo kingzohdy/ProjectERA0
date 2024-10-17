@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/Scripts/Login/SelectRoleWarnFrame.lua" />
+	<Frame name="SelectRoleWarnFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="199" toplevel="true">
+		<Size>
+			<AbsDimension x="350" y="150" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="DengLuJieMianXuanZeFuWuQiZiJieMianTemplate" >
+					<Size>
+						<AbsDimension x="350" y="150" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftHeadTex" file="uires\\ZhuJieMian\\3.dds" x="156" y="705" w="125" h="30" >
+					<Size>
+						<AbsDimension x="125" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightHeadTex" file="uires\\ZhuJieMian\\3.dds"  x="156" y="705" w="125" h="30" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="125" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="温馨提示" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="-15" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentGanTanHaoTex" file="uires\\ZhuJieMian\\3.dds" x="399" y="809" w="52" h="52" >
+					<Size>
+						<AbsDimension x="52" y="52" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="149" y="19"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<!--
+				<FontString name="$parentDescFont" fonttype="LittleFZYBlackFont" justifyH="center" text="本服务器含有PvP内容，未成年人请慎入" >
+					<Color r="50" g="30" b="10"/>
+					 <Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				-->
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentDescRich" fonttype="LittleFZYBlackFont" fontStyle="normal">
+				 <Size>
+						<AbsDimension x="320" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>this:setCenterLine( true );this:SetLinkTextColor( 0,0,255 );</OnLoad>
+						<OnClick>ConfirmChangeCareerFrameRich_OnClick();</OnClick>
+					</Scripts>
+			</RichText>
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确	定" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="122" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SelectRoleWarnFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parent_CancelBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="取	消" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="246" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SelectRoleWarnFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>SelectRoleWarnFrame_OnHide();</OnHide>		
+		</Scripts>
+	</Frame>
+
+	<Frame name="LoginLockFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel=200>
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentTex" >
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>		
+				</Texture>
+			</Layer>
+		</Layers>		
+		<Scripts>
+			<OnLoad>LoginLockFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,2245 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\YinLiKongJian\guaji.lua"/>
+	<Button name="HaoYouAnNiuTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="116" y="22" />
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+			<FontString name="$parentFont" fonttype="TeenyBlackFont"  justifyH="left"  >
+			 <Color r="30" g="10" b="5"/>
+				<size>
+					<AbsDimension x="117" y="22" />
+				</size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parenttips" id="0">
+				<Size>
+					<AbsDimension x="17" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativepoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-10" y="2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentspacesign" hidden="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="95" y="124" w="20" h="21">
+							<size>
+								<AbsDimension x="17" y="17" />
+							</size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentgamesign" hidden="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="262" y="78" w="17" h="17">
+							<size>
+								<AbsDimension x="17" y="17" />
+							</size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>HaoYouAnNiuTemplate_tips();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="0" y="0" w="1" h="1" r="255" g="190" b="150"	/>
+		<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="200" y="124" w="15" h="18"  r="255" g="190" b="150"	/>
+		<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="180" y="124" w="15" h="18"  r="255" g="190" b="190"	/>
+		<Scripts>
+			<OnClick>HaoYouAnNiuTemplate_OnClick();</OnClick>
+			<OnLeave>HaoYouAnNiuTemplate_OnLeave();</OnLeave>
+			<OnEnter>HaoYouAnNiuTemplate_OnEnter();</OnEnter>
+			<ONMOUSEDOWN>HaoYouAnNiuTemplate_OnMouseDown();</ONMOUSEDOWN>
+			<OnDoubleClick>HaoYouAnNiuTemplate_OnDoubleClick();</OnDoubleClick>
+			<onfocuslost>HaoYouAnNiuTemplate_Onlostfouc();</onfocuslost>
+		</Scripts>
+	</Button>
+
+	
+
+	##经验条地槽
+	<Texture name="ChatRoomAnNiuJingYangdicaoTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="365"	 y="237" w="16"	h="12"	/>
+			<Center			x="382"  y="237" w="15"	h="12"	/>
+			<Right			x="398"  y="237" w="16"	h="12"	/>
+		</Center>
+	</Texture>
+	<Texture name="ChatRoomAnNiuJingYangTemplate" virtual="true" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center" >
+		<Center>
+			<Left			x="365"	 y="225" w="16"	h="11"	/>
+			<Center			x="382"  y="225" w="15"	h="11"	/>
+			<Right			x="398"  y="225" w="16"	h="11"	/>
+		</Center>
+	</Texture>
+	<Frame name="guajiFrame"   hidden="true" frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199" >
+		<Size>
+			<AbsDimension x="677" y="471" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft"  relativePoint="topleft"  relativeTo="$parent" >
+				<Offset>
+					<AbsDimension x="-5" y="-2" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+			</Layer>
+			<Layer level="overlay">
+			<Texture name="LiaoTianBigDiban" inherits="ChatBigdibanTemplate" />
+			<Texture name="LiaoTianTextDiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="497"	 y="83" w="13"	h="396">
+				<Size>
+						<AbsDimension x="523" y="400" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="LiaoTianBigDiban" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="15" y="-15" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+			</Texture>
+			<!--<Texture name="LiaoTianTextfengexian" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="243"	 y="76" w="10"	h="19">
+				<Size>
+						<AbsDimension x="507" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="LiaoTianBigDiban" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="26" y="153" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+			</Texture>-->
+			<Texture name="LiaoTianTouXiangBigDiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="center">
+					<Size>
+						<AbsDimension x="521" y="48" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="LiaoTianBigDiban" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="15" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Center>
+						<Left			x="465"	 y="83" w="25"	h="50"	/>
+						<Center			x="465"	 y="83" w="25"	h="50"	/>
+						<Right			x="465"	 y="83" w="25"	h="50"	/>
+					</Center>
+			</Texture>
+			<FontString name="$parentChatroomfont" fonttype="LittleFZYBlackFont" justifyH="topleft" >
+				<Color r="255" g="255" b="190"/>
+				<Size>
+					<AbsDimension x="100" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeto="$parent" relativepoint="topleft">
+						<Offset>
+							<AbsDimension x="270" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</FontString>
+			<FontString name="$parentNameFont" fonttype="NormalBlackFont" justifyH="topleft"  >
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="70" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="100" y="35" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+			</FontString>
+			<Texture name="$parentmark1" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="226" y="88" w="12" h="12">
+				<Size>
+					<AbsDimension x="12" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentNameFont" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+			<FontString name="$parentlevelFont" fonttype="MinimumBlackFont" justifyH="topleft"  >
+					<Color r="255" g="180" b="0"/>
+					<Size>
+						<AbsDimension x="70" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentNameFont" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+			</FontString>
+			<Texture name="$parentmark2" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="226" y="88" w="12" h="12">
+				<Size>
+					<AbsDimension x="12" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentlevelFont" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+			<FontString name="$parentCareerFont" fonttype="MinimumBlackFont" justifyH="topleft"  >
+					<Color r="255" g="180" b="0"/>
+					<Size>
+						<AbsDimension x="70" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentlevelFont" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>				
+			<Texture name="$parentmark3" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="226" y="88" w="12" h="12">
+				<Size>
+					<AbsDimension x="12" y="12"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentCareerFont" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Texture>
+				<Texture name="Chatroomlogo"  file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="281"	y="0"	w="78"	h="47">
+					<Size>
+						<AbsDimension x="78" y="47" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="LiaoTianBigDiban">
+							<Offset>
+								<AbsDimension x="-220" y="30" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<!--<Texture name="JingYanTiaoChi2" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="382"	y="99"	w="15"	h="33">
+				<Size>
+						<AbsDimension x="489" y="31" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="JingYanTiaoChi1">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="JingYanTiaoChi3" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="389"	y="99"	w="16"	h="33">
+				<Size>
+						<AbsDimension x="16" y="31" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topright" relativeTo="JingYanTiaoChi2">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>-->
+			</Layer>
+		</Layers>
+		<Frames>
+
+		##经验Frame
+		<Button name="JingYangFrame">
+			<Size>
+				<AbsDimension x="521" y="31" />
+			</Size>
+			<Anchors>
+				<Anchor point="topleft" relativePoint="topleft" relativeTo="LiaoTianBigDiban">
+					<Offset>
+						<AbsDimension x="13" y="76" />
+					</Offset>
+				</Anchor>			
+			</Anchors>
+			<Layers>
+				<Layer level="overlay">
+					<Texture name="JingYanTiaoChi1" inherits="ChatRoomAnNiuNormalTemplate">
+						<Size>
+							<AbsDimension x="521" y="31" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+					<Texture name="FengeTiao1" inherits="ChatRoomAnNiufengeTemplate">
+						<Size>
+							<AbsDimension x="5" y="25" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="LiShiTiao">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Texture>
+					<FontString name="$parentFont" fonttype="FZYBlackFont12" justifyH="center" text="离线经验">
+						<Color r="255" g="255" b="190"/>
+						<Size>
+							<AbsDimension x="70" y="31"/>
+						</Size>
+						<Anchors>
+							<Anchor>
+								<Offset>
+									<AbsDimension x="5" y="4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</FontString>
+				</Layer>
+				</Layers>
+				<Frames>
+				<Button name="JingYanBtn">
+					<Size>
+						<AbsDimension x="414" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="JingYanTiaoChi1">
+							<Offset>
+								<AbsDimension x="85" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Layers>
+						<Layer level="overlay">
+							<Texture name="$parentjingyandi" inherits="ChatRoomAnNiuJingYangdicaoTemplate">
+								<Size>
+									<AbsDimension x="414" y="10" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+							<Texture name="$parentjingyan" inherits="ChatRoomAnNiuJingYangTemplate">
+								<Size>
+									<AbsDimension x="200" y="8" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentjingyandi">
+										<Offset>
+											<AbsDimension x="0" y="1" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+						</Layer>
+					</Layers>
+					<Scripts>
+						<OnEnter>jingyandi_OnEnter();</OnEnter>
+						<OnLeave>GameTooltipOnLeave();</OnLeave>		
+					</Scripts>
+				</Button>
+			</Frames>
+		</Button>
+		
+		##关闭按钮
+		<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="23" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="LiaoTianBigDiban">
+						<Offset>
+							<AbsDimension x="-7" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+				<Scripts>
+					<OnClick>System_Close();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="LiaoTianTouXiang">
+				<Size>
+					<AbsDimension x="48" y="48" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="LiaoTianBigDiban">
+						<Offset>
+							<AbsDimension x="20" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						
+						<Texture name="$parentHeadBodyTex">
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					
+						<Texture name="$parentHeadTexture" >
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					
+						<Texture name="$parentHeadHairShadowTex" file="uires\\TuPianLei\\TouXiang\\JueSeTouXiang\\male\\hair_1_shadow.tga" alphaMode="ADD">
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					
+						<Texture name="$parentHeadHairTexture" >
+							<Size>
+								<AbsDimension x="40" y="40" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativeTo="$parent" relativePoint="BottomLeft">
+									<Offset>
+										<AbsDimension x="4" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="366" y="34" w="48" h="48" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="419" y="34" w="48" h="48" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="464" y="34" w="48" h="48" />
+				<Scripts>
+					<OnEnter>LiaoTianTouXiang_OnEnter();</OnEnter>
+					<OnLeave>LiaoTianTouXiang_OnLeave();</OnLeave>
+					<OnMouseDown>LiaoTianTouXiang_OnLeave();</OnMouseDown>
+					<OnMouseUp>LiaoTianTouXiang_OnEnter();</OnMouseUp>
+					<OnClick>LiaoTianTouXiang_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			##聊天滑动栏
+			<Button name="LiaoTianHuadong">
+					<Size>
+						<AbsDimension x="14" y="299" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="bottomright" relativeTo="JingYangFrame">
+							<Offset>
+								<AbsDimension x="0" y="-11" />
+							</Offset>
+						</Anchor>
+				   </Anchors>
+				   <Layers>
+						<Layer level="overlay">
+							<Texture name="$parentdiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="79" w="15" h="15">
+								<Size>
+									<AbsDimension x="14" y="299" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+							</Texture>
+						</Layer>
+				   </Layers>
+				   <Frames>
+						<Button name="$parentUp" inherits="GuajiJiantouUp">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentdiban">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnClick>LiaoTianHuadongUp_OnClick();</OnClick>
+							</Scripts>
+						</Button>
+						<Button name="$parentDown" inherits="GuajiJiantouDown">
+							<Size>
+								<AbsDimension x="14" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentdiban">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Scripts>
+								<OnClick>LiaoTianHuadongDown_OnClick();</OnClick>
+							</Scripts>
+						</Button>
+				   </Frames>
+			</Button>
+			<Slider name="LiaoTianHuadongSlider" orientation="VERTICAL" minValue="0" maxValue="1000" valueStep="5" defaultValue="0" hidden="true">
+				<Size>
+					<AbsDimension x="14" y="269"/>
+				</Size>
+					<Anchors>
+						<Anchor point="topright" relativePoint="bottomright" relativeTo="JingYangFrame">
+							<Offset>
+								<AbsDimension x="0" y="4" />
+							</Offset>
+						</Anchor>
+				   </Anchors>
+				<ThumbTexture name="$parentTexture" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="height">
+					<Height>
+						<Top			x="320" y="185" w="14" h="15"	/>
+						<Center			x="320" y="201" w="14" h="15"	/>
+						<Bottom			x="320" y="217" w="14" h="15"	/>
+					</Height>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>LiaoTian_ScrollBarValueChange();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+
+	
+
+			##频道栏
+			<Button name="PingDaoFrame">
+				<Size>
+					<AbsDimension x="521" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="Bottomright" relativeTo="LiaoTianHuadong">
+						<Offset>
+							<AbsDimension x="0" y="-3" />
+						</Offset>
+					</Anchor>			
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentdiban" inherits="ChatRoomAnNiuNormalTemplate">
+							<Size>
+								<AbsDimension x="521" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentobjectName" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="left" text="">
+							<Color r="255" g="230" b="150"/>
+							<Size>
+								<AbsDimension x="180" y="31"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+									<Offset>
+										<AbsDimension x="200" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="Zonghepindao" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="40" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="综合" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>Zonghepindao_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="ShiJiepindao" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="40" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="Zonghepindao">
+								<Offset>
+									<AbsDimension x="-5" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="世界" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>Shijiepindao_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="GongHuipindao" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="40" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="ShiJiepindao">
+								<Offset>
+									<AbsDimension x="-5" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="公会" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>Gonghuipindao_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="ChatRoompindao" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="50" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="GongHuipindao">
+								<Offset>
+									<AbsDimension x="-5" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="聊天室" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+								<Texture name="$parentfenge2" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>ChatRoompindao_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="SiLiaopindao" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="40" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="ChatRoompindao">
+								<Offset>
+									<AbsDimension x="-5" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="私聊" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+								<Texture name="$parentfenge2" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>Siliaopindao_OnClick();</OnClick>
+							<OnEnter>Privatechannelbtn_tips();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="Historybtn" inherits="ShuRuAnNiuTemplate">
+						<Size>
+							<AbsDimension x="78" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="历史信息" >
+									<Color r="255" g="230" b="150" />
+										<Anchors>
+											<Anchor point="center">
+												<Offset>
+													<AbsDimension x="0" y="2"/>
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>Historybtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="PinBiAnNiu" inherits="ShuRuAnNiuTemplate">
+						<Size>
+							<AbsDimension x="40" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topleft" relativeTo="Historybtn">
+								<Offset>
+									<AbsDimension x="2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="屏蔽" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick> Shielbtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="QingPingAnNiu" inherits="ShuRuAnNiuTemplate">
+						<Size>
+							<AbsDimension x="40" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topleft" relativeTo="PinBiAnNiu">
+								<Offset>
+									<AbsDimension x="2" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="清屏" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="30" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>QingPingAnNiu_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="BiaoQingAnNiu" >
+						<Size>
+							<AbsDimension x="15" y="15" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topleft" relativeTo="QingPingAnNiu">
+								<Offset>
+									<AbsDimension x="-5" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="367" y="83" w="15" h="15"/>
+						<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="383" y="83" w="15" h="15"/>
+						<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="399" y="83" w="15" h="15"/>
+						<Scripts>
+							<OnClick>FaceBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="FairyBtn" hidden="true">
+						<Size>
+							<AbsDimension x="12" y="16" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topleft" relativeTo="BiaoQingAnNiu">
+								<Offset>
+									<AbsDimension x="-5" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="456" y="336" w="12" h="16"/>
+						<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="469" y="336" w="12" h="16"/>
+						<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="482" y="336" w="12" h="16"/>
+						<Scripts>
+							<OnClick>FairyBtn_OnClick();</OnClick>
+							<OnEnter>FairyBtn_tips();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+					<Button name="Send">
+						<Size>
+							<AbsDimension x="40" y="40" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="bottomright" relativeTo="Historybtn">
+								<Offset>
+									<AbsDimension x="0" y="-3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="发送" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="14"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="450" y="176" w="43" h="39" r="255" g="255" b="190"/>
+						<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="450" y="216" w="43" h="39" r="255" g="255" b="190"/>
+						<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="450" y="256" w="43" h="39" r="130" g="100" b="70"/>
+						<Scripts>
+							<OnClick>LiaoTianshiEdit_OnEnterPressed();</OnClick>
+							<OnEnter>LiaoTianshiEdit_tips();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Button>
+
+			##好友Frame
+			<Button name="HaoYouFrame">
+				<Size>
+					<AbsDimension x="123" y="425" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-20" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentfenge" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="213" y="150" w="5" h="50">
+							<Size>
+								<AbsDimension x="3" y="425" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentdiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="260" y="236" w="105" h="17">
+							<Size>
+								<AbsDimension x="130" y="425" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentanniudiban" inherits="ChatRoomAnNiuNormalTemplate">
+							<Size>
+								<AbsDimension x="130" y="31" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="GongGongAnNiu" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="44" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-3" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="公共" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="31" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>GongGongAnNiu_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="ClanAnNiu" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="44" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="GongGongAnNiu">
+								<Offset>
+									<AbsDimension x="-3" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="公会" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="31" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>ClanAnNiu_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="HaoYouAnNiu" inherits="ShuRuAnNiuPinDaoTemplate">
+						<Size>
+							<AbsDimension x="44" y="22" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topright" relativeTo="ClanAnNiu">
+								<Offset>
+									<AbsDimension x="-3" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center" text="好友" >
+									<Color r="255" g="230" b="150" />
+									<Anchors>
+										<Anchor point="center">
+											<Offset>
+												<AbsDimension x="0" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentfenge" inherits="ChatRoomAnNiufengeTemplate">
+										<Size>
+											<AbsDimension x="5" y="31" />
+										</Size>
+										<Anchors>
+											<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+												<Offset>
+													<AbsDimension x="0" y="-3" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>HaoYouAnNiu_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentQiDongNiu"  text="启动">
+						<Size>
+							<AbsDimension x="59" y="30" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-8" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center">
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="338" w="60" h="30"   r="255" g="255" b="190"/>
+						<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="369" w="60" h="30"   r="255" g="255" b="200"/>
+						<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="400" w="60" h="30"   r="180" g="160" b="120"/>
+						<DisabledTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="431" w="60" h="30"   r="180" g="180" b="180"/>
+						<Scripts>
+							<OnClick>StartZoneBtn_OnClick();</OnClick>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+							<OnEnter>StartZone_tips();</OnEnter>
+						</Scripts>
+					</Button>
+					<Button name="$parentLiaoTianShiNiu"  text="聊天室">
+						<Size>
+							<AbsDimension x="59" y="30" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topleft" relativeTo="$parentQiDongNiu">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center">
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="338" w="60" h="30"   r="255" g="255" b="190"/>
+						<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="369" w="60" h="30"   r="255" g="255" b="200"/>
+						<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="400" w="60" h="30"   r="180" g="160" b="120"/>
+						<DisabledTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="354" y="431" w="60" h="30"   r="180" g="180" b="180"/>
+						<Scripts>
+							<OnClick>LiaoTianShiNiuOnClick();</OnClick>
+							<OnEnter>LiaoTianShiNiu_tips();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>	
+					</Button>
+					<Button name="HaoYouAnNiu1" inherits="HaoYouAnNiuTemplate"  id="1">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="GongGongAnNiu">
+								<Offset>
+									<AbsDimension x="1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="HaoYouAnNiu2" inherits="HaoYouAnNiuTemplate"  id="2"/>
+					<Button name="HaoYouAnNiu3" inherits="HaoYouAnNiuTemplate" id="3"/>
+					<Button name="HaoYouAnNiu4" inherits="HaoYouAnNiuTemplate" id="4"/>
+					<Button name="HaoYouAnNiu5" inherits="HaoYouAnNiuTemplate" id="5"/>
+					<Button name="HaoYouAnNiu6" inherits="HaoYouAnNiuTemplate" id="6"/>
+					<Button name="HaoYouAnNiu7" inherits="HaoYouAnNiuTemplate" id="7"/>
+					<Button name="HaoYouAnNiu8" inherits="HaoYouAnNiuTemplate" id="8"/>
+					<Button name="HaoYouAnNiu9" inherits="HaoYouAnNiuTemplate" id="9"/>
+					<Button name="HaoYouAnNiu10" inherits="HaoYouAnNiuTemplate" id="10"/>
+					<Button name="HaoYouAnNiu11" inherits="HaoYouAnNiuTemplate" id="11"/>
+					<Button name="HaoYouAnNiu12" inherits="HaoYouAnNiuTemplate" id="12"/>
+					<Button name="HaoYouAnNiu13" inherits="HaoYouAnNiuTemplate" id="13"/>
+					<Button name="HaoYouAnNiu14" inherits="HaoYouAnNiuTemplate" id="14"/>
+					<Button name="HaoYouAnNiu15" inherits="HaoYouAnNiuTemplate" id="15"/>
+					<Button name="HaoYouAnNiu16" inherits="HaoYouAnNiuTemplate" id="16"/>
+					<Button name="HaoYouAnNiu17" inherits="HaoYouAnNiuTemplate" id="17"/>
+					##好友模块滑动栏
+					<Button name="HaoyouHuadong" >
+						<Size>
+							<AbsDimension x="14" y="408" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativePoint="bottomright" relativeTo="guajiFrame">
+								<Offset>
+									<AbsDimension x="-15" y="-15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						 <Layers>
+							<Layer level="overlay">
+								<Texture name="$parentdiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="79" w="15" h="15">
+									<Size>
+										<AbsDimension x="14" y="408" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									</Texture>
+								</Layer>
+							</Layers>
+							<Frames>
+							<Button name="HaoyouHuadongUp" inherits="GuajiJiantouUp">
+								<Size>
+									<AbsDimension x="14" y="15" />
+								</Size>
+								<Anchors>
+									<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentdiban">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>HaoyouHuadongUpbtn_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+							<Button name="$parentDown" inherits="GuajiJiantouDown">
+								<Size>
+									<AbsDimension x="14" y="15" />
+								</Size>
+								<Anchors>
+									<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentdiban">
+										<Offset>
+											<AbsDimension x="0" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnClick>HaoyouHuadongDownbtn_OnClick();</OnClick>
+								</Scripts>
+							</Button>
+						</Frames>
+					</Button>
+					<Slider name="HaoyouHuadongSlider" orientation="VERTICAL" minValue="0" maxValue="1000" valueStep="5" defaultValue="0" hidden="true">
+						<Size>
+							<AbsDimension x="14" y="378"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="HaoyouHuadongUp">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ThumbTexture name="$parentTexture" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="height">
+							<Height>
+								<Top			x="320" y="185" w="14" h="15"	/>
+								<Center			x="320" y="201" w="14" h="15"	/>
+								<Bottom			x="320" y="217" w="14" h="15"	/>
+							</Height>
+						</ThumbTexture>
+						<Scripts>
+							<OnValueChanged>HaoyouHuadong_ScrollBarValueChange();</OnValueChanged>
+							<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+							<OnHide>HaoyouHuadong_ScrollHide();</OnHide>
+						</Scripts>
+					</Slider>
+				</Frames>
+			</Button>
+			##拖动区域
+			<Button name="$parentTuodong">
+				<Size>
+					<AbsDimension x="645" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnMouseDown>TuodongOnMouseDonw();</OnMouseDown>
+					<OnMouseUp>TuodongOnMouseUp();</OnMouseUp>
+				</Scripts>	
+			</Button>
+
+			##文字区域
+			<RichText name="ChatAloneRichText" virtual="true" lineInterval ="2" multiLine="true" maxlines="200" fonttype="TeenyBlackFont" fontStyle="NORMAL"  input_transparent="true" >
+						<Size>
+							<AbsDimension x="505" y="290" />
+						</Size>
+						<Anchors>
+							<Anchor point="Topright" relativeTo="LiaoTianHuadong" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="0" y="5" />
+								</Offset>
+							</Anchor>
+				</Anchors>
+				<Scripts>
+				<OnClick>RichText_OnClick();</OnClick>
+				</Scripts>
+			</RichText>
+			<RichText name="ZonghepindaoRichText" inherits="ChatAloneRichText" />
+			<RichText name="ShijiepindaoRichText" inherits="ChatAloneRichText" hidden="true" />
+			<RichText name="GonghuipindaoRichText" inherits="ChatAloneRichText" hidden="true" />
+			<RichText name="SiliaopindaoRichText" inherits="ChatAloneRichText" hidden="true" />
+			<RichText name="ChatRoompindaoRichText" inherits="ChatAloneRichText" hidden="true" />
+			<MultiEditBox name="LiaoTianshiEdit" fonttype="SongTiFont12" letters="200" multiLine="true" lineInterval="2">
+				<textcolor r="40" g="25" b="15" />
+				<cursorcolor r="0" g="0" b="0" />
+				<Size>
+					<AbsDimension x="470" y="30" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PingDaoFrame" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="5" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>					
+				<Scripts>
+					<onfocuslost>LiaoTianshiEdit_OnFocusLost();</onfocuslost>
+					<OnCtrlEnterPressed>LiaoTianshiEdit_OnEnterPressed();</OnCtrlEnterPressed>
+				</Scripts>
+			</MultiEditBox>
+			<Button name="$parent_minbtn" inherits="minwindowbtn"/>
+		</Frames>
+		<Scripts>
+			<OnLoad>guajiFrameOnLoad();</OnLoad>
+			<OnShow>guajiFrameOnShow();</OnShow>
+			<OnEvent>guajiFrameOnEvent();</OnEvent>
+			<OnClick>guajiFrameOnClick();</OnClick>
+			<OnHide>guajiFrameOnHide();</OnHide>
+		</Scripts>	
+	</Frame>
+			#对话框
+		<Frame name="RoleInfoDialog" frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199" movable="true" hidden="true" toplevel="true" >
+			<Size>
+				<AbsDimension x="105" y="72" />
+			</Size>
+			<Layers>
+				<Layer level="overlay">
+					<Texture name="$parentdiban" inherits="RightKeydibanTemplate"/>
+				</Layer>
+			</Layers>
+			<Frames>
+				<RichText name="$parentRichText"  lineInterval ="2" multiLine="true" fonttype="FZYBlackFont12" fontStyle="border" input_transparent="true" >
+					<Size>
+						<AbsDimension x="105" y="72" />
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</RichText>
+			</Frames>
+		</Frame>
+		<Frame name="RoleOnClickDialog" frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199" movable="true" hidden="true" toplevel="true" >
+			<Size>
+				<AbsDimension x="67" y="92" />
+			</Size>
+			<Layers>
+				<Layer level="overlay">
+					<Texture name="$parentdiban" inherits="RightKeydibanTemplate"/>
+				</Layer>
+			</Layers>
+			<Frames>
+				<Button name="$parentChat"  inherits="RihtKeyButtonTemplate1" >
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>RoleOnClickDialogChat_OnClick();</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentSteal"  inherits="RihtKeyButtonTemplate1" >
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parentChat" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>RoleOnClickDialogSteal_OnClick();</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentAddFriend"  inherits="RihtKeyButtonTemplate1" >
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parentSteal" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>RoleOnClickDialogAddFriend_OnClick();</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentDeleteFriend"  inherits="RihtKeyButtonTemplate1"  >
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parentAddFriend" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>RoleOnClickDialogDeleteFriend_OnClick();</OnClick>
+					</Scripts>
+				</Button>
+				<Button name="$parentWatch"  inherits="RihtKeyButtonTemplate1" >
+					<Anchors>
+						<Anchor point="TopLeft" relativeTo="$parentDeleteFriend" relativePoint="bottomleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>RoleOnClickDialogWatch_OnClick();</OnClick>
+					</Scripts>
+				</Button>
+			</Frames>
+				<Scripts>
+					<OnLoad>RoleOnClickDialog_OnLoad();</OnLoad>
+				</Scripts>
+			</Frame>
+
+		#屏蔽窗口
+	<Frame name="ShieldFrame" frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199" movable="true" hidden="true" toplevel="true">
+		<Size>
+			<AbsDimension x="172" y="186" />
+		</Size>
+		<Anchors>
+			<Anchor point="Bottomright" relativeTo="Historybtn" relativePoint="topright">
+				<Offset>
+					<AbsDimension x="-15" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentDiban" inherits="ChatBigdibanTemplate" />
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" text="频道屏蔽">
+					<Color r="255" g="255" b="190" />
+					<size>
+						<AbsDimension x="172" y="20" />
+					</size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentfenge" inherits="hengfengge">
+					<Size>
+						<AbsDimension x="142" y="5"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+							<Offset>
+								<AbsDimension x="15" y="130"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="23" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-7" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+				<Scripts>
+					<OnClick>ShieldFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="WorldShieldChkBtn" inherits="CheckBtnTemplate" checked="false">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="20" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="GonghuiShieldChkBtn" inherits="CheckBtnTemplate" checked="false">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="WorldShieldChkBtn" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="PrivateShieldChkBtn" inherits="CheckBtnTemplate" checked="false">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="GonghuiShieldChkBtn" relativePoint="BottomLeft">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="$parentWorldchannel" inherits="GongYongAnNiuY1Template" text="世界频道">
+				<Size>
+					<AbsDimension x="94" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="WorldShieldChkBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentGonghuichannel" inherits="GongYongAnNiuY1Template" text="公会频道">
+				<Size>
+					<AbsDimension x="94" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="GonghuiShieldChkBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPrivatechannel" inherits="GongYongAnNiuY1Template" text="私聊频道">
+				<Size>
+					<AbsDimension x="94" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="PrivateShieldChkBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="5" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSure" inherits="GongYongAnNiuY4Template" text="确定">
+				<Size>
+					<AbsDimension x="54" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="30" y="140"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center">
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Scripts>
+					<OnClick>ShieldFrameSurebtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancle" inherits="GongYongAnNiuY4Template" text="取消">
+				<Size>
+					<AbsDimension x="54" y="22"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="90" y="140"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="FZYBlackFont12" fontStyle="shadow" justifyH="center">
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Scripts>
+					<OnClick>ShieldFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<OnScripts>
+		<OnShow>ShieldFrame_OnShow();</OnShow>
+		</OnScripts>
+	</Frame>
+	#表情
+	<Frame name="ChatFaceFrame" frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199" movable="true" hidden="true" toplevel="true">
+		<Size>
+			<AbsDimension x="261" y="167" />
+		</Size>
+		<Anchors>
+			<Anchor point="BottomLeft" relativeTo="BiaoQingAnNiu" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="CFF_BackGround" file="uires\ZhuJieMian\LiaoTian\LiaoTianMianBan\BiaoQingMianBan.tga">				
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="CFF_ShowFaceRich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" input_transparent="false">
+				<Size>
+					<AbsDimension x="261" y="167" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="5" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CFF_ShowFaceRich_OnClick();</OnClick>
+					<OnEnter>CFF_ShowFaceRich_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>				
+				</Scripts>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>ChatFaceFrame_OnShow();</OnShow>
+			<OnLoad>ChatFaceFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="ResponseAddFriendFrame"  frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199"  hidden="true" toplevel="true">
+		<Size>
+			<AbsDimension x="240" y="240"/>
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="215" y="110"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentdiban" inherits="ChatBigdibanTemplate"/>
+				<FontString name="$parentdibanfont" fonttype="TeenyBlackFont" text="好友添加请求">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="105" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentfenge" inherits="hengfengge">
+					<Size>
+						<AbsDimension x="210" y="5"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="15" y="80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parenttip" fonttype="TeenyBlackFont" text="请求附加信息:">
+					<Color r="255" g="230" b="150"/>
+					<Size>
+						<AbsDimension x="100" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="20" y="90"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentinfo"  lineInterval ="2" multiLine="true" maxlines="200" fonttype="FZYBlackFont12" fontStyle="NORMAL"  input_transparent="true" >
+				<Size>
+					<AbsDimension x="150" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="30" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentbox">
+				<Size>
+					<AbsDimension x="200" y="80"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="20" y="115"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentdiban" inherits="ChatselectdibanTemplate"/>
+					</Layer>
+				</Layers>
+				<Frames>
+					<RichText name="$parentinfo" lineInterval ="2" multiLine="true" maxlines="200" fonttype="FZYBlackFont12" fontStyle="NORMAL"  input_transparent="true" >
+						<Size>
+							<AbsDimension x="190" y="85"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="5" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+			<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="23" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-7" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+				<Scripts>
+					<OnClick>ResponseAddFriendFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentSure" inherits="GongYongAnNiuY1Template" text="接受">
+				<Size>
+					<AbsDimension x="92" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="25" y="196"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ResponseAddFriendFrameSurebtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancel" inherits="GongYongAnNiuY1Template" text="拒绝">
+				<Size>
+					<AbsDimension x="92" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="120" y="196"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ResponseAddFriendFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ResponseAddFriendFrame_OnLoad();</OnLoad>
+			<OnEvent>ResponseAddFriendFrame_OnEvent();</OnEvent>
+			<OnShow>ResponseAddFriendFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	<Frame name="AddFriendFrame"  frameStrata="FULLSCREEN" parent="UIClient"  framelevel="199"  hidden="true" toplevel="true">
+		<Size>
+			<AbsDimension x="240" y="240"/>
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="215" y="110"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentdiban" inherits="ChatBigdibanTemplate"/>
+				<FontString name="$parentdibanfont" fonttype="TeenyBlackFont" text="好友添加">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="105" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentfenge" inherits="hengfengge">
+					<Size>
+						<AbsDimension x="210" y="5"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="15" y="80"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parenttip" fonttype="TeenyBlackFont" text="输入验证信息:">
+					<Color r="255" g="230" b="150"/>
+					<Size>
+						<AbsDimension x="100" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="20" y="90"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentTipRich"  lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" fontStyle="border" input_transparent="true" >
+				<Size>
+					<AbsDimension x="190" y="45"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativepoint="topleft" relativeto="$parent">
+						<Offset>
+							<AbsDimension x="20" y="35"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentbox">
+				<Size>
+					<AbsDimension x="200" y="80"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="20" y="115"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentdiban" inherits="ChatselectdibanTemplate"/>
+					</Layer>
+				</Layers>
+				<Frames>
+					<MultiEditbox name="$parentEditbox" fonttype="FZYBlackFont12" letters="300" multiLine="true" lineInterval="2">
+						<textcolor r="160" g="150" b="120" />
+						<cursorcolor r="160" g="150" b="120" />
+						<Size>
+							<AbsDimension x="190" y="75"/>
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="5" y="2"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</MultiEditbox>
+				</Frames>
+			</Button>
+			<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="23" y="22" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-7" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+				<Scripts>
+					<OnClick>AddFriendFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentSure" inherits="GongYongAnNiuY1Template" text="确认">
+				<Size>
+					<AbsDimension x="92" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="25" y="196"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AddFriendFrameSurebtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancel" inherits="GongYongAnNiuY1Template" text="取消">
+				<Size>
+					<AbsDimension x="92" y="25"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="120" y="196"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>AddFriendFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="HistoryFrame"  frameStrata="FULLSCREEN" parent="UIClient"  movable="true" framelevel="199"  hidden="true" toplevel="true">
+		<Size>
+			<AbsDimension x="300" y="215" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="100" y="100" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentdiban" inherits="ChatBigdibanTemplate"/>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" text="历史消息">
+					<Color r="255" g="255" b="190" />
+					<size>
+						<AbsDimension x="150" y="20" />
+					</size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="70" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn">
+				<Size>
+					<AbsDimension x="20" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-6" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="257" w="23" h="22" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="280" w="23" h="22" />
+				<PushedTexture		file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="348" y="303" w="23" h="22" />
+				<Scripts>
+					<OnClick>HistoryFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+			<RichText name="$parentRichText"  lineInterval ="2" multiLine="true" fonttype="FZYBlackFont14" fontStyle="border" input_transparent="true" >
+				<Size>
+					<AbsDimension x="255" y="154" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="15" y="-30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentHuadong">
+				<Size>
+					<AbsDimension x="14" y="172" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-14" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentdiban" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" x="296" y="79" w="15" h="15">
+							<Size>
+								<AbsDimension x="14" y="172" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="HistoryFrameHuadongUp" inherits="GuajiJiantouUp">
+						<Size>
+							<AbsDimension x="14" y="15" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentdiban">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>HistoryFrameUpBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentDown" inherits="GuajiJiantouDown">
+						<Size>
+							<AbsDimension x="14" y="15" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parentdiban">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>HistoryFrameDownBtn_OnClick();</OnClick>
+						</Scripts>							
+					</Button>
+				</Frames>
+			</Button>
+			<Slider name="HistoryFrameHuadongSlider" orientation="VERTICAL" minValue="0" maxValue="1000" valueStep="5" defaultValue="0" hidden="true">
+				<Size>
+					<AbsDimension x="14" y="142"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="HistoryFrameHuadongUp">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+					<ThumbTexture name="$parentTexture" file="uires\\ZhuJieMian\\YinLiKongJian\\YinLiKongJian.dds" DrawType="height">
+						<Height>
+							<Top			x="320" y="185" w="14" h="15"	/>
+							<Center			x="320" y="201" w="14" h="15"	/>
+							<Bottom			x="320" y="217" w="14" h="15"	/>
+						</Height>
+					</ThumbTexture>
+					<Scripts>
+						<OnValueChanged>HistoryFrame_ScrollBarValueChange();</OnValueChanged>
+						<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+					</Scripts>
+			</Slider>
+		 </Frames>
+		 <OnScripts>
+			<Onshow>HistoryFrame_Onshow();</Onshow>
+		 </OnScripts>
+	</Frame>
+</Ui>
+
+

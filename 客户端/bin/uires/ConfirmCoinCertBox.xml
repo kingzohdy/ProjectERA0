@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/ConfirmCoinCertBox.lua" />
+	# 金币或金券的锁定确认
+	<Frame name="ConfirmCoinCertBox" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable="false" framelevel="200">
+		<Size>
+			<AbsDimension x="240" y="140" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround1" inherits="TipsBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround2" inherits="TipsBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBackGround3" inherits="TipsBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				# 界面标题
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="215" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMoneyTitle" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="normal" text="货币类型">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="60" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+							<Offset>
+								<AbsDimension x="-63" y="-41" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCoinTitle" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="left" text="金券">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="40" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentMoneyTitle" relativePoint="right">
+							<Offset>
+								<AbsDimension x="35" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCertTitle" fonttype="LittleFZYBlackFont" justifyH="center" fontStyle="left" text="金币">
+					<Color r="160" g="160" b="90" />
+					<Size>
+						<AbsDimension x="40" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parentMoneyTitle" relativePoint="right">
+							<Offset>
+								<AbsDimension x="100" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentText" fonttype="LittleFZYBlackFont" lineInterval ="2" multiLine="true" autowrap="true" fontStyle="normal">
+				<Size>
+					<AbsDimension x="215" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="-14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<CheckButton name="$parentCoin" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentCoinTitle" relativePoint="left">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ConfirmCoinCertBox_OnCoin()</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentCert" inherits="CheckBtnTemplate">
+				<Anchors>
+					<Anchor point="right" relativeTo="$parentCertTitle" relativePoint="left">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ConfirmCoinCertBox_OnCert()</OnClick>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parentOK" inherits="GongYongAnNiuA1ButtonTemplate" text="确 定">
+				<Size>
+					<AbsDimension x="70" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="-55" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ConfirmCoinCertBox_OnOK()</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancel" inherits="GongYongAnNiuA1ButtonTemplate" text="取 消">
+				<Size>
+					<AbsDimension x="70" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom" >
+						<Offset>
+							<AbsDimension x="55" y="-8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>util.closeParent(this)</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ConfirmCoinCertBox_OnLoad()</OnLoad>
+			<OnShow>ConfirmCoinCertBox_OnShow()</OnShow>
+			<OnHide>ConfirmCoinCertBox_OnHide()</OnHide>
+			<OnUpdate>ConfirmCoinCertBox_OnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

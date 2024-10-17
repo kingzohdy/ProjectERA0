@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires/ReviveFrame.lua"/>	
+	<Frame name="ReviveFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="false" framelevel="201">
+		<Size>
+			<AbsDimension x="325" y="241" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="ReviveBackground" inherits="MainBkgTemplate">
+					<Size>
+						<AbsDimension x="325" y="241" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="选择复活模式" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="85" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentBkgBtn">
+				<Size>
+					<AbsDimension x="319" y="201" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBkgTemplate" />
+						<FontString name="$parentBlackTips" fonttype="LittleFZYBlackFont" text="黑名玩家回复活点将在时间城的思过厅复活">
+							<Color r="255" g="0" b="0" />
+							<Size>
+								<AbsDimension x="300" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentDropRich" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+							<Size>
+								<AbsDimension x="320" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft" >
+									<Offset>
+										<AbsDimension x="-2" y="-70"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>				
+			</Button>
+			<Button name="$parentDieInfoBtn">
+				<Size>
+					<AbsDimension x="305" y="70" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentBkgBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="6" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentIcon"  file="uires\\ZhuJieMian\\1.dds" x="683" y="340" w="56" h="42">
+							<Size>
+								<AbsDimension x="56" y="42" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<RichText name="$parentKillerRich" input_transparent="true" lineInterval="2" multiLine="true" fonttype="TeenyFZYBlackFont">
+				<Size>
+					<AbsDimension x="260" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDieInfoBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="58" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>			
+			<RichText name="$parentTimeRich" input_transparent="true" lineInterval="2" multiLine="true" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="300" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentKillerRich" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentMoneyRich" input_transparent="true" lineInterval="2" multiLine="true" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="300" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentTimeRich" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentDropRich" input_transparent="true" lineInterval="2" multiLine="true" fonttype="LittleFZYBlackFont" autoextend="true">
+				<Size>
+					<AbsDimension x="300" y="64" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="3" y="50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentDaoBaRich" input_transparent="true" lineInterval="2" multiLine="true" fonttype="LittleFZYBlackFont" autoextend="true">
+				<Size>
+					<AbsDimension x="195" y="64" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="3" y="50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="RevivePerfectBtn" inherits="GongYongAnNiuB1Template">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="16" y="-64"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="完美复活">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" >
+							<Size>
+								<AbsDimension x="86" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" relativeTo="$parentFont">
+									<Offset>
+										<AbsDimension x="0" y="24" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="RevivePerfectCostTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parentBackTex">
+									<Offset>
+										<AbsDimension x="-3" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="RevivePerfectCostFont" fonttype="LittleFZYBlackFont" justifyH="right" text="1000">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="64" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright"  relativeTo="RevivePerfectCostTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="RevivePerfectCostTipsBtn">
+						<Size>
+							<AbsDimension x="18" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativePoint="center" relativeTo="RevivePerfectCostTex">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>ReviveMoneyTexOnEnter();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnClick>RevivePerfectBtnOnClick();</OnClick>
+					<OnEnter>RevivePerfectBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="RevivePerfectTipsBtn">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="RevivePerfectBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>RevivePerfectBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentDaoBaBtn">
+				<Size>
+					<AbsDimension x="18" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="130" y="80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTexture" file="uires\\ui\\Za\\ZhanYun.tga">
+							<Size>
+								<AbsDimension x="18" y="21"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>ReviveDaoBaBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>			
+			</Button>
+			<Button name="ReviveStandBtn" inherits="GongYongAnNiuB1Template">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="118" y="-64"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="原地复活">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" >
+							<Size>
+								<AbsDimension x="86" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" relativeTo="$parentFont">
+									<Offset>
+										<AbsDimension x="0" y="24" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<Texture name="ReviveStandCostTex" file="uires\\ZhuJieMian\\1.dds" x="78" y="494" w="20" h="18">
+							<Size>
+								<AbsDimension x="20" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parentBackTex">
+									<Offset>
+										<AbsDimension x="-1" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="ReviveStandCostFont" fonttype="LittleFZYBlackFont" justifyH="right" text="1000">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="64" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright"  relativeTo="ReviveStandCostTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-2" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="ReviveStandCostTipsBtn">
+						<Size>
+							<AbsDimension x="18" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativePoint="center" relativeTo="ReviveStandCostTex">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>ReviveMoneyTexOnEnter();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnClick>ReviveStandBtnOnClick();</OnClick>
+					<OnEnter>ReviveStandBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="ReviveStandTipsBtn">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="ReviveStandBtn">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>ReviveStandBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="ReviveReleaseBtn" inherits="GongYongAnNiuB1Template">
+				<Size>
+					<AbsDimension x="90" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft"  relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="220" y="-64"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="回复活点">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="52" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" >
+							<Size>
+								<AbsDimension x="86" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottom" relativePoint="bottom" relativeTo="$parentFont">
+									<Offset>
+										<AbsDimension x="0" y="24" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>ReviveReleaseBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+					<OnClick>ReviveReleaseBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="ReviveCheckGoldPerfectBtn" inherits="SmallCheckBtnTemplate">
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="10" y="-11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentInfo" fonttype="LittleFZYBlackFont" justifyH="left" text="我要使用金币完美复活">
+							<Size>
+								<AbsDimension x="180" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativeTo="$parent" relativePoint="left">
+									<Offset>
+										<AbsDimension x="18" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>  
+						<Texture name="$parentBackTex" inherits="LayerBlackBkgTemplate" >
+							<Size>
+								<AbsDimension x="86" y="19" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="8" y="-37" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\RenWuMianBanTeXiao  1.tga">
+							<Size>
+								<AbsDimension x="102" y="45"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parentBackTex">
+									<Offset>
+										<AbsDimension x="0" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="8" texcols="2" />
+						</Texture>
+						<Texture name="$parentCostTex" file="uires\\ZhuJieMian\\1.dds" x="99" y="494" w="17" h="18">
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parentBackTex">
+									<Offset>
+										<AbsDimension x="-3" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentCostFont" fonttype="LittleFZYBlackFont" justifyH="right" text="50">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="64" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright"  relativeTo="$parentCostTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="ReviveGoldPerfectCostTipsBtn">
+						<Size>
+							<AbsDimension x="18" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativePoint="center" relativeTo="$parentCostTex">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnEnter>ReviveGoldPerfectCostTexOnEnter();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnUpdate>ReviveCheckGoldPerfectBtn_OnUpdate();</OnUpdate>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnShow>ReviveFrame_OnUpdate();</OnShow>
+			<OnLoad>ReviveFrame_OnLoad();</OnLoad>
+			<OnEvent>ReviveFrame_OnEvent();</OnEvent>
+			<OnUpdate>ReviveFrame_OnUpdate();</OnUpdate>
+		</Scripts>		
+	</Frame>
+
+	<Frame name="HelperReviveFrame" frameStrata="DIALOG" parent="UIClient" hidden="true"  framelevel="202">
+		<Size>
+			<AbsDimension x="298" y="99" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer  level="background">
+				<Texture name="HelperReviveBackground" inherits="MainBkgTemplate" />
+				<FontString name="HelperReviveText" fonttype="TeenyBlackFont" justifyH="CENTER" >
+					<Size>
+						<AbsDimension x="290" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="50" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="190" g="183" b="168" />
+				</FontString>
+				<FontString name="HelperReviveGetText" fonttype="TeenyBlackFont" justifyH="CENTER">
+					<Size>
+						<AbsDimension x="290" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="65" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="190" />
+				</FontString>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>HelperReviveFrame_OnLoad();</OnLoad>
+			<OnEvent>HelperReviveFrame_OnEvent();</OnEvent>
+			<onupdate>HelperReviveFrame_OnUpdate();</onupdate>
+		</Scripts>
+		<Frames>
+			<Button name="HelperReviveBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="55" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-60" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HelperReviveBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="HelperReviveCancelBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="55" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="HelperReviveBtn">
+						<Offset>
+							<AbsDimension x="104" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HelperReviveCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	
+	# 自动复活倒计时面板
+	<Frame name="CountdownReviveFrame" frameStrata="DIALOG" parent="UIClient" input_transparent="true" hidden="true" movable="false" framelevel="201">
+		<Size>
+           <AbsDimension x="250" y="50" />
+        </Size>
+        <Anchors>
+            <Anchor point="center"  relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="-50" />
+                </Offset>
+			</Anchor>
+        </Anchors>
+		<Layers>
+			 <Layer level="overlay">
+				##底版
+				<Texture name="$parentTex" inherits="TipsBkgTemplate">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="right" text="复活倒计时：">
+					<Size>
+						<AbsDimension x="150" y="20"/>
+					</Size>
+					<Color r="255" g="255" b="190"/>
+					<Anchors>
+						<Anchor point="left" relativeTo="$parent" relativePoint="left">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentText" fonttype="TeenyFZYBlackFont" justifyH="left" text="24秒">
+					<Size>
+						<AbsDimension x="100" y="20"/>
+					</Size>
+					<Color r="255" g="255" b="190"/>
+					<Anchors>
+						<Anchor point="right" relativeTo="$parent" relativePoint="right">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			 </Layer>
+		</Layers>
+		<Scripts>
+			<OnShow>CountdownReviveFrameOnUpdate()</OnShow>
+			<OnUpdate>CountdownReviveFrameOnUpdate()</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	## 逆袭复活框
+	<Frame name="NiXiReviveFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="false" framelevel="201">
+		<Size>
+			<AbsDimension x="325" y="196" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackground" inherits="MainBkgTemplate" />
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="320" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="153"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentIcon"  file="uires\\ZhuJieMian\\1.dds" x="683" y="340" w="56" h="42">
+					<Size>
+						<AbsDimension x="56" y="42" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="44" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+					
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="选择复活模式" >
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="85" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentTips" fonttype="LittleFZYBlackFont" justifyH="center" text="战争中连续死亡10次，将触发此效果" >
+					<Color r="255" g="200" b="0"/>
+					<Size>
+						<AbsDimension x="290" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="89" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentKillerRich" input_transparent="true" multiLine="true" fonttype="TeenyFZYBlackFont">
+				<Size>
+					<AbsDimension x="260" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="65" y="47" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentTimeRich" input_transparent="true"  multiLine="true" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="300" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="65" y="65" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentDescRich" input_transparent="true" fonttype="LittleFZYBlackFont">
+				<Size>
+					<AbsDimension x="320" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="12" y="133" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentNiXiBtn" inherits="GongYongAnNiuB1Template" text="我要逆袭">
+				<Size>
+					<AbsDimension x="120" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="103" y="158"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>NiXiRevieFrameNiXiBtn_OnClick()</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>NiXiReviveFrame_OnLoad()</OnLoad>
+			<OnShow>NiXiReviveFrame_OnUpdate();</OnShow>
+			<OnUpdate>NiXiReviveFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ReviveBuyItemFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="false"  framelevel="198">
+		<Size>
+           <AbsDimension x="212" y="278" />
+        </Size>
+        <Anchors>
+            <Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+                </Offset>
+			</Anchor>
+        </Anchors> 
+		<Layers>
+			 <Layer level="overlay">
+				<!--底版-->
+				<Texture name="$parentBackGroundTex" inherits="MainBkgTemplate" />
+				<!--物品名-->
+				<FontString name="$parentName" fonttype="TeenyFZYBlackFont" justifyH="center" text="提 示">
+					<Size>
+						<AbsDimension x="208" y="20"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentDescBkg" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="194" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="36"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			 </Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentBuyDescText" lineInterval ="2" multiLine="true" fonttype="TeenyMSYHFont">
+				<Size>		 
+					<AbsDimension x="180" y="40" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentDescBkg" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="5" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>			
+			<!--购买面板底版-->
+			<Button name="$parentMainBackBtn">
+				<Size>
+					<AbsDimension x="208" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentDescBkg" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						##--金钱框--
+						<Texture name="$parentMoneyBackTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="150" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="49" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						##--金钱框钱币图标--
+						<Texture name="$parentMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parentMoneyBackTex" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="-3" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						##--金钱框描述--
+						<FontString name="$parentMoneyDesc" fonttype="TeenyBlackFont" justifyH="right" text="价格">
+							<Size>
+								<AbsDimension x="35" y="20"/>
+							</Size>
+							<Color r="127" g="114" b="81"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parentMoneyBackTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-3" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##--金钱框金钱数值--
+						<FontString name="$parentMoneyValue" fonttype="TeenyBlackFont" justifyH="right" text="0">
+							<Size>
+								<AbsDimension x="145" y="20"/>
+							</Size>
+							<Color r="198" g="175" b="98"/>
+							<Anchors>
+								<Anchor point="topright"  relativeTo="$parentMoneyTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-8" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##--折扣框--
+						<Texture name="$parentDiscountMoneyBackTex" inherits="EditBoxBkgTemplate" >
+							<Size>
+								<AbsDimension x="150" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentMoneyBackTex">
+									<Offset>
+										<AbsDimension x="0" y="-1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						##--折扣框钱币图标--
+						<Texture name="$parentDiscountMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parentDiscountMoneyBackTex">
+									<Offset>
+										<AbsDimension x="-3" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						##----金钱框描述--
+						<FontString name="$parentDiscountMoneyDesc" fonttype="TeenyBlackFont" justifyH="right" text="折扣">
+							<Size>
+								<AbsDimension x="35" y="20"/>
+							</Size>
+							<Color r="226" g="117" b="70"/>
+							<Anchors>
+								<Anchor point="topleft"  relativeTo="$parentDiscountMoneyBackTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-3" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##--折扣框金钱数值--
+						<FontString name="$parentDiscountMoneyValue" fonttype="TeenyBlackFont" justifyH="right" text="0">
+							<Size>
+								<AbsDimension x="145" y="20"/>
+							</Size>
+							<Color r="198" g="175" b="98"/>
+							<Anchors>
+								<Anchor point="topright" relativeTo="$parentDiscountMoneyTex" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-8" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>		
+			</Button>			
+			##--商品图标按钮--
+			<Button name="$parentBtn" inherits="ItemButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentMainBackBtn">
+						<Offset>
+							<AbsDimension x="4" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>			
+			##--购买数量背景--
+			<Button name="$parentBuyItemCountBackBtn">
+				<Size>
+					<AbsDimension x="194" y="35" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						##--购买数量描述--
+						<FontString name="$parentDesc" fonttype="TeenyMSYHFont" justifyH="left" text="请编辑购买件数：">
+							<Size>
+								<AbsDimension x="90" y="20"/>
+							</Size>
+							<Color r="161" g="143" b="96"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="8" y="11"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##--数量输入框底版--
+						<Texture name="$parentCountBackTex" inherits="EditBoxBkgTemplate">
+							<Size>
+								<AbsDimension x="80" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentDesc" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="5" y="-4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />				
+			</Button>
+			##输入框
+			<EditBox name="$parentEdit" letters="3" historyLines="1" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="35" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBuyItemCountBackBtnCountBackTex" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentEditFontNormal" fonttype="SongTiFont14" justifyH="center" text="1">
+					<Color r="210" g="185" b="100" />
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>MarketBuyItemFrameEditConfirmBtnOnClick();</OnEnterPressed>
+					<OnUpdate>MarketBuyItemFrameEditOnUpdate();</OnUpdate>
+				</Scripts>
+			</EditBox>
+			##--减数量按钮--
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parentBuyItemCountBackBtnCountBackTex" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MarketBuyItemFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##--加数量按钮--
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent_ScrollDownBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MarketBuyItemFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##--支付价格背景--
+			<Button name="$parentSalePriceBackBtn">
+				<Size>
+					<AbsDimension x="190" y="56" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parentBuyItemCountBackBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						##--购买描述--
+						<FontString name="$parentDesc" fonttype="TeenyMSYHFont" justifyH="left" text="支付价格：">
+							<Size>
+								<AbsDimension x="65" y="20"/>
+							</Size>
+							<Color r="127" g="114" b="81"/>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="5" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##--金钱框钱币图标--
+						<Texture name="$parentMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parentDesc" relativePoint="topright">
+									<Offset>
+										<AbsDimension x="5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>	 
+						##--购买价格--
+						<FontString name="$parentPrice" fonttype="TeenyFZYBlackFont" justifyH="right" text="0">
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="209" g="185" b="102"/>
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="$parentMoneyTex" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="-23" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentMoneyTypeDesc" fonttype="TeenyMSYHFont" justifyH="left" text="或">
+							<Size>
+								<AbsDimension x="65" y="20"/>
+							</Size>
+							<Color r="127" g="114" b="81"/>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="5" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						##--金钱框钱币图标--
+						<Texture name="$parentMoneyTex1" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="-5" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>	 
+						##--购买价格--
+						<FontString name="$parentPrice1" fonttype="TeenyFZYBlackFont" justifyH="right" text="0">
+							<Size>
+								<AbsDimension x="70" y="20"/>
+							</Size>
+							<Color r="209" g="185" b="102"/>
+							<Anchors>
+								<Anchor point="bottomright" relativeTo="$parentMoneyTex1" relativePoint="bottomright">
+									<Offset>
+										<AbsDimension x="-23" y="3"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>
+			##--确定按钮--
+			<Button name="$parentConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="金币购买">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="Bottomleft" relativeTo="$parent" relativePoint="Bottomleft">
+						<Offset>
+							<AbsDimension x="5" y="-5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MarketBuyItemFrameConfirmBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##--金券购买--
+			<Button name="$parentBuyGoldCoinBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="金券购买">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentConfirmBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MarketBuyItemFrameConfirmBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##--取消按钮--
+			<Button name="$parentCancleBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBuyGoldCoinBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>HideUIFrame(this:GetParent());</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+        <Scripts>
+			<!--<OnLoad>ReviveBuyItemFrame_OnLoad();</OnLoad> -->
+			<OnShow>MarketBuyItemFrame_OnShow();</OnShow>
+        </Scripts>
+	</Frame>
+</Ui>

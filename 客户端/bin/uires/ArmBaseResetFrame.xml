@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ArmBaseResetFrame.lua" />
+	<Button name="ArmAttrBaseListTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="145" y="16" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBlackTex" inherits="BlackCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentWhiteTex" inherits="WhiteCategoryBkg">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentFont" fonttype="TeenyMSYHFont" text="">
+					<Color r="0" g="220"b="0"/>
+					<Size>
+						<AbsDimension x="140" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="2" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+
+	<Frame name="ArmBaseResetFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="326" y="497" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<Texture name="$parentLayer" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="309" y="82" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="9" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="321" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="458"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="绿色属性重置">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset >
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate">
+				<Scripts>
+					<OnClick>ArmBaseResetFrameCloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<RichText name="$parentRich" fonttype="TeenyBlackFont" lineInterval ="4" input_transparent="true" >
+				<Size>
+					<AbsDimension x="290" y="70" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="15" y="46" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			
+			<Button name="$parentItemTemplate" inherits="ItemButtonTemplate" virtual="true">
+				<Layers>
+					<Layer>
+						<FontString name="$parentTipsFont" fonttype="TeenyMSYHFont" text="废弃装备">
+							<Color r="160" g="155"b="130"/>
+							<Size>
+								<AbsDimension x="48" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-2" y="-16" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentItemBtn1" inherits="$parentItemTemplate" id="1"/>
+			<Button name="$parentItemBtn2" inherits="$parentItemTemplate" id="2"/>
+			<Button name="$parentItemBtn3" inherits="$parentItemTemplate" id="3"/>
+			<Button name="$parentItemBtn4" inherits="$parentItemTemplate" id="4"/>
+
+			<Button name="$parentArmItemBtn">
+				<Size>
+					<AbsDimension x="52" y="52"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="137" y="182" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentLeftCoverTexture" file="uires\\ZhuJieMian\\4.dds" x="0" y="216" w="71" h="142"> 
+							<Size>
+								<AbsDimension x="71" y="142"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-46" y="-46"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentRightCoverTexture" file="uires\\ZhuJieMian\\4.dds" x="0" y="216" w="71" h="142" UVType="mirroeu"> 
+							<Size>
+								<AbsDimension x="71" y="142"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="26" y="-46"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentCoverTexture" file="uires\\ZhuJieMian\\4.dds" x="76" y="173" w="98" h="98"> 
+							<Size>
+								<AbsDimension x="98" y="98"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right" fontStyle="border" text="">
+							<Color r="204" g="128" b="51"/>
+							<Size>
+								<AbsDimension x="40" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-3" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentRate" fonttype="LittleFZYBlackFont" justifyH="center" text="">
+							<Color r="255" g="150" b="0" />
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset >
+										<AbsDimension x="0" y="-34" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentUVAnimationTex" hidden="true">
+							<Size>
+								<AbsDimension x="80" y="80"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-15" y="-15"/>
+									</Offset>
+								</Anchor>
+							</Anchors>	
+							<UVAnimation texrows="6" texcols="5" />
+						</Texture>
+						<Texture name="$parentBindTexture" file="uires\\ZhuJieMian\\1.dds" x="42" y="829" w="20" h="17" hidden="true" >
+							<Size>
+								<AbsDimension x="20" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+					</Layer>
+					<Layer level="overlay" >
+						<ModelView name="$parentModelView" background="">
+							<Size>
+								<AbsDimension x="180" y="180" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</ModelView>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\3.dds" x="551" y="538" w="64" h="64" />
+				<PushedTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+				<Scripts>
+					<OnClick>ArmBaseResetFrameItemBtn_OnClick();</OnClick>
+					<OnEnter>ArmBaseResetFrameItemBtn_OnEnter();</OnEnter>
+					<OnReceiveDrag>ArmBaseResetFrameItemBtn_OnRecive();</OnReceiveDrag>
+					<OnBeginDrag>ArmBaseResetFrameItemBtn_OnBeginDrag();</OnBeginDrag>
+					<OnLeave>ItemButton_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentAutoBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="自动放入">
+				<Size>
+					<AbsDimension x="66" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="130" y="250"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ArmBaseResetFrameAutoBtn_OnClick();</OnClick>
+					<OnEnter>ArmBaseResetFrameAutoBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentOpt" hidden="false">
+				<Size>
+					<AbsDimension x="309" y="136" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="9" y="290" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="Tips3BkgTemplate">
+							<Size>
+								<AbsDimension x="309" y="136" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentSaveBtn" inherits="GongYongAnNiuH1Template" text="保  存">
+						<Size>
+							<AbsDimension x="65" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="79" y="111" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>ArmBaseResetFrameSaveBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					<Button name="$parentCancelBtn" inherits="GongYongAnNiuH1Template" text="取  消">
+						<Size>
+							<AbsDimension x="65" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="165" y="111" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>ArmBaseResetFrameCancelBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnHide>ArmBaseResetFrameOpt_OnHide();</OnHide>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentNow">
+				<Size>
+					<AbsDimension x="149" y="105" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="13" y="293"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+							<Size>
+								<AbsDimension x="147" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="1" y="21"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="装备现有绿色属性">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="141" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentAttr1" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="2" y="23" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr2" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr3" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr4" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr5" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>
+
+			<Button name="$parentNew">
+				<Size>
+					<AbsDimension x="149" y="105" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft"  relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="165" y="293"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" />
+						<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+							<Size>
+								<AbsDimension x="147" y="10" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+									<Offset>
+										<AbsDimension x="1" y="21"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="$parentFont" fonttype="TeenyMSYHFont" justifyH="center" text="重置后的绿色属性">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="141" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentAttr1" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="2" y="23" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr2" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr1" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr3" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr2" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr4" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr3" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="$parentAttr5" inherits="ArmAttrBaseListTemplate">
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentAttr4" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>
+
+			<Button name="$parentCost">
+				<Size>
+					<AbsDimension x="130" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="126" y="431" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentNeedFont" fonttype="LittleFZYBlackFont" text="需要消耗">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="54" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-57" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFont" justifyH="right" fonttype="LittleFZYBlackFont" text="0">
+							<Color r="160" g="160" b="90"/>
+							<Size>
+								<AbsDimension x="110" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="1" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentMoneyBtn">
+						<Size>
+							<AbsDimension x="17" y="18" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-4" y="2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture  inherits="MoneyTypeTextureTemplate" />
+						<Scripts>
+							<OnEnter>MoneyTex_OnEnter();</OnEnter>
+							<OnLeave>GameTooltipOnLeave();</OnLeave>
+							<OnLoad>this:SetClientUserData(0,3);</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+				<NormalTexture  inherits="LayerBlackBkgTemplate" />
+			</Button>
+
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1Template" text="开始重置">
+				<Size>
+					<AbsDimension x="95" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="121" y="461" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ArmBaseResetFrameOKBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ArmBaseResetFrame_OnShow();</OnShow>
+			<OnLoad>ArmBaseResetFrame_OnLoad();</OnLoad>
+			<OnEvent>ArmBaseResetFrame_OnEvent();</OnEvent>
+			<OnHide>ArmBaseResetFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

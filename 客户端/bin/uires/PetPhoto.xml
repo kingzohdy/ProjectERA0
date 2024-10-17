@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/PetPhoto.lua" />
+	# TODO: 宠物头像buff按钮 hidden="true"
+	<Button name="PetUIPhotoBuffButtonTemplate"  virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="15" y="15"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentGround" file="uires\ui\buff  TuBiaoDiBan\Bai.tga" >
+                    <Size>
+                       <AbsDimension x="15" y="15"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+				<Texture name="$parentIcon" file="uires\\TuPianLei\\JiNeng\\Buff\\1024.tga" >
+                    <Size>
+                       <AbsDimension x="13" y="13"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="1" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>PetUIPhotoBuffButton_OnEnter();</OnEnter>
+			<OnLeave>PetUIPhotoBuffButton_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	
+	# 宠物头像PK按钮右键选项
+	<Frame name="PetUI_PKRightOptionFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="99" y="43" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop edgeFile="uires\\ui\\tips\\tips10.tga" bgFile="uires\\ui\\tips\\tips10  Zhong.tga" tile="true">
+			<EdgeSize>
+				<AbsValue val="10" />
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="1" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="10" right="10" top="10" bottom="10" />
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<Button name="PetUI_PKRightBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="95" y="16" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="92" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentHook" file="uires\\ZhuJieMian\\1.dds" x="203" y="232"  w="17" h="11" hidden="true">
+							<Size>
+								<AbsDimension x="17" y="11" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="left" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>PetUI_PKRightBtn_OnClick();</OnClick>
+					<OnEnter>PetUI_RightBtn_OnEnter();</OnEnter>
+					<OnLeave>PetUI_RightBtn_OnLeave();</OnLeave>
+				</Scripts>		
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+			</Button>
+
+			<Button name="PetUI_PKRightBtn1" inherits="PetUI_PKRightBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="2" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="PetUI_PKRightBtn2" inherits="PetUI_PKRightBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetUI_PKRightBtn1" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>PetUI_PKRightOptionFrame_OnShow();</OnShow>
+		</Scripts>		
+	</Frame>
+	
+	<Button name="PetPhotoItemBtnTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="15" y="15" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+					<Size>
+						<AbsDimension x="13" y="13"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="1" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+				<!--
+				<Texture name="$parentBoxTexture" file="uires\\ui\\MianBan  1.dds" x="229" y="133" w="44" h="44" hidden="true">
+					<Size>
+						<AbsDimension x="15" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+				-->
+			</Layer>
+		</Layers>
+		<!--
+		<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="607" y="280" w="15" h="15" />
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="623" y="280" w="15" h="15" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="696" y="890" w="15" h="15" />
+		-->
+		<Scripts>
+			<OnEnter>PetPhotoItemBtn_OnEnter();</OnEnter>
+			<OnLeave>PetPhotoItemBtn_OnLeave();</OnLeave>
+			<OnClick>PetPhotoItemBtn_OnClick();</OnClick>
+			<OnBeginDrag>PetPhotoItemBtn_BeginDrag();</OnBeginDrag>
+			<OnReceiveDrag>PetPhotoItemBtn_ReceiveDrag();</OnReceiveDrag>
+		</Scripts>
+	</Button>
+
+	#宠物战斗模式贴图切换模板
+	<Texture name="PkBtnActiveNormalTemplate" virtual="true" file="uires\\ZhuJieMian\\1.dds" x="550" y="48" w="13" h="13" />
+	<Texture name="PkBtnActiveHighlightTemplate" virtual="true" file="uires\\ZhuJieMian\\1.dds" x="885" y="688" w="13" h="13" />
+	<Texture name="PkBtnActivePushedTemplate" virtual="true" file="uires\\ZhuJieMian\\1.dds" x="900" y="688" w="13" h="13" />
+	
+	<Texture name="PkBtnPassiveNormalTemplate" virtual="true" file="uires\\ZhuJieMian\\1.dds" x="550" y="34" w="13" h="13" />
+	<Texture name="PkBtnPassiveHighlightTemplate" virtual="true" file="uires\\ZhuJieMian\\1.dds" x="910" y="628" w="13" h="13" />
+	<Texture name="PkBtnPassivePushedTemplate" virtual="true" file="uires\\ZhuJieMian\\1.dds" x="924" y="628" w="13" h="13" />
+
+	#幻兽信息	LOW	
+	<Frame name="PetUI" parent="UIClient" hidden="true" frameStrata="LOW">
+		<Size>
+			<AbsDimension x="151" y="34" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="bottomleft" relativeTo="PhotoFrame">
+				<Offset>
+					<AbsDimension x="70" y="-8" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" file="uires\\ZhuJieMian\\1.dds" x="830" y="854" w="151" h="34" >
+					<Size>
+						<AbsDimension x="151" y="34" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="TargetPetName" fonttype="MinimumBlackFont" justifyH="left" text="" >
+					<Color r="255" g="254" b="189" />
+					<Size>
+						<AbsDimension x="90" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="66" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ChongWuTongLing 1.tga" alphamode="add" hidden="true">
+					<Size>
+						<AbsDimension x="160" y="60"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="8" texcols="3" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 头像
+			<Button name="$parentPhotoBtn" >
+				<Size>
+					<AbsDimension x="28" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="PetPhoto" file="uires\\TuPianLei\\TouXiang\\GuaiWuTouXiang\\302000.tga">
+							<Size>
+								<AbsDimension x="28" y="28" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>			
+					<OnClick>PetUIPhotoBtn_OnClick();</OnClick>
+					<OnEnter>PetUIPhotoBtn_OnEnter();</OnEnter>
+					<OnLeave>PetUIPhotoBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			# 下拉列表按钮
+			<Button name="PetPhotoOpenListBtn" hidden="true">
+				<Size>
+					<AbsDimension x="16" y="11"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="-5" y="13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<!--<NormalTexture		file="uires\\ui\\MianBan  13.dds" x="899" y="274" w="16" h="11" />
+				<HighlightTexture	file="uires\\ui\\MianBan  13.dds" x="916" y="274" w="16" h="11" />
+				<PushedTexture		file="uires\\ui\\MianBan  13.dds" x="933" y="274" w="16" h="11" />-->
+				<Scripts>				
+					<OnClick>PetPhotoOpenListBtn_OnClick();</OnClick>
+					<OnEnter>PetPhotoOpenListBtn_OnEnter();</OnEnter>
+					<OnLeave>PetPhotoOpenListBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# PK模式切换按钮
+			<Button name="TargetPetPKBtn">
+				<Size>
+					<AbsDimension x="13" y="13" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="2" y="20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="15" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-2" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="550" y="34" w="13" h="13" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="924" y="628" w="13" h="13" />		
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="910" y="628" w="13" h="13" />
+				<Scripts>
+					<OnClick>coroutine.wrap(TargetPetPKBtn_OnClick)();</OnClick>
+					<OnEnter>TargetPetPKBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 血条
+			<Button name="TargetPetHP" >
+				<Size>
+					<AbsDimension x="90" y="6" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="41" y="15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">						
+						<Texture name="$parentTex" inherits="PetHPTexTemplate" >
+							<Size>
+								<AbsDimension x="90" y="6" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="130" y="12"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-17" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>			
+					<OnClick>PetHP_OnClick();</OnClick>
+					<OnEnter>PetHP_OnEnter();</OnEnter>
+					<OnLeave>PetHP_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 经验条
+			<Button name="TargetPetEXP">
+				<Size>
+					<AbsDimension x="90" y="6" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="TargetPetHP" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						# file="uires\\ui\\MianBan  10.dds" x="0" y="457" w="90" h="10"
+						<Texture name="$parentTex" inherits="PetEXPTexTemplate" >
+							<Size>
+								<AbsDimension x="90" y="6" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>		
+					<OnClick>TargetPetEXP_OnClick();</OnClick>
+					<OnEnter>TargetPetEXP_OnEnter();</OnEnter>
+					<OnLeave>TargetPetEXP_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			
+			<Button name="$parentBuff1" inherits="PetUIPhotoBuffButtonTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TargetPetEXP" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="-5" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff2" inherits="PetUIPhotoBuffButtonTemplate" id="2" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff1" relativePoint="right">
+						<Offset>
+								<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff3" inherits="PetUIPhotoBuffButtonTemplate" id="3" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff2" relativePoint="right">
+						<Offset>
+								<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff4" inherits="PetUIPhotoBuffButtonTemplate" id="4" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff3" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentBuff5" inherits="PetUIPhotoBuffButtonTemplate" id="5" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentBuff4" relativePoint="right">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true" >
+				<Size>
+					<AbsDimension x="132" y="39"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="TargetPetHP" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="45" y="-69" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="parent">
+						<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Shang.tga">
+							<Size>
+								<AbsDimension x="24" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="BottomLeft" relativePoint="TOPLEFT" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="-1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+					<EdgeSize>
+						<AbsValue val="10" />
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="1" />
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="10" right="10" top="10" bottom="10" />
+					</BackgroundInsets>
+				</Backdrop>
+				<Frames>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal" autoextend="true">
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					
+					<Button name="$parent_CloseBtn" inherits="CloseBtnBlackBackTemplate" hidden="true">
+						<Size>
+							<AbsDimension x="13" y="13" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>XinShouBtn_CloseBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>	
+				</Frames>
+				<Scripts>
+					<OnHide>PetShiXinShouBtn_OnHide();</OnHide>
+				</Scripts>
+			</Button>
+
+			# 等级按钮
+			<Button name="TargetPetLevelBtn" input_transparent="true" >
+				<Size>
+					<AbsDimension x="20" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="37" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="TargetPetLevel" fonttype="MinimumBlackFont" justifyH="CENTER" fontStyle="shadow" text="222222222222222222">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="20" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 出征按钮
+			<Button name="TargetPetChuZhengBtn" hidden="true">
+				<Size>
+					<AbsDimension x="17" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="134" y="14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="1007" y="909" w="17" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="1007" y="927" w="17" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="1007" y="945" w="17" h="17" />
+				<Scripts>				
+					<OnClick>TargetPetChuZhengBtn_OnClick();</OnClick>
+					<OnEnter>TargetPetChuZhengBtn_OnEnter();</OnEnter>
+					<OnLeave>TargetPetChuZhengBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 解除合体按钮
+			<Button name="TargetPetNoHeTiBtn" hidden="true">
+				<Size>
+					<AbsDimension x="17" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="134" y="14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="626" y="63" w="15" h="15" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="642" y="63" w="15" h="15" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="658" y="63" w="15" h="15" />
+				<Scripts>				
+					<OnClick>TargetPetNoHeTiBtn_OnClick();</OnClick>
+					<OnEnter>TargetPetNoHeTiBtn_OnEnter();</OnEnter>
+					<OnLeave>TargetPetNoHeTiBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 召回按钮
+			<Button name="TargetPetZhaoHuiBtn" >
+				<Size>
+					<AbsDimension x="17" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="134" y="14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="1007" y="855" w="17" h="17" />
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="1007" y="873" w="17" h="17" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="1007" y="891" w="17" h="17" />
+				<Scripts>				
+					<OnClick>TargetPetZhaoHuiBtn_OnClick();</OnClick>
+					<OnEnter>TargetPetZhaoHuiBtn_OnEnter();</OnEnter>
+					<OnLeave>TargetPetZhaoHuiBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			# 宠物物品使用栏
+			<Button name="$parentItemBtn1" inherits="PetPhotoItemBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="152" y="17" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemBtn2" inherits="PetPhotoItemBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentItemBtn1" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentTongLingBtn" input_transparent="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-12" y="-13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ChongWuTongLing 1.tga" alphamode="add" hidden="true">
+							<Size>
+								<AbsDimension x="155" y="60"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="8" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnShow>PetShiUVAnimationTex_OnShow();</OnShow>
+					<OnUpdate>PetShiUVAnimationTex_OnUpdate();</OnUpdate>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>			
+			<!--<OnShow>PetShi_Test_OnShow();</OnShow>-->
+			<OnLoad>PetShi_OnLoad();</OnLoad>
+			<OnEvent>PetShi_OnEvent();</OnEvent>
+			<OnShow>PetShi_OnShow();</OnShow>
+			<OnHide>PetShi_OnHide();</OnHide>
+			<OnUpdate>PetShi_OnUpdate();</OnUpdate>
+			<OnClick>PetShiOnClick();</OnClick>
+		</Scripts>
+	</Frame>
+
+	# 宠物头像的宠物列表
+	<Frame name="PetPhotoListFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "false" framelevel = "21">
+		<Size>
+			<AbsDimension x="195" y="105" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="PetUI" relativePoint="topright">
+				<Offset>
+					<AbsDimension x="0" y="15" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop edgeFile="uires\\ui\\tips\\tips10.tga" bgFile="uires\\ui\\tips\\tips10  Zhong.tga" tile="true">
+			<EdgeSize>
+				<AbsValue val="10" />
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="1" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="10" right="10" top="10" bottom="10" />
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			# 滚动条背景
+			<Button name="$parent_SliderBack">
+				<Size>
+					<AbsDimension x="21" y="101" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="0" y="1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+							<Size>
+								<AbsDimension x="21" y="50" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-1" y="29" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>						
+						<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="-1" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			# 向上滚动按钮
+			<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_SliderBack" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-2 " y="-3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetPhotoListFrame_ScrollUpBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 向下滚动按钮
+			<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_ScrollUpBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="83"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>PetPhotoListFrame_ScrollDownBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 滚动条
+			<Slider name="$parent_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0">
+				<Size>
+					<AbsDimension x="23" y="60" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ThumbTexture name="$parentThumbTexture" file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true" >
+					<Size>
+						<AbsDimension x="17" y="42" />
+					</Size>
+				</ThumbTexture>
+				<Scripts>
+					<OnValueChanged>PetPhotoListFrame_ScrollBar_OnValueChanged();</OnValueChanged>
+					<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+				</Scripts>
+			</Slider>
+			
+			<CheckButton name="PetPhotoListChkBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="21" y="21" />
+				</Size>
+				<NormalTexture	file="uires\\ZhuJieMian\\1.dds" x="105" y="300" w="21" h="21" />
+				<PushedTexture	file="uires\\ZhuJieMian\\1.dds" x="127" y="300" w="21" h="21" />
+				<Scripts>
+					<OnClick>PetPhotoListChkBtn_OnClick();</OnClick>
+					<OnEnter>PetPhotoListChkBtn_OnEnter();</OnEnter>
+					<OnLeave>PetPhotoListChkBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</CheckButton>
+
+			<Button name="PetPhotoListBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="130" y="25" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级公会等级公会等级公会等级公会等级">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="128" y="23" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>PetPhotoListChkBtn_OnClick();</OnClick>
+					<OnEnter>PetPhotoListChkBtn_OnEnter();</OnEnter>
+					<OnLeave>PetPhotoListChkBtn_OnLeave();</OnLeave>
+				</Scripts>		
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+			</Button>
+
+			<Button name="PetPhotoListPkBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="17" y="17" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="15" y="15"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-2" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="550" y="34" w="13" h="13" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="924" y="628" w="13" h="13" />		
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="910" y="628" w="13" h="13" />
+				<Scripts>
+					<OnClick>coroutine.wrap(PetPhotoListPkBtn_OnClick)();</OnClick>
+					<OnEnter>PetPhotoListPkBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+				
+			</Button>
+			
+			<CheckButton name="PetPhotoListChkBtn1" inherits="PetPhotoListChkBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="2" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			<Button name="PetPhotoListBtn1" inherits="PetPhotoListBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListChkBtn1" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="2" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="PetPhotoListPkBtn1" inherits="PetPhotoListPkBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListBtn1" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="1" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			
+			<CheckButton name="PetPhotoListChkBtn2" inherits="PetPhotoListChkBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListChkBtn1" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			<Button name="PetPhotoListBtn2" inherits="PetPhotoListBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListChkBtn2" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="2" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="PetPhotoListPkBtn2" inherits="PetPhotoListPkBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListBtn2" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="1" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			
+			<CheckButton name="PetPhotoListChkBtn3" inherits="PetPhotoListChkBtnTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListChkBtn2" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</CheckButton>
+			<Button name="PetPhotoListBtn3" inherits="PetPhotoListBtnTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListChkBtn3" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="2" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="PetPhotoListPkBtn3" inherits="PetPhotoListPkBtnTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListBtn3" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="1" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			
+			<CheckButton name="PetPhotoListChkBtn4" inherits="PetPhotoListChkBtnTemplate" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListChkBtn3" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="3"/>
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</CheckButton>
+			<Button name="PetPhotoListBtn4" inherits="PetPhotoListBtnTemplate" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListChkBtn4" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="2" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="PetPhotoListPkBtn4" inherits="PetPhotoListPkBtnTemplate" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetPhotoListBtn4" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="1" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>PetPhotoListFrame_OnLoad();</OnLoad>
+			<OnEvent>PetPhotoListFrame_OnEvent();</OnEvent>
+			<OnShow>PetPhotoListFrame_OnShow();</OnShow>
+		</Scripts>		
+	</Frame>
+
+	# 宠物头像右键选项
+	<Frame name="PetUI_RightOptionFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="99" y="43" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop edgeFile="uires\\ui\\tips\\tips10.tga" bgFile="uires\\ui\\tips\\tips10  Zhong.tga" tile="true">
+			<EdgeSize>
+				<AbsValue val="10" />
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="1" />
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="10" right="10" top="10" bottom="10" />
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<Button name="PetUI_RightBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="95" y="16" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="TeenyBlackFont" justifyH="center" text="公会等级公会等级公会等级公会等级">
+							<Color r="255" g="254" b="189" />
+							<Size>
+								<AbsDimension x="92" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TopLeft" relativePoint="TopLeft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>PetUI_RightBtn_OnClick();</OnClick>
+					<OnEnter>PetUI_RightBtn_OnEnter();</OnEnter>
+					<OnLeave>PetUI_RightBtn_OnLeave();</OnLeave>
+				</Scripts>		
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+			</Button>
+			<Button name="PetUI_RightBtn1" inherits="PetUI_RightBtnTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="2" y="7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+			<Button name="PetUI_RightBtn2" inherits="PetUI_RightBtnTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="PetUI_RightBtn1" relativePoint="bottomleft" >
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>	
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>PetUI_RightOptionFrame_OnShow();</OnShow>
+			<OnLoad>PetUI_RightOptionFrame_OnLoad();</OnLoad>
+		</Scripts>		
+	</Frame>
+</Ui>

@@ -1,0 +1,4 @@
+function ConfirmXiangQianNotBindEquipFrame_ConfirmButton_OnClick()
+	Public_BaoShiXiangQianFrame_ActXiangQian();
+	ConfirmXiangQianNotBindEquipFrame:Hide();
+end

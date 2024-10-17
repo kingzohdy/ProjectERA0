@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\TradeShopFrame.lua" />
+	<Button name="TradeItemLeftTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="248" y="54" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<FontString name="$parentPrice" fonttype="LittleFZYBlackFont" justifyH="center" text="800">
+					<Color r="190" g="160" b="90" />
+					<Size>
+						<AbsDimension x="78" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="80" y="20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentItem" inherits="ItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentOpt" inherits="GongYongAnNiuA3Template" text="购买" id="0">
+				<Size>
+					<AbsDimension x="55" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="171" y="14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<DisabledTexture	inherits="GongYongAnNiuA1DisabledTemplate"	r="120"	g="120"	b="120"	/>
+				<Scripts>
+					<OnClick>TradeShopFrameOptBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Button>
+
+	<Button name="TradeItemRightTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="340" y="54" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<FontString name="$parentPrice" fonttype="LittleFZYBlackFont" justifyH="center" text="800">
+					<Color r="190" g="160" b="90" />
+					<Size>
+						<AbsDimension x="78" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="80" y="20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentBase" fonttype="LittleFZYBlackFont" justifyH="center" text="800">
+					<Color r="190" g="160" b="90" />
+					<Size>
+						<AbsDimension x="78" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset >
+								<AbsDimension x="159" y="20" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentItem" inherits="ItemButtonTemplate" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="18" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentOpt" inherits="GongYongAnNiuA2ButtonTemplate" text="卖出" id="1">
+				<Size>
+					<AbsDimension x="55" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="250" y="14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeShopFrameOptBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Button>
+
+	<Frame name="TradeShopFrame" parent="UIClient" frameStrata="dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="590" y="366" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<Texture name="$parentBkg" inherits="MainBkgTemplate" />
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="商人店铺">
+					<Color r="255" g="255" b="190" />
+					<Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset >
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentSepTex" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="585" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="329"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftLayer" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="242" y="288" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="8" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftBkg" file="uires\\TuPianLei\\TeShuBeiJing\\Buy.tga">
+					<Size>
+						<AbsDimension x="238" y="216" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="80" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftBkg1" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="238" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="39" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentLeftFont1" fonttype="LittleFZYBlackFont" justifyH="center" text="买入货物" >
+					<Size>
+						<AbsDimension x="238" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentLeftBkg1" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentLeftBkg2" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="80" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="10" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentLeftFont2" fonttype="LittleFZYBlackFont" justifyH="center" text="贸易商品" >
+					<Size>
+						<AbsDimension x="80" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentLeftBkg2" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentLeftBkg3" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="80" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="89" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentLeftFont3" fonttype="LittleFZYBlackFont" justifyH="center" text="购买单价" >
+					<Size>
+						<AbsDimension x="80" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentLeftBkg3" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentLeftBkg6" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="80" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="168" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentLeftFont6" fonttype="LittleFZYBlackFont" justifyH="center" text="购买" >
+					<Size>
+						<AbsDimension x="80" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentLeftBkg6" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentLeftSepTex" inherits="HorizonalLine8Template">
+					<Size>
+						<AbsDimension x="240" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="296"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentFreshFont" fonttype="TeenyMSYHFont" text="每隔一小时商人会补充商品数量调整价格" >
+					<Size>
+						<AbsDimension x="250" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="16" y="304" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="200" g="255" b="0"/>
+				</FontString>
+				<Texture name="$parentRightLayer" inherits="LayerBlackBkgTemplate">
+					<Size>
+						<AbsDimension x="321" y="288" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="260" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightBkg" file="uires\\TuPianLei\\TeShuBeiJing\\Sale.tga">
+					<Size>
+						<AbsDimension x="317" y="216" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="262" y="80" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightBkg1" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="317" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="262" y="39" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentRightFont1" fonttype="LittleFZYBlackFont" justifyH="center" text="卖出货物" >
+					<Size>
+						<AbsDimension x="317" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentRightBkg1" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentRightBkg2" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="80" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="262" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentRightFont2" fonttype="LittleFZYBlackFont" justifyH="center" text="贸易商品" >
+					<Size>
+						<AbsDimension x="80" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentRightBkg2" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentRightBkg3" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="80" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="341" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentRightFont3" fonttype="LittleFZYBlackFont" justifyH="center" text="出售单价" >
+					<Size>
+						<AbsDimension x="80" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentRightBkg3" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentRightBkg6" inherits="GongYongAnNiuListTopNormalTemplate">
+					<Size>
+						<AbsDimension x="80" y="21" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="420" y="59" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentRightFont6" fonttype="LittleFZYBlackFont" justifyH="center" text="成本单价" >
+					<Size>
+						<AbsDimension x="80" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parentRightBkg6" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="160" g="160" b="90"/>
+				</FontString>
+				<Texture name="$parentRightSepTex" inherits="HorizonalLine8Template">
+					<Size>
+						<AbsDimension x="319" y="2" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="261" y="297"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentFinishFont" fonttype="LittleFZYBlackFont" text="交票金额：" >
+					<Size>
+						<AbsDimension x="128" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="15" y="340" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="190"/>
+				</FontString>
+				<FontString name="$parentCurFont" fonttype="LittleFZYBlackFont" text="银票余额：" >
+					<Size>
+						<AbsDimension x="128" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="212" y="340" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="190"/>
+				</FontString>
+				<FontString name="$parentBlockFont" fonttype="LittleFZYBlackFont" text="：11/16" >
+					<Size>
+						<AbsDimension x="128" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="461" y="340" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="255" g="255" b="190"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			<Button name="$parentSellAll" inherits="GongYongAnNiuListTop2ButtonTemplate" text="全部卖出">
+				<Size>
+					<AbsDimension x="80" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="499" y="59" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeShopFrameOptBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentStorageBtn">
+				<Size>
+					<AbsDimension x="52" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="409" y="340" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="UnderFont13" text="我的货仓">
+					<Size>
+						<AbsDimension x="52" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture inherits="TransTextureTemplate" r="0" g="255" b="0" />
+				<HighlightTexture inherits="TransTextureTemplate" r="0" g="255" b="0" />
+				<PushedTexture inherits="TransTextureTemplate" r="0" g="255" b="0" />
+				<Scripts>
+					<OnClick>TradeShopFrameStorageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentLeftLine1" inherits="TradeItemLeftTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="10" y="80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentLeftLine2" inherits="TradeItemLeftTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftLine1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentLeftLine3" inherits="TradeItemLeftTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftLine2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentLeftLine4" inherits="TradeItemLeftTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentLeftLine3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRightLine1" inherits="TradeItemRightTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="262" y="80" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRightLine2" inherits="TradeItemRightTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightLine1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRightLine3" inherits="TradeItemRightTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightLine2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRightLine4" inherits="TradeItemRightTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentRightLine3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#上一页
+			<Button name="$parentPrePage" inherits="NewPrePageTemplate">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="369" y="302"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeShopFramePrePage_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 下一页
+			<Button name="$parentNextPage" inherits="NewNextPageTemplate">
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="422" y="302"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeShopFrameNextPage_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>TradeShopFrame_OnShow();</OnShow>
+			<OnHide>TradeShopFrame_OnHide();</OnHide>
+			<OnLoad>TradeShopFrame_OnLoad();</OnLoad>
+			<OnEvent>TradeShopFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

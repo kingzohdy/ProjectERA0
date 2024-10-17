@@ -1,0 +1,1899 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>	
+	<Script file="uires/ShopFrame.lua"/>
+	<Button name="ShopItemFrameTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="180" y="51" />
+		</Size>
+		<Layers>
+			<Layer level="overlay">
+                <FontString name="$parentShopItemName_Font" fonttype="LittleFZYBlackFont" justifyH="left" text="机枪点射">
+					<Size>
+						<AbsDimension x="120" y="20"/>
+					</Size>
+					<Color r="255" g="255" b="255"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="55" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+                <FontString name="$parentShopItemPrice_Font" fonttype="TeenyFZYBlackFont" justifyH="left" text="123456">
+					<Size>
+						<AbsDimension x="120" y="16"/>
+					</Size>
+					<Color r="210" g="185" b="100"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="55" y="32"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				 <FontString name="$parentShopItemPrice_Font1" fonttype="TeenyFZYBlackFont" justifyH="left" text="123456">
+					<Size>
+						<AbsDimension x="120" y="16"/>
+					</Size>
+					<Color r="232" g="226" b="72"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="55" y="21"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture	inherits="LayerBlackBkgTemplate" />
+	</Button>
+	<Button name="ShopItemFrameShopItemPriceIconBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="15" y="14" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">	
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" >
+					<Size>
+						<AbsDimension x="15" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnEnter>ShopItemPriceIconBtn_OnEnter();</OnEnter>
+			<OnLeave>ShopItemPriceIconBtn_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Frame name="ShopFrame" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true" framelevel="191">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="-80" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="ShopFrame_BackGround" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="ShopFrameHeadFont" lineInterval ="2" multiLine="false" justifyH="center" fonttype="TeenyFZYBlackFont" text="商店">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString> 
+			</Layer>
+		</Layers>
+		<Frames>
+			#商店底版
+			<Button name="ShopFrameBackBtn">
+				<Size>
+					<AbsDimension x="392" y="466"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="CFPageNumber_Font" fonttype="TeenyBlackFont" justifyH="center">
+							<Size>
+								<AbsDimension x="60" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="135" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="255" g="254" b="189" />
+						</FontString>
+						<FontString name="ShopFrameHintFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="左键\n回购">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="60" y="38" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="25" y="-40" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+					</Layer>
+				</Layers>		
+			</Button>
+			#物品栏底版
+			<Button name="ShopFrameGoodsBackBtn">
+				<Size>
+					<AbsDimension x="375" y="345"/>
+				</Size>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+				<Anchors>
+					<Anchor point="topleft" relativeTo="ShopFrameBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#关闭
+			<Button name="CFCloseBtn" inherits="CloseBtnTemplate" />				
+			#问号
+			<Button name="CFHelpBtn" inherits="HelpBtnTemplate" />
+			
+			#单独维修
+			<Button name="CFRepairOneBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="单独修理">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="ShopFrameGoodsBackBtn" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-16" y="26" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuide"  hidden="true">
+						<Size>
+							<AbsDimension x="130" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="45" y="-33" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Layers>
+							<Layer>
+								<FontString name="$parentFont" fonttype="HeiTiFont14" justifyH="left" text="点击修理单件装备">
+									<Size>
+										<AbsDimension x="130" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="bottomleft" relativeTo="$parent">
+										   <Offset>
+												<AbsDimension x="5" y="3" />
+										   </Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="86" g="79" b="54" />
+								</FontString>
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-13" y="16" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>CFRepairOneBtnGuideTex:SetAngle(27);</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnClick>CFRepairOneBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			#全部维修
+			<Button name="CFRepairAllBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="全部维修">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CFRepairOneBtn" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="8" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuide"  hidden="true">
+						<Size>
+							<AbsDimension x="130" y="20"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="45" y="-33" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+						<Layers>
+							<Layer>
+								<FontString name="$parentFont" fonttype="HeiTiFont14" justifyH="left" text="点击修理全部装备">
+									<Size>
+										<AbsDimension x="130" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="bottomleft" relativeTo="$parent">
+										   <Offset>
+												<AbsDimension x="5" y="3" />
+										   </Offset>
+										</Anchor>
+									</Anchors>
+									<Color r="86" g="79" b="54" />
+								</FontString>
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="-13" y="16" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnLoad>CFRepairAllBtnGuideTex:SetAngle(27);</OnLoad>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnClick>CFRepairAllBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			#上一个界面
+			<Button name="CFPreviousBtn" inherits="LeftArrowButtonTemplate">
+				<Anchors>
+					<Anchor point="right" relativePoint="left" relativeTo="CFPageNumber_Font">
+						<Offset>
+							<AbsDimension x="13" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CFPreviousBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			#下一个界面
+			<Button name="CFNextBtn" inherits="RightArrowButtonTemplate">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="CFPageNumber_Font">
+						<Offset>
+							<AbsDimension x="-13" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CFNextBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			#显示商品的单个栏位
+			<Button name="ShopItemFrame1" inherits="ShopItemFrameTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ShopFrameGoodsBackBtn">
+						<Offset>
+							<AbsDimension x="6" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame1ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="1" />
+			<Button name="ShopItemFrame1ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="1" />
+
+			#商品图标按钮
+			<Button name="ShopItemFrame1ShopItemBtn" inherits="ItemButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame1">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame1ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="1">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame1" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame2" inherits="ShopItemFrameTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ShopItemFrame1">
+						<Offset>
+							<AbsDimension x="184" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame2ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="2"/>
+			<Button name="ShopItemFrame2ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="2"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame2ShopItemBtn" inherits="ItemButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame2">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame2ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="2">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame2" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame3" inherits="ShopItemFrameTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame1">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame3ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="3"/>
+			<Button name="ShopItemFrame3ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="3"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame3ShopItemBtn" inherits="ItemButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame3">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame3ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="3">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame3" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame4" inherits="ShopItemFrameTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame2">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame4ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="4"/>
+			<Button name="ShopItemFrame4ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="4"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame4ShopItemBtn" inherits="ItemButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame4">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame4ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="4">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame4" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame5" inherits="ShopItemFrameTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame3">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame5ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="5"/>
+			<Button name="ShopItemFrame5ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="5"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame5ShopItemBtn" inherits="ItemButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame5">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame5ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="5">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame5" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame6" inherits="ShopItemFrameTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame4">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame6ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="6"/>
+			<Button name="ShopItemFrame6ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="6"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame6ShopItemBtn" inherits="ItemButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame6">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame6ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="6">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame6" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame7" inherits="ShopItemFrameTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame5">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame7ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="7"/>
+			<Button name="ShopItemFrame7ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="7"/>				
+			
+			#商品图标按钮
+			<Button name="ShopItemFrame7ShopItemBtn" inherits="ItemButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame7">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame7ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="7">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame7" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame8" inherits="ShopItemFrameTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame6">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame8ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="8"/>
+			<Button name="ShopItemFrame8ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="8"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame8ShopItemBtn" inherits="ItemButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame8">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame8ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="8">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame8" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame9" inherits="ShopItemFrameTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame7">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame9ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="9"/>
+			<Button name="ShopItemFrame9ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="9"/>
+				
+			<Button name="ShopItemFrame9ShopItemBtn" inherits="ItemButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame9">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame9ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="9">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame9" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame10" inherits="ShopItemFrameTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame8">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame10ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="10"/>
+			<Button name="ShopItemFrame10ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="10"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame10ShopItemBtn" inherits="ItemButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame10">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame10ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="10">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame10" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame11" inherits="ShopItemFrameTemplate" id="11">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame9">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame11ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="11"/>
+			<Button name="ShopItemFrame11ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="11"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame11ShopItemBtn" inherits="ItemButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame11">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame11ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="11">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame11" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="ShopItemFrame12" inherits="ShopItemFrameTemplate" id="12">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="ShopItemFrame10">
+						<Offset>
+							<AbsDimension x="0" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#价格图标按钮
+			<Button name="ShopItemFrame12ShopItemPriceIconBtn" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="12"/>
+			<Button name="ShopItemFrame12ShopItemPriceIconBtn1" inherits="ShopItemFrameShopItemPriceIconBtnTemplate" id="12"/>
+				
+			#商品图标按钮
+			<Button name="ShopItemFrame12ShopItemBtn" inherits="ItemButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="left" relativePoint="left" relativeTo="ShopItemFrame12">
+						<Offset>
+							<AbsDimension x="2" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#购买按钮
+			<Button name="ShopItemFrame12ShopItemBuyBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="购买" id="12">
+				<Size>
+					<AbsDimension x="52" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="ShopItemFrame12" relativePoint="bottomright" >
+						<Offset>
+							<AbsDimension x="-5" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopItemBuyBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 新手指引提示
+			<Button name="$parentXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="74" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="ShopItemFrame3ShopItemBuyBtn">
+						<Offset>
+							<AbsDimension x="-9" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="74" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-3" y="-1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-80" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+
+			# 修理新手指引提示
+			<Button name="$parentRepairAllXinShouBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="100" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="CFRepairAllBtn">
+						<Offset>
+							<AbsDimension x="-9" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga">
+							<Size>
+								<AbsDimension x="100" y="32" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+				</Frames>
+			</Button>
+
+			#物品回购栏
+			<Button name="RecycleItemBtn1" inherits="ItemButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="ShopFrameHintFont">
+						<Offset>
+							<AbsDimension x="-30" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RecycleItemBtn2" inherits="ItemButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="RecycleItemBtn1">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RecycleItemBtn3" inherits="ItemButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="RecycleItemBtn2">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RecycleItemBtn4" inherits="ItemButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="RecycleItemBtn3">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="RecycleItemBtn5" inherits="ItemButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topright" relativeTo="RecycleItemBtn4">
+						<Offset>
+							<AbsDimension x="1" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="$parentRebateBtn">
+				<Size>
+					<AbsDimension x="250" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="30" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>					
+					<Layer>
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" >
+							<Size>
+								<AbsDimension x="400" y="20"/>
+							</Size>
+							<Color r="0" g="255" b="0" />
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>ShopFrameRebateBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>ShopFrame_Test_OnShow();</OnShow>-->
+			<OnShow>ShopFrame_OnShow();</OnShow>
+			<OnLoad>ShopFrame_OnLoad();</OnLoad>
+			<OnEvent>ShopFrame_OnEvent();</OnEvent>
+			<OnHide>ShopFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	
+	# 购买确认面板
+	<Frame name="ShopSellFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="190">
+		<Size>
+			<AbsDimension x="351" y="159" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="ShopSellFrame_BackGround" inherits="MainBkgTemplate" />
+				
+				<FontString name="ShopSellFrame_HeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="请输入要购买的物品数量">
+					<Size>
+						<AbsDimension x="160" y="20"/>
+					</Size>
+					<Color r="255" g="254" b="189"/>
+					<Anchors>
+						<Anchor point="top" relativeTo="ShopSellFrame" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="ShopSellFrame_TipTexture" file="uires\\ZhuJieMian\\2.dds" x="168" y="999" w="24" h="24">
+					<Size>
+						<AbsDimension x="20" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="28" y="37" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="ShopSellFrame_TipFont" fonttype="LittleFZYBlackFont" justifyH="left" text="提示">
+					<Size>
+						<AbsDimension x="300" y="15"/>
+					</Size>
+					<Color r="255" g="255" b="190"/>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="52" y="39"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				##分割线
+				<Texture name="$parentSepLine" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="346" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="127" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			##黑色底版
+			<Button name="ShopSellFrameBackButton">
+				<Size>
+					<AbsDimension x="348" y="66"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                             <AbsDimension x="4" y="97"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			#数量输入框背景框
+			<Button name="ShopSellFrame_EditBackBtn">
+				<Size>
+					<AbsDimension x="95" y="33" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="128" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>ShopSellFrame_EditBackBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##输入框
+			<EditBox name="SSF_SellNumberEdit" letters="5" multiLine="false" editMethod="2">
+				<Size>
+					<AbsDimension x="60" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="130" y="69" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="SSF_SellNumberEditFont" fonttype="FZYBlackFont16" justifyH="center" text="100">
+					<Color r="255" g="229" b="189" />
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>SSF_OKBtn_OnClick();</OnEnterPressed>
+					<onfocuslost>SSF_SellNumberEdit_onfocuslost();</onfocuslost>
+					<OnUpdate>SSF_SellNumberEdit_OnUpdate();</OnUpdate>
+				</Scripts>
+			</EditBox>
+			##增加一个物品数量按钮
+			<Button name="SSF_AddBtn" inherits="ScrollUpBtnBTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="191" y="64"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SSF_AddBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##减少一个物品数量按钮
+			<Button name="SSF_ReduceBtn" inherits="ScrollDownBtnBTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="191" y="79" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SSF_ReduceBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##购买物品数量最大化按钮
+			<Button name="SSF_MaxBtn" hidden="true">
+				<Size>
+					<AbsDimension x="36" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="ShopSellFrame_EditBackBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="95" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SSF_MaxBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##购买物品数量最小化按钮
+			<Button name="SSF_MinBtn" hidden="true">
+				<Size>
+					<AbsDimension x="36" y="23" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="SSF_MaxBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="41" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SSF_MinBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 当前消耗品的数量
+			<Button name="ShopSellFrameCurCostBtn">
+				<Size>
+					<AbsDimension x="95" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="28" y="104"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="ShopSellFrameCurCostHeadFont" lineInterval ="2" multiLine="false" fonttype="NormalBlackFont" text="消耗：" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="34" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ShopSellFrameCurCostFont" lineInterval ="2" multiLine="false" fonttype="MinimumBlackFont" text="1234567891234" justifyH="left">
+							<Color r="240" g="70" b="2"/>
+							<Size>
+								<AbsDimension x="55" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="35" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="ShopSellFrameCostTex" file="uires\\ZhuJieMian\\1.dds">
+							<Size>
+								<AbsDimension x="17" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="90" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+
+						<FontString name="ShopSellFrameCurHaveHeadFont" lineInterval ="2" multiLine="false" fonttype="NormalBlackFont" text="可用：" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="34" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="161" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="ShopSellFrameCurHaveFont" lineInterval ="2" multiLine="false" fonttype="MinimumBlackFont" text="1234567891234" justifyH="left">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="64" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="196" y="1" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="ShopSellFrameHaveTex" file="uires\\ZhuJieMian\\1.dds">
+							<Size>
+								<AbsDimension x="17" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="bottomleft" relativeTo="$parent" relativePoint="bottomleft">
+									<Offset>
+										<AbsDimension x="255" y="-5" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+				</Scripts>
+			</Button>
+			##确定
+			<Button name="SSF_OKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="21" y="131"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="88" y="35"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-8" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SSF_OKBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="SSF_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="65" y="25"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-21" y="131"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SSF_CancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<!--<OnShow>ShopSellFrame_Test_OnShow();</OnShow>-->
+			<OnShow>ShopSellFrame_OnShow();</OnShow>
+			<OnHide>ShopSellFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ShopRepairFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="189">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="ShopRepairFrame_BackGround" inherits="MainBkgTemplate" />					
+			</Layer>
+		</Layers>
+		<Frames>
+			# 黑色底版
+			<Button name="ShopRepairFrameBackButton">
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="SRF_MinNumber_Font" fonttype="TeenyFZYBlackFont" justifyH="center" text="1234">
+							<Size>
+								<AbsDimension x="230" y="20"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>			
+            </Button>
+			##修理
+			<Button name="SRF_OKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="修理">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\TiShiTeXiao.tga" hidden="true">
+							<Size>
+								<AbsDimension x="88" y="35"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-8" y="-5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="4" texcols="4" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<OnClickSound file="sounds\\UI\\xiuli.wav"/>
+				<Scripts>
+					<OnClick>SRF_OKBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="SRF_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>SRF_CancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>	
+			<OnShow>ShopRepairFrame_OnShow();</OnShow>
+			<OnHide>ShopRepairFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	
+	# ShopBuyConfirmFrame
+	<Frame name="SellToShopConfirmFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="189">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="ShopBuyConfirmFrame_BackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 黑色底版
+			<Button name="ShopBuyConfirmFrameBackButton">
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="SBC_MinNumber_Font" fonttype="TeenyFZYBlackFont" justifyH="center" text="确定出售该物品吗?">
+							<Size>
+								<AbsDimension x="150" y="20"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>				
+            </Button>
+			##确定
+			<Button name="SBC_OKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>SBC_OKBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="SBC_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>SBC_CancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>	
+		</Scripts>
+	</Frame>
+	
+	# 兑换非本职业装备的时候弹出的对话框
+	<Frame name="ShopExchangeConfirmFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="189">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />					
+			</Layer>
+		</Layers>
+		<Frames>
+			# 黑色底版
+			<Button name="ShopExchangeConfirmFrameBackButton">
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="ShopExchangeConfirmFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="该装备当前不能使用，确认购买吗？">
+							<Size>
+								<AbsDimension x="250" y="20"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			##确定
+			<Button name="ShopExchangeConfirmFrame_OKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ShopExchangeConfirmFrame_OKBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="ShopExchangeConfirmFrame_CancelBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopExchangeConfirmFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>	
+			<OnShow>ShopExchangeConfirmFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	
+	#选择修理类型的对话框
+	<Frame name="ShopSelectRepairFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true" movable="true" framelevel="189">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="请选择要修理的类型">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 黑色底版
+			<Button name="ShopSelectRepairFrameBackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>			
+            </Button>
+			##修理身上装备
+			<Button name="ShopSelectRepairFrame_EquipBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="修理身上装备">
+				<Size>
+					<AbsDimension x="115" y="26"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="ShopSelectRepairFrameBackButton" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="34" y="19"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ShopSelectRepairFrame_EquipBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##修理全部装备
+			<Button name="ShopSelectRepairFrame_AllBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="修理全部装备">
+				<Size>
+					<AbsDimension x="115" y="26"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="ShopSelectRepairFrameBackButton" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-34" y="19"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopSelectRepairFrame_AllBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+	</Frame>
+	## 购买价格过大提示界面
+	<Frame name="ShopPriceWarnFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "false" framelevel="199">
+		<Size>
+			<AbsDimension x="357" y="140" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="MessageBoxBackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="MessageBoxForPetTitle" fonttype="TeenyFZYBlackFont" justifyH="center" text="提 示" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\1.dds" >
+					<Size>
+						<AbsDimension x="15" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="290" y="50" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSep" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="350" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="3" y="103"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>		
+			<RichText name="$parentTipRich" fonttype="TeenyFZYBlackFont" input_transparent="true" lineInterval ="2" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentConfirmRich" fonttype="TeenyFZYBlackFont" input_transparent="true" lineInterval ="3" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativeTo="$parent" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentOKButton" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="80" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="25" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopPriceWarnFrameOKBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCancelButton" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="80" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-25"  y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ShopPriceWarnFrameCancelBtnOnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>ShopPriceWarnFrameOnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

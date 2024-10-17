@@ -1,0 +1,70 @@
+
+#include "header.fx"
+
+texture g_SceneTexture;              // Color texture for mesh
+texture g_DistortTexture;
+
+
+//--------------------------------------------------------------------------------------
+// Texture samplers
+//--------------------------------------------------------------------------------------
+sampler SceneTextureSampler = 
+sampler_state
+{
+    Texture = <g_SceneTexture>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    addressu	=	clamp;
+    addressv	=	clamp;
+};
+
+sampler DistortSampler = 
+sampler_state
+{
+    Texture = <g_DistortTexture>;
+    MipFilter = LINEAR;
+    MinFilter = LINEAR;
+    MagFilter = LINEAR;
+    
+    addressu	=	clamp;
+    addressv	=	clamp;
+
+};
+
+
+//--------------------------------------------------------------------------------------
+// Vertex shader output structure
+//--------------------------------------------------------------------------------------
+struct VS_OUTPUT
+{
+    float4 Position   : POSITION;   // vertex position 
+    float3 TextureUV  : TEXCOORD0;  // vertex texture coords 
+};
+
+//--------------------------------------------------------------------------------------
+// Pixel shader output structure
+//--------------------------------------------------------------------------------------
+struct PS_OUTPUT
+{
+    float4 RGBColor : COLOR0;  // Pixel color    
+};
+
+PS_OUTPUT PSMain(VS_OUTPUT In)
+{
+	PS_OUTPUT Output;
+	float2 vDistort		=	0.1f * (tex2D(DistortSampler, In.TextureUV.xy).xy - 128.0f/255.0f);	
+	
+	float4 vScene		=	tex2D(SceneTextureSampler, In.TextureUV.xy + vDistort);
+	
+	Output.RGBColor = vScene;
+
+#if GRAY == 1
+	float3 Adjust = float3(1.0f,1.0f,1.0f);
+	Output.RGBColor.rgb = float3(Output.RGBColor.g,Output.RGBColor.g,Output.RGBColor.g)*Adjust;
+#endif
+	
+	return Output;
+   
+}

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires\WorldMapSend.lua" />    
+	# 确认传送面板
+	<Frame name="WorldMapSendInfoFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable = "false" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentbackground" inherits="MainBkgTemplate"/>
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="传送">
+					<Color r="255" g="254" b="190" />
+					<Size>
+						<AbsDimension x="75" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>				 
+			<RichText name="$parentInfo" lineInterval ="2" multiLine="true" fonttype="TeenyFZYBlackFont" fontStyle="border" input_transparent="true">
+				<Size>
+					<AbsDimension x="300" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER" >
+						<Offset>
+							<AbsDimension x="0" y="22" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			##关闭
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			##确定
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="40" y="97"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldMapSendOkBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##取消
+			<Button name="$parentCancleBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="-40" y="97"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WorldMapSendCancleBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Layers>
+			<Layer Level="overlay">
+				<Texture name="$parentMoneyTex" inherits="BullTypeTextureTemplate" >
+					<Size>
+						<AbsDimension x="14" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentInfo" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	
+    <Frame name="WorldMapSendFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" framelevel = "21" movable = "true" >
+		<Size>
+			<AbsDimension x="907" y="658" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="-55" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="WorldMapSendFrameBackGround" inherits="MainBkgTemplate" />	
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="世界航线">
+					<Color r="255" g="254" b="190" />
+					<Size>
+						<AbsDimension x="75" y="14" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>				
+			</Layer>
+		</Layers>
+		<Frames>
+			##关闭
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />
+			# 显示世界地图的按钮
+			<Button name="WorldMapSendFrame_ShowWorldBtn" hidden="false">
+				<Size>
+					<AbsDimension x="897" y="619" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="8"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentGround" file="uires\\DiTuLei\\ShiJieDiTu\\ShiJieDiTu.jpg" >
+							<Size>
+							   <AbsDimension x="897" y="619" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+					</Layer>
+				</Layers>
+				<Frames>	
+					<Button name="WorldmapSendAreaPosBtnTemplate" virtual="true" hidden="true">
+						<Size>
+							<AbsDimension x="24" y="25" />
+						</Size>
+						<NormalTexture		file="uires\\ZhuJieMian\\2.dds" x="554" y="556" w="29" h="28" />
+						<HighlightTexture	file="uires\\ZhuJieMian\\2.dds" x="584" y="556" w="29" h="28" />
+						<PushedTexture		file="uires\\ZhuJieMian\\2.dds" x="614" y="556" w="29" h="28" />
+						<Scripts>
+							<OnClick>WorldmapSendAreaPosBtn_OnClick();</OnClick>
+							<OnEnter>WorldmapSendAreaPosBtn_OnEnter();</OnEnter>
+							<OnLeave>WorldmapSendAreaPosBtn_OnLeave();</OnLeave>						
+						</Scripts>
+					</Button>
+					# 13号矿洞
+					<Button name="WorldmapSendAreaPosBtn1" inherits="WorldmapSendAreaPosBtnTemplate"  id="1">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<!--<AbsDimension x="457" y="232"/>-->
+									<AbsDimension x="132" y="255"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 落日荒野
+					<Button name="WorldmapSendAreaPosBtn2" inherits="WorldmapSendAreaPosBtnTemplate"  id="2" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="192" y="240"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 天空岛
+					<Button name="WorldmapSendAreaPosBtn3" inherits="WorldmapSendAreaPosBtnTemplate"  id="3">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="315" y="201"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 时间城
+					<Button name="WorldmapSendAreaPosBtn4" inherits="WorldmapSendAreaPosBtnTemplate"  id="4">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="344" y="285"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 银风雪原
+					<Button name="WorldmapSendAreaPosBtn5" inherits="WorldmapSendAreaPosBtnTemplate"  id="5" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="450" y="178"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 风回裂谷
+					<Button name="WorldmapSendAreaPosBtn6" inherits="WorldmapSendAreaPosBtnTemplate"  id="6">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="531" y="156"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 牢城
+					<Button name="WorldmapSendAreaPosBtn7" inherits="WorldmapSendAreaPosBtnTemplate"  id="7">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="608" y="202"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 普罗圣地
+					<Button name="WorldmapSendAreaPosBtn8" inherits="WorldmapSendAreaPosBtnTemplate"  id="8" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="650" y="261"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 荫川林地
+					<Button name="WorldmapSendAreaPosBtn9" inherits="WorldmapSendAreaPosBtnTemplate"  id="9">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="590" y="290"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 流金沙漠
+					<Button name="WorldmapSendAreaPosBtn10" inherits="WorldmapSendAreaPosBtnTemplate" id="10">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="390" y="329"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 阿努比斯神殿
+					<Button name="WorldmapSendAreaPosBtn11" inherits="WorldmapSendAreaPosBtnTemplate" id="11">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="462" y="403"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 阿努比斯废墟
+					<Button name="WorldmapSendAreaPosBtn12" inherits="WorldmapSendAreaPosBtnTemplate" id="12">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="410" y="437"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 越雾雨林
+					<Button name="WorldmapSendAreaPosBtn13" inherits="WorldmapSendAreaPosBtnTemplate" id="13" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="250" y="367"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 越雾甬道
+					<Button name="WorldmapSendAreaPosBtn14" inherits="WorldmapSendAreaPosBtnTemplate" id="14" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="184" y="390"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 迈阿荒原
+					<Button name="WorldmapSendAreaPosBtn15" inherits="WorldmapSendAreaPosBtnTemplate" id="15" hidden="true">
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="161" y="187"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 细语丘陵
+					<Button name="WorldmapSendAreaPosBtn16" inherits="WorldmapSendAreaPosBtnTemplate" id="16" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="498" y="274"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 鸣沙陷地
+					<Button name="WorldmapSendAreaPosBtn17" inherits="WorldmapSendAreaPosBtnTemplate" id="17" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="461" y="318"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 法老陵
+					<Button name="WorldmapSendAreaPosBtn18" inherits="WorldmapSendAreaPosBtnTemplate" id="18" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="490" y="369"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 阿努比斯祭坛
+					<Button name="WorldmapSendAreaPosBtn19" inherits="WorldmapSendAreaPosBtnTemplate" id="19" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="492" y="463"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					## 冰岛
+					<Button name="WorldmapSendAreaPosBtn20" inherits="WorldmapSendAreaPosBtnTemplate" id="20" >
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="420" y="267"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>
+			# 传送指引提示
+			<Button name="$parentGuidBtn" hidden="true" input_transparent="true">
+				<Size>
+					<AbsDimension x="100" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="top" relativeTo="WorldmapSendAreaPosBtn4">
+						<Offset>
+							<AbsDimension x="15" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Button name="$parentGuideBtn" input_transparent="true">
+						<Size>
+							<AbsDimension x="132" y="39"/>
+						</Size>
+						<Anchors>
+							<Anchor point="bottomleft" relativePoint="topright" relativeTo="$parent">
+								<Offset>
+									<AbsDimension x="-70" y="-20" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentTex" file="uires\\ui\\XiaoXiPaoPao\\Xia.tga">
+									<Size>
+										<AbsDimension x="24" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+											<Offset>
+												<AbsDimension x="5" y="20" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<Backdrop edgeFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10.tga" bgFile="uires\\ui\\XiaoXiPaoPao\\XiaoXiPaoPao  10  Zhong.tga" tile="true">
+							<EdgeSize>
+								<AbsValue val="10" />
+							</EdgeSize>
+							<TileSize>
+								<AbsValue val="1" />
+							</TileSize>
+							<BackgroundInsets>
+								<AbsInset left="10" right="10" top="10" bottom="10" />
+							</BackgroundInsets>
+						</Backdrop>
+					</Button>
+					<RichText name="$parentRich" input_transparent="true" lineInterval ="2" multiLine="true" fonttype="HeiTiFont14" fontStyle="normal"		autoextend="true" >
+						<Size>
+							<AbsDimension x="112" y="35" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parentGuideBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" >
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parentGuideBtn" relativePoint="topright" >
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+				</Frames>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnHide>WorldMapSend_onHide();</OnHide>
+			<OnShow>WorldMapSend_onShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

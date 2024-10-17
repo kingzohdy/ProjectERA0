@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/TradeFrame.lua"/>
+	<Button name="Pet_HousecarlArmButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="44" y="44" />
+		</Size>
+		<Anchors>
+			<Anchor point="BottomLeft" relativePoint="BottomLeft" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44" >
+					<Size>
+						<AbsDimension x="44" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSkillIcon"  file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentBoxTex" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44">
+					<Size>
+						<AbsDimension x="44" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+		<Scripts>
+			<OnEnter>Pet_HousecarlArmButton_OnEnter();</OnEnter>
+			<OnLeave>Pet_HousecarlArmButton_OnLeave();</OnLeave>
+			<OnBeginDrag>Pet_HousecarlArmButton_Drag();</OnBeginDrag>
+			<OnReceiveDrag>Pet_HousecarlArmButton_ReceiveDrag();</OnReceiveDrag>
+		</Scripts>
+	</Button>
+	#交易宠物栏对方按钮的模板
+	<Button name="TradeOppositePetInfoButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="180" y="19" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentClickHighLightTex" inherits="PushedTextureTemplate" hidden="true">
+					<Size>
+						<AbsDimension x="191" y="27" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="-5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentNameFont" fonttype="TeenyFZYBlackFont" justifyH="left" fontStyle="border" text="" >
+					<Color r="255" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="168" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="6" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLoveLevelFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+					<Color r="131" g="128" b="108"/>  
+					<Size>
+						<AbsDimension x="69" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLoveLevelTex" file="uires\\ZhuJieMian\\3.dds" x="952" y="627" w="20" h="17" hidden="true">
+					<Size>
+						<AbsDimension x="20" y="17"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-73" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="highlight">
+				<Texture name="$parentEnterHighLightTex" inherits="HighlightTextureTemplate" hidden="true">
+					<Size>
+						<AbsDimension x="191" y="27" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="-5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentLoveLevelBtn">
+				<Size>
+					<AbsDimension x="20" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-73" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>TradeOppositePetInfoButtonLoveLevelBtn_OnEnter();</OnEnter>
+					<OnLeave>TradeOppositePetInfoButtonLoveLevelBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>TradeOppositePetInfoButton_OnClick();</OnClick>
+			<OnEnter>TradeOppositePetInfoButton_OnEnter();</OnEnter>
+			<OnLeave>TradeOppositePetInfoButton_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	#交易宠物栏己方按钮的模板
+	<Button name="TradeSelfPetInfoButtonTemplate" virtual="true" >
+		<Size>
+			<AbsDimension x="180" y="19" />
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentClickHighLightTex" inherits="HighlightTextureTemplate" hidden="true">
+					<Size>
+						<AbsDimension x="191" y="27" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="-5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentNameFont" fonttype="TeenyFZYBlackFont" justifyH="left" fontStyle="border" text="" >
+					<Color r="255" g="255" b="255"/>
+					<Size>
+						<AbsDimension x="168" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="6" y="7" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentLoveLevelFont" fonttype="TeenyFZYBlackFont" justifyH="left" text="">
+					<Color r="131" g="128" b="108"/>  
+					<Size>
+						<AbsDimension x="69" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentLoveLevelTex" file="uires\\ZhuJieMian\\3.dds" x="952" y="627" w="20" h="17" hidden="true">
+					<Size>
+						<AbsDimension x="20" y="17"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-73" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="highlight">
+				<Texture name="$parentEnterHighLightTex" inherits="HighlightTextureTemplate" hidden="true">
+					<Size>
+						<AbsDimension x="191" y="27" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="-5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentLoveLevelBtn">
+				<Size>
+					<AbsDimension x="20" y="17"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-85" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>TradeOppositePetInfoButtonLoveLevelBtn_OnEnter();</OnEnter>
+					<OnLeave>TradeOppositePetInfoButtonLoveLevelBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>TradeSelfPetInfoButton_OnClick();</OnClick>
+			<OnEnter>TradeSelfPetInfoButton_OnEnter();</OnEnter>
+			<OnLeave>TradeSelfPetInfoButton_OnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	##交易物品显示框
+	<Button name="TradeCommodityButtonTemplate" frameStrata="Dialog" virtual="true">
+		<Size>
+			<AbsDimension x="27" y="27"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44" hidden="true">
+					<Size>
+						<AbsDimension x="27" y="27"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="background">
+				<Texture name="$parentIconTexture" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="22" y="22"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="2" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="background">
+				##外框
+				<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" hidden="true">
+					<Size>
+						<AbsDimension x="27" y="27"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="background">
+				<FontString name="$parentCountFont" fonttype="TeenyBlackFont"  justifyH="right"  fontStyle="border" text="">
+					<Color r="204" g="128" b="51"/>
+					<Size>
+						<AbsDimension x="7" y="7"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-1" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="background">
+				<FontString name="$parentCoolDownFont" fonttype="SmallBlackFont" text="">
+					<Color r="204" g="204" b="204"/>
+					<Size>
+						<AbsDimension x="36" y="36"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="overlay">
+				<Texture name="$parentUVAnimationTex" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="-11" y="-11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<UVAnimation texrows="6" texcols="5" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+		<Scripts>
+			<OnClick>ItemButton_OnClick();</OnClick>
+			<OnDoubleClick>ItemButton_OnDoubleClick();</OnDoubleClick>
+			<OnEnter>ItemButton_OnEnter();</OnEnter>
+			<OnLeave>ItemButton_OnLeave();</OnLeave>
+			<OnBeginDrag>ItemButton_Drag();</OnBeginDrag>
+			<OnReceiveDrag>ItemButton_ReceiveDrag();</OnReceiveDrag>
+			<OnLoad>ItemButton_OnLoad();</OnLoad>
+			<OnEvent>ItemButton_OnEvent();</OnEvent>
+			<OnUpdate>ItemButton_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Button>
+	<Button name="TradeFrameItemDescButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="161" y="26" />
+		</Size>
+		<Frames>
+			<Button name="$parentHighlightBtn">
+				<Size>
+					<AbsDimension x="165" y="34"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentDescFont" fonttype="TeenyFZYBlackFont" justifyH="center" fontStyle="border" text="">
+							<Color r="255" g="255" b="255"/>
+							<Size>
+								<AbsDimension x="150" y="17"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="5" y="10" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentPartionTex" file="uires\\ZhuJieMian\\1.dds" x="135" y="511" w="40" h="2">
+							<Size>
+								<AbsDimension x="186" y="2"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension x="-26" y="-2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="1" y="-11" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="TransTextureTemplate"/>
+				<PushedTexture		inherits="HighlightTextureTemplate" />
+				<HighlightTexture	inherits="HighlightTextureTemplate" />
+				<DisabledTexture	inherits="TransTextureTemplate" />
+				<Scripts>
+					<OnClick>TradeFrameItemDescButton_OnClick();</OnClick>
+					<OnReceiveDrag>TradeFrameItemDescButton_ReceiveDrag();</OnReceiveDrag>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Button>
+	<Button name="TradeFrameItemPosBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="188" y="26" />
+		</Size>
+		<Frames>
+			<Button name="$parentItemIconBtn" inherits="TradeCommodityButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="-7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItemDescBtn" inherits="TradeFrameItemDescButtonTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="23" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+	</Button>
+	##交易面板
+	<Frame name="TradeFrame" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true" framelevel="197">
+		<Size>
+			<AbsDimension x="398" y="500" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativePoint="topleft" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="230" y="110" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="TradeFrameBackGround" inherits="MainBkgTemplate" />
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" justifyH="center" text="交易">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="55" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			##关闭按钮
+			<Button name="TradeFrame_CloseBtn" inherits="TransparentCloseBtnNoScriptTemplate">
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="-10" y="10"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeFrame_Close();</OnClick>
+				</Scripts>
+			</Button>
+			##帮助按钮	问号
+			<Button name="TradeFrame_HelpBtn" inherits="HelpBtnTemplate" />
+
+			<Button name="TradeFrameBackBtn">
+				<Size>
+					<AbsDimension x="392" y="466"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#对方底版
+			<Button name="TradeFrameOppositeBackBtn">
+				<Size>
+					<AbsDimension x="190" y="425" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TradeFrameBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="5" y="4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					#对方物品栏底版
+					<Button name="TradeFrameGoodsOppositeBackBtn">
+						<Size>
+							<AbsDimension x="189" y="265"/>
+						</Size>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TradeFrameBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="5" y="4"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 对方人物名字
+					<Button name="TradeFrameOppositePlayerBtn">
+						<Size>
+							<AbsDimension x="188" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TradeFrameGoodsOppositeBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="1" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TradeFrameOppositePlayerFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+									<Color r="255" g="254" b="189"/>
+									<Size>
+										<AbsDimension x="164" y="26" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="11" y="7" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture	inherits="EditBoxBkgTemplate" />
+					</Button>
+					#对方银币显示框
+					<Button name="TradeFrameOppositeMoneyShowBtn">
+						<Size>
+							<AbsDimension x="185" y="24" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TradeFrameOppositePlayerBtn" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="1" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TradeOppositeMoneyAmountFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+									<Color r="209" g="185" b="102"/>
+									<Size>
+										<AbsDimension x="150" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="7" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<Texture name="$parentMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" >
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+											<Offset>
+												<AbsDimension x="-6" y="4" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<NormalTexture	inherits="EditBoxBkgTemplate" />
+					</Button>
+					#对方物品栏
+					<Button name="TradeFrame_OppositeItem1" inherits="TradeFrameItemPosBtnTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrameOppositeMoneyShowBtn">
+								<Offset>
+									<AbsDimension x="1" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_OppositeItem2" inherits="TradeFrameItemPosBtnTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_OppositeItem1">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_OppositeItem3" inherits="TradeFrameItemPosBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_OppositeItem2">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_OppositeItem4" inherits="TradeFrameItemPosBtnTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_OppositeItem3">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_OppositeItem5" inherits="TradeFrameItemPosBtnTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_OppositeItem4">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_OppositeItem6" inherits="TradeFrameItemPosBtnTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_OppositeItem5">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_OppositeItem7" inherits="TradeFrameItemPosBtnTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_OppositeItem6">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_OppositeItem8" inherits="TradeFrameItemPosBtnTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_OppositeItem7">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					#显示对方宠物栏抬头
+					<Button name="$parentOppositeMidBtn">
+						<Size>
+							<AbsDimension x="189" y="17" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="TradeFrameGoodsOppositeBackBtn" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentOppositeMidFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="宠物栏" >
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="189" y="17" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					#对方宠物栏底版
+					<Button name="TradeFramePetOppositeBackBtn">
+						<Size>
+							<AbsDimension x="188" y="136"/>
+						</Size>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+						<Anchors>
+							<Anchor point="top" relativeTo="TradeFrameGoodsOppositeBackBtn" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="18"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					##显示对方宠物信息栏
+					<Button name="OppositePetInfoButton1" inherits="TradeOppositePetInfoButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="TradeFramePetOppositeBackBtn">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="OppositePetInfoButton2" inherits="TradeOppositePetInfoButtonTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="OppositePetInfoButton1">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="OppositePetInfoButton3" inherits="TradeOppositePetInfoButtonTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="OppositePetInfoButton2">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="OppositePetInfoButton4" inherits="TradeOppositePetInfoButtonTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="OppositePetInfoButton3">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="OppositePetInfoButton5" inherits="TradeOppositePetInfoButtonTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="OppositePetInfoButton4">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					##查看资质按钮
+					<Button name="TradeFrame_SeeIntelligenceBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="查看资质">
+						<Size>
+							<AbsDimension x="65" y="24" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativePoint="bottomright" relativeTo="TradeFramePetOppositeBackBtn">
+								<Offset>
+									<AbsDimension x="-5" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>TradeFrame_SeeIntelligenceBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Layers>
+					<Layer level="highlight">
+						##此为对方锁定交易后,覆盖对方交易信息的遮罩
+						<Texture name="TradeFrameOppositeMaskTex" inherits="HighlightTextureTemplate" hidden="true">
+							<Size>
+								<AbsDimension x="191" y="425" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-2" y="-4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			#己方底版
+			<Button name="TradeFrameSelfBackBtn">
+				<Size>
+					<AbsDimension x="190" y="425" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="TradeFrameOppositeBackBtn" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					#己方物品栏底版
+					<Button name="TradeFrameGoodsSelfBackBtn">
+						<Size>
+							<AbsDimension x="189" y="265"/>
+						</Size>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+						<Anchors>
+							<Anchor point="left" relativeTo="TradeFrameGoodsOppositeBackBtn" relativePoint="right">
+								<Offset>
+									<AbsDimension x="1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					# 己方人物名字
+					<Button name="TradeFrameSelfPlayerBtn">
+						<Size>
+							<AbsDimension x="188" y="26" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TradeFrameGoodsSelfBackBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="1" y="1" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TradeFrameSelfPlayerFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="己方名字" >
+									<Color r="255" g="254" b="189"/>
+									<Size>
+										<AbsDimension x="164" y="26" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="11" y="7" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<NormalTexture	inherits="EditBoxBkgTemplate" />
+					</Button>
+					#己方银币显示框
+					<Button name="TradeFrameSelfMoneyShowBtn" >
+						<Size>
+							<AbsDimension x="185" y="24" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TradeFrameSelfPlayerBtn" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="1" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="TradeSelfMoneyAmountFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="" >
+									<Color r="209" g="185" b="102"/>
+									<Size>
+										<AbsDimension x="150" y="20" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="7" y="5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnClick>TradeFrameSelfMoneyShowBtn_OnClick();</OnClick>
+						</Scripts>
+						<NormalTexture	inherits="EditBoxBkgTemplate" />
+					</Button>
+					##己方银币输入框
+					<EditBox name="TradeSelfMoneyAmountEdit" letters="11" multiLine="false" editMethod="2" hidden="true">
+						<Size>
+							<AbsDimension x="185" y="20" />
+						</Size>
+						<Anchors>
+							<Anchor point="topleft" relativeTo="TradeFrameSelfMoneyShowBtn" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="7" y="5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">
+								<Texture name="$parentBackTex" inherits="EditBoxBkgTemplate" >
+									<Size>
+										<AbsDimension x="185" y="24" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="-8" y="-8" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+						<FontString name="$parentFont" fonttype="SongTiFont14" justifyH="center">
+							<Color r="209" g="185" b="102"/>
+						</FontString>
+						<Scripts>
+							<OnEnterPressed>ClearFocus();</OnEnterPressed>
+							<OnUpdate>TradeSelfMoneyAmountEdit_OnUpdate();</OnUpdate>
+							<OnFocusLost>TradeSelfMoneyAmountEdit_OnFocusLost();</OnFocusLost>
+							<OnClick></OnClick>
+						</Scripts>
+					</EditBox>
+					<Button name="$parentMoneyTexBtn" >
+						<Anchors>
+							<Anchor point="topright" relativeTo="TradeFrameSelfMoneyShowBtn" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-6" y="4" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Size>
+							<AbsDimension x="17" y="17" />
+						</Size>
+						<Layers>
+							<Layer level="overlay">
+								<Texture name="$parentMoneyTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" >
+									<Size>
+										<AbsDimension x="17" y="18" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					#己方物品栏
+					<Button name="TradeFrame_SelfItem1" inherits="TradeFrameItemPosBtnTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrameSelfMoneyShowBtn">
+								<Offset>
+									<AbsDimension x="1" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_SelfItem2" inherits="TradeFrameItemPosBtnTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_SelfItem1">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_SelfItem3" inherits="TradeFrameItemPosBtnTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_SelfItem2">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_SelfItem4" inherits="TradeFrameItemPosBtnTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_SelfItem3">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_SelfItem5" inherits="TradeFrameItemPosBtnTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_SelfItem4">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_SelfItem6" inherits="TradeFrameItemPosBtnTemplate" id="6">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_SelfItem5">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_SelfItem7" inherits="TradeFrameItemPosBtnTemplate" id="7">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_SelfItem6">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="TradeFrame_SelfItem8" inherits="TradeFrameItemPosBtnTemplate" id="8">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="TradeFrame_SelfItem7">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					#显示己方宠物栏抬头
+					<Button name="$parentSelfMidBtn">
+						<Size>
+							<AbsDimension x="189" y="17" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativeTo="TradeFrameGoodsSelfBackBtn" relativePoint="bottom">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="overlay">
+								<FontString name="$parentSelfMidFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="宠物栏" >
+									<Color r="147" g="130" b="89"/>
+									<Size>
+										<AbsDimension x="189" y="17" />
+									</Size>
+									<Anchors>
+										<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+											<Offset>
+												<AbsDimension x="0" y="3" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Button>
+					#己方宠物栏底版
+					<Button name="TradeFramePetSelfBackBtn">
+						<Size>
+							<AbsDimension x="188" y="136"/>
+						</Size>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+						<Anchors>
+							<Anchor point="left" relativeTo="TradeFramePetOppositeBackBtn" relativePoint="right">
+								<Offset>
+									<AbsDimension x="2" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					##显示己方宠物信息栏
+					<Button name="SelfPetInfoButton1" inherits="TradeSelfPetInfoButtonTemplate" id="1">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="topleft" relativeTo="TradeFramePetSelfBackBtn">
+								<Offset>
+									<AbsDimension x="5" y="3" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SelfPetInfoButton2" inherits="TradeSelfPetInfoButtonTemplate" id="2">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SelfPetInfoButton1">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SelfPetInfoButton3" inherits="TradeSelfPetInfoButtonTemplate" id="3">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SelfPetInfoButton2">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SelfPetInfoButton4" inherits="TradeSelfPetInfoButtonTemplate" id="4">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SelfPetInfoButton3">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					<Button name="SelfPetInfoButton5" inherits="TradeSelfPetInfoButtonTemplate" id="5">
+						<Anchors>
+							<Anchor point="topleft" relativePoint="bottomleft" relativeTo="SelfPetInfoButton4">
+								<Offset>
+									<AbsDimension x="0" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Button>
+					##收回按钮
+					<Button name="TradeFrame_CallbackBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="收回">
+						<Size>
+							<AbsDimension x="52" y="24" />
+						</Size>
+						<Anchors>
+							<Anchor point="bottomright" relativePoint="bottomright" relativeTo="TradeFramePetSelfBackBtn">
+								<Offset>
+									<AbsDimension x="-5" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>TradeFrame_CallBackBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Layers>
+					<Layer level="highlight">
+						##此为对方锁定交易后,覆盖己方交易信息的遮罩
+						<Texture name="TradeFrameSelfMaskTex" inherits="HighlightTextureTemplate" hidden="true">
+							<Size>
+								<AbsDimension x="191" y="425" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-3" y="-4" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			##取消按钮
+			<Button name="TradeFrame_CancelBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="bottomright" relativeTo="TradeFramePetSelfBackBtn">
+						<Offset>
+							<AbsDimension x="0" y="9" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##锁定交易按钮
+			<Button name="TradeFrame_LockTradeBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="锁定交易">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+
+				<Anchors>
+					<Anchor point="right" relativePoint="left" relativeTo="TradeFrame_CancelBtn">
+						<Offset>
+							<AbsDimension x="-9" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeFrame_LockTradeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##交易按钮
+			<Button name="TradeFrame_TradeBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="交易">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="15" y="-12" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>TradeFrame_TradeBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##显示己方全部宠物信息栏
+			<Button name="MyTotalPetFrame" inherits="PetListTemplate">
+				<Anchors>
+					<Anchor point="topright" relativePoint="topleft" relativeTo="TradeFrame">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentFeeBtn" text="交易税金：2.0%">
+				<Size>
+					<AbsDimension x="100" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topleft" relativeTo="TradeFrame_LockTradeBtn">
+						<Offset>
+							<AbsDimension x="-6" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont13">
+					<Color r="150" g="150" b="150"/>
+				</FontString>
+				<Scripts>
+					<OnEnter>TradeFrameTradeFeeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>TradeFrame_OnLoad();</OnLoad>
+			<OnEvent>TradeFrame_OnEvent();</OnEvent>
+			<OnShow>TradeFrame_OnShow();</OnShow>
+			<OnHide>TradeFrame_OnHide();</OnHide>
+			<OnUpdate>TradeFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	##申请交易框
+	<Frame  name="RequestTradeFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="RequestTradeFrameground" inherits="MainBkgTemplate" />
+
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="交易邀请">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="RequestTradeCharacterName" fonttype="TeenyFZYBlackFont" fontStyle="shadow" justifyH="center" text="是否同意？">
+							<Color r="237" g="235" b="187"/>
+							<Size>
+								<AbsDimension x="300" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+									<Offset>
+										<AbsDimension x="0" y="18"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="3" y="31"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			##同意按钮
+			<Button name="RequestTradeFrame_AcceptBtn" inherits="GongYongAnNiuC1ButtonTemplate"  text="同意">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+						<Offset>
+							<AbsDimension x="40" y="97"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RequestTradeFrame_AcceptBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##拒绝按钮
+			<Button name="RequestTradeFrame_RefuseBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="-40" y="97"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>RequestTradeFrame_RefuseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnUpdate>RequestTradeFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

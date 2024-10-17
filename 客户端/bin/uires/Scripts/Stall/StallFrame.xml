@@ -1,0 +1,1528 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires\Scripts\Stall\StallFrame.lua" />
+	##摆摊宠物模板
+	<Button name="StallPetItemTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="360" y="27"/>
+		</Size> 
+		<Layers>
+			<Layer level="overlay">
+				<FontString name="$parentName" fonttype="LittleFZYBlackFont" text="兔子兔子兔子兔子兔子兔子兔子兔子兔子兔子兔子兔子兔子兔子兔子兔子" justifyH="left" >
+					<Color r="180" g="180" b="90"/>  
+					<Size>
+						<AbsDimension x="102" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="15" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</FontString>
+				<FontString name="$parentLevel" fonttype="LittleFZYBlackFont" text="40000级" justifyH="left" >
+					<Color r="180" g="180" b="90"/>
+					<Size>
+						<AbsDimension x="40" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="140" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</FontString>
+				<FontString name="$parentType" fonttype="LittleFZYBlackFont" text="优秀品质优秀品质" justifyH="left" >
+					<Color r="180" g="180" b="90"/>
+					<Size>
+						<AbsDimension x="60" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="197" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</FontString>
+				<FontString name="$parentMoneyCountFont" fonttype="TeenyBlackFont" text="568568568" justifyH="right" >
+					<Color r="180" g="180" b="90"/>
+					<Size>
+						<AbsDimension x="68" y="14"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="265" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>	
+				</FontString>
+				<Texture name="$parentMoneyIconTex" file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18">
+					<Size>
+						<AbsDimension x="17" y="18" />
+					</Size>
+					<Anchors>
+						<Anchor point="topright" relativeTo="$parent" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="-6" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>  
+				<Texture name="$parentPartionTex" inherits="HorizonalLineTemplate" >
+					<Size>
+						<AbsDimension x="360" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="-1" y="9" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>  
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentLoveLevelBtn">
+				<Size>
+					<AbsDimension x="20" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="120" y="6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentTex" file="uires\\ZhuJieMian\\3.dds" x="952" y="627" w="20" h="17" >
+							<Size>
+								<AbsDimension x="20" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>StallPetItemLoveLevelBtn_OnEnter();</OnEnter>
+					<OnLeave>StallPetItemLoveLevelBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<PushedTexture		inherits="HighlightTextureTemplate" />
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<DisabledTexture	inherits="TransTextureTemplate" />
+		<Scripts>
+			<!--<OnClick>StallPetItem_Test_OnClick();</OnClick>-->
+			<OnClick>StallPetItem_OnClick();</OnClick>
+			<OnDoubleClick>StallPetItem_OnDoubleClick();</OnDoubleClick>
+		</Scripts>
+	</Button>
+	
+	<Frame name="StallFrameTemplate" virtual="true">
+		<Frames>			
+			# 问号按钮
+			<Button name="$parent_QesBtn" inherits="HelpBtnTemplate" />						
+
+			# 物品栏位背景
+			<Button name="$parentBackBtn">
+				<Size>
+					<AbsDimension x="362" y="230" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="8" y="160" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="LayerBlackBkgTemplate" />
+			</Button>			
+			# 摆摊物品列表			
+			<Button name="$parentItem1" inherits="ItemButtonTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="6" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="ItemButtonTemplate" id="2" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem1" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="ItemButtonTemplate" id="3" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem2" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="ItemButtonTemplate" id="4" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem3" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="ItemButtonTemplate" id="5" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem4" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem6" inherits="ItemButtonTemplate" id="6" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem5" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem7" inherits="ItemButtonTemplate" id="7" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem6" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem8" inherits="ItemButtonTemplate" id="8" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem7" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+				
+			<Button name="$parentItem9" inherits="ItemButtonTemplate" id="9" >
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentItem1" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem10" inherits="ItemButtonTemplate" id="10" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem9" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem11" inherits="ItemButtonTemplate" id="11" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem10" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem12" inherits="ItemButtonTemplate" id="12" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem11" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem13" inherits="ItemButtonTemplate" id="13" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem12" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem14" inherits="ItemButtonTemplate" id="14" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem13" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem15" inherits="ItemButtonTemplate" id="15" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem14" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem16" inherits="ItemButtonTemplate" id="16" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem15" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentItem17" inherits="ItemButtonTemplate" id="17" >
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentItem9" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem18" inherits="ItemButtonTemplate" id="18" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem17" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem19" inherits="ItemButtonTemplate" id="19" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem18" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem20" inherits="ItemButtonTemplate" id="20" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem19" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem21" inherits="ItemButtonTemplate" id="21" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem20" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem22" inherits="ItemButtonTemplate" id="22" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem21" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem23" inherits="ItemButtonTemplate" id="23" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem22" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem24" inherits="ItemButtonTemplate" id="24" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem23" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentItem25" inherits="ItemButtonTemplate" id="25" >
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentItem17" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem26" inherits="ItemButtonTemplate" id="26" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem25" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem27" inherits="ItemButtonTemplate" id="27" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem26" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem28" inherits="ItemButtonTemplate" id="28" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem27" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem29" inherits="ItemButtonTemplate" id="29" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem28" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem30" inherits="ItemButtonTemplate" id="30" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem29" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem31" inherits="ItemButtonTemplate" id="31" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem30" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem32" inherits="ItemButtonTemplate" id="32" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem31" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="$parentItem33" inherits="ItemButtonTemplate" id="33" >
+				<Anchors>
+					<Anchor point="top" relativeTo="$parentItem25" relativePoint="bottom">
+						<Offset>
+							<AbsDimension x="0" y="-1"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem34" inherits="ItemButtonTemplate" id="34" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem33" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem35" inherits="ItemButtonTemplate" id="35" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem34" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem36" inherits="ItemButtonTemplate" id="36" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem35" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem37" inherits="ItemButtonTemplate" id="37" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem36" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem38" inherits="ItemButtonTemplate" id="38" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem37" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem39" inherits="ItemButtonTemplate" id="39" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem38" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem40" inherits="ItemButtonTemplate" id="40" >
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentItem39" relativePoint="right">
+						<Offset>
+							<AbsDimension x="-1" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			# 摆摊宠物列表
+			<Button name="$parentPet1" inherits="StallPetItemTemplate" id="1" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentBackBtn">
+						<Offset>
+							<AbsDimension x="2" y="2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPet2" inherits="StallPetItemTemplate" id="2" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPet1">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPet3" inherits="StallPetItemTemplate" id="3" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPet2">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPet4" inherits="StallPetItemTemplate" id="4" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPet3">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPet5" inherits="StallPetItemTemplate" id="5" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPet4">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPet6" inherits="StallPetItemTemplate" id="6" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPet5">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPet7" inherits="StallPetItemTemplate" id="7" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPet6">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPet8" inherits="StallPetItemTemplate" id="8" >
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentPet7">
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# TODO: DEL 道具左翻页按钮
+			<Button name="$parent_LeftPageBtn" inherits="LeftArrowButtonTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="bottomleft" relativeTo="$parentBackBtn">
+						<Offset>
+							<AbsDimension x="145" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Stall_LeftPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# TODO: DEL HIDDEN 显示页数
+			<Button name="$parent_ShowPageBtn" hidden="true">
+				<Size>
+					<AbsDimension x="35" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_LeftPageBtn">
+						<Offset>
+							<AbsDimension x="10" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentPageFont"  fonttype="TeenyBlackFont" justifyH="left" text="1/5" >
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="35" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>	
+				</Layers>
+			</Button>
+			# TODO: DEL HIDDEN 道具右翻页按钮
+			<Button name="$parent_RightPageBtn" inherits="RightArrowButtonTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="left" relativePoint="right" relativeTo="$parent_LeftPageBtn">
+						<Offset>
+							<AbsDimension x="35" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Stall_RightPageBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+
+	<Frame name="StallSaleFrame"  inherits="StallFrameTemplate" parent="UIClient" frameStrata="Dialog" hidden="true" movable="true" framelevel="500">
+		<Size>
+			<AbsDimension x="377" y="470" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors> 
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentStallFramebackground" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="摊    位" >
+					<Color r="255" g="254" b="189"/>  
+					 <Size>
+						<AbsDimension x="55" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parent_CloseBtn" inherits="TransparentCloseBtnNoScriptTemplate">	
+				<Scripts>
+					<OnClick>StallSaleFrame_CloseBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 显示商店签名抬头
+			<Button name="$parentStallNameHeadBtn">
+				<Size>
+					<AbsDimension x="56" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="17" y="47" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="摊位名字" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="56" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 商店输入框常规背景框
+			<Button name="$parent_StallNameBackBtn" >
+				<Size>
+					<AbsDimension x="200" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="78" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  inherits="EditBoxBkgTemplate" />
+			</Button>
+			<Button name="$parent_StallNameBtn" >
+				<Size>
+					<AbsDimension x="200" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="78" y="42" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" text="请输入商店名字  请输入商店名字请输入商店名字请输入商店名字请输入商店名字请输入商店名字" justifyH="left">
+							<Color r="150" g="150" b="150"/>
+							<Size>
+								<AbsDimension x="190" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="4" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>   
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>StallSaleFrame_StallNameBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 商店名字名显示栏
+			<EditBox name="$parent_StallNameEdit" letters="20" multiLine="false" hidden="true">
+				<Size>
+					<AbsDimension x="190" y="19" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_StallNameBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parent_Emotion" fonttype="SongTiFont13">
+					<Color r="150" g="150" b="150"/>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>ClearFocus();</OnEnterPressed>
+					<OnFocusLost>StallNameNormalShowEdit_OnFocusLost();</OnFocusLost>
+				</Scripts>
+			</EditBox>
+			# 摊位广告抬头
+			<Button name="$parent_AdvertiseHeadBtn">
+				<Size>
+					<AbsDimension x="56" y="14" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="17" y="74" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="摊位广告" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="56" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>			
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			# 摊位广告输入框常规背景框
+			<Button name="$parent_StallAdvertiseBackBtn" >
+				<Size>
+					<AbsDimension x="200" y="55" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="78" y="71" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  inherits="EditBoxBkgTemplate" />
+			</Button>
+			<Button name="$parent_StallAdvertiseBtn">
+				<Size>
+					<AbsDimension x="200" y="55" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_StallAdvertiseBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" fonttype="LittleFZYBlackFont" autowrap="true" text="请输入摊位广告  请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告请输入摊位广告" justifyH="left">
+							<Color r="150" g="150" b="150"/>
+							<Size>
+								<AbsDimension x="190" y="50" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="4" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>   
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>StallSaleFrame_StallAdvertiseBtn_OnClick();</OnClick>
+					<!--<OnClick>StallSaleFrame_StallAdvertiseBtn_Test_OnClick();</OnClick>-->
+				</Scripts>
+			</Button>
+			# 交易费显示
+			<Button name="$parentFeeBtn" >
+				<Size>
+					<AbsDimension x="100" y="16" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="269" y="142" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" text="摊位租金：5.0%">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="100" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>StallSaleFrameFeeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide()</OnLeave>
+				</Scripts>
+			</Button>
+			# 摊位广告名显示栏
+			<MultiEditBox name="$parent_StallAdvertiseEdit" fonttype="SongTiFont13" letters="32" multiLine="true" lineInterval="2" hidden="true">
+				<Color r="150" g="150" b="150"/>
+				<Size>
+					<AbsDimension x="190" y="50" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent_StallAdvertiseBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="4" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnterPressed>ClearFocus();</OnEnterPressed>
+					<OnFocusLost>StallSaleFrame_StallAdvertiseEdit_OnFocusLost();</OnFocusLost>
+				</Scripts>
+			</MultiEditBox>
+			# 交易记录按钮
+			<Button name="$parent_TradeRecordBtn" inherits="GongYongAnNiuA3Template" text="交易记录" >
+				<Size>
+					<AbsDimension x="70" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="290" y="44" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallSaleFrame_TradeRecordBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 摆摊道具标签按钮
+			<Button name="$parent_ItemLabelBtn" inherits="GongYongAnNiuD1NoFontTemplate" text="道  具" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="65" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="11" y="138" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallSaleFrame_ItemLabelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 摆摊宠物标签按钮
+			<Button name="$parent_PetLabelBtn" inherits="GongYongAnNiuD1NoFontTemplate" text="宠  物" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="65" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="76" y="138" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallSaleFrame_PetLabelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 价格显示框
+			<Button name="$parent_ShowPriceBackBtn" >
+				<Size>
+					<AbsDimension x="158" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="18" y="-47" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnEnter>StallSaleFrame_ShowPriceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 价格显示框标识
+			<Button name="$parent_ShowPriceHeadBtn" text="单价">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="38" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+				<Scripts>
+					<OnEnter>StallSaleFrame_ShowPriceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parent_ShowPriceBtn">
+				<Size>
+					<AbsDimension x="118" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_ShowPriceBackBtn">
+						<Offset>
+							<AbsDimension x="41" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					 <Layer level="overlay">
+						<Texture name="$parent_moneyTypeTex"  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<FontString name="$parentFont"  fonttype="LittleFZYBlackFont" justifyH="right" text="1558899155889915588991558899">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-29" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					 </Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>StallSaleFrame_ShowPriceBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 收入--总价显示框
+			<Button name="$parent_AllIncomeBackBtn" >
+				<Size>
+					<AbsDimension x="158" y="21" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-18" y="-47" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnEnter>StallSaleFrame_AllIncomeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 收入显示框标识
+			<Button name="$parent_AllIncomeHeadBtn" text="收入">
+				<FontString name="$parentFont" fonttype="TeenyBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="38" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_AllIncomeBackBtn">
+						<Offset>
+							<AbsDimension x="1" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1NormalTemplate"	r="255" g="255" b="190"	/>
+				<Scripts>
+					<OnEnter>StallSaleFrame_AllIncomeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parent_AllIncomeBtn" >
+				<Size>
+					<AbsDimension x="118" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent_AllIncomeBackBtn">
+						<Offset>
+							<AbsDimension x="41" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					 <Layer level="overlay">
+						<Texture name="$parent_moneyTypeTex"  file="uires\\ZhuJieMian\\1.dds" x="117" y="494" w="17" h="18" >
+							<Size>
+								<AbsDimension x="17" y="18" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="-5" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>  
+						<FontString name="$parentFont"  fonttype="LittleFZYBlackFont" justifyH="right" text="1558899155889915588991558899">
+							<Color r="255" g="255" b="190"/>  
+							<Size>
+								<AbsDimension x="90" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-29" y="2" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					 </Layer>
+				</Layers>
+				<Scripts>
+					<OnEnter>StallSaleFrame_AllIncomeBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+			# 分割线
+			<Button name="$parent_PartionBtn" >
+				<Size>
+					<AbsDimension x="373" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="1" y="-22" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+
+			# 下架按钮
+			<Button name="$parent_XiaJiaItemBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="商品下架">
+				<Size>
+					<AbsDimension x="86" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomleft" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="29" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallSaleFrame_XiaJiaItemBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 开始摆摊按钮
+			<Button name="$parent_StartStallBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="开始摆摊" >
+				<Size>
+					<AbsDimension x="86" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent" >
+						<Offset>
+							<AbsDimension x="-29" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallSaleFrame_StartStallBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 结束摆摊按钮
+			<Button name="$parent_EndStallBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="收    摊" hidden="true">
+				<Size>
+					<AbsDimension x="86" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-29" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallSaleFrame_EndStallBtn_OnClick();</OnClick>
+					<OnShow>StallSaleFrame_EndStallBtn_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+			# 所拥有的宠物列表按钮	
+			<Button name="$parent_OwnPetListBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="宠物列表" >
+				<Size>
+					<AbsDimension x="86" y="27" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-4"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>StallSaleFrame_OwnPetListBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			
+			# 宠物查看列表	PetListTemplate		StallSelfOwnPetListBtnTemplate	hidden="true"
+			<Button name="StallSaleFramePetViewList" inherits="StallSelfOwnPetListBtnTemplate" >
+				<Anchors>
+					<Anchor point="bottomright" relativePoint="bottomleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>  
+			</Button>
+			
+			# 交易记录
+			<Button name="$parent_SaleHistoryBtn" hidden="true">
+				<Size>
+					<AbsDimension x="201" y="469" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topright" >
+						<Offset>
+							<AbsDimension x="0" y="1" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentStallFramebackground" inherits="MainBkgTemplate" />
+					</Layer>
+					<Layer level="overlay">
+						<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="交易记录" >
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="100" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="5" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					##关闭窗口
+					<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" />	
+					<Button name="$parentBackBtn">
+						<Size>
+							<AbsDimension x="188" y="430" />
+						</Size>
+						<Anchors>
+							<Anchor point="center" relativeTo="$parent" relativePoint="center">
+								<Offset>
+									<AbsDimension x="0" y="14" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	inherits="LayerBlackBkgTemplate" />
+					</Button>
+					# 文本显示Rich
+					<RichText name="$parentRich" lineInterval ="3" multiLine="true" fonttype="TeenyBlackFont" >
+						<Size>
+							<AbsDimension x="164" y="424" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentBackBtn" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="6" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>StallSaleFrame_SaleHistoryBtnRich_OnClick();</OnClick>
+							<OnLeave>StallSaleFrame_SaleHistoryBtnRich_OnLeave();</OnLeave>
+						</Scripts>
+					</RichText>  
+					# 滚动条背景
+					<Button name="$parent_SliderBack" >
+						<Size>
+							<AbsDimension x="21" y="425" />
+						</Size>
+						<Anchors>
+							<Anchor point="topright" relativeTo="$parentBackBtn" relativePoint="topright">
+								<Offset>
+									<AbsDimension x="-3" y="3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="background">								
+								<Texture name="$parentScrollCenter" inherits="ScrollBkgCenter">
+									<Size>
+										<AbsDimension x="21" y="425" />
+									</Size>
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<Texture name="$parentScrollUp" inherits="ScrollBkgUp" >
+									<Anchors>
+										<Anchor point="TOPRIGHT" relativeTo="$parentScrollCenter" relativePoint="TOPRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>						
+								<Texture name="$parentScrollDown" inherits="ScrollBkgDown" >
+									<Anchors>
+										<Anchor point="BOTTOMRIGHT" relativeTo="$parentScrollCenter" relativePoint="BOTTOMRIGHT">
+											<Offset>
+												<AbsDimension x="0" y="0" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</Texture>
+							</Layer>
+						</Layers>
+					</Button>
+					# 向上滚动按钮
+					<Button name="$parent_ScrollUpBtn" inherits="ScrollUpBtnTemplate" >
+						<Anchors>
+							<Anchor point="topleft" relativeTo="$parent_SliderBack" relativePoint="topleft">
+								<Offset>
+									<AbsDimension x="1" y="1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>Stall_ScrollUpBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 向下滚动按钮
+					<Button name="$parent_ScrollDownBtn" inherits="ScrollDownBtnTemplate" >
+						<Anchors>
+							<Anchor point="bottomleft" relativeTo="$parent_SliderBack" relativePoint="bottomleft">
+								<Offset>
+									<AbsDimension x="1" y="-1"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>Stall_ScrollDownBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+					# 滚动条
+					<Slider name="StallSaleFrame_SaleHistoryBtn_ScrollBar" orientation="VERTICAL" minValue="0" maxValue="80" valueStep="5" defaultValue="0" >
+						<Size>
+							<AbsDimension x="26" y="383" />
+						</Size>
+						<Anchors>
+							<Anchor point="top" relativePoint="bottom" relativeTo="$parent_ScrollUpBtn">
+								<Offset>
+									<AbsDimension x="-1" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<ThumbTexture name="$parent_ThumbTexture"  file="uires\\ZhuJieMian\\1.dds" x="105" y="239" w="17" h="42" hidden="true">
+							<Size>
+								<AbsDimension x="17" y="42" />
+							</Size>
+						</ThumbTexture>
+						<Scripts>
+							<OnValueChanged>Stall_ScrollBar_OnValueChanged();</OnValueChanged>
+							<OnMouseWheel>ScrollBar_OnMouseWheel();</OnMouseWheel>
+						</Scripts>
+					</Slider>
+				</Frames>
+				<Scripts>
+					<OnShow>StallSaleFrame_SaleHistoryBtn_OnShow();</OnShow>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>StallSaleFrame_OnLoad();</OnLoad>
+			<OnEvent>StallSaleFrame_OnEvent();</OnEvent>
+			<OnShow>StallSaleFrame_OnShow();</OnShow>
+			<OnHide>StallSaleFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+
+	##确认是否结束摆摊的确认面板
+	<Frame  name="EndStallConfirmFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="StallSaleFrame" relativePoint="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentFrameground" inherits="MainBkgTemplate" />                   
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="提示">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>
+			##确定
+			<Button name="EndStallConfirmFrame_AcceptBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>EndStallConfirmFrame_AcceptBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="EndStallConfirmFrame_RefuseBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>EndStallConfirmFrame_RefuseBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 黑色底版
+			<Button name="EndStallConfirmFrameFrameBlackButton">
+				<Size>
+					<AbsDimension x="348" y="66"/>
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="EndStallConfirmContent" fonttype="TeenyFZYBlackFont" justifyH="left" text="确定要结束摆摊吗？">
+							<Size>
+								<AbsDimension x="180" y="15"/>
+							</Size>
+							<Color r="255" g="229" b="189"/>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Anchors>
+					<Anchor point="bottomleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="4" y="97"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+		</Frames>
+		<Scripts>
+			<OnShow>EndStallConfirmFrame_OnShow();</OnShow>
+			<OnHide>EndStallConfirmFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+</Ui>

@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Ui>
+	<Script file="uires\Scripts\Chat\ChatShortcutFrame.lua" />
+	# 快捷发言面板
+	<Frame name="ChatShortcutSendMsgFrame" frameStrata="DIALOG" parent="UIClient" hidden="true" movable="true" framelevel="302">
+		<Size>
+			<AbsDimension x="395" y="367" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">	
+				<Texture name="$parent_BackGround" inherits="MainBkgTemplate" />
+				##界面标题
+				<FontString name="$parentFrameFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="快捷发言" >
+					<Color r="255" g="254" b="189"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>	
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parent_CloseBtn" inherits="CloseBtnTemplate" >
+				<Scripts>
+					<OnClick>CSSMFCancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parent_HelpBtn" inherits="HelpBtnTemplate" />
+			
+			<Button name="$parentBackGround">
+				<Size>
+					<AbsDimension x="389" y="333"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="3" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>						
+				<Layers>
+					<Layer level="overlay">		
+						<FontString name="$parentFrameFont1" fonttype="TeenyFZYBlackFont" justifyH="center" text="快捷发言 1 Alt + 1"  >
+							<Color r="147" g="130" b="89"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="27" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFrameFont2" fonttype="TeenyFZYBlackFont" justifyH="center" text="快捷发言 2 Alt + 2"  >
+							<Color r="147" g="130" b="89"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentFrameFont1" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="55" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFrameFont3" fonttype="TeenyFZYBlackFont" justifyH="center" text="快捷发言 3 Alt + 3"  >
+							<Color r="147" g="130" b="89"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentFrameFont2" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="54" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFrameFont4" fonttype="TeenyFZYBlackFont" justifyH="center" text="快捷发言 4 Alt + 4 " >
+							<Color r="147" g="130" b="89"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentFrameFont3" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="53" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFrameFont5" fonttype="TeenyFZYBlackFont" justifyH="center" text="快捷发言 5 Alt + 5"  >
+							<Color r="147" g="130" b="89"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentFrameFont4" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="52" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentFrameFont6" fonttype="TeenyFZYBlackFont" justifyH="center" text="快捷发言 6 Alt + 6"  >
+							<Color r="147" g="130" b="89"/>
+							 <Size>
+								<AbsDimension x="160" y="17" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parentFrameFont5" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="52" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+
+			# 快捷发言栏1
+			<EditBox name="CSSMFInsertEdit1" letters="65" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="30" y="74" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BackGround">
+						<Texture name="$parent_BackGround" inherits="EditBoxBkgTemplate">				
+							<Size>
+								<AbsDimension x="332" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-5" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>		
+					</Layer>
+				</Layers>
+				<FontString name="CSSMFInsertEdit1" fonttype="SongTiFont15"></FontString>
+				<Scripts>
+					<OnEnterPressed>ChatShortcutSendMsgFrame_ChatEnterPressed();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+			# 快捷发言栏2
+			<EditBox name="CSSMFInsertEdit2" letters="65" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CSSMFInsertEdit1" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BackGround">	
+						<Texture name="$parent_BackGround" inherits="EditBoxBkgTemplate">				
+							<Size>
+								<AbsDimension x="332" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-5" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>		
+					</Layer>
+				</Layers>
+				<FontString name="CSSMFInsertEdit2" fonttype="SongTiFont15"></FontString>
+				<Scripts>
+					<OnEnterPressed>ChatShortcutSendMsgFrame_ChatEnterPressed();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+			# 快捷发言栏3
+			<EditBox name="CSSMFInsertEdit3" letters="65" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CSSMFInsertEdit2" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BackGround">	
+						<Texture name="$parent_BackGround" inherits="EditBoxBkgTemplate">				
+							<Size>
+								<AbsDimension x="332" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-5" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>		
+					</Layer>
+				</Layers>
+				<FontString name="CSSMFInsertEdit3" fonttype="SongTiFont15"></FontString>
+				<Scripts>
+					<OnEnterPressed>ChatShortcutSendMsgFrame_ChatEnterPressed();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+			# 快捷发言栏4
+			<EditBox name="CSSMFInsertEdit4" letters="65" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CSSMFInsertEdit3" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BackGround">	
+						<Texture name="$parent_BackGround" inherits="EditBoxBkgTemplate">				
+							<Size>
+								<AbsDimension x="332" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-5" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>		
+					</Layer>
+				</Layers>
+				<FontString name="CSSMFInsertEdit4" fonttype="SongTiFont15"></FontString>
+				<Scripts>
+					<OnEnterPressed>ChatShortcutSendMsgFrame_ChatEnterPressed();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+			# 快捷发言栏5
+			<EditBox name="CSSMFInsertEdit5" letters="65" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CSSMFInsertEdit4" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BackGround">	
+						<Texture name="$parent_BackGround" inherits="EditBoxBkgTemplate">				
+							<Size>
+								<AbsDimension x="332" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-5" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>		
+					</Layer>
+				</Layers>
+				<FontString name="CSSMFInsertEdit5" fonttype="SongTiFont15"></FontString>
+				<Scripts>
+					<OnEnterPressed>ChatShortcutSendMsgFrame_ChatEnterPressed();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+			# 快捷发言栏6
+			<EditBox name="CSSMFInsertEdit6" letters="65" historyLines="1" multiLine="false">
+				<Size>
+					<AbsDimension x="325" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="CSSMFInsertEdit5" relativePoint="bottomleft">
+						<Offset>
+							<AbsDimension x="0" y="31" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BackGround">	
+						<Texture name="$parent_BackGround" inherits="EditBoxBkgTemplate">				
+							<Size>
+								<AbsDimension x="332" y="25" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="-5" y="-8" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>		
+					</Layer>
+				</Layers>
+				<FontString name="CSSMFInsertEdit6" fonttype="SongTiFont15"></FontString>
+				<Scripts>
+					<OnEnterPressed>ChatShortcutSendMsgFrame_ChatEnterPressed();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+
+			# 取消按钮
+			<Button name="CSSMFCancelBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="取 消">
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="bottomright" relativeTo="$parent" relativePoint="bottomright">
+						<Offset>
+							<AbsDimension x="-10" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CSSMFCancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 确定按钮
+			<Button name="CSSMFSureBtn" inherits="GongYongAnNiuA1ButtonTemplate" text="确定" >
+				<Size>
+					<AbsDimension x="73" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativeTo="CSSMFCancelBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="-10" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CSSMFSureBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ChatShortcutSendMsgFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+
+	# 表情面板
+	<Frame name="ChatFaceFrame" hidden="true" input_transparent="false" frameStrata="DIALOG" movable="false" framelevel="600" >
+		<Size>
+			<AbsDimension x="291" y="175" />
+		</Size>
+		<Anchors>
+			<Anchor point="BottomLeft" relativeTo="ChatInsertFrame" relativePoint="BottomRight">
+				<Offset>
+					<AbsDimension x="10" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="CFF_BackGround" file="uires\ZhuJieMian\LiaoTian\LiaoTianMianBan\BiaoQingMianBan.tga">				
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>		
+			</Layer>
+		</Layers>
+		<Frames>	#CFF_ShowFaceRich
+			<RichText name="$parent_Rich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" input_transparent="false">
+				<Size>
+					<AbsDimension x="291" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="7" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CFF_ShowFaceRich_OnClick();</OnClick>	 
+					<OnEnter>ChatFaceFrame_Rich_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>ChatFaceFrame_OnShow();</OnShow>
+			<OnLoad>ChatFaceFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="MainChatFaceFrame" hidden="true" input_transparent="false" frameStrata="DIALOG" movable="false" framelevel="600" >
+		<Size>
+			<AbsDimension x="291" y="175" />
+		</Size>
+		<Anchors>
+			<Anchor point="BottomLeft" relativeTo="MainChatFrame_FaceBtn" relativePoint="TopRight">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BackGround">		
+				<Texture name="$parentBackTex" file="uires\ZhuJieMian\LiaoTian\LiaoTianMianBan\BiaoQingMianBan.tga">				
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>		
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parent_Rich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" input_transparent="false">
+				<Size>
+					<AbsDimension x="291" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parent" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="7" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFaceFrame_Rich_OnClick();</OnClick>	 
+					<OnEnter>ChatFaceFrame_Rich_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>MainChatFaceFrame_OnShow();</OnShow>
+			<OnLoad>ChatFaceFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+
+	<Frame name="ChatFaceAndActionFrame" hidden="true" frameStrata="DIALOG" movable="true" framelevel="600" >
+		<Size>
+			<AbsDimension x="302" y="382" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" relativeTo="$parent" relativePoint="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				 <Texture name="$parentbackground" inherits="MainBkgTemplate" />					
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="表情动作" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate" />
+			# 表情子面板底板
+			<Button name="$parentFaceBackBtn" >
+				<Size>
+					<AbsDimension x="291" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="33" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	file="uires\ZhuJieMian\LiaoTian\LiaoTianMianBan\BiaoQingMianBan.tga" />
+			</Button>
+			<RichText name="$parent_FaceRich" lineInterval ="2" multiLine="true" fonttype="TeenyBlackFont" >
+				<Size>
+					<AbsDimension x="291" y="175" />
+				</Size>
+				<Anchors>
+					<Anchor point="TopLeft" relativeTo="$parentFaceBackBtn" relativePoint="TopLeft">
+						<Offset>
+							<AbsDimension x="7" y="4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MainChatFaceFrame_Rich_OnClick();</OnClick>	 
+					<OnEnter>ChatFaceFrame_Rich_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>
+			</RichText>
+			# 动作子面板底板
+			<Button name="$parentActionBackBtn" >
+				<Size>
+					<AbsDimension x="291" y="143" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="207" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="ChatActionCiDiCengChenDiTemplate" />
+			</Button>
+			<Button name="$parentItemBtnTemplate" virtual="true">
+				<Size>
+					<AbsDimension x="44" y="44" />
+				</Size>
+				<Layers>
+					<Layer level="background">
+						<Texture name="$parentIcon">
+							<Size>
+								<AbsDimension x="38" y="38"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="4" y="4"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<Texture name="$parentBoxTexture" file="uires\\ZhuJieMian\\1.dds" x="794" y="562" w="44" h="44" > 
+							<Size>
+								<AbsDimension x="44" y="44"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+						<FontString name="$parentNameFont" fonttype="FZYBlackFont12" fontStyle="normal" justifyH="center" text="dance">
+							<Color r="255" g="255" b="190"/>  
+							 <Size>
+								<AbsDimension x="120" y="21" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="31" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\ZhuJieMian\\1.dds" x="27" y="32" w="1" h="1"/>
+				<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+				<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+				<Scripts>
+					<OnClick>ChatActionFrameItemBtnOnClick();</OnClick>
+					<OnEnter>ChatActionFrameItemBtnOnEnter();</OnEnter>
+					<OnLeave>GameTooltip:Hide();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentItem1" inherits="$parentItemBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="20" y="220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem2" inherits="$parentItemBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="75" y="220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem3" inherits="$parentItemBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="130" y="220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem4" inherits="$parentItemBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="185" y="220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem5" inherits="$parentItemBtnTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="240" y="220"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem6" inherits="$parentItemBtnTemplate" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="20" y="282"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem7" inherits="$parentItemBtnTemplate" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="75" y="282"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem8" inherits="$parentItemBtnTemplate" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="130" y="282"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem9" inherits="$parentItemBtnTemplate" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="185" y="282"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentItem10" inherits="$parentItemBtnTemplate" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="240" y="282"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 水平分割线
+			<Button name="$parent_HorizonalPartionBtn" >
+				<Size>
+					<AbsDimension x="297" y="10" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT" >
+						<Offset>
+							<AbsDimension x="3" y="352" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture	inherits="HorizonalLineTemplate" />
+			</Button>
+			# 上一页
+			<Button name="$parent_PrePageButton" inherits="GongYongAnNiuA1ButtonTemplate" text="上一页">
+				<Size>
+					<AbsDimension x="55" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="183" y="353"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatFaceAndActionFrame_PrePageButton_OnClick();</OnClick>
+				</Scripts>
+			</Button> 
+			# 下一页
+			<Button name="$parent_NextPageButton" inherits="GongYongAnNiuA1ButtonTemplate" text="下一页">
+				<Size>
+					<AbsDimension x="55" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="238" y="353"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>ChatFaceAndActionFrame_NextPageButton_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 页数按钮
+			<Button name="$parent_PageButton"  text="第1/2页">
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="60" y="26"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topLeft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="9" y="353"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture		inherits="GongYongAnNiuA1DisabledTemplate"	r="160" g="160" b="160"	/>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ChatFaceAndActionFrame_OnShow();</OnShow>
+			<OnLoad>ChatFaceAndActionFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

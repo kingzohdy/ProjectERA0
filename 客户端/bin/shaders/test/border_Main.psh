@@ -1,0 +1,52 @@
+
+
+#include "header.fx"
+
+// for°ü±ß
+
+float3	g_SelfPower;
+
+sampler s_DiffuseSampler : register(s0);
+
+
+struct VS_OUTPUT
+{
+    float4 pos            : POSITION;
+    float4 color0        : COLOR0; //color0.xyz=ambient lighting,  color0.w=specular lighting
+    float2 uv0            : TEXCOORD0;
+
+#ifdef LIGHT_SHADOW
+    float4 color1        : COLOR1; //color1.xyz=shadowed_lighting,  color1.w=specular lighting
+    float4 uv1            : TEXCOORD1;    
+#endif
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD2;
+#endif
+
+#if USE_SELFILLUM_TEX==SELFILLUM_ALL
+	float2 uv2 : TEXCOORD3;
+#endif 
+};
+
+float4 PSMain(VS_OUTPUT input):COLOR0
+{
+	float4 color  = tex2D(s_DiffuseSampler,input.uv0);
+
+     float4 lighting = input.color0;
+
+
+	lighting = clamp(lighting, 0, 1.2);
+	
+#ifdef LIGHT_SPECULAR
+	color.rgb = lighting.rgb*color.rgb + g_SpecularColor*lighting.a;
+#else
+	color.rgb = lighting.rgb*color.rgb;
+#endif //LIGHT_SPECULAR
+
+#ifdef MODEL_TRANSPARENT
+	color.a *= g_ModelTransparent;
+#endif
+	color.a *= 0.5f;
+	return color;
+}

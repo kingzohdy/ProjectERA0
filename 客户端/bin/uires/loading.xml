@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/loading.lua"/>
+	<Frame name="LoadingFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true" framelevel="500">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="LoadingBackGround">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="">
+						<Texture name="loadingimgtopleft" file="uires\ui\loading\loading.jpg">
+							<Size>
+								<RelDimension x="1.0" y="1.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<FontString name="HelpInfoShow" fonttype="TeenyBlackFont" justifyH="center" text="">
+							<Size>
+								<AbsDimension x="750" y="29"/>
+							</Size>
+							<Color r="0" g="255" b="255"/>
+							<Anchors>
+								<Anchor point="bottom" relativeTo="LoadingFrame" relativePoint="bottom">
+									<Offset>
+										<AbsDimension x="0" y="-20"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>						
+			</Button>
+
+			<Button name="ProcessBar" hidden="false">
+				<Size>
+					<AbsDimension x="802" y="29"/>
+				</Size>
+				<Anchors>
+					<Anchor point="bottom" relativePoint="bottom" relativeTo="LoadingFrame">
+						<Offset>
+							<AbsDimension x="0" y="-75"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="">
+						<Texture name="ProcessBarFrame1" file="uires\\ZhuJieMian\\2.dds" DrawType="center" >
+							<Center>
+								<Left			x="683"	y="918" w="20"	h="25" />
+								<Center			x="704" y="918" w="20"	h="25" />
+								<Right			x="725" y="918" w="20"	h="25" />
+							</Center>
+							<Size>
+								<AbsDimension x="802" y="29"/>
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativeTo="ProcessBar" relativePoint="top">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="flogBar" file="uires\\ZhuJieMian\\2.dds" x="0" y="825" w="802" h="29" hidden ="true">
+							<Size>
+								<RelDimension x="0.0" y="0.0" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="ProcessBar" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>		
+					</Layer>
+				</Layers>	
+				<Frames>
+					<Button name="ProcessButtonIcon" >
+						<Size>
+							<AbsDimension x="108" y="69"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativePoint="left" relativeTo="ProcessBar">
+								<Offset>
+									<AbsDimension x="50" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture	file="uires\\ZhuJieMian\\2.dds" x="683" y="855" w="102" h="62" />
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnLoad>ProcessBar_OnLoad();</OnLoad>
+					<OnEvent>ProcessBar_OnEvent();</OnEvent>
+				</Scripts>							
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>LoadingFrame_OnShow();</OnShow>
+			<OnUpdate>LoadingFrame_OnUpdate();</OnUpdate>
+			<OnHide>LoadingFrame_OnHide();</OnHide>
+			<OnLoad>LoadingFrame_OnLoad();</OnLoad>
+		</Scripts>
+	</Frame>
+	
+	<Frame name="MapLoadingMask" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true" framelevel="500">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="overlay">
+				<Texture name="$parentTex">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>MapLoadingMask_OnLoad()</OnLoad>
+			<OnShow>MapLoadingMask_OnShow()</OnShow>
+			<OnHide>MapLoadingMask_OnHide()</OnHide>
+			<OnUpdate>MapLoadingMask_OnUpdate()</OnUpdate>
+			<OnEvent>MapLoadingMask_OnEvent()</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

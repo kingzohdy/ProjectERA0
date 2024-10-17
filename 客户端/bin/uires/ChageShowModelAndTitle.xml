@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\ChageShowModelAndTitle.lua" />
+	<Button name="ChageShowModelAndTitleButtonTemplate" virtual="true" hidden="true">
+		<Size>
+			<AbsDimension x="25" y="25"/>
+		</Size>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentIconTexture" >
+                    <Size>
+                       <AbsDimension x="23" y="23"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="1" y="1" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+				<Texture name="$parentGround" file="uires\ui\buff  TuBiaoDiBan\Bai.tga" >
+                    <Size>
+                        <AbsDimension x="25" y="25"/>
+                    </Size>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
+                            <Offset>
+                                <AbsDimension x="0" y="0" />
+                            </Offset>
+                        </Anchor>
+                    </Anchors>
+                </Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+				<OnEnter>ChageShowModelAndTitleButton_OnEnter();</OnEnter>
+				<OnLeave>GameTooltip:Hide();</OnLeave>
+		</Scripts>
+	</Button>
+	
+	<Frame name="ChageShowModelAndTitleFrame" frameStrata="DIALOG" parent="UIClient" hidden="false" movable="false" framelevel="200" input_transparent="true">
+        <Size>
+            <AbsDimension x="60" y="25" />
+        </Size>
+		<Anchors>
+			 <Anchor point="topleft" relativeTo="ChatInsertFrame" relativePoint="bottomleft">
+				<Offset>
+					<AbsDimension x="0" y="2" />
+				</Offset>
+			</Anchor> 
+		</Anchors>
+		<Frames>
+			<Button name="$parentButton1" inherits="ChageShowModelAndTitleButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Button>
+
+			<Button name="$parentButton2" inherits="ChageShowModelAndTitleButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="left" relativeTo="$parentButton1" relativePoint="right">
+						<Offset>
+							<AbsDimension x="5" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>		
+			</Button>
+		</Frames>
+		<Scripts>
+				<OnLoad>ChageShowModelAndTitleFrame_OnLoad();</OnLoad>
+				<OnEvent>ChageShowModelAndTitleFrame_OnEvent();</OnEvent>
+		</Scripts>
+	</Frame>
+</Ui>

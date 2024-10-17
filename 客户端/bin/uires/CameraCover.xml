@@ -1,0 +1,112 @@
+
+<Ui>
+	<Script file="uires/cameracover.lua" />
+	<Frame name="CameraCoverFrame" parent="UIClient" frameStrata="FULLSCREEN_DIALOG" input_transparent="false" hidden="true">
+		<Size>
+			 <RelDimension x="1.0" y="1.0"/>
+		</Size>
+		<Anchors>
+            <Anchor point="topleft">
+                <Offset>
+                    <AbsDimension x="0" y="0"/>
+                </Offset>
+            </Anchor>
+        </Anchors>
+		<Frames>
+			<Button name="$parentBackgroundUp">
+				<Size>
+					<RelDimension x="1.0" y="0.1"/>
+				</Size>
+				<Anchors>
+					 <Anchor point="topleft">
+						 <Offset>
+							 <RelDimension x="0.0" y="0.0"/>
+						  </Offset>
+					  </Anchor>
+				</Anchors>
+				<Backdrop bgFile="uires\\ui\\YinDaoHuaMian\\DiBan.tga" tile="true">
+				</Backdrop>
+			</Button>
+			<Button name="$parentBackgroundDown">
+				<Size>
+					<RelDimension x="1.0" y="0.1"/>
+				</Size>
+				<Anchors>
+					 <Anchor point="bottomleft">
+						 <Offset>
+							 <RelDimension x="0.0" y="0.0"/>
+						  </Offset>
+					  </Anchor>
+				</Anchors>
+				<Backdrop bgFile="uires\\ui\\YinDaoHuaMian\\DiBan.tga" tile="true">
+				</Backdrop>
+				<Layers>
+					<Layer >
+						<Texture name="CameraCoverFrameBack" file="uires\\ui\\YinDaoHuaMian\\HuaBian.tga">
+							<size>
+								 <AbsDimension x="836" y="34"/>
+							</size>
+							<Anchors>
+								<Anchor point="top" >
+									<Offset>
+										<AbsDimension x="0" y="-14" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer>
+						<Texture name="$parentBack_Left" file="uires\\ui\\YinDaoHuaMian\\ZuoYinYing.tga">
+							<size>
+								 <AbsDimension x="367" y="460"/>
+							</size>
+							<Anchors>
+								<Anchor point="bottomleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer >
+						<Texture name="$parentBack_Right" file="uires\\ui\\YinDaoHuaMian\\YouYinYing.tga">
+							<size>
+								 <AbsDimension x="367" y="460"/>
+							</size>
+							<Anchors>
+								<Anchor point="bottomright">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+
+					<Layer level="overlay">
+						<FontString name="CameraCoverFrameFont" lineInterval ="1" multiLine="false" fonttype="TeenyFZYBlackFont" justifyH="center">
+							<Color r="228" g="225" b="139"/>
+							<Size>
+								<RelDimension x="1.0" y="0.8" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft">
+									<Offset>
+										<AbsDimension x="0" y="35" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString> 
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>CameraCoverFrameOnLoad();</OnLoad>
+			<OnShow>CameraCoverFrameOnShow();</OnShow>
+			<OnHide>CameraCoverFrameOnHide();</OnHide>
+			<OnUpdate>CameraCoverFrameOnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

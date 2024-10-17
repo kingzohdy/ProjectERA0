@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/System.lua" />
+	<Button name="SystemActivetyBtnTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="307" y="22" />
+		</Size>
+		<Layers>		
+			<Layer level="background">
+				<Texture name="$parentAwardTypeTex" file="uires\\ZhuJieMian\\1.dds" x="810" y="284" w="55" h="16" >
+					<Size>
+						<AbsDimension x="55" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTipsPoint" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+					<Size>
+						<AbsDimension x="55" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentInfo" fonttype="LittleFZYBlackFont" lineInterval="2" fontStyle="normal" input_transparent="true">
+				<Size>
+					<AbsDimension x="307" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+		</Frames>
+		<NormalTexture		inherits="TransTextureTemplate"/>
+		<PushedTexture		inherits="PushedTextureTemplate" />
+		<HighlightTexture	inherits="HighlightTextureTemplate" />
+		<DisabledTexture	inherits="TransTextureTemplate" />
+		<Scripts>
+			<OnClick>SystemActivetyBtn_OnClick();</OnClick>
+			<OnDoubleClick>SystemActivetyBtn_OnDoubleClick();</OnDoubleClick>
+			<OnEnter>SystemActivetyBtn_OnEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	
+	<Button name="SystemClanAwardTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="307" y="22" />
+		</Size>
+		<Layers>		
+			<Layer level="background">
+				<Texture name="$parentAwardTypeTex" file="uires\\ZhuJieMian\\1.dds" x="810" y="284" w="55" h="16" >
+					<Size>
+						<AbsDimension x="55" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="left" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTipsPoint" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+					<Size>
+						<AbsDimension x="55" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativePoint="center" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="$parentInfo" fonttype="LittleFZYBlackFont" lineInterval="2" fontStyle="normal" input_transparent="true">
+				<Size>
+					<AbsDimension x="307" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnClick>SystemActivetyBtn_OnClick();</OnClick>
+			<OnDoubleClick>SystemActivetyBtn_OnDoubleClick();</OnDoubleClick>
+			<OnEnter>SystemActivetyBtn_OnEnter();</OnEnter>
+			<OnLeave>GameTooltipOnLeave();</OnLeave>
+		</Scripts>
+	</Button>
+	<Frame name="SystemSelectFrame" frameStrata="FULLSCREEN_DIALOG" parent="UIClient" hidden="true">
+		<Size>
+			<AbsDimension x="660" y="314" />
+		</Size>
+		<Anchors>
+			<Anchor point="Center" relativePoint="Center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="SystemSelectFrame_BackGround" inherits="MainBkgTemplate" />				
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="设置" >
+					<Color r="255" g="254" b="189"/>  
+					 <Size>
+						<AbsDimension x="100" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentEveryDayBK" inherits="LayerBlackBkgTemplate">		
+					<Size>
+						<AbsDimension x="311" y="114" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="37"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEveryDayAcitve0" inherits="WhiteCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="11" y="39"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentEveryDayFont" fonttype="LittleFZYBlackFont" justifyH="center" text="每日重要活动" >
+					<Color r="0" g="255" b="0"/>  
+					 <Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentEveryDayAcitve0" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentEveryDayAcitve1" inherits="BlackCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentEveryDayAcitve0">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEveryDayAcitve2" inherits="WhiteCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentEveryDayAcitve1">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEveryDayAcitve3" inherits="BlackCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentEveryDayAcitve2">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentEveryDayAcitve4" inherits="WhiteCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentEveryDayAcitve3">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentClanAward" inherits="LayerBlackBkgTemplate">		
+					<Size>
+						<AbsDimension x="311" y="114" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="9" y="191"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentClanAward0" inherits="WhiteCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="11" y="193"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentEveryDayFont" fonttype="LittleFZYBlackFont" justifyH="center" text="未领取福利" >
+					<Color r="0" g="255" b="0"/>  
+					 <Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentClanAward0" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="4" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<Texture name="$parentClanAward1" inherits="BlackCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentClanAward0">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentClanAward2" inherits="WhiteCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentClanAward1">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentClanAward3" inherits="BlackCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentClanAward2">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentClanAward4" inherits="BlackCategoryBkg">		
+					<Size>
+						<AbsDimension x="307" y="22" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativePoint="bottom" relativeTo="$parentClanAward3">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				## 今日连续登录背景
+				<Texture name="$parentContinueTex" inherits="LayerBlackBkgTemplate">		
+					<Size>
+						<AbsDimension x="185" y="114" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="325" y="37"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentContinueFont1" fonttype="LittleFZYBlackFont" justifyH="center" text="今日连续登录奖励" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="120" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentContinueTex" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="15" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentContinueFont2" fonttype="LittleFZYBlackFont" justifyH="left" text="已连续在线3天 " >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="120" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="394" y="81" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				## 明天继续登录背景
+				<Texture name="$parentContinueTex2" inherits="LayerBlackBkgTemplate">		
+					<Size>
+						<AbsDimension x="185" y="150" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="325" y="155"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentContinueFont3" fonttype="LittleFZYBlackFont" justifyH="center" text="如果您明天继续登录将获得：" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="180" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parentContinueTex2" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="15" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentContinueFont4" fonttype="LittleFZYBlackFont" justifyH="left" text="连续在线4天奖励" >
+					<Color r="255" g="255" b="190"/>  
+					 <Size>
+						<AbsDimension x="120" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="394" y="198" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentContinueFont5" fonttype="LittleFZYBlackFont" justifyH="left" text="连续登录5天极有可能获得超" >
+					<Color r="255" g="80" b="80"/>  
+					 <Size>
+						<AbsDimension x="170" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="333" y="261" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+				<FontString name="$parentContinueFont6" fonttype="LittleFZYBlackFont" justifyH="left" text="级大奖" >
+					<Color r="255" g="80" b="80"/>  
+					 <Size>
+						<AbsDimension x="120" y="13" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="333" y="274" />
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentCloseBtn" inherits="CloseBtnTemplate"/>
+			<Button name="$parentEveryDayActiveBtn1" inherits="SystemActivetyBtnTemplate" checked="false">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="11" y="61" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEveryDayActiveBtn2" inherits="SystemActivetyBtnTemplate" checked="false">
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentEveryDayActiveBtn1">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEveryDayActiveBtn3" inherits="SystemActivetyBtnTemplate" checked="false">
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentEveryDayActiveBtn2">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentEveryDayActiveBtn4" inherits="SystemActivetyBtnTemplate" checked="false">
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentEveryDayActiveBtn3">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<RichText name="$parentBuildUpExp" fonttype="LittleFZYBlackFont" lineInterval="2" fontStyle="normal">
+				<Size>
+					<AbsDimension x="307" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentEveryDayActiveBtn4" relativePoint="BOTTOM" >
+						<Offset>
+							<AbsDimension x="0" y="7" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentMakeUpExp" fonttype="LittleFZYBlackFont" lineInterval="2" fontStyle="normal">
+				<Size>
+					<AbsDimension x="307" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOP" relativeTo="$parentBuildUpExp" relativePoint="BOTTOM" >
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<Button name="$parentClanAwardBtn1" inherits="SystemClanAwardTemplate">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="11" y="215" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentClanAwardBtn2" inherits="SystemClanAwardTemplate">
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentClanAwardBtn1">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentClanAwardBtn3">
+				<Size>
+					<AbsDimension x="307" y="44" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentClanAwardBtn2">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>		
+					<Layer level="background">
+						<Texture name="$parentAwardTypeTex" file="uires\\ZhuJieMian\\1.dds" x="810" y="284" w="55" h="16" >
+							<Size>
+								<AbsDimension x="55" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="left" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="2" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTipsPoint" file="uires\\ui\\mask\\TouMingTongDao.tga" >
+							<Size>
+								<AbsDimension x="55" y="16" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativePoint="center" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentTexture" file="uires\\ZhuJieMian\\3.dds" x="365" y="134" w="44" h="38" >
+							<Size>
+								<AbsDimension x="44" y="38" />
+							</Size>
+							<Anchors>
+								<Anchor point="left" relativePoint="left" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="173" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Frames>
+					<RichText name="$parentInfo" fonttype="LittleFZYBlackFont" lineInterval="2" fontStyle="normal" input_transparent="true">
+						<Size>
+							<AbsDimension x="307" y="15" />
+						</Size>
+						<Anchors>
+							<Anchor point="CENTER" relativeTo="$parent" relativePoint="CENTER" >
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</RichText>
+					<Button name="$parentRewardBtn" inherits="GongYongAnNiuB1Template" text="领取奖励">
+						<Size>
+							<AbsDimension x="70" y="31"/>
+						</Size>
+						<Anchors>
+							<Anchor point="left" relativeTo="$parent" relativePoint="left">
+								<Offset>
+									<AbsDimension x="226" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>SystemSelectFrameClanAwardBtn_OnClick();</OnClick>
+						</Scripts>
+					</Button>
+				</Frames>
+				<Scripts>
+					<OnEnter>SystemActivetyBtnRewardBtn_OnEnter();</OnEnter>
+					<OnLeave>GameTooltipOnLeave();</OnLeave>
+				</Scripts>	
+			</Button>
+			# 活动助手
+			<Button name="$parentPromotion" inherits="GongYongAnNiuB1Template" text="">
+				<Size>
+					<AbsDimension x="70" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="240" y="37" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" justifyH="center" text="活动助手" >
+							<Color r="255" g="254" b="189"/>							
+							 <Size>
+								<AbsDimension x="70" y="15" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>SystemSelectFramePromotion_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			## 连续签到						
+			<Button name="$parentItemBtn1">
+				<Size>
+					<AbsDimension x="52" y="52"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="334" y="80"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\ui\\Za\\QianDaoLiBao.tga">
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			<Button name="$parentItemBtn2" >
+				<Size>
+					<AbsDimension x="52" y="52"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="334" y="197"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBackTexture" file="uires\\ZhuJieMian\\2.dds" x="285" y="855" w="52" h="52"> 
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentIconTexture" file="uires\\ui\\Za\\QianDaoLiBao.tga">
+							<Size>
+								<AbsDimension x="50" y="50"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="1" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>				
+						</Texture>
+					</Layer>
+				</Layers>
+			</Button>
+			
+			<Button name="$parentConRewardBtn" inherits="GongYongAnNiuB1Template" text="领取奖励">
+				<Size>
+					<AbsDimension x="87" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="397" y="101"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSelectFrameConRewardBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="$parentCheckConRewardBtn" inherits="GongYongAnNiuB1Template" text="查看奖励">
+				<Size>
+					<AbsDimension x="87" y="31"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="397" y="218"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SystemSelectFrameCheckConRewardBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 返回游戏 
+			<Button name="BackToGame" inherits="GongYongAnNiuB1Template" text="返 回 游 戏">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-11" y="49" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BackToGame_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			# 游戏效果设置
+			<Button name="GameEffectSetting" inherits="GongYongAnNiuB1Template" text="系 统 设 置">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-11" y="93" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameEffectSetting_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 游戏设置
+			<Button name="GameSetting" inherits="GongYongAnNiuB1Template" text="游 戏 设 置">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-11" y="124" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameSetting_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 游戏帮助
+			<Button name="GameHelpInfo" inherits="GongYongAnNiuB1Template" text="游 戏 帮 助">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-11" y="155" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>GameHelpInfo_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 返回游戏选择
+			<Button name="BackToRoleSelect" inherits="GongYongAnNiuB1Template" text="返回角色选择">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-11" y="186" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>BackToRoleSelect_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 离开游戏
+			<Button name="SelectQuitGame" inherits="GongYongAnNiuB1Template" text="离 开 游 戏">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-11" y="217" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SelectQuitGame_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 启动引力空间
+			<Button name="Startroom" inherits="GongYongAnNiuB1Template" text="启动引力空间">
+				<Size>
+					<AbsDimension x="130" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="-11" y="261" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>Startroom_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>SystemSelectFrame_OnLoad();</OnLoad>
+			<OnShow>SystemSelectFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

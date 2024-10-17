@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/MagicSmelter.lua"/>
+	#熔炉模板
+	<Button name="SmelterItemTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="44" y="44"/>
+		</Size>
+		<Layers>
+			<Layer level="background">  
+				<Texture name="$parentBack" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44"> 
+					<Size>
+						<AbsDimension x="44" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentRecastThis" inherits="GongYongAnNiuA1ButtonTemplate" text="重铸">
+				<Size>
+					<AbsDimension x="44" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>MagicSmelterRecastThis_OnClick();</OnClick>
+					<OnEnter>MagicSmelterRecastThis_OnEnter();</OnEnter>
+					<OnLeave>MagicSmelterRecastThis_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga"/>
+		<HighlightTexture	file="uires\\ZhuJieMian\\1.dds" x="794" y="697" w="44" h="44" />
+		<PushedTexture		file="uires\\ZhuJieMian\\1.dds" x="794" y="742" w="44" h="44" />
+		<Scripts>
+			<OnEnter>SmelterItem_OnEnter()</OnEnter>
+			<OnLeave>SmelterItem_OnLeave()</OnLeave>
+		</Scripts>
+	</Button>
+
+	#收获物品模板
+	<Button name="SmelterRewardTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="44" y="44"/>
+		</Size>
+		<Layers>
+			<Layer level="background">  
+				<Texture name="$parentBack" file="uires\\ZhuJieMian\\1.dds" x="794" y="517" w="44" h="44"> 
+					<Size>
+						<AbsDimension x="44" y="44"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentIcon" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<AbsDimension x="38" y="38"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="3" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>				
+				</Texture>
+			</Layer>
+			<Layer level = "overlay">
+				<Texture name="$parentUVAnimationTex" file="uires\\ui\\TeXiao\\ZhuangBei  1.tga" hidden="true">
+					<Size>
+						<RelDimension x="1.5" y="1.5" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>	
+					<UVAnimation texrows="6" texcols="5" />
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture		file="uires\\ui\\mask\\TouMingTongDao.tga" />
+		<Scripts>
+			<OnEnter>SmelterReward_OnEnter()</OnEnter>
+			<OnLeave>SmelterReward_OnLeave()</OnLeave>
+		</Scripts>
+	</Button>
+
+	<Frame name="MagicSmelterFrame" parent="UIClient" frameStrata="DIALOG" movable="true" hidden="true" framelevel="100">
+		<Size>
+			<AbsDimension x="273" y="328"/>
+        </Size>
+        <Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="$parent">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+				<Texture name="$parentBkg" inherits="LayerBlackBkgTemplate" >
+					<Size>
+						<AbsDimension x="258" y="242" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+							<Offset>
+								<AbsDimension x="8" y="36" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentSepTexture" inherits="HorizonalLineTemplate">
+					<Size>
+						<AbsDimension x="265" y="10" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="3" y="283"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentTitle" fonttype="TeenyFZYBlackFont" justifyH="CENTER" text="重铸熔炉">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont1" fonttype="LittleFZYBlackFont" justifyH="left" text="可以更换的熔炉：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="200" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="44" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont2" fonttype="LittleFZYBlackFont" justifyH="left" text="当前熔炉品质：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="90" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="140" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentPinZhiFont" fonttype="LittleFZYBlackFont" justifyH="left" text="金色">
+					<Color r="200" g="200" b="100"/>
+					<Size>
+						<AbsDimension x="40" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parentFont2" relativePoint="topright">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentFont3" fonttype="LittleFZYBlackFont" justifyH="left" text="当前熔炉收益：">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="90" y="20" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="17" y="165" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 关闭按钮
+			<Button name="$parentClose" inherits="CloseBtnTemplate" />
+			# 熔炉
+			<Button name="$parentSmelterItem1" inherits="SmelterItemTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="19" y="62" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterItem2" inherits="SmelterItemTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterItem1" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterItem3" inherits="SmelterItemTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterItem2" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterItem4" inherits="SmelterItemTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterItem3" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterItem5" inherits="SmelterItemTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterItem4" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			#收益
+			<Button name="$parentSmelterReward1" inherits="SmelterRewardTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="19" y="183" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterReward2" inherits="SmelterRewardTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterReward1" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterReward3" inherits="SmelterRewardTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterReward2" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterReward4" inherits="SmelterRewardTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterReward3" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentSmelterReward5" inherits="SmelterRewardTemplate" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSmelterReward4" relativePoint="topright">
+						<Offset>
+							<AbsDimension x="4" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 单次重铸
+			<Button name="$parentRecastOnce" inherits="GongYongAnNiuB1Template">
+				<Size>
+					<AbsDimension x="141" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="289" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="我要更换一个熔炉">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="140" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>   
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MagicSmelterRecastOnce_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 停止重铸
+			<Button name="$parentRecastStop" inherits="GongYongAnNiuB1Template">
+				<Size>
+					<AbsDimension x="141" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativeTo="$parent" relativePoint="top">
+						<Offset>
+							<AbsDimension x="0" y="289" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFont" lineInterval ="2" multiLine="false" fonttype="LittleFZYBlackFont" justifyH="center" text="停止重铸">
+							<Color r="255" g="255" b="190"/>
+							<Size>
+								<AbsDimension x="140" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="center" relativeTo="$parent" relativePoint="center">
+									<Offset>
+										<AbsDimension x="0" y="3" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>   
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>MagicSmelterRecastStop_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<RichText name="$parentRecastItemFont" lineInterval ="1" multiLine="true" fonttype="LittleFZYBlackFont" fontStyle="normal" input_transparent="true">
+				<Size>
+					<AbsDimension x="248" y="40" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="17" y="238" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+		</Frames>
+		<Scripts>
+			<OnShow>MagicSmelterFrame_OnShow();</OnShow>
+			<OnHide>MagicSmelterFrame_OnHide();</OnHide>
+			<OnLoad>MagicSmelterFrame_OnLoad();</OnLoad>
+			<OnEvent>MagicSmelterFrame_OnEvent();</OnEvent>
+			<OnUpdate>MagicSmelterFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

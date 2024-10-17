@@ -1,0 +1,38 @@
+
+#include "header.fx"
+
+sampler s_DiffuseSampler : register(s0);
+#if MASK_TEXTURE == 1
+sampler s_MaskSampler : register(s1);
+#endif
+
+struct VS_OUTPUTPS
+{
+	float4 pos			: POSITIONT;
+	float4 color			: COLOR0;
+	float2 uv0			: TEXCOORD0;
+	float2 uv1			: TEXCOORD1;
+	float2 uv2			: TEXCOORD2;
+};
+
+float4 PSMain(VS_OUTPUTPS input):COLOR0
+{
+	float4 color0 = tex2D(s_DiffuseSampler,input.uv0);
+	color0 *= input.color;
+
+/*	if (input.uv2.r != 0.0f)
+	{
+		color0.rgb = dot(color0.rgb, float3(0.299, 0.587, 0.114));
+	}*/
+
+#if RGB2GRAY == 1
+	color0.rgb = dot(color0.rgb, float3(0.299, 0.587, 0.114));
+#endif
+
+
+#if MASK_TEXTURE == 1
+	float4 color1 = tex2D(s_MaskSampler,input.uv1);
+	color0 *= color1;
+#endif
+	return color0;
+}

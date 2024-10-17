@@ -1,0 +1,1579 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires/dirserver.lua" />
+	<Texture name="DengLuJieMianAnNiuB1NormalTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonB1.tga">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Texture name="DengLuJieMianAnNiuB2HighTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonB2.tga" >
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Texture name="DengLuJieMianAnNiuB3PushTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonB3.tga">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Texture name="DengLuJieMianAnNiuA1NormalTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonA1.tga">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Texture name="DengLuJieMianAnNiuA2HighTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonA2.tga" >
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Texture name="DengLuJieMianAnNiuA3PushTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonA3.tga">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	
+	<Texture name="DengLuJieMianAnNiuF1NormalTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonF1.tga">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Texture name="DengLuJieMianAnNiuF2HighTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonF2.tga">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Texture name="DengLuJieMianAnNiuF3PushTemplate" virtual="true" file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonF3.tga">
+		<Size>
+			<RelDimension x="1.0" y="1.0"/>
+		</Size>
+	</Texture>
+	<Frame name="DirServerFrame" parent="UIClient" frameStrata="DIALOG" scale="1" hidden="true">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				#Texture name="$parentBackTex" file="uires\\TuPianLei\\XuanFuWuQiDiTu.jpg"
+				<Texture name="$parentBackTex" file="uires\\ui\\mask\\TouMingTongDao.tga">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 整个面板底板
+			<Button name="$parentSelectWorldBackBtn">
+				<Size>
+					<AbsDimension x="913" y="610" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentVersionFont" fonttype="LittleFZYBlackFont" >
+							<Color r="220" g="220" b ="100" />
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="785" y="388" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						#当前选择服务器
+						<FontString name="$parentSeverFont" fonttype="LittleFZYBlackFont" >
+							<Color r="220" g="220" b ="100" />
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="707" y="411" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						#选择服务器 流畅程度
+						<FontString name="$parentSeverBusyFont" fonttype="LittleFZYBlackFont">
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="780" y="411" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<Texture name="$parentTexture" file="uires\\TuPianLei\\XuanZeFuWuQi\\Tupian.jpg">
+							<Size>
+								<AbsDimension x="185" y="197" />
+							</Size>
+							<Anchors>
+								<Anchor point="topright" relativePoint="topright" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="-28" y="118"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\DiBan.tga" />
+			</Button>
+	
+			# 大区按钮	hidden="true"
+			<Button name="AreaBtnTemplate" virtual="true" text="大区名字" hidden="true">
+				<Size>
+					<AbsDimension x="150" y="30" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						#新 标志
+						<Texture name="$parentNewFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\XinQu.tga">
+							<Size>
+								<AbsDimension x="20" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="124" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						# 双线标志
+						<Texture name="$parentShuangXianFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\ShuangXian.tga" >
+							<Size>
+								<AbsDimension x="20" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="124" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\XinQuShanShuo.tga" hidden="true">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="118" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits ="DengLuJieMianAnNiuB1NormalTemplate"		r="220" g="220" b="100" />
+				<HighlightTexture	inherits ="DengLuJieMianAnNiuB2HighTemplate"		r="255" g="255" b="255" />
+				<PushedTexture		inherits ="DengLuJieMianAnNiuB3PushTemplate"		r="255" g="255" b="190" />
+				<Scripts>
+					<OnClick>AreaBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="SecondTypeAreaBtnTemplate" virtual="true" text="大区名字" hidden="true">
+				<Size>
+					<AbsDimension x="150" y="48" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						#大区个性标志
+						<Texture name="$parentSignTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\ShiJianChengDuoXian.tga">
+							<Size>
+								<AbsDimension x="26" y="23" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="7" y="12"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						#新 标志
+						<Texture name="$parentNewFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\XinQu.tga">
+							<Size>
+								<AbsDimension x="20" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="124" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						# 双线标志
+						<Texture name="$parentShuangXianFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\ShuangXian.tga" >
+							<Size>
+								<AbsDimension x="20" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="124" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\XinQuShanShuo.tga" hidden="true">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="118" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+					</Layer>
+				</Layers>
+				<FontString name="$parentFont" fonttype="TeenyFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits ="DengLuJieMianAnNiuE1NormalTemplate"		r="220" g="220" b="100" />
+				<HighlightTexture	inherits ="DengLuJieMianAnNiuE2HighTemplate"		r="255" g="255" b="255" />
+				<PushedTexture		inherits ="DengLuJieMianAnNiuE3PushTemplate"		r="255" g="255" b="190" />
+				<Scripts>
+					<OnClick>AreaBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="BigWorldBtn1" inherits="AreaBtnTemplate" id="1" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="305"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BigWorldBtn2" inherits="AreaBtnTemplate" id="2" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="305"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BigWorldBtn3" inherits="AreaBtnTemplate" id="3" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="353" y="305"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BigWorldBtn4" inherits="AreaBtnTemplate" id="4" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="505" y="305"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BigWorldBtn5" inherits="AreaBtnTemplate" id="5" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="338"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			<Button name="BigWorldBtn6" inherits="AreaBtnTemplate" id="6" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="338"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BigWorldBtn7" inherits="AreaBtnTemplate" id="7" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="353" y="338" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="BigWorldBtn8" inherits="AreaBtnTemplate" id="8" hidden="true">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="505" y="338"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SecondTypeBigWorldBtn1" inherits="SecondTypeAreaBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="311"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SecondTypeBigWorldBtn2" inherits="SecondTypeAreaBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="311"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SecondTypeBigWorldBtn3" inherits="SecondTypeAreaBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="353" y="311"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="SecondTypeBigWorldBtn4" inherits="SecondTypeAreaBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="505" y="311"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 世界按钮	服务器选择按钮  hidden="true"
+			<Button name="TWorldBtn" virtual="true" text="世界名字" hidden="true">
+				<Size>
+					<AbsDimension x="150" y="30" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentBusyFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\ZhuangTai1.tga">
+							<Size>
+								<AbsDimension x="14" y="14" />
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="8" y="8"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentRecommendFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\TuiJian.tga" >
+							<Size>
+								<AbsDimension x="20" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="124" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="3" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<NormalTexture		inherits ="DengLuJieMianAnNiuB1NormalTemplate"		r="220" g="220" b="100" />
+				<HighlightTexture	inherits ="DengLuJieMianAnNiuB2HighTemplate"		r="255" g="255" b="255" />
+				<PushedTexture		inherits ="DengLuJieMianAnNiuB3PushTemplate"		r="255" g="255" b="190" />	
+			<Scripts>
+					<OnClick>TWorldBtn_OnClick();</OnClick>
+					<OnDoubleClick>DirFrame_OnDoubleClickWorldBtn();</OnDoubleClick>
+				</Scripts>
+			</Button>
+			# 第一行
+			<Button name="WorldBtn1" inherits="TWorldBtn" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="437"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn2" inherits="TWorldBtn" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="437"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn3" inherits="TWorldBtn" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="353" y="437"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn4" inherits="TWorldBtn" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="505" y="437"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>	
+			# 第二行
+			<Button name="WorldBtn5" inherits="TWorldBtn" id="5">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="470"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn6" inherits="TWorldBtn" id="6">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="470"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn7" inherits="TWorldBtn" id="7">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="353" y="470"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn8" inherits="TWorldBtn" id="8">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="505" y="470"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 第三行
+			<Button name="WorldBtn9" inherits="TWorldBtn" id="9">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="503"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn10" inherits="TWorldBtn" id="10">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="503"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			<Button name="WorldBtn11" inherits="TWorldBtn" id="11">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="353" y="503"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn12" inherits="TWorldBtn" id="12">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="505" y="503"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			# 第四排
+			<Button name="WorldBtn13" inherits="TWorldBtn" id="13">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="536"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn14" inherits="TWorldBtn" id="14">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="536"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn15" inherits="TWorldBtn" id="15">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="353" y="536"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="WorldBtn16" inherits="TWorldBtn" id="16">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="505" y="536"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			
+			# 推荐大区按钮
+			<Button name="RecommendTBigWorldBtnTemplate" virtual="true" text="推荐大区" hidden="true">
+				<Size>
+					<AbsDimension x="150" y="48" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentNewFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\XinQu.tga">
+							<Size>
+								<AbsDimension x="20" y="26" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="124" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						<Texture name="$parentUVAnimationTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\XinQuShanShuo.tga" hidden="true">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="118" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<UVAnimation texrows="3" texcols="3" />
+						</Texture>
+						<FontString name="$parentWorldFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Color r="220" g="220" b="100" />
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="24"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						
+						<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+							<Anchors>
+								<Anchor point="center">
+									<Offset>
+										<AbsDimension x="0" y="6"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits ="DengLuJieMianAnNiuA1NormalTemplate"		r="220" g="220" b="100" />
+				<HighlightTexture	inherits ="DengLuJieMianAnNiuA2HighTemplate"		r="255" g="255" b="255" />
+				<PushedTexture		inherits ="DengLuJieMianAnNiuA3PushTemplate"		r="255" g="255" b="190" />
+				<Scripts>
+					<OnClick>RecommendTBigWorldBtn_OnClick();</OnClick>
+					<OnDoubleClick>RecommendTBigWorldBtn_OnDoubleClick();</OnDoubleClick>
+					<OnEnter>RecommendTBigWorldBtn_OnEnter();</OnEnter>
+					<OnLeave>RecommendTBigWorldBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentRecomendBigWorldBtn1" inherits="RecommendTBigWorldBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="49" y="176"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRecomendBigWorldBtn2" inherits="RecommendTBigWorldBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="201" y="176"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRecomendBigWorldBtn3" inherits="RecommendTBigWorldBtnTemplate" id="3">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="354" y="176"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRecomendBigWorldBtn4" inherits="RecommendTBigWorldBtnTemplate" id="4">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="506" y="176"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+
+			# 确定按钮
+			<Button name="SelectWorldBtn" text="登    录" >
+				<FontString name="$parentFont" fonttype="FZYBlackFont16" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="189" y="42" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="701" y="439"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirFrame_OnClickSelectWorldBtn();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonC1.tga"		r="255" g="255" b="190" />
+				<HighlightTexture	file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonC2.tga"		r="255" g="255" b="255" />
+				<PushedTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonC3.tga"		r="160" g="160" b="90" />
+			</Button>
+			
+			## 快速开始
+			<Button name="$parentQuickStartBtn" text="快速试玩" >
+				<FontString name="$parentFont" fonttype="FZYBlackFont16" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="189" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="701" y="491"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirFrameQuickStartBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD1.tga"		r="255" g="255" b="190" />
+				<HighlightTexture	file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD2.tga"		r="255" g="255" b="255" />
+				<PushedTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD3.tga"		r="160" g="160" b="90" />
+				<DisabledTexture	file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD4.tga"		r="120" g="120" b="60" />
+			</Button>
+			
+			# 刷新按钮
+			<Button name="RefurbishBtn" text="刷	新" >
+				<FontString name="$parentFont" fonttype="FZYBlackFont16" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="189" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="701" y="522"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirFrame_OnClickRefurbishBtn();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD1.tga"		r="255" g="255" b="190" />
+				<HighlightTexture	file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD2.tga"		r="255" g="255" b="255" />
+				<PushedTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD3.tga"		r="160" g="160" b="90" />
+				<DisabledTexture	file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD1.tga"		r="255" g="255" b="190" />
+			</Button>
+			# 退出
+			<Button name="GameQuitBtn" text="返    回" >
+				<FontString name="$parentFont" fonttype="FZYBlackFont16" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="5"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="189" y="29" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="701" y="553"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirFrame_OnClickQuitBtn();</OnClick>
+				</Scripts>
+				<NormalTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD1.tga"		r="255" g="255" b="190" />
+				<HighlightTexture	file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD2.tga"		r="255" g="255" b="255" />
+				<PushedTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD3.tga"		r="160" g="160" b="90" />
+				<DisabledTexture	file="uires\\TuPianLei\\XuanZeFuWuQi\\ButtonD1.tga"		r="255" g="255" b="190" />
+			</Button>
+
+			<Button name="$parentZheZhaoBtn" hidden="true">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" />
+					</Layer>
+				</Layers>
+			</Button>
+
+			<CheckButton name="$parentLineChk1" inherits="LineCheckBtnTemplate" id="0">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectWorldBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="718" y="363" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>DirServerFrameLineChk_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentLineChk2" inherits="LineCheckBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectWorldBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="776" y="363" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>DirServerFrameLineChk_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+			<CheckButton name="$parentLineChk3" inherits="LineCheckBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parentSelectWorldBackBtn" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="835" y="363" />
+						</Offset>
+					</Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>DirServerFrameLineChk_OnClick();</OnClick>
+				</Scripts>
+			</CheckButton>
+		</Frames>
+		<Scripts>
+			<OnShow>DirServerFrame_OnShow();</OnShow>
+			<OnHide>DirServerFrame_OnHide();</OnHide>
+			<OnLoad>DirServerFrame_OnLoad();</OnLoad>
+			<OnEvent>DirServerFrame_OnEvent();</OnEvent>
+			<OnUpdate>DirServerFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	# 输入激活码框
+	<Frame name="DirServer_InputRegisterCodeFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="background">
+				 <Texture name="$parentGround" inherits="MainBkgTemplate" />                   
+				<FontString name="$parentMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="normal" text="激活码">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>
+            </Button>
+			<Button name="$parentTitleBtn">
+				<Size>
+					<AbsDimension x="96" y="20" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="-107" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						<FontString name="$parentFirstTitleFont" lineInterval ="2" multiLine="false" fonttype="TeenyFZYBlackFont" text="请输入激活码" justifyH="center">
+							<Color r="255" g="254" b="189"/>
+							<Size>
+								<AbsDimension x="94" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+									<Offset>
+										<AbsDimension x="0" y="0" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Button>
+			#角色名字输入框背景框
+			<Button name="$parentBlack_EditBackBtn">
+				<Size>
+					<AbsDimension x="167" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="40" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture  inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>DirServer_InputRegisterCodeFrame_EditBackBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##输入框
+			<EditBox name="$parent_InputEdit" letters="50" multiLine="false" editMethod="3">
+				<Size>
+					<AbsDimension x="153" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlack_EditBackBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="3" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont14" justifyH="left">
+					<Color r="255" g="229" b="189"/>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>DirServer_InputRegisterCodeFrame_RegisterBtn_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			# 立即激活
+			<Button name="$parent_RegisterBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="立即激活" >
+				<Size>
+					<AbsDimension x="96" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>DirServer_InputRegisterCodeFrame_RegisterBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			# 领取激活码
+			<Button name="$parent_GetRegisterCodeBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="领取激活码">
+				<Size>
+					<AbsDimension x="96" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirServer_InputRegisterCodeFrame_GetRegisterCodeBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>DirServer_InputRegisterCodeFrame_OnShow();</OnShow>
+			<OnUpdate>DirServer_InputRegisterCodeFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+	# 确认登录框
+	<Frame name="DirMessageBoxFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="199" toplevel="true">
+		<Size>
+			<AbsDimension x="473" y="179" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="DengLuJieMianXuanZeFuWuQiZiJieMianTemplate" >
+					<Size>
+						<AbsDimension x="473" y="179" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" >
+					<Size>
+						<AbsDimension x="179" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="179" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="温馨提示" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="-17" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\3.dds" x="399" y="809" w="52" h="52" >
+					<Size>
+						<AbsDimension x="52" y="52" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="62" y="48"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentDescFont" fonttype="LittleFZYBlackFont" justifyH="left" text="本服务器含有PvP内容，未成年人请慎入" >
+					<Color r="50" g="30" b="10"/>
+					 <Size>
+						<AbsDimension x="340" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="55" y="75" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确	定" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="122" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirFrameOkBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentOKBtnCancelBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="取	消" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="246" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirFrameCancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>DirMessageBoxFrame_OnShow();</OnShow>
+			<OnHide>DirMessageBoxFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+	# 确认退出游戏框
+	<Frame name="DirConfirmQuiGameFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="199" toplevel="true">
+		<Size>
+			<AbsDimension x="473" y="179" />
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBackground" inherits="DengLuJieMianXuanZeFuWuQiZiJieMianTemplate" >
+					<Size>
+						<AbsDimension x="473" y="179" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentLeftHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" >
+					<Size>
+						<AbsDimension x="179" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="right" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" UVType="mirroeu">
+					<Size>
+						<AbsDimension x="179" y="30" />
+					</Size>
+					<Anchors>
+						<Anchor point="left" relativePoint="top" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="-13"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="center" text="温馨提示" >
+					<Color r="255" g="255" b="190"/>
+					 <Size>
+						<AbsDimension x="160" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="-17" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentTex" file="uires\\ZhuJieMian\\3.dds" x="399" y="809" w="52" h="52" >
+					<Size>
+						<AbsDimension x="52" y="52" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="62" y="48"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="$parentDescFont" fonttype="LittleFZYBlackFont" justifyH="center" text="确认退出游戏吗？" >
+					<Color r="50" g="30" b="10"/>
+					 <Size>
+						<AbsDimension x="250" y="17" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="15" y="75" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentOKBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="确	定" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="122" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>CSQuitGameButtonOnClick();</OnClick>
+				</Scripts>
+			</Button>
+
+			<Button name="$parentCancelBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="取	消" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="246" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirConfirmQuiGameFrame:Hide();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>DirConfirmQuiGameFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+	<Frame name="DirSimpleServerFrame" parent="UIClient" frameStrata="DIALOG" scale="1">
+		<Size>
+			<RelDimension x="1.0" y="1.0" />
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				#Texture name="$parentBackTex" file="uires\\TuPianLei\\XuanFuWuQiDiTu.jpg"
+				<Texture name="$parentBackTex">
+					<Size>
+						<RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			# 整个面板底板
+			<Button name="$parentSelectWorldBackBtn">
+				<Size>
+					<AbsDimension x="694" y="445" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativePoint="center" relativeTo="$parent">
+						<Offset>
+							<AbsDimension x="0" y="-50"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="overlay">
+						#当前选择服务器
+						<FontString name="$parentSeverFont" fonttype="LittleFZYBlackFont" text="天空双线区  圣光永恒">
+							<Color r="160" g="160" b ="90" />
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="51" y="381" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						#选择服务器 流畅程度
+						<FontString name="$parentSeverBusyFont" fonttype="LittleFZYBlackFont" text="（繁忙）">
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="170" y="381" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		file="uires\\TuPianLei\\XuanZeFuWuQi\\DiBan2.tga" />
+			</Button>
+			# 简易推荐大区
+			<Button name="SimpleRecommedWorldBtnTemplate" virtual="true" text="推荐大区">
+				<Size>
+					<AbsDimension x="226" y="71" />
+				</Size>
+				<Layers>
+					<Layer level="overlay">
+						<Texture name="$parentNewFlagTex" file="uires\\TuPianLei\\XuanZeFuWuQi\\Xin.tga">
+							<Size>
+								<AbsDimension x="48" y="47" />
+							</Size>
+							<Anchors>
+								<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="12"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+						#推荐大区
+						<FontString name="$parentWorldFont" justifyH="center" fonttype="LittleFZYBlackFont" text="天空双线" >
+							<Color r="220" g="220" b ="100" />
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="15" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						#推荐服务器
+						<FontString name="$parentServerFont" fonttype="SeventeenFont" justifyH="center" text="圣光永恒">
+							<Size>
+								<AbsDimension x="200" y="20" />
+							</Size>
+							<Anchors>
+								<Anchor point="top" relativePoint="top" relativeTo="$parent">
+									<Offset>
+										<AbsDimension x="0" y="36" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<NormalTexture		inherits ="DengLuJieMianAnNiuF1NormalTemplate"		r="220" g="220" b="100" />
+				<HighlightTexture	inherits ="DengLuJieMianAnNiuF2HighTemplate"		r="255" g="255" b="255" />
+				<PushedTexture		inherits ="DengLuJieMianAnNiuF3PushTemplate"		r="255" g="255" b="190" />
+				<Scripts>
+					<OnClick>SimpleRecommendWorldBtn_OnClick();</OnClick>
+					<OnDoubleClick>SimpleRecommendWorldBtn_OnDoubleClick();</OnDoubleClick>
+					<OnEnter>SimpleRecommendWorldBtn_OnEnter();</OnEnter>
+					<OnLeave>SimpleRecommendWorldBtn_OnLeave();</OnLeave>
+				</Scripts>
+			</Button>
+			<Button name="$parentRecomendWorldBtn1" inherits="SimpleRecommedWorldBtnTemplate" id="1">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="106" y="196"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentRecomendWorldBtn2" inherits="SimpleRecommedWorldBtnTemplate" id="2">
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="360" y="196"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			## 推荐提示
+			<RichText name="$parentTipRich1" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="FZYBlackFont12">
+				<Size>
+					<AbsDimension x="220" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentRecomendWorldBtn1">
+						<Offset>
+							<AbsDimension x="3" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			<RichText name="$parentTipRich2" lineInterval ="2" multiLine="true" fontStyle="normal" fonttype="FZYBlackFont12">
+				<Size>
+					<AbsDimension x="220" y="28" />
+				</Size>
+				<Anchors>
+					<Anchor point="top" relativePoint="bottom" relativeTo="$parentRecomendWorldBtn2">
+						<Offset>
+							<AbsDimension x="3" y="5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 开始按钮
+			<Button name="SimpleSelectWorldBtn" text="开始游戏" >
+				<FontString name="$parentFont" fonttype="FZYBlackFont16" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="150" y="42" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="349" y="358"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>DirSimpleFrameSelectBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		inherits="DengLuJieMianAnNiu2NormalTemplate" 		r="255" g="255" b="190" />
+				<HighlightTexture	inherits="DengLuJieMianAnNiu2HighTemplate" 		r="255" g="255" b="255" />
+				<PushedTexture		inherits="DengLuJieMianAnNiu2PushedTemplate" 		r="160" g="160" b="90" />
+			</Button>
+			# 选择其他服务器
+			<Button name="SimpleSelectOtherWorldBtn" text="选择其他服务器" >
+				<FontString name="$parentFont" fonttype="FZYBlackFont16" fontStyle="normal" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="12"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="150" y="42" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="$parentSelectWorldBackBtn">
+						<Offset>
+							<AbsDimension x="501" y="358"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>SimpleSelectOtherWorldBtn_OnClick();</OnClick>
+				</Scripts>
+				<NormalTexture		inherits="DengLuJieMianAnNiu2NormalTemplate" 		r="255" g="255" b="190" />
+				<HighlightTexture	inherits="DengLuJieMianAnNiu2HighTemplate" 			r="255" g="255" b="255" />
+				<PushedTexture		inherits="DengLuJieMianAnNiu2PushedTemplate" 		r="160" g="160" b="90" />
+			</Button>
+			<Button name="$parentZheZhaoBtn" hidden="true">
+				<Size>
+					<RelDimension x="1.0" y="1.0" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer>
+						<Texture name="$parentTex" />
+					</Layer>
+				</Layers>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>DirSimpleServerFrame_OnShow();</OnShow>
+			<OnHide>DirSimpleServerFrame_OnHide();</OnHide>
+			<OnLoad>DirSimpleServerFrame_OnLoad();</OnLoad>
+			<OnEvent>DirSimpleServerFrame_OnEvent();</OnEvent>
+			<OnUpdate>DirSimpleServerFrame_OnUpdate();</OnUpdate>
+		</Scripts>
+	</Frame>
+</Ui>

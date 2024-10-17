@@ -1,0 +1,94 @@
+#include "header.fx"
+
+float4 g_UVRepeat = {1.0, 1.0, 1.0, 1.0};
+
+sampler s_BlendColorSampler0 : register(s0);
+#if TERRAIN_LAYERS > 1	
+sampler s_BlendAlphaSampler : register(s1);
+sampler s_BlendColorSampler1 : register(s2);
+#endif
+#if TERRAIN_LAYERS > 2
+sampler s_BlendColorSampler2 : register(s3);
+#endif
+#if TERRAIN_LAYERS > 3
+sampler s_BlendColorSampler3 : register(s4);
+#endif
+
+#ifdef LIGHT_SHADOW
+sampler s_DepthMapSampler : register(s5);
+#endif
+
+#if USE_STATICLIGHT == 2
+sampler s_LightMapSampler : register(s6);
+#endif
+
+
+struct VS_OUTPUTPS
+{
+	float4 pos      : POSITION;
+	float4 color0        : TEXCOORD3; //color0.xyz=ambient lighting,  color0.w=specular lighting
+	float2 uv0      : TEXCOORD0;
+#ifdef LIGHT_SHADOW
+	float4 color1        : TEXCOORD4; //color1.xyz=shadowed_lighting,  color1.w=specular lighting
+	float4 uv1            : TEXCOORD1;
+#else	
+#ifdef LIGHT_SHADOWCUBE
+	float4 color1        : TEXCOORD4; //color1.xyz=shadowed_lighting,  color1.w=specular lighting
+	float3 uv1           : TEXCOORD1;
+#endif	
+#endif
+
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD2;
+#endif
+	float2 fogh: TEXCOORD5;
+};
+
+float4 PSMain(VS_OUTPUTPS input) : COLOR0
+{
+	float4 color = tex2D(s_BlendColorSampler0, g_UVRepeat.x*input.uv0);
+
+#if TERRAIN_LAYERS > 1	
+	float4 alpha = tex2D(s_BlendAlphaSampler,input.uv0);
+	color	= lerp(color,tex2D(s_BlendColorSampler1, g_UVRepeat.y*input.uv0), alpha.b);
+#endif
+#if TERRAIN_LAYERS > 2
+	color	= lerp(color,tex2D(s_BlendColorSampler2,g_UVRepeat.z*input.uv0), alpha.g);	
+#endif
+#if TERRAIN_LAYERS > 3
+	color	= lerp(color,tex2D(s_BlendColorSampler3,g_UVRepeat.w*input.uv0), alpha.r);	
+#endif
+
+#if USE_STATICLIGHT == 2
+	float4 colorLightMap = tex2D(s_LightMapSampler, float2(input.uv0.x, 1.0-input.uv0.y));
+	color *= colorLightMap*1.1f;
+	color *= input.color0;
+
+#endif
+
+#if USE_STATICLIGHT == 0
+
+    float4 lighting = input.color0;
+#ifdef LIGHT_SHADOW
+	float shadow = DoHardShadow(s_DepthMapSampler, input.uv1, input.uv1.z/input.uv1.w); 
+	shadow = 1.0f - (1.0f - shadow)*g_shadowdensity;
+	lighting += shadow*input.color1;
+#endif
+
+#ifdef LIGHT_SPECULAR
+    color.rgb = lighting.rgb*color.rgb + color.a*lighting.a*g_SpecularColor;
+#else
+    color.rgb = lighting.rgb*color.rgb;
+#endif
+
+#endif
+
+#if FOG_DISTANCE>0
+	color.rgb = lerp(g_DistFogColor, color.rgb, input.fogc.x);
+#endif
+#if FOG_HEIGHT > 0
+	color.rgb = lerp(g_HeightFogColor, color.rgb, input.fogc.y);
+#endif
+	
+	return float4(color.rgb, 1.0);
+}

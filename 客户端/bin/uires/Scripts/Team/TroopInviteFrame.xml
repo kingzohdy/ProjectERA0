@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\Scripts\Team\TroopInviteFrame.lua"/>
+	<Frame name="TroopInviteFrame" parent="UIClient" frameStrata="FULLSCREEN" hidden="true">
+		<Size>
+			<AbsDimension x="357" y="127"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" inherits="MainBkgTemplate" />
+					
+				<FontString name="TroopInviteFrameMessageBoxName" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="组队邀请">
+					<Color r="255" g="229" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="TroopInviteFrame" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="5" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+        <Frames>		
+			# 黑色底版
+			<Button name="TroopInviteFrameBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString name="InvitePlayerNameFont" justifyH="center" fonttype="TeenyFZYBlackFont" fontStyle="shadow" text="刘德华邀请您加入队伍,是否同意？">
+							<Color r="237" g="235" b="187"/>
+								<Size>
+									<AbsDimension x="300" y="50"/>
+								</Size>
+								<Anchors>
+									<Anchor point="center" relativeTo="TroopInviteFrameBlackButton" relativePoint="center" >
+										<Offset>
+											<AbsDimension x="0" y="5"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+               <Anchors>
+                    <Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+            </Button>
+				#同意邀请按钮
+			<Button name="AcceptButton" inherits="GongYongAnNiuC1ButtonTemplate" text="接受">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+                <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>AcceptButton_OnClick();</OnClick>
+				</Scripts>
+            </Button> 
+			# 拒绝邀请按钮
+			<Button name="RufuseOneButton" inherits="GongYongAnNiuC1ButtonTemplate" text="拒绝">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+               <Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>RufuseOneButton_OnClick();</OnClick>
+				</Scripts>
+            </Button>
+        </Frames>
+ 		<Scripts>
+			<OnLoad>TroopInviteFrameOnLoad();</OnLoad>
+			<OnEvent>TroopInviteFrameOnEvent();</OnEvent>
+			<OnShow>TroopInviteFrameOnShow();</OnShow>
+			<OnHide>TroopInviteFrameOnHide();</OnHide>
+		</Scripts>	
+    </Frame>
+
+	<Frame name="FollowHintFrame" parent="UIClient" frameStrata="LOW" hidden="true" input_transparent="true">
+		<Size>
+			<AbsDimension x="129" y="31"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" file="uires\\ZhuJieMian\\3.dds" x="743" y="230" w="146" h="35" >
+					<Size>
+						 <RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnUpdate>FollowHintFrame_OnUpdate();</OnUpdate>
+			<!--<OnLoad>FollowHintFrame_OnLoad();</OnLoad>
+			<OnEvent>FollowHintFrame_OnEvent();</OnEvent>-->
+		</Scripts>	
+	</Frame>
+
+	<Frame name="TeamFollowHintFrame" parent="UIClient" frameStrata="LOW" hidden="true" input_transparent="true">
+		<Size>
+			<AbsDimension x="129" y="31"/>
+		</Size>
+		<Anchors>
+			<Anchor point="center">
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackGround" file="uires\\ZhuJieMian\\3.dds" x="743" y="194" w="146" h="35" >
+					<Size>
+						 <RelDimension x="1.0" y="1.0" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+							<Offset>
+								<AbsDimension x="0" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnUpdate>TeamFollowHintFrame_OnUpdate();</OnUpdate>
+		</Scripts>	
+	</Frame>
+</Ui>

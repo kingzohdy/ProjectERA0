@@ -1,0 +1,92 @@
+
+#include "header.fx"
+
+#ifdef MODEL_TRANSPARENT
+#if BLEND_MODE<2
+#undef BLEND_MODE
+#define BLEND_MODE 2
+#endif
+#endif
+
+sampler s_DiffuseSampler : register(s0);
+sampler  s_DepthMapSampler : register(s1);
+
+#if USE_MASK_TEX==1
+sampler s_MaskSampler : register(s2);
+#endif
+
+struct VS_OUTPUT
+{
+    float4 pos            : POSITION;
+#if RECEIVE_LIGHTING==1
+	float4 color0     : COLOR0;
+#endif
+    float2 uv0            : TEXCOORD0;
+    float2 uv1            : TEXCOORD1;
+
+#if RECEIVE_LIGHTING==1
+#ifdef LIGHT_SHADOW
+    float4 color1        : COLOR1; //color1.xyz=shadowed_lighting,  color1.w=specular lighting
+    float4 uv2            : TEXCOORD2;
+#endif
+#endif
+
+#if RECEIVE_FOG==1
+#if FOG_HEIGHT>0 || FOG_DISTANCE>0
+	float2 fogc	: TEXCOORD3;
+#endif
+#endif
+};
+
+float4 PSMain(VS_OUTPUT input):COLOR0
+{
+	float4 color0  = tex2D(s_DiffuseSampler,input.uv0);
+#if USE_MASK_TEX==1
+	float4 color1 = tex2D(s_MaskSampler, input.uv1);
+#else
+	float4 color1 = float4(1.0, 1.0, 1.0, 1.0);
+#endif
+
+#if RECEIVE_LIGHTING==1
+     float4 lighting = input.color0;
+#ifdef LIGHT_SHADOW
+	float shadow = DoHardShadow(s_DepthMapSampler, input.uv2, input.uv2.z/input.uv2.w); 
+	shadow = 1.0f - (1.0f - shadow)*g_shadowdensity;
+	lighting += shadow*input.color1;
+#endif
+
+	float4 color = float4(lighting.rgb,1.0)*color0*color1;
+#else
+	float4 color = color0*color1;
+#endif
+
+#ifdef MODEL_TRANSPARENT
+	color *= g_ModelTransparent;
+#endif
+
+#if RECEIVE_FOG==1
+
+#if BLEND_MODE < 3
+
+#if FOG_DISTANCE>0
+	color.rgb = lerp(g_DistFogColor, color.rgb, input.fogc.x);
+#endif
+#if FOG_HEIGHT > 0
+	color.rgb = lerp(g_HeightFogColor, color.rgb, input.fogc.y);
+#endif
+
+#else //blend_mode>=3
+
+#if FOG_DISTANCE>0
+	color *= input.fogc.x;
+#endif
+#if FOG_HEIGHT > 0
+	color *= input.fogc.y;
+#endif
+
+#endif
+
+#endif
+
+	return color;
+}

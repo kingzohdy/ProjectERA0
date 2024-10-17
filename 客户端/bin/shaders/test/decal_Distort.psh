@@ -1,0 +1,26 @@
+#include "header.fx"
+
+sampler s_DiffuseSampler : register(s0);
+
+#if MASK_TEXTURE==1
+sampler s_MaskSampler : register(s1);
+#endif
+
+struct VS_OUTPUT
+{
+    float4 pos      : POSITION;
+    float4 color0   : COLOR0;
+    float4 uv0      : TEXCOORD0;
+#if MASK_TEXTURE==1
+    float4 uv1	    : TEXCOORD1;
+#endif
+};
+
+float4 PSMain_Distort(VS_OUTPUT	input):COLOR0
+{
+	float4 color = tex2Dproj(s_DiffuseSampler, input.uv0);
+#if MASK_TEXTURE==1
+	color *= tex2Dproj(s_MaskSampler, input.uv1);
+#endif
+	return (color-128.0f/255.0f)*input.color0.a + 128.0f/255.0f;
+}

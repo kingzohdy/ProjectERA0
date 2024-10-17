@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+    <Script file="uires\Scripts\ChangeName\ChangeName.lua" />
+	# 更改名字输入面板 
+	<Frame name="ChangeRoleNameFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentbackground" inherits="MainBkgTemplate"/>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="请输入新名字">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="-27" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>			
+            </Button>
+			#角色名字输入框背景框
+			<Button name="$parent_NameEditBackBtn">
+				<Size>
+					<AbsDimension x="167" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>ChangeRoleNameFrame_NameEditBackBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##输入框
+			<EditBox name="$parent_NameEdit" letters="15" historyLines="1" multiLine="false" >
+				<Size>
+					<AbsDimension x="145" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent_NameEditBackBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont14" >
+					<Color r="255" g="229" b="189"/>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>ChangeRoleNameFrame_ConfirmBtn_OnClick();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			##确定
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ChangeRoleNameFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="$parent_CancleBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>ChangeRoleNameFrame:Hide();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ChangeRoleNameFrame_OnShow();</OnShow>
+			<OnHide>ChangeRoleNameFrame_OnHide();</OnHide>
+		</Scripts>
+	</Frame>
+
+	# 更改公会名字输入面板 
+	<Frame name="ChangeClanNameFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" movable = "true" framelevel = "21">
+		<Size>
+			<AbsDimension x="357" y="127" />
+		</Size>
+		<Anchors>
+			<Anchor point="center" >
+				<Offset>
+					<AbsDimension x="0" y="0" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+            <Layer level="background">
+                <Texture name="$parentbackground" inherits="MainBkgTemplate"/>
+				<FontString name="$parentTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="请输入新公会名字">
+					<Color r="255" g="254" b="189"/>
+					<Size>
+						<AbsDimension x="300" y="50" />
+					</Size>
+					<Anchors>
+						<Anchor point="center" relativeTo="$parent" relativePoint="center" >
+							<Offset>
+								<AbsDimension x="0" y="-27" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+            </Layer>
+        </Layers>
+		<Frames>			
+			# 黑色底版
+			<Button name="$parentBlackButton">
+				<Size>
+					<AbsDimension x="351" y="93"/>
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="3" y="31"/>
+                        </Offset>
+					</Anchor>
+				</Anchors>			
+            </Button>
+			#角色名字输入框背景框
+			<Button name="$parent_NameEditBackBtn">
+				<Size>
+					<AbsDimension x="167" y="24" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parentBlackButton" relativePoint="center">
+						<Offset>
+							<AbsDimension x="0" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<NormalTexture inherits="EditBoxBkgTemplate" />
+				<Scripts>
+					<OnClick>ChangeClanNameFrame_NameEditBackBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			##输入框
+			<EditBox name="$parent_NameEdit" letters="14" historyLines="1" multiLine="false" >
+				<Size>
+					<AbsDimension x="145" y="15" />
+				</Size>
+				<Anchors>
+					<Anchor point="center" relativeTo="$parent_NameEditBackBtn" relativePoint="center">
+						<Offset>
+							<AbsDimension x="3" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<FontString name="$parentFont" fonttype="SongTiFont14" >
+					<Color r="255" g="229" b="189"/>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed>ChangeClanNameFrame_NameEdit_OnEnterPressed();</OnEnterPressed>
+				</Scripts>
+			</EditBox>
+			##确定
+			<Button name="$parent_ConfirmBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="确定">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				 <Anchors>
+                    <Anchor point="topLeft" relativeTo="$parent" relativePoint="topleft" >
+                        <Offset>
+                            <AbsDimension x="40" y="97"/>
+                        </Offset>
+                    </Anchor>
+                </Anchors>
+				<Scripts>
+					<OnClick>ChangeClanNameFrame_ConfirmBtn_OnClick();</OnClick>
+				</Scripts>		
+			</Button>
+			##取消
+			<Button name="$parent_CancleBtn" inherits="GongYongAnNiuC1ButtonTemplate" text="取消">
+				<Size>
+					<AbsDimension x="67" y="27"/>
+				</Size>
+				<Anchors>
+                    <Anchor point="topright" relativeTo="$parent" relativePoint="topright" >
+                        <Offset>
+                            <AbsDimension x="-40" y="97"/>
+                        </Offset>
+                    </Anchor>
+				</Anchors>	
+				<Scripts>
+					<OnClick>ChangeClanNameFrame:Hide();</OnClick>
+				</Scripts>		
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>ChangeClanNameFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

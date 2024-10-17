@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<Ui>
+	<Script file="uires\WaitQueueFrame.lua"/>
+	<Frame name="WaitQueueFrame" frameStrata="FULLSCREEN" parent="UIClient" hidden="true" framelevel="500" input_transparent="true">
+		<Size>
+           <AbsDimension x="473" y="178"/>
+        </Size>
+		<Anchors>
+			<Anchor point="center" relativePoint="center" relativeTo="UIClient">
+				<Offset>
+					<AbsDimension x="0" y="11"/>
+				</Offset>
+			</Anchor>
+		</Anchors>	
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackTex"  inherits="DengLuJieMianWenXinTiShiJieMianDiBanTemplate">
+					<Size>
+					   <AbsDimension x="473" y="178"/>
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>
+				<Texture name="$parentLeftHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" >
+					<Size>
+						<AbsDimension x="179" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomright" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentRightHeadTex" file="uires\\ZhuJieMian\\3.dds" x="457" y="806" w="179" h="30" UVType="mirroeu" >
+					<Size>
+						<AbsDimension x="179" y="30"/>
+					</Size>
+					<Anchors>
+						<Anchor point="bottomleft" relativeTo="$parent" relativePoint="top">
+							<Offset>
+								<AbsDimension x="0" y="6" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="overlay">
+				<FontString name="$parentHeadTitleFont" fonttype="TeenyFZYBlackFont" justifyH="CENTER" fontStyle="shadow" text="温馨提示">
+					<Color r="255" g="255" b="190"/>
+					<Size>
+						<AbsDimension x="100" y="15" />
+					</Size>
+					<Anchors>
+						<Anchor point="top" relativeTo="$parent" relativePoint="top" >
+							<Offset>
+								<AbsDimension x="0" y="-15" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Texture name="$parentIcon"  file="uires\\ZhuJieMian\\3.dds" x="399" y="809" w="52" h="52">
+					<Size>
+						<AbsDimension x="52" y="52" />
+					</Size>
+					<Anchors>
+						<Anchor point="topleft" relativePoint="topleft" relativeTo="$parent">
+							<Offset>
+								<AbsDimension x="60" y="46"/>
+							</Offset>
+						</Anchor>
+					</Anchors>			
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<RichText name="WaitQueueFrameDescRichText" lineInterval ="4" multiLine="true" fonttype="LittleFZYBlackFont" fontStyle="normal">
+				<Size>
+					<AbsDimension x="300" y="110" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativePoint="topleft" relativeTo="WaitQueueFrame">
+						<Offset>
+							<AbsDimension x="144" y="43" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</RichText>
+			# 进入官网按钮
+			<Button name="WaitQueueFrame_EnterOffsiteBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="看看官网" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="64" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WaitQueueFrame_EnterOffsiteBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 进入论坛按钮
+			<Button name="WaitQueueFrame_EnterForumBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="逛逛论坛" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="182" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WaitQueueFrame_EnterForumBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+			# 取消按钮
+			<Button name="WaitQueueFrame_CancelBtn" inherits="GongYongAnNiuB1NoFontNormalTemplate" text="重选服务器" >
+				<FontString name="$parentFont" fonttype="LittleFZYBlackFont" fontStyle="shadow" justifyH="center" >
+					<Anchors>
+						<Anchor point="center">
+							<Offset>
+								<AbsDimension x="0" y="7"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<Size>
+					<AbsDimension x="110" y="31" />
+				</Size>
+				<Anchors>
+					<Anchor point="topleft" relativeTo="$parent" relativePoint="topleft">
+						<Offset>
+							<AbsDimension x="300" y="120" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>WaitQueueFrame_CancelBtn_OnClick();</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>	
+		<Scripts>
+			<!--<OnShow>WaitQueueFrame_Test_OnShow();</OnShow>-->
+			<OnUpdate>WaitQueueFrame_OnUpdate();</OnUpdate>
+			<OnLoad>WaitQueueFrame_OnLoad();</OnLoad>
+			<OnEvent>WaitQueueFrame_OnEvent();</OnEvent>
+			<OnHide>WaitQueueFrame_OnHide();</OnHide>
+			<OnShow>WaitQueueFrame_OnShow();</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>
